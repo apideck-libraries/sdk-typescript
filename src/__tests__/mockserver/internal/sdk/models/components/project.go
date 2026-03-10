@@ -152,7 +152,7 @@ type Project struct {
 	// The third-party API ID of original entity
 	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// Name of the project
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// User-friendly project identifier
 	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// External reference identifier for the project
@@ -222,7 +222,7 @@ type Project struct {
 	Addresses []Address `json:"addresses,omitempty"`
 	// Number of team members assigned to the project
 	TeamSize     optionalnullable.OptionalNullable[int64] `json:"team_size,omitempty"`
-	CustomFields []CustomFieldUnion                       `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                            `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -232,7 +232,8 @@ type Project struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
+	UpdatedAt            optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (p Project) MarshalJSON() ([]byte, error) {
@@ -240,7 +241,7 @@ func (p Project) MarshalJSON() ([]byte, error) {
 }
 
 func (p *Project) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -260,9 +261,9 @@ func (o *Project) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	return o.DownstreamID
 }
 
-func (o *Project) GetName() string {
+func (o *Project) GetName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Name
 }
@@ -512,7 +513,7 @@ func (o *Project) GetTeamSize() optionalnullable.OptionalNullable[int64] {
 	return o.TeamSize
 }
 
-func (o *Project) GetCustomFields() []CustomFieldUnion {
+func (o *Project) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -554,9 +555,16 @@ func (o *Project) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	return o.UpdatedAt
 }
 
+func (o *Project) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type ProjectInput struct {
 	// Name of the project
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// User-friendly project identifier
 	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// External reference identifier for the project
@@ -622,9 +630,10 @@ type ProjectInput struct {
 	Addresses []Address `json:"addresses,omitempty"`
 	// Number of team members assigned to the project
 	TeamSize     optionalnullable.OptionalNullable[int64] `json:"team_size,omitempty"`
-	CustomFields []CustomFieldUnion                       `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                            `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
+	RowVersion           optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
 }
 
 func (p ProjectInput) MarshalJSON() ([]byte, error) {
@@ -632,15 +641,15 @@ func (p ProjectInput) MarshalJSON() ([]byte, error) {
 }
 
 func (p *ProjectInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ProjectInput) GetName() string {
+func (o *ProjectInput) GetName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Name
 }
@@ -876,7 +885,7 @@ func (o *ProjectInput) GetTeamSize() optionalnullable.OptionalNullable[int64] {
 	return o.TeamSize
 }
 
-func (o *ProjectInput) GetCustomFields() []CustomFieldUnion {
+func (o *ProjectInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -888,4 +897,11 @@ func (o *ProjectInput) GetRowVersion() optionalnullable.OptionalNullable[string]
 		return nil
 	}
 	return o.RowVersion
+}
+
+func (o *ProjectInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

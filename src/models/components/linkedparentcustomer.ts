@@ -15,7 +15,7 @@ export type LinkedParentCustomer = {
   /**
    * The parent ID of the customer this entity is linked to.
    */
-  id: string;
+  id?: string | undefined;
   /**
    * The name of the parent customer.
    */
@@ -28,12 +28,12 @@ export const LinkedParentCustomer$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: types.string(),
+  id: types.optional(types.string()),
   name: types.optional(types.string()),
 });
 /** @internal */
 export type LinkedParentCustomer$Outbound = {
-  id: string;
+  id?: string | undefined;
   name?: string | undefined;
 };
 
@@ -43,7 +43,7 @@ export const LinkedParentCustomer$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   LinkedParentCustomer
 > = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   name: z.string().optional(),
 });
 

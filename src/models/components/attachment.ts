@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -67,6 +70,7 @@ export type Attachment = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -74,21 +78,25 @@ export const Attachment$inboundSchema: z.ZodType<
   Attachment,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  display_id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  mime_type: z.nullable(types.string()).optional(),
-  size: z.nullable(types.number()).optional(),
-  reference: types.optional(AttachmentReference$inboundSchema),
-  description: z.nullable(types.string()).optional(),
-  parent_folder_id: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    display_id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    mime_type: z.nullable(types.string()).optional(),
+    size: z.nullable(types.number()).optional(),
+    reference: types.optional(AttachmentReference$inboundSchema),
+    description: z.nullable(types.string()).optional(),
+    parent_folder_id: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "display_id": "displayId",
     "mime_type": "mimeType",

@@ -48,11 +48,65 @@ let value: AccountingExpenseReportsUpdateRequest = {
       id: "12345",
       name: "Q1 2024",
     },
-    lineItems: [],
-    subsidiary: {
-      displayId: "123456",
-      name: "Acme Inc.",
-    },
+    lineItems: [
+      {
+        lineNumber: 1,
+        expenseCategory: {
+          id: "12345",
+          downstreamId: "12345",
+          displayId: "Airfare",
+          name: "Airfare",
+        },
+        account: {
+          id: "123456",
+          name: "Bank account",
+          nominalCode: "N091",
+          code: "453",
+          parentId: "123456",
+          displayId: "123456",
+        },
+        description: "Flight to New York",
+        quantity: 1,
+        unitPrice: 27500.5,
+        amount: 275,
+        taxRate: {
+          id: "123456",
+          code: "N-T",
+          rate: 10,
+        },
+        taxAmount: 27.5,
+        totalAmount: 302.5,
+        transactionDate: new Date("2024-05-15"),
+        billable: true,
+        reimbursable: true,
+        customer: {
+          id: "12345",
+          displayName: "Windsurf Shop",
+          email: "boring@boring.com",
+        },
+        department: {
+          displayId: "123456",
+          name: "Acme Inc.",
+        },
+        location: {
+          id: "123456",
+          displayId: "123456",
+          name: "New York Office",
+        },
+        trackingCategories: [
+          {
+            id: "123456",
+            code: "100",
+            name: "New York",
+            parentId: "123456",
+            parentName: "New York",
+          },
+        ],
+        receiptUrl: "https://example.com/receipts/123.pdf",
+        currency: "USD",
+      },
+    ],
+    subsidiary: null,
     trackingCategories: [
       {
         id: "123456",

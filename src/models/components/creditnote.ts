@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -102,7 +105,7 @@ export type CreditNote = {
   /**
    * Unique identifier representing the entity
    */
-  id: string;
+  id?: string | undefined;
   /**
    * Credit note number.
    */
@@ -142,7 +145,7 @@ export type CreditNote = {
   /**
    * Amount of transaction
    */
-  totalAmount: number;
+  totalAmount?: number | undefined;
   /**
    * Total tax amount applied to this invoice.
    */
@@ -190,6 +193,10 @@ export type CreditNote = {
    * Optional terms to be associated with the credit note.
    */
   terms?: string | null | undefined;
+  /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
   billingAddress?: Address | undefined;
   shippingAddress?: Address | undefined;
   /**
@@ -225,6 +232,7 @@ export type CreditNote = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type CreditNoteInput = {
@@ -267,7 +275,7 @@ export type CreditNoteInput = {
   /**
    * Amount of transaction
    */
-  totalAmount: number;
+  totalAmount?: number | undefined;
   /**
    * Total tax amount applied to this invoice.
    */
@@ -315,6 +323,10 @@ export type CreditNoteInput = {
    * Optional terms to be associated with the credit note.
    */
   terms?: string | null | undefined;
+  /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
   billingAddress?: Address | undefined;
   shippingAddress?: Address | undefined;
   /**
@@ -330,6 +342,7 @@ export type CreditNoteInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -363,46 +376,51 @@ export const CreditNote$inboundSchema: z.ZodType<
   CreditNote,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  number: z.nullable(types.string()).optional(),
-  customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
-  company_id: z.nullable(types.string()).optional(),
-  location_id: z.nullable(types.string()).optional(),
-  department_id: z.nullable(types.string()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  currency_rate: z.nullable(types.number()).optional(),
-  tax_inclusive: z.nullable(types.boolean()).optional(),
-  sub_total: z.nullable(types.number()).optional(),
-  total_amount: types.number(),
-  total_tax: z.nullable(types.number()).optional(),
-  tax_code: z.nullable(types.string()).optional(),
-  balance: z.nullable(types.number()).optional(),
-  remaining_credit: z.nullable(types.number()).optional(),
-  status: types.optional(CreditNoteStatus$inboundSchema),
-  reference: z.nullable(types.string()).optional(),
-  date_issued: types.optional(types.date()),
-  date_paid: z.nullable(types.date()).optional(),
-  type: types.optional(CreditNoteType$inboundSchema),
-  account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  line_items: types.optional(z.array(InvoiceLineItem$inboundSchema)),
-  allocations: types.optional(z.array(Allocation$inboundSchema)),
-  note: z.nullable(types.string()).optional(),
-  terms: z.nullable(types.string()).optional(),
-  billing_address: types.optional(Address$inboundSchema),
-  shipping_address: types.optional(Address$inboundSchema),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    number: z.nullable(types.string()).optional(),
+    customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    location_id: z.nullable(types.string()).optional(),
+    department_id: z.nullable(types.string()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    currency_rate: z.nullable(types.number()).optional(),
+    tax_inclusive: z.nullable(types.boolean()).optional(),
+    sub_total: z.nullable(types.number()).optional(),
+    total_amount: types.optional(types.number()),
+    total_tax: z.nullable(types.number()).optional(),
+    tax_code: z.nullable(types.string()).optional(),
+    balance: z.nullable(types.number()).optional(),
+    remaining_credit: z.nullable(types.number()).optional(),
+    status: types.optional(CreditNoteStatus$inboundSchema),
+    reference: z.nullable(types.string()).optional(),
+    date_issued: types.optional(types.date()),
+    date_paid: z.nullable(types.date()).optional(),
+    type: types.optional(CreditNoteType$inboundSchema),
+    account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    line_items: types.optional(z.array(InvoiceLineItem$inboundSchema)),
+    allocations: types.optional(z.array(Allocation$inboundSchema)),
+    note: z.nullable(types.string()).optional(),
+    terms: z.nullable(types.string()).optional(),
+    terms_id: z.nullable(types.string()).optional(),
+    billing_address: types.optional(Address$inboundSchema),
+    shipping_address: types.optional(Address$inboundSchema),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "company_id": "companyId",
     "location_id": "locationId",
@@ -417,6 +435,7 @@ export const CreditNote$inboundSchema: z.ZodType<
     "date_issued": "dateIssued",
     "date_paid": "datePaid",
     "line_items": "lineItems",
+    "terms_id": "termsId",
     "billing_address": "billingAddress",
     "shipping_address": "shippingAddress",
     "tracking_categories": "trackingCategories",
@@ -452,7 +471,7 @@ export type CreditNoteInput$Outbound = {
   currency_rate?: number | null | undefined;
   tax_inclusive?: boolean | null | undefined;
   sub_total?: number | null | undefined;
-  total_amount: number;
+  total_amount?: number | undefined;
   total_tax?: number | null | undefined;
   tax_code?: string | null | undefined;
   balance?: number | null | undefined;
@@ -467,6 +486,7 @@ export type CreditNoteInput$Outbound = {
   allocations?: Array<AllocationInput$Outbound> | undefined;
   note?: string | null | undefined;
   terms?: string | null | undefined;
+  terms_id?: string | null | undefined;
   billing_address?: Address$Outbound | undefined;
   shipping_address?: Address$Outbound | undefined;
   tracking_categories?:
@@ -476,6 +496,7 @@ export type CreditNoteInput$Outbound = {
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -493,7 +514,7 @@ export const CreditNoteInput$outboundSchema: z.ZodType<
   currencyRate: z.nullable(z.number()).optional(),
   taxInclusive: z.nullable(z.boolean()).optional(),
   subTotal: z.nullable(z.number()).optional(),
-  totalAmount: z.number(),
+  totalAmount: z.number().optional(),
   totalTax: z.nullable(z.number()).optional(),
   taxCode: z.nullable(z.string()).optional(),
   balance: z.nullable(z.number()).optional(),
@@ -508,6 +529,7 @@ export const CreditNoteInput$outboundSchema: z.ZodType<
   allocations: z.array(AllocationInput$outboundSchema).optional(),
   note: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
+  termsId: z.nullable(z.string()).optional(),
   billingAddress: Address$outboundSchema.optional(),
   shippingAddress: Address$outboundSchema.optional(),
   trackingCategories: z.nullable(
@@ -516,28 +538,34 @@ export const CreditNoteInput$outboundSchema: z.ZodType<
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    companyId: "company_id",
-    locationId: "location_id",
-    departmentId: "department_id",
-    currencyRate: "currency_rate",
-    taxInclusive: "tax_inclusive",
-    subTotal: "sub_total",
-    totalAmount: "total_amount",
-    totalTax: "total_tax",
-    taxCode: "tax_code",
-    remainingCredit: "remaining_credit",
-    dateIssued: "date_issued",
-    datePaid: "date_paid",
-    lineItems: "line_items",
-    billingAddress: "billing_address",
-    shippingAddress: "shipping_address",
-    trackingCategories: "tracking_categories",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      companyId: "company_id",
+      locationId: "location_id",
+      departmentId: "department_id",
+      currencyRate: "currency_rate",
+      taxInclusive: "tax_inclusive",
+      subTotal: "sub_total",
+      totalAmount: "total_amount",
+      totalTax: "total_tax",
+      taxCode: "tax_code",
+      remainingCredit: "remaining_credit",
+      dateIssued: "date_issued",
+      datePaid: "date_paid",
+      lineItems: "line_items",
+      termsId: "terms_id",
+      billingAddress: "billing_address",
+      shippingAddress: "shipping_address",
+      trackingCategories: "tracking_categories",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function creditNoteInputToJSON(

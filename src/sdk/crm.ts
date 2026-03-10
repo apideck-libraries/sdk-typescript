@@ -4,7 +4,7 @@
 
 import { ClientSDK } from "../lib/sdks.js";
 import { Activities } from "./activities.js";
-import { Companies } from "./companies.js";
+import { ApideckCompanies } from "./apideckcompanies.js";
 import { Contacts } from "./contacts.js";
 import { CustomObjects } from "./customobjects.js";
 import { CustomObjectSchemas } from "./customobjectschemas.js";
@@ -15,9 +15,9 @@ import { Pipelines } from "./pipelines.js";
 import { Users } from "./users.js";
 
 export class Crm extends ClientSDK {
-  private _companies?: Companies;
-  get companies(): Companies {
-    return (this._companies ??= new Companies(this._options));
+  private _companies?: ApideckCompanies;
+  get companies(): ApideckCompanies {
+    return (this._companies ??= new ApideckCompanies(this._options));
   }
 
   private _contacts?: Contacts;

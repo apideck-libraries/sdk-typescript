@@ -56,7 +56,7 @@ func testAccountingExpenseCategoriesOneAccountingExpenseCategoriesOne0(w http.Re
 		Data: components.ExpenseCategory{
 			ID:          types.String("12345"),
 			DisplayID:   optionalnullable.From(types.String("123456")),
-			Name:        "Travel",
+			Name:        types.String("Travel"),
 			Code:        optionalnullable.From(types.String("TRAVEL-001")),
 			Description: optionalnullable.From(types.String("Travel-related expenses including flights, hotels, and ground transportation.")),
 			Status:      optionalnullable.From(components.ExpenseCategoryStatusActive.ToPointer()),

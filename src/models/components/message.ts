@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -98,16 +101,16 @@ export type Message = {
   /**
    * The phone number that initiated the message.
    */
-  from: string;
+  from?: string | undefined;
   /**
    * The phone number that received the message.
    */
-  to: string;
+  to?: string | undefined;
   subject?: string | undefined;
   /**
    * The message text.
    */
-  body: string;
+  body?: string | undefined;
   /**
    * Set to sms for SMS messages and mms for MMS messages.
    */
@@ -180,22 +183,23 @@ export type Message = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type MessageInput = {
   /**
    * The phone number that initiated the message.
    */
-  from: string;
+  from?: string | undefined;
   /**
    * The phone number that received the message.
    */
-  to: string;
+  to?: string | undefined;
   subject?: string | undefined;
   /**
    * The message text.
    */
-  body: string;
+  body?: string | undefined;
   /**
    * Set to sms for SMS messages and mms for MMS messages.
    */
@@ -220,6 +224,7 @@ export type MessageInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -291,31 +296,35 @@ export function errorFromJSON(
 
 /** @internal */
 export const Message$inboundSchema: z.ZodType<Message, z.ZodTypeDef, unknown> =
-  z.object({
-    id: types.optional(types.string()),
-    from: types.string(),
-    to: types.string(),
-    subject: types.optional(types.string()),
-    body: types.string(),
-    type: types.optional(MessageType$inboundSchema),
-    number_of_units: types.optional(types.number()),
-    number_of_media_files: types.optional(types.number()),
-    direction: types.optional(Direction$inboundSchema),
-    status: types.optional(MessageStatus$inboundSchema),
-    scheduled_at: types.optional(types.date()),
-    sent_at: types.optional(types.date()),
-    webhook_url: types.optional(types.string()),
-    reference: types.optional(types.string()),
-    price: types.optional(z.lazy(() => Price$inboundSchema)),
-    error: types.optional(z.lazy(() => ErrorT$inboundSchema)),
-    messaging_service_id: types.optional(types.string()),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    updated_by: z.nullable(types.string()).optional(),
-    created_by: z.nullable(types.string()).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-  }).transform((v) => {
+  collectExtraKeys$(
+    z.object({
+      id: types.optional(types.string()),
+      from: types.optional(types.string()),
+      to: types.optional(types.string()),
+      subject: types.optional(types.string()),
+      body: types.optional(types.string()),
+      type: types.optional(MessageType$inboundSchema),
+      number_of_units: types.optional(types.number()),
+      number_of_media_files: types.optional(types.number()),
+      direction: types.optional(Direction$inboundSchema),
+      status: types.optional(MessageStatus$inboundSchema),
+      scheduled_at: types.optional(types.date()),
+      sent_at: types.optional(types.date()),
+      webhook_url: types.optional(types.string()),
+      reference: types.optional(types.string()),
+      price: types.optional(z.lazy(() => Price$inboundSchema)),
+      error: types.optional(z.lazy(() => ErrorT$inboundSchema)),
+      messaging_service_id: types.optional(types.string()),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+      updated_by: z.nullable(types.string()).optional(),
+      created_by: z.nullable(types.string()).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+      pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
     return remap$(v, {
       "number_of_units": "numberOfUnits",
       "number_of_media_files": "numberOfMediaFiles",
@@ -344,16 +353,17 @@ export function messageFromJSON(
 
 /** @internal */
 export type MessageInput$Outbound = {
-  from: string;
-  to: string;
+  from?: string | undefined;
+  to?: string | undefined;
   subject?: string | undefined;
-  body: string;
+  body?: string | undefined;
   type?: string | undefined;
   scheduled_at?: string | undefined;
   webhook_url?: string | undefined;
   reference?: string | undefined;
   messaging_service_id?: string | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -362,23 +372,28 @@ export const MessageInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MessageInput
 > = z.object({
-  from: z.string(),
-  to: z.string(),
+  from: z.string().optional(),
+  to: z.string().optional(),
   subject: z.string().optional(),
-  body: z.string(),
+  body: z.string().optional(),
   type: MessageType$outboundSchema.optional(),
   scheduledAt: z.date().transform(v => v.toISOString()).optional(),
   webhookUrl: z.string().optional(),
   reference: z.string().optional(),
   messagingServiceId: z.string().optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    scheduledAt: "scheduled_at",
-    webhookUrl: "webhook_url",
-    messagingServiceId: "messaging_service_id",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      scheduledAt: "scheduled_at",
+      webhookUrl: "webhook_url",
+      messagingServiceId: "messaging_service_id",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function messageInputToJSON(messageInput: MessageInput): string {

@@ -13,7 +13,7 @@ type Opportunity struct {
 	// A unique identifier for the opportunity.
 	ID *string `json:"id,omitempty"`
 	// The title or name of the opportunity.
-	Title string `json:"title"`
+	Title *string `json:"title,omitempty"`
 	// The unique identifier of the primary contact associated with the opportunity.
 	PrimaryContactID optionalnullable.OptionalNullable[string] `json:"primary_contact_id,omitempty"`
 	// A description of the opportunity.
@@ -67,7 +67,7 @@ type Opportunity struct {
 	Tags     optionalnullable.OptionalNullable[[]string] `json:"tags,omitempty"`
 	// The number of interactions with the opportunity.
 	InteractionCount optionalnullable.OptionalNullable[float64] `json:"interaction_count,omitempty"`
-	CustomFields     []CustomFieldUnion                         `json:"custom_fields,omitempty"`
+	CustomFields     []CustomField                              `json:"custom_fields,omitempty"`
 	// The date and time when the stage of the opportunity was last changed.
 	StageLastChangedAt optionalnullable.OptionalNullable[time.Time] `json:"stage_last_changed_at,omitempty"`
 	// The date and time of the last activity associated with the opportunity.
@@ -91,7 +91,8 @@ type Opportunity struct {
 	// The date and time when the opportunity was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (o Opportunity) MarshalJSON() ([]byte, error) {
@@ -99,7 +100,7 @@ func (o Opportunity) MarshalJSON() ([]byte, error) {
 }
 
 func (o *Opportunity) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"title"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -112,9 +113,9 @@ func (o *Opportunity) GetID() *string {
 	return o.ID
 }
 
-func (o *Opportunity) GetTitle() string {
+func (o *Opportunity) GetTitle() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Title
 }
@@ -308,7 +309,7 @@ func (o *Opportunity) GetInteractionCount() optionalnullable.OptionalNullable[fl
 	return o.InteractionCount
 }
 
-func (o *Opportunity) GetCustomFields() []CustomFieldUnion {
+func (o *Opportunity) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -397,4 +398,11 @@ func (o *Opportunity) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *Opportunity) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

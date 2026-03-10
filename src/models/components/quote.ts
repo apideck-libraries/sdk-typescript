@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -124,6 +127,10 @@ export type Quote = {
    */
   terms?: string | null | undefined;
   /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
+  /**
    * Optional reference identifier for the transaction.
    */
   reference?: string | null | undefined;
@@ -211,6 +218,7 @@ export type Quote = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type QuoteInput = {
@@ -250,6 +258,10 @@ export type QuoteInput = {
    * Terms of the quote.
    */
   terms?: string | null | undefined;
+  /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
   /**
    * Optional reference identifier for the transaction.
    */
@@ -322,6 +334,7 @@ export type QuoteInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -338,48 +351,53 @@ export const QuoteStatus$outboundSchema: z.ZodType<
 > = openEnums.outboundSchema(QuoteStatus);
 
 /** @internal */
-export const Quote$inboundSchema: z.ZodType<Quote, z.ZodTypeDef, unknown> = z
-  .object({
-    id: types.optional(types.string()),
-    downstream_id: z.nullable(types.string()).optional(),
-    number: z.nullable(types.string()).optional(),
-    customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
-    invoice_id: types.optional(types.string()),
-    sales_order_id: z.nullable(types.string()).optional(),
-    company_id: z.nullable(types.string()).optional(),
-    department_id: z.nullable(types.string()).optional(),
-    project_id: types.optional(types.string()),
-    quote_date: z.nullable(types.date()).optional(),
-    expiry_date: z.nullable(types.date()).optional(),
-    terms: z.nullable(types.string()).optional(),
-    reference: z.nullable(types.string()).optional(),
-    status: z.nullable(QuoteStatus$inboundSchema).optional(),
-    currency: z.nullable(Currency$inboundSchema).optional(),
-    currency_rate: z.nullable(types.number()).optional(),
-    tax_inclusive: z.nullable(types.boolean()).optional(),
-    sub_total: z.nullable(types.number()).optional(),
-    total_tax: z.nullable(types.number()).optional(),
-    tax_code: z.nullable(types.string()).optional(),
-    discount_percentage: z.nullable(types.number()).optional(),
-    discount_amount: z.nullable(types.number()).optional(),
-    total: z.nullable(types.number()).optional(),
-    customer_memo: z.nullable(types.string()).optional(),
-    line_items: types.optional(z.array(QuoteLineItem$inboundSchema)),
-    billing_address: types.optional(Address$inboundSchema),
-    shipping_address: types.optional(Address$inboundSchema),
-    tracking_categories: z.nullable(
-      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-    ).optional(),
-    template_id: z.nullable(types.string()).optional(),
-    source_document_url: z.nullable(types.string()).optional(),
-    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-    row_version: z.nullable(types.string()).optional(),
-    updated_by: z.nullable(types.string()).optional(),
-    created_by: z.nullable(types.string()).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-  }).transform((v) => {
+export const Quote$inboundSchema: z.ZodType<Quote, z.ZodTypeDef, unknown> =
+  collectExtraKeys$(
+    z.object({
+      id: types.optional(types.string()),
+      downstream_id: z.nullable(types.string()).optional(),
+      number: z.nullable(types.string()).optional(),
+      customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
+      invoice_id: types.optional(types.string()),
+      sales_order_id: z.nullable(types.string()).optional(),
+      company_id: z.nullable(types.string()).optional(),
+      department_id: z.nullable(types.string()).optional(),
+      project_id: types.optional(types.string()),
+      quote_date: z.nullable(types.date()).optional(),
+      expiry_date: z.nullable(types.date()).optional(),
+      terms: z.nullable(types.string()).optional(),
+      terms_id: z.nullable(types.string()).optional(),
+      reference: z.nullable(types.string()).optional(),
+      status: z.nullable(QuoteStatus$inboundSchema).optional(),
+      currency: z.nullable(Currency$inboundSchema).optional(),
+      currency_rate: z.nullable(types.number()).optional(),
+      tax_inclusive: z.nullable(types.boolean()).optional(),
+      sub_total: z.nullable(types.number()).optional(),
+      total_tax: z.nullable(types.number()).optional(),
+      tax_code: z.nullable(types.string()).optional(),
+      discount_percentage: z.nullable(types.number()).optional(),
+      discount_amount: z.nullable(types.number()).optional(),
+      total: z.nullable(types.number()).optional(),
+      customer_memo: z.nullable(types.string()).optional(),
+      line_items: types.optional(z.array(QuoteLineItem$inboundSchema)),
+      billing_address: types.optional(Address$inboundSchema),
+      shipping_address: types.optional(Address$inboundSchema),
+      tracking_categories: z.nullable(
+        z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+      ).optional(),
+      template_id: z.nullable(types.string()).optional(),
+      source_document_url: z.nullable(types.string()).optional(),
+      custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+      row_version: z.nullable(types.string()).optional(),
+      updated_by: z.nullable(types.string()).optional(),
+      created_by: z.nullable(types.string()).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+      pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
     return remap$(v, {
       "downstream_id": "downstreamId",
       "invoice_id": "invoiceId",
@@ -389,6 +407,7 @@ export const Quote$inboundSchema: z.ZodType<Quote, z.ZodTypeDef, unknown> = z
       "project_id": "projectId",
       "quote_date": "quoteDate",
       "expiry_date": "expiryDate",
+      "terms_id": "termsId",
       "currency_rate": "currencyRate",
       "tax_inclusive": "taxInclusive",
       "sub_total": "subTotal",
@@ -434,6 +453,7 @@ export type QuoteInput$Outbound = {
   quote_date?: string | null | undefined;
   expiry_date?: string | null | undefined;
   terms?: string | null | undefined;
+  terms_id?: string | null | undefined;
   reference?: string | null | undefined;
   status?: string | null | undefined;
   currency?: string | null | undefined;
@@ -458,6 +478,7 @@ export type QuoteInput$Outbound = {
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -479,6 +500,7 @@ export const QuoteInput$outboundSchema: z.ZodType<
     z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
   ).optional(),
   terms: z.nullable(z.string()).optional(),
+  termsId: z.nullable(z.string()).optional(),
   reference: z.nullable(z.string()).optional(),
   status: z.nullable(QuoteStatus$outboundSchema).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
@@ -502,32 +524,38 @@ export const QuoteInput$outboundSchema: z.ZodType<
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    salesOrderId: "sales_order_id",
-    companyId: "company_id",
-    departmentId: "department_id",
-    projectId: "project_id",
-    quoteDate: "quote_date",
-    expiryDate: "expiry_date",
-    currencyRate: "currency_rate",
-    taxInclusive: "tax_inclusive",
-    subTotal: "sub_total",
-    totalTax: "total_tax",
-    taxCode: "tax_code",
-    discountPercentage: "discount_percentage",
-    discountAmount: "discount_amount",
-    customerMemo: "customer_memo",
-    lineItems: "line_items",
-    billingAddress: "billing_address",
-    shippingAddress: "shipping_address",
-    trackingCategories: "tracking_categories",
-    templateId: "template_id",
-    sourceDocumentUrl: "source_document_url",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      salesOrderId: "sales_order_id",
+      companyId: "company_id",
+      departmentId: "department_id",
+      projectId: "project_id",
+      quoteDate: "quote_date",
+      expiryDate: "expiry_date",
+      termsId: "terms_id",
+      currencyRate: "currency_rate",
+      taxInclusive: "tax_inclusive",
+      subTotal: "sub_total",
+      totalTax: "total_tax",
+      taxCode: "tax_code",
+      discountPercentage: "discount_percentage",
+      discountAmount: "discount_amount",
+      customerMemo: "customer_memo",
+      lineItems: "line_items",
+      billingAddress: "billing_address",
+      shippingAddress: "shipping_address",
+      trackingCategories: "tracking_categories",
+      templateId: "template_id",
+      sourceDocumentUrl: "source_document_url",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function quoteInputToJSON(quoteInput: QuoteInput): string {

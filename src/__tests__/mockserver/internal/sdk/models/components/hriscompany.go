@@ -24,7 +24,7 @@ func (e HrisCompanyStatus) ToPointer() *HrisCompanyStatus {
 type HrisCompany struct {
 	// A unique identifier for an object.
 	ID          *string                                   `json:"id,omitempty"`
-	LegalName   *string                                   `json:"legal_name"`
+	LegalName   optionalnullable.OptionalNullable[string] `json:"legal_name,omitempty"`
 	DisplayName optionalnullable.OptionalNullable[string] `json:"display_name,omitempty"`
 	Subdomain   optionalnullable.OptionalNullable[string] `json:"subdomain,omitempty"`
 	Status      *HrisCompanyStatus                        `json:"status,omitempty"`
@@ -49,7 +49,8 @@ type HrisCompany struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (h HrisCompany) MarshalJSON() ([]byte, error) {
@@ -57,7 +58,7 @@ func (h HrisCompany) MarshalJSON() ([]byte, error) {
 }
 
 func (h *HrisCompany) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &h, "", false, []string{"legal_name"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &h, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -70,7 +71,7 @@ func (o *HrisCompany) GetID() *string {
 	return o.ID
 }
 
-func (o *HrisCompany) GetLegalName() *string {
+func (o *HrisCompany) GetLegalName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -196,8 +197,15 @@ func (o *HrisCompany) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *HrisCompany) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type HrisCompanyInput struct {
-	LegalName   *string                                   `json:"legal_name"`
+	LegalName   optionalnullable.OptionalNullable[string] `json:"legal_name,omitempty"`
 	DisplayName optionalnullable.OptionalNullable[string] `json:"display_name,omitempty"`
 	Subdomain   optionalnullable.OptionalNullable[string] `json:"subdomain,omitempty"`
 	Status      *HrisCompanyStatus                        `json:"status,omitempty"`
@@ -211,10 +219,22 @@ type HrisCompanyInput struct {
 	Websites     []Website                                   `json:"websites,omitempty"`
 	DebtorID     optionalnullable.OptionalNullable[string]   `json:"debtor_id,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
-func (o *HrisCompanyInput) GetLegalName() *string {
+func (h HrisCompanyInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(h, "", false)
+}
+
+func (h *HrisCompanyInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &h, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *HrisCompanyInput) GetLegalName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -296,4 +316,11 @@ func (o *HrisCompanyInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *HrisCompanyInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

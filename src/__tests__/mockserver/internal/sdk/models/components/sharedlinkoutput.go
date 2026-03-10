@@ -36,7 +36,8 @@ type SharedLinkOutput struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (s SharedLinkOutput) MarshalJSON() ([]byte, error) {
@@ -113,17 +114,36 @@ func (o *SharedLinkOutput) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *SharedLinkOutput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type SharedLinkInput struct {
 	// The URL that can be used to download the file.
 	DownloadURL optionalnullable.OptionalNullable[string] `json:"download_url,omitempty"`
 	// The ID of the file or folder to link.
-	TargetID *string `json:"target_id"`
+	TargetID optionalnullable.OptionalNullable[string] `json:"target_id,omitempty"`
 	// The scope of the shared link.
 	Scope optionalnullable.OptionalNullable[Scope] `json:"scope,omitempty"`
 	// Optional password for the shared link.
 	Password optionalnullable.OptionalNullable[string] `json:"password,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (s SharedLinkInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SharedLinkInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SharedLinkInput) GetDownloadURL() optionalnullable.OptionalNullable[string] {
@@ -133,7 +153,7 @@ func (o *SharedLinkInput) GetDownloadURL() optionalnullable.OptionalNullable[str
 	return o.DownloadURL
 }
 
-func (o *SharedLinkInput) GetTargetID() *string {
+func (o *SharedLinkInput) GetTargetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -159,4 +179,11 @@ func (o *SharedLinkInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *SharedLinkInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

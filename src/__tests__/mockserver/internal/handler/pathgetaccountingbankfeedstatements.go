@@ -55,7 +55,7 @@ func testAccountingBankFeedStatementsAllAccountingBankFeedStatementsAll0(w http.
 		Operation:  "all",
 		Data: []components.BankFeedStatement{
 			components.BankFeedStatement{
-				ID:                        "12345",
+				ID:                        types.String("12345"),
 				BankFeedAccountID:         types.String("acc_456"),
 				Status:                    components.StatementStatusPending.ToPointer(),
 				StartDate:                 types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
@@ -92,7 +92,7 @@ func testAccountingBankFeedStatementsAllAccountingBankFeedStatementsAll0(w http.
 				UpdatedBy: optionalnullable.From(types.String("12345")),
 			},
 			components.BankFeedStatement{
-				ID:                        "12345",
+				ID:                        types.String("12345"),
 				BankFeedAccountID:         types.String("acc_456"),
 				Status:                    components.StatementStatusPending.ToPointer(),
 				StartDate:                 types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
@@ -139,7 +139,7 @@ func testAccountingBankFeedStatementsAllAccountingBankFeedStatementsAll0(w http.
 				UpdatedBy: optionalnullable.From(types.String("12345")),
 			},
 			components.BankFeedStatement{
-				ID:                        "12345",
+				ID:                        types.String("12345"),
 				BankFeedAccountID:         types.String("acc_456"),
 				Status:                    components.StatementStatusPending.ToPointer(),
 				StartDate:                 types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),

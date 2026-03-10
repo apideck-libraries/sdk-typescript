@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -50,7 +53,7 @@ export type BankFeedAccount = {
   /**
    * A unique identifier for an object.
    */
-  id: string;
+  id?: string | undefined;
   /**
    * Type of the bank account.
    */
@@ -104,6 +107,7 @@ export type BankFeedAccount = {
    * The user who created the object.
    */
   createdBy?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type BankFeedAccountInput = {
@@ -140,6 +144,7 @@ export type BankFeedAccountInput = {
    */
   country?: string | null | undefined;
   customFields?: Array<CustomField> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -173,23 +178,27 @@ export const BankFeedAccount$inboundSchema: z.ZodType<
   BankFeedAccount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  bank_account_type: types.optional(BankAccountType$inboundSchema),
-  source_account_id: types.optional(types.string()),
-  target_account_id: types.optional(types.string()),
-  target_account_name: types.optional(types.string()),
-  target_account_number: types.optional(types.string()),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  feed_status: types.optional(FeedStatus$inboundSchema),
-  country: z.nullable(types.string()).optional(),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    bank_account_type: types.optional(BankAccountType$inboundSchema),
+    source_account_id: types.optional(types.string()),
+    target_account_id: types.optional(types.string()),
+    target_account_name: types.optional(types.string()),
+    target_account_number: types.optional(types.string()),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    feed_status: types.optional(FeedStatus$inboundSchema),
+    country: z.nullable(types.string()).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "bank_account_type": "bankAccountType",
     "source_account_id": "sourceAccountId",
@@ -227,6 +236,7 @@ export type BankFeedAccountInput$Outbound = {
   feed_status?: string | undefined;
   country?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -244,16 +254,21 @@ export const BankFeedAccountInput$outboundSchema: z.ZodType<
   feedStatus: FeedStatus$outboundSchema.optional(),
   country: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    bankAccountType: "bank_account_type",
-    sourceAccountId: "source_account_id",
-    targetAccountId: "target_account_id",
-    targetAccountName: "target_account_name",
-    targetAccountNumber: "target_account_number",
-    feedStatus: "feed_status",
-    customFields: "custom_fields",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      bankAccountType: "bank_account_type",
+      sourceAccountId: "source_account_id",
+      targetAccountId: "target_account_id",
+      targetAccountName: "target_account_name",
+      targetAccountNumber: "target_account_number",
+      feedStatus: "feed_status",
+      customFields: "custom_fields",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function bankFeedAccountInputToJSON(

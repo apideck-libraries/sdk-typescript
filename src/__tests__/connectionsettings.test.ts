@@ -104,7 +104,6 @@ test("Connectionsettings Vault Connection Settings All", async () => {
                 {
                   id: "1234",
                   label: "General Channel",
-                  options: [],
                   optionType: "group",
                 },
               ],

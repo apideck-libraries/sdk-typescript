@@ -55,7 +55,7 @@ func testCrmPipelinesOneCrmPipelinesOne0(w http.ResponseWriter, req *http.Reques
 		Operation:  "one",
 		Data: components.Pipeline{
 			ID:                    types.String("default"),
-			Name:                  "Sales Pipeline",
+			Name:                  types.String("Sales Pipeline"),
 			Currency:              optionalnullable.From(components.CurrencyUsd.ToPointer()),
 			Archived:              types.Bool(false),
 			Active:                types.Bool(false),

@@ -4,11 +4,24 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type SubsidiaryReferenceInput struct {
 	// The name of the company.
-	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
+	Name                 optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
+}
+
+func (s SubsidiaryReferenceInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SubsidiaryReferenceInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SubsidiaryReferenceInput) GetName() optionalnullable.OptionalNullable[string] {
@@ -16,4 +29,11 @@ func (o *SubsidiaryReferenceInput) GetName() optionalnullable.OptionalNullable[s
 		return nil
 	}
 	return o.Name
+}
+
+func (o *SubsidiaryReferenceInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

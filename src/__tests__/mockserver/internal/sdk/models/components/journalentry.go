@@ -79,9 +79,10 @@ type JournalEntry struct {
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion   optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
-	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                             `json:"custom_fields,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (j JournalEntry) MarshalJSON() ([]byte, error) {
@@ -277,7 +278,7 @@ func (o *JournalEntry) GetRowVersion() optionalnullable.OptionalNullable[string]
 	return o.RowVersion
 }
 
-func (o *JournalEntry) GetCustomFields() []CustomFieldUnion {
+func (o *JournalEntry) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -289,6 +290,13 @@ func (o *JournalEntry) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *JournalEntry) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 type JournalEntryInput struct {
@@ -330,9 +338,10 @@ type JournalEntryInput struct {
 	SourceID optionalnullable.OptionalNullable[string] `json:"source_id,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion   optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
-	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                             `json:"custom_fields,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (j JournalEntryInput) MarshalJSON() ([]byte, error) {
@@ -479,7 +488,7 @@ func (o *JournalEntryInput) GetRowVersion() optionalnullable.OptionalNullable[st
 	return o.RowVersion
 }
 
-func (o *JournalEntryInput) GetCustomFields() []CustomFieldUnion {
+func (o *JournalEntryInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -491,4 +500,11 @@ func (o *JournalEntryInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *JournalEntryInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

@@ -58,7 +58,7 @@ export type PaymentInput = {
   /**
    * The total amount of the transaction or record
    */
-  totalAmount: number | null;
+  totalAmount?: number | null | undefined;
   /**
    * Optional transaction reference message ie: Debit remittance detail.
    */
@@ -91,7 +91,7 @@ export type PaymentInput = {
   /**
    * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
    */
-  transactionDate: Date | null;
+  transactionDate?: Date | null | undefined;
   /**
    * The customer this entity is linked to.
    */
@@ -144,13 +144,14 @@ export type PaymentInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
 export type PaymentInput$Outbound = {
   currency?: string | null | undefined;
   currency_rate?: number | null | undefined;
-  total_amount: number | null;
+  total_amount?: number | null | undefined;
   reference?: string | null | undefined;
   payment_method?: string | null | undefined;
   payment_method_reference?: string | null | undefined;
@@ -158,7 +159,7 @@ export type PaymentInput$Outbound = {
   accounts_receivable_account_type?: string | null | undefined;
   accounts_receivable_account_id?: string | null | undefined;
   account?: LinkedLedgerAccount$Outbound | null | undefined;
-  transaction_date: string | null;
+  transaction_date?: string | null | undefined;
   customer?: LinkedCustomerInput$Outbound | null | undefined;
   supplier?: DeprecatedLinkedSupplierInput$Outbound | null | undefined;
   company_id?: string | null | undefined;
@@ -176,6 +177,7 @@ export type PaymentInput$Outbound = {
   row_version?: string | null | undefined;
   display_id?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -186,7 +188,7 @@ export const PaymentInput$outboundSchema: z.ZodType<
 > = z.object({
   currency: z.nullable(Currency$outboundSchema).optional(),
   currencyRate: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()),
+  totalAmount: z.nullable(z.number()).optional(),
   reference: z.nullable(z.string()).optional(),
   paymentMethod: z.nullable(z.string()).optional(),
   paymentMethodReference: z.nullable(z.string()).optional(),
@@ -194,7 +196,8 @@ export const PaymentInput$outboundSchema: z.ZodType<
   accountsReceivableAccountType: z.nullable(z.string()).optional(),
   accountsReceivableAccountId: z.nullable(z.string()).optional(),
   account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  transactionDate: z.nullable(z.date().transform(v => v.toISOString())),
+  transactionDate: z.nullable(z.date().transform(v => v.toISOString()))
+    .optional(),
   customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
   supplier: z.nullable(DeprecatedLinkedSupplierInput$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
@@ -211,23 +214,28 @@ export const PaymentInput$outboundSchema: z.ZodType<
   rowVersion: z.nullable(z.string()).optional(),
   displayId: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    currencyRate: "currency_rate",
-    totalAmount: "total_amount",
-    paymentMethod: "payment_method",
-    paymentMethodReference: "payment_method_reference",
-    paymentMethodId: "payment_method_id",
-    accountsReceivableAccountType: "accounts_receivable_account_type",
-    accountsReceivableAccountId: "accounts_receivable_account_id",
-    transactionDate: "transaction_date",
-    companyId: "company_id",
-    trackingCategories: "tracking_categories",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    displayId: "display_id",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      currencyRate: "currency_rate",
+      totalAmount: "total_amount",
+      paymentMethod: "payment_method",
+      paymentMethodReference: "payment_method_reference",
+      paymentMethodId: "payment_method_id",
+      accountsReceivableAccountType: "accounts_receivable_account_type",
+      accountsReceivableAccountId: "accounts_receivable_account_id",
+      transactionDate: "transaction_date",
+      companyId: "company_id",
+      trackingCategories: "tracking_categories",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      displayId: "display_id",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function paymentInputToJSON(paymentInput: PaymentInput): string {

@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -188,7 +191,7 @@ export type ProfitAndLoss = {
   /**
    * The name of the report
    */
-  reportName: string;
+  reportName?: string | undefined;
   /**
    * The start date of the report
    */
@@ -204,7 +207,7 @@ export type ProfitAndLoss = {
   /**
    * The operating income accounts
    */
-  income: Income;
+  income?: Income | undefined;
   /**
    * The cost of goods sold accounts
    */
@@ -212,7 +215,7 @@ export type ProfitAndLoss = {
   /**
    * The operating expenses accounts
    */
-  expenses: Expenses;
+  expenses?: Expenses | undefined;
   /**
    * The other income accounts
    */
@@ -236,6 +239,7 @@ export type ProfitAndLoss = {
    * The customer id
    */
   customer?: string | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -384,28 +388,32 @@ export const ProfitAndLoss$inboundSchema: z.ZodType<
   ProfitAndLoss,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  report_name: types.string(),
-  start_date: types.optional(types.string()),
-  end_date: types.optional(types.string()),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  income: z.lazy(() => Income$inboundSchema),
-  cost_of_goods_sold: types.optional(
-    z.lazy(() => CostOfGoodsSold$inboundSchema),
-  ),
-  expenses: z.lazy(() => Expenses$inboundSchema),
-  other_income: types.optional(z.lazy(() => OtherIncome$inboundSchema)),
-  other_expenses: types.optional(z.lazy(() => OtherExpenses$inboundSchema)),
-  uncategorized_accounts: types.optional(
-    z.lazy(() => UncategorizedAccounts$inboundSchema),
-  ),
-  gross_profit: types.optional(ProfitAndLossIndicator$inboundSchema),
-  net_operating_income: types.optional(ProfitAndLossIndicator$inboundSchema),
-  net_income: types.optional(ProfitAndLossIndicator$inboundSchema),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  customer: types.optional(types.string()),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    report_name: types.optional(types.string()),
+    start_date: types.optional(types.string()),
+    end_date: types.optional(types.string()),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    income: types.optional(z.lazy(() => Income$inboundSchema)),
+    cost_of_goods_sold: types.optional(
+      z.lazy(() => CostOfGoodsSold$inboundSchema),
+    ),
+    expenses: types.optional(z.lazy(() => Expenses$inboundSchema)),
+    other_income: types.optional(z.lazy(() => OtherIncome$inboundSchema)),
+    other_expenses: types.optional(z.lazy(() => OtherExpenses$inboundSchema)),
+    uncategorized_accounts: types.optional(
+      z.lazy(() => UncategorizedAccounts$inboundSchema),
+    ),
+    gross_profit: types.optional(ProfitAndLossIndicator$inboundSchema),
+    net_operating_income: types.optional(ProfitAndLossIndicator$inboundSchema),
+    net_income: types.optional(ProfitAndLossIndicator$inboundSchema),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    customer: types.optional(types.string()),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "report_name": "reportName",
     "start_date": "startDate",

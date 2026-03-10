@@ -88,7 +88,19 @@ type EmployeeManager struct {
 	// The email address of the manager.
 	Email optionalnullable.OptionalNullable[string] `json:"email,omitempty"`
 	// The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
-	EmploymentStatus optionalnullable.OptionalNullable[EmploymentStatus] `json:"employment_status,omitempty"`
+	EmploymentStatus     optionalnullable.OptionalNullable[EmploymentStatus] `json:"employment_status,omitempty"`
+	AdditionalProperties map[string]any                                      `additionalProperties:"true" json:"-"`
+}
+
+func (e EmployeeManager) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EmployeeManager) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *EmployeeManager) GetID() optionalnullable.OptionalNullable[string] {
@@ -131,6 +143,13 @@ func (o *EmployeeManager) GetEmploymentStatus() optionalnullable.OptionalNullabl
 		return nil
 	}
 	return o.EmploymentStatus
+}
+
+func (o *EmployeeManager) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 type ProbationPeriod struct {
@@ -257,7 +276,7 @@ type Employee struct {
 	Addresses    []Address                                 `json:"addresses,omitempty"`
 	PhoneNumbers []PhoneNumber                             `json:"phone_numbers,omitempty"`
 	Emails       []Email                                   `json:"emails,omitempty"`
-	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                             `json:"custom_fields,omitempty"`
 	SocialLinks  []SocialLink                              `json:"social_links,omitempty"`
 	BankAccounts []BankAccount2                            `json:"bank_accounts,omitempty"`
 	TaxCode      optionalnullable.OptionalNullable[string] `json:"tax_code,omitempty"`
@@ -283,7 +302,8 @@ type Employee struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (e Employee) MarshalJSON() ([]byte, error) {
@@ -647,7 +667,7 @@ func (o *Employee) GetEmails() []Email {
 	return o.Emails
 }
 
-func (o *Employee) GetCustomFields() []CustomFieldUnion {
+func (o *Employee) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -766,6 +786,13 @@ func (o *Employee) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *Employee) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type EmployeeInput struct {
 	// A unique identifier for an object.
 	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
@@ -856,7 +883,7 @@ type EmployeeInput struct {
 	Addresses    []Address                                 `json:"addresses,omitempty"`
 	PhoneNumbers []PhoneNumber                             `json:"phone_numbers,omitempty"`
 	Emails       []Email                                   `json:"emails,omitempty"`
-	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                             `json:"custom_fields,omitempty"`
 	SocialLinks  []SocialLink                              `json:"social_links,omitempty"`
 	BankAccounts []BankAccount2                            `json:"bank_accounts,omitempty"`
 	TaxCode      optionalnullable.OptionalNullable[string] `json:"tax_code,omitempty"`
@@ -872,7 +899,8 @@ type EmployeeInput struct {
 	// Flag to indicate if the object is deleted.
 	Deleted optionalnullable.OptionalNullable[bool] `json:"deleted,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (e EmployeeInput) MarshalJSON() ([]byte, error) {
@@ -1229,7 +1257,7 @@ func (o *EmployeeInput) GetEmails() []Email {
 	return o.Emails
 }
 
-func (o *EmployeeInput) GetCustomFields() []CustomFieldUnion {
+func (o *EmployeeInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -1311,4 +1339,11 @@ func (o *EmployeeInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *EmployeeInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

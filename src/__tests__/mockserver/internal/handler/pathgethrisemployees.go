@@ -303,7 +303,7 @@ func testHrisEmployeesAllHrisEmployeesAll0(w http.ResponseWriter, req *http.Requ
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -311,31 +311,29 @@ func testHrisEmployeesAllHrisEmployeesAll0(w http.ResponseWriter, req *http.Requ
 				Emails: []components.Email{
 					components.Email{
 						ID:    optionalnullable.From(types.String("123")),
-						Email: types.String("elon@musk.com"),
+						Email: optionalnullable.From(types.String("elon@musk.com")),
 						Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 					},
 				},
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{},
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						))),
+					},
 				},
 				SocialLinks: []components.SocialLink{
 					components.SocialLink{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "https://www.twitter.com/apideck",
+						URL:  types.String("https://www.twitter.com/apideck"),
 						Type: optionalnullable.From(types.String("twitter")),
 					},
 					components.SocialLink{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "https://www.twitter.com/apideck",
+						URL:  types.String("https://www.twitter.com/apideck"),
 						Type: optionalnullable.From(types.String("twitter")),
 					},
 				},
@@ -654,7 +652,7 @@ func testHrisEmployeesAllHrisEmployeesAll0(w http.ResponseWriter, req *http.Requ
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -662,46 +660,42 @@ func testHrisEmployeesAllHrisEmployeesAll0(w http.ResponseWriter, req *http.Requ
 				Emails: []components.Email{
 					components.Email{
 						ID:    optionalnullable.From(types.String("123")),
-						Email: types.String("elon@musk.com"),
+						Email: optionalnullable.From(types.String("elon@musk.com")),
 						Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 					},
 				},
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
-								true,
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
+							true,
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						))),
+					},
 				},
 				SocialLinks: []components.SocialLink{
 					components.SocialLink{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "https://www.twitter.com/apideck",
+						URL:  types.String("https://www.twitter.com/apideck"),
 						Type: optionalnullable.From(types.String("twitter")),
 					},
 					components.SocialLink{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "https://www.twitter.com/apideck",
+						URL:  types.String("https://www.twitter.com/apideck"),
 						Type: optionalnullable.From(types.String("twitter")),
 					},
 					components.SocialLink{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "https://www.twitter.com/apideck",
+						URL:  types.String("https://www.twitter.com/apideck"),
 						Type: optionalnullable.From(types.String("twitter")),
 					},
 				},
@@ -1040,7 +1034,7 @@ func testHrisEmployeesAllHrisEmployeesAll0(w http.ResponseWriter, req *http.Requ
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -1048,7 +1042,7 @@ func testHrisEmployeesAllHrisEmployeesAll0(w http.ResponseWriter, req *http.Requ
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -1056,7 +1050,7 @@ func testHrisEmployeesAllHrisEmployeesAll0(w http.ResponseWriter, req *http.Requ
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -1064,56 +1058,50 @@ func testHrisEmployeesAllHrisEmployeesAll0(w http.ResponseWriter, req *http.Requ
 				Emails: []components.Email{
 					components.Email{
 						ID:    optionalnullable.From(types.String("123")),
-						Email: types.String("elon@musk.com"),
+						Email: optionalnullable.From(types.String("elon@musk.com")),
 						Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 					},
 					components.Email{
 						ID:    optionalnullable.From(types.String("123")),
-						Email: types.String("elon@musk.com"),
+						Email: optionalnullable.From(types.String("elon@musk.com")),
 						Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 					},
 				},
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
-								10,
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{},
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
+							10,
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						))),
+					},
 				},
 				SocialLinks: []components.SocialLink{
 					components.SocialLink{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "https://www.twitter.com/apideck",
+						URL:  types.String("https://www.twitter.com/apideck"),
 						Type: optionalnullable.From(types.String("twitter")),
 					},
 					components.SocialLink{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "https://www.twitter.com/apideck",
+						URL:  types.String("https://www.twitter.com/apideck"),
 						Type: optionalnullable.From(types.String("twitter")),
 					},
 				},

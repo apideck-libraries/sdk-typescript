@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 // Team - The team the person is currently in.
@@ -11,7 +12,19 @@ type Team struct {
 	// The unique identifier of the team.
 	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The name of the team.
-	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
+	Name                 optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
+}
+
+func (t Team) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *Team) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Team) GetID() optionalnullable.OptionalNullable[string] {
@@ -26,4 +39,11 @@ func (o *Team) GetName() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Name
+}
+
+func (o *Team) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

@@ -2,14 +2,37 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type AssigneeInput struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID                   *string        `json:"id,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
 
-func (o *AssigneeInput) GetID() string {
+func (a AssigneeInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AssigneeInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *AssigneeInput) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
+}
+
+func (o *AssigneeInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

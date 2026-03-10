@@ -47,6 +47,10 @@ export type AccountingAttachmentsOneRequest = {
    */
   serviceId?: string | undefined;
   /**
+   * The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+   */
+  companyId?: string | undefined;
+  /**
    * Include raw response. Mostly used for debugging purposes
    */
   raw?: boolean | undefined;
@@ -76,6 +80,7 @@ export type AccountingAttachmentsOneRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
   serviceId?: string | undefined;
+  companyId?: string | undefined;
   raw: boolean;
   fields?: string | null | undefined;
 };
@@ -92,6 +97,7 @@ export const AccountingAttachmentsOneRequest$outboundSchema: z.ZodType<
   consumerId: z.string().optional(),
   appId: z.string().optional(),
   serviceId: z.string().optional(),
+  companyId: z.string().optional(),
   raw: z.boolean().default(false),
   fields: z.nullable(z.string()).optional(),
 }).transform((v) => {

@@ -78,6 +78,8 @@ type Bill struct {
 	LineItems []BillLineItem                            `json:"line_items,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// Balance of bill due.
 	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
 	// Amount of deposit made to this bill.
@@ -129,14 +131,15 @@ type Bill struct {
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion   optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
-	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                             `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// Accounting period
-	AccountingPeriod optionalnullable.OptionalNullable[string] `json:"accounting_period,omitempty"`
-	Attachments      []*LinkedAttachment                       `json:"attachments,omitempty"`
+	AccountingPeriod     optionalnullable.OptionalNullable[string] `json:"accounting_period,omitempty"`
+	Attachments          []*LinkedAttachment                       `json:"attachments,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
 }
 
 func (b Bill) MarshalJSON() ([]byte, error) {
@@ -274,6 +277,13 @@ func (o *Bill) GetTerms() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *Bill) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *Bill) GetBalance() optionalnullable.OptionalNullable[float64] {
@@ -465,7 +475,7 @@ func (o *Bill) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	return o.RowVersion
 }
 
-func (o *Bill) GetCustomFields() []CustomFieldUnion {
+func (o *Bill) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -500,6 +510,13 @@ func (o *Bill) GetAttachments() []*LinkedAttachment {
 	return o.Attachments
 }
 
+func (o *Bill) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type BillInput struct {
 	// Id to be displayed.
 	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
@@ -532,6 +549,8 @@ type BillInput struct {
 	LineItems []BillLineItemInput                       `json:"line_items,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// Balance of bill due.
 	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
 	// Amount of deposit made to this bill.
@@ -575,12 +594,13 @@ type BillInput struct {
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion   optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
-	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                             `json:"custom_fields,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// Accounting period
-	AccountingPeriod optionalnullable.OptionalNullable[string] `json:"accounting_period,omitempty"`
-	Attachments      []*LinkedAttachment                       `json:"attachments,omitempty"`
+	AccountingPeriod     optionalnullable.OptionalNullable[string] `json:"accounting_period,omitempty"`
+	Attachments          []*LinkedAttachment                       `json:"attachments,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
 }
 
 func (b BillInput) MarshalJSON() ([]byte, error) {
@@ -704,6 +724,13 @@ func (o *BillInput) GetTerms() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *BillInput) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *BillInput) GetBalance() optionalnullable.OptionalNullable[float64] {
@@ -867,7 +894,7 @@ func (o *BillInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	return o.RowVersion
 }
 
-func (o *BillInput) GetCustomFields() []CustomFieldUnion {
+func (o *BillInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -893,4 +920,11 @@ func (o *BillInput) GetAttachments() []*LinkedAttachment {
 		return nil
 	}
 	return o.Attachments
+}
+
+func (o *BillInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

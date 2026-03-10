@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type ExpenseLineItem struct {
@@ -34,7 +35,7 @@ type ExpenseLineItem struct {
 	// Line Item type
 	Type optionalnullable.OptionalNullable[LineItemType] `json:"type,omitempty"`
 	// The total amount of the expense line item.
-	TotalAmount *float64 `json:"total_amount"`
+	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
 	// Tax amount
 	TaxAmount optionalnullable.OptionalNullable[float64] `json:"tax_amount,omitempty"`
 	Quantity  optionalnullable.OptionalNullable[float64] `json:"quantity,omitempty"`
@@ -43,7 +44,19 @@ type ExpenseLineItem struct {
 	// Line number of the resource
 	LineNumber optionalnullable.OptionalNullable[int64] `json:"line_number,omitempty"`
 	// Rebilling metadata for this line item.
-	Rebilling optionalnullable.OptionalNullable[Rebilling] `json:"rebilling,omitempty"`
+	Rebilling            optionalnullable.OptionalNullable[Rebilling] `json:"rebilling,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
+}
+
+func (e ExpenseLineItem) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExpenseLineItem) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ExpenseLineItem) GetID() *string {
@@ -137,7 +150,7 @@ func (o *ExpenseLineItem) GetType() optionalnullable.OptionalNullable[LineItemTy
 	return o.Type
 }
 
-func (o *ExpenseLineItem) GetTotalAmount() *float64 {
+func (o *ExpenseLineItem) GetTotalAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -184,4 +197,11 @@ func (o *ExpenseLineItem) GetRebilling() optionalnullable.OptionalNullable[Rebil
 		return nil
 	}
 	return o.Rebilling
+}
+
+func (o *ExpenseLineItem) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

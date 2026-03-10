@@ -208,7 +208,7 @@ type Job struct {
 	AvailableToEmployees *bool                                       `json:"available_to_employees,omitempty"`
 	Tags                 optionalnullable.OptionalNullable[[]string] `json:"tags,omitempty"`
 	Addresses            []Address                                   `json:"addresses,omitempty"`
-	CustomFields         []CustomFieldUnion                          `json:"custom_fields,omitempty"`
+	CustomFields         []CustomField                               `json:"custom_fields,omitempty"`
 	// Flag to indicate if the object is deleted.
 	Deleted     optionalnullable.OptionalNullable[bool]      `json:"deleted,omitempty"`
 	OwnerID     optionalnullable.OptionalNullable[string]    `json:"owner_id,omitempty"`
@@ -222,7 +222,8 @@ type Job struct {
 	// The date and time when the object was last updated.
 	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	CreatedAt            optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (j Job) MarshalJSON() ([]byte, error) {
@@ -467,7 +468,7 @@ func (o *Job) GetAddresses() []Address {
 	return o.Addresses
 }
 
-func (o *Job) GetCustomFields() []CustomFieldUnion {
+func (o *Job) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -528,4 +529,11 @@ func (o *Job) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 		return nil
 	}
 	return o.CreatedAt
+}
+
+func (o *Job) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

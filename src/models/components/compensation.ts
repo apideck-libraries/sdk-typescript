@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -16,7 +19,7 @@ export type Compensation = {
   /**
    * A unique identifier for an object.
    */
-  employeeId: string | null;
+  employeeId?: string | null | undefined;
   /**
    * The employee's net pay. Only available when payroll has been processed
    */
@@ -37,6 +40,7 @@ export type Compensation = {
    * An array of employee benefits for the pay period.
    */
   benefits?: Array<Benefit> | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -44,14 +48,18 @@ export const Compensation$inboundSchema: z.ZodType<
   Compensation,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  employee_id: types.nullable(types.string()),
-  net_pay: z.nullable(types.number()).optional(),
-  gross_pay: z.nullable(types.number()).optional(),
-  taxes: z.nullable(z.array(Tax$inboundSchema)).optional(),
-  deductions: z.nullable(z.array(Deduction$inboundSchema)).optional(),
-  benefits: z.nullable(z.array(Benefit$inboundSchema)).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    employee_id: z.nullable(types.string()).optional(),
+    net_pay: z.nullable(types.number()).optional(),
+    gross_pay: z.nullable(types.number()).optional(),
+    taxes: z.nullable(z.array(Tax$inboundSchema)).optional(),
+    deductions: z.nullable(z.array(Deduction$inboundSchema)).optional(),
+    benefits: z.nullable(z.array(Benefit$inboundSchema)).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "employee_id": "employeeId",
     "net_pay": "netPay",

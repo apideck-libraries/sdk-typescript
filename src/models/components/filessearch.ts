@@ -14,7 +14,7 @@ export type FilesSearch = {
   /**
    * The query to search for. May match across multiple fields.
    */
-  query: string;
+  query?: string | undefined;
   /**
    * ID of the drive to filter on
    */
@@ -23,13 +23,15 @@ export type FilesSearch = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
 export type FilesSearch$Outbound = {
-  query: string;
+  query?: string | undefined;
   drive_id?: string | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -38,14 +40,19 @@ export const FilesSearch$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FilesSearch
 > = z.object({
-  query: z.string(),
+  query: z.string().optional(),
   driveId: z.string().optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    driveId: "drive_id",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      driveId: "drive_id",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function filesSearchToJSON(filesSearch: FilesSearch): string {

@@ -125,7 +125,7 @@ func (o *Transaction) GetTransactionType() *BankFeedStatementTransactionType {
 
 type BankFeedStatement struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// The ID of the bank feed account this statement belongs to.
 	BankFeedAccountID *string `json:"bank_feed_account_id,omitempty"`
 	// The current status of the bank feed statement.
@@ -151,7 +151,8 @@ type BankFeedStatement struct {
 	// The date and time when the object was last updated.
 	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
+	UpdatedBy            optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
 }
 
 func (b BankFeedStatement) MarshalJSON() ([]byte, error) {
@@ -159,15 +160,15 @@ func (b BankFeedStatement) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BankFeedStatement) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *BankFeedStatement) GetID() string {
+func (o *BankFeedStatement) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -263,6 +264,13 @@ func (o *BankFeedStatement) GetUpdatedBy() optionalnullable.OptionalNullable[str
 	return o.UpdatedBy
 }
 
+func (o *BankFeedStatement) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type BankFeedStatementInput struct {
 	// The ID of the bank feed account this statement belongs to.
 	BankFeedAccountID *string `json:"bank_feed_account_id,omitempty"`
@@ -281,7 +289,8 @@ type BankFeedStatementInput struct {
 	// Whether the amount is a credit or debit.
 	EndBalanceCreditOrDebit *CreditOrDebit `json:"end_balance_credit_or_debit,omitempty"`
 	// List of transactions in the bank feed statement.
-	Transactions []Transaction `json:"transactions,omitempty"`
+	Transactions         []Transaction  `json:"transactions,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
 
 func (b BankFeedStatementInput) MarshalJSON() ([]byte, error) {
@@ -356,4 +365,11 @@ func (o *BankFeedStatementInput) GetTransactions() []Transaction {
 		return nil
 	}
 	return o.Transactions
+}
+
+func (o *BankFeedStatementInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

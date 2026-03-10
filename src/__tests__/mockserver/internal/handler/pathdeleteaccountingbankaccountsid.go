@@ -53,7 +53,7 @@ func testAccountingBankAccountsDeleteAccountingBankAccountsDelete0(w http.Respon
 		Resource:   types.String("bank-accounts"),
 		Operation:  types.String("delete"),
 		Data: components.UnifiedID{
-			ID: "12345",
+			ID: types.String("12345"),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.ledgerAccounts.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -69,6 +70,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingLedgerAccountsList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -137,6 +139,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.ledgerAccounts.create({
     serviceId: "salesforce",
+    companyId: "12345",
     ledgerAccount: {
       displayId: "1-12345",
       code: "453",
@@ -256,6 +259,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingLedgerAccountsCreate(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     ledgerAccount: {
       displayId: "1-12345",
       code: "453",
@@ -404,6 +408,7 @@ async function run() {
   const result = await apideck.accounting.ledgerAccounts.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -433,6 +438,7 @@ async function run() {
   const res = await accountingLedgerAccountsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {
@@ -490,6 +496,7 @@ async function run() {
   const result = await apideck.accounting.ledgerAccounts.update({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     ledgerAccount: {
       displayId: "1-12345",
       code: "453",
@@ -598,6 +605,7 @@ async function run() {
   const res = await accountingLedgerAccountsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     ledgerAccount: {
       displayId: "1-12345",
       code: "453",
@@ -734,6 +742,7 @@ async function run() {
   const result = await apideck.accounting.ledgerAccounts.delete({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
 
   console.log(result);
@@ -762,6 +771,7 @@ async function run() {
   const res = await accountingLedgerAccountsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   if (res.ok) {
     const { value: result } = res;

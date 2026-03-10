@@ -10,7 +10,7 @@ import (
 
 type Collection struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// The collections's parent ID
 	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
 	// The collections's type
@@ -24,7 +24,8 @@ type Collection struct {
 	// The date and time when the object was last updated.
 	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	CreatedAt            optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (c Collection) MarshalJSON() ([]byte, error) {
@@ -32,15 +33,15 @@ func (c Collection) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Collection) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Collection) GetID() string {
+func (o *Collection) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -92,4 +93,11 @@ func (o *Collection) GetCreatedAt() optionalnullable.OptionalNullable[time.Time]
 		return nil
 	}
 	return o.CreatedAt
+}
+
+func (o *Collection) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

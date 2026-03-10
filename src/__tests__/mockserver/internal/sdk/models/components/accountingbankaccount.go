@@ -40,7 +40,7 @@ func (e AccountingBankAccountStatus) ToPointer() *AccountingBankAccountStatus {
 
 type AccountingBankAccount struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
 	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// Display ID for the bank account
@@ -80,7 +80,7 @@ type AccountingBankAccount struct {
 	Status optionalnullable.OptionalNullable[AccountingBankAccountStatus] `json:"status,omitempty"`
 	// Description or notes about the bank account
 	Description  optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
-	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                             `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
@@ -90,7 +90,8 @@ type AccountingBankAccount struct {
 	// The user who created the object.
 	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
+	UpdatedBy            optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
 }
 
 func (a AccountingBankAccount) MarshalJSON() ([]byte, error) {
@@ -98,15 +99,15 @@ func (a AccountingBankAccount) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingBankAccount) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *AccountingBankAccount) GetID() string {
+func (o *AccountingBankAccount) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -251,7 +252,7 @@ func (o *AccountingBankAccount) GetDescription() optionalnullable.OptionalNullab
 	return o.Description
 }
 
-func (o *AccountingBankAccount) GetCustomFields() []CustomFieldUnion {
+func (o *AccountingBankAccount) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -293,6 +294,13 @@ func (o *AccountingBankAccount) GetUpdatedBy() optionalnullable.OptionalNullable
 	return o.UpdatedBy
 }
 
+func (o *AccountingBankAccount) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type AccountingBankAccountInput struct {
 	// Display ID for the bank account
 	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
@@ -330,8 +338,20 @@ type AccountingBankAccountInput struct {
 	// The status of the bank account
 	Status optionalnullable.OptionalNullable[AccountingBankAccountStatus] `json:"status,omitempty"`
 	// Description or notes about the bank account
-	Description  optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
-	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	Description          optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
+	CustomFields         []CustomField                             `json:"custom_fields,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
+}
+
+func (a AccountingBankAccountInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AccountingBankAccountInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *AccountingBankAccountInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
@@ -467,9 +487,16 @@ func (o *AccountingBankAccountInput) GetDescription() optionalnullable.OptionalN
 	return o.Description
 }
 
-func (o *AccountingBankAccountInput) GetCustomFields() []CustomFieldUnion {
+func (o *AccountingBankAccountInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
 	return o.CustomFields
+}
+
+func (o *AccountingBankAccountInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

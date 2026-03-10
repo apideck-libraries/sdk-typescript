@@ -59,11 +59,11 @@ func testFileStorageUploadSessionsFinishFileStorageUploadSessionsFinish0(w http.
 		Resource:   "files",
 		Operation:  "one",
 		Data: components.UnifiedFile{
-			ID:           "12345",
+			ID:           types.String("12345"),
 			DownstreamID: optionalnullable.From(types.String("12345")),
-			Name:         types.String("sample.jpg"),
+			Name:         optionalnullable.From(types.String("sample.jpg")),
 			Description:  optionalnullable.From(types.String("A sample image")),
-			Type:         components.FileTypeFile.ToPointer(),
+			Type:         optionalnullable.From(components.FileTypeFile.ToPointer()),
 			Path:         optionalnullable.From(types.String("/Documents/sample.jpg")),
 			MimeType:     optionalnullable.From(types.String("image/jpeg")),
 			Size:         optionalnullable.From(types.Int64(1810673)),
@@ -74,15 +74,15 @@ func testFileStorageUploadSessionsFinishFileStorageUploadSessionsFinish0(w http.
 			},
 			ParentFolders: []components.LinkedFolder{
 				components.LinkedFolder{
-					ID:   "12345",
+					ID:   types.String("12345"),
 					Name: optionalnullable.From(types.String("Personal")),
 				},
 				components.LinkedFolder{
-					ID:   "12345",
+					ID:   types.String("12345"),
 					Name: optionalnullable.From(types.String("Personal")),
 				},
 				components.LinkedFolder{
-					ID:   "12345",
+					ID:   types.String("12345"),
 					Name: optionalnullable.From(types.String("Personal")),
 				},
 			},

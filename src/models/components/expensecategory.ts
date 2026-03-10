@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -53,7 +56,7 @@ export type ExpenseCategory = {
   /**
    * The name of the expense category.
    */
-  name: string;
+  name?: string | undefined;
   /**
    * The code or external identifier of the expense category.
    */
@@ -109,6 +112,7 @@ export type ExpenseCategory = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type ExpenseCategoryInput = {
@@ -119,7 +123,7 @@ export type ExpenseCategoryInput = {
   /**
    * The name of the expense category.
    */
-  name: string;
+  name?: string | undefined;
   /**
    * The code or external identifier of the expense category.
    */
@@ -151,6 +155,7 @@ export type ExpenseCategoryInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -171,27 +176,31 @@ export const ExpenseCategory$inboundSchema: z.ZodType<
   ExpenseCategory,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  display_id: z.nullable(types.string()).optional(),
-  name: types.string(),
-  code: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  status: z.nullable(ExpenseCategoryStatus$inboundSchema).optional(),
-  account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  offset_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
-  rate_required: z.nullable(types.boolean()).optional(),
-  default_rate: z.nullable(types.number()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  downstream_id: z.nullable(types.string()).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    display_id: z.nullable(types.string()).optional(),
+    name: types.optional(types.string()),
+    code: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    status: z.nullable(ExpenseCategoryStatus$inboundSchema).optional(),
+    account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    offset_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+    rate_required: z.nullable(types.boolean()).optional(),
+    default_rate: z.nullable(types.number()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    downstream_id: z.nullable(types.string()).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "display_id": "displayId",
     "offset_account": "offsetAccount",
@@ -222,7 +231,7 @@ export function expenseCategoryFromJSON(
 /** @internal */
 export type ExpenseCategoryInput$Outbound = {
   display_id?: string | null | undefined;
-  name: string;
+  name?: string | undefined;
   code?: string | null | undefined;
   description?: string | null | undefined;
   status?: string | null | undefined;
@@ -233,6 +242,7 @@ export type ExpenseCategoryInput$Outbound = {
   default_rate?: number | null | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -242,7 +252,7 @@ export const ExpenseCategoryInput$outboundSchema: z.ZodType<
   ExpenseCategoryInput
 > = z.object({
   displayId: z.nullable(z.string()).optional(),
-  name: z.string(),
+  name: z.string().optional(),
   code: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   status: z.nullable(ExpenseCategoryStatus$outboundSchema).optional(),
@@ -253,16 +263,21 @@ export const ExpenseCategoryInput$outboundSchema: z.ZodType<
   defaultRate: z.nullable(z.number()).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    offsetAccount: "offset_account",
-    taxRate: "tax_rate",
-    rateRequired: "rate_required",
-    defaultRate: "default_rate",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      displayId: "display_id",
+      offsetAccount: "offset_account",
+      taxRate: "tax_rate",
+      rateRequired: "rate_required",
+      defaultRate: "default_rate",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function expenseCategoryInputToJSON(

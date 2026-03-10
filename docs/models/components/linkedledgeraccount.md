@@ -25,3 +25,4 @@ let value: LinkedLedgerAccount = {
 | `code`                                 | *string*                               | :heavy_minus_sign:                     | The code assigned to the account.      | 453                                    |
 | `parentId`                             | *string*                               | :heavy_minus_sign:                     | The parent ID of the account.          | 123456                                 |
 | `displayId`                            | *string*                               | :heavy_minus_sign:                     | The display ID of the account.         | 123456                                 |
+| `additionalProperties`                 | Record<string, *any*>                  | :heavy_minus_sign:                     | N/A                                    |                                        |

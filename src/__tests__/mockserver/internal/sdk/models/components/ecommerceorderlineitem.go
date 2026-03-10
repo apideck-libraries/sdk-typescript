@@ -52,7 +52,7 @@ type EcommerceOrderLineItem struct {
 	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	Options     []EcommerceOrderLineItemOption            `json:"options,omitempty"`
 	// The quantity of the product or variant associated with the line item.
-	Quantity *string `json:"quantity"`
+	Quantity optionalnullable.OptionalNullable[string] `json:"quantity,omitempty"`
 	// The unit price of the product or variant associated with the line item.
 	UnitPrice optionalnullable.OptionalNullable[string] `json:"unit_price,omitempty"`
 	// The tax rate applied to the product or variant associated with the line item.
@@ -121,7 +121,7 @@ func (o *EcommerceOrderLineItem) GetOptions() []EcommerceOrderLineItemOption {
 	return o.Options
 }
 
-func (o *EcommerceOrderLineItem) GetQuantity() *string {
+func (o *EcommerceOrderLineItem) GetQuantity() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

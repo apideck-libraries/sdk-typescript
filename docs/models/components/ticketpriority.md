@@ -8,11 +8,11 @@ Priority of the ticket
 import { TicketPriority } from "@apideck/unify/models/components";
 
 let value: TicketPriority = "high";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "low" | "normal" | "high" | "urgent" | Unrecognized<string>

@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -15,7 +18,7 @@ export type Payroll = {
   /**
    * A unique identifier for an object.
    */
-  id: string | null;
+  id?: string | null | undefined;
   /**
    * The unique identifier of the company.
    */
@@ -23,7 +26,7 @@ export type Payroll = {
   /**
    * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
    */
-  processed: boolean | null;
+  processed?: boolean | null | undefined;
   /**
    * The date the payroll was processed.
    */
@@ -31,15 +34,15 @@ export type Payroll = {
   /**
    * The date on which employees will be paid for the payroll.
    */
-  checkDate: string | null;
+  checkDate?: string | null | undefined;
   /**
    * The start date, inclusive, of the pay period.
    */
-  startDate: string | null;
+  startDate?: string | null | undefined;
   /**
    * The end date, inclusive, of the pay period.
    */
-  endDate: string | null;
+  endDate?: string | null | undefined;
   /**
    * The overview of the payroll totals.
    */
@@ -52,22 +55,27 @@ export type Payroll = {
    * When custom mappings are configured on the resource, the result is included here.
    */
   customMappings?: { [k: string]: any } | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
 export const Payroll$inboundSchema: z.ZodType<Payroll, z.ZodTypeDef, unknown> =
-  z.object({
-    id: types.nullable(types.string()),
-    company_id: z.nullable(types.string()).optional(),
-    processed: types.nullable(types.boolean()),
-    processed_date: z.nullable(types.string()).optional(),
-    check_date: types.nullable(types.string()),
-    start_date: types.nullable(types.string()),
-    end_date: types.nullable(types.string()),
-    totals: types.optional(PayrollTotals$inboundSchema),
-    compensations: types.optional(z.array(Compensation$inboundSchema)),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-  }).transform((v) => {
+  collectExtraKeys$(
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      company_id: z.nullable(types.string()).optional(),
+      processed: z.nullable(types.boolean()).optional(),
+      processed_date: z.nullable(types.string()).optional(),
+      check_date: z.nullable(types.string()).optional(),
+      start_date: z.nullable(types.string()).optional(),
+      end_date: z.nullable(types.string()).optional(),
+      totals: types.optional(PayrollTotals$inboundSchema),
+      compensations: types.optional(z.array(Compensation$inboundSchema)),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
     return remap$(v, {
       "company_id": "companyId",
       "processed_date": "processedDate",

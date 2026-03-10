@@ -56,7 +56,7 @@ func testVaultConsumersUpdateVaultConsumersUpdate0(w http.ResponseWriter, req *h
 		StatusCode: 200,
 		Status:     "OK",
 		Data: components.Consumer{
-			ConsumerID:    "test_consumer_id",
+			ConsumerID:    types.String("test_consumer_id"),
 			ApplicationID: types.String("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"),
 			Metadata: &components.ConsumerMetadata{
 				AccountName: types.String("SpaceX"),

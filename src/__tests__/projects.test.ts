@@ -19,6 +19,7 @@ test("Projects Accounting Projects All", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       name: "Website Redesign",
       status: "active",
@@ -73,6 +74,7 @@ test("Projects Accounting Projects Add", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
+    companyId: "12345",
     project: {
       name: "Website Redesign Project",
       displayId: "PROJ-001",
@@ -200,6 +202,7 @@ test("Projects Accounting Projects One", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   expect(result.httpMeta.response.status).toBe(200);
   expect(result.getProjectResponse).toBeDefined();
@@ -336,6 +339,7 @@ test("Projects Accounting Projects Update", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
+    companyId: "12345",
     project: {
       name: "Website Redesign Project",
       displayId: "PROJ-001",
@@ -459,6 +463,7 @@ test("Projects Accounting Projects Delete", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   expect(result.httpMeta.response.status).toBe(200);
   expect(result.deleteProjectResponse).toBeDefined();

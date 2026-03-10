@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -28,7 +31,7 @@ export type Lead = {
   /**
    * Full name of the lead.
    */
-  name: string;
+  name?: string | undefined;
   /**
    * The name of the company the lead is associated with.
    */
@@ -117,42 +120,47 @@ export type Lead = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
-export const Lead$inboundSchema: z.ZodType<Lead, z.ZodTypeDef, unknown> = z
-  .object({
-    id: types.optional(types.string()),
-    name: types.string(),
-    company_name: z.nullable(types.string()).optional(),
-    owner_id: z.nullable(types.string()).optional(),
-    owner_name: z.nullable(types.string()).optional(),
-    company_id: z.nullable(types.string()).optional(),
-    contact_id: z.nullable(types.string()).optional(),
-    lead_id: z.nullable(types.string()).optional(),
-    lead_source: z.nullable(types.string()).optional(),
-    first_name: z.nullable(types.string()).optional(),
-    last_name: z.nullable(types.string()).optional(),
-    description: z.nullable(types.string()).optional(),
-    prefix: z.nullable(types.string()).optional(),
-    title: z.nullable(types.string()).optional(),
-    language: z.nullable(types.string()).optional(),
-    status: z.nullable(types.string()).optional(),
-    monetary_amount: z.nullable(types.number()).optional(),
-    currency: z.nullable(Currency$inboundSchema).optional(),
-    fax: z.nullable(types.string()).optional(),
-    websites: types.optional(z.array(Website$inboundSchema)),
-    addresses: types.optional(z.array(Address$inboundSchema)),
-    social_links: types.optional(z.array(SocialLink$inboundSchema)),
-    phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
-    emails: types.optional(z.array(Email$inboundSchema)),
-    custom_fields: z.nullable(z.array(CustomField$inboundSchema)).optional(),
-    tags: z.nullable(z.array(types.string())).optional(),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    updated_at: z.nullable(types.string()).optional(),
-    created_at: z.nullable(types.string()).optional(),
-    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-  }).transform((v) => {
+export const Lead$inboundSchema: z.ZodType<Lead, z.ZodTypeDef, unknown> =
+  collectExtraKeys$(
+    z.object({
+      id: types.optional(types.string()),
+      name: types.optional(types.string()),
+      company_name: z.nullable(types.string()).optional(),
+      owner_id: z.nullable(types.string()).optional(),
+      owner_name: z.nullable(types.string()).optional(),
+      company_id: z.nullable(types.string()).optional(),
+      contact_id: z.nullable(types.string()).optional(),
+      lead_id: z.nullable(types.string()).optional(),
+      lead_source: z.nullable(types.string()).optional(),
+      first_name: z.nullable(types.string()).optional(),
+      last_name: z.nullable(types.string()).optional(),
+      description: z.nullable(types.string()).optional(),
+      prefix: z.nullable(types.string()).optional(),
+      title: z.nullable(types.string()).optional(),
+      language: z.nullable(types.string()).optional(),
+      status: z.nullable(types.string()).optional(),
+      monetary_amount: z.nullable(types.number()).optional(),
+      currency: z.nullable(Currency$inboundSchema).optional(),
+      fax: z.nullable(types.string()).optional(),
+      websites: types.optional(z.array(Website$inboundSchema)),
+      addresses: types.optional(z.array(Address$inboundSchema)),
+      social_links: types.optional(z.array(SocialLink$inboundSchema)),
+      phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+      emails: types.optional(z.array(Email$inboundSchema)),
+      custom_fields: z.nullable(z.array(CustomField$inboundSchema)).optional(),
+      tags: z.nullable(z.array(types.string())).optional(),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+      updated_at: z.nullable(types.string()).optional(),
+      created_at: z.nullable(types.string()).optional(),
+      pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
     return remap$(v, {
       "company_name": "companyName",
       "owner_id": "ownerId",

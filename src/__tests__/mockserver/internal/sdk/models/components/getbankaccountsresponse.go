@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 // GetBankAccountsResponse - Bank Accounts
 type GetBankAccountsResponse struct {
 	// HTTP Response Status Code
@@ -18,7 +22,19 @@ type GetBankAccountsResponse struct {
 	// Response metadata
 	Meta *Meta `json:"meta,omitempty"`
 	// Links to navigate to previous or next pages through the API
-	Links *Links `json:"links,omitempty"`
+	Links                *Links         `json:"links,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (g GetBankAccountsResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetBankAccountsResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"status_code", "status", "data"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *GetBankAccountsResponse) GetStatusCode() int64 {
@@ -75,4 +91,11 @@ func (o *GetBankAccountsResponse) GetLinks() *Links {
 		return nil
 	}
 	return o.Links
+}
+
+func (o *GetBankAccountsResponse) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

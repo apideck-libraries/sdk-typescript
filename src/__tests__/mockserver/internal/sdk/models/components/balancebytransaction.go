@@ -36,7 +36,8 @@ type BalanceByTransaction struct {
 	// Outstanding balance of the transaction.
 	OutstandingBalance *float64 `json:"outstanding_balance,omitempty"`
 	// Transaction number of the transaction.
-	TransactionNumber *string `json:"transaction_number,omitempty"`
+	TransactionNumber    *string        `json:"transaction_number,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
 
 func (b BalanceByTransaction) MarshalJSON() ([]byte, error) {
@@ -97,4 +98,11 @@ func (o *BalanceByTransaction) GetTransactionNumber() *string {
 		return nil
 	}
 	return o.TransactionNumber
+}
+
+func (o *BalanceByTransaction) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

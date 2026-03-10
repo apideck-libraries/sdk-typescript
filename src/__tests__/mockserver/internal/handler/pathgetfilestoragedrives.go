@@ -55,8 +55,8 @@ func testFileStorageDrivesAllFileStorageDrivesAll0(w http.ResponseWriter, req *h
 		Operation:  "all",
 		Data: []components.Drive{
 			components.Drive{
-				ID:          "12345",
-				Name:        "Project Resources",
+				ID:          types.String("12345"),
+				Name:        types.String("Project Resources"),
 				Description: optionalnullable.From(types.String("A description")),
 				UpdatedBy:   optionalnullable.From(types.String("12345")),
 				CreatedBy:   optionalnullable.From(types.String("12345")),
@@ -108,8 +108,8 @@ func testFileStorageDrivesAllFileStorageDrivesAll0(w http.ResponseWriter, req *h
 				},
 			},
 			components.Drive{
-				ID:          "12345",
-				Name:        "Project Resources",
+				ID:          types.String("12345"),
+				Name:        types.String("Project Resources"),
 				Description: optionalnullable.From(types.String("A description")),
 				UpdatedBy:   optionalnullable.From(types.String("12345")),
 				CreatedBy:   optionalnullable.From(types.String("12345")),
@@ -132,8 +132,8 @@ func testFileStorageDrivesAllFileStorageDrivesAll0(w http.ResponseWriter, req *h
 				},
 			},
 			components.Drive{
-				ID:          "12345",
-				Name:        "Project Resources",
+				ID:          types.String("12345"),
+				Name:        types.String("Project Resources"),
 				Description: optionalnullable.From(types.String("A description")),
 				UpdatedBy:   optionalnullable.From(types.String("12345")),
 				CreatedBy:   optionalnullable.From(types.String("12345")),

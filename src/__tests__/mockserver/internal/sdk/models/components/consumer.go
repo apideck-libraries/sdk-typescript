@@ -4,7 +4,7 @@ package components
 
 type Consumer struct {
 	// Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
-	ConsumerID string `json:"consumer_id"`
+	ConsumerID *string `json:"consumer_id,omitempty"`
 	// ID of your Apideck Application
 	ApplicationID *string `json:"application_id,omitempty"`
 	// The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
@@ -18,9 +18,9 @@ type Consumer struct {
 	RequestCountUpdated    *string                 `json:"request_count_updated,omitempty"`
 }
 
-func (o *Consumer) GetConsumerID() string {
+func (o *Consumer) GetConsumerID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ConsumerID
 }

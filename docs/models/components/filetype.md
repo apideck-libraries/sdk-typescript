@@ -8,11 +8,11 @@ The type of resource. Could be file, folder or url
 import { FileType } from "@apideck/unify/models/components";
 
 let value: FileType = "file";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "file" | "folder" | "url" | Unrecognized<string>

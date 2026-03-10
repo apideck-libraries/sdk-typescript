@@ -219,4 +219,5 @@ let value: BalanceSheet = {
 
 | Field                                                      | Type                                                       | Required                                                   | Description                                                |
 | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| `reports`                                                  | [components.Reports](../../models/components/reports.md)[] | :heavy_check_mark:                                         | N/A                                                        |
+| `reports`                                                  | [components.Reports](../../models/components/reports.md)[] | :heavy_minus_sign:                                         | N/A                                                        |
+| `additionalProperties`                                     | Record<string, *any*>                                      | :heavy_minus_sign:                                         | N/A                                                        |

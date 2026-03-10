@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -152,6 +155,7 @@ export type TimeOffRequest = {
    * The policy type of the time off request
    */
   policyType?: string | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type TimeOffRequestInput = {
@@ -212,6 +216,7 @@ export type TimeOffRequestInput = {
    * The policy type of the time off request
    */
   policyType?: string | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -287,29 +292,33 @@ export const TimeOffRequest$inboundSchema: z.ZodType<
   TimeOffRequest,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  employee_id: z.nullable(types.string()).optional(),
-  policy_id: z.nullable(types.string()).optional(),
-  status: z.nullable(TimeOffRequestStatusStatus$inboundSchema).optional(),
-  description: z.nullable(types.string()).optional(),
-  start_date: z.nullable(types.string()).optional(),
-  end_date: z.nullable(types.string()).optional(),
-  request_date: z.nullable(types.string()).optional(),
-  request_type: z.nullable(RequestType$inboundSchema).optional(),
-  approval_date: z.nullable(types.string()).optional(),
-  units: z.nullable(Units$inboundSchema).optional(),
-  amount: z.nullable(types.number()).optional(),
-  day_part: z.nullable(types.string()).optional(),
-  notes: types.optional(z.lazy(() => Notes$inboundSchema)),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-  policy_type: types.optional(types.string()),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    employee_id: z.nullable(types.string()).optional(),
+    policy_id: z.nullable(types.string()).optional(),
+    status: z.nullable(TimeOffRequestStatusStatus$inboundSchema).optional(),
+    description: z.nullable(types.string()).optional(),
+    start_date: z.nullable(types.string()).optional(),
+    end_date: z.nullable(types.string()).optional(),
+    request_date: z.nullable(types.string()).optional(),
+    request_type: z.nullable(RequestType$inboundSchema).optional(),
+    approval_date: z.nullable(types.string()).optional(),
+    units: z.nullable(Units$inboundSchema).optional(),
+    amount: z.nullable(types.number()).optional(),
+    day_part: z.nullable(types.string()).optional(),
+    notes: types.optional(z.lazy(() => Notes$inboundSchema)),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    policy_type: types.optional(types.string()),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "employee_id": "employeeId",
     "policy_id": "policyId",
@@ -356,6 +365,7 @@ export type TimeOffRequestInput$Outbound = {
   notes?: Notes$Outbound | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
   policy_type?: string | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -379,19 +389,24 @@ export const TimeOffRequestInput$outboundSchema: z.ZodType<
   notes: z.lazy(() => Notes$outboundSchema).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
   policyType: z.string().optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    employeeId: "employee_id",
-    policyId: "policy_id",
-    startDate: "start_date",
-    endDate: "end_date",
-    requestDate: "request_date",
-    requestType: "request_type",
-    approvalDate: "approval_date",
-    dayPart: "day_part",
-    passThrough: "pass_through",
-    policyType: "policy_type",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      employeeId: "employee_id",
+      policyId: "policy_id",
+      startDate: "start_date",
+      endDate: "end_date",
+      requestDate: "request_date",
+      requestType: "request_type",
+      approvalDate: "approval_date",
+      dayPart: "day_part",
+      passThrough: "pass_through",
+      policyType: "policy_type",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function timeOffRequestInputToJSON(

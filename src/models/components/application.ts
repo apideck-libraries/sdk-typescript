@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -39,8 +42,8 @@ export type Application = {
    * A unique identifier for an object.
    */
   id?: string | undefined;
-  applicantId: string | null;
-  jobId: string | null;
+  applicantId?: string | null | undefined;
+  jobId?: string | null | undefined;
   status?: ApplicationStatus | null | undefined;
   stage?: Stage | undefined;
   /**
@@ -67,17 +70,19 @@ export type Application = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type ApplicationInput = {
-  applicantId: string | null;
-  jobId: string | null;
+  applicantId?: string | null | undefined;
+  jobId?: string | null | undefined;
   status?: ApplicationStatus | null | undefined;
   stage?: Stage | undefined;
   /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -133,19 +138,23 @@ export const Application$inboundSchema: z.ZodType<
   Application,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  applicant_id: types.nullable(types.string()),
-  job_id: types.nullable(types.string()),
-  status: z.nullable(ApplicationStatus$inboundSchema).optional(),
-  stage: types.optional(z.lazy(() => Stage$inboundSchema)),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    applicant_id: z.nullable(types.string()).optional(),
+    job_id: z.nullable(types.string()).optional(),
+    status: z.nullable(ApplicationStatus$inboundSchema).optional(),
+    stage: types.optional(z.lazy(() => Stage$inboundSchema)),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "applicant_id": "applicantId",
     "job_id": "jobId",
@@ -170,11 +179,12 @@ export function applicationFromJSON(
 
 /** @internal */
 export type ApplicationInput$Outbound = {
-  applicant_id: string | null;
-  job_id: string | null;
+  applicant_id?: string | null | undefined;
+  job_id?: string | null | undefined;
   status?: string | null | undefined;
   stage?: Stage$Outbound | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -183,17 +193,22 @@ export const ApplicationInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ApplicationInput
 > = z.object({
-  applicantId: z.nullable(z.string()),
-  jobId: z.nullable(z.string()),
+  applicantId: z.nullable(z.string()).optional(),
+  jobId: z.nullable(z.string()).optional(),
   status: z.nullable(ApplicationStatus$outboundSchema).optional(),
   stage: z.lazy(() => Stage$outboundSchema).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    applicantId: "applicant_id",
-    jobId: "job_id",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      applicantId: "applicant_id",
+      jobId: "job_id",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function applicationInputToJSON(

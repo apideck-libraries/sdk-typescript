@@ -19,7 +19,7 @@ type ExpenseReportLineItemInput struct {
 	Quantity    optionalnullable.OptionalNullable[float64] `json:"quantity,omitempty"`
 	UnitPrice   optionalnullable.OptionalNullable[float64] `json:"unit_price,omitempty"`
 	// The amount of the expense line item.
-	Amount  float64             `json:"amount"`
+	Amount  *float64            `json:"amount,omitempty"`
 	TaxRate *LinkedTaxRateInput `json:"tax_rate,omitempty"`
 	// Tax amount
 	TaxAmount optionalnullable.OptionalNullable[float64] `json:"tax_amount,omitempty"`
@@ -40,7 +40,8 @@ type ExpenseReportLineItemInput struct {
 	// URL to the receipt or attachment for this expense line.
 	ReceiptURL optionalnullable.OptionalNullable[string] `json:"receipt_url,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
+	Currency             optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
+	AdditionalProperties map[string]any                              `additionalProperties:"true" json:"-"`
 }
 
 func (e ExpenseReportLineItemInput) MarshalJSON() ([]byte, error) {
@@ -48,7 +49,7 @@ func (e ExpenseReportLineItemInput) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExpenseReportLineItemInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"amount"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -96,9 +97,9 @@ func (o *ExpenseReportLineItemInput) GetUnitPrice() optionalnullable.OptionalNul
 	return o.UnitPrice
 }
 
-func (o *ExpenseReportLineItemInput) GetAmount() float64 {
+func (o *ExpenseReportLineItemInput) GetAmount() *float64 {
 	if o == nil {
-		return 0.0
+		return nil
 	}
 	return o.Amount
 }
@@ -185,4 +186,11 @@ func (o *ExpenseReportLineItemInput) GetCurrency() optionalnullable.OptionalNull
 		return nil
 	}
 	return o.Currency
+}
+
+func (o *ExpenseReportLineItemInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

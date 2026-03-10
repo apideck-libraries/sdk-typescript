@@ -39,6 +39,10 @@ export type AccountingPurchaseOrdersAllRequest = {
    */
   serviceId?: string | undefined;
   /**
+   * The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+   */
+  companyId?: string | undefined;
+  /**
    * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
    */
   cursor?: string | null | undefined;
@@ -78,6 +82,7 @@ export type AccountingPurchaseOrdersAllRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
   serviceId?: string | undefined;
+  companyId?: string | undefined;
   cursor?: string | null | undefined;
   pass_through?: { [k: string]: any } | undefined;
   limit: number;
@@ -95,6 +100,7 @@ export const AccountingPurchaseOrdersAllRequest$outboundSchema: z.ZodType<
   consumerId: z.string().optional(),
   appId: z.string().optional(),
   serviceId: z.string().optional(),
+  companyId: z.string().optional(),
   cursor: z.nullable(z.string()).optional(),
   passThrough: z.record(z.any()).optional(),
   limit: z.number().int().default(20),

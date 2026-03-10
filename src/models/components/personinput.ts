@@ -35,6 +35,7 @@ export type PersonInput = {
    * Date of death
    */
   deceasedOn?: Date | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -46,6 +47,7 @@ export type PersonInput$Outbound = {
   initials?: string | null | undefined;
   birthday?: string | null | undefined;
   deceased_on?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -65,13 +67,18 @@ export const PersonInput$outboundSchema: z.ZodType<
   deceasedOn: z.nullable(
     z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
   ).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    middleName: "middle_name",
-    deceasedOn: "deceased_on",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      firstName: "first_name",
+      lastName: "last_name",
+      middleName: "middle_name",
+      deceasedOn: "deceased_on",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function personInputToJSON(personInput: PersonInput): string {

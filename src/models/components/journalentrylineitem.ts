@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -97,7 +100,7 @@ export type JournalEntryLineItem = {
   /**
    * Debit entries are considered positive, and credit entries are considered negative.
    */
-  type: JournalEntryLineItemType;
+  type?: JournalEntryLineItemType | undefined;
   taxRate?: LinkedTaxRate | undefined;
   /**
    * @deprecated field: This field is deprecated and may be removed in a future version..
@@ -107,7 +110,7 @@ export type JournalEntryLineItem = {
    * A list of linked tracking categories.
    */
   trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
-  ledgerAccount: LinkedLedgerAccount | null;
+  ledgerAccount?: LinkedLedgerAccount | null | undefined;
   /**
    * The customer this entity is linked to.
    */
@@ -132,6 +135,7 @@ export type JournalEntryLineItem = {
    * Worktags of the line item. This is currently only supported in Workday.
    */
   worktags?: Array<LinkedWorktag | null> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type JournalEntryLineItemInput = {
@@ -154,7 +158,7 @@ export type JournalEntryLineItemInput = {
   /**
    * Debit entries are considered positive, and credit entries are considered negative.
    */
-  type: JournalEntryLineItemType;
+  type?: JournalEntryLineItemType | undefined;
   taxRate?: LinkedTaxRateInput | undefined;
   /**
    * @deprecated field: This field is deprecated and may be removed in a future version..
@@ -164,7 +168,7 @@ export type JournalEntryLineItemInput = {
    * A list of linked tracking categories.
    */
   trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
-  ledgerAccount: LinkedLedgerAccount | null;
+  ledgerAccount?: LinkedLedgerAccount | null | undefined;
   /**
    * The customer this entity is linked to.
    */
@@ -189,6 +193,7 @@ export type JournalEntryLineItemInput = {
    * Worktags of the line item. This is currently only supported in Workday.
    */
   worktags?: Array<LinkedWorktag | null> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -209,29 +214,34 @@ export const JournalEntryLineItem$inboundSchema: z.ZodType<
   JournalEntryLineItem,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  description: z.nullable(types.string()).optional(),
-  tax_amount: z.nullable(types.number()).optional(),
-  sub_total: z.nullable(types.number()).optional(),
-  total_amount: z.nullable(types.number()).optional(),
-  type: JournalEntryLineItemType$inboundSchema,
-  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
-  tracking_category: z.nullable(DeprecatedLinkedTrackingCategory$inboundSchema)
-    .optional(),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  ledger_account: types.nullable(LinkedLedgerAccount$inboundSchema),
-  customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
-  supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
-  department_id: z.nullable(types.string()).optional(),
-  location_id: z.nullable(types.string()).optional(),
-  line_number: z.nullable(types.number()).optional(),
-  worktags: types.optional(
-    z.array(types.nullable(LinkedWorktag$inboundSchema)),
-  ),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    description: z.nullable(types.string()).optional(),
+    tax_amount: z.nullable(types.number()).optional(),
+    sub_total: z.nullable(types.number()).optional(),
+    total_amount: z.nullable(types.number()).optional(),
+    type: types.optional(JournalEntryLineItemType$inboundSchema),
+    tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+    tracking_category: z.nullable(
+      DeprecatedLinkedTrackingCategory$inboundSchema,
+    ).optional(),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
+    supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
+    department_id: z.nullable(types.string()).optional(),
+    location_id: z.nullable(types.string()).optional(),
+    line_number: z.nullable(types.number()).optional(),
+    worktags: types.optional(
+      z.array(types.nullable(LinkedWorktag$inboundSchema)),
+    ),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "tax_amount": "taxAmount",
     "sub_total": "subTotal",
@@ -262,7 +272,7 @@ export type JournalEntryLineItemInput$Outbound = {
   tax_amount?: number | null | undefined;
   sub_total?: number | null | undefined;
   total_amount?: number | null | undefined;
-  type: string;
+  type?: string | undefined;
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   tracking_category?:
     | DeprecatedLinkedTrackingCategory$Outbound
@@ -272,13 +282,14 @@ export type JournalEntryLineItemInput$Outbound = {
     | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
-  ledger_account: LinkedLedgerAccount$Outbound | null;
+  ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
   customer?: LinkedCustomerInput$Outbound | null | undefined;
   supplier?: LinkedSupplierInput$Outbound | null | undefined;
   department_id?: string | null | undefined;
   location_id?: string | null | undefined;
   line_number?: number | null | undefined;
   worktags?: Array<LinkedWorktag$Outbound | null> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -291,33 +302,38 @@ export const JournalEntryLineItemInput$outboundSchema: z.ZodType<
   taxAmount: z.nullable(z.number()).optional(),
   subTotal: z.nullable(z.number()).optional(),
   totalAmount: z.nullable(z.number()).optional(),
-  type: JournalEntryLineItemType$outboundSchema,
+  type: JournalEntryLineItemType$outboundSchema.optional(),
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   trackingCategory: z.nullable(DeprecatedLinkedTrackingCategory$outboundSchema)
     .optional(),
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema),
+  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
   departmentId: z.nullable(z.string()).optional(),
   locationId: z.nullable(z.string()).optional(),
   lineNumber: z.nullable(z.number().int()).optional(),
   worktags: z.array(z.nullable(LinkedWorktag$outboundSchema)).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    taxAmount: "tax_amount",
-    subTotal: "sub_total",
-    totalAmount: "total_amount",
-    taxRate: "tax_rate",
-    trackingCategory: "tracking_category",
-    trackingCategories: "tracking_categories",
-    ledgerAccount: "ledger_account",
-    departmentId: "department_id",
-    locationId: "location_id",
-    lineNumber: "line_number",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      taxAmount: "tax_amount",
+      subTotal: "sub_total",
+      totalAmount: "total_amount",
+      taxRate: "tax_rate",
+      trackingCategory: "tracking_category",
+      trackingCategories: "tracking_categories",
+      ledgerAccount: "ledger_account",
+      departmentId: "department_id",
+      locationId: "location_id",
+      lineNumber: "line_number",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function journalEntryLineItemInputToJSON(

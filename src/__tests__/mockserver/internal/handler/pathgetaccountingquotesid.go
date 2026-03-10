@@ -72,6 +72,7 @@ func testAccountingQuotesOneAccountingQuotesOne0(w http.ResponseWriter, req *htt
 			QuoteDate:          optionalnullable.From(types.MustNewDateFromString("2020-09-30")),
 			ExpiryDate:         optionalnullable.From(types.MustNewDateFromString("2020-10-30")),
 			Terms:              optionalnullable.From(types.String("Valid for 30 days")),
+			TermsID:            optionalnullable.From(types.String("12345")),
 			Reference:          optionalnullable.From(types.String("INV-2024-001")),
 			Status:             optionalnullable.From(components.QuoteStatusDraft.ToPointer()),
 			Currency:           optionalnullable.From(components.CurrencyUsd.ToPointer()),
@@ -127,17 +128,15 @@ func testAccountingQuotesOneAccountingQuotesOne0(w http.ResponseWriter, req *htt
 						NominalCode: optionalnullable.From(types.String("N091")),
 						Code:        optionalnullable.From(types.String("453")),
 					}),
-					CustomFields: []components.CustomFieldUnion{
-						components.CreateCustomFieldUnionCustomField1(
-							components.CustomField1{
-								ID:          types.String("2389328923893298"),
-								Name:        optionalnullable.From(types.String("employee_level")),
-								Description: optionalnullable.From(types.String("Employee Level")),
-								Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-									"Uses Salesforce and Marketo",
-								))),
-							},
-						),
+					CustomFields: []components.CustomField{
+						components.CustomField{
+							ID:          optionalnullable.From(types.String("2389328923893298")),
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+								"Uses Salesforce and Marketo",
+							))),
+						},
 					},
 					RowVersion: optionalnullable.From(types.String("1-12345")),
 					UpdatedBy:  optionalnullable.From(types.String("12345")),
@@ -210,17 +209,15 @@ func testAccountingQuotesOneAccountingQuotesOne0(w http.ResponseWriter, req *htt
 			})),
 			TemplateID:        optionalnullable.From(types.String("123456")),
 			SourceDocumentURL: optionalnullable.From(types.String("https://www.quotesolution.com/quote/123456")),
-			CustomFields: []components.CustomFieldUnion{
-				components.CreateCustomFieldUnionCustomField1(
-					components.CustomField1{
-						ID:          types.String("2389328923893298"),
-						Name:        optionalnullable.From(types.String("employee_level")),
-						Description: optionalnullable.From(types.String("Employee Level")),
-						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-							"Uses Salesforce and Marketo",
-						))),
-					},
-				),
+			CustomFields: []components.CustomField{
+				components.CustomField{
+					ID:          optionalnullable.From(types.String("2389328923893298")),
+					Name:        optionalnullable.From(types.String("employee_level")),
+					Description: optionalnullable.From(types.String("Employee Level")),
+					Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+						"Uses Salesforce and Marketo",
+					))),
+				},
 			},
 			RowVersion: optionalnullable.From(types.String("1-12345")),
 			UpdatedBy:  optionalnullable.From(types.String("12345")),

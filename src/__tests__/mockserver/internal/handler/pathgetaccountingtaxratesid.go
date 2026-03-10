@@ -135,37 +135,31 @@ func testAccountingTaxRatesOneAccountingTaxRatesOne0(w http.ResponseWriter, req 
 					},
 				},
 			},
-			CustomFields: []components.CustomFieldUnion{
-				components.CreateCustomFieldUnionCustomField1(
-					components.CustomField1{
-						ID:          types.String("2389328923893298"),
-						Name:        optionalnullable.From(types.String("employee_level")),
-						Description: optionalnullable.From(types.String("Employee Level")),
-						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
-							true,
-						))),
-					},
-				),
-				components.CreateCustomFieldUnionCustomField1(
-					components.CustomField1{
-						ID:          types.String("2389328923893298"),
-						Name:        optionalnullable.From(types.String("employee_level")),
-						Description: optionalnullable.From(types.String("Employee Level")),
-						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
-							true,
-						))),
-					},
-				),
-				components.CreateCustomFieldUnionCustomField1(
-					components.CustomField1{
-						ID:          types.String("2389328923893298"),
-						Name:        optionalnullable.From(types.String("employee_level")),
-						Description: optionalnullable.From(types.String("Employee Level")),
-						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
-							10,
-						))),
-					},
-				),
+			CustomFields: []components.CustomField{
+				components.CustomField{
+					ID:          optionalnullable.From(types.String("2389328923893298")),
+					Name:        optionalnullable.From(types.String("employee_level")),
+					Description: optionalnullable.From(types.String("Employee Level")),
+					Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
+						true,
+					))),
+				},
+				components.CustomField{
+					ID:          optionalnullable.From(types.String("2389328923893298")),
+					Name:        optionalnullable.From(types.String("employee_level")),
+					Description: optionalnullable.From(types.String("Employee Level")),
+					Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
+						true,
+					))),
+				},
+				components.CustomField{
+					ID:          optionalnullable.From(types.String("2389328923893298")),
+					Name:        optionalnullable.From(types.String("employee_level")),
+					Description: optionalnullable.From(types.String("Employee Level")),
+					Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
+						10,
+					))),
+				},
 			},
 		},
 	}

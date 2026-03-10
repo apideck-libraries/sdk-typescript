@@ -1,12 +1,11 @@
 # CustomField
 
-
-## Supported Types
-
-### `components.CustomField1`
+## Example Usage
 
 ```typescript
-const value: components.CustomField1 = {
+import { CustomField } from "@apideck/unify/models/components";
+
+let value: CustomField = {
   id: "2389328923893298",
   name: "employee_level",
   description: "Employee Level",
@@ -14,14 +13,12 @@ const value: components.CustomField1 = {
 };
 ```
 
-### `components.CustomField2`
+## Fields
 
-```typescript
-const value: components.CustomField2 = {
-  id: "2389328923893298",
-  name: "employee_level",
-  description: "Employee Level",
-  value: "Uses Salesforce and Marketo",
-};
-```
-
+| Field                                   | Type                                    | Required                                | Description                             | Example                                 |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| `id`                                    | *string*                                | :heavy_minus_sign:                      | Unique identifier for the custom field. | 2389328923893298                        |
+| `name`                                  | *string*                                | :heavy_minus_sign:                      | Name of the custom field.               | employee_level                          |
+| `description`                           | *string*                                | :heavy_minus_sign:                      | More information about the custom field | Employee Level                          |
+| `value`                                 | *components.Value*                      | :heavy_minus_sign:                      | N/A                                     |                                         |
+| `additionalProperties`                  | Record<string, *any*>                   | :heavy_minus_sign:                      | N/A                                     |                                         |

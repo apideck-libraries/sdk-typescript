@@ -5,14 +5,14 @@ package components
 // LinkedParentCustomer - The parent customer this entity is linked to.
 type LinkedParentCustomer struct {
 	// The parent ID of the customer this entity is linked to.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// The name of the parent customer.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *LinkedParentCustomer) GetID() string {
+func (o *LinkedParentCustomer) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }

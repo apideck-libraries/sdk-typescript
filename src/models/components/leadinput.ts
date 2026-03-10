@@ -41,7 +41,7 @@ export type LeadInput = {
   /**
    * Full name of the lead.
    */
-  name: string;
+  name?: string | undefined;
   /**
    * The name of the company the lead is associated with.
    */
@@ -118,11 +118,12 @@ export type LeadInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
 export type LeadInput$Outbound = {
-  name: string;
+  name?: string | undefined;
   company_name?: string | null | undefined;
   owner_id?: string | null | undefined;
   owner_name?: string | null | undefined;
@@ -148,6 +149,7 @@ export type LeadInput$Outbound = {
   custom_fields?: Array<CustomField$Outbound> | null | undefined;
   tags?: Array<string> | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -156,7 +158,7 @@ export const LeadInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   LeadInput
 > = z.object({
-  name: z.string(),
+  name: z.string().optional(),
   companyName: z.nullable(z.string()).optional(),
   ownerId: z.nullable(z.string()).optional(),
   ownerName: z.nullable(z.string()).optional(),
@@ -182,23 +184,28 @@ export const LeadInput$outboundSchema: z.ZodType<
   customFields: z.nullable(z.array(CustomField$outboundSchema)).optional(),
   tags: z.nullable(z.array(z.string())).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    companyName: "company_name",
-    ownerId: "owner_id",
-    ownerName: "owner_name",
-    companyId: "company_id",
-    contactId: "contact_id",
-    leadId: "lead_id",
-    leadSource: "lead_source",
-    firstName: "first_name",
-    lastName: "last_name",
-    monetaryAmount: "monetary_amount",
-    socialLinks: "social_links",
-    phoneNumbers: "phone_numbers",
-    customFields: "custom_fields",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      companyName: "company_name",
+      ownerId: "owner_id",
+      ownerName: "owner_name",
+      companyId: "company_id",
+      contactId: "contact_id",
+      leadId: "lead_id",
+      leadSource: "lead_source",
+      firstName: "first_name",
+      lastName: "last_name",
+      monetaryAmount: "monetary_amount",
+      socialLinks: "social_links",
+      phoneNumbers: "phone_numbers",
+      customFields: "custom_fields",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function leadInputToJSON(leadInput: LeadInput): string {

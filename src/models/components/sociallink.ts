@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { remap as remap$ } from "../../lib/primitives.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -16,11 +20,12 @@ export type SocialLink = {
   /**
    * URL of the social link, e.g. https://www.twitter.com/apideck
    */
-  url: string;
+  url?: string | undefined;
   /**
    * Type of the social link, e.g. twitter
    */
   type?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -28,16 +33,21 @@ export const SocialLink$inboundSchema: z.ZodType<
   SocialLink,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  url: types.string(),
-  type: z.nullable(types.string()).optional(),
-});
+> = collectExtraKeys$(
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    url: types.optional(types.string()),
+    type: z.nullable(types.string()).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+);
 /** @internal */
 export type SocialLink$Outbound = {
   id?: string | null | undefined;
-  url: string;
+  url?: string | undefined;
   type?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -47,8 +57,16 @@ export const SocialLink$outboundSchema: z.ZodType<
   SocialLink
 > = z.object({
   id: z.nullable(z.string()).optional(),
-  url: z.string(),
+  url: z.string().optional(),
   type: z.nullable(z.string()).optional(),
+  additionalProperties: z.record(z.any()).optional(),
+}).transform((v) => {
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function socialLinkToJSON(socialLink: SocialLink): string {

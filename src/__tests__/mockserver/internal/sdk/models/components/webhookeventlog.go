@@ -2,12 +2,28 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 // WebhookEventLogService - Apideck service provider associated with event.
 type WebhookEventLogService struct {
 	// Apideck service provider id.
 	ID string `json:"id"`
 	// Apideck service provider name.
-	Name string `json:"name"`
+	Name                 string         `json:"name"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (w WebhookEventLogService) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(w, "", false)
+}
+
+func (w *WebhookEventLogService) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &w, "", false, []string{"id", "name"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *WebhookEventLogService) GetID() string {
@@ -22,6 +38,13 @@ func (o *WebhookEventLogService) GetName() string {
 		return ""
 	}
 	return o.Name
+}
+
+func (o *WebhookEventLogService) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 type Attempt struct {
@@ -96,7 +119,19 @@ type WebhookEventLog struct {
 	// If the request has not hit the max retry limit and will be retried.
 	RetryScheduled *bool `json:"retry_scheduled,omitempty"`
 	// record of each attempt to call webhook endpoint
-	Attempts []Attempt `json:"attempts,omitempty"`
+	Attempts             []Attempt      `json:"attempts,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (w WebhookEventLog) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(w, "", false)
+}
+
+func (w *WebhookEventLog) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &w, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *WebhookEventLog) GetID() *string {
@@ -216,4 +251,11 @@ func (o *WebhookEventLog) GetAttempts() []Attempt {
 		return nil
 	}
 	return o.Attempts
+}
+
+func (o *WebhookEventLog) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

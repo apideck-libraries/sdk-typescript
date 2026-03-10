@@ -118,6 +118,7 @@ let value: GetSuppliersResponse = {
       status: "active",
       paymentMethod: "cash",
       terms: "Net 30 days",
+      termsId: "12345",
       channel: "email",
       issuedMethod: "Email",
       issuedEmail: "john.doe@example.com",

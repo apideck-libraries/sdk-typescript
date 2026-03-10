@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -29,6 +32,7 @@ export type CustomFieldFinder = {
    * JSONPath finder for retrieving this value when mapping a response payload from downstream
    */
   finder?: string | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -36,13 +40,17 @@ export const CustomFieldFinder$inboundSchema: z.ZodType<
   CustomFieldFinder,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  value: types.optional(z.any()),
-  finder: types.optional(types.string()),
-});
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    name: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    value: types.optional(z.any()),
+    finder: types.optional(types.string()),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+);
 
 export function customFieldFinderFromJSON(
   jsonString: string,

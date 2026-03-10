@@ -145,6 +145,7 @@ let value: GetBillResponse = {
       },
     ],
     terms: "Net 30 days",
+    termsId: "12345",
     balance: 27500,
     deposit: 0,
     subTotal: 250,

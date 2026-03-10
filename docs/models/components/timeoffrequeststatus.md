@@ -8,11 +8,11 @@ Time off request status to filter on
 import { TimeOffRequestStatus } from "@apideck/unify/models/components";
 
 let value: TimeOffRequestStatus = "requested";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "requested" | "approved" | "declined" | "cancelled" | "deleted" | "other" | Unrecognized<string>

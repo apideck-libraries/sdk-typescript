@@ -11,7 +11,7 @@ import (
 
 type OpportunityInput struct {
 	// The title or name of the opportunity.
-	Title string `json:"title"`
+	Title *string `json:"title,omitempty"`
 	// The unique identifier of the primary contact associated with the opportunity.
 	PrimaryContactID optionalnullable.OptionalNullable[string] `json:"primary_contact_id,omitempty"`
 	// A description of the opportunity.
@@ -61,11 +61,12 @@ type OpportunityInput struct {
 	// The unique identifier of the current status of the opportunity.
 	StatusID     optionalnullable.OptionalNullable[string]   `json:"status_id,omitempty"`
 	Tags         optionalnullable.OptionalNullable[[]string] `json:"tags,omitempty"`
-	CustomFields []CustomFieldUnion                          `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                               `json:"custom_fields,omitempty"`
 	// The date and time when the stage of the opportunity was last changed.
 	StageLastChangedAt optionalnullable.OptionalNullable[time.Time] `json:"stage_last_changed_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (o OpportunityInput) MarshalJSON() ([]byte, error) {
@@ -73,15 +74,15 @@ func (o OpportunityInput) MarshalJSON() ([]byte, error) {
 }
 
 func (o *OpportunityInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"title"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *OpportunityInput) GetTitle() string {
+func (o *OpportunityInput) GetTitle() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Title
 }
@@ -261,7 +262,7 @@ func (o *OpportunityInput) GetTags() optionalnullable.OptionalNullable[[]string]
 	return o.Tags
 }
 
-func (o *OpportunityInput) GetCustomFields() []CustomFieldUnion {
+func (o *OpportunityInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -280,4 +281,11 @@ func (o *OpportunityInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *OpportunityInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

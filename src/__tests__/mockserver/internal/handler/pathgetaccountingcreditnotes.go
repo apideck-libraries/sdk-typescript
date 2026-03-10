@@ -55,7 +55,7 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 		Operation:  "all",
 		Data: []components.CreditNote{
 			components.CreditNote{
-				ID:     "123456",
+				ID:     types.String("123456"),
 				Number: optionalnullable.From(types.String("OIT00546")),
 				Customer: optionalnullable.From(&components.LinkedCustomer{
 					ID:          types.String("12345"),
@@ -69,7 +69,7 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 				CurrencyRate:    optionalnullable.From(types.Float64(0.69)),
 				TaxInclusive:    optionalnullable.From(types.Bool(true)),
 				SubTotal:        optionalnullable.From(types.Float64(27500)),
-				TotalAmount:     49.99,
+				TotalAmount:     types.Float64(49.99),
 				TotalTax:        optionalnullable.From(types.Float64(2500)),
 				TaxCode:         optionalnullable.From(types.String("1234")),
 				Balance:         optionalnullable.From(types.Float64(27500)),
@@ -133,17 +133,15 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 							NominalCode: optionalnullable.From(types.String("N091")),
 							Code:        optionalnullable.From(types.String("453")),
 						}),
-						CustomFields: []components.CustomFieldUnion{
-							components.CreateCustomFieldUnionCustomField1(
-								components.CustomField1{
-									ID:          types.String("2389328923893298"),
-									Name:        optionalnullable.From(types.String("employee_level")),
-									Description: optionalnullable.From(types.String("Employee Level")),
-									Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
-										10,
-									))),
-								},
-							),
+						CustomFields: []components.CustomField{
+							components.CustomField{
+								ID:          optionalnullable.From(types.String("2389328923893298")),
+								Name:        optionalnullable.From(types.String("employee_level")),
+								Description: optionalnullable.From(types.String("Employee Level")),
+								Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
+									10,
+								))),
+							},
 						},
 						RowVersion: optionalnullable.From(types.String("1-12345")),
 						UpdatedBy:  optionalnullable.From(types.String("12345")),
@@ -190,27 +188,23 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 							NominalCode: optionalnullable.From(types.String("N091")),
 							Code:        optionalnullable.From(types.String("453")),
 						}),
-						CustomFields: []components.CustomFieldUnion{
-							components.CreateCustomFieldUnionCustomField1(
-								components.CustomField1{
-									ID:          types.String("2389328923893298"),
-									Name:        optionalnullable.From(types.String("employee_level")),
-									Description: optionalnullable.From(types.String("Employee Level")),
-									Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-										map[string]any{},
-									))),
-								},
-							),
-							components.CreateCustomFieldUnionCustomField1(
-								components.CustomField1{
-									ID:          types.String("2389328923893298"),
-									Name:        optionalnullable.From(types.String("employee_level")),
-									Description: optionalnullable.From(types.String("Employee Level")),
-									Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-										"Uses Salesforce and Marketo",
-									))),
-								},
-							),
+						CustomFields: []components.CustomField{
+							components.CustomField{
+								ID:          optionalnullable.From(types.String("2389328923893298")),
+								Name:        optionalnullable.From(types.String("employee_level")),
+								Description: optionalnullable.From(types.String("Employee Level")),
+								Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+									map[string]any{},
+								))),
+							},
+							components.CustomField{
+								ID:          optionalnullable.From(types.String("2389328923893298")),
+								Name:        optionalnullable.From(types.String("employee_level")),
+								Description: optionalnullable.From(types.String("Employee Level")),
+								Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+									"Uses Salesforce and Marketo",
+								))),
+							},
 						},
 						RowVersion: optionalnullable.From(types.String("1-12345")),
 						UpdatedBy:  optionalnullable.From(types.String("12345")),
@@ -299,20 +293,18 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 						Name: optionalnullable.From(types.String("New York")),
 					},
 				})),
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{
-									"0": "<value>",
-									"1": "<value>",
-								},
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{
+								"0": "<value>",
+								"1": "<value>",
+							},
+						))),
+					},
 				},
 				RowVersion: optionalnullable.From(types.String("1-12345")),
 				UpdatedBy:  optionalnullable.From(types.String("12345")),
@@ -349,7 +341,7 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 				},
 			},
 			components.CreditNote{
-				ID:     "123456",
+				ID:     types.String("123456"),
 				Number: optionalnullable.From(types.String("OIT00546")),
 				Customer: optionalnullable.From(&components.LinkedCustomer{
 					ID:          types.String("12345"),
@@ -363,7 +355,7 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 				CurrencyRate:    optionalnullable.From(types.Float64(0.69)),
 				TaxInclusive:    optionalnullable.From(types.Bool(true)),
 				SubTotal:        optionalnullable.From(types.Float64(27500)),
-				TotalAmount:     49.99,
+				TotalAmount:     types.Float64(49.99),
 				TotalTax:        optionalnullable.From(types.Float64(2500)),
 				TaxCode:         optionalnullable.From(types.String("1234")),
 				Balance:         optionalnullable.From(types.Float64(27500)),
@@ -423,20 +415,18 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 							NominalCode: optionalnullable.From(types.String("N091")),
 							Code:        optionalnullable.From(types.String("453")),
 						}),
-						CustomFields: []components.CustomFieldUnion{
-							components.CreateCustomFieldUnionCustomField1(
-								components.CustomField1{
-									ID:          types.String("2389328923893298"),
-									Name:        optionalnullable.From(types.String("employee_level")),
-									Description: optionalnullable.From(types.String("Employee Level")),
-									Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-										map[string]any{
-											"0": map[string]any{},
-											"1": map[string]any{},
-										},
-									))),
-								},
-							),
+						CustomFields: []components.CustomField{
+							components.CustomField{
+								ID:          optionalnullable.From(types.String("2389328923893298")),
+								Name:        optionalnullable.From(types.String("employee_level")),
+								Description: optionalnullable.From(types.String("Employee Level")),
+								Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+									map[string]any{
+										"0": map[string]any{},
+										"1": map[string]any{},
+									},
+								))),
+							},
 						},
 						RowVersion: optionalnullable.From(types.String("1-12345")),
 						UpdatedBy:  optionalnullable.From(types.String("12345")),
@@ -491,27 +481,23 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 							NominalCode: optionalnullable.From(types.String("N091")),
 							Code:        optionalnullable.From(types.String("453")),
 						}),
-						CustomFields: []components.CustomFieldUnion{
-							components.CreateCustomFieldUnionCustomField1(
-								components.CustomField1{
-									ID:          types.String("2389328923893298"),
-									Name:        optionalnullable.From(types.String("employee_level")),
-									Description: optionalnullable.From(types.String("Employee Level")),
-									Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-										"Uses Salesforce and Marketo",
-									))),
-								},
-							),
-							components.CreateCustomFieldUnionCustomField1(
-								components.CustomField1{
-									ID:          types.String("2389328923893298"),
-									Name:        optionalnullable.From(types.String("employee_level")),
-									Description: optionalnullable.From(types.String("Employee Level")),
-									Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
-										10,
-									))),
-								},
-							),
+						CustomFields: []components.CustomField{
+							components.CustomField{
+								ID:          optionalnullable.From(types.String("2389328923893298")),
+								Name:        optionalnullable.From(types.String("employee_level")),
+								Description: optionalnullable.From(types.String("Employee Level")),
+								Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+									"Uses Salesforce and Marketo",
+								))),
+							},
+							components.CustomField{
+								ID:          optionalnullable.From(types.String("2389328923893298")),
+								Name:        optionalnullable.From(types.String("employee_level")),
+								Description: optionalnullable.From(types.String("Employee Level")),
+								Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
+									10,
+								))),
+							},
 						},
 						RowVersion: optionalnullable.From(types.String("1-12345")),
 						UpdatedBy:  optionalnullable.From(types.String("12345")),
@@ -600,37 +586,31 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 						Name: optionalnullable.From(types.String("New York")),
 					},
 				})),
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
-								true,
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{},
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
+							true,
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						))),
+					},
 				},
 				RowVersion: optionalnullable.From(types.String("1-12345")),
 				UpdatedBy:  optionalnullable.From(types.String("12345")),
@@ -696,7 +676,7 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 				},
 			},
 			components.CreditNote{
-				ID:     "123456",
+				ID:     types.String("123456"),
 				Number: optionalnullable.From(types.String("OIT00546")),
 				Customer: optionalnullable.From(&components.LinkedCustomer{
 					ID:          types.String("12345"),
@@ -710,7 +690,7 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 				CurrencyRate:    optionalnullable.From(types.Float64(0.69)),
 				TaxInclusive:    optionalnullable.From(types.Bool(true)),
 				SubTotal:        optionalnullable.From(types.Float64(27500)),
-				TotalAmount:     49.99,
+				TotalAmount:     types.Float64(49.99),
 				TotalTax:        optionalnullable.From(types.Float64(2500)),
 				TaxCode:         optionalnullable.From(types.String("1234")),
 				Balance:         optionalnullable.From(types.Float64(27500)),
@@ -770,17 +750,15 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 							NominalCode: optionalnullable.From(types.String("N091")),
 							Code:        optionalnullable.From(types.String("453")),
 						}),
-						CustomFields: []components.CustomFieldUnion{
-							components.CreateCustomFieldUnionCustomField1(
-								components.CustomField1{
-									ID:          types.String("2389328923893298"),
-									Name:        optionalnullable.From(types.String("employee_level")),
-									Description: optionalnullable.From(types.String("Employee Level")),
-									Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-										map[string]any{},
-									))),
-								},
-							),
+						CustomFields: []components.CustomField{
+							components.CustomField{
+								ID:          optionalnullable.From(types.String("2389328923893298")),
+								Name:        optionalnullable.From(types.String("employee_level")),
+								Description: optionalnullable.From(types.String("Employee Level")),
+								Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+									map[string]any{},
+								))),
+							},
 						},
 						RowVersion: optionalnullable.From(types.String("1-12345")),
 						UpdatedBy:  optionalnullable.From(types.String("12345")),
@@ -835,29 +813,25 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 							NominalCode: optionalnullable.From(types.String("N091")),
 							Code:        optionalnullable.From(types.String("453")),
 						}),
-						CustomFields: []components.CustomFieldUnion{
-							components.CreateCustomFieldUnionCustomField1(
-								components.CustomField1{
-									ID:          types.String("2389328923893298"),
-									Name:        optionalnullable.From(types.String("employee_level")),
-									Description: optionalnullable.From(types.String("Employee Level")),
-									Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-										map[string]any{
-											"0": map[string]any{},
-										},
-									))),
-								},
-							),
-							components.CreateCustomFieldUnionCustomField1(
-								components.CustomField1{
-									ID:          types.String("2389328923893298"),
-									Name:        optionalnullable.From(types.String("employee_level")),
-									Description: optionalnullable.From(types.String("Employee Level")),
-									Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
-										true,
-									))),
-								},
-							),
+						CustomFields: []components.CustomField{
+							components.CustomField{
+								ID:          optionalnullable.From(types.String("2389328923893298")),
+								Name:        optionalnullable.From(types.String("employee_level")),
+								Description: optionalnullable.From(types.String("Employee Level")),
+								Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+									map[string]any{
+										"0": map[string]any{},
+									},
+								))),
+							},
+							components.CustomField{
+								ID:          optionalnullable.From(types.String("2389328923893298")),
+								Name:        optionalnullable.From(types.String("employee_level")),
+								Description: optionalnullable.From(types.String("Employee Level")),
+								Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
+									true,
+								))),
+							},
 						},
 						RowVersion: optionalnullable.From(types.String("1-12345")),
 						UpdatedBy:  optionalnullable.From(types.String("12345")),
@@ -934,41 +908,35 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 						Name: optionalnullable.From(types.String("New York")),
 					},
 				})),
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{},
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{
-									"0": map[string]any{},
-									"1": map[string]any{},
-									"2": map[string]any{},
-								},
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{
+								"0": map[string]any{},
+								"1": map[string]any{},
+								"2": map[string]any{},
+							},
+						))),
+					},
 				},
 				RowVersion: optionalnullable.From(types.String("1-12345")),
 				UpdatedBy:  optionalnullable.From(types.String("12345")),

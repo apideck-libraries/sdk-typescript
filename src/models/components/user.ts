@@ -77,7 +77,7 @@ export type User = {
   status?: string | null | undefined;
   addresses?: Array<Address> | undefined;
   phoneNumbers?: Array<PhoneNumber> | undefined;
-  emails: Array<Email>;
+  emails?: Array<Email> | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
@@ -115,7 +115,7 @@ export const User$inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z
     status: z.nullable(types.string()).optional(),
     addresses: types.optional(z.array(Address$inboundSchema)),
     phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
-    emails: z.array(Email$inboundSchema),
+    emails: types.optional(z.array(Email$inboundSchema)),
     custom_mappings: z.nullable(z.record(z.any())).optional(),
     updated_at: z.nullable(types.string()).optional(),
     created_at: z.nullable(types.string()).optional(),

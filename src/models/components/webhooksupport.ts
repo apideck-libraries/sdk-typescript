@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -78,6 +81,7 @@ export type RequestRate = {
    * The window unit for the rate.
    */
   unit: Unit;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type WebhookSupportResources = {
@@ -96,6 +100,7 @@ export type VirtualWebhooks = {
    * The resources that will be requested from downstream.
    */
   resources?: { [k: string]: WebhookSupportResources } | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /**
@@ -147,11 +152,15 @@ export const RequestRate$inboundSchema: z.ZodType<
   RequestRate,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  rate: types.number(),
-  size: types.number(),
-  unit: Unit$inboundSchema,
-});
+> = collectExtraKeys$(
+  z.object({
+    rate: types.number(),
+    size: types.number(),
+    unit: Unit$inboundSchema,
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+);
 
 export function requestRateFromJSON(
   jsonString: string,
@@ -187,12 +196,16 @@ export const VirtualWebhooks$inboundSchema: z.ZodType<
   VirtualWebhooks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  request_rate: z.lazy(() => RequestRate$inboundSchema),
-  resources: types.optional(
-    z.record(z.lazy(() => WebhookSupportResources$inboundSchema)),
-  ),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    request_rate: z.lazy(() => RequestRate$inboundSchema),
+    resources: types.optional(
+      z.record(z.lazy(() => WebhookSupportResources$inboundSchema)),
+    ),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "request_rate": "requestRate",
   });

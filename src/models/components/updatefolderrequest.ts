@@ -27,6 +27,7 @@ export type UpdateFolderRequest = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -35,6 +36,7 @@ export type UpdateFolderRequest$Outbound = {
   description?: string | undefined;
   parent_folder_id?: string | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -47,11 +49,16 @@ export const UpdateFolderRequest$outboundSchema: z.ZodType<
   description: z.string().optional(),
   parentFolderId: z.string().optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    parentFolderId: "parent_folder_id",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      parentFolderId: "parent_folder_id",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function updateFolderRequestToJSON(

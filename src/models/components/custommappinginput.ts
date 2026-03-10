@@ -3,17 +3,20 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 
 export type CustomMappingInput = {
   /**
    * Target Field Mapping value
    */
   value?: string | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
 export type CustomMappingInput$Outbound = {
   value?: string | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -23,6 +26,14 @@ export const CustomMappingInput$outboundSchema: z.ZodType<
   CustomMappingInput
 > = z.object({
   value: z.string().optional(),
+  additionalProperties: z.record(z.any()).optional(),
+}).transform((v) => {
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function customMappingInputToJSON(

@@ -17,10 +17,10 @@ func (e FormFieldOptionGroupOptionType) ToPointer() *FormFieldOptionGroupOptionT
 }
 
 type FormFieldOptionGroup struct {
-	ID         *string                        `json:"id,omitempty"`
-	Label      string                         `json:"label"`
-	Options    []SimpleFormFieldOption        `json:"options"`
-	OptionType FormFieldOptionGroupOptionType `json:"option_type"`
+	ID         *string                         `json:"id,omitempty"`
+	Label      *string                         `json:"label,omitempty"`
+	Options    []SimpleFormFieldOption         `json:"options,omitempty"`
+	OptionType *FormFieldOptionGroupOptionType `json:"option_type,omitempty"`
 }
 
 func (f FormFieldOptionGroup) MarshalJSON() ([]byte, error) {
@@ -28,7 +28,7 @@ func (f FormFieldOptionGroup) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FormFieldOptionGroup) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"label", "options", "option_type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -41,23 +41,23 @@ func (o *FormFieldOptionGroup) GetID() *string {
 	return o.ID
 }
 
-func (o *FormFieldOptionGroup) GetLabel() string {
+func (o *FormFieldOptionGroup) GetLabel() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Label
 }
 
 func (o *FormFieldOptionGroup) GetOptions() []SimpleFormFieldOption {
 	if o == nil {
-		return []SimpleFormFieldOption{}
+		return nil
 	}
 	return o.Options
 }
 
-func (o *FormFieldOptionGroup) GetOptionType() FormFieldOptionGroupOptionType {
+func (o *FormFieldOptionGroup) GetOptionType() *FormFieldOptionGroupOptionType {
 	if o == nil {
-		return FormFieldOptionGroupOptionType("")
+		return nil
 	}
 	return o.OptionType
 }

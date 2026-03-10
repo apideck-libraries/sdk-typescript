@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -28,6 +31,7 @@ export type LinkedEcommerceOrder = {
    * Current status of the order.
    */
   status?: EcommerceOrderStatus | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -35,11 +39,15 @@ export const LinkedEcommerceOrder$inboundSchema: z.ZodType<
   LinkedEcommerceOrder,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  total: z.nullable(types.string()).optional(),
-  status: z.nullable(EcommerceOrderStatus$inboundSchema).optional(),
-});
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    total: z.nullable(types.string()).optional(),
+    status: z.nullable(EcommerceOrderStatus$inboundSchema).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+);
 
 export function linkedEcommerceOrderFromJSON(
   jsonString: string,

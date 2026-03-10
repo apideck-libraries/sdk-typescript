@@ -14,7 +14,7 @@ type Folder struct {
 	// The third-party API ID of original entity
 	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// The name of the folder
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// Optional description of the folder
 	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The full path of the folder (includes the folder name)
@@ -25,7 +25,7 @@ type Folder struct {
 	Downloadable optionalnullable.OptionalNullable[bool] `json:"downloadable,omitempty"`
 	Owner        *Owner                                  `json:"owner,omitempty"`
 	// The parent folders of the file, starting from the root
-	ParentFolders []LinkedFolder `json:"parent_folders"`
+	ParentFolders []LinkedFolder `json:"parent_folders,omitempty"`
 	// Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
 	ParentFoldersComplete *bool `json:"parent_folders_complete,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
@@ -37,7 +37,8 @@ type Folder struct {
 	// The date and time when the object was last updated.
 	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	CreatedAt            optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (f Folder) MarshalJSON() ([]byte, error) {
@@ -45,7 +46,7 @@ func (f Folder) MarshalJSON() ([]byte, error) {
 }
 
 func (f *Folder) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"name", "parent_folders"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -65,9 +66,9 @@ func (o *Folder) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	return o.DownstreamID
 }
 
-func (o *Folder) GetName() string {
+func (o *Folder) GetName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Name
 }
@@ -109,7 +110,7 @@ func (o *Folder) GetOwner() *Owner {
 
 func (o *Folder) GetParentFolders() []LinkedFolder {
 	if o == nil {
-		return []LinkedFolder{}
+		return nil
 	}
 	return o.ParentFolders
 }
@@ -154,4 +155,11 @@ func (o *Folder) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 		return nil
 	}
 	return o.CreatedAt
+}
+
+func (o *Folder) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

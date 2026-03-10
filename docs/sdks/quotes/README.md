@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.quotes.list({
     serviceId: "salesforce",
+    companyId: "12345",
   });
 
   for await (const page of result) {
@@ -58,6 +59,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingQuotesList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -115,6 +117,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.quotes.create({
     serviceId: "salesforce",
+    companyId: "12345",
     quote: {
       number: "QT00546",
       customer: {
@@ -129,6 +132,7 @@ async function run() {
       quoteDate: new Date("2020-09-30"),
       expiryDate: new Date("2020-10-30"),
       terms: "Valid for 30 days",
+      termsId: "12345",
       reference: "INV-2024-001",
       status: "draft",
       currency: "USD",
@@ -308,6 +312,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingQuotesCreate(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     quote: {
       number: "QT00546",
       customer: {
@@ -322,6 +327,7 @@ async function run() {
       quoteDate: new Date("2020-09-30"),
       expiryDate: new Date("2020-10-30"),
       terms: "Valid for 30 days",
+      termsId: "12345",
       reference: "INV-2024-001",
       status: "draft",
       currency: "USD",
@@ -530,6 +536,7 @@ async function run() {
   const result = await apideck.accounting.quotes.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
 
   console.log(result);
@@ -558,6 +565,7 @@ async function run() {
   const res = await accountingQuotesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -614,6 +622,7 @@ async function run() {
   const result = await apideck.accounting.quotes.update({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     quote: {
       number: "QT00546",
       customer: {
@@ -628,6 +637,7 @@ async function run() {
       quoteDate: new Date("2020-09-30"),
       expiryDate: new Date("2020-10-30"),
       terms: "Valid for 30 days",
+      termsId: "12345",
       reference: "INV-2024-001",
       status: "draft",
       currency: "USD",
@@ -801,6 +811,7 @@ async function run() {
   const res = await accountingQuotesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     quote: {
       number: "QT00546",
       customer: {
@@ -815,6 +826,7 @@ async function run() {
       quoteDate: new Date("2020-09-30"),
       expiryDate: new Date("2020-10-30"),
       terms: "Valid for 30 days",
+      termsId: "12345",
       reference: "INV-2024-001",
       status: "draft",
       currency: "USD",
@@ -1016,6 +1028,7 @@ async function run() {
   const result = await apideck.accounting.quotes.delete({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
 
   console.log(result);
@@ -1044,6 +1057,7 @@ async function run() {
   const res = await accountingQuotesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   if (res.ok) {
     const { value: result } = res;

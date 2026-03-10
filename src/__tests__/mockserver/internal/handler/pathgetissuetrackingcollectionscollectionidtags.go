@@ -55,15 +55,15 @@ func testIssueTrackingCollectionTagsAllIssueTrackingCollectionTagsAll0(w http.Re
 		Operation:  "all",
 		Data: []components.CollectionTag{
 			components.CollectionTag{
-				ID:   types.String("12345"),
+				ID:   optionalnullable.From(types.String("12345")),
 				Name: optionalnullable.From(types.String("User Experience")),
 			},
 			components.CollectionTag{
-				ID:   types.String("12345"),
+				ID:   optionalnullable.From(types.String("12345")),
 				Name: optionalnullable.From(types.String("User Experience")),
 			},
 			components.CollectionTag{
-				ID:   types.String("12345"),
+				ID:   optionalnullable.From(types.String("12345")),
 				Name: optionalnullable.From(types.String("User Experience")),
 			},
 		},

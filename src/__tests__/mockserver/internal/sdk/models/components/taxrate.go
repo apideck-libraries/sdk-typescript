@@ -113,8 +113,9 @@ type TaxRate struct {
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiaries this belongs to.
-	Subsidiaries []TaxRateSubsidiary `json:"subsidiaries,omitempty"`
-	CustomFields []CustomFieldUnion  `json:"custom_fields,omitempty"`
+	Subsidiaries         []TaxRateSubsidiary `json:"subsidiaries,omitempty"`
+	CustomFields         []CustomField       `json:"custom_fields,omitempty"`
+	AdditionalProperties map[string]any      `additionalProperties:"true" json:"-"`
 }
 
 func (t TaxRate) MarshalJSON() ([]byte, error) {
@@ -289,11 +290,18 @@ func (o *TaxRate) GetSubsidiaries() []TaxRateSubsidiary {
 	return o.Subsidiaries
 }
 
-func (o *TaxRate) GetCustomFields() []CustomFieldUnion {
+func (o *TaxRate) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
 	return o.CustomFields
+}
+
+func (o *TaxRate) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 type TaxRateInput struct {
@@ -331,8 +339,20 @@ type TaxRateInput struct {
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiaries this belongs to.
-	Subsidiaries []TaxRateSubsidiary `json:"subsidiaries,omitempty"`
-	CustomFields []CustomFieldUnion  `json:"custom_fields,omitempty"`
+	Subsidiaries         []TaxRateSubsidiary `json:"subsidiaries,omitempty"`
+	CustomFields         []CustomField       `json:"custom_fields,omitempty"`
+	AdditionalProperties map[string]any      `additionalProperties:"true" json:"-"`
+}
+
+func (t TaxRateInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TaxRateInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *TaxRateInput) GetID() optionalnullable.OptionalNullable[string] {
@@ -461,9 +481,16 @@ func (o *TaxRateInput) GetSubsidiaries() []TaxRateSubsidiary {
 	return o.Subsidiaries
 }
 
-func (o *TaxRateInput) GetCustomFields() []CustomFieldUnion {
+func (o *TaxRateInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
 	return o.CustomFields
+}
+
+func (o *TaxRateInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

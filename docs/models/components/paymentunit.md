@@ -8,11 +8,11 @@ Unit of measurement for employee compensation.
 import { PaymentUnit } from "@apideck/unify/models/components";
 
 let value: PaymentUnit = "year";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "hour" | "week" | "month" | "year" | "paycheck" | "other" | Unrecognized<string>

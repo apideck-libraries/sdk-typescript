@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 // EmailType - Email type
@@ -26,9 +27,21 @@ type Email struct {
 	// Unique identifier for the email address
 	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// Email address
-	Email *string `json:"email"`
+	Email optionalnullable.OptionalNullable[string] `json:"email,omitempty"`
 	// Email type
-	Type optionalnullable.OptionalNullable[EmailType] `json:"type,omitempty"`
+	Type                 optionalnullable.OptionalNullable[EmailType] `json:"type,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
+}
+
+func (e Email) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *Email) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Email) GetID() optionalnullable.OptionalNullable[string] {
@@ -38,7 +51,7 @@ func (o *Email) GetID() optionalnullable.OptionalNullable[string] {
 	return o.ID
 }
 
-func (o *Email) GetEmail() *string {
+func (o *Email) GetEmail() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -50,4 +63,11 @@ func (o *Email) GetType() optionalnullable.OptionalNullable[EmailType] {
 		return nil
 	}
 	return o.Type
+}
+
+func (o *Email) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

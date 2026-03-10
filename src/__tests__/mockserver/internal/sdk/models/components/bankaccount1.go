@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 // BankAccount1AccountType - The type of bank account.
@@ -43,7 +44,19 @@ type BankAccount1 struct {
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
-	Country optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
+	Country              optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
+}
+
+func (b BankAccount1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BankAccount1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BankAccount1) GetBankName() optionalnullable.OptionalNullable[string] {
@@ -128,4 +141,11 @@ func (o *BankAccount1) GetCountry() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Country
+}
+
+func (o *BankAccount1) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

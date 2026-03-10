@@ -47,7 +47,19 @@ type EcommerceCustomerAddress struct {
 	// Postal code of the customer
 	PostalCode optionalnullable.OptionalNullable[string] `json:"postal_code,omitempty"`
 	// Country of the customer
-	Country optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
+	Country              optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
+}
+
+func (e EcommerceCustomerAddress) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EcommerceCustomerAddress) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *EcommerceCustomerAddress) GetType() *EcommerceCustomerType {
@@ -106,9 +118,16 @@ func (o *EcommerceCustomerAddress) GetCountry() optionalnullable.OptionalNullabl
 	return o.Country
 }
 
+func (o *EcommerceCustomerAddress) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type EcommerceCustomer struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// Full name of the customer
 	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// First name of the customer
@@ -133,7 +152,8 @@ type EcommerceCustomer struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
+	UpdatedAt            optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (e EcommerceCustomer) MarshalJSON() ([]byte, error) {
@@ -141,15 +161,15 @@ func (e EcommerceCustomer) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EcommerceCustomer) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EcommerceCustomer) GetID() string {
+func (o *EcommerceCustomer) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -243,4 +263,11 @@ func (o *EcommerceCustomer) GetUpdatedAt() optionalnullable.OptionalNullable[tim
 		return nil
 	}
 	return o.UpdatedAt
+}
+
+func (o *EcommerceCustomer) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

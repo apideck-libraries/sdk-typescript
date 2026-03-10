@@ -25,7 +25,12 @@ let value: GetFolderResponse = {
       email: "hello@apideck.com",
       name: "Elon Musk",
     },
-    parentFolders: [],
+    parentFolders: [
+      {
+        id: "12345",
+        name: "Personal",
+      },
+    ],
     updatedBy: "12345",
     createdBy: "12345",
     updatedAt: new Date("2020-09-30T07:43:32.000Z"),

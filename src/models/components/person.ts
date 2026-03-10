@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -47,21 +50,26 @@ export type Person = {
    * When custom mappings are configured on the resource, the result is included here.
    */
   customMappings?: { [k: string]: any } | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
-export const Person$inboundSchema: z.ZodType<Person, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.nullable(types.string()).optional(),
-    first_name: z.nullable(types.string()).optional(),
-    last_name: z.nullable(types.string()).optional(),
-    middle_name: z.nullable(types.string()).optional(),
-    gender: z.nullable(Gender$inboundSchema).optional(),
-    initials: z.nullable(types.string()).optional(),
-    birthday: z.nullable(types.date()).optional(),
-    deceased_on: z.nullable(types.date()).optional(),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-  }).transform((v) => {
+export const Person$inboundSchema: z.ZodType<Person, z.ZodTypeDef, unknown> =
+  collectExtraKeys$(
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      first_name: z.nullable(types.string()).optional(),
+      last_name: z.nullable(types.string()).optional(),
+      middle_name: z.nullable(types.string()).optional(),
+      gender: z.nullable(Gender$inboundSchema).optional(),
+      initials: z.nullable(types.string()).optional(),
+      birthday: z.nullable(types.date()).optional(),
+      deceased_on: z.nullable(types.date()).optional(),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
     return remap$(v, {
       "first_name": "firstName",
       "last_name": "lastName",

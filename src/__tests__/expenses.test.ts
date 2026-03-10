@@ -78,6 +78,10 @@ test("Expenses Accounting Expenses All", async () => {
             },
             description: "Travel US.",
             totalAmount: 275,
+            additionalProperties: {
+              "subsidiary_id": "12345",
+              "billable": true,
+            },
           },
           {
             id: "12345",
@@ -99,6 +103,10 @@ test("Expenses Accounting Expenses All", async () => {
             },
             description: "Travel US.",
             totalAmount: 275,
+            additionalProperties: {
+              "subsidiary_id": "12345",
+              "billable": true,
+            },
           },
         ],
         customFields: [
@@ -148,6 +156,9 @@ test("Expenses Accounting Expenses All", async () => {
             ],
           },
         ],
+        additionalProperties: {
+          "customer_id": "12345",
+        },
       },
       {
         id: "12345",
@@ -190,6 +201,10 @@ test("Expenses Accounting Expenses All", async () => {
             },
             description: "Travel US.",
             totalAmount: 275,
+            additionalProperties: {
+              "subsidiary_id": "12345",
+              "billable": true,
+            },
           },
           {
             id: "12345",
@@ -211,6 +226,10 @@ test("Expenses Accounting Expenses All", async () => {
             },
             description: "Travel US.",
             totalAmount: 275,
+            additionalProperties: {
+              "subsidiary_id": "12345",
+              "billable": true,
+            },
           },
         ],
         customFields: [
@@ -259,6 +278,9 @@ test("Expenses Accounting Expenses All", async () => {
             ],
           },
         ],
+        additionalProperties: {
+          "customer_id": "12345",
+        },
       },
       {
         id: "12345",
@@ -301,6 +323,10 @@ test("Expenses Accounting Expenses All", async () => {
             },
             description: "Travel US.",
             totalAmount: 275,
+            additionalProperties: {
+              "subsidiary_id": "12345",
+              "billable": true,
+            },
           },
         ],
         customFields: [
@@ -359,6 +385,9 @@ test("Expenses Accounting Expenses All", async () => {
             ],
           },
         ],
+        additionalProperties: {
+          "customer_id": "12345",
+        },
       },
     ],
     meta: {
@@ -431,6 +460,10 @@ test("Expenses Accounting Expenses Add", async () => {
           },
           description: "Travel US.",
           totalAmount: 275,
+          additionalProperties: {
+            "billable": true,
+            "subsidiary_id": "12345",
+          },
         },
       ],
       customFields: [
@@ -505,6 +538,9 @@ test("Expenses Accounting Expenses Add", async () => {
           ],
         },
       ],
+      additionalProperties: {
+        "customer_id": "12345",
+      },
     },
   });
   expect(result.httpMeta.response.status).toBe(201);
@@ -589,6 +625,10 @@ test("Expenses Accounting Expenses One", async () => {
           },
           description: "Travel US.",
           totalAmount: 275,
+          additionalProperties: {
+            "subsidiary_id": "12345",
+            "billable": true,
+          },
         },
         {
           id: "12345",
@@ -614,6 +654,10 @@ test("Expenses Accounting Expenses One", async () => {
           },
           description: "Travel US.",
           totalAmount: 275,
+          additionalProperties: {
+            "subsidiary_id": "12345",
+            "billable": true,
+          },
         },
       ],
       customFields: [
@@ -650,6 +694,9 @@ test("Expenses Accounting Expenses One", async () => {
           ],
         },
       ],
+      additionalProperties: {
+        "customer_id": "12345",
+      },
     },
   });
 });
@@ -707,6 +754,10 @@ test("Expenses Accounting Expenses Update", async () => {
           },
           description: "Travel US.",
           totalAmount: 275,
+          additionalProperties: {
+            "billable": true,
+            "subsidiary_id": "12345",
+          },
         },
         {
           trackingCategories: [
@@ -729,6 +780,10 @@ test("Expenses Accounting Expenses Update", async () => {
           },
           description: "Travel US.",
           totalAmount: 275,
+          additionalProperties: {
+            "billable": true,
+            "subsidiary_id": "12345",
+          },
         },
         {
           trackingCategories: [
@@ -755,6 +810,10 @@ test("Expenses Accounting Expenses Update", async () => {
           },
           description: "Travel US.",
           totalAmount: 275,
+          additionalProperties: {
+            "billable": true,
+            "subsidiary_id": "12345",
+          },
         },
       ],
       customFields: [
@@ -821,6 +880,9 @@ test("Expenses Accounting Expenses Update", async () => {
           ],
         },
       ],
+      additionalProperties: {
+        "customer_id": "12345",
+      },
     },
   });
   expect(result.httpMeta.response.status).toBe(200);

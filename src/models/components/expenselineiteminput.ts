@@ -90,7 +90,7 @@ export type ExpenseLineItemInput = {
   /**
    * The total amount of the expense line item.
    */
-  totalAmount: number | null;
+  totalAmount?: number | null | undefined;
   /**
    * Tax amount
    */
@@ -106,6 +106,7 @@ export type ExpenseLineItemInput = {
    * Rebilling metadata for this line item.
    */
   rebilling?: Rebilling | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -125,13 +126,14 @@ export type ExpenseLineItemInput$Outbound = {
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   description?: string | null | undefined;
   type?: string | null | undefined;
-  total_amount: number | null;
+  total_amount?: number | null | undefined;
   tax_amount?: number | null | undefined;
   quantity?: number | null | undefined;
   unit_price?: number | null | undefined;
   item?: LinkedInvoiceItem$Outbound | undefined;
   line_number?: number | null | undefined;
   rebilling?: Rebilling$Outbound | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -154,26 +156,31 @@ export const ExpenseLineItemInput$outboundSchema: z.ZodType<
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   description: z.nullable(z.string()).optional(),
   type: z.nullable(LineItemType$outboundSchema).optional(),
-  totalAmount: z.nullable(z.number()),
+  totalAmount: z.nullable(z.number()).optional(),
   taxAmount: z.nullable(z.number()).optional(),
   quantity: z.nullable(z.number()).optional(),
   unitPrice: z.nullable(z.number()).optional(),
   item: LinkedInvoiceItem$outboundSchema.optional(),
   lineNumber: z.nullable(z.number().int()).optional(),
   rebilling: z.nullable(Rebilling$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    trackingCategories: "tracking_categories",
-    accountId: "account_id",
-    customerId: "customer_id",
-    departmentId: "department_id",
-    locationId: "location_id",
-    taxRate: "tax_rate",
-    totalAmount: "total_amount",
-    taxAmount: "tax_amount",
-    unitPrice: "unit_price",
-    lineNumber: "line_number",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      trackingCategories: "tracking_categories",
+      accountId: "account_id",
+      customerId: "customer_id",
+      departmentId: "department_id",
+      locationId: "location_id",
+      taxRate: "tax_rate",
+      totalAmount: "total_amount",
+      taxAmount: "tax_amount",
+      unitPrice: "unit_price",
+      lineNumber: "line_number",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function expenseLineItemInputToJSON(

@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -67,13 +70,14 @@ export type Addresses = {
    * Country of the customer
    */
   country?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type EcommerceCustomer = {
   /**
    * A unique identifier for an object.
    */
-  id: string;
+  id?: string | undefined;
   /**
    * Full name of the customer
    */
@@ -123,6 +127,7 @@ export type EcommerceCustomer = {
    * The date and time when the object was last updated.
    */
   updatedAt?: Date | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -144,16 +149,20 @@ export const Addresses$inboundSchema: z.ZodType<
   Addresses,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: types.optional(EcommerceCustomerType$inboundSchema),
-  id: z.nullable(types.string()).optional(),
-  line1: z.nullable(types.string()).optional(),
-  line2: z.nullable(types.string()).optional(),
-  city: z.nullable(types.string()).optional(),
-  state: z.nullable(types.string()).optional(),
-  postal_code: z.nullable(types.string()).optional(),
-  country: z.nullable(types.string()).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    type: types.optional(EcommerceCustomerType$inboundSchema),
+    id: z.nullable(types.string()).optional(),
+    line1: z.nullable(types.string()).optional(),
+    line2: z.nullable(types.string()).optional(),
+    city: z.nullable(types.string()).optional(),
+    state: z.nullable(types.string()).optional(),
+    postal_code: z.nullable(types.string()).optional(),
+    country: z.nullable(types.string()).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "postal_code": "postalCode",
   });
@@ -174,22 +183,26 @@ export const EcommerceCustomer$inboundSchema: z.ZodType<
   EcommerceCustomer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  name: z.nullable(types.string()).optional(),
-  first_name: z.nullable(types.string()).optional(),
-  last_name: z.nullable(types.string()).optional(),
-  company_name: z.nullable(types.string()).optional(),
-  status: z.nullable(CustomerStatus$inboundSchema).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  emails: z.nullable(z.array(Email$inboundSchema)).optional(),
-  phone_numbers: z.nullable(z.array(PhoneNumber$inboundSchema)).optional(),
-  addresses: types.optional(z.array(z.lazy(() => Addresses$inboundSchema))),
-  orders: types.optional(z.array(LinkedEcommerceOrder$inboundSchema)),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    name: z.nullable(types.string()).optional(),
+    first_name: z.nullable(types.string()).optional(),
+    last_name: z.nullable(types.string()).optional(),
+    company_name: z.nullable(types.string()).optional(),
+    status: z.nullable(CustomerStatus$inboundSchema).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    emails: z.nullable(z.array(Email$inboundSchema)).optional(),
+    phone_numbers: z.nullable(z.array(PhoneNumber$inboundSchema)).optional(),
+    addresses: types.optional(z.array(z.lazy(() => Addresses$inboundSchema))),
+    orders: types.optional(z.array(LinkedEcommerceOrder$inboundSchema)),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "first_name": "firstName",
     "last_name": "lastName",

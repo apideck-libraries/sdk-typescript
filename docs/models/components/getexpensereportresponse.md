@@ -97,13 +97,13 @@ let value: GetExpenseReportResponse = {
           companyName: "The boring company",
           email: "boring@boring.com",
         },
-        department: null,
-        location: {
-          id: "123456",
+        department: {
+          id: "12345",
           displayId: "123456",
-          name: "New York Office",
+          name: "Acme Inc.",
           downstreamId: "12345",
         },
+        location: null,
         trackingCategories: [
           {
             id: "123456",
@@ -136,7 +136,10 @@ let value: GetExpenseReportResponse = {
       },
     ],
     taxInclusive: true,
-    approvedBy: null,
+    approvedBy: {
+      id: "12345",
+      displayName: "Jane Smith",
+    },
     customFields: [
       {
         id: "2389328923893298",

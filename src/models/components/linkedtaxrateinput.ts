@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 
 export type LinkedTaxRateInput = {
   /**
@@ -17,6 +18,7 @@ export type LinkedTaxRateInput = {
    * Rate of the tax rate
    */
   rate?: number | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -24,6 +26,7 @@ export type LinkedTaxRateInput$Outbound = {
   id?: string | null | undefined;
   code?: string | null | undefined;
   rate?: number | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -35,6 +38,14 @@ export const LinkedTaxRateInput$outboundSchema: z.ZodType<
   id: z.nullable(z.string()).optional(),
   code: z.nullable(z.string()).optional(),
   rate: z.nullable(z.number()).optional(),
+  additionalProperties: z.record(z.any()).optional(),
+}).transform((v) => {
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function linkedTaxRateInputToJSON(

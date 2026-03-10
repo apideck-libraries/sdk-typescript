@@ -17,19 +17,19 @@ export type ConsentRecord = {
   /**
    * Unique identifier for this consent record
    */
-  id: string;
+  id?: string | undefined;
   /**
    * ISO timestamp when consent was recorded
    */
-  createdAt: string;
+  createdAt?: string | undefined;
   /**
    * Whether consent was granted (true) or denied/revoked (false)
    */
-  granted: boolean;
+  granted?: boolean | undefined;
   /**
    * Data scopes resource configuration that can be either detailed field permissions or a wildcard
    */
-  resources: DataScopesResources;
+  resources?: DataScopesResources | undefined;
 };
 
 /** @internal */
@@ -38,10 +38,10 @@ export const ConsentRecord$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: types.string(),
-  created_at: types.string(),
-  granted: types.boolean(),
-  resources: DataScopesResources$inboundSchema,
+  id: types.optional(types.string()),
+  created_at: types.optional(types.string()),
+  granted: types.optional(types.boolean()),
+  resources: types.optional(DataScopesResources$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "created_at": "createdAt",

@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type CustomFieldFinder struct {
@@ -16,7 +17,19 @@ type CustomFieldFinder struct {
 	// Custom Field value
 	Value any `json:"value,omitempty"`
 	// JSONPath finder for retrieving this value when mapping a response payload from downstream
-	Finder *string `json:"finder,omitempty"`
+	Finder               *string        `json:"finder,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (c CustomFieldFinder) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CustomFieldFinder) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CustomFieldFinder) GetID() *string {
@@ -52,4 +65,11 @@ func (o *CustomFieldFinder) GetFinder() *string {
 		return nil
 	}
 	return o.Finder
+}
+
+func (o *CustomFieldFinder) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

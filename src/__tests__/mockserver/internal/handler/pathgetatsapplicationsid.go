@@ -55,8 +55,8 @@ func testAtsApplicationsOneAtsApplicationsOne0(w http.ResponseWriter, req *http.
 		Operation:  "one",
 		Data: components.Application{
 			ID:          types.String("12345"),
-			ApplicantID: types.String("12345"),
-			JobID:       types.String("12345"),
+			ApplicantID: optionalnullable.From(types.String("12345")),
+			JobID:       optionalnullable.From(types.String("12345")),
 			Status:      optionalnullable.From(components.ApplicationStatusOpen.ToPointer()),
 			Stage: &components.ApplicationStage{
 				ID:   optionalnullable.From(types.String("12345")),

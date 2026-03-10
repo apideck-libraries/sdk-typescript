@@ -14,7 +14,7 @@ type PaymentInput struct {
 	// Currency Exchange Rate at the time entity was recorded/generated.
 	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// The total amount of the transaction or record
-	TotalAmount *float64 `json:"total_amount"`
+	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
 	// Optional transaction reference message ie: Debit remittance detail.
 	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
@@ -33,7 +33,7 @@ type PaymentInput struct {
 	AccountsReceivableAccountID optionalnullable.OptionalNullable[string]              `json:"accounts_receivable_account_id,omitempty"`
 	Account                     optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
-	TransactionDate *time.Time `json:"transaction_date"`
+	TransactionDate optionalnullable.OptionalNullable[time.Time] `json:"transaction_date,omitempty"`
 	// The customer this entity is linked to.
 	Customer optionalnullable.OptionalNullable[LinkedCustomerInput] `json:"customer,omitempty"`
 	// The supplier this entity is linked to.
@@ -55,13 +55,14 @@ type PaymentInput struct {
 	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
-	CustomFields       []CustomFieldUnion                                           `json:"custom_fields,omitempty"`
+	CustomFields       []CustomField                                                `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// Id to be displayed.
 	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (p PaymentInput) MarshalJSON() ([]byte, error) {
@@ -69,7 +70,7 @@ func (p PaymentInput) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PaymentInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"total_amount", "transaction_date"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -89,7 +90,7 @@ func (o *PaymentInput) GetCurrencyRate() optionalnullable.OptionalNullable[float
 	return o.CurrencyRate
 }
 
-func (o *PaymentInput) GetTotalAmount() *float64 {
+func (o *PaymentInput) GetTotalAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -145,7 +146,7 @@ func (o *PaymentInput) GetAccount() optionalnullable.OptionalNullable[LinkedLedg
 	return o.Account
 }
 
-func (o *PaymentInput) GetTransactionDate() *time.Time {
+func (o *PaymentInput) GetTransactionDate() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -222,7 +223,7 @@ func (o *PaymentInput) GetTrackingCategories() optionalnullable.OptionalNullable
 	return o.TrackingCategories
 }
 
-func (o *PaymentInput) GetCustomFields() []CustomFieldUnion {
+func (o *PaymentInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -248,4 +249,11 @@ func (o *PaymentInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *PaymentInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

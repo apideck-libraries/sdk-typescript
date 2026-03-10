@@ -18,8 +18,9 @@ type UploadSession struct {
 	// Indicates if parts of the file can uploaded in parallel.
 	ParallelUploadSupported *bool `json:"parallel_upload_supported,omitempty"`
 	// The range of bytes that was successfully uploaded.
-	UploadedByteRange *string                                      `json:"uploaded_byte_range,omitempty"`
-	ExpiresAt         optionalnullable.OptionalNullable[time.Time] `json:"expires_at,omitempty"`
+	UploadedByteRange    *string                                      `json:"uploaded_byte_range,omitempty"`
+	ExpiresAt            optionalnullable.OptionalNullable[time.Time] `json:"expires_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (u UploadSession) MarshalJSON() ([]byte, error) {
@@ -73,4 +74,11 @@ func (o *UploadSession) GetExpiresAt() optionalnullable.OptionalNullable[time.Ti
 		return nil
 	}
 	return o.ExpiresAt
+}
+
+func (o *UploadSession) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

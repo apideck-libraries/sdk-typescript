@@ -56,7 +56,7 @@ func testAccountingExpensesOneAccountingExpensesOne0(w http.ResponseWriter, req 
 		Data: components.Expense{
 			ID:              types.String("12345"),
 			Number:          optionalnullable.From(types.String("OIT00546")),
-			TransactionDate: types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
+			TransactionDate: optionalnullable.From(types.MustNewTimeFromString("2021-05-01T12:00:00.000Z")),
 			AccountID:       types.String("123456"),
 			SupplierID:      types.String("12345"),
 			CompanyID:       optionalnullable.From(types.String("12345")),
@@ -97,7 +97,11 @@ func testAccountingExpensesOneAccountingExpensesOne0(w http.ResponseWriter, req 
 						Rate: optionalnullable.From(types.Float64(10)),
 					},
 					Description: optionalnullable.From(types.String("Travel US.")),
-					TotalAmount: types.Float64(275),
+					TotalAmount: optionalnullable.From(types.Float64(275)),
+					AdditionalProperties: map[string]any{
+						"subsidiary_id": "12345",
+						"billable":      true,
+					},
 				},
 				components.ExpenseLineItem{
 					ID: types.String("12345"),
@@ -122,32 +126,32 @@ func testAccountingExpensesOneAccountingExpensesOne0(w http.ResponseWriter, req 
 						Rate: optionalnullable.From(types.Float64(10)),
 					},
 					Description: optionalnullable.From(types.String("Travel US.")),
-					TotalAmount: types.Float64(275),
+					TotalAmount: optionalnullable.From(types.Float64(275)),
+					AdditionalProperties: map[string]any{
+						"subsidiary_id": "12345",
+						"billable":      true,
+					},
 				},
 			},
-			CustomFields: []components.CustomFieldUnion{
-				components.CreateCustomFieldUnionCustomField1(
-					components.CustomField1{
-						ID:          types.String("2389328923893298"),
-						Name:        optionalnullable.From(types.String("employee_level")),
-						Description: optionalnullable.From(types.String("Employee Level")),
-						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-							map[string]any{
-								"0": map[string]any{},
-							},
-						))),
-					},
-				),
-				components.CreateCustomFieldUnionCustomField1(
-					components.CustomField1{
-						ID:          types.String("2389328923893298"),
-						Name:        optionalnullable.From(types.String("employee_level")),
-						Description: optionalnullable.From(types.String("Employee Level")),
-						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
-							true,
-						))),
-					},
-				),
+			CustomFields: []components.CustomField{
+				components.CustomField{
+					ID:          optionalnullable.From(types.String("2389328923893298")),
+					Name:        optionalnullable.From(types.String("employee_level")),
+					Description: optionalnullable.From(types.String("Employee Level")),
+					Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+						map[string]any{
+							"0": map[string]any{},
+						},
+					))),
+				},
+				components.CustomField{
+					ID:          optionalnullable.From(types.String("2389328923893298")),
+					Name:        optionalnullable.From(types.String("employee_level")),
+					Description: optionalnullable.From(types.String("Employee Level")),
+					Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
+						true,
+					))),
+				},
 			},
 			UpdatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			CreatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
@@ -166,6 +170,9 @@ func testAccountingExpensesOneAccountingExpensesOne0(w http.ResponseWriter, req 
 						},
 					},
 				},
+			},
+			AdditionalProperties: map[string]any{
+				"customer_id": "12345",
 			},
 		},
 	}

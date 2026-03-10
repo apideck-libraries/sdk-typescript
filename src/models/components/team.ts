@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { remap as remap$ } from "../../lib/primitives.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -20,18 +24,24 @@ export type Team = {
    * The name of the team.
    */
   name?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
-export const Team$inboundSchema: z.ZodType<Team, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.nullable(types.string()).optional(),
-    name: z.nullable(types.string()).optional(),
-  });
+export const Team$inboundSchema: z.ZodType<Team, z.ZodTypeDef, unknown> =
+  collectExtraKeys$(
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      name: z.nullable(types.string()).optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  );
 /** @internal */
 export type Team$Outbound = {
   id?: string | null | undefined;
   name?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -39,6 +49,14 @@ export const Team$outboundSchema: z.ZodType<Team$Outbound, z.ZodTypeDef, Team> =
   z.object({
     id: z.nullable(z.string()).optional(),
     name: z.nullable(z.string()).optional(),
+    additionalProperties: z.record(z.any()).optional(),
+  }).transform((v) => {
+    return {
+      ...v.additionalProperties,
+      ...remap$(v, {
+        additionalProperties: null,
+      }),
+    };
   });
 
 export function teamToJSON(team: Team): string {

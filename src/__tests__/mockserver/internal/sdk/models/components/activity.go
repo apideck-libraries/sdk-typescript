@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 // ActivityType - The type of the activity
@@ -74,7 +75,7 @@ type Activity struct {
 	// The custom object related to the activity
 	CustomObjectID optionalnullable.OptionalNullable[string] `json:"custom_object_id,omitempty"`
 	// The type of the activity
-	Type *ActivityType `json:"type"`
+	Type optionalnullable.OptionalNullable[ActivityType] `json:"type,omitempty"`
 	// The title of the activity
 	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// A description of the activity
@@ -124,7 +125,7 @@ type Activity struct {
 	// The ID of the video conference
 	VideoConferenceID optionalnullable.OptionalNullable[string] `json:"video_conference_id,omitempty"`
 	// Custom fields of the activity
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	CustomFields []CustomField      `json:"custom_fields,omitempty"`
 	Attendees    []ActivityAttendee `json:"attendees,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
@@ -137,7 +138,19 @@ type Activity struct {
 	// The date and time when the activity was created
 	CreatedAt optionalnullable.OptionalNullable[string] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (a Activity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *Activity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Activity) GetID() *string {
@@ -266,7 +279,7 @@ func (o *Activity) GetCustomObjectID() optionalnullable.OptionalNullable[string]
 	return o.CustomObjectID
 }
 
-func (o *Activity) GetType() *ActivityType {
+func (o *Activity) GetType() optionalnullable.OptionalNullable[ActivityType] {
 	if o == nil {
 		return nil
 	}
@@ -448,7 +461,7 @@ func (o *Activity) GetVideoConferenceID() optionalnullable.OptionalNullable[stri
 	return o.VideoConferenceID
 }
 
-func (o *Activity) GetCustomFields() []CustomFieldUnion {
+func (o *Activity) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -504,6 +517,13 @@ func (o *Activity) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *Activity) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type ActivityInput struct {
 	// The date and time of the activity
 	ActivityDatetime optionalnullable.OptionalNullable[string] `json:"activity_datetime,omitempty"`
@@ -538,7 +558,7 @@ type ActivityInput struct {
 	// The custom object related to the activity
 	CustomObjectID optionalnullable.OptionalNullable[string] `json:"custom_object_id,omitempty"`
 	// The type of the activity
-	Type *ActivityType `json:"type"`
+	Type optionalnullable.OptionalNullable[ActivityType] `json:"type,omitempty"`
 	// The title of the activity
 	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// A description of the activity
@@ -586,10 +606,22 @@ type ActivityInput struct {
 	// The ID of the video conference
 	VideoConferenceID optionalnullable.OptionalNullable[string] `json:"video_conference_id,omitempty"`
 	// Custom fields of the activity
-	CustomFields []CustomFieldUnion      `json:"custom_fields,omitempty"`
+	CustomFields []CustomField           `json:"custom_fields,omitempty"`
 	Attendees    []ActivityAttendeeInput `json:"attendees,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (a ActivityInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *ActivityInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ActivityInput) GetActivityDatetime() optionalnullable.OptionalNullable[string] {
@@ -704,7 +736,7 @@ func (o *ActivityInput) GetCustomObjectID() optionalnullable.OptionalNullable[st
 	return o.CustomObjectID
 }
 
-func (o *ActivityInput) GetType() *ActivityType {
+func (o *ActivityInput) GetType() optionalnullable.OptionalNullable[ActivityType] {
 	if o == nil {
 		return nil
 	}
@@ -879,7 +911,7 @@ func (o *ActivityInput) GetVideoConferenceID() optionalnullable.OptionalNullable
 	return o.VideoConferenceID
 }
 
-func (o *ActivityInput) GetCustomFields() []CustomFieldUnion {
+func (o *ActivityInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -898,4 +930,11 @@ func (o *ActivityInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *ActivityInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

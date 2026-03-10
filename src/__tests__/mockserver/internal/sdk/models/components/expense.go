@@ -40,6 +40,7 @@ type ExpenseStatus string
 const (
 	ExpenseStatusDraft  ExpenseStatus = "draft"
 	ExpenseStatusPosted ExpenseStatus = "posted"
+	ExpenseStatusVoided ExpenseStatus = "voided"
 )
 
 func (e ExpenseStatus) ToPointer() *ExpenseStatus {
@@ -54,7 +55,7 @@ type Expense struct {
 	// Number.
 	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
-	TransactionDate *time.Time `json:"transaction_date"`
+	TransactionDate optionalnullable.OptionalNullable[time.Time] `json:"transaction_date,omitempty"`
 	// The unique identifier for the ledger account that this expense should be credited to. Deprecated, use account instead.
 	//
 	// Deprecated: Deprecated. Use account instead..
@@ -95,12 +96,12 @@ type Expense struct {
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// Expense line items linked to this expense.
-	LineItems []ExpenseLineItem `json:"line_items"`
+	LineItems []ExpenseLineItem `json:"line_items,omitempty"`
 	// Optional reference identifier for the transaction.
 	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
 	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
-	CustomFields      []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	CustomFields      []CustomField                             `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// Expense status
@@ -116,7 +117,8 @@ type Expense struct {
 	// The user who created the object.
 	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (e Expense) MarshalJSON() ([]byte, error) {
@@ -124,7 +126,7 @@ func (e Expense) MarshalJSON() ([]byte, error) {
 }
 
 func (e *Expense) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"transaction_date", "line_items"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -151,7 +153,7 @@ func (o *Expense) GetNumber() optionalnullable.OptionalNullable[string] {
 	return o.Number
 }
 
-func (o *Expense) GetTransactionDate() *time.Time {
+func (o *Expense) GetTransactionDate() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -293,7 +295,7 @@ func (o *Expense) GetTrackingCategories() optionalnullable.OptionalNullable[[]*L
 
 func (o *Expense) GetLineItems() []ExpenseLineItem {
 	if o == nil {
-		return []ExpenseLineItem{}
+		return nil
 	}
 	return o.LineItems
 }
@@ -312,7 +314,7 @@ func (o *Expense) GetSourceDocumentURL() optionalnullable.OptionalNullable[strin
 	return o.SourceDocumentURL
 }
 
-func (o *Expense) GetCustomFields() []CustomFieldUnion {
+func (o *Expense) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -375,13 +377,20 @@ func (o *Expense) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *Expense) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type ExpenseInput struct {
 	// Id to be displayed.
 	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Number.
 	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
-	TransactionDate *time.Time `json:"transaction_date"`
+	TransactionDate optionalnullable.OptionalNullable[time.Time] `json:"transaction_date,omitempty"`
 	// The unique identifier for the ledger account that this expense should be credited to. Deprecated, use account instead.
 	//
 	// Deprecated: Deprecated. Use account instead..
@@ -422,18 +431,19 @@ type ExpenseInput struct {
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// Expense line items linked to this expense.
-	LineItems []ExpenseLineItemInput `json:"line_items"`
+	LineItems []ExpenseLineItemInput `json:"line_items,omitempty"`
 	// Optional reference identifier for the transaction.
 	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
 	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
-	CustomFields      []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	CustomFields      []CustomField                             `json:"custom_fields,omitempty"`
 	// Expense status
 	Status optionalnullable.OptionalNullable[ExpenseStatus] `json:"status,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (e ExpenseInput) MarshalJSON() ([]byte, error) {
@@ -441,7 +451,7 @@ func (e ExpenseInput) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExpenseInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"transaction_date", "line_items"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -461,7 +471,7 @@ func (o *ExpenseInput) GetNumber() optionalnullable.OptionalNullable[string] {
 	return o.Number
 }
 
-func (o *ExpenseInput) GetTransactionDate() *time.Time {
+func (o *ExpenseInput) GetTransactionDate() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -603,7 +613,7 @@ func (o *ExpenseInput) GetTrackingCategories() optionalnullable.OptionalNullable
 
 func (o *ExpenseInput) GetLineItems() []ExpenseLineItemInput {
 	if o == nil {
-		return []ExpenseLineItemInput{}
+		return nil
 	}
 	return o.LineItems
 }
@@ -622,7 +632,7 @@ func (o *ExpenseInput) GetSourceDocumentURL() optionalnullable.OptionalNullable[
 	return o.SourceDocumentURL
 }
 
-func (o *ExpenseInput) GetCustomFields() []CustomFieldUnion {
+func (o *ExpenseInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -648,4 +658,11 @@ func (o *ExpenseInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *ExpenseInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

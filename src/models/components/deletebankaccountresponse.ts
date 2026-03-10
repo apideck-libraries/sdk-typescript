@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -38,6 +41,7 @@ export type DeleteBankAccountResponse = {
    * A object containing a unique identifier for the resource that was created, updated, or deleted.
    */
   data: UnifiedId;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -45,14 +49,18 @@ export const DeleteBankAccountResponse$inboundSchema: z.ZodType<
   DeleteBankAccountResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  status_code: types.number(),
-  status: types.string(),
-  service: types.optional(types.string()),
-  resource: types.optional(types.string()),
-  operation: types.optional(types.string()),
-  data: UnifiedId$inboundSchema,
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    status_code: types.number(),
+    status: types.string(),
+    service: types.optional(types.string()),
+    resource: types.optional(types.string()),
+    operation: types.optional(types.string()),
+    data: UnifiedId$inboundSchema,
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
   });

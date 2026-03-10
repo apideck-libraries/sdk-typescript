@@ -8,11 +8,11 @@ Customer status
 import { CustomerStatusStatus } from "@apideck/unify/models/components";
 
 let value: CustomerStatusStatus = "active";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "active" | "inactive" | "archived" | "gdpr-erasure-request" | "unknown" | Unrecognized<string>

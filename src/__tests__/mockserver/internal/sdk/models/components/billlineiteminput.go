@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type BillLineItemInput struct {
@@ -66,7 +67,19 @@ type BillLineItemInput struct {
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// A list of linked worktags. This is only supported for Workday.
-	Worktags []*LinkedWorktag `json:"worktags,omitempty"`
+	Worktags             []*LinkedWorktag `json:"worktags,omitempty"`
+	AdditionalProperties map[string]any   `additionalProperties:"true" json:"-"`
+}
+
+func (b BillLineItemInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BillLineItemInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BillLineItemInput) GetRowID() *string {
@@ -298,4 +311,11 @@ func (o *BillLineItemInput) GetWorktags() []*LinkedWorktag {
 		return nil
 	}
 	return o.Worktags
+}
+
+func (o *BillLineItemInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

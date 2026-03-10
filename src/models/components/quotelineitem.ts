@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -148,6 +151,7 @@ export type QuoteLineItem = {
    * The date and time when the object was last updated.
    */
   updatedAt?: Date | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type QuoteLineItemInput = {
@@ -225,6 +229,7 @@ export type QuoteLineItemInput = {
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -245,37 +250,41 @@ export const QuoteLineItem$inboundSchema: z.ZodType<
   QuoteLineItem,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  row_id: types.optional(types.string()),
-  code: z.nullable(types.string()).optional(),
-  line_number: z.nullable(types.number()).optional(),
-  description: z.nullable(types.string()).optional(),
-  type: z.nullable(QuoteLineItemType$inboundSchema).optional(),
-  tax_amount: z.nullable(types.number()).optional(),
-  total_amount: z.nullable(types.number()).optional(),
-  quantity: z.nullable(types.number()).optional(),
-  unit_price: z.nullable(types.number()).optional(),
-  unit_of_measure: z.nullable(types.string()).optional(),
-  discount_percentage: z.nullable(types.number()).optional(),
-  discount_amount: z.nullable(types.number()).optional(),
-  service_date: z.nullable(types.date()).optional(),
-  category_id: z.nullable(types.string()).optional(),
-  location_id: z.nullable(types.string()).optional(),
-  department_id: z.nullable(types.string()).optional(),
-  item: types.optional(LinkedInvoiceItem$inboundSchema),
-  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    row_id: types.optional(types.string()),
+    code: z.nullable(types.string()).optional(),
+    line_number: z.nullable(types.number()).optional(),
+    description: z.nullable(types.string()).optional(),
+    type: z.nullable(QuoteLineItemType$inboundSchema).optional(),
+    tax_amount: z.nullable(types.number()).optional(),
+    total_amount: z.nullable(types.number()).optional(),
+    quantity: z.nullable(types.number()).optional(),
+    unit_price: z.nullable(types.number()).optional(),
+    unit_of_measure: z.nullable(types.string()).optional(),
+    discount_percentage: z.nullable(types.number()).optional(),
+    discount_amount: z.nullable(types.number()).optional(),
+    service_date: z.nullable(types.date()).optional(),
+    category_id: z.nullable(types.string()).optional(),
+    location_id: z.nullable(types.string()).optional(),
+    department_id: z.nullable(types.string()).optional(),
+    item: types.optional(LinkedInvoiceItem$inboundSchema),
+    tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "row_id": "rowId",
     "line_number": "lineNumber",
@@ -339,6 +348,7 @@ export type QuoteLineItemInput$Outbound = {
   ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -374,26 +384,31 @@ export const QuoteLineItemInput$outboundSchema: z.ZodType<
   ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    rowId: "row_id",
-    lineNumber: "line_number",
-    taxAmount: "tax_amount",
-    totalAmount: "total_amount",
-    unitPrice: "unit_price",
-    unitOfMeasure: "unit_of_measure",
-    discountPercentage: "discount_percentage",
-    discountAmount: "discount_amount",
-    serviceDate: "service_date",
-    categoryId: "category_id",
-    locationId: "location_id",
-    departmentId: "department_id",
-    taxRate: "tax_rate",
-    trackingCategories: "tracking_categories",
-    ledgerAccount: "ledger_account",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      rowId: "row_id",
+      lineNumber: "line_number",
+      taxAmount: "tax_amount",
+      totalAmount: "total_amount",
+      unitPrice: "unit_price",
+      unitOfMeasure: "unit_of_measure",
+      discountPercentage: "discount_percentage",
+      discountAmount: "discount_amount",
+      serviceDate: "service_date",
+      categoryId: "category_id",
+      locationId: "location_id",
+      departmentId: "department_id",
+      taxRate: "tax_rate",
+      trackingCategories: "tracking_categories",
+      ledgerAccount: "ledger_account",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function quoteLineItemInputToJSON(

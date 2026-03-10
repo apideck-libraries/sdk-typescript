@@ -55,11 +55,11 @@ func testAccountingProfitAndLossOneAccountingProfitAndLossOne0(w http.ResponseWr
 		Operation:  "one",
 		Data: components.ProfitAndLoss{
 			ID:         types.String("12345"),
-			ReportName: "ProfitAndLoss",
+			ReportName: types.String("ProfitAndLoss"),
 			StartDate:  types.String("2017-01-01"),
 			EndDate:    types.String("2017-01-31"),
 			Currency:   optionalnullable.From(components.CurrencyUsd.ToPointer()),
-			Income: components.Income{
+			Income: &components.Income{
 				ID:    types.String("123"),
 				Code:  types.String("123"),
 				Title: types.String("Operating Income"),
@@ -123,7 +123,7 @@ func testAccountingProfitAndLossOneAccountingProfitAndLossOne0(w http.ResponseWr
 					},
 				},
 			},
-			Expenses: components.Expenses{
+			Expenses: &components.Expenses{
 				ID:    types.String("123"),
 				Code:  types.String("123"),
 				Title: types.String("Operating Expenses"),

@@ -4,20 +4,33 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type SharedLinkTarget struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// The name of the file
 	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The type of resource. Could be file, folder or url
-	Type optionalnullable.OptionalNullable[FileType] `json:"type,omitempty"`
+	Type                 optionalnullable.OptionalNullable[FileType] `json:"type,omitempty"`
+	AdditionalProperties map[string]any                              `additionalProperties:"true" json:"-"`
 }
 
-func (o *SharedLinkTarget) GetID() string {
+func (s SharedLinkTarget) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SharedLinkTarget) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *SharedLinkTarget) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -34,4 +47,11 @@ func (o *SharedLinkTarget) GetType() optionalnullable.OptionalNullable[FileType]
 		return nil
 	}
 	return o.Type
+}
+
+func (o *SharedLinkTarget) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

@@ -54,13 +54,13 @@ func testHrisPayrollsOneHrisPayrollsOne0(w http.ResponseWriter, req *http.Reques
 		Resource:   "Companies",
 		Operation:  "one",
 		Data: components.Payroll{
-			ID:            types.String("12345"),
+			ID:            optionalnullable.From(types.String("12345")),
 			CompanyID:     optionalnullable.From(types.String("23456")),
-			Processed:     types.Bool(false),
+			Processed:     optionalnullable.From(types.Bool(false)),
 			ProcessedDate: optionalnullable.From(types.String("2022-04-08")),
-			CheckDate:     types.String("2022-04-08"),
-			StartDate:     types.String("2022-04-08"),
-			EndDate:       types.String("2022-04-21"),
+			CheckDate:     optionalnullable.From(types.String("2022-04-08")),
+			StartDate:     optionalnullable.From(types.String("2022-04-08")),
+			EndDate:       optionalnullable.From(types.String("2022-04-21")),
 			Totals: &components.PayrollTotals{
 				CompanyDebit:                 optionalnullable.From(types.Float64(27992.49)),
 				TaxDebit:                     optionalnullable.From(types.Float64(8655.32)),
@@ -74,7 +74,7 @@ func testHrisPayrollsOneHrisPayrollsOne0(w http.ResponseWriter, req *http.Reques
 			},
 			Compensations: []components.Compensation{
 				components.Compensation{
-					EmployeeID: types.String("12345"),
+					EmployeeID: optionalnullable.From(types.String("12345")),
 					NetPay:     optionalnullable.From(types.Float64(2199.93)),
 					GrossPay:   optionalnullable.From(types.Float64(3000)),
 					Taxes: optionalnullable.From(types.Pointer([]components.Tax{
@@ -113,7 +113,7 @@ func testHrisPayrollsOneHrisPayrollsOne0(w http.ResponseWriter, req *http.Reques
 					})),
 				},
 				components.Compensation{
-					EmployeeID: types.String("12345"),
+					EmployeeID: optionalnullable.From(types.String("12345")),
 					NetPay:     optionalnullable.From(types.Float64(2199.93)),
 					GrossPay:   optionalnullable.From(types.Float64(3000)),
 					Taxes: optionalnullable.From(types.Pointer([]components.Tax{
@@ -157,7 +157,7 @@ func testHrisPayrollsOneHrisPayrollsOne0(w http.ResponseWriter, req *http.Reques
 					})),
 				},
 				components.Compensation{
-					EmployeeID: types.String("12345"),
+					EmployeeID: optionalnullable.From(types.String("12345")),
 					NetPay:     optionalnullable.From(types.Float64(2199.93)),
 					GrossPay:   optionalnullable.From(types.Float64(3000)),
 					Taxes: optionalnullable.From(types.Pointer([]components.Tax{

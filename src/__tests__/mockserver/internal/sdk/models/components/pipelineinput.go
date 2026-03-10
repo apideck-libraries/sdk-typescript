@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type StageInput struct {
@@ -16,7 +17,19 @@ type StageInput struct {
 	// The order in which the Pipeline Stage is displayed in the UI.
 	DisplayOrder optionalnullable.OptionalNullable[int64] `json:"display_order,omitempty"`
 	// Whether the Pipeline Stage is archived or not.
-	Archived optionalnullable.OptionalNullable[bool] `json:"archived,omitempty"`
+	Archived             optionalnullable.OptionalNullable[bool] `json:"archived,omitempty"`
+	AdditionalProperties map[string]any                          `additionalProperties:"true" json:"-"`
+}
+
+func (s StageInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *StageInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *StageInput) GetName() optionalnullable.OptionalNullable[string] {
@@ -54,11 +67,18 @@ func (o *StageInput) GetArchived() optionalnullable.OptionalNullable[bool] {
 	return o.Archived
 }
 
+func (o *StageInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type PipelineInput struct {
 	// The unique identifier of the Pipeline.
 	ID *string `json:"id,omitempty"`
 	// The name of the Pipeline.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Whether the Pipeline is archived or not.
@@ -72,7 +92,19 @@ type PipelineInput struct {
 	// The Pipeline Stages.
 	Stages []StageInput `json:"stages,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (p PipelineInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PipelineInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PipelineInput) GetID() *string {
@@ -82,9 +114,9 @@ func (o *PipelineInput) GetID() *string {
 	return o.ID
 }
 
-func (o *PipelineInput) GetName() string {
+func (o *PipelineInput) GetName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Name
 }
@@ -136,4 +168,11 @@ func (o *PipelineInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *PipelineInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

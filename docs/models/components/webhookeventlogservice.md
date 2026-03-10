@@ -19,3 +19,4 @@ let value: WebhookEventLogService = {
 | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
 | `id`                           | *string*                       | :heavy_check_mark:             | Apideck service provider id.   | 101-data-solution              |
 | `name`                         | *string*                       | :heavy_check_mark:             | Apideck service provider name. | 101 Data Solution              |
+| `additionalProperties`         | Record<string, *any*>          | :heavy_minus_sign:             | N/A                            |                                |

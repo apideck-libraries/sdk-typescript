@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +16,7 @@ export type SharedLinkTarget = {
   /**
    * A unique identifier for an object.
    */
-  id: string;
+  id?: string | undefined;
   /**
    * The name of the file
    */
@@ -22,6 +25,7 @@ export type SharedLinkTarget = {
    * The type of resource. Could be file, folder or url
    */
   type?: FileType | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -29,11 +33,15 @@ export const SharedLinkTarget$inboundSchema: z.ZodType<
   SharedLinkTarget,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  name: z.nullable(types.string()).optional(),
-  type: z.nullable(FileType$inboundSchema).optional(),
-});
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    name: z.nullable(types.string()).optional(),
+    type: z.nullable(FileType$inboundSchema).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+);
 
 export function sharedLinkTargetFromJSON(
   jsonString: string,

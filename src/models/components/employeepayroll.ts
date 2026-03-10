@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -15,7 +18,7 @@ export type EmployeePayroll = {
   /**
    * A unique identifier for an object.
    */
-  id: string | null;
+  id?: string | null | undefined;
   /**
    * ID of the employee
    */
@@ -27,7 +30,7 @@ export type EmployeePayroll = {
   /**
    * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
    */
-  processed: boolean | null;
+  processed?: boolean | null | undefined;
   /**
    * The date the payroll was processed.
    */
@@ -35,15 +38,15 @@ export type EmployeePayroll = {
   /**
    * The date on which employees will be paid for the payroll.
    */
-  checkDate: string | null;
+  checkDate?: string | null | undefined;
   /**
    * The start date, inclusive, of the pay period.
    */
-  startDate: string | null;
+  startDate?: string | null | undefined;
   /**
    * The end date, inclusive, of the pay period.
    */
-  endDate: string | null;
+  endDate?: string | null | undefined;
   /**
    * The overview of the payroll totals.
    */
@@ -52,6 +55,7 @@ export type EmployeePayroll = {
    * An array of compensations for the payroll.
    */
   compensations?: Array<Compensation> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -59,18 +63,22 @@ export const EmployeePayroll$inboundSchema: z.ZodType<
   EmployeePayroll,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.nullable(types.string()),
-  employee_id: z.nullable(types.string()).optional(),
-  company_id: z.nullable(types.string()).optional(),
-  processed: types.nullable(types.boolean()),
-  processed_date: z.nullable(types.string()).optional(),
-  check_date: types.nullable(types.string()),
-  start_date: types.nullable(types.string()),
-  end_date: types.nullable(types.string()),
-  totals: types.optional(PayrollTotals$inboundSchema),
-  compensations: types.optional(z.array(Compensation$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    employee_id: z.nullable(types.string()).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    processed: z.nullable(types.boolean()).optional(),
+    processed_date: z.nullable(types.string()).optional(),
+    check_date: z.nullable(types.string()).optional(),
+    start_date: z.nullable(types.string()).optional(),
+    end_date: z.nullable(types.string()).optional(),
+    totals: types.optional(PayrollTotals$inboundSchema),
+    compensations: types.optional(z.array(Compensation$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "employee_id": "employeeId",
     "company_id": "companyId",

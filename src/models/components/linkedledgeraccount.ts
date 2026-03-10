@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -34,6 +37,7 @@ export type LinkedLedgerAccount = {
    * The display ID of the account.
    */
   displayId?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -41,14 +45,18 @@ export const LinkedLedgerAccount$inboundSchema: z.ZodType<
   LinkedLedgerAccount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: z.nullable(types.string()).optional(),
-  nominal_code: z.nullable(types.string()).optional(),
-  code: z.nullable(types.string()).optional(),
-  parent_id: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    name: z.nullable(types.string()).optional(),
+    nominal_code: z.nullable(types.string()).optional(),
+    code: z.nullable(types.string()).optional(),
+    parent_id: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "nominal_code": "nominalCode",
     "parent_id": "parentId",
@@ -63,6 +71,7 @@ export type LinkedLedgerAccount$Outbound = {
   code?: string | null | undefined;
   parent_id?: string | null | undefined;
   display_id?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -77,12 +86,17 @@ export const LinkedLedgerAccount$outboundSchema: z.ZodType<
   code: z.nullable(z.string()).optional(),
   parentId: z.nullable(z.string()).optional(),
   displayId: z.nullable(z.string()).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    nominalCode: "nominal_code",
-    parentId: "parent_id",
-    displayId: "display_id",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      nominalCode: "nominal_code",
+      parentId: "parent_id",
+      displayId: "display_id",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function linkedLedgerAccountToJSON(

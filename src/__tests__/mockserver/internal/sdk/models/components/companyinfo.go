@@ -100,7 +100,8 @@ type CompanyInfo struct {
 	// The date and time when the object was last updated.
 	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	CreatedAt            optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (c CompanyInfo) MarshalJSON() ([]byte, error) {
@@ -280,4 +281,11 @@ func (o *CompanyInfo) GetCreatedAt() optionalnullable.OptionalNullable[time.Time
 		return nil
 	}
 	return o.CreatedAt
+}
+
+func (o *CompanyInfo) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

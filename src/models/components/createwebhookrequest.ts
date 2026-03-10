@@ -32,6 +32,7 @@ export type CreateWebhookRequest = {
    * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
    */
   events: Array<WebhookEventType>;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -41,6 +42,7 @@ export type CreateWebhookRequest$Outbound = {
   status: string;
   delivery_url: string;
   events: Array<string>;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -54,11 +56,16 @@ export const CreateWebhookRequest$outboundSchema: z.ZodType<
   status: Status$outboundSchema,
   deliveryUrl: z.string(),
   events: z.array(WebhookEventType$outboundSchema),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    unifiedApi: "unified_api",
-    deliveryUrl: "delivery_url",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      unifiedApi: "unified_api",
+      deliveryUrl: "delivery_url",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function createWebhookRequestToJSON(

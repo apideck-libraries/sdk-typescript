@@ -56,7 +56,7 @@ func testAccountingProjectsOneAccountingProjectsOne0(w http.ResponseWriter, req 
 		Data: components.Project{
 			ID:                   types.String("12345"),
 			DownstreamID:         optionalnullable.From(types.String("12345")),
-			Name:                 "Website Redesign Project",
+			Name:                 types.String("Website Redesign Project"),
 			DisplayID:            optionalnullable.From(types.String("PROJ-001")),
 			ReferenceID:          optionalnullable.From(types.String("WD-REF-2024-001")),
 			Description:          optionalnullable.From(types.String("Complete redesign of the company website including new branding and improved user experience")),
@@ -148,17 +148,15 @@ func testAccountingProjectsOneAccountingProjectsOne0(w http.ResponseWriter, req 
 				},
 			},
 			TeamSize: optionalnullable.From(types.Int64(8)),
-			CustomFields: []components.CustomFieldUnion{
-				components.CreateCustomFieldUnionCustomField1(
-					components.CustomField1{
-						ID:          types.String("2389328923893298"),
-						Name:        optionalnullable.From(types.String("employee_level")),
-						Description: optionalnullable.From(types.String("Employee Level")),
-						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-							"Uses Salesforce and Marketo",
-						))),
-					},
-				),
+			CustomFields: []components.CustomField{
+				components.CustomField{
+					ID:          optionalnullable.From(types.String("2389328923893298")),
+					Name:        optionalnullable.From(types.String("employee_level")),
+					Description: optionalnullable.From(types.String("Employee Level")),
+					Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+						"Uses Salesforce and Marketo",
+					))),
+				},
 			},
 			RowVersion: optionalnullable.From(types.String("1-12345")),
 			UpdatedBy:  optionalnullable.From(types.String("12345")),

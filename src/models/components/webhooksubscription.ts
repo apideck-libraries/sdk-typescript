@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -30,6 +33,7 @@ export type WebhookSubscription = {
    * The date and time the webhook subscription was created downstream
    */
   createdAt?: string | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -37,13 +41,17 @@ export const WebhookSubscription$inboundSchema: z.ZodType<
   WebhookSubscription,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  downstream_id: types.optional(types.string()),
-  unify_event_types: types.optional(z.array(types.string())),
-  downstream_event_types: types.optional(z.array(types.string())),
-  execute_url: types.optional(types.string()),
-  created_at: types.optional(types.string()),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    downstream_id: types.optional(types.string()),
+    unify_event_types: types.optional(z.array(types.string())),
+    downstream_event_types: types.optional(z.array(types.string())),
+    execute_url: types.optional(types.string()),
+    created_at: types.optional(types.string()),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",
     "unify_event_types": "unifyEventTypes",

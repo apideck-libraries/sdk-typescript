@@ -3,17 +3,20 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 
 export type AssigneeInput = {
   /**
    * A unique identifier for an object.
    */
-  id: string;
+  id?: string | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
 export type AssigneeInput$Outbound = {
-  id: string;
+  id?: string | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -22,7 +25,15 @@ export const AssigneeInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AssigneeInput
 > = z.object({
-  id: z.string(),
+  id: z.string().optional(),
+  additionalProperties: z.record(z.any()).optional(),
+}).transform((v) => {
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function assigneeInputToJSON(assigneeInput: AssigneeInput): string {

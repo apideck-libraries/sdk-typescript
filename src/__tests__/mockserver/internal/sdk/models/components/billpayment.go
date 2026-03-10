@@ -88,7 +88,7 @@ func (o *BillPaymentAllocation) GetAllocationID() *string {
 
 type BillPayment struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
 	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -96,7 +96,7 @@ type BillPayment struct {
 	// Currency Exchange Rate at the time entity was recorded/generated.
 	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// The total amount of the transaction or record
-	TotalAmount *float64 `json:"total_amount"`
+	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
 	// Optional transaction reference message ie: Debit remittance detail.
 	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
@@ -107,7 +107,7 @@ type BillPayment struct {
 	PaymentMethodID optionalnullable.OptionalNullable[string]              `json:"payment_method_id,omitempty"`
 	Account         optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
-	TransactionDate *time.Time `json:"transaction_date"`
+	TransactionDate optionalnullable.OptionalNullable[time.Time] `json:"transaction_date,omitempty"`
 	// The supplier this entity is linked to.
 	Supplier optionalnullable.OptionalNullable[LinkedSupplier] `json:"supplier,omitempty"`
 	// The company ID the transaction belongs to
@@ -125,7 +125,7 @@ type BillPayment struct {
 	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
-	CustomFields       []CustomFieldUnion                                           `json:"custom_fields,omitempty"`
+	CustomFields       []CustomField                                                `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// Id to be displayed.
@@ -141,7 +141,8 @@ type BillPayment struct {
 	// The date and time when the object was last updated.
 	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (b BillPayment) MarshalJSON() ([]byte, error) {
@@ -149,15 +150,15 @@ func (b BillPayment) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BillPayment) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"id", "total_amount", "transaction_date"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *BillPayment) GetID() string {
+func (o *BillPayment) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -183,7 +184,7 @@ func (o *BillPayment) GetCurrencyRate() optionalnullable.OptionalNullable[float6
 	return o.CurrencyRate
 }
 
-func (o *BillPayment) GetTotalAmount() *float64 {
+func (o *BillPayment) GetTotalAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -225,7 +226,7 @@ func (o *BillPayment) GetAccount() optionalnullable.OptionalNullable[LinkedLedge
 	return o.Account
 }
 
-func (o *BillPayment) GetTransactionDate() *time.Time {
+func (o *BillPayment) GetTransactionDate() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -295,7 +296,7 @@ func (o *BillPayment) GetTrackingCategories() optionalnullable.OptionalNullable[
 	return o.TrackingCategories
 }
 
-func (o *BillPayment) GetCustomFields() []CustomFieldUnion {
+func (o *BillPayment) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -358,6 +359,13 @@ func (o *BillPayment) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *BillPayment) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type BillPaymentAllocationInput struct {
 	// A unique identifier for an object.
 	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
@@ -403,7 +411,7 @@ type BillPaymentInput struct {
 	// Currency Exchange Rate at the time entity was recorded/generated.
 	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// The total amount of the transaction or record
-	TotalAmount *float64 `json:"total_amount"`
+	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
 	// Optional transaction reference message ie: Debit remittance detail.
 	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
@@ -414,7 +422,7 @@ type BillPaymentInput struct {
 	PaymentMethodID optionalnullable.OptionalNullable[string]              `json:"payment_method_id,omitempty"`
 	Account         optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
-	TransactionDate *time.Time `json:"transaction_date"`
+	TransactionDate optionalnullable.OptionalNullable[time.Time] `json:"transaction_date,omitempty"`
 	// The supplier this entity is linked to.
 	Supplier optionalnullable.OptionalNullable[LinkedSupplierInput] `json:"supplier,omitempty"`
 	// The company ID the transaction belongs to
@@ -432,13 +440,14 @@ type BillPaymentInput struct {
 	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
-	CustomFields       []CustomFieldUnion                                           `json:"custom_fields,omitempty"`
+	CustomFields       []CustomField                                                `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// Id to be displayed.
 	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (b BillPaymentInput) MarshalJSON() ([]byte, error) {
@@ -446,7 +455,7 @@ func (b BillPaymentInput) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BillPaymentInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"total_amount", "transaction_date"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -466,7 +475,7 @@ func (o *BillPaymentInput) GetCurrencyRate() optionalnullable.OptionalNullable[f
 	return o.CurrencyRate
 }
 
-func (o *BillPaymentInput) GetTotalAmount() *float64 {
+func (o *BillPaymentInput) GetTotalAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -508,7 +517,7 @@ func (o *BillPaymentInput) GetAccount() optionalnullable.OptionalNullable[Linked
 	return o.Account
 }
 
-func (o *BillPaymentInput) GetTransactionDate() *time.Time {
+func (o *BillPaymentInput) GetTransactionDate() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -578,7 +587,7 @@ func (o *BillPaymentInput) GetTrackingCategories() optionalnullable.OptionalNull
 	return o.TrackingCategories
 }
 
-func (o *BillPaymentInput) GetCustomFields() []CustomFieldUnion {
+func (o *BillPaymentInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -604,4 +613,11 @@ func (o *BillPaymentInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *BillPaymentInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

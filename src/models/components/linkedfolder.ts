@@ -12,7 +12,7 @@ export type LinkedFolder = {
   /**
    * A unique identifier for an object.
    */
-  id: string;
+  id?: string | undefined;
   /**
    * The name of the folder
    */
@@ -25,7 +25,7 @@ export const LinkedFolder$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: types.string(),
+  id: types.optional(types.string()),
   name: z.nullable(types.string()).optional(),
 });
 

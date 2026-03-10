@@ -34,7 +34,7 @@ func (e FeedStatus) ToPointer() *FeedStatus {
 
 type BankFeedAccount struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// Type of the bank account.
 	BankAccountType *BankAccountType `json:"bank_account_type,omitempty"`
 	// The source account's unique identifier.
@@ -51,7 +51,7 @@ type BankFeedAccount struct {
 	FeedStatus *FeedStatus `json:"feed_status,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
 	Country      optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
-	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                             `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
@@ -61,7 +61,8 @@ type BankFeedAccount struct {
 	// The user who last updated the object.
 	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
+	CreatedBy            optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
 }
 
 func (b BankFeedAccount) MarshalJSON() ([]byte, error) {
@@ -69,15 +70,15 @@ func (b BankFeedAccount) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BankFeedAccount) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *BankFeedAccount) GetID() string {
+func (o *BankFeedAccount) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -138,7 +139,7 @@ func (o *BankFeedAccount) GetCountry() optionalnullable.OptionalNullable[string]
 	return o.Country
 }
 
-func (o *BankFeedAccount) GetCustomFields() []CustomFieldUnion {
+func (o *BankFeedAccount) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -180,6 +181,13 @@ func (o *BankFeedAccount) GetCreatedBy() optionalnullable.OptionalNullable[strin
 	return o.CreatedBy
 }
 
+func (o *BankFeedAccount) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type BankFeedAccountInput struct {
 	// Type of the bank account.
 	BankAccountType *BankAccountType `json:"bank_account_type,omitempty"`
@@ -196,8 +204,20 @@ type BankFeedAccountInput struct {
 	// Current status of the bank feed.
 	FeedStatus *FeedStatus `json:"feed_status,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
-	Country      optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
-	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	Country              optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
+	CustomFields         []CustomField                             `json:"custom_fields,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
+}
+
+func (b BankFeedAccountInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BankFeedAccountInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BankFeedAccountInput) GetBankAccountType() *BankAccountType {
@@ -256,9 +276,16 @@ func (o *BankFeedAccountInput) GetCountry() optionalnullable.OptionalNullable[st
 	return o.Country
 }
 
-func (o *BankFeedAccountInput) GetCustomFields() []CustomFieldUnion {
+func (o *BankFeedAccountInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
 	return o.CustomFields
+}
+
+func (o *BankFeedAccountInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

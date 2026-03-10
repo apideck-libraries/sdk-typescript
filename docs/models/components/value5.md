@@ -6,18 +6,18 @@
 ### `string`
 
 ```typescript
-const value: string = "GC6000 series";
+const value: string = "<value>";
 ```
 
 ### `number`
 
 ```typescript
-const value: number = 10;
+const value: number = 128403;
 ```
 
 ### `number`
 
 ```typescript
-const value: number = 10.5;
+const value: number = 1284.03;
 ```
 

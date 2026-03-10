@@ -106,7 +106,11 @@ let value: AccountingExpensesUpdateRequest = {
           name: "Acme Inc.",
         },
         locationId: "12345",
-        location: null,
+        location: {
+          id: "123456",
+          displayId: "123456",
+          name: "New York Office",
+        },
         taxRate: {
           id: "123456",
           code: "N-T",

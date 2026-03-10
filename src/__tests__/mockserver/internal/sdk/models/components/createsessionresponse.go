@@ -4,11 +4,24 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type CreateSessionResponseData struct {
-	SessionURI   string `json:"session_uri"`
-	SessionToken string `json:"session_token"`
+	SessionURI           string         `json:"session_uri"`
+	SessionToken         string         `json:"session_token"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (c CreateSessionResponseData) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateSessionResponseData) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"session_uri", "session_token"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CreateSessionResponseData) GetSessionURI() string {
@@ -25,6 +38,13 @@ func (o *CreateSessionResponseData) GetSessionToken() string {
 	return o.SessionToken
 }
 
+func (o *CreateSessionResponseData) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 // CreateSessionResponse - Session created
 type CreateSessionResponse struct {
 	// HTTP Response Status Code
@@ -33,7 +53,19 @@ type CreateSessionResponse struct {
 	Status string                    `json:"status"`
 	Data   CreateSessionResponseData `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
+	Raw                  optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
+	AdditionalProperties map[string]any                                    `additionalProperties:"true" json:"-"`
+}
+
+func (c CreateSessionResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateSessionResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"status_code", "status", "data"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CreateSessionResponse) GetStatusCode() int64 {
@@ -62,4 +94,11 @@ func (o *CreateSessionResponse) GetRaw() optionalnullable.OptionalNullable[map[s
 		return nil
 	}
 	return o.Raw
+}
+
+func (o *CreateSessionResponse) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

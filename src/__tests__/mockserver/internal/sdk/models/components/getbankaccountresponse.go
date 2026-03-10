@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 // GetBankAccountResponse - Bank Account
 type GetBankAccountResponse struct {
 	// HTTP Response Status Code
@@ -13,8 +17,20 @@ type GetBankAccountResponse struct {
 	// Unified API resource name
 	Resource *string `json:"resource,omitempty"`
 	// Operation performed
-	Operation *string               `json:"operation,omitempty"`
-	Data      AccountingBankAccount `json:"data"`
+	Operation            *string               `json:"operation,omitempty"`
+	Data                 AccountingBankAccount `json:"data"`
+	AdditionalProperties map[string]any        `additionalProperties:"true" json:"-"`
+}
+
+func (g GetBankAccountResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetBankAccountResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"status_code", "status", "data"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *GetBankAccountResponse) GetStatusCode() int64 {
@@ -57,4 +73,11 @@ func (o *GetBankAccountResponse) GetData() AccountingBankAccount {
 		return AccountingBankAccount{}
 	}
 	return o.Data
+}
+
+func (o *GetBankAccountResponse) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

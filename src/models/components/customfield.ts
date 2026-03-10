@@ -3,62 +3,30 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { remap as remap$ } from "../../lib/primitives.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type CustomFieldValue25 = string | number | boolean | {
-  [k: string]: any;
-};
+export type Five = string | number | boolean | { [k: string]: any };
 
-export type CustomFieldValue =
+export type Value =
   | string
   | number
   | boolean
   | { [k: string]: any }
   | Array<string | number | boolean | { [k: string]: any } | null>;
 
-export type CustomField2 = {
+export type CustomField = {
   /**
    * Unique identifier for the custom field.
    */
   id?: string | null | undefined;
-  /**
-   * Name of the custom field.
-   */
-  name: string | null;
-  /**
-   * More information about the custom field
-   */
-  description?: string | null | undefined;
-  value?:
-    | string
-    | number
-    | boolean
-    | { [k: string]: any }
-    | Array<string | number | boolean | { [k: string]: any } | null>
-    | null
-    | undefined;
-};
-
-export type CustomFieldValue5 = string | number | boolean | {
-  [k: string]: any;
-};
-
-export type CustomField1Value =
-  | string
-  | number
-  | boolean
-  | { [k: string]: any }
-  | Array<string | number | boolean | { [k: string]: any } | null>;
-
-export type CustomField1 = {
-  /**
-   * Unique identifier for the custom field.
-   */
-  id: string | null;
   /**
    * Name of the custom field.
    */
@@ -75,81 +43,68 @@ export type CustomField1 = {
     | Array<string | number | boolean | { [k: string]: any } | null>
     | null
     | undefined;
-};
-
-export type CustomField = CustomField1 | CustomField2;
-
-/** @internal */
-export const CustomFieldValue25$inboundSchema: z.ZodType<
-  CustomFieldValue25,
-  z.ZodTypeDef,
-  unknown
-> = smartUnion([
-  types.string(),
-  types.number(),
-  types.boolean(),
-  z.record(z.any()),
-]);
-/** @internal */
-export type CustomFieldValue25$Outbound = string | number | boolean | {
-  [k: string]: any;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
-export const CustomFieldValue25$outboundSchema: z.ZodType<
-  CustomFieldValue25$Outbound,
-  z.ZodTypeDef,
-  CustomFieldValue25
-> = smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]);
+export const Five$inboundSchema: z.ZodType<Five, z.ZodTypeDef, unknown> =
+  smartUnion([
+    types.string(),
+    types.number(),
+    types.boolean(),
+    z.record(z.any()),
+  ]);
+/** @internal */
+export type Five$Outbound = string | number | boolean | { [k: string]: any };
 
-export function customFieldValue25ToJSON(
-  customFieldValue25: CustomFieldValue25,
-): string {
-  return JSON.stringify(
-    CustomFieldValue25$outboundSchema.parse(customFieldValue25),
-  );
+/** @internal */
+export const Five$outboundSchema: z.ZodType<Five$Outbound, z.ZodTypeDef, Five> =
+  smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]);
+
+export function fiveToJSON(five: Five): string {
+  return JSON.stringify(Five$outboundSchema.parse(five));
 }
-export function customFieldValue25FromJSON(
+export function fiveFromJSON(
   jsonString: string,
-): SafeParseResult<CustomFieldValue25, SDKValidationError> {
+): SafeParseResult<Five, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CustomFieldValue25$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CustomFieldValue25' from JSON`,
+    (x) => Five$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Five' from JSON`,
   );
 }
 
 /** @internal */
-export const CustomFieldValue$inboundSchema: z.ZodType<
-  CustomFieldValue,
-  z.ZodTypeDef,
-  unknown
-> = smartUnion([
-  types.string(),
-  types.number(),
-  types.boolean(),
-  z.record(z.any()),
-  z.array(
-    types.nullable(
-      smartUnion([
-        types.string(),
-        types.number(),
-        types.boolean(),
-        z.record(z.any()),
-      ]),
+export const Value$inboundSchema: z.ZodType<Value, z.ZodTypeDef, unknown> =
+  smartUnion([
+    types.string(),
+    types.number(),
+    types.boolean(),
+    z.record(z.any()),
+    z.array(
+      types.nullable(
+        smartUnion([
+          types.string(),
+          types.number(),
+          types.boolean(),
+          z.record(z.any()),
+        ]),
+      ),
     ),
-  ),
-]);
+  ]);
 /** @internal */
-export type CustomFieldValue$Outbound = string | number | boolean | {
-  [k: string]: any;
-} | Array<string | number | boolean | { [k: string]: any } | null>;
+export type Value$Outbound =
+  | string
+  | number
+  | boolean
+  | { [k: string]: any }
+  | Array<string | number | boolean | { [k: string]: any } | null>;
 
 /** @internal */
-export const CustomFieldValue$outboundSchema: z.ZodType<
-  CustomFieldValue$Outbound,
+export const Value$outboundSchema: z.ZodType<
+  Value$Outbound,
   z.ZodTypeDef,
-  CustomFieldValue
+  Value
 > = smartUnion([
   z.string(),
   z.number(),
@@ -162,55 +117,55 @@ export const CustomFieldValue$outboundSchema: z.ZodType<
   ),
 ]);
 
-export function customFieldValueToJSON(
-  customFieldValue: CustomFieldValue,
-): string {
-  return JSON.stringify(
-    CustomFieldValue$outboundSchema.parse(customFieldValue),
-  );
+export function valueToJSON(value: Value): string {
+  return JSON.stringify(Value$outboundSchema.parse(value));
 }
-export function customFieldValueFromJSON(
+export function valueFromJSON(
   jsonString: string,
-): SafeParseResult<CustomFieldValue, SDKValidationError> {
+): SafeParseResult<Value, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CustomFieldValue$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CustomFieldValue' from JSON`,
+    (x) => Value$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Value' from JSON`,
   );
 }
 
 /** @internal */
-export const CustomField2$inboundSchema: z.ZodType<
-  CustomField2,
+export const CustomField$inboundSchema: z.ZodType<
+  CustomField,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  name: types.nullable(types.string()),
-  description: z.nullable(types.string()).optional(),
-  value: z.nullable(
-    smartUnion([
-      types.string(),
-      types.number(),
-      types.boolean(),
-      z.record(z.any()),
-      z.array(
-        types.nullable(
-          smartUnion([
-            types.string(),
-            types.number(),
-            types.boolean(),
-            z.record(z.any()),
-          ]),
+> = collectExtraKeys$(
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    value: z.nullable(
+      smartUnion([
+        types.string(),
+        types.number(),
+        types.boolean(),
+        z.record(z.any()),
+        z.array(
+          types.nullable(
+            smartUnion([
+              types.string(),
+              types.number(),
+              types.boolean(),
+              z.record(z.any()),
+            ]),
+          ),
         ),
-      ),
-    ]),
-  ).optional(),
-});
+      ]),
+    ).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+);
 /** @internal */
-export type CustomField2$Outbound = {
+export type CustomField$Outbound = {
   id?: string | null | undefined;
-  name: string | null;
+  name?: string | null | undefined;
   description?: string | null | undefined;
   value?:
     | string
@@ -220,195 +175,16 @@ export type CustomField2$Outbound = {
     | Array<string | number | boolean | { [k: string]: any } | null>
     | null
     | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
-export const CustomField2$outboundSchema: z.ZodType<
-  CustomField2$Outbound,
+export const CustomField$outboundSchema: z.ZodType<
+  CustomField$Outbound,
   z.ZodTypeDef,
-  CustomField2
+  CustomField
 > = z.object({
   id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()),
-  description: z.nullable(z.string()).optional(),
-  value: z.nullable(
-    smartUnion([
-      z.string(),
-      z.number(),
-      z.boolean(),
-      z.record(z.any()),
-      z.array(
-        z.nullable(
-          smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]),
-        ),
-      ),
-    ]),
-  ).optional(),
-});
-
-export function customField2ToJSON(customField2: CustomField2): string {
-  return JSON.stringify(CustomField2$outboundSchema.parse(customField2));
-}
-export function customField2FromJSON(
-  jsonString: string,
-): SafeParseResult<CustomField2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CustomField2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CustomField2' from JSON`,
-  );
-}
-
-/** @internal */
-export const CustomFieldValue5$inboundSchema: z.ZodType<
-  CustomFieldValue5,
-  z.ZodTypeDef,
-  unknown
-> = smartUnion([
-  types.string(),
-  types.number(),
-  types.boolean(),
-  z.record(z.any()),
-]);
-/** @internal */
-export type CustomFieldValue5$Outbound = string | number | boolean | {
-  [k: string]: any;
-};
-
-/** @internal */
-export const CustomFieldValue5$outboundSchema: z.ZodType<
-  CustomFieldValue5$Outbound,
-  z.ZodTypeDef,
-  CustomFieldValue5
-> = smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]);
-
-export function customFieldValue5ToJSON(
-  customFieldValue5: CustomFieldValue5,
-): string {
-  return JSON.stringify(
-    CustomFieldValue5$outboundSchema.parse(customFieldValue5),
-  );
-}
-export function customFieldValue5FromJSON(
-  jsonString: string,
-): SafeParseResult<CustomFieldValue5, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CustomFieldValue5$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CustomFieldValue5' from JSON`,
-  );
-}
-
-/** @internal */
-export const CustomField1Value$inboundSchema: z.ZodType<
-  CustomField1Value,
-  z.ZodTypeDef,
-  unknown
-> = smartUnion([
-  types.string(),
-  types.number(),
-  types.boolean(),
-  z.record(z.any()),
-  z.array(
-    types.nullable(
-      smartUnion([
-        types.string(),
-        types.number(),
-        types.boolean(),
-        z.record(z.any()),
-      ]),
-    ),
-  ),
-]);
-/** @internal */
-export type CustomField1Value$Outbound = string | number | boolean | {
-  [k: string]: any;
-} | Array<string | number | boolean | { [k: string]: any } | null>;
-
-/** @internal */
-export const CustomField1Value$outboundSchema: z.ZodType<
-  CustomField1Value$Outbound,
-  z.ZodTypeDef,
-  CustomField1Value
-> = smartUnion([
-  z.string(),
-  z.number(),
-  z.boolean(),
-  z.record(z.any()),
-  z.array(
-    z.nullable(
-      smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]),
-    ),
-  ),
-]);
-
-export function customField1ValueToJSON(
-  customField1Value: CustomField1Value,
-): string {
-  return JSON.stringify(
-    CustomField1Value$outboundSchema.parse(customField1Value),
-  );
-}
-export function customField1ValueFromJSON(
-  jsonString: string,
-): SafeParseResult<CustomField1Value, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CustomField1Value$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CustomField1Value' from JSON`,
-  );
-}
-
-/** @internal */
-export const CustomField1$inboundSchema: z.ZodType<
-  CustomField1,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: types.nullable(types.string()),
-  name: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  value: z.nullable(
-    smartUnion([
-      types.string(),
-      types.number(),
-      types.boolean(),
-      z.record(z.any()),
-      z.array(
-        types.nullable(
-          smartUnion([
-            types.string(),
-            types.number(),
-            types.boolean(),
-            z.record(z.any()),
-          ]),
-        ),
-      ),
-    ]),
-  ).optional(),
-});
-/** @internal */
-export type CustomField1$Outbound = {
-  id: string | null;
-  name?: string | null | undefined;
-  description?: string | null | undefined;
-  value?:
-    | string
-    | number
-    | boolean
-    | { [k: string]: any }
-    | Array<string | number | boolean | { [k: string]: any } | null>
-    | null
-    | undefined;
-};
-
-/** @internal */
-export const CustomField1$outboundSchema: z.ZodType<
-  CustomField1$Outbound,
-  z.ZodTypeDef,
-  CustomField1
-> = z.object({
-  id: z.nullable(z.string()),
   name: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   value: z.nullable(
@@ -424,44 +200,15 @@ export const CustomField1$outboundSchema: z.ZodType<
       ),
     ]),
   ).optional(),
+  additionalProperties: z.record(z.any()).optional(),
+}).transform((v) => {
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      additionalProperties: null,
+    }),
+  };
 });
-
-export function customField1ToJSON(customField1: CustomField1): string {
-  return JSON.stringify(CustomField1$outboundSchema.parse(customField1));
-}
-export function customField1FromJSON(
-  jsonString: string,
-): SafeParseResult<CustomField1, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CustomField1$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CustomField1' from JSON`,
-  );
-}
-
-/** @internal */
-export const CustomField$inboundSchema: z.ZodType<
-  CustomField,
-  z.ZodTypeDef,
-  unknown
-> = smartUnion([
-  z.lazy(() => CustomField1$inboundSchema),
-  z.lazy(() => CustomField2$inboundSchema),
-]);
-/** @internal */
-export type CustomField$Outbound =
-  | CustomField1$Outbound
-  | CustomField2$Outbound;
-
-/** @internal */
-export const CustomField$outboundSchema: z.ZodType<
-  CustomField$Outbound,
-  z.ZodTypeDef,
-  CustomField
-> = smartUnion([
-  z.lazy(() => CustomField1$outboundSchema),
-  z.lazy(() => CustomField2$outboundSchema),
-]);
 
 export function customFieldToJSON(customField: CustomField): string {
   return JSON.stringify(CustomField$outboundSchema.parse(customField));

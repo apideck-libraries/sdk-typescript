@@ -39,7 +39,7 @@ func (e CreditNoteType) ToPointer() *CreditNoteType {
 
 type CreditNote struct {
 	// Unique identifier representing the entity
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// Credit note number.
 	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// The customer this entity is linked to.
@@ -59,7 +59,7 @@ type CreditNote struct {
 	// Sub-total amount, normally before tax.
 	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Amount of transaction
-	TotalAmount float64 `json:"total_amount"`
+	TotalAmount *float64 `json:"total_amount,omitempty"`
 	// Total tax amount applied to this invoice.
 	TotalTax optionalnullable.OptionalNullable[float64] `json:"total_tax,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
@@ -84,14 +84,16 @@ type CreditNote struct {
 	// Optional note to be associated with the credit note.
 	Note optionalnullable.OptionalNullable[string] `json:"note,omitempty"`
 	// Optional terms to be associated with the credit note.
-	Terms           optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID         optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	BillingAddress  *Address                                  `json:"billing_address,omitempty"`
 	ShippingAddress *Address                                  `json:"shipping_address,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
-	CustomFields   []CustomFieldUnion                                `json:"custom_fields,omitempty"`
+	CustomFields   []CustomField                                     `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -103,7 +105,8 @@ type CreditNote struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (c CreditNote) MarshalJSON() ([]byte, error) {
@@ -111,15 +114,15 @@ func (c CreditNote) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreditNote) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "total_amount"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *CreditNote) GetID() string {
+func (o *CreditNote) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -187,9 +190,9 @@ func (o *CreditNote) GetSubTotal() optionalnullable.OptionalNullable[float64] {
 	return o.SubTotal
 }
 
-func (o *CreditNote) GetTotalAmount() float64 {
+func (o *CreditNote) GetTotalAmount() *float64 {
 	if o == nil {
-		return 0.0
+		return nil
 	}
 	return o.TotalAmount
 }
@@ -292,6 +295,13 @@ func (o *CreditNote) GetTerms() optionalnullable.OptionalNullable[string] {
 	return o.Terms
 }
 
+func (o *CreditNote) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
+}
+
 func (o *CreditNote) GetBillingAddress() *Address {
 	if o == nil {
 		return nil
@@ -320,7 +330,7 @@ func (o *CreditNote) GetCustomMappings() optionalnullable.OptionalNullable[map[s
 	return o.CustomMappings
 }
 
-func (o *CreditNote) GetCustomFields() []CustomFieldUnion {
+func (o *CreditNote) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -369,6 +379,13 @@ func (o *CreditNote) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *CreditNote) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type CreditNoteInput struct {
 	// Credit note number.
 	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
@@ -389,7 +406,7 @@ type CreditNoteInput struct {
 	// Sub-total amount, normally before tax.
 	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Amount of transaction
-	TotalAmount float64 `json:"total_amount"`
+	TotalAmount *float64 `json:"total_amount,omitempty"`
 	// Total tax amount applied to this invoice.
 	TotalTax optionalnullable.OptionalNullable[float64] `json:"total_tax,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
@@ -414,16 +431,19 @@ type CreditNoteInput struct {
 	// Optional note to be associated with the credit note.
 	Note optionalnullable.OptionalNullable[string] `json:"note,omitempty"`
 	// Optional terms to be associated with the credit note.
-	Terms           optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID         optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	BillingAddress  *Address                                  `json:"billing_address,omitempty"`
 	ShippingAddress *Address                                  `json:"shipping_address,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
-	CustomFields       []CustomFieldUnion                                           `json:"custom_fields,omitempty"`
+	CustomFields       []CustomField                                                `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (c CreditNoteInput) MarshalJSON() ([]byte, error) {
@@ -431,7 +451,7 @@ func (c CreditNoteInput) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreditNoteInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"total_amount"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -500,9 +520,9 @@ func (o *CreditNoteInput) GetSubTotal() optionalnullable.OptionalNullable[float6
 	return o.SubTotal
 }
 
-func (o *CreditNoteInput) GetTotalAmount() float64 {
+func (o *CreditNoteInput) GetTotalAmount() *float64 {
 	if o == nil {
-		return 0.0
+		return nil
 	}
 	return o.TotalAmount
 }
@@ -605,6 +625,13 @@ func (o *CreditNoteInput) GetTerms() optionalnullable.OptionalNullable[string] {
 	return o.Terms
 }
 
+func (o *CreditNoteInput) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
+}
+
 func (o *CreditNoteInput) GetBillingAddress() *Address {
 	if o == nil {
 		return nil
@@ -626,7 +653,7 @@ func (o *CreditNoteInput) GetTrackingCategories() optionalnullable.OptionalNulla
 	return o.TrackingCategories
 }
 
-func (o *CreditNoteInput) GetCustomFields() []CustomFieldUnion {
+func (o *CreditNoteInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -645,4 +672,11 @@ func (o *CreditNoteInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *CreditNoteInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

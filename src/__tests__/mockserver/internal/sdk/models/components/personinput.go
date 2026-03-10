@@ -22,7 +22,8 @@ type PersonInput struct {
 	// Date of birth
 	Birthday optionalnullable.OptionalNullable[types.Date] `json:"birthday,omitempty"`
 	// Date of death
-	DeceasedOn optionalnullable.OptionalNullable[types.Date] `json:"deceased_on,omitempty"`
+	DeceasedOn           optionalnullable.OptionalNullable[types.Date] `json:"deceased_on,omitempty"`
+	AdditionalProperties map[string]any                                `additionalProperties:"true" json:"-"`
 }
 
 func (p PersonInput) MarshalJSON() ([]byte, error) {
@@ -83,4 +84,11 @@ func (o *PersonInput) GetDeceasedOn() optionalnullable.OptionalNullable[types.Da
 		return nil
 	}
 	return o.DeceasedOn
+}
+
+func (o *PersonInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -57,6 +60,7 @@ export type LinkedFinancialAccount = {
    * The third-party API ID of original entity
    */
   downstreamId?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /**
@@ -83,6 +87,7 @@ export type LinkedFinancialAccountInput = {
    * The bank account number
    */
   accountNumber?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -103,15 +108,20 @@ export const LinkedFinancialAccount$inboundSchema: z.ZodType<
   LinkedFinancialAccount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  type: z.nullable(LinkedFinancialAccountAccountType$inboundSchema).optional(),
-  code: types.optional(types.string()),
-  display_id: z.nullable(types.string()).optional(),
-  account_number: z.nullable(types.string()).optional(),
-  name: types.optional(types.string()),
-  downstream_id: z.nullable(types.string()).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    type: z.nullable(LinkedFinancialAccountAccountType$inboundSchema)
+      .optional(),
+    code: types.optional(types.string()),
+    display_id: z.nullable(types.string()).optional(),
+    account_number: z.nullable(types.string()).optional(),
+    name: types.optional(types.string()),
+    downstream_id: z.nullable(types.string()).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "display_id": "displayId",
     "account_number": "accountNumber",
@@ -136,6 +146,7 @@ export type LinkedFinancialAccountInput$Outbound = {
   code?: string | undefined;
   display_id?: string | null | undefined;
   account_number?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -149,11 +160,16 @@ export const LinkedFinancialAccountInput$outboundSchema: z.ZodType<
   code: z.string().optional(),
   displayId: z.nullable(z.string()).optional(),
   accountNumber: z.nullable(z.string()).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    accountNumber: "account_number",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      displayId: "display_id",
+      accountNumber: "account_number",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function linkedFinancialAccountInputToJSON(

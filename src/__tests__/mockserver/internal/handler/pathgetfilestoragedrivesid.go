@@ -54,8 +54,8 @@ func testFileStorageDrivesOneFileStorageDrivesOne0(w http.ResponseWriter, req *h
 		Resource:   "Drives",
 		Operation:  "one",
 		Data: components.Drive{
-			ID:          "12345",
-			Name:        "Project Resources",
+			ID:          types.String("12345"),
+			Name:        types.String("Project Resources"),
 			Description: optionalnullable.From(types.String("A description")),
 			UpdatedBy:   optionalnullable.From(types.String("12345")),
 			CreatedBy:   optionalnullable.From(types.String("12345")),

@@ -3,17 +3,20 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 
 export type SubsidiaryReferenceInput = {
   /**
    * The name of the company.
    */
   name?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
 export type SubsidiaryReferenceInput$Outbound = {
   name?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -23,6 +26,14 @@ export const SubsidiaryReferenceInput$outboundSchema: z.ZodType<
   SubsidiaryReferenceInput
 > = z.object({
   name: z.nullable(z.string()).optional(),
+  additionalProperties: z.record(z.any()).optional(),
+}).transform((v) => {
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function subsidiaryReferenceInputToJSON(

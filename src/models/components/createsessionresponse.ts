@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -12,6 +15,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type CreateSessionResponseData = {
   sessionUri: string;
   sessionToken: string;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /**
@@ -31,6 +35,7 @@ export type CreateSessionResponse = {
    * Raw response from the integration when raw=true query param is provided
    */
   raw?: { [k: string]: any } | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -38,10 +43,14 @@ export const CreateSessionResponseData$inboundSchema: z.ZodType<
   CreateSessionResponseData,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  session_uri: types.string(),
-  session_token: types.string(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    session_uri: types.string(),
+    session_token: types.string(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "session_uri": "sessionUri",
     "session_token": "sessionToken",
@@ -63,12 +72,16 @@ export const CreateSessionResponse$inboundSchema: z.ZodType<
   CreateSessionResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  status_code: types.number(),
-  status: types.string(),
-  data: z.lazy(() => CreateSessionResponseData$inboundSchema),
-  _raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    status_code: types.number(),
+    status: types.string(),
+    data: z.lazy(() => CreateSessionResponseData$inboundSchema),
+    _raw: z.nullable(z.record(z.any())).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
     "_raw": "raw",

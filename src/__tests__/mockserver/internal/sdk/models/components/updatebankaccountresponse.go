@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 // UpdateBankAccountResponse - Bank Account updated
 type UpdateBankAccountResponse struct {
 	// HTTP Response Status Code
@@ -15,7 +19,19 @@ type UpdateBankAccountResponse struct {
 	// Operation performed
 	Operation *string `json:"operation,omitempty"`
 	// A object containing a unique identifier for the resource that was created, updated, or deleted.
-	Data UnifiedID `json:"data"`
+	Data                 UnifiedID      `json:"data"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (u UpdateBankAccountResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateBankAccountResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"status_code", "status", "data"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UpdateBankAccountResponse) GetStatusCode() int64 {
@@ -58,4 +74,11 @@ func (o *UpdateBankAccountResponse) GetData() UnifiedID {
 		return UnifiedID{}
 	}
 	return o.Data
+}
+
+func (o *UpdateBankAccountResponse) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

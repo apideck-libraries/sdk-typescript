@@ -10,9 +10,9 @@ import (
 
 type Drive struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// The name of the drive
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// A description of the object.
 	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
@@ -26,7 +26,8 @@ type Drive struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (d Drive) MarshalJSON() ([]byte, error) {
@@ -34,22 +35,22 @@ func (d Drive) MarshalJSON() ([]byte, error) {
 }
 
 func (d *Drive) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id", "name"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Drive) GetID() string {
+func (o *Drive) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
 
-func (o *Drive) GetName() string {
+func (o *Drive) GetName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Name
 }
@@ -101,4 +102,11 @@ func (o *Drive) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *Drive) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

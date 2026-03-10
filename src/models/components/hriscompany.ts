@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -59,7 +62,7 @@ export type HrisCompany = {
    * A unique identifier for an object.
    */
   id?: string | undefined;
-  legalName: string | null;
+  legalName?: string | null | undefined;
   displayName?: string | null | undefined;
   subdomain?: string | null | undefined;
   status?: HrisCompanyStatus | undefined;
@@ -101,10 +104,11 @@ export type HrisCompany = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type HrisCompanyInput = {
-  legalName: string | null;
+  legalName?: string | null | undefined;
   displayName?: string | null | undefined;
   subdomain?: string | null | undefined;
   status?: HrisCompanyStatus | undefined;
@@ -125,6 +129,7 @@ export type HrisCompanyInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -145,27 +150,31 @@ export const HrisCompany$inboundSchema: z.ZodType<
   HrisCompany,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  legal_name: types.nullable(types.string()),
-  display_name: z.nullable(types.string()).optional(),
-  subdomain: z.nullable(types.string()).optional(),
-  status: types.optional(HrisCompanyStatus$inboundSchema),
-  company_number: z.nullable(types.string()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  addresses: types.optional(z.array(Address$inboundSchema)),
-  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
-  emails: types.optional(z.array(Email$inboundSchema)),
-  websites: types.optional(z.array(Website$inboundSchema)),
-  debtor_id: z.nullable(types.string()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  deleted: types.optional(types.boolean()),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    legal_name: z.nullable(types.string()).optional(),
+    display_name: z.nullable(types.string()).optional(),
+    subdomain: z.nullable(types.string()).optional(),
+    status: types.optional(HrisCompanyStatus$inboundSchema),
+    company_number: z.nullable(types.string()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    addresses: types.optional(z.array(Address$inboundSchema)),
+    phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+    emails: types.optional(z.array(Email$inboundSchema)),
+    websites: types.optional(z.array(Website$inboundSchema)),
+    debtor_id: z.nullable(types.string()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    deleted: types.optional(types.boolean()),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "legal_name": "legalName",
     "display_name": "displayName",
@@ -193,7 +202,7 @@ export function hrisCompanyFromJSON(
 
 /** @internal */
 export type HrisCompanyInput$Outbound = {
-  legal_name: string | null;
+  legal_name?: string | null | undefined;
   display_name?: string | null | undefined;
   subdomain?: string | null | undefined;
   status?: string | undefined;
@@ -205,6 +214,7 @@ export type HrisCompanyInput$Outbound = {
   websites?: Array<Website$Outbound> | undefined;
   debtor_id?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -213,7 +223,7 @@ export const HrisCompanyInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   HrisCompanyInput
 > = z.object({
-  legalName: z.nullable(z.string()),
+  legalName: z.nullable(z.string()).optional(),
   displayName: z.nullable(z.string()).optional(),
   subdomain: z.nullable(z.string()).optional(),
   status: HrisCompanyStatus$outboundSchema.optional(),
@@ -225,15 +235,20 @@ export const HrisCompanyInput$outboundSchema: z.ZodType<
   websites: z.array(Website$outboundSchema).optional(),
   debtorId: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    legalName: "legal_name",
-    displayName: "display_name",
-    companyNumber: "company_number",
-    phoneNumbers: "phone_numbers",
-    debtorId: "debtor_id",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      legalName: "legal_name",
+      displayName: "display_name",
+      companyNumber: "company_number",
+      phoneNumbers: "phone_numbers",
+      debtorId: "debtor_id",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function hrisCompanyInputToJSON(

@@ -55,7 +55,7 @@ func testIssueTrackingCollectionTicketsAllIssueTrackingCollectionTicketsAll0(w h
 		Operation:  "all",
 		Data: []components.Ticket{
 			components.Ticket{
-				ID:           "12345",
+				ID:           types.String("12345"),
 				ParentID:     optionalnullable.From(types.String("12345")),
 				CollectionID: optionalnullable.From(types.String("12345")),
 				Type:         optionalnullable.From(types.String("Technical")),
@@ -65,11 +65,11 @@ func testIssueTrackingCollectionTicketsAllIssueTrackingCollectionTicketsAll0(w h
 				Priority:     optionalnullable.From(components.TicketPriorityHigh.ToPointer()),
 				Assignees: []components.Assignee{
 					components.Assignee{
-						ID:       "12345",
+						ID:       types.String("12345"),
 						Username: optionalnullable.From(types.String("Cocoa")),
 					},
 					components.Assignee{
-						ID:       "12345",
+						ID:       types.String("12345"),
 						Username: optionalnullable.From(types.String("Cocoa")),
 					},
 				},
@@ -80,15 +80,15 @@ func testIssueTrackingCollectionTicketsAllIssueTrackingCollectionTicketsAll0(w h
 				CompletedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				Tags: []components.CollectionTag{
 					components.CollectionTag{
-						ID:   types.String("12345"),
+						ID:   optionalnullable.From(types.String("12345")),
 						Name: optionalnullable.From(types.String("User Experience")),
 					},
 					components.CollectionTag{
-						ID:   types.String("12345"),
+						ID:   optionalnullable.From(types.String("12345")),
 						Name: optionalnullable.From(types.String("User Experience")),
 					},
 					components.CollectionTag{
-						ID:   types.String("12345"),
+						ID:   optionalnullable.From(types.String("12345")),
 						Name: optionalnullable.From(types.String("User Experience")),
 					},
 				},
@@ -109,7 +109,7 @@ func testIssueTrackingCollectionTicketsAllIssueTrackingCollectionTicketsAll0(w h
 				},
 			},
 			components.Ticket{
-				ID:           "12345",
+				ID:           types.String("12345"),
 				ParentID:     optionalnullable.From(types.String("12345")),
 				CollectionID: optionalnullable.From(types.String("12345")),
 				Type:         optionalnullable.From(types.String("Technical")),
@@ -119,7 +119,7 @@ func testIssueTrackingCollectionTicketsAllIssueTrackingCollectionTicketsAll0(w h
 				Priority:     optionalnullable.From(components.TicketPriorityHigh.ToPointer()),
 				Assignees: []components.Assignee{
 					components.Assignee{
-						ID:       "12345",
+						ID:       types.String("12345"),
 						Username: optionalnullable.From(types.String("Cocoa")),
 					},
 				},
@@ -130,11 +130,11 @@ func testIssueTrackingCollectionTicketsAllIssueTrackingCollectionTicketsAll0(w h
 				CompletedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				Tags: []components.CollectionTag{
 					components.CollectionTag{
-						ID:   types.String("12345"),
+						ID:   optionalnullable.From(types.String("12345")),
 						Name: optionalnullable.From(types.String("User Experience")),
 					},
 					components.CollectionTag{
-						ID:   types.String("12345"),
+						ID:   optionalnullable.From(types.String("12345")),
 						Name: optionalnullable.From(types.String("User Experience")),
 					},
 				},
@@ -184,7 +184,7 @@ func testIssueTrackingCollectionTicketsAllIssueTrackingCollectionTicketsAll0(w h
 				},
 			},
 			components.Ticket{
-				ID:           "12345",
+				ID:           types.String("12345"),
 				ParentID:     optionalnullable.From(types.String("12345")),
 				CollectionID: optionalnullable.From(types.String("12345")),
 				Type:         optionalnullable.From(types.String("Technical")),
@@ -194,7 +194,7 @@ func testIssueTrackingCollectionTicketsAllIssueTrackingCollectionTicketsAll0(w h
 				Priority:     optionalnullable.From(components.TicketPriorityHigh.ToPointer()),
 				Assignees: []components.Assignee{
 					components.Assignee{
-						ID:       "12345",
+						ID:       types.String("12345"),
 						Username: optionalnullable.From(types.String("Cocoa")),
 					},
 				},
@@ -205,7 +205,7 @@ func testIssueTrackingCollectionTicketsAllIssueTrackingCollectionTicketsAll0(w h
 				CompletedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				Tags: []components.CollectionTag{
 					components.CollectionTag{
-						ID:   types.String("12345"),
+						ID:   optionalnullable.From(types.String("12345")),
 						Name: optionalnullable.From(types.String("User Experience")),
 					},
 				},

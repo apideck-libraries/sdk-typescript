@@ -10,9 +10,9 @@ import * as types from "../../types/primitives.js";
 import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type Five = string | number | number;
+export type Value5 = string | number | number;
 
-export type Value =
+export type SimpleFormFieldOptionValue =
   | string
   | number
   | number
@@ -20,7 +20,7 @@ export type Value =
   | Array<string | number | number>;
 
 export type SimpleFormFieldOption = {
-  label: string;
+  label?: string | undefined;
   value?:
     | string
     | number
@@ -32,39 +32,45 @@ export type SimpleFormFieldOption = {
 };
 
 /** @internal */
-export const Five$inboundSchema: z.ZodType<Five, z.ZodTypeDef, unknown> =
+export const Value5$inboundSchema: z.ZodType<Value5, z.ZodTypeDef, unknown> =
   smartUnion([types.string(), types.number(), types.number()]);
 /** @internal */
-export type Five$Outbound = string | number | number;
+export type Value5$Outbound = string | number | number;
 
 /** @internal */
-export const Five$outboundSchema: z.ZodType<Five$Outbound, z.ZodTypeDef, Five> =
-  smartUnion([z.string(), z.number().int(), z.number()]);
+export const Value5$outboundSchema: z.ZodType<
+  Value5$Outbound,
+  z.ZodTypeDef,
+  Value5
+> = smartUnion([z.string(), z.number().int(), z.number()]);
 
-export function fiveToJSON(five: Five): string {
-  return JSON.stringify(Five$outboundSchema.parse(five));
+export function value5ToJSON(value5: Value5): string {
+  return JSON.stringify(Value5$outboundSchema.parse(value5));
 }
-export function fiveFromJSON(
+export function value5FromJSON(
   jsonString: string,
-): SafeParseResult<Five, SDKValidationError> {
+): SafeParseResult<Value5, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Five$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Five' from JSON`,
+    (x) => Value5$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Value5' from JSON`,
   );
 }
 
 /** @internal */
-export const Value$inboundSchema: z.ZodType<Value, z.ZodTypeDef, unknown> =
-  smartUnion([
-    types.string(),
-    types.number(),
-    types.number(),
-    types.boolean(),
-    z.array(smartUnion([types.string(), types.number(), types.number()])),
-  ]);
+export const SimpleFormFieldOptionValue$inboundSchema: z.ZodType<
+  SimpleFormFieldOptionValue,
+  z.ZodTypeDef,
+  unknown
+> = smartUnion([
+  types.string(),
+  types.number(),
+  types.number(),
+  types.boolean(),
+  z.array(smartUnion([types.string(), types.number(), types.number()])),
+]);
 /** @internal */
-export type Value$Outbound =
+export type SimpleFormFieldOptionValue$Outbound =
   | string
   | number
   | number
@@ -72,10 +78,10 @@ export type Value$Outbound =
   | Array<string | number | number>;
 
 /** @internal */
-export const Value$outboundSchema: z.ZodType<
-  Value$Outbound,
+export const SimpleFormFieldOptionValue$outboundSchema: z.ZodType<
+  SimpleFormFieldOptionValue$Outbound,
   z.ZodTypeDef,
-  Value
+  SimpleFormFieldOptionValue
 > = smartUnion([
   z.string(),
   z.number().int(),
@@ -84,16 +90,20 @@ export const Value$outboundSchema: z.ZodType<
   z.array(smartUnion([z.string(), z.number().int(), z.number()])),
 ]);
 
-export function valueToJSON(value: Value): string {
-  return JSON.stringify(Value$outboundSchema.parse(value));
+export function simpleFormFieldOptionValueToJSON(
+  simpleFormFieldOptionValue: SimpleFormFieldOptionValue,
+): string {
+  return JSON.stringify(
+    SimpleFormFieldOptionValue$outboundSchema.parse(simpleFormFieldOptionValue),
+  );
 }
-export function valueFromJSON(
+export function simpleFormFieldOptionValueFromJSON(
   jsonString: string,
-): SafeParseResult<Value, SDKValidationError> {
+): SafeParseResult<SimpleFormFieldOptionValue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Value$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Value' from JSON`,
+    (x) => SimpleFormFieldOptionValue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SimpleFormFieldOptionValue' from JSON`,
   );
 }
 
@@ -103,7 +113,7 @@ export const SimpleFormFieldOption$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  label: types.string(),
+  label: types.optional(types.string()),
   value: types.optional(
     smartUnion([
       types.string(),
@@ -121,7 +131,7 @@ export const SimpleFormFieldOption$inboundSchema: z.ZodType<
 });
 /** @internal */
 export type SimpleFormFieldOption$Outbound = {
-  label: string;
+  label?: string | undefined;
   value?:
     | string
     | number
@@ -138,7 +148,7 @@ export const SimpleFormFieldOption$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SimpleFormFieldOption
 > = z.object({
-  label: z.string(),
+  label: z.string().optional(),
   value: smartUnion([
     z.string(),
     z.number().int(),

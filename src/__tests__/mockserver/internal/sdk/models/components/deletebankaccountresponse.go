@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 // DeleteBankAccountResponse - Bank Account deleted
 type DeleteBankAccountResponse struct {
 	// HTTP Response Status Code
@@ -15,7 +19,19 @@ type DeleteBankAccountResponse struct {
 	// Operation performed
 	Operation *string `json:"operation,omitempty"`
 	// A object containing a unique identifier for the resource that was created, updated, or deleted.
-	Data UnifiedID `json:"data"`
+	Data                 UnifiedID      `json:"data"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (d DeleteBankAccountResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteBankAccountResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"status_code", "status", "data"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *DeleteBankAccountResponse) GetStatusCode() int64 {
@@ -58,4 +74,11 @@ func (o *DeleteBankAccountResponse) GetData() UnifiedID {
 		return UnifiedID{}
 	}
 	return o.Data
+}
+
+func (o *DeleteBankAccountResponse) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

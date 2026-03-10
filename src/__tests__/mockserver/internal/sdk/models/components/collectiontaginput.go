@@ -2,14 +2,38 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
+)
+
 type CollectionTagInput struct {
 	// A unique identifier for an object.
-	ID *string `json:"id"`
+	ID                   optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
 }
 
-func (o *CollectionTagInput) GetID() *string {
+func (c CollectionTagInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CollectionTagInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *CollectionTagInput) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
+}
+
+func (o *CollectionTagInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

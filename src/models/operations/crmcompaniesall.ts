@@ -69,7 +69,7 @@ export type CrmCompaniesAllResponse = {
   /**
    * Companies
    */
-  getCompaniesResponse?: components.GetCompaniesResponse | undefined;
+  getCompaniesResponse1?: components.GetCompaniesResponse1 | undefined;
   /**
    * Unexpected error
    */
@@ -127,8 +127,8 @@ export const CrmCompaniesAllResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetCompaniesResponse: types.optional(
-    components.GetCompaniesResponse$inboundSchema,
+  GetCompaniesResponse1: types.optional(
+    components.GetCompaniesResponse1$inboundSchema,
   ),
   UnexpectedErrorResponse: types.optional(
     components.UnexpectedErrorResponse$inboundSchema,
@@ -136,7 +136,7 @@ export const CrmCompaniesAllResponse$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "HttpMeta": "httpMeta",
-    "GetCompaniesResponse": "getCompaniesResponse",
+    "GetCompaniesResponse1": "getCompaniesResponse1",
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });

@@ -67,7 +67,7 @@ func testAccountingJournalEntriesAllAccountingJournalEntriesAll0(w http.Response
 						TaxAmount:   optionalnullable.From(types.Float64(27500)),
 						SubTotal:    optionalnullable.From(types.Float64(27500)),
 						TotalAmount: optionalnullable.From(types.Float64(27500)),
-						Type:        components.JournalEntryLineItemTypeDebit,
+						Type:        components.JournalEntryLineItemTypeDebit.ToPointer(),
 						TaxRate: &components.LinkedTaxRate{
 							ID:   optionalnullable.From(types.String("123456")),
 							Code: optionalnullable.From(types.String("N-T")),
@@ -88,12 +88,12 @@ func testAccountingJournalEntriesAllAccountingJournalEntriesAll0(w http.Response
 								Name: optionalnullable.From(types.String("New York")),
 							},
 						})),
-						LedgerAccount: &components.LinkedLedgerAccount{
+						LedgerAccount: optionalnullable.From(&components.LinkedLedgerAccount{
 							ID:          types.String("123456"),
 							Name:        optionalnullable.From(types.String("Bank account")),
 							NominalCode: optionalnullable.From(types.String("N091")),
 							Code:        optionalnullable.From(types.String("453")),
-						},
+						}),
 						Customer: optionalnullable.From(&components.LinkedCustomer{
 							ID:          types.String("12345"),
 							DisplayID:   optionalnullable.From(types.String("CUST00101")),
@@ -143,7 +143,7 @@ func testAccountingJournalEntriesAllAccountingJournalEntriesAll0(w http.Response
 						TaxAmount:   optionalnullable.From(types.Float64(27500)),
 						SubTotal:    optionalnullable.From(types.Float64(27500)),
 						TotalAmount: optionalnullable.From(types.Float64(27500)),
-						Type:        components.JournalEntryLineItemTypeDebit,
+						Type:        components.JournalEntryLineItemTypeDebit.ToPointer(),
 						TaxRate: &components.LinkedTaxRate{
 							ID:   optionalnullable.From(types.String("123456")),
 							Code: optionalnullable.From(types.String("N-T")),
@@ -156,12 +156,12 @@ func testAccountingJournalEntriesAllAccountingJournalEntriesAll0(w http.Response
 								Name: optionalnullable.From(types.String("New York")),
 							},
 						})),
-						LedgerAccount: &components.LinkedLedgerAccount{
+						LedgerAccount: optionalnullable.From(&components.LinkedLedgerAccount{
 							ID:          types.String("123456"),
 							Name:        optionalnullable.From(types.String("Bank account")),
 							NominalCode: optionalnullable.From(types.String("N091")),
 							Code:        optionalnullable.From(types.String("453")),
-						},
+						}),
 						Customer: optionalnullable.From(&components.LinkedCustomer{
 							ID:          types.String("12345"),
 							DisplayID:   optionalnullable.From(types.String("CUST00101")),
@@ -224,17 +224,15 @@ func testAccountingJournalEntriesAllAccountingJournalEntriesAll0(w http.Response
 				UpdatedAt:        optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				CreatedAt:        optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				RowVersion:       optionalnullable.From(types.String("1-12345")),
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{},
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						))),
+					},
 				},
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
@@ -294,7 +292,7 @@ func testAccountingJournalEntriesAllAccountingJournalEntriesAll0(w http.Response
 						TaxAmount:   optionalnullable.From(types.Float64(27500)),
 						SubTotal:    optionalnullable.From(types.Float64(27500)),
 						TotalAmount: optionalnullable.From(types.Float64(27500)),
-						Type:        components.JournalEntryLineItemTypeDebit,
+						Type:        components.JournalEntryLineItemTypeDebit.ToPointer(),
 						TaxRate: &components.LinkedTaxRate{
 							ID:   optionalnullable.From(types.String("123456")),
 							Code: optionalnullable.From(types.String("N-T")),
@@ -307,12 +305,12 @@ func testAccountingJournalEntriesAllAccountingJournalEntriesAll0(w http.Response
 								Name: optionalnullable.From(types.String("New York")),
 							},
 						})),
-						LedgerAccount: &components.LinkedLedgerAccount{
+						LedgerAccount: optionalnullable.From(&components.LinkedLedgerAccount{
 							ID:          types.String("123456"),
 							Name:        optionalnullable.From(types.String("Bank account")),
 							NominalCode: optionalnullable.From(types.String("N091")),
 							Code:        optionalnullable.From(types.String("453")),
-						},
+						}),
 						Customer: optionalnullable.From(&components.LinkedCustomer{
 							ID:          types.String("12345"),
 							DisplayID:   optionalnullable.From(types.String("CUST00101")),
@@ -383,27 +381,23 @@ func testAccountingJournalEntriesAllAccountingJournalEntriesAll0(w http.Response
 				UpdatedAt:        optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				CreatedAt:        optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				RowVersion:       optionalnullable.From(types.String("1-12345")),
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{},
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						))),
+					},
 				},
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
@@ -442,7 +436,7 @@ func testAccountingJournalEntriesAllAccountingJournalEntriesAll0(w http.Response
 						TaxAmount:   optionalnullable.From(types.Float64(27500)),
 						SubTotal:    optionalnullable.From(types.Float64(27500)),
 						TotalAmount: optionalnullable.From(types.Float64(27500)),
-						Type:        components.JournalEntryLineItemTypeDebit,
+						Type:        components.JournalEntryLineItemTypeDebit.ToPointer(),
 						TaxRate: &components.LinkedTaxRate{
 							ID:   optionalnullable.From(types.String("123456")),
 							Code: optionalnullable.From(types.String("N-T")),
@@ -455,12 +449,12 @@ func testAccountingJournalEntriesAllAccountingJournalEntriesAll0(w http.Response
 								Name: optionalnullable.From(types.String("New York")),
 							},
 						})),
-						LedgerAccount: &components.LinkedLedgerAccount{
+						LedgerAccount: optionalnullable.From(&components.LinkedLedgerAccount{
 							ID:          types.String("123456"),
 							Name:        optionalnullable.From(types.String("Bank account")),
 							NominalCode: optionalnullable.From(types.String("N091")),
 							Code:        optionalnullable.From(types.String("453")),
-						},
+						}),
 						Customer: optionalnullable.From(&components.LinkedCustomer{
 							ID:          types.String("12345"),
 							DisplayID:   optionalnullable.From(types.String("CUST00101")),
@@ -510,7 +504,7 @@ func testAccountingJournalEntriesAllAccountingJournalEntriesAll0(w http.Response
 						TaxAmount:   optionalnullable.From(types.Float64(27500)),
 						SubTotal:    optionalnullable.From(types.Float64(27500)),
 						TotalAmount: optionalnullable.From(types.Float64(27500)),
-						Type:        components.JournalEntryLineItemTypeDebit,
+						Type:        components.JournalEntryLineItemTypeDebit.ToPointer(),
 						TaxRate: &components.LinkedTaxRate{
 							ID:   optionalnullable.From(types.String("123456")),
 							Code: optionalnullable.From(types.String("N-T")),
@@ -531,12 +525,12 @@ func testAccountingJournalEntriesAllAccountingJournalEntriesAll0(w http.Response
 								Name: optionalnullable.From(types.String("New York")),
 							},
 						})),
-						LedgerAccount: &components.LinkedLedgerAccount{
+						LedgerAccount: optionalnullable.From(&components.LinkedLedgerAccount{
 							ID:          types.String("123456"),
 							Name:        optionalnullable.From(types.String("Bank account")),
 							NominalCode: optionalnullable.From(types.String("N091")),
 							Code:        optionalnullable.From(types.String("453")),
-						},
+						}),
 						Customer: optionalnullable.From(&components.LinkedCustomer{
 							ID:          types.String("12345"),
 							DisplayID:   optionalnullable.From(types.String("CUST00101")),
@@ -603,37 +597,31 @@ func testAccountingJournalEntriesAllAccountingJournalEntriesAll0(w http.Response
 				UpdatedAt:        optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				CreatedAt:        optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				RowVersion:       optionalnullable.From(types.String("1-12345")),
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
-								true,
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
-								10,
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
+							true,
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
+							10,
+						))),
+					},
 				},
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{

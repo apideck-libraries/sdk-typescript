@@ -79,7 +79,7 @@ type InvoiceLineItem struct {
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	LedgerAccount      optionalnullable.OptionalNullable[LinkedLedgerAccount]       `json:"ledger_account,omitempty"`
-	CustomFields       []CustomFieldUnion                                           `json:"custom_fields,omitempty"`
+	CustomFields       []CustomField                                                `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -89,7 +89,8 @@ type InvoiceLineItem struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
+	UpdatedAt            optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (i InvoiceLineItem) MarshalJSON() ([]byte, error) {
@@ -306,7 +307,7 @@ func (o *InvoiceLineItem) GetLedgerAccount() optionalnullable.OptionalNullable[L
 	return o.LedgerAccount
 }
 
-func (o *InvoiceLineItem) GetCustomFields() []CustomFieldUnion {
+func (o *InvoiceLineItem) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -346,6 +347,13 @@ func (o *InvoiceLineItem) GetUpdatedAt() optionalnullable.OptionalNullable[time.
 		return nil
 	}
 	return o.UpdatedAt
+}
+
+func (o *InvoiceLineItem) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 type InvoiceLineItemInput struct {
@@ -402,9 +410,10 @@ type InvoiceLineItemInput struct {
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	LedgerAccount      optionalnullable.OptionalNullable[LinkedLedgerAccount]       `json:"ledger_account,omitempty"`
-	CustomFields       []CustomFieldUnion                                           `json:"custom_fields,omitempty"`
+	CustomFields       []CustomField                                                `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
+	RowVersion           optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
 }
 
 func (i InvoiceLineItemInput) MarshalJSON() ([]byte, error) {
@@ -621,7 +630,7 @@ func (o *InvoiceLineItemInput) GetLedgerAccount() optionalnullable.OptionalNulla
 	return o.LedgerAccount
 }
 
-func (o *InvoiceLineItemInput) GetCustomFields() []CustomFieldUnion {
+func (o *InvoiceLineItemInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -633,4 +642,11 @@ func (o *InvoiceLineItemInput) GetRowVersion() optionalnullable.OptionalNullable
 		return nil
 	}
 	return o.RowVersion
+}
+
+func (o *InvoiceLineItemInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

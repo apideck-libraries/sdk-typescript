@@ -116,20 +116,20 @@ func testVaultConnectionsTokenVaultConnectionsToken0(w http.ResponseWriter, req 
 							Options: []components.FormFieldOption{
 								components.CreateFormFieldOptionSimple(
 									components.SimpleFormFieldOption{
-										Label: "General Channel",
+										Label: types.String("General Channel"),
 										Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Boolean(
 											true,
 										)),
-										OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
+										OptionType: components.SimpleFormFieldOptionOptionTypeSimple.ToPointer(),
 									},
 								),
 								components.CreateFormFieldOptionSimple(
 									components.SimpleFormFieldOption{
-										Label: "General Channel",
+										Label: types.String("General Channel"),
 										Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Boolean(
 											true,
 										)),
-										OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
+										OptionType: components.SimpleFormFieldOptionOptionTypeSimple.ToPointer(),
 									},
 								),
 							},
@@ -143,11 +143,11 @@ func testVaultConnectionsTokenVaultConnectionsToken0(w http.ResponseWriter, req 
 							Options: []components.FormFieldOption{
 								components.CreateFormFieldOptionSimple(
 									components.SimpleFormFieldOption{
-										Label: "General Channel",
+										Label: types.String("General Channel"),
 										Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Boolean(
 											true,
 										)),
-										OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
+										OptionType: components.SimpleFormFieldOptionOptionTypeSimple.ToPointer(),
 									},
 								),
 							},

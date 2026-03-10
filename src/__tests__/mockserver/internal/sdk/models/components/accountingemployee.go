@@ -89,8 +89,8 @@ type AccountingEmployee struct {
 	// Addresses of the employee.
 	Addresses []Address `json:"addresses,omitempty"`
 	// Phone numbers of the employee.
-	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	PhoneNumbers []PhoneNumber `json:"phone_numbers,omitempty"`
+	CustomFields []CustomField `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -100,7 +100,8 @@ type AccountingEmployee struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (a AccountingEmployee) MarshalJSON() ([]byte, error) {
@@ -282,7 +283,7 @@ func (o *AccountingEmployee) GetPhoneNumbers() []PhoneNumber {
 	return o.PhoneNumbers
 }
 
-func (o *AccountingEmployee) GetCustomFields() []CustomFieldUnion {
+func (o *AccountingEmployee) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -322,6 +323,13 @@ func (o *AccountingEmployee) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *AccountingEmployee) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 type AccountingEmployeeInput struct {
@@ -365,12 +373,13 @@ type AccountingEmployeeInput struct {
 	// Addresses of the employee.
 	Addresses []Address `json:"addresses,omitempty"`
 	// Phone numbers of the employee.
-	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	PhoneNumbers []PhoneNumber `json:"phone_numbers,omitempty"`
+	CustomFields []CustomField `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (a AccountingEmployeeInput) MarshalJSON() ([]byte, error) {
@@ -538,7 +547,7 @@ func (o *AccountingEmployeeInput) GetPhoneNumbers() []PhoneNumber {
 	return o.PhoneNumbers
 }
 
-func (o *AccountingEmployeeInput) GetCustomFields() []CustomFieldUnion {
+func (o *AccountingEmployeeInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -557,4 +566,11 @@ func (o *AccountingEmployeeInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *AccountingEmployeeInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

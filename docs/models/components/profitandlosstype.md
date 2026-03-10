@@ -8,11 +8,11 @@ The type of profit and loss
 import { ProfitAndLossType } from "@apideck/unify/models/components";
 
 let value: ProfitAndLossType = "Section";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "Section" | "Record" | Unrecognized<string>

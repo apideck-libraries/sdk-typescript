@@ -114,7 +114,8 @@ type TimeOffRequest struct {
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The policy type of the time off request
-	PolicyType *string `json:"policy_type,omitempty"`
+	PolicyType           *string        `json:"policy_type,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
 
 func (t TimeOffRequest) MarshalJSON() ([]byte, error) {
@@ -275,6 +276,13 @@ func (o *TimeOffRequest) GetPolicyType() *string {
 	return o.PolicyType
 }
 
+func (o *TimeOffRequest) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type TimeOffRequestInput struct {
 	// ID of the employee
 	EmployeeID optionalnullable.OptionalNullable[string] `json:"employee_id,omitempty"`
@@ -304,7 +312,19 @@ type TimeOffRequestInput struct {
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The policy type of the time off request
-	PolicyType *string `json:"policy_type,omitempty"`
+	PolicyType           *string        `json:"policy_type,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (t TimeOffRequestInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TimeOffRequestInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *TimeOffRequestInput) GetEmployeeID() optionalnullable.OptionalNullable[string] {
@@ -410,4 +430,11 @@ func (o *TimeOffRequestInput) GetPolicyType() *string {
 		return nil
 	}
 	return o.PolicyType
+}
+
+func (o *TimeOffRequestInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

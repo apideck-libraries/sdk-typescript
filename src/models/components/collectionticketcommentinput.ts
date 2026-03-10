@@ -19,12 +19,14 @@ export type CollectionTicketCommentInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
 export type CollectionTicketCommentInput$Outbound = {
   body?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -35,10 +37,15 @@ export const CollectionTicketCommentInput$outboundSchema: z.ZodType<
 > = z.object({
   body: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function collectionTicketCommentInputToJSON(

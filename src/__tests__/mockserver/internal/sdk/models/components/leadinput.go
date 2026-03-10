@@ -4,11 +4,12 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type LeadInput struct {
 	// Full name of the lead.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// The name of the company the lead is associated with.
 	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// The owner of the lead.
@@ -41,21 +42,33 @@ type LeadInput struct {
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The fax number of the lead.
-	Fax          optionalnullable.OptionalNullable[string]             `json:"fax,omitempty"`
-	Websites     []Website                                             `json:"websites,omitempty"`
-	Addresses    []Address                                             `json:"addresses,omitempty"`
-	SocialLinks  []SocialLink                                          `json:"social_links,omitempty"`
-	PhoneNumbers []PhoneNumber                                         `json:"phone_numbers,omitempty"`
-	Emails       []Email                                               `json:"emails,omitempty"`
-	CustomFields optionalnullable.OptionalNullable[[]CustomFieldUnion] `json:"custom_fields,omitempty"`
-	Tags         optionalnullable.OptionalNullable[[]string]           `json:"tags,omitempty"`
+	Fax          optionalnullable.OptionalNullable[string]        `json:"fax,omitempty"`
+	Websites     []Website                                        `json:"websites,omitempty"`
+	Addresses    []Address                                        `json:"addresses,omitempty"`
+	SocialLinks  []SocialLink                                     `json:"social_links,omitempty"`
+	PhoneNumbers []PhoneNumber                                    `json:"phone_numbers,omitempty"`
+	Emails       []Email                                          `json:"emails,omitempty"`
+	CustomFields optionalnullable.OptionalNullable[[]CustomField] `json:"custom_fields,omitempty"`
+	Tags         optionalnullable.OptionalNullable[[]string]      `json:"tags,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
-func (o *LeadInput) GetName() string {
+func (l LeadInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LeadInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *LeadInput) GetName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Name
 }
@@ -214,7 +227,7 @@ func (o *LeadInput) GetEmails() []Email {
 	return o.Emails
 }
 
-func (o *LeadInput) GetCustomFields() optionalnullable.OptionalNullable[[]CustomFieldUnion] {
+func (o *LeadInput) GetCustomFields() optionalnullable.OptionalNullable[[]CustomField] {
 	if o == nil {
 		return nil
 	}
@@ -233,4 +246,11 @@ func (o *LeadInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *LeadInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

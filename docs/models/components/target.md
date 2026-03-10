@@ -6,11 +6,11 @@
 import { Target } from "@apideck/unify/models/components";
 
 let value: Target = "custom_fields";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "custom_fields" | "resource" | Unrecognized<string>

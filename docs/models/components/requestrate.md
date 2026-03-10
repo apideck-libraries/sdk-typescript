@@ -21,3 +21,4 @@ let value: RequestRate = {
 | `rate`                                             | *number*                                           | :heavy_check_mark:                                 | The number of requests per window unit.            |
 | `size`                                             | *number*                                           | :heavy_check_mark:                                 | Size of request window.                            |
 | `unit`                                             | [components.Unit](../../models/components/unit.md) | :heavy_check_mark:                                 | The window unit for the rate.                      |
+| `additionalProperties`                             | Record<string, *any*>                              | :heavy_minus_sign:                                 | N/A                                                |

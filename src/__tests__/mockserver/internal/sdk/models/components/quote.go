@@ -52,6 +52,8 @@ type Quote struct {
 	ExpiryDate optionalnullable.OptionalNullable[types.Date] `json:"expiry_date,omitempty"`
 	// Terms of the quote.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// Optional reference identifier for the transaction.
 	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Quote status
@@ -85,7 +87,7 @@ type Quote struct {
 	TemplateID optionalnullable.OptionalNullable[string] `json:"template_id,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app.
 	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
-	CustomFields      []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	CustomFields      []CustomField                             `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -97,7 +99,8 @@ type Quote struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (q Quote) MarshalJSON() ([]byte, error) {
@@ -193,6 +196,13 @@ func (o *Quote) GetTerms() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *Quote) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *Quote) GetReference() optionalnullable.OptionalNullable[string] {
@@ -321,7 +331,7 @@ func (o *Quote) GetSourceDocumentURL() optionalnullable.OptionalNullable[string]
 	return o.SourceDocumentURL
 }
 
-func (o *Quote) GetCustomFields() []CustomFieldUnion {
+func (o *Quote) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -370,6 +380,13 @@ func (o *Quote) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *Quote) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type QuoteInput struct {
 	// Quote number.
 	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
@@ -389,6 +406,8 @@ type QuoteInput struct {
 	ExpiryDate optionalnullable.OptionalNullable[types.Date] `json:"expiry_date,omitempty"`
 	// Terms of the quote.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// Optional reference identifier for the transaction.
 	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Quote status
@@ -422,11 +441,12 @@ type QuoteInput struct {
 	TemplateID optionalnullable.OptionalNullable[string] `json:"template_id,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app.
 	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
-	CustomFields      []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	CustomFields      []CustomField                             `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (q QuoteInput) MarshalJSON() ([]byte, error) {
@@ -501,6 +521,13 @@ func (o *QuoteInput) GetTerms() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *QuoteInput) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *QuoteInput) GetReference() optionalnullable.OptionalNullable[string] {
@@ -629,7 +656,7 @@ func (o *QuoteInput) GetSourceDocumentURL() optionalnullable.OptionalNullable[st
 	return o.SourceDocumentURL
 }
 
-func (o *QuoteInput) GetCustomFields() []CustomFieldUnion {
+func (o *QuoteInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -648,4 +675,11 @@ func (o *QuoteInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *QuoteInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

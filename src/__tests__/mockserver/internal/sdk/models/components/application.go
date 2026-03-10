@@ -45,8 +45,8 @@ func (o *ApplicationStage) GetName() optionalnullable.OptionalNullable[string] {
 type Application struct {
 	// A unique identifier for an object.
 	ID          *string                                              `json:"id,omitempty"`
-	ApplicantID *string                                              `json:"applicant_id"`
-	JobID       *string                                              `json:"job_id"`
+	ApplicantID optionalnullable.OptionalNullable[string]            `json:"applicant_id,omitempty"`
+	JobID       optionalnullable.OptionalNullable[string]            `json:"job_id,omitempty"`
 	Status      optionalnullable.OptionalNullable[ApplicationStatus] `json:"status,omitempty"`
 	Stage       *ApplicationStage                                    `json:"stage,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
@@ -60,7 +60,8 @@ type Application struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (a Application) MarshalJSON() ([]byte, error) {
@@ -68,7 +69,7 @@ func (a Application) MarshalJSON() ([]byte, error) {
 }
 
 func (a *Application) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"applicant_id", "job_id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -81,14 +82,14 @@ func (o *Application) GetID() *string {
 	return o.ID
 }
 
-func (o *Application) GetApplicantID() *string {
+func (o *Application) GetApplicantID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ApplicantID
 }
 
-func (o *Application) GetJobID() *string {
+func (o *Application) GetJobID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -151,23 +152,42 @@ func (o *Application) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *Application) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type ApplicationInput struct {
-	ApplicantID *string                                              `json:"applicant_id"`
-	JobID       *string                                              `json:"job_id"`
+	ApplicantID optionalnullable.OptionalNullable[string]            `json:"applicant_id,omitempty"`
+	JobID       optionalnullable.OptionalNullable[string]            `json:"job_id,omitempty"`
 	Status      optionalnullable.OptionalNullable[ApplicationStatus] `json:"status,omitempty"`
 	Stage       *ApplicationStage                                    `json:"stage,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
-func (o *ApplicationInput) GetApplicantID() *string {
+func (a ApplicationInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *ApplicationInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ApplicationInput) GetApplicantID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ApplicantID
 }
 
-func (o *ApplicationInput) GetJobID() *string {
+func (o *ApplicationInput) GetJobID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -193,4 +213,11 @@ func (o *ApplicationInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *ApplicationInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

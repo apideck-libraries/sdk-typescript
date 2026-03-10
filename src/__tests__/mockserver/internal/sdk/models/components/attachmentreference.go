@@ -2,10 +2,26 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type AttachmentReference struct {
 	Type *AttachmentReferenceType `json:"type,omitempty"`
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID                   *string        `json:"id,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (a AttachmentReference) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttachmentReference) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *AttachmentReference) GetType() *AttachmentReferenceType {
@@ -20,4 +36,11 @@ func (o *AttachmentReference) GetID() *string {
 		return nil
 	}
 	return o.ID
+}
+
+func (o *AttachmentReference) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

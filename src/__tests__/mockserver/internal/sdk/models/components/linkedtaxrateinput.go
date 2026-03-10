@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type LinkedTaxRateInput struct {
@@ -12,7 +13,19 @@ type LinkedTaxRateInput struct {
 	// Tax rate code
 	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// Rate of the tax rate
-	Rate optionalnullable.OptionalNullable[float64] `json:"rate,omitempty"`
+	Rate                 optionalnullable.OptionalNullable[float64] `json:"rate,omitempty"`
+	AdditionalProperties map[string]any                             `additionalProperties:"true" json:"-"`
+}
+
+func (l LinkedTaxRateInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkedTaxRateInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LinkedTaxRateInput) GetID() optionalnullable.OptionalNullable[string] {
@@ -34,4 +47,11 @@ func (o *LinkedTaxRateInput) GetRate() optionalnullable.OptionalNullable[float64
 		return nil
 	}
 	return o.Rate
+}
+
+func (o *LinkedTaxRateInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

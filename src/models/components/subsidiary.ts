@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -98,6 +101,7 @@ export type Subsidiary = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type SubsidiaryInput = {
@@ -130,6 +134,7 @@ export type SubsidiaryInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -150,24 +155,28 @@ export const Subsidiary$inboundSchema: z.ZodType<
   Subsidiary,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  parent_id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-  downstream_id: z.nullable(types.string()).optional(),
-  status: types.optional(SubsidiaryStatus$inboundSchema),
-  address: types.optional(Address$inboundSchema),
-  currencies: z.nullable(z.array(types.nullable(Currency$inboundSchema)))
-    .optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    parent_id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    downstream_id: z.nullable(types.string()).optional(),
+    status: types.optional(SubsidiaryStatus$inboundSchema),
+    address: types.optional(Address$inboundSchema),
+    currencies: z.nullable(z.array(types.nullable(Currency$inboundSchema)))
+      .optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "parent_id": "parentId",
     "display_id": "displayId",
@@ -202,6 +211,7 @@ export type SubsidiaryInput$Outbound = {
   currencies?: Array<string | null> | null | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -219,13 +229,18 @@ export const SubsidiaryInput$outboundSchema: z.ZodType<
     .optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    displayId: "display_id",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      parentId: "parent_id",
+      displayId: "display_id",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function subsidiaryInputToJSON(

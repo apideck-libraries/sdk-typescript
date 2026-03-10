@@ -2,12 +2,28 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type OutstandingBalanceBySupplier struct {
 	// Unique identifier for the supplier.
 	SupplierID *string `json:"supplier_id,omitempty"`
 	// Full name of the supplier.
 	SupplierName                  *string                        `json:"supplier_name,omitempty"`
 	OutstandingBalancesByCurrency []OutstandingBalanceByCurrency `json:"outstanding_balances_by_currency,omitempty"`
+	AdditionalProperties          map[string]any                 `additionalProperties:"true" json:"-"`
+}
+
+func (o OutstandingBalanceBySupplier) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OutstandingBalanceBySupplier) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *OutstandingBalanceBySupplier) GetSupplierID() *string {
@@ -29,4 +45,11 @@ func (o *OutstandingBalanceBySupplier) GetOutstandingBalancesByCurrency() []Outs
 		return nil
 	}
 	return o.OutstandingBalancesByCurrency
+}
+
+func (o *OutstandingBalanceBySupplier) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

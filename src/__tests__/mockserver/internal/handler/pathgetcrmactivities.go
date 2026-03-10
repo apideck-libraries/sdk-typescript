@@ -73,7 +73,7 @@ func testCrmActivitiesAllCrmActivitiesAll0(w http.ResponseWriter, req *http.Requ
 				ProductID:        optionalnullable.From(types.String("12345")),
 				SolutionID:       optionalnullable.From(types.String("12345")),
 				CustomObjectID:   optionalnullable.From(types.String("12345")),
-				Type:             components.ActivityTypeMeeting.ToPointer(),
+				Type:             optionalnullable.From(components.ActivityTypeMeeting.ToPointer()),
 				Title:            optionalnullable.From(types.String("Meeting")),
 				Description:      optionalnullable.From(types.String("More info about the meeting")),
 				Note:             optionalnullable.From(types.String("An internal note about the meeting")),
@@ -124,27 +124,23 @@ func testCrmActivitiesAllCrmActivitiesAll0(w http.ResponseWriter, req *http.Requ
 				ReminderSet:        optionalnullable.From(types.Bool(false)),
 				VideoConferenceURL: optionalnullable.From(types.String("https://us02web.zoom.us/j/88120759396")),
 				VideoConferenceID:  optionalnullable.From(types.String("zoom:88120759396")),
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{},
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
-								10,
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
+							10,
+						))),
+					},
 				},
 				Attendees: []components.ActivityAttendee{
 					components.ActivityAttendee{
@@ -224,7 +220,7 @@ func testCrmActivitiesAllCrmActivitiesAll0(w http.ResponseWriter, req *http.Requ
 				ProductID:        optionalnullable.From(types.String("12345")),
 				SolutionID:       optionalnullable.From(types.String("12345")),
 				CustomObjectID:   optionalnullable.From(types.String("12345")),
-				Type:             components.ActivityTypeMeeting.ToPointer(),
+				Type:             optionalnullable.From(components.ActivityTypeMeeting.ToPointer()),
 				Title:            optionalnullable.From(types.String("Meeting")),
 				Description:      optionalnullable.From(types.String("More info about the meeting")),
 				Note:             optionalnullable.From(types.String("An internal note about the meeting")),
@@ -275,40 +271,34 @@ func testCrmActivitiesAllCrmActivitiesAll0(w http.ResponseWriter, req *http.Requ
 				ReminderSet:        optionalnullable.From(types.Bool(false)),
 				VideoConferenceURL: optionalnullable.From(types.String("https://us02web.zoom.us/j/88120759396")),
 				VideoConferenceID:  optionalnullable.From(types.String("zoom:88120759396")),
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{
-									"0": "<value>",
-									"1": "<value>",
-								},
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{
+								"0": "<value>",
+								"1": "<value>",
+							},
+						))),
+					},
 				},
 				Attendees: []components.ActivityAttendee{
 					components.ActivityAttendee{
@@ -383,7 +373,7 @@ func testCrmActivitiesAllCrmActivitiesAll0(w http.ResponseWriter, req *http.Requ
 				ProductID:        optionalnullable.From(types.String("12345")),
 				SolutionID:       optionalnullable.From(types.String("12345")),
 				CustomObjectID:   optionalnullable.From(types.String("12345")),
-				Type:             components.ActivityTypeMeeting.ToPointer(),
+				Type:             optionalnullable.From(components.ActivityTypeMeeting.ToPointer()),
 				Title:            optionalnullable.From(types.String("Meeting")),
 				Description:      optionalnullable.From(types.String("More info about the meeting")),
 				Note:             optionalnullable.From(types.String("An internal note about the meeting")),
@@ -434,27 +424,23 @@ func testCrmActivitiesAllCrmActivitiesAll0(w http.ResponseWriter, req *http.Requ
 				ReminderSet:        optionalnullable.From(types.Bool(false)),
 				VideoConferenceURL: optionalnullable.From(types.String("https://us02web.zoom.us/j/88120759396")),
 				VideoConferenceID:  optionalnullable.From(types.String("zoom:88120759396")),
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
-								true,
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
+							true,
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						))),
+					},
 				},
 				Attendees: []components.ActivityAttendee{
 					components.ActivityAttendee{

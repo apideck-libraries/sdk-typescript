@@ -111,6 +111,8 @@ type Invoice struct {
 	DueDate optionalnullable.OptionalNullable[types.Date] `json:"due_date,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
 	PoNumber optionalnullable.OptionalNullable[string] `json:"po_number,omitempty"`
 	// Optional reference identifier for the transaction.
@@ -168,7 +170,7 @@ type Invoice struct {
 	LedgerAccount   optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"ledger_account,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
-	CustomFields   []CustomFieldUnion                                `json:"custom_fields,omitempty"`
+	CustomFields   []CustomField                                     `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -180,7 +182,8 @@ type Invoice struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (i Invoice) MarshalJSON() ([]byte, error) {
@@ -276,6 +279,13 @@ func (o *Invoice) GetTerms() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *Invoice) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *Invoice) GetPoNumber() optionalnullable.OptionalNullable[string] {
@@ -495,7 +505,7 @@ func (o *Invoice) GetCustomMappings() optionalnullable.OptionalNullable[map[stri
 	return o.CustomMappings
 }
 
-func (o *Invoice) GetCustomFields() []CustomFieldUnion {
+func (o *Invoice) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -544,6 +554,13 @@ func (o *Invoice) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *Invoice) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type InvoiceInput struct {
 	// Id to be displayed.
 	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
@@ -565,6 +582,8 @@ type InvoiceInput struct {
 	DueDate optionalnullable.OptionalNullable[types.Date] `json:"due_date,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
 	PoNumber optionalnullable.OptionalNullable[string] `json:"po_number,omitempty"`
 	// Optional reference identifier for the transaction.
@@ -620,11 +639,12 @@ type InvoiceInput struct {
 	AccountingByRow optionalnullable.OptionalNullable[bool]                `json:"accounting_by_row,omitempty"`
 	BankAccount     *BankAccount                                           `json:"bank_account,omitempty"`
 	LedgerAccount   optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"ledger_account,omitempty"`
-	CustomFields    []CustomFieldUnion                                     `json:"custom_fields,omitempty"`
+	CustomFields    []CustomField                                          `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (i InvoiceInput) MarshalJSON() ([]byte, error) {
@@ -706,6 +726,13 @@ func (o *InvoiceInput) GetTerms() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *InvoiceInput) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *InvoiceInput) GetPoNumber() optionalnullable.OptionalNullable[string] {
@@ -918,7 +945,7 @@ func (o *InvoiceInput) GetLedgerAccount() optionalnullable.OptionalNullable[Link
 	return o.LedgerAccount
 }
 
-func (o *InvoiceInput) GetCustomFields() []CustomFieldUnion {
+func (o *InvoiceInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -937,4 +964,11 @@ func (o *InvoiceInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *InvoiceInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

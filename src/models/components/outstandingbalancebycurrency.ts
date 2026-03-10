@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -24,6 +27,7 @@ export type OutstandingBalanceByCurrency = {
    */
   totalAmount?: number | undefined;
   balancesByPeriod?: Array<BalanceByPeriod> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -31,11 +35,15 @@ export const OutstandingBalanceByCurrency$inboundSchema: z.ZodType<
   OutstandingBalanceByCurrency,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  total_amount: types.optional(types.number()),
-  balances_by_period: types.optional(z.array(BalanceByPeriod$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    total_amount: types.optional(types.number()),
+    balances_by_period: types.optional(z.array(BalanceByPeriod$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "total_amount": "totalAmount",
     "balances_by_period": "balancesByPeriod",

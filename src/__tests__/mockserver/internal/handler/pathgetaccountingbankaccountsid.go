@@ -54,7 +54,7 @@ func testAccountingBankAccountsOneAccountingBankAccountsOne0(w http.ResponseWrit
 		Resource:   types.String("bank-accounts"),
 		Operation:  types.String("one"),
 		Data: components.AccountingBankAccount{
-			ID:            "12345",
+			ID:            types.String("12345"),
 			DownstreamID:  optionalnullable.From(types.String("12345")),
 			DisplayID:     optionalnullable.From(types.String("BA-001")),
 			Name:          optionalnullable.From(types.String("Main Operating Account")),
@@ -82,17 +82,15 @@ func testAccountingBankAccountsOneAccountingBankAccountsOne0(w http.ResponseWrit
 			Country:          optionalnullable.From(types.String("US")),
 			Status:           optionalnullable.From(components.AccountingBankAccountStatusActive.ToPointer()),
 			Description:      optionalnullable.From(types.String("Primary operating account for daily transactions")),
-			CustomFields: []components.CustomFieldUnion{
-				components.CreateCustomFieldUnionCustomField1(
-					components.CustomField1{
-						ID:          types.String("2389328923893298"),
-						Name:        optionalnullable.From(types.String("employee_level")),
-						Description: optionalnullable.From(types.String("Employee Level")),
-						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-							"Uses Salesforce and Marketo",
-						))),
-					},
-				),
+			CustomFields: []components.CustomField{
+				components.CustomField{
+					ID:          optionalnullable.From(types.String("2389328923893298")),
+					Name:        optionalnullable.From(types.String("employee_level")),
+					Description: optionalnullable.From(types.String("Employee Level")),
+					Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+						"Uses Salesforce and Marketo",
+					))),
+				},
 			},
 			CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),

@@ -8,12 +8,12 @@ Expense status
 import { ExpenseStatus } from "@apideck/unify/models/components";
 
 let value: ExpenseStatus = "draft";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
 
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
-
 ```typescript
-"draft" | "posted" | Unrecognized<string>
+"draft" | "posted" | "voided" | Unrecognized<string>
 ```

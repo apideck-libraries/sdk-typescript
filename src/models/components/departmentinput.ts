@@ -21,6 +21,7 @@ export type DepartmentInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -29,6 +30,7 @@ export type DepartmentInput$Outbound = {
   code?: string | null | undefined;
   description?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -41,10 +43,15 @@ export const DepartmentInput$outboundSchema: z.ZodType<
   code: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function departmentInputToJSON(

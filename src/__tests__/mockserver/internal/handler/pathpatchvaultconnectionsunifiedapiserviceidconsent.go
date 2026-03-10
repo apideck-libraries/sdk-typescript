@@ -55,10 +55,10 @@ func testVaultConnectionConsentUpdateVaultConnectionConsentUpdate0(w http.Respon
 		StatusCode: 200,
 		Status:     "OK",
 		Data: components.ConsentRecord{
-			ID:        "con_1234567890",
-			CreatedAt: "2025-04-15T14:30:00Z",
-			Granted:   true,
-			Resources: components.CreateDataScopesResourcesUnionMapOfMapOfDataScopesResources(
+			ID:        types.String("con_1234567890"),
+			CreatedAt: types.String("2025-04-15T14:30:00Z"),
+			Granted:   types.Bool(true),
+			Resources: types.Pointer(components.CreateDataScopesResourcesUnionMapOfMapOfDataScopesResources(
 				map[string]map[string]components.DataScopesResources{
 					"hris.employees": map[string]components.DataScopesResources{
 						"id": components.DataScopesResources{
@@ -109,7 +109,7 @@ func testVaultConnectionConsentUpdateVaultConnectionConsentUpdate0(w http.Respon
 						},
 					},
 				},
-			),
+			)),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

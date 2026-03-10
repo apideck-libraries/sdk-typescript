@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type ExpenseLineItemInput struct {
@@ -32,7 +33,7 @@ type ExpenseLineItemInput struct {
 	// Line Item type
 	Type optionalnullable.OptionalNullable[LineItemType] `json:"type,omitempty"`
 	// The total amount of the expense line item.
-	TotalAmount *float64 `json:"total_amount"`
+	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
 	// Tax amount
 	TaxAmount optionalnullable.OptionalNullable[float64] `json:"tax_amount,omitempty"`
 	Quantity  optionalnullable.OptionalNullable[float64] `json:"quantity,omitempty"`
@@ -41,7 +42,19 @@ type ExpenseLineItemInput struct {
 	// Line number of the resource
 	LineNumber optionalnullable.OptionalNullable[int64] `json:"line_number,omitempty"`
 	// Rebilling metadata for this line item.
-	Rebilling optionalnullable.OptionalNullable[Rebilling] `json:"rebilling,omitempty"`
+	Rebilling            optionalnullable.OptionalNullable[Rebilling] `json:"rebilling,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
+}
+
+func (e ExpenseLineItemInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExpenseLineItemInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ExpenseLineItemInput) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
@@ -128,7 +141,7 @@ func (o *ExpenseLineItemInput) GetType() optionalnullable.OptionalNullable[LineI
 	return o.Type
 }
 
-func (o *ExpenseLineItemInput) GetTotalAmount() *float64 {
+func (o *ExpenseLineItemInput) GetTotalAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -175,4 +188,11 @@ func (o *ExpenseLineItemInput) GetRebilling() optionalnullable.OptionalNullable[
 		return nil
 	}
 	return o.Rebilling
+}
+
+func (o *ExpenseLineItemInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

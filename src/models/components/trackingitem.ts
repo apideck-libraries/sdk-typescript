@@ -16,11 +16,11 @@ export type TrackingItem = {
   /**
    * The name or code of the carrier or shipping company that is handling the shipment.
    */
-  provider: string | null;
+  provider?: string | null | undefined;
   /**
    *  The tracking number associated with the shipment, which can be used to track the progress of the delivery.
    */
-  number: string | null;
+  number?: string | null | undefined;
   /**
    * The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
    */
@@ -37,8 +37,8 @@ export const TrackingItem$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: types.nullable(types.string()),
-  number: types.nullable(types.string()),
+  provider: z.nullable(types.string()).optional(),
+  number: z.nullable(types.string()).optional(),
   url: z.nullable(types.string()).optional(),
   updated_at: z.nullable(types.date()).optional(),
 }).transform((v) => {

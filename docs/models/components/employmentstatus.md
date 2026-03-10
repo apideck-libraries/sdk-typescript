@@ -8,11 +8,11 @@ The employment status of the employee, indicating whether they are currently emp
 import { EmploymentStatus } from "@apideck/unify/models/components";
 
 let value: EmploymentStatus = "active";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "active" | "inactive" | "terminated" | "other" | Unrecognized<string>

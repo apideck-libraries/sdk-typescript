@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { smartUnion } from "../../types/smartUnion.js";
@@ -39,6 +40,7 @@ export type UpdateConsentRequest = {
    * Whether consent is being granted (true) or denied/revoked (false)
    */
   granted: boolean;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -91,6 +93,7 @@ export function updateConsentRequestResourcesToJSON(
 export type UpdateConsentRequest$Outbound = {
   resources: { [k: string]: { [k: string]: One$Outbound } } | string;
   granted: boolean;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -104,6 +107,14 @@ export const UpdateConsentRequest$outboundSchema: z.ZodType<
     Two$outboundSchema,
   ]),
   granted: z.boolean(),
+  additionalProperties: z.record(z.any()).optional(),
+}).transform((v) => {
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function updateConsentRequestToJSON(

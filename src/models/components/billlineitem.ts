@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -168,6 +171,7 @@ export type BillLineItem = {
    * A list of linked worktags. This is only supported for Workday.
    */
   worktags?: Array<LinkedWorktag | null> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -175,50 +179,54 @@ export const BillLineItem$inboundSchema: z.ZodType<
   BillLineItem,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  row_id: types.optional(types.string()),
-  code: z.nullable(types.string()).optional(),
-  line_number: z.nullable(types.number()).optional(),
-  description: z.nullable(types.string()).optional(),
-  type: z.nullable(LineItemType$inboundSchema).optional(),
-  tax_amount: z.nullable(types.number()).optional(),
-  total_amount: z.nullable(types.number()).optional(),
-  quantity: z.nullable(types.number()).optional(),
-  unit_price: z.nullable(types.number()).optional(),
-  unit_of_measure: z.nullable(types.string()).optional(),
-  discount_percentage: z.nullable(types.number()).optional(),
-  discount_amount: z.nullable(types.number()).optional(),
-  location_id: z.nullable(types.string()).optional(),
-  department_id: z.nullable(types.string()).optional(),
-  subsidiary_id: z.nullable(types.string()).optional(),
-  category_id: z.nullable(types.string()).optional(),
-  shipping_id: z.nullable(types.string()).optional(),
-  memo: z.nullable(types.string()).optional(),
-  prepaid: z.nullable(types.boolean()).optional(),
-  tax_applicable_on: z.nullable(types.string()).optional(),
-  tax_recoverability: z.nullable(types.string()).optional(),
-  tax_method: z.nullable(types.string()).optional(),
-  retention_amount: z.nullable(types.number()).optional(),
-  payment_amount: z.nullable(types.number()).optional(),
-  item: types.optional(LinkedInvoiceItem$inboundSchema),
-  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
-  ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  purchase_order: z.nullable(LinkedPurchaseOrder$inboundSchema).optional(),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
-  rebilling: z.nullable(Rebilling$inboundSchema).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  worktags: types.optional(
-    z.array(types.nullable(LinkedWorktag$inboundSchema)),
-  ),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    row_id: types.optional(types.string()),
+    code: z.nullable(types.string()).optional(),
+    line_number: z.nullable(types.number()).optional(),
+    description: z.nullable(types.string()).optional(),
+    type: z.nullable(LineItemType$inboundSchema).optional(),
+    tax_amount: z.nullable(types.number()).optional(),
+    total_amount: z.nullable(types.number()).optional(),
+    quantity: z.nullable(types.number()).optional(),
+    unit_price: z.nullable(types.number()).optional(),
+    unit_of_measure: z.nullable(types.string()).optional(),
+    discount_percentage: z.nullable(types.number()).optional(),
+    discount_amount: z.nullable(types.number()).optional(),
+    location_id: z.nullable(types.string()).optional(),
+    department_id: z.nullable(types.string()).optional(),
+    subsidiary_id: z.nullable(types.string()).optional(),
+    category_id: z.nullable(types.string()).optional(),
+    shipping_id: z.nullable(types.string()).optional(),
+    memo: z.nullable(types.string()).optional(),
+    prepaid: z.nullable(types.boolean()).optional(),
+    tax_applicable_on: z.nullable(types.string()).optional(),
+    tax_recoverability: z.nullable(types.string()).optional(),
+    tax_method: z.nullable(types.string()).optional(),
+    retention_amount: z.nullable(types.number()).optional(),
+    payment_amount: z.nullable(types.number()).optional(),
+    item: types.optional(LinkedInvoiceItem$inboundSchema),
+    tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+    ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    purchase_order: z.nullable(LinkedPurchaseOrder$inboundSchema).optional(),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
+    rebilling: z.nullable(Rebilling$inboundSchema).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    worktags: types.optional(
+      z.array(types.nullable(LinkedWorktag$inboundSchema)),
+    ),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "row_id": "rowId",
     "line_number": "lineNumber",

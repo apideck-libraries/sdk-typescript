@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -23,7 +26,7 @@ export type Folder = {
   /**
    * The name of the folder
    */
-  name: string;
+  name?: string | undefined;
   /**
    * Optional description of the folder
    */
@@ -44,7 +47,7 @@ export type Folder = {
   /**
    * The parent folders of the file, starting from the root
    */
-  parentFolders: Array<LinkedFolder>;
+  parentFolders?: Array<LinkedFolder> | undefined;
   /**
    * Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
    */
@@ -69,27 +72,32 @@ export type Folder = {
    * The date and time when the object was created.
    */
   createdAt?: Date | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
-export const Folder$inboundSchema: z.ZodType<Folder, z.ZodTypeDef, unknown> = z
-  .object({
-    id: types.optional(types.string()),
-    downstream_id: z.nullable(types.string()).optional(),
-    name: types.string(),
-    description: z.nullable(types.string()).optional(),
-    path: z.nullable(types.string()).optional(),
-    size: z.nullable(types.number()).optional(),
-    downloadable: z.nullable(types.boolean()).optional(),
-    owner: types.optional(Owner$inboundSchema),
-    parent_folders: z.array(LinkedFolder$inboundSchema),
-    parent_folders_complete: types.optional(types.boolean()),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    updated_by: z.nullable(types.string()).optional(),
-    created_by: z.nullable(types.string()).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-  }).transform((v) => {
+export const Folder$inboundSchema: z.ZodType<Folder, z.ZodTypeDef, unknown> =
+  collectExtraKeys$(
+    z.object({
+      id: types.optional(types.string()),
+      downstream_id: z.nullable(types.string()).optional(),
+      name: types.optional(types.string()),
+      description: z.nullable(types.string()).optional(),
+      path: z.nullable(types.string()).optional(),
+      size: z.nullable(types.number()).optional(),
+      downloadable: z.nullable(types.boolean()).optional(),
+      owner: types.optional(Owner$inboundSchema),
+      parent_folders: types.optional(z.array(LinkedFolder$inboundSchema)),
+      parent_folders_complete: types.optional(types.boolean()),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+      updated_by: z.nullable(types.string()).optional(),
+      created_by: z.nullable(types.string()).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
     return remap$(v, {
       "downstream_id": "downstreamId",
       "parent_folders": "parentFolders",

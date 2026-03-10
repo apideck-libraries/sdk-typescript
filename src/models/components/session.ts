@@ -73,6 +73,7 @@ export type Settings = {
    * Empty array will hide all actions. By default all actions are visible.
    */
   allowActions?: Array<AllowActions> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /**
@@ -134,6 +135,7 @@ export type Session = {
    * Custom consumer settings that are passed as part of the session.
    */
   customConsumerSettings?: { [k: string]: any } | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -156,6 +158,7 @@ export type Settings$Outbound = {
   auto_redirect: boolean;
   hide_guides: boolean;
   allow_actions?: Array<string> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -175,20 +178,25 @@ export const Settings$outboundSchema: z.ZodType<
   autoRedirect: z.boolean().default(false),
   hideGuides: z.boolean().default(false),
   allowActions: z.array(AllowActions$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    unifiedApis: "unified_apis",
-    hideResourceSettings: "hide_resource_settings",
-    sandboxMode: "sandbox_mode",
-    isolationMode: "isolation_mode",
-    sessionLength: "session_length",
-    showLogs: "show_logs",
-    showSuggestions: "show_suggestions",
-    showSidebar: "show_sidebar",
-    autoRedirect: "auto_redirect",
-    hideGuides: "hide_guides",
-    allowActions: "allow_actions",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      unifiedApis: "unified_apis",
+      hideResourceSettings: "hide_resource_settings",
+      sandboxMode: "sandbox_mode",
+      isolationMode: "isolation_mode",
+      sessionLength: "session_length",
+      showLogs: "show_logs",
+      showSuggestions: "show_suggestions",
+      showSidebar: "show_sidebar",
+      autoRedirect: "auto_redirect",
+      hideGuides: "hide_guides",
+      allowActions: "allow_actions",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function settingsToJSON(settings: Settings): string {
@@ -243,6 +251,7 @@ export type Session$Outbound = {
   settings?: Settings$Outbound | undefined;
   theme?: Theme$Outbound | undefined;
   custom_consumer_settings?: { [k: string]: any } | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -256,12 +265,17 @@ export const Session$outboundSchema: z.ZodType<
   settings: z.lazy(() => Settings$outboundSchema).optional(),
   theme: z.lazy(() => Theme$outboundSchema).optional(),
   customConsumerSettings: z.record(z.any()).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    consumerMetadata: "consumer_metadata",
-    redirectUri: "redirect_uri",
-    customConsumerSettings: "custom_consumer_settings",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      consumerMetadata: "consumer_metadata",
+      redirectUri: "redirect_uri",
+      customConsumerSettings: "custom_consumer_settings",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function sessionToJSON(session: Session): string {

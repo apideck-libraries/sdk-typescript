@@ -45,7 +45,19 @@ type ApplicantWebsite struct {
 	// The website URL
 	URL string `json:"url"`
 	// The type of website
-	Type optionalnullable.OptionalNullable[ApplicantType] `json:"type,omitempty"`
+	Type                 optionalnullable.OptionalNullable[ApplicantType] `json:"type,omitempty"`
+	AdditionalProperties map[string]any                                   `additionalProperties:"true" json:"-"`
+}
+
+func (a ApplicantWebsite) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *ApplicantWebsite) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"url"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ApplicantWebsite) GetID() optionalnullable.OptionalNullable[string] {
@@ -69,13 +81,32 @@ func (o *ApplicantWebsite) GetType() optionalnullable.OptionalNullable[Applicant
 	return o.Type
 }
 
+func (o *ApplicantWebsite) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type ApplicantSocialLink struct {
 	// Unique identifier of the social link
 	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// URL of the social link, e.g. https://www.twitter.com/apideck
 	URL string `json:"url"`
 	// Type of the social link, e.g. twitter
-	Type optionalnullable.OptionalNullable[string] `json:"type,omitempty"`
+	Type                 optionalnullable.OptionalNullable[string] `json:"type,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
+}
+
+func (a ApplicantSocialLink) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *ApplicantSocialLink) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"url"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ApplicantSocialLink) GetID() optionalnullable.OptionalNullable[string] {
@@ -97,6 +128,13 @@ func (o *ApplicantSocialLink) GetType() optionalnullable.OptionalNullable[string
 		return nil
 	}
 	return o.Type
+}
+
+func (o *ApplicantSocialLink) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 type Applicant struct {
@@ -130,7 +168,7 @@ type Applicant struct {
 	// The job title of the person.
 	Title          optionalnullable.OptionalNullable[string]   `json:"title,omitempty"`
 	Emails         []Email                                     `json:"emails,omitempty"`
-	CustomFields   []CustomFieldUnion                          `json:"custom_fields,omitempty"`
+	CustomFields   []CustomField                               `json:"custom_fields,omitempty"`
 	PhoneNumbers   []PhoneNumber                               `json:"phone_numbers,omitempty"`
 	Addresses      []Address                                   `json:"addresses,omitempty"`
 	Websites       []ApplicantWebsite                          `json:"websites,omitempty"`
@@ -173,7 +211,8 @@ type Applicant struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (a Applicant) MarshalJSON() ([]byte, error) {
@@ -306,7 +345,7 @@ func (o *Applicant) GetEmails() []Email {
 	return o.Emails
 }
 
-func (o *Applicant) GetCustomFields() []CustomFieldUnion {
+func (o *Applicant) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -530,6 +569,13 @@ func (o *Applicant) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *Applicant) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type ApplicantInput struct {
 	// The name of an applicant.
 	Name *string `json:"name,omitempty"`
@@ -558,7 +604,7 @@ type ApplicantInput struct {
 	// The job title of the person.
 	Title          optionalnullable.OptionalNullable[string]   `json:"title,omitempty"`
 	Emails         []Email                                     `json:"emails,omitempty"`
-	CustomFields   []CustomFieldUnion                          `json:"custom_fields,omitempty"`
+	CustomFields   []CustomField                               `json:"custom_fields,omitempty"`
 	PhoneNumbers   []PhoneNumber                               `json:"phone_numbers,omitempty"`
 	Addresses      []Address                                   `json:"addresses,omitempty"`
 	Websites       []ApplicantWebsite                          `json:"websites,omitempty"`
@@ -582,7 +628,8 @@ type ApplicantInput struct {
 	// Flag to indicate if the object is deleted.
 	Deleted optionalnullable.OptionalNullable[bool] `json:"deleted,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (a ApplicantInput) MarshalJSON() ([]byte, error) {
@@ -701,7 +748,7 @@ func (o *ApplicantInput) GetEmails() []Email {
 	return o.Emails
 }
 
-func (o *ApplicantInput) GetCustomFields() []CustomFieldUnion {
+func (o *ApplicantInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -839,4 +886,11 @@ func (o *ApplicantInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *ApplicantInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 // JournalEntryLineItemType - Debit entries are considered positive, and credit entries are considered negative.
@@ -30,13 +31,13 @@ type JournalEntryLineItem struct {
 	// Debit entries are considered positive, and credit entries are considered negative.
 	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
 	// Debit entries are considered positive, and credit entries are considered negative.
-	Type    JournalEntryLineItemType `json:"type"`
-	TaxRate *LinkedTaxRate           `json:"tax_rate,omitempty"`
+	Type    *JournalEntryLineItemType `json:"type,omitempty"`
+	TaxRate *LinkedTaxRate            `json:"tax_rate,omitempty"`
 	// Deprecated: This field is deprecated and may be removed in a future version..
 	TrackingCategory optionalnullable.OptionalNullable[DeprecatedLinkedTrackingCategory] `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
-	LedgerAccount      *LinkedLedgerAccount                                         `json:"ledger_account"`
+	LedgerAccount      optionalnullable.OptionalNullable[LinkedLedgerAccount]       `json:"ledger_account,omitempty"`
 	// The customer this entity is linked to.
 	Customer optionalnullable.OptionalNullable[LinkedCustomer] `json:"customer,omitempty"`
 	// The supplier this entity is linked to.
@@ -48,7 +49,19 @@ type JournalEntryLineItem struct {
 	// Line number of the resource
 	LineNumber optionalnullable.OptionalNullable[int64] `json:"line_number,omitempty"`
 	// Worktags of the line item. This is currently only supported in Workday.
-	Worktags []*LinkedWorktag `json:"worktags,omitempty"`
+	Worktags             []*LinkedWorktag `json:"worktags,omitempty"`
+	AdditionalProperties map[string]any   `additionalProperties:"true" json:"-"`
+}
+
+func (j JournalEntryLineItem) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(j, "", false)
+}
+
+func (j *JournalEntryLineItem) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &j, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *JournalEntryLineItem) GetID() *string {
@@ -86,9 +99,9 @@ func (o *JournalEntryLineItem) GetTotalAmount() optionalnullable.OptionalNullabl
 	return o.TotalAmount
 }
 
-func (o *JournalEntryLineItem) GetType() JournalEntryLineItemType {
+func (o *JournalEntryLineItem) GetType() *JournalEntryLineItemType {
 	if o == nil {
-		return JournalEntryLineItemType("")
+		return nil
 	}
 	return o.Type
 }
@@ -114,7 +127,7 @@ func (o *JournalEntryLineItem) GetTrackingCategories() optionalnullable.Optional
 	return o.TrackingCategories
 }
 
-func (o *JournalEntryLineItem) GetLedgerAccount() *LinkedLedgerAccount {
+func (o *JournalEntryLineItem) GetLedgerAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
@@ -163,6 +176,13 @@ func (o *JournalEntryLineItem) GetWorktags() []*LinkedWorktag {
 	return o.Worktags
 }
 
+func (o *JournalEntryLineItem) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type JournalEntryLineItemInput struct {
 	// User defined description
 	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
@@ -173,13 +193,13 @@ type JournalEntryLineItemInput struct {
 	// Debit entries are considered positive, and credit entries are considered negative.
 	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
 	// Debit entries are considered positive, and credit entries are considered negative.
-	Type    JournalEntryLineItemType `json:"type"`
-	TaxRate *LinkedTaxRateInput      `json:"tax_rate,omitempty"`
+	Type    *JournalEntryLineItemType `json:"type,omitempty"`
+	TaxRate *LinkedTaxRateInput       `json:"tax_rate,omitempty"`
 	// Deprecated: This field is deprecated and may be removed in a future version..
 	TrackingCategory optionalnullable.OptionalNullable[DeprecatedLinkedTrackingCategory] `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
-	LedgerAccount      *LinkedLedgerAccount                                         `json:"ledger_account"`
+	LedgerAccount      optionalnullable.OptionalNullable[LinkedLedgerAccount]       `json:"ledger_account,omitempty"`
 	// The customer this entity is linked to.
 	Customer optionalnullable.OptionalNullable[LinkedCustomerInput] `json:"customer,omitempty"`
 	// The supplier this entity is linked to.
@@ -191,7 +211,19 @@ type JournalEntryLineItemInput struct {
 	// Line number of the resource
 	LineNumber optionalnullable.OptionalNullable[int64] `json:"line_number,omitempty"`
 	// Worktags of the line item. This is currently only supported in Workday.
-	Worktags []*LinkedWorktag `json:"worktags,omitempty"`
+	Worktags             []*LinkedWorktag `json:"worktags,omitempty"`
+	AdditionalProperties map[string]any   `additionalProperties:"true" json:"-"`
+}
+
+func (j JournalEntryLineItemInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(j, "", false)
+}
+
+func (j *JournalEntryLineItemInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &j, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *JournalEntryLineItemInput) GetDescription() optionalnullable.OptionalNullable[string] {
@@ -222,9 +254,9 @@ func (o *JournalEntryLineItemInput) GetTotalAmount() optionalnullable.OptionalNu
 	return o.TotalAmount
 }
 
-func (o *JournalEntryLineItemInput) GetType() JournalEntryLineItemType {
+func (o *JournalEntryLineItemInput) GetType() *JournalEntryLineItemType {
 	if o == nil {
-		return JournalEntryLineItemType("")
+		return nil
 	}
 	return o.Type
 }
@@ -250,7 +282,7 @@ func (o *JournalEntryLineItemInput) GetTrackingCategories() optionalnullable.Opt
 	return o.TrackingCategories
 }
 
-func (o *JournalEntryLineItemInput) GetLedgerAccount() *LinkedLedgerAccount {
+func (o *JournalEntryLineItemInput) GetLedgerAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
@@ -297,4 +329,11 @@ func (o *JournalEntryLineItemInput) GetWorktags() []*LinkedWorktag {
 		return nil
 	}
 	return o.Worktags
+}
+
+func (o *JournalEntryLineItemInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

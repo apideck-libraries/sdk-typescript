@@ -22,7 +22,7 @@ type ExpenseReportLineItem struct {
 	Quantity    optionalnullable.OptionalNullable[float64] `json:"quantity,omitempty"`
 	UnitPrice   optionalnullable.OptionalNullable[float64] `json:"unit_price,omitempty"`
 	// The amount of the expense line item.
-	Amount  float64        `json:"amount"`
+	Amount  *float64       `json:"amount,omitempty"`
 	TaxRate *LinkedTaxRate `json:"tax_rate,omitempty"`
 	// Tax amount
 	TaxAmount optionalnullable.OptionalNullable[float64] `json:"tax_amount,omitempty"`
@@ -51,7 +51,8 @@ type ExpenseReportLineItem struct {
 	// The date and time when the object was last updated.
 	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	CreatedAt            optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (e ExpenseReportLineItem) MarshalJSON() ([]byte, error) {
@@ -59,7 +60,7 @@ func (e ExpenseReportLineItem) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExpenseReportLineItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"amount"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -114,9 +115,9 @@ func (o *ExpenseReportLineItem) GetUnitPrice() optionalnullable.OptionalNullable
 	return o.UnitPrice
 }
 
-func (o *ExpenseReportLineItem) GetAmount() float64 {
+func (o *ExpenseReportLineItem) GetAmount() *float64 {
 	if o == nil {
-		return 0.0
+		return nil
 	}
 	return o.Amount
 }
@@ -231,4 +232,11 @@ func (o *ExpenseReportLineItem) GetCreatedAt() optionalnullable.OptionalNullable
 		return nil
 	}
 	return o.CreatedAt
+}
+
+func (o *ExpenseReportLineItem) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

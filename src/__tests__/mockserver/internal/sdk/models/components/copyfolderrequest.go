@@ -2,13 +2,29 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type CopyFolderRequest struct {
 	// The name of the folder.
 	Name *string `json:"name,omitempty"`
 	// The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
 	ParentFolderID string `json:"parent_folder_id"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (c CopyFolderRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CopyFolderRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"parent_folder_id"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CopyFolderRequest) GetName() *string {
@@ -30,4 +46,11 @@ func (o *CopyFolderRequest) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *CopyFolderRequest) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

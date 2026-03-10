@@ -35,6 +35,10 @@ export type AccountingBalanceSheetOneRequest = {
    */
   serviceId?: string | undefined;
   /**
+   * The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+   */
+  companyId?: string | undefined;
+  /**
    * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
    */
   passThrough?: { [k: string]: any } | undefined;
@@ -65,6 +69,7 @@ export type AccountingBalanceSheetOneRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
   serviceId?: string | undefined;
+  companyId?: string | undefined;
   pass_through?: { [k: string]: any } | undefined;
   filter?: components.BalanceSheetFilter$Outbound | undefined;
   raw: boolean;
@@ -79,6 +84,7 @@ export const AccountingBalanceSheetOneRequest$outboundSchema: z.ZodType<
   consumerId: z.string().optional(),
   appId: z.string().optional(),
   serviceId: z.string().optional(),
+  companyId: z.string().optional(),
   passThrough: z.record(z.any()).optional(),
   filter: components.BalanceSheetFilter$outboundSchema.optional(),
   raw: z.boolean().default(false),

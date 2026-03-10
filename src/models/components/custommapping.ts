@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -46,6 +49,7 @@ export type CustomMapping = {
    * Target Field Mapping example value from downstream
    */
   example?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -53,17 +57,21 @@ export const CustomMapping$inboundSchema: z.ZodType<
   CustomMapping,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  label: types.optional(types.string()),
-  description: z.nullable(types.string()).optional(),
-  value: types.optional(types.string()),
-  key: types.optional(types.string()),
-  required: types.optional(types.boolean()),
-  custom_field: types.optional(types.boolean()),
-  consumer_id: z.nullable(types.string()).optional(),
-  example: z.nullable(types.string()).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    label: types.optional(types.string()),
+    description: z.nullable(types.string()).optional(),
+    value: types.optional(types.string()),
+    key: types.optional(types.string()),
+    required: types.optional(types.boolean()),
+    custom_field: types.optional(types.boolean()),
+    consumer_id: z.nullable(types.string()).optional(),
+    example: z.nullable(types.string()).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "custom_field": "customField",
     "consumer_id": "consumerId",

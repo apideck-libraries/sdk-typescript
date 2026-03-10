@@ -49,7 +49,8 @@ type ActivityAttendee struct {
 	// The last time the attendee was updated (ISO 8601)
 	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The time the attendee was created (ISO 8601)
-	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	CreatedAt            optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (a ActivityAttendee) MarshalJSON() ([]byte, error) {
@@ -161,6 +162,13 @@ func (o *ActivityAttendee) GetCreatedAt() optionalnullable.OptionalNullable[time
 	return o.CreatedAt
 }
 
+func (o *ActivityAttendee) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type ActivityAttendeeInput struct {
 	// Full name of the attendee
 	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
@@ -179,7 +187,19 @@ type ActivityAttendeeInput struct {
 	// Whether the attendee is the organizer of the activity
 	IsOrganizer optionalnullable.OptionalNullable[bool] `json:"is_organizer,omitempty"`
 	// Status of the attendee
-	Status optionalnullable.OptionalNullable[ActivityAttendeeStatus] `json:"status,omitempty"`
+	Status               optionalnullable.OptionalNullable[ActivityAttendeeStatus] `json:"status,omitempty"`
+	AdditionalProperties map[string]any                                            `additionalProperties:"true" json:"-"`
+}
+
+func (a ActivityAttendeeInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *ActivityAttendeeInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ActivityAttendeeInput) GetName() optionalnullable.OptionalNullable[string] {
@@ -243,4 +263,11 @@ func (o *ActivityAttendeeInput) GetStatus() optionalnullable.OptionalNullable[Ac
 		return nil
 	}
 	return o.Status
+}
+
+func (o *ActivityAttendeeInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

@@ -57,7 +57,7 @@ func testFileStorageSharedLinksOneFileStorageSharedLinksOne0(w http.ResponseWrit
 			URL:         optionalnullable.From(types.String("https://www.box.com/s/vspke7y05sb214wjokpk")),
 			DownloadURL: optionalnullable.From(types.String("https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg")),
 			Target: &components.SharedLinkTarget{
-				ID:   "12345",
+				ID:   types.String("12345"),
 				Name: optionalnullable.From(types.String("sample.jpg")),
 				Type: optionalnullable.From(components.FileTypeFile.ToPointer()),
 			},

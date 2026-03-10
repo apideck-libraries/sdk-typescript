@@ -60,7 +60,7 @@ export type ExpenseReportLineItemInput = {
   /**
    * The amount of the expense line item.
    */
-  amount: number;
+  amount?: number | undefined;
   taxRate?: LinkedTaxRateInput | undefined;
   /**
    * Tax amount
@@ -100,6 +100,7 @@ export type ExpenseReportLineItemInput = {
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
   currency?: Currency | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -110,7 +111,7 @@ export type ExpenseReportLineItemInput$Outbound = {
   description?: string | null | undefined;
   quantity?: number | null | undefined;
   unit_price?: number | null | undefined;
-  amount: number;
+  amount?: number | undefined;
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   tax_amount?: number | null | undefined;
   total_amount?: number | null | undefined;
@@ -126,6 +127,7 @@ export type ExpenseReportLineItemInput$Outbound = {
     | undefined;
   receipt_url?: string | null | undefined;
   currency?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -140,7 +142,7 @@ export const ExpenseReportLineItemInput$outboundSchema: z.ZodType<
   description: z.nullable(z.string()).optional(),
   quantity: z.nullable(z.number()).optional(),
   unitPrice: z.nullable(z.number()).optional(),
-  amount: z.number(),
+  amount: z.number().optional(),
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   taxAmount: z.nullable(z.number()).optional(),
   totalAmount: z.nullable(z.number()).optional(),
@@ -157,18 +159,23 @@ export const ExpenseReportLineItemInput$outboundSchema: z.ZodType<
   ).optional(),
   receiptUrl: z.nullable(z.string()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    lineNumber: "line_number",
-    expenseCategory: "expense_category",
-    unitPrice: "unit_price",
-    taxRate: "tax_rate",
-    taxAmount: "tax_amount",
-    totalAmount: "total_amount",
-    transactionDate: "transaction_date",
-    trackingCategories: "tracking_categories",
-    receiptUrl: "receipt_url",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      lineNumber: "line_number",
+      expenseCategory: "expense_category",
+      unitPrice: "unit_price",
+      taxRate: "tax_rate",
+      taxAmount: "tax_amount",
+      totalAmount: "total_amount",
+      transactionDate: "transaction_date",
+      trackingCategories: "tracking_categories",
+      receiptUrl: "receipt_url",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function expenseReportLineItemInputToJSON(

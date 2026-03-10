@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -171,6 +174,7 @@ export type Manager = {
    * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
    */
   employmentStatus?: EmploymentStatus | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type ProbationPeriod = {
@@ -401,6 +405,7 @@ export type Employee = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type EmployeeInput = {
@@ -596,6 +601,7 @@ export type EmployeeInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -685,14 +691,18 @@ export function employmentRoleFromJSON(
 
 /** @internal */
 export const Manager$inboundSchema: z.ZodType<Manager, z.ZodTypeDef, unknown> =
-  z.object({
-    id: z.nullable(types.string()).optional(),
-    name: z.nullable(types.string()).optional(),
-    first_name: z.nullable(types.string()).optional(),
-    last_name: z.nullable(types.string()).optional(),
-    email: z.nullable(types.string()).optional(),
-    employment_status: z.nullable(EmploymentStatus$inboundSchema).optional(),
-  }).transform((v) => {
+  collectExtraKeys$(
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      name: z.nullable(types.string()).optional(),
+      first_name: z.nullable(types.string()).optional(),
+      last_name: z.nullable(types.string()).optional(),
+      email: z.nullable(types.string()).optional(),
+      employment_status: z.nullable(EmploymentStatus$inboundSchema).optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
     return remap$(v, {
       "first_name": "firstName",
       "last_name": "lastName",
@@ -707,6 +717,7 @@ export type Manager$Outbound = {
   last_name?: string | null | undefined;
   email?: string | null | undefined;
   employment_status?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -721,12 +732,17 @@ export const Manager$outboundSchema: z.ZodType<
   lastName: z.nullable(z.string()).optional(),
   email: z.nullable(z.string()).optional(),
   employmentStatus: z.nullable(EmploymentStatus$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    employmentStatus: "employment_status",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      firstName: "first_name",
+      lastName: "last_name",
+      employmentStatus: "employment_status",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function managerToJSON(manager: Manager): string {
@@ -801,76 +817,82 @@ export const Employee$inboundSchema: z.ZodType<
   Employee,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  downstream_id: z.nullable(types.string()).optional(),
-  first_name: z.nullable(types.string()).optional(),
-  last_name: z.nullable(types.string()).optional(),
-  middle_name: z.nullable(types.string()).optional(),
-  display_name: z.nullable(types.string()).optional(),
-  preferred_name: z.nullable(types.string()).optional(),
-  initials: z.nullable(types.string()).optional(),
-  salutation: z.nullable(types.string()).optional(),
-  title: z.nullable(types.string()).optional(),
-  marital_status: z.nullable(types.string()).optional(),
-  partner: types.optional(Person$inboundSchema),
-  division: z.nullable(types.string()).optional(),
-  division_id: z.nullable(types.string()).optional(),
-  department: z.nullable(types.string()).optional(),
-  department_id: z.nullable(types.string()).optional(),
-  department_name: z.nullable(types.string()).optional(),
-  team: z.nullable(Team$inboundSchema).optional(),
-  company_id: z.nullable(types.string()).optional(),
-  company_name: z.nullable(types.string()).optional(),
-  employment_start_date: z.nullable(types.string()).optional(),
-  employment_end_date: z.nullable(types.string()).optional(),
-  leaving_reason: z.nullable(LeavingReason$inboundSchema).optional(),
-  employee_number: z.nullable(types.string()).optional(),
-  employment_status: z.nullable(EmploymentStatus$inboundSchema).optional(),
-  employment_role: types.optional(z.lazy(() => EmploymentRole$inboundSchema)),
-  ethnicity: z.nullable(types.string()).optional(),
-  manager: types.optional(z.lazy(() => Manager$inboundSchema)),
-  direct_reports: z.nullable(z.array(types.string())).optional(),
-  social_security_number: z.nullable(types.string()).optional(),
-  birthday: z.nullable(types.date()).optional(),
-  deceased_on: z.nullable(types.date()).optional(),
-  country_of_birth: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  gender: z.nullable(Gender$inboundSchema).optional(),
-  pronouns: z.nullable(types.string()).optional(),
-  preferred_language: z.nullable(types.string()).optional(),
-  languages: types.optional(z.array(types.nullable(types.string()))),
-  nationalities: types.optional(z.array(types.nullable(types.string()))),
-  photo_url: z.nullable(types.string()).optional(),
-  timezone: z.nullable(types.string()).optional(),
-  source: z.nullable(types.string()).optional(),
-  source_id: z.nullable(types.string()).optional(),
-  record_url: z.nullable(types.string()).optional(),
-  jobs: z.nullable(z.array(EmployeeJob$inboundSchema)).optional(),
-  compensations: z.nullable(z.array(EmployeeCompensation$inboundSchema))
-    .optional(),
-  works_remote: z.nullable(types.boolean()).optional(),
-  addresses: types.optional(z.array(Address$inboundSchema)),
-  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
-  emails: types.optional(z.array(Email$inboundSchema)),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  social_links: types.optional(z.array(SocialLink$inboundSchema)),
-  bank_accounts: types.optional(z.array(BankAccount2$inboundSchema)),
-  tax_code: z.nullable(types.string()).optional(),
-  tax_id: z.nullable(types.string()).optional(),
-  dietary_preference: z.nullable(types.string()).optional(),
-  food_allergies: z.nullable(z.array(types.string())).optional(),
-  probation_period: types.optional(z.lazy(() => ProbationPeriod$inboundSchema)),
-  tags: z.nullable(z.array(types.string())).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  deleted: z.nullable(types.boolean()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    downstream_id: z.nullable(types.string()).optional(),
+    first_name: z.nullable(types.string()).optional(),
+    last_name: z.nullable(types.string()).optional(),
+    middle_name: z.nullable(types.string()).optional(),
+    display_name: z.nullable(types.string()).optional(),
+    preferred_name: z.nullable(types.string()).optional(),
+    initials: z.nullable(types.string()).optional(),
+    salutation: z.nullable(types.string()).optional(),
+    title: z.nullable(types.string()).optional(),
+    marital_status: z.nullable(types.string()).optional(),
+    partner: types.optional(Person$inboundSchema),
+    division: z.nullable(types.string()).optional(),
+    division_id: z.nullable(types.string()).optional(),
+    department: z.nullable(types.string()).optional(),
+    department_id: z.nullable(types.string()).optional(),
+    department_name: z.nullable(types.string()).optional(),
+    team: z.nullable(Team$inboundSchema).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    company_name: z.nullable(types.string()).optional(),
+    employment_start_date: z.nullable(types.string()).optional(),
+    employment_end_date: z.nullable(types.string()).optional(),
+    leaving_reason: z.nullable(LeavingReason$inboundSchema).optional(),
+    employee_number: z.nullable(types.string()).optional(),
+    employment_status: z.nullable(EmploymentStatus$inboundSchema).optional(),
+    employment_role: types.optional(z.lazy(() => EmploymentRole$inboundSchema)),
+    ethnicity: z.nullable(types.string()).optional(),
+    manager: types.optional(z.lazy(() => Manager$inboundSchema)),
+    direct_reports: z.nullable(z.array(types.string())).optional(),
+    social_security_number: z.nullable(types.string()).optional(),
+    birthday: z.nullable(types.date()).optional(),
+    deceased_on: z.nullable(types.date()).optional(),
+    country_of_birth: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    gender: z.nullable(Gender$inboundSchema).optional(),
+    pronouns: z.nullable(types.string()).optional(),
+    preferred_language: z.nullable(types.string()).optional(),
+    languages: types.optional(z.array(types.nullable(types.string()))),
+    nationalities: types.optional(z.array(types.nullable(types.string()))),
+    photo_url: z.nullable(types.string()).optional(),
+    timezone: z.nullable(types.string()).optional(),
+    source: z.nullable(types.string()).optional(),
+    source_id: z.nullable(types.string()).optional(),
+    record_url: z.nullable(types.string()).optional(),
+    jobs: z.nullable(z.array(EmployeeJob$inboundSchema)).optional(),
+    compensations: z.nullable(z.array(EmployeeCompensation$inboundSchema))
+      .optional(),
+    works_remote: z.nullable(types.boolean()).optional(),
+    addresses: types.optional(z.array(Address$inboundSchema)),
+    phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+    emails: types.optional(z.array(Email$inboundSchema)),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    social_links: types.optional(z.array(SocialLink$inboundSchema)),
+    bank_accounts: types.optional(z.array(BankAccount2$inboundSchema)),
+    tax_code: z.nullable(types.string()).optional(),
+    tax_id: z.nullable(types.string()).optional(),
+    dietary_preference: z.nullable(types.string()).optional(),
+    food_allergies: z.nullable(z.array(types.string())).optional(),
+    probation_period: types.optional(
+      z.lazy(() => ProbationPeriod$inboundSchema),
+    ),
+    tags: z.nullable(z.array(types.string())).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    deleted: z.nullable(types.boolean()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",
     "first_name": "firstName",
@@ -991,6 +1013,7 @@ export type EmployeeInput$Outbound = {
   row_version?: string | null | undefined;
   deleted?: boolean | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -1065,46 +1088,51 @@ export const EmployeeInput$outboundSchema: z.ZodType<
   rowVersion: z.nullable(z.string()).optional(),
   deleted: z.nullable(z.boolean()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    middleName: "middle_name",
-    displayName: "display_name",
-    preferredName: "preferred_name",
-    maritalStatus: "marital_status",
-    divisionId: "division_id",
-    departmentId: "department_id",
-    departmentName: "department_name",
-    companyId: "company_id",
-    companyName: "company_name",
-    employmentStartDate: "employment_start_date",
-    employmentEndDate: "employment_end_date",
-    leavingReason: "leaving_reason",
-    employeeNumber: "employee_number",
-    employmentStatus: "employment_status",
-    employmentRole: "employment_role",
-    directReports: "direct_reports",
-    socialSecurityNumber: "social_security_number",
-    deceasedOn: "deceased_on",
-    countryOfBirth: "country_of_birth",
-    preferredLanguage: "preferred_language",
-    photoUrl: "photo_url",
-    sourceId: "source_id",
-    recordUrl: "record_url",
-    worksRemote: "works_remote",
-    phoneNumbers: "phone_numbers",
-    customFields: "custom_fields",
-    socialLinks: "social_links",
-    bankAccounts: "bank_accounts",
-    taxCode: "tax_code",
-    taxId: "tax_id",
-    dietaryPreference: "dietary_preference",
-    foodAllergies: "food_allergies",
-    probationPeriod: "probation_period",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      firstName: "first_name",
+      lastName: "last_name",
+      middleName: "middle_name",
+      displayName: "display_name",
+      preferredName: "preferred_name",
+      maritalStatus: "marital_status",
+      divisionId: "division_id",
+      departmentId: "department_id",
+      departmentName: "department_name",
+      companyId: "company_id",
+      companyName: "company_name",
+      employmentStartDate: "employment_start_date",
+      employmentEndDate: "employment_end_date",
+      leavingReason: "leaving_reason",
+      employeeNumber: "employee_number",
+      employmentStatus: "employment_status",
+      employmentRole: "employment_role",
+      directReports: "direct_reports",
+      socialSecurityNumber: "social_security_number",
+      deceasedOn: "deceased_on",
+      countryOfBirth: "country_of_birth",
+      preferredLanguage: "preferred_language",
+      photoUrl: "photo_url",
+      sourceId: "source_id",
+      recordUrl: "record_url",
+      worksRemote: "works_remote",
+      phoneNumbers: "phone_numbers",
+      customFields: "custom_fields",
+      socialLinks: "social_links",
+      bankAccounts: "bank_accounts",
+      taxCode: "tax_code",
+      taxId: "tax_id",
+      dietaryPreference: "dietary_preference",
+      foodAllergies: "food_allergies",
+      probationPeriod: "probation_period",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function employeeInputToJSON(employeeInput: EmployeeInput): string {

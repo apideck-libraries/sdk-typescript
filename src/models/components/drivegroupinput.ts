@@ -14,7 +14,7 @@ export type DriveGroupInput = {
   /**
    * The name of the drive group
    */
-  name: string;
+  name?: string | undefined;
   /**
    * The display name of the drive group
    */
@@ -27,14 +27,16 @@ export type DriveGroupInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
 export type DriveGroupInput$Outbound = {
-  name: string;
+  name?: string | undefined;
   display_name?: string | null | undefined;
   description?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -43,15 +45,20 @@ export const DriveGroupInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   DriveGroupInput
 > = z.object({
-  name: z.string(),
+  name: z.string().optional(),
   displayName: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      displayName: "display_name",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function driveGroupInputToJSON(

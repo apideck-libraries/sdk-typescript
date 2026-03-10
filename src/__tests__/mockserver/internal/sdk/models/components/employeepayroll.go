@@ -4,32 +4,45 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type EmployeePayroll struct {
 	// A unique identifier for an object.
-	ID *string `json:"id"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// ID of the employee
 	EmployeeID optionalnullable.OptionalNullable[string] `json:"employee_id,omitempty"`
 	// The unique identifier of the company.
 	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
-	Processed *bool `json:"processed"`
+	Processed optionalnullable.OptionalNullable[bool] `json:"processed,omitempty"`
 	// The date the payroll was processed.
 	ProcessedDate optionalnullable.OptionalNullable[string] `json:"processed_date,omitempty"`
 	// The date on which employees will be paid for the payroll.
-	CheckDate *string `json:"check_date"`
+	CheckDate optionalnullable.OptionalNullable[string] `json:"check_date,omitempty"`
 	// The start date, inclusive, of the pay period.
-	StartDate *string `json:"start_date"`
+	StartDate optionalnullable.OptionalNullable[string] `json:"start_date,omitempty"`
 	// The end date, inclusive, of the pay period.
-	EndDate *string `json:"end_date"`
+	EndDate optionalnullable.OptionalNullable[string] `json:"end_date,omitempty"`
 	// The overview of the payroll totals.
 	Totals *PayrollTotals `json:"totals,omitempty"`
 	// An array of compensations for the payroll.
-	Compensations []Compensation `json:"compensations,omitempty"`
+	Compensations        []Compensation `json:"compensations,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
 
-func (o *EmployeePayroll) GetID() *string {
+func (e EmployeePayroll) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EmployeePayroll) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *EmployeePayroll) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -50,7 +63,7 @@ func (o *EmployeePayroll) GetCompanyID() optionalnullable.OptionalNullable[strin
 	return o.CompanyID
 }
 
-func (o *EmployeePayroll) GetProcessed() *bool {
+func (o *EmployeePayroll) GetProcessed() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -64,21 +77,21 @@ func (o *EmployeePayroll) GetProcessedDate() optionalnullable.OptionalNullable[s
 	return o.ProcessedDate
 }
 
-func (o *EmployeePayroll) GetCheckDate() *string {
+func (o *EmployeePayroll) GetCheckDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CheckDate
 }
 
-func (o *EmployeePayroll) GetStartDate() *string {
+func (o *EmployeePayroll) GetStartDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.StartDate
 }
 
-func (o *EmployeePayroll) GetEndDate() *string {
+func (o *EmployeePayroll) GetEndDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -97,4 +110,11 @@ func (o *EmployeePayroll) GetCompensations() []Compensation {
 		return nil
 	}
 	return o.Compensations
+}
+
+func (o *EmployeePayroll) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

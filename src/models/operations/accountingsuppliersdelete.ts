@@ -39,6 +39,10 @@ export type AccountingSuppliersDeleteRequest = {
    */
   serviceId?: string | undefined;
   /**
+   * The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+   */
+  companyId?: string | undefined;
+  /**
    * Include raw response. Mostly used for debugging purposes
    */
   raw?: boolean | undefined;
@@ -62,6 +66,7 @@ export type AccountingSuppliersDeleteRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
   serviceId?: string | undefined;
+  companyId?: string | undefined;
   raw: boolean;
 };
 
@@ -75,6 +80,7 @@ export const AccountingSuppliersDeleteRequest$outboundSchema: z.ZodType<
   consumerId: z.string().optional(),
   appId: z.string().optional(),
   serviceId: z.string().optional(),
+  companyId: z.string().optional(),
   raw: z.boolean().default(false),
 });
 

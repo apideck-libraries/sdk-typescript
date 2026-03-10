@@ -58,7 +58,7 @@ func testAccountingBankAccountsAddAccountingBankAccountsAdd0(w http.ResponseWrit
 		Resource:   types.String("bank-accounts"),
 		Operation:  types.String("add"),
 		Data: components.UnifiedID{
-			ID: "12345",
+			ID: types.String("12345"),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)
