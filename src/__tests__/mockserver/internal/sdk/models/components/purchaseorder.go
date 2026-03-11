@@ -95,6 +95,8 @@ type PurchaseOrder struct {
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// Type of amortization
 	AmortizationType optionalnullable.OptionalNullable[PurchaseOrderAmortizationType] `json:"amortization_type,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
@@ -358,6 +360,13 @@ func (o *PurchaseOrder) GetTerms() optionalnullable.OptionalNullable[string] {
 	return o.Terms
 }
 
+func (o *PurchaseOrder) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
+}
+
 func (o *PurchaseOrder) GetAmortizationType() optionalnullable.OptionalNullable[PurchaseOrderAmortizationType] {
 	if o == nil {
 		return nil
@@ -530,6 +539,8 @@ type PurchaseOrderInput struct {
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// Type of amortization
 	AmortizationType optionalnullable.OptionalNullable[PurchaseOrderAmortizationType] `json:"amortization_type,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
@@ -767,6 +778,13 @@ func (o *PurchaseOrderInput) GetTerms() optionalnullable.OptionalNullable[string
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *PurchaseOrderInput) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *PurchaseOrderInput) GetAmortizationType() optionalnullable.OptionalNullable[PurchaseOrderAmortizationType] {

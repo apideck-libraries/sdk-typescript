@@ -111,6 +111,8 @@ type Invoice struct {
 	DueDate optionalnullable.OptionalNullable[types.Date] `json:"due_date,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
 	PoNumber optionalnullable.OptionalNullable[string] `json:"po_number,omitempty"`
 	// Optional reference identifier for the transaction.
@@ -276,6 +278,13 @@ func (o *Invoice) GetTerms() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *Invoice) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *Invoice) GetPoNumber() optionalnullable.OptionalNullable[string] {
@@ -565,6 +574,8 @@ type InvoiceInput struct {
 	DueDate optionalnullable.OptionalNullable[types.Date] `json:"due_date,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
 	PoNumber optionalnullable.OptionalNullable[string] `json:"po_number,omitempty"`
 	// Optional reference identifier for the transaction.
@@ -706,6 +717,13 @@ func (o *InvoiceInput) GetTerms() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *InvoiceInput) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *InvoiceInput) GetPoNumber() optionalnullable.OptionalNullable[string] {

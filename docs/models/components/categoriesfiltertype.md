@@ -8,11 +8,11 @@ The type of the category.
 import { CategoriesFilterType } from "@apideck/unify/models/components";
 
 let value: CategoriesFilterType = "expense";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "supplier" | "expense" | "revenue" | "customer" | Unrecognized<string>

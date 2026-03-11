@@ -171,6 +171,10 @@ export type Bill = {
    */
   terms?: string | null | undefined;
   /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
+  /**
    * Balance of bill due.
    */
   balance?: number | null | undefined;
@@ -348,6 +352,10 @@ export type BillInput = {
    */
   terms?: string | null | undefined;
   /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
+  /**
    * Balance of bill due.
    */
   balance?: number | null | undefined;
@@ -489,6 +497,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
     reference: z.nullable(types.string()).optional(),
     line_items: types.optional(z.array(BillLineItem$inboundSchema)),
     terms: z.nullable(types.string()).optional(),
+    terms_id: z.nullable(types.string()).optional(),
     balance: z.nullable(types.number()).optional(),
     deposit: z.nullable(types.number()).optional(),
     sub_total: z.nullable(types.number()).optional(),
@@ -540,6 +549,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
       "paid_date": "paidDate",
       "po_number": "poNumber",
       "line_items": "lineItems",
+      "terms_id": "termsId",
       "sub_total": "subTotal",
       "total_tax": "totalTax",
       "tax_code": "taxCode",
@@ -595,6 +605,7 @@ export type BillInput$Outbound = {
   reference?: string | null | undefined;
   line_items?: Array<BillLineItemInput$Outbound> | undefined;
   terms?: string | null | undefined;
+  terms_id?: string | null | undefined;
   balance?: number | null | undefined;
   deposit?: number | null | undefined;
   sub_total?: number | null | undefined;
@@ -655,6 +666,7 @@ export const BillInput$outboundSchema: z.ZodType<
   reference: z.nullable(z.string()).optional(),
   lineItems: z.array(BillLineItemInput$outboundSchema).optional(),
   terms: z.nullable(z.string()).optional(),
+  termsId: z.nullable(z.string()).optional(),
   balance: z.nullable(z.number()).optional(),
   deposit: z.nullable(z.number()).optional(),
   subTotal: z.nullable(z.number()).optional(),
@@ -698,6 +710,7 @@ export const BillInput$outboundSchema: z.ZodType<
     paidDate: "paid_date",
     poNumber: "po_number",
     lineItems: "line_items",
+    termsId: "terms_id",
     subTotal: "sub_total",
     totalTax: "total_tax",
     taxCode: "tax_code",

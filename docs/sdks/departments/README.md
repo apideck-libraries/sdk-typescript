@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.departments.list({
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
     filter: {
       subsidiary: "1",
@@ -62,6 +63,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingDepartmentsList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
     filter: {
       subsidiary: "1",
@@ -123,6 +125,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.departments.create({
     serviceId: "salesforce",
+    companyId: "12345",
     accountingDepartment: {
       parentId: "12345",
       name: "Sales",
@@ -183,6 +186,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingDepartmentsCreate(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     accountingDepartment: {
       parentId: "12345",
       name: "Sales",
@@ -272,6 +276,7 @@ async function run() {
   const result = await apideck.accounting.departments.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -301,6 +306,7 @@ async function run() {
   const res = await accountingDepartmentsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {

@@ -8,11 +8,11 @@ The visibility of the job
 import { Visibility } from "@apideck/unify/models/components";
 
 let value: Visibility = "internal";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "draft" | "public" | "internal" | Unrecognized<string>

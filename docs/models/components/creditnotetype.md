@@ -8,11 +8,11 @@ Type of payment
 import { CreditNoteType } from "@apideck/unify/models/components";
 
 let value: CreditNoteType = "accounts_receivable_credit";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "accounts_receivable_credit" | "accounts_payable_credit" | Unrecognized<string>

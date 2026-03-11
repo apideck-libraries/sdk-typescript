@@ -19,6 +19,7 @@ test("Quotes Accounting Quotes All", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   expect(result.httpMeta.response.status).toBe(200);
   expect(result.getQuotesResponse).toBeDefined();
@@ -60,6 +61,7 @@ test("Quotes Accounting Quotes Add", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
+    companyId: "12345",
     quote: {
       number: "QT00546",
       customer: {
@@ -74,6 +76,7 @@ test("Quotes Accounting Quotes Add", async () => {
       quoteDate: new Date("2020-09-30"),
       expiryDate: new Date("2020-10-30"),
       terms: "Valid for 30 days",
+      termsId: "12345",
       reference: "INV-2024-001",
       status: "draft",
       currency: "USD",
@@ -256,6 +259,7 @@ test("Quotes Accounting Quotes One", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   expect(result.httpMeta.response.status).toBe(200);
   expect(result.getQuoteResponse).toBeDefined();
@@ -284,6 +288,7 @@ test("Quotes Accounting Quotes One", async () => {
       quoteDate: new Date("2020-09-30"),
       expiryDate: new Date("2020-10-30"),
       terms: "Valid for 30 days",
+      termsId: "12345",
       reference: "INV-2024-001",
       status: "draft",
       currency: "USD",
@@ -465,6 +470,7 @@ test("Quotes Accounting Quotes Update", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
+    companyId: "12345",
     quote: {
       number: "QT00546",
       customer: {
@@ -479,6 +485,7 @@ test("Quotes Accounting Quotes Update", async () => {
       quoteDate: new Date("2020-09-30"),
       expiryDate: new Date("2020-10-30"),
       terms: "Valid for 30 days",
+      termsId: "12345",
       reference: "INV-2024-001",
       status: "draft",
       currency: "USD",
@@ -654,6 +661,7 @@ test("Quotes Accounting Quotes Delete", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   expect(result.httpMeta.response.status).toBe(200);
   expect(result.deleteQuoteResponse).toBeDefined();

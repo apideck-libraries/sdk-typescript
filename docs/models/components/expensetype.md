@@ -8,11 +8,11 @@ The type of expense.
 import { ExpenseType } from "@apideck/unify/models/components";
 
 let value: ExpenseType = "expense";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "expense" | "refund" | Unrecognized<string>

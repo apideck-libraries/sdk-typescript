@@ -115,6 +115,7 @@ export type ExpenseType = OpenEnum<typeof ExpenseType>;
 export const ExpenseStatus = {
   Draft: "draft",
   Posted: "posted",
+  Voided: "voided",
 } as const;
 /**
  * Expense status

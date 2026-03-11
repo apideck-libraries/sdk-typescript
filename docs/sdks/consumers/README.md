@@ -123,7 +123,12 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.vault.consumers.list({});
+  const result = await apideck.vault.consumers.list({
+    filter: {
+      consumerId: "test-consumer",
+      search: "john",
+    },
+  });
 
   for await (const page of result) {
     console.log(page);
@@ -149,7 +154,12 @@ const apideck = new ApideckCore({
 });
 
 async function run() {
-  const res = await vaultConsumersList(apideck, {});
+  const res = await vaultConsumersList(apideck, {
+    filter: {
+      consumerId: "test-consumer",
+      search: "john",
+    },
+  });
   if (res.ok) {
     const { value: result } = res;
     for await (const page of result) {

@@ -8,11 +8,11 @@ Mode of the webhook support.
 import { Mode } from "@apideck/unify/models/components";
 
 let value: Mode = "native";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "native" | "virtual" | "none" | Unrecognized<string>

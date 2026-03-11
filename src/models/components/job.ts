@@ -10,11 +10,34 @@ import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import { Address, Address$inboundSchema } from "./address.js";
-import { Currency, Currency$inboundSchema } from "./currency.js";
-import { CustomField, CustomField$inboundSchema } from "./customfield.js";
+import {
+  Address,
+  Address$inboundSchema,
+  Address$Outbound,
+  Address$outboundSchema,
+} from "./address.js";
+import {
+  Currency,
+  Currency$inboundSchema,
+  Currency$outboundSchema,
+} from "./currency.js";
+import {
+  CustomField,
+  CustomField$inboundSchema,
+  CustomField$Outbound,
+  CustomField$outboundSchema,
+} from "./customfield.js";
 import { Department, Department$inboundSchema } from "./department.js";
-import { JobStatus, JobStatus$inboundSchema } from "./jobstatus.js";
+import {
+  DepartmentInput,
+  DepartmentInput$Outbound,
+  DepartmentInput$outboundSchema,
+} from "./departmentinput.js";
+import {
+  JobStatus,
+  JobStatus$inboundSchema,
+  JobStatus$outboundSchema,
+} from "./jobstatus.js";
 
 /**
  * The visibility of the job
@@ -216,12 +239,130 @@ export type Job = {
   createdAt?: Date | null | undefined;
 };
 
+/**
+ * Details of the branch for which the job is created.
+ */
+export type JobBranch = {
+  /**
+   * Name of the branch.
+   */
+  name?: string | undefined;
+};
+
+export type JobInput = {
+  slug?: string | null | undefined;
+  /**
+   * The job title of the person.
+   */
+  title?: string | null | undefined;
+  /**
+   * Sequence in relation to other jobs.
+   */
+  sequence?: number | undefined;
+  /**
+   * The visibility of the job
+   */
+  visibility?: Visibility | undefined;
+  /**
+   * The status of the job.
+   */
+  status?: JobStatus | undefined;
+  /**
+   * The code of the job.
+   */
+  code?: string | undefined;
+  /**
+   * language code according to ISO 639-1. For the United States - EN
+   */
+  language?: string | null | undefined;
+  employmentTerms?: EmploymentTerms | null | undefined;
+  /**
+   * Level of experience required for the job role.
+   */
+  experience?: string | undefined;
+  /**
+   * Specifies the location for the job posting.
+   */
+  location?: string | null | undefined;
+  /**
+   * Specifies whether the posting is for a remote job.
+   */
+  remote?: boolean | null | undefined;
+  /**
+   * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on alphanumeric naming conventions unique to your company's internal processes.
+   */
+  requisitionId?: string | undefined;
+  department?: DepartmentInput | undefined;
+  /**
+   * Details of the branch for which the job is created.
+   */
+  branch?: JobBranch | undefined;
+  /**
+   * The recruiter is generally someone who is tasked to help the hiring manager find and screen qualified applicant
+   */
+  recruiters?: Array<string> | null | undefined;
+  hiringManagers?: Array<string> | undefined;
+  followers?: Array<string> | null | undefined;
+  /**
+   * A description of the object.
+   */
+  description?: string | null | undefined;
+  /**
+   * The job description in HTML format
+   */
+  descriptionHtml?: string | null | undefined;
+  blocks?: Array<Blocks> | undefined;
+  closing?: string | null | undefined;
+  /**
+   * The closing section of the job description in HTML format
+   */
+  closingHtml?: string | null | undefined;
+  closingDate?: Date | null | undefined;
+  salary?: Salary | undefined;
+  /**
+   * URL of the job description
+   *
+   * @deprecated field: This field is deprecated and may be removed in a future version..
+   */
+  url?: string | null | undefined;
+  /**
+   * URL of the job portal
+   *
+   * @deprecated field: This field is deprecated and may be removed in a future version..
+   */
+  jobPortalUrl?: string | null | undefined;
+  /**
+   * @deprecated field: This field is deprecated and may be removed in a future version..
+   */
+  recordUrl?: string | null | undefined;
+  links?: Array<JobLinks> | undefined;
+  confidential?: boolean | undefined;
+  /**
+   * Specifies whether an employee of the organization can apply for the job.
+   */
+  availableToEmployees?: boolean | undefined;
+  tags?: Array<string> | null | undefined;
+  addresses?: Array<Address> | undefined;
+  customFields?: Array<CustomField> | undefined;
+  /**
+   * Flag to indicate if the object is deleted.
+   */
+  deleted?: boolean | null | undefined;
+  ownerId?: string | null | undefined;
+};
+
 /** @internal */
 export const Visibility$inboundSchema: z.ZodType<
   Visibility,
   z.ZodTypeDef,
   unknown
 > = openEnums.inboundSchema(Visibility);
+/** @internal */
+export const Visibility$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  Visibility
+> = openEnums.outboundSchema(Visibility);
 
 /** @internal */
 export const EmploymentTerms$inboundSchema: z.ZodType<
@@ -229,6 +370,12 @@ export const EmploymentTerms$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = openEnums.inboundSchema(EmploymentTerms);
+/** @internal */
+export const EmploymentTerms$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  EmploymentTerms
+> = openEnums.outboundSchema(EmploymentTerms);
 
 /** @internal */
 export const Branch$inboundSchema: z.ZodType<Branch, z.ZodTypeDef, unknown> = z
@@ -253,7 +400,25 @@ export const Blocks$inboundSchema: z.ZodType<Blocks, z.ZodTypeDef, unknown> = z
     title: types.optional(types.string()),
     content: z.nullable(types.string()).optional(),
   });
+/** @internal */
+export type Blocks$Outbound = {
+  title?: string | undefined;
+  content?: string | null | undefined;
+};
 
+/** @internal */
+export const Blocks$outboundSchema: z.ZodType<
+  Blocks$Outbound,
+  z.ZodTypeDef,
+  Blocks
+> = z.object({
+  title: z.string().optional(),
+  content: z.nullable(z.string()).optional(),
+});
+
+export function blocksToJSON(blocks: Blocks): string {
+  return JSON.stringify(Blocks$outboundSchema.parse(blocks));
+}
 export function blocksFromJSON(
   jsonString: string,
 ): SafeParseResult<Blocks, SDKValidationError> {
@@ -272,7 +437,29 @@ export const Salary$inboundSchema: z.ZodType<Salary, z.ZodTypeDef, unknown> = z
     currency: z.nullable(Currency$inboundSchema).optional(),
     interval: z.nullable(types.string()).optional(),
   });
+/** @internal */
+export type Salary$Outbound = {
+  min?: number | undefined;
+  max?: number | undefined;
+  currency?: string | null | undefined;
+  interval?: string | null | undefined;
+};
 
+/** @internal */
+export const Salary$outboundSchema: z.ZodType<
+  Salary$Outbound,
+  z.ZodTypeDef,
+  Salary
+> = z.object({
+  min: z.number().int().optional(),
+  max: z.number().int().optional(),
+  currency: z.nullable(Currency$outboundSchema).optional(),
+  interval: z.nullable(z.string()).optional(),
+});
+
+export function salaryToJSON(salary: Salary): string {
+  return JSON.stringify(Salary$outboundSchema.parse(salary));
+}
 export function salaryFromJSON(
   jsonString: string,
 ): SafeParseResult<Salary, SDKValidationError> {
@@ -286,6 +473,9 @@ export function salaryFromJSON(
 /** @internal */
 export const JobType$inboundSchema: z.ZodType<JobType, z.ZodTypeDef, unknown> =
   openEnums.inboundSchema(JobType);
+/** @internal */
+export const JobType$outboundSchema: z.ZodType<string, z.ZodTypeDef, JobType> =
+  openEnums.outboundSchema(JobType);
 
 /** @internal */
 export const JobLinks$inboundSchema: z.ZodType<
@@ -296,7 +486,25 @@ export const JobLinks$inboundSchema: z.ZodType<
   type: types.optional(JobType$inboundSchema),
   url: types.optional(types.string()),
 });
+/** @internal */
+export type JobLinks$Outbound = {
+  type?: string | undefined;
+  url?: string | undefined;
+};
 
+/** @internal */
+export const JobLinks$outboundSchema: z.ZodType<
+  JobLinks$Outbound,
+  z.ZodTypeDef,
+  JobLinks
+> = z.object({
+  type: JobType$outboundSchema.optional(),
+  url: z.string().optional(),
+});
+
+export function jobLinksToJSON(jobLinks: JobLinks): string {
+  return JSON.stringify(JobLinks$outboundSchema.parse(jobLinks));
+}
 export function jobLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<JobLinks, SDKValidationError> {
@@ -382,4 +590,124 @@ export function jobFromJSON(
     (x) => Job$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Job' from JSON`,
   );
+}
+
+/** @internal */
+export type JobBranch$Outbound = {
+  name?: string | undefined;
+};
+
+/** @internal */
+export const JobBranch$outboundSchema: z.ZodType<
+  JobBranch$Outbound,
+  z.ZodTypeDef,
+  JobBranch
+> = z.object({
+  name: z.string().optional(),
+});
+
+export function jobBranchToJSON(jobBranch: JobBranch): string {
+  return JSON.stringify(JobBranch$outboundSchema.parse(jobBranch));
+}
+
+/** @internal */
+export type JobInput$Outbound = {
+  slug?: string | null | undefined;
+  title?: string | null | undefined;
+  sequence?: number | undefined;
+  visibility?: string | undefined;
+  status?: string | undefined;
+  code?: string | undefined;
+  language?: string | null | undefined;
+  employment_terms?: string | null | undefined;
+  experience?: string | undefined;
+  location?: string | null | undefined;
+  remote?: boolean | null | undefined;
+  requisition_id?: string | undefined;
+  department?: DepartmentInput$Outbound | undefined;
+  branch?: JobBranch$Outbound | undefined;
+  recruiters?: Array<string> | null | undefined;
+  hiring_managers?: Array<string> | undefined;
+  followers?: Array<string> | null | undefined;
+  description?: string | null | undefined;
+  description_html?: string | null | undefined;
+  blocks?: Array<Blocks$Outbound> | undefined;
+  closing?: string | null | undefined;
+  closing_html?: string | null | undefined;
+  closing_date?: string | null | undefined;
+  salary?: Salary$Outbound | undefined;
+  url?: string | null | undefined;
+  job_portal_url?: string | null | undefined;
+  record_url?: string | null | undefined;
+  links?: Array<JobLinks$Outbound> | undefined;
+  confidential?: boolean | undefined;
+  available_to_employees?: boolean | undefined;
+  tags?: Array<string> | null | undefined;
+  addresses?: Array<Address$Outbound> | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
+  deleted?: boolean | null | undefined;
+  owner_id?: string | null | undefined;
+};
+
+/** @internal */
+export const JobInput$outboundSchema: z.ZodType<
+  JobInput$Outbound,
+  z.ZodTypeDef,
+  JobInput
+> = z.object({
+  slug: z.nullable(z.string()).optional(),
+  title: z.nullable(z.string()).optional(),
+  sequence: z.number().int().optional(),
+  visibility: Visibility$outboundSchema.optional(),
+  status: JobStatus$outboundSchema.optional(),
+  code: z.string().optional(),
+  language: z.nullable(z.string()).optional(),
+  employmentTerms: z.nullable(EmploymentTerms$outboundSchema).optional(),
+  experience: z.string().optional(),
+  location: z.nullable(z.string()).optional(),
+  remote: z.nullable(z.boolean()).optional(),
+  requisitionId: z.string().optional(),
+  department: DepartmentInput$outboundSchema.optional(),
+  branch: z.lazy(() => JobBranch$outboundSchema).optional(),
+  recruiters: z.nullable(z.array(z.string())).optional(),
+  hiringManagers: z.array(z.string()).optional(),
+  followers: z.nullable(z.array(z.string())).optional(),
+  description: z.nullable(z.string()).optional(),
+  descriptionHtml: z.nullable(z.string()).optional(),
+  blocks: z.array(z.lazy(() => Blocks$outboundSchema)).optional(),
+  closing: z.nullable(z.string()).optional(),
+  closingHtml: z.nullable(z.string()).optional(),
+  closingDate: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
+  salary: z.lazy(() => Salary$outboundSchema).optional(),
+  url: z.nullable(z.string()).optional(),
+  jobPortalUrl: z.nullable(z.string()).optional(),
+  recordUrl: z.nullable(z.string()).optional(),
+  links: z.array(z.lazy(() => JobLinks$outboundSchema)).optional(),
+  confidential: z.boolean().optional(),
+  availableToEmployees: z.boolean().optional(),
+  tags: z.nullable(z.array(z.string())).optional(),
+  addresses: z.array(Address$outboundSchema).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
+  deleted: z.nullable(z.boolean()).optional(),
+  ownerId: z.nullable(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    employmentTerms: "employment_terms",
+    requisitionId: "requisition_id",
+    hiringManagers: "hiring_managers",
+    descriptionHtml: "description_html",
+    closingHtml: "closing_html",
+    closingDate: "closing_date",
+    jobPortalUrl: "job_portal_url",
+    recordUrl: "record_url",
+    availableToEmployees: "available_to_employees",
+    customFields: "custom_fields",
+    ownerId: "owner_id",
+  });
+});
+
+export function jobInputToJSON(jobInput: JobInput): string {
+  return JSON.stringify(JobInput$outboundSchema.parse(jobInput));
 }

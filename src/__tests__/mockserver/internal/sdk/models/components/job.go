@@ -529,3 +529,334 @@ func (o *Job) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	}
 	return o.CreatedAt
 }
+
+// BranchInput - Details of the branch for which the job is created.
+type BranchInput struct {
+	// Name of the branch.
+	Name *string `json:"name,omitempty"`
+}
+
+func (o *BranchInput) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+type JobInput struct {
+	Slug optionalnullable.OptionalNullable[string] `json:"slug,omitempty"`
+	// The job title of the person.
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
+	// Sequence in relation to other jobs.
+	Sequence *int64 `json:"sequence,omitempty"`
+	// The visibility of the job
+	Visibility *Visibility `json:"visibility,omitempty"`
+	// The status of the job.
+	Status *JobStatus `json:"status,omitempty"`
+	// The code of the job.
+	Code *string `json:"code,omitempty"`
+	// language code according to ISO 639-1. For the United States - EN
+	Language        optionalnullable.OptionalNullable[string]          `json:"language,omitempty"`
+	EmploymentTerms optionalnullable.OptionalNullable[EmploymentTerms] `json:"employment_terms,omitempty"`
+	// Level of experience required for the job role.
+	Experience *string `json:"experience,omitempty"`
+	// Specifies the location for the job posting.
+	Location optionalnullable.OptionalNullable[string] `json:"location,omitempty"`
+	// Specifies whether the posting is for a remote job.
+	Remote optionalnullable.OptionalNullable[bool] `json:"remote,omitempty"`
+	// A job's Requisition ID (Req ID) allows your organization to identify and track a job based on alphanumeric naming conventions unique to your company's internal processes.
+	RequisitionID *string          `json:"requisition_id,omitempty"`
+	Department    *DepartmentInput `json:"department,omitempty"`
+	// Details of the branch for which the job is created.
+	Branch *BranchInput `json:"branch,omitempty"`
+	// The recruiter is generally someone who is tasked to help the hiring manager find and screen qualified applicant
+	Recruiters     optionalnullable.OptionalNullable[[]string] `json:"recruiters,omitempty"`
+	HiringManagers []string                                    `json:"hiring_managers,omitempty"`
+	Followers      optionalnullable.OptionalNullable[[]string] `json:"followers,omitempty"`
+	// A description of the object.
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
+	// The job description in HTML format
+	DescriptionHTML optionalnullable.OptionalNullable[string] `json:"description_html,omitempty"`
+	Blocks          []Block                                   `json:"blocks,omitempty"`
+	Closing         optionalnullable.OptionalNullable[string] `json:"closing,omitempty"`
+	// The closing section of the job description in HTML format
+	ClosingHTML optionalnullable.OptionalNullable[string]     `json:"closing_html,omitempty"`
+	ClosingDate optionalnullable.OptionalNullable[types.Date] `json:"closing_date,omitempty"`
+	Salary      *Salary                                       `json:"salary,omitempty"`
+	// URL of the job description
+	//
+	// Deprecated: This field is deprecated and may be removed in a future version..
+	URL optionalnullable.OptionalNullable[string] `json:"url,omitempty"`
+	// URL of the job portal
+	//
+	// Deprecated: This field is deprecated and may be removed in a future version..
+	JobPortalURL optionalnullable.OptionalNullable[string] `json:"job_portal_url,omitempty"`
+	// Deprecated: This field is deprecated and may be removed in a future version..
+	RecordURL    optionalnullable.OptionalNullable[string] `json:"record_url,omitempty"`
+	Links        []Link                                    `json:"links,omitempty"`
+	Confidential *bool                                     `json:"confidential,omitempty"`
+	// Specifies whether an employee of the organization can apply for the job.
+	AvailableToEmployees *bool                                       `json:"available_to_employees,omitempty"`
+	Tags                 optionalnullable.OptionalNullable[[]string] `json:"tags,omitempty"`
+	Addresses            []Address                                   `json:"addresses,omitempty"`
+	CustomFields         []CustomFieldUnion                          `json:"custom_fields,omitempty"`
+	// Flag to indicate if the object is deleted.
+	Deleted optionalnullable.OptionalNullable[bool]   `json:"deleted,omitempty"`
+	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
+}
+
+func (j JobInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(j, "", false)
+}
+
+func (j *JobInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &j, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *JobInput) GetSlug() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.Slug
+}
+
+func (o *JobInput) GetTitle() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *JobInput) GetSequence() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Sequence
+}
+
+func (o *JobInput) GetVisibility() *Visibility {
+	if o == nil {
+		return nil
+	}
+	return o.Visibility
+}
+
+func (o *JobInput) GetStatus() *JobStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *JobInput) GetCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Code
+}
+
+func (o *JobInput) GetLanguage() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.Language
+}
+
+func (o *JobInput) GetEmploymentTerms() optionalnullable.OptionalNullable[EmploymentTerms] {
+	if o == nil {
+		return nil
+	}
+	return o.EmploymentTerms
+}
+
+func (o *JobInput) GetExperience() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Experience
+}
+
+func (o *JobInput) GetLocation() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.Location
+}
+
+func (o *JobInput) GetRemote() optionalnullable.OptionalNullable[bool] {
+	if o == nil {
+		return nil
+	}
+	return o.Remote
+}
+
+func (o *JobInput) GetRequisitionID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RequisitionID
+}
+
+func (o *JobInput) GetDepartment() *DepartmentInput {
+	if o == nil {
+		return nil
+	}
+	return o.Department
+}
+
+func (o *JobInput) GetBranch() *BranchInput {
+	if o == nil {
+		return nil
+	}
+	return o.Branch
+}
+
+func (o *JobInput) GetRecruiters() optionalnullable.OptionalNullable[[]string] {
+	if o == nil {
+		return nil
+	}
+	return o.Recruiters
+}
+
+func (o *JobInput) GetHiringManagers() []string {
+	if o == nil {
+		return nil
+	}
+	return o.HiringManagers
+}
+
+func (o *JobInput) GetFollowers() optionalnullable.OptionalNullable[[]string] {
+	if o == nil {
+		return nil
+	}
+	return o.Followers
+}
+
+func (o *JobInput) GetDescription() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *JobInput) GetDescriptionHTML() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.DescriptionHTML
+}
+
+func (o *JobInput) GetBlocks() []Block {
+	if o == nil {
+		return nil
+	}
+	return o.Blocks
+}
+
+func (o *JobInput) GetClosing() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.Closing
+}
+
+func (o *JobInput) GetClosingHTML() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.ClosingHTML
+}
+
+func (o *JobInput) GetClosingDate() optionalnullable.OptionalNullable[types.Date] {
+	if o == nil {
+		return nil
+	}
+	return o.ClosingDate
+}
+
+func (o *JobInput) GetSalary() *Salary {
+	if o == nil {
+		return nil
+	}
+	return o.Salary
+}
+
+func (o *JobInput) GetURL() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.URL
+}
+
+func (o *JobInput) GetJobPortalURL() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.JobPortalURL
+}
+
+func (o *JobInput) GetRecordURL() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.RecordURL
+}
+
+func (o *JobInput) GetLinks() []Link {
+	if o == nil {
+		return nil
+	}
+	return o.Links
+}
+
+func (o *JobInput) GetConfidential() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Confidential
+}
+
+func (o *JobInput) GetAvailableToEmployees() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AvailableToEmployees
+}
+
+func (o *JobInput) GetTags() optionalnullable.OptionalNullable[[]string] {
+	if o == nil {
+		return nil
+	}
+	return o.Tags
+}
+
+func (o *JobInput) GetAddresses() []Address {
+	if o == nil {
+		return nil
+	}
+	return o.Addresses
+}
+
+func (o *JobInput) GetCustomFields() []CustomFieldUnion {
+	if o == nil {
+		return nil
+	}
+	return o.CustomFields
+}
+
+func (o *JobInput) GetDeleted() optionalnullable.OptionalNullable[bool] {
+	if o == nil {
+		return nil
+	}
+	return o.Deleted
+}
+
+func (o *JobInput) GetOwnerID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.OwnerID
+}

@@ -31,6 +31,7 @@ async function run() {
     referenceType: "invoice",
     referenceId: "123456",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -63,6 +64,7 @@ async function run() {
     referenceType: "invoice",
     referenceId: "123456",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {
@@ -217,6 +219,7 @@ async function run() {
     referenceId: "123456",
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -248,6 +251,7 @@ async function run() {
     referenceId: "123456",
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {
@@ -395,6 +399,7 @@ async function run() {
     referenceId: "123456",
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -426,6 +431,7 @@ async function run() {
     referenceId: "123456",
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {

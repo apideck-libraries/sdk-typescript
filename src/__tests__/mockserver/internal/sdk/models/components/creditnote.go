@@ -84,7 +84,9 @@ type CreditNote struct {
 	// Optional note to be associated with the credit note.
 	Note optionalnullable.OptionalNullable[string] `json:"note,omitempty"`
 	// Optional terms to be associated with the credit note.
-	Terms           optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID         optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	BillingAddress  *Address                                  `json:"billing_address,omitempty"`
 	ShippingAddress *Address                                  `json:"shipping_address,omitempty"`
 	// A list of linked tracking categories.
@@ -292,6 +294,13 @@ func (o *CreditNote) GetTerms() optionalnullable.OptionalNullable[string] {
 	return o.Terms
 }
 
+func (o *CreditNote) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
+}
+
 func (o *CreditNote) GetBillingAddress() *Address {
 	if o == nil {
 		return nil
@@ -414,7 +423,9 @@ type CreditNoteInput struct {
 	// Optional note to be associated with the credit note.
 	Note optionalnullable.OptionalNullable[string] `json:"note,omitempty"`
 	// Optional terms to be associated with the credit note.
-	Terms           optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID         optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	BillingAddress  *Address                                  `json:"billing_address,omitempty"`
 	ShippingAddress *Address                                  `json:"shipping_address,omitempty"`
 	// A list of linked tracking categories.
@@ -603,6 +614,13 @@ func (o *CreditNoteInput) GetTerms() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *CreditNoteInput) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *CreditNoteInput) GetBillingAddress() *Address {

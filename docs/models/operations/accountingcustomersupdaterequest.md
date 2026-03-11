@@ -114,6 +114,7 @@ let value: AccountingCustomersUpdateRequest = {
     status: "active",
     paymentMethod: "cash",
     terms: "Net 30 days",
+    termsId: "12345",
     channel: "email",
     customFields: [
       {

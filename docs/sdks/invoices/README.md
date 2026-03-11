@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.invoices.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       createdSince: new Date("2020-09-30T07:43:32.000Z"),
@@ -71,6 +72,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingInvoicesList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       createdSince: new Date("2020-09-30T07:43:32.000Z"),
@@ -141,6 +143,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.invoices.create({
     serviceId: "salesforce",
+    companyId: "12345",
     invoice: {
       type: "service",
       number: "OIT00546",
@@ -380,6 +383,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingInvoicesCreate(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     invoice: {
       type: "service",
       number: "OIT00546",
@@ -648,6 +652,7 @@ async function run() {
   const result = await apideck.accounting.invoices.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -677,6 +682,7 @@ async function run() {
   const res = await accountingInvoicesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {

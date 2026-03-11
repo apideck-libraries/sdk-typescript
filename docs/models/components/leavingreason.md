@@ -8,11 +8,11 @@ The reason because the employment ended.
 import { LeavingReason } from "@apideck/unify/models/components";
 
 let value: LeavingReason = "resigned";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "dismissed" | "resigned" | "redundancy" | "retired" | "other" | Unrecognized<string>

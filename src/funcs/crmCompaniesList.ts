@@ -226,7 +226,7 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.CrmCompaniesAllResponse$inboundSchema, {
-      key: "GetCompaniesResponse",
+      key: "GetCompaniesResponse1",
     }),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),

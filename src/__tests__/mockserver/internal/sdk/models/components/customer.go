@@ -73,6 +73,8 @@ type Customer struct {
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel      optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
 	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
@@ -306,6 +308,13 @@ func (o *Customer) GetTerms() optionalnullable.OptionalNullable[string] {
 	return o.Terms
 }
 
+func (o *Customer) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
+}
+
 func (o *Customer) GetChannel() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
@@ -415,6 +424,8 @@ type CustomerInput struct {
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel      optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
 	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
@@ -611,6 +622,13 @@ func (o *CustomerInput) GetTerms() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *CustomerInput) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *CustomerInput) GetChannel() optionalnullable.OptionalNullable[string] {

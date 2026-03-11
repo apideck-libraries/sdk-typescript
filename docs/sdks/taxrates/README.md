@@ -30,6 +30,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.taxRates.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       assets: true,
       equity: true,
@@ -70,6 +71,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingTaxRatesList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       assets: true,
       equity: true,
@@ -138,6 +140,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.taxRates.create({
     serviceId: "salesforce",
+    companyId: "12345",
     taxRate: {
       id: "1234",
       name: "GST on Purchases",
@@ -237,6 +240,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingTaxRatesCreate(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     taxRate: {
       id: "1234",
       name: "GST on Purchases",
@@ -366,6 +370,7 @@ async function run() {
   const result = await apideck.accounting.taxRates.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -395,6 +400,7 @@ async function run() {
   const res = await accountingTaxRatesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {
@@ -452,6 +458,7 @@ async function run() {
   const result = await apideck.accounting.taxRates.update({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     taxRate: {
       id: "1234",
       name: "GST on Purchases",
@@ -589,6 +596,7 @@ async function run() {
   const res = await accountingTaxRatesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     taxRate: {
       id: "1234",
       name: "GST on Purchases",
@@ -754,6 +762,7 @@ async function run() {
   const result = await apideck.accounting.taxRates.delete({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
 
   console.log(result);
@@ -782,6 +791,7 @@ async function run() {
   const res = await accountingTaxRatesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   if (res.ok) {
     const { value: result } = res;

@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.journalEntries.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -69,6 +70,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingJournalEntriesList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -137,6 +139,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.journalEntries.create({
     serviceId: "salesforce",
+    companyId: "12345",
     journalEntry: {
       title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
       currencyRate: 0.69,
@@ -347,6 +350,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingJournalEntriesCreate(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     journalEntry: {
       title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
       currencyRate: 0.69,
@@ -586,6 +590,7 @@ async function run() {
   const result = await apideck.accounting.journalEntries.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -615,6 +620,7 @@ async function run() {
   const res = await accountingJournalEntriesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {
@@ -672,6 +678,7 @@ async function run() {
   const result = await apideck.accounting.journalEntries.update({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     journalEntry: {
       title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
       currencyRate: 0.69,
@@ -847,6 +854,7 @@ async function run() {
   const res = await accountingJournalEntriesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     journalEntry: {
       title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
       currencyRate: 0.69,
@@ -1050,6 +1058,7 @@ async function run() {
   const result = await apideck.accounting.journalEntries.delete({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
 
   console.log(result);
@@ -1078,6 +1087,7 @@ async function run() {
   const res = await accountingJournalEntriesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   if (res.ok) {
     const { value: result } = res;

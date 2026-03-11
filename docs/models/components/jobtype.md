@@ -6,11 +6,11 @@
 import { JobType } from "@apideck/unify/models/components";
 
 let value: JobType = "job_portal";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "job_portal" | "job_description" | Unrecognized<string>

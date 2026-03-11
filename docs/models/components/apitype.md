@@ -8,11 +8,11 @@ Indicates whether the API is a Unified API. If unified_api is false, the API is 
 import { ApiType } from "@apideck/unify/models/components";
 
 let value: ApiType = "unified";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "platform" | "unified" | Unrecognized<string>

@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.bankAccounts.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       name: "Main Operating",
       accountType: "checking",
@@ -68,6 +69,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingBankAccountsList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       name: "Main Operating",
       accountType: "checking",
@@ -293,6 +295,7 @@ async function run() {
       accountType: "checking",
     },
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -325,6 +328,7 @@ async function run() {
       accountType: "checking",
     },
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {

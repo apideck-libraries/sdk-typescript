@@ -23,6 +23,8 @@ func (o *VaultConsumersAllGlobals) GetAppID() *string {
 type VaultConsumersAllRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
+	// Filter results
+	Filter *components.ConsumersFilter `queryParam:"style=deepObject,explode=true,name=filter"`
 	// Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
 	Cursor optionalnullable.OptionalNullable[string] `queryParam:"style=form,explode=true,name=cursor"`
 	// Number of results to return. Minimum 1, Maximum 200, Default 20
@@ -45,6 +47,13 @@ func (o *VaultConsumersAllRequest) GetAppID() *string {
 		return nil
 	}
 	return o.AppID
+}
+
+func (o *VaultConsumersAllRequest) GetFilter() *components.ConsumersFilter {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
 }
 
 func (o *VaultConsumersAllRequest) GetCursor() optionalnullable.OptionalNullable[string] {

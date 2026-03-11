@@ -190,6 +190,10 @@ export type CreditNote = {
    * Optional terms to be associated with the credit note.
    */
   terms?: string | null | undefined;
+  /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
   billingAddress?: Address | undefined;
   shippingAddress?: Address | undefined;
   /**
@@ -315,6 +319,10 @@ export type CreditNoteInput = {
    * Optional terms to be associated with the credit note.
    */
   terms?: string | null | undefined;
+  /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
   billingAddress?: Address | undefined;
   shippingAddress?: Address | undefined;
   /**
@@ -389,6 +397,7 @@ export const CreditNote$inboundSchema: z.ZodType<
   allocations: types.optional(z.array(Allocation$inboundSchema)),
   note: z.nullable(types.string()).optional(),
   terms: z.nullable(types.string()).optional(),
+  terms_id: z.nullable(types.string()).optional(),
   billing_address: types.optional(Address$inboundSchema),
   shipping_address: types.optional(Address$inboundSchema),
   tracking_categories: z.nullable(
@@ -417,6 +426,7 @@ export const CreditNote$inboundSchema: z.ZodType<
     "date_issued": "dateIssued",
     "date_paid": "datePaid",
     "line_items": "lineItems",
+    "terms_id": "termsId",
     "billing_address": "billingAddress",
     "shipping_address": "shippingAddress",
     "tracking_categories": "trackingCategories",
@@ -467,6 +477,7 @@ export type CreditNoteInput$Outbound = {
   allocations?: Array<AllocationInput$Outbound> | undefined;
   note?: string | null | undefined;
   terms?: string | null | undefined;
+  terms_id?: string | null | undefined;
   billing_address?: Address$Outbound | undefined;
   shipping_address?: Address$Outbound | undefined;
   tracking_categories?:
@@ -508,6 +519,7 @@ export const CreditNoteInput$outboundSchema: z.ZodType<
   allocations: z.array(AllocationInput$outboundSchema).optional(),
   note: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
+  termsId: z.nullable(z.string()).optional(),
   billingAddress: Address$outboundSchema.optional(),
   shippingAddress: Address$outboundSchema.optional(),
   trackingCategories: z.nullable(
@@ -531,6 +543,7 @@ export const CreditNoteInput$outboundSchema: z.ZodType<
     dateIssued: "date_issued",
     datePaid: "date_paid",
     lineItems: "line_items",
+    termsId: "terms_id",
     billingAddress: "billing_address",
     shippingAddress: "shipping_address",
     trackingCategories: "tracking_categories",
