@@ -96,7 +96,9 @@ async function $do(
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = payload.RequestBody;
+  const body = payload.RequestBody instanceof Uint8Array
+    ? new Uint8Array(payload.RequestBody).buffer
+    : payload.RequestBody;
 
   const baseURL = options?.serverURL
     || pathToFunc(AccountingAttachmentsUploadServerList[0], {

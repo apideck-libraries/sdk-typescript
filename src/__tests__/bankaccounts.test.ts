@@ -19,6 +19,7 @@ test("Bankaccounts Accounting Bank Accounts All", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       name: "Main Operating",
       accountType: "checking",
@@ -172,6 +173,7 @@ test("Bankaccounts Accounting Bank Accounts One", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   expect(result.httpMeta.response.status).toBe(200);

@@ -8,11 +8,11 @@ Type of the transaction.
 import { BalanceByTransactionTransactionType } from "@apideck/unify/models/components";
 
 let value: BalanceByTransactionTransactionType = "invoice";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "invoice" | "credit_note" | "bill" | "payment" | "bill_payment" | Unrecognized<string>

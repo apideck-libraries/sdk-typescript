@@ -35,6 +35,8 @@ type AccountingBalanceSheetOneRequest struct {
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	// The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+	CompanyID *string `header:"style=simple,explode=false,name=x-apideck-company-id"`
 	// Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
 	PassThrough map[string]any `queryParam:"style=deepObject,explode=true,name=pass_through"`
 	// Apply filters
@@ -73,6 +75,13 @@ func (o *AccountingBalanceSheetOneRequest) GetServiceID() *string {
 		return nil
 	}
 	return o.ServiceID
+}
+
+func (o *AccountingBalanceSheetOneRequest) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
 }
 
 func (o *AccountingBalanceSheetOneRequest) GetPassThrough() map[string]any {

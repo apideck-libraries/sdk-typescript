@@ -8,11 +8,11 @@ Wildcard indicating all resources and fields when Data Scopes is disabled
 import { Two } from "@apideck/unify/models/components";
 
 let value: Two = "*";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "*" | Unrecognized<string>

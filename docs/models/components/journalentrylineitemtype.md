@@ -8,11 +8,11 @@ Debit entries are considered positive, and credit entries are considered negativ
 import { JournalEntryLineItemType } from "@apideck/unify/models/components";
 
 let value: JournalEntryLineItemType = "debit";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "debit" | "credit" | Unrecognized<string>

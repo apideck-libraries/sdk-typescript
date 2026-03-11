@@ -8,11 +8,11 @@ Audience for the doc.
 import { Audience } from "@apideck/unify/models/components";
 
 let value: Audience = "application_owner";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "application_owner" | "consumer" | Unrecognized<string>

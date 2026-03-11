@@ -25,6 +25,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.profitAndLoss.get({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       customerId: "123abc",
       startDate: "2021-01-01",
@@ -61,6 +62,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingProfitAndLossGet(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       customerId: "123abc",
       startDate: "2021-01-01",

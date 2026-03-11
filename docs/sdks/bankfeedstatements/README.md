@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.bankFeedStatements.list({
     serviceId: "salesforce",
+    companyId: "12345",
     passThrough: {
       "search": "San Francisco",
     },
@@ -62,6 +63,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingBankFeedStatementsList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     passThrough: {
       "search": "San Francisco",
     },
@@ -123,6 +125,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.bankFeedStatements.create({
     serviceId: "salesforce",
+    companyId: "12345",
     bankFeedStatement: {
       bankFeedAccountId: "acc_456",
       status: "pending",
@@ -192,6 +195,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingBankFeedStatementsCreate(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     bankFeedStatement: {
       bankFeedAccountId: "acc_456",
       status: "pending",
@@ -290,6 +294,7 @@ async function run() {
   const result = await apideck.accounting.bankFeedStatements.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -319,6 +324,7 @@ async function run() {
   const res = await accountingBankFeedStatementsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {

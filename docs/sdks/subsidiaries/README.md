@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.subsidiaries.list({
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -59,6 +60,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingSubsidiariesList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {
@@ -117,6 +119,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.subsidiaries.create({
     serviceId: "salesforce",
+    companyId: "12345",
     subsidiary: {
       parentId: "12345",
       name: "SpaceX",
@@ -191,6 +194,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingSubsidiariesCreate(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     subsidiary: {
       parentId: "12345",
       name: "SpaceX",
@@ -294,6 +298,7 @@ async function run() {
   const result = await apideck.accounting.subsidiaries.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -323,6 +328,7 @@ async function run() {
   const res = await accountingSubsidiariesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {
@@ -380,6 +386,7 @@ async function run() {
   const result = await apideck.accounting.subsidiaries.update({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     subsidiary: {
       parentId: "12345",
       name: "SpaceX",
@@ -437,6 +444,7 @@ async function run() {
   const res = await accountingSubsidiariesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     subsidiary: {
       parentId: "12345",
       name: "SpaceX",
@@ -522,6 +530,7 @@ async function run() {
   const result = await apideck.accounting.subsidiaries.delete({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
 
   console.log(result);
@@ -550,6 +559,7 @@ async function run() {
   const res = await accountingSubsidiariesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   if (res.ok) {
     const { value: result } = res;

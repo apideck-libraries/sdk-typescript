@@ -8,11 +8,11 @@ The current status of the product (active or archived).
 import { ProductStatus } from "@apideck/unify/models/components";
 
 let value: ProductStatus = "active";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "active" | "archived" | Unrecognized<string>

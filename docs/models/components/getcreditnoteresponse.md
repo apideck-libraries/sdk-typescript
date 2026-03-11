@@ -134,6 +134,7 @@ let value: GetCreditNoteResponse = {
     ],
     note: "Some notes about this credit note",
     terms: "Some terms about this credit note",
+    termsId: "12345",
     billingAddress: {
       id: "123",
       type: "primary",

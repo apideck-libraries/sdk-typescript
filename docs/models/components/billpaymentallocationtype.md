@@ -8,11 +8,11 @@ Type of entity this payment should be attributed to.
 import { BillPaymentAllocationType } from "@apideck/unify/models/components";
 
 let value: BillPaymentAllocationType = "bill";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "bill" | "expense" | "credit_memo" | "over_payment" | "pre_payment" | "journal_entry" | "other" | Unrecognized<string>

@@ -8,11 +8,11 @@ How pagination is implemented on this connector. Native mode means Apideck is us
 import { PaginationCoverageMode } from "@apideck/unify/models/components";
 
 let value: PaginationCoverageMode = "native";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "native" | "virtual" | Unrecognized<string>

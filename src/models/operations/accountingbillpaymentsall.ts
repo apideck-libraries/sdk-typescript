@@ -39,6 +39,10 @@ export type AccountingBillPaymentsAllRequest = {
    */
   serviceId?: string | undefined;
   /**
+   * The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+   */
+  companyId?: string | undefined;
+  /**
    * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
    */
   cursor?: string | null | undefined;
@@ -82,6 +86,7 @@ export type AccountingBillPaymentsAllRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
   serviceId?: string | undefined;
+  companyId?: string | undefined;
   cursor?: string | null | undefined;
   limit: number;
   filter?: components.PaymentsFilter$Outbound | undefined;
@@ -100,6 +105,7 @@ export const AccountingBillPaymentsAllRequest$outboundSchema: z.ZodType<
   consumerId: z.string().optional(),
   appId: z.string().optional(),
   serviceId: z.string().optional(),
+  companyId: z.string().optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
   filter: components.PaymentsFilter$outboundSchema.optional(),

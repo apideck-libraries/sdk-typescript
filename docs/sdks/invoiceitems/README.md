@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.invoiceItems.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       name: "Widgets Large",
       type: "service",
@@ -70,6 +71,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingInvoiceItemsList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       name: "Widgets Large",
       type: "service",
@@ -139,6 +141,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.invoiceItems.create({
     serviceId: "salesforce",
+    companyId: "12345",
     invoiceItem: {
       name: "Model Y",
       description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
@@ -242,6 +245,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingInvoiceItemsCreate(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     invoiceItem: {
       name: "Model Y",
       description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
@@ -374,6 +378,7 @@ async function run() {
   const result = await apideck.accounting.invoiceItems.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
     filter: {
       type: "service",
@@ -406,6 +411,7 @@ async function run() {
   const res = await accountingInvoiceItemsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
     filter: {
       type: "service",

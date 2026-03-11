@@ -8,11 +8,11 @@ The type of website
 import { WebsiteType } from "@apideck/unify/models/components";
 
 let value: WebsiteType = "primary";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "primary" | "secondary" | "work" | "personal" | "other" | Unrecognized<string>

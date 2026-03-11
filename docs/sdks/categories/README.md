@@ -26,6 +26,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.categories.list({
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
     filter: {
       type: "expense",
@@ -59,6 +60,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingCategoriesList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
     filter: {
       type: "expense",
@@ -121,6 +123,7 @@ async function run() {
   const result = await apideck.accounting.categories.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
     filter: {
       type: "expense",
@@ -153,6 +156,7 @@ async function run() {
   const res = await accountingCategoriesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
     filter: {
       type: "expense",

@@ -78,6 +78,8 @@ type Bill struct {
 	LineItems []BillLineItem                            `json:"line_items,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// Balance of bill due.
 	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
 	// Amount of deposit made to this bill.
@@ -274,6 +276,13 @@ func (o *Bill) GetTerms() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *Bill) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *Bill) GetBalance() optionalnullable.OptionalNullable[float64] {
@@ -532,6 +541,8 @@ type BillInput struct {
 	LineItems []BillLineItemInput                       `json:"line_items,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// Balance of bill due.
 	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
 	// Amount of deposit made to this bill.
@@ -704,6 +715,13 @@ func (o *BillInput) GetTerms() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *BillInput) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *BillInput) GetBalance() optionalnullable.OptionalNullable[float64] {

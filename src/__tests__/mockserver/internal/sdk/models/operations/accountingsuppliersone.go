@@ -38,6 +38,8 @@ type AccountingSuppliersOneRequest struct {
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	// The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+	CompanyID *string `header:"style=simple,explode=false,name=x-apideck-company-id"`
 	// Include raw response. Mostly used for debugging purposes
 	Raw *bool `default:"false" queryParam:"style=form,explode=true,name=raw"`
 	// The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
@@ -81,6 +83,13 @@ func (o *AccountingSuppliersOneRequest) GetServiceID() *string {
 		return nil
 	}
 	return o.ServiceID
+}
+
+func (o *AccountingSuppliersOneRequest) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
 }
 
 func (o *AccountingSuppliersOneRequest) GetRaw() *bool {

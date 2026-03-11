@@ -8,11 +8,11 @@ The mode of tracking categories for the company on transactions
 import { TrackingCategoriesMode } from "@apideck/unify/models/components";
 
 let value: TrackingCategoriesMode = "disabled";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "transaction" | "line" | "both" | "disabled" | Unrecognized<string>

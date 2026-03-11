@@ -33,3 +33,9 @@ export const JobStatus$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = openEnums.inboundSchema(JobStatus);
+/** @internal */
+export const JobStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  JobStatus
+> = openEnums.outboundSchema(JobStatus);

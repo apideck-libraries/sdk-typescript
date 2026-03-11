@@ -8,11 +8,11 @@ The field on which to sort the Invoice Items
 import { InvoiceItemsSortBy } from "@apideck/unify/models/components";
 
 let value: InvoiceItemsSortBy = "updated_at";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "created_at" | "updated_at" | Unrecognized<string>

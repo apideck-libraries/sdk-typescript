@@ -25,6 +25,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.companyInfo.get({
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -53,6 +54,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingCompanyInfoGet(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {

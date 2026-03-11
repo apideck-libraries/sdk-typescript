@@ -33,6 +33,7 @@ let value: GetQuotesResponse = {
       quoteDate: new Date("2020-09-30"),
       expiryDate: new Date("2020-10-30"),
       terms: "Valid for 30 days",
+      termsId: "12345",
       reference: "INV-2024-001",
       status: "draft",
       currency: "USD",

@@ -175,6 +175,10 @@ export type Invoice = {
    */
   terms?: string | null | undefined;
   /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
+  /**
    * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
    */
   poNumber?: string | null | undefined;
@@ -351,6 +355,10 @@ export type InvoiceInput = {
    * Terms of payment.
    */
   terms?: string | null | undefined;
+  /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
   /**
    * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
    */
@@ -561,6 +569,7 @@ export const Invoice$inboundSchema: z.ZodType<Invoice, z.ZodTypeDef, unknown> =
     invoice_date: z.nullable(types.date()).optional(),
     due_date: z.nullable(types.date()).optional(),
     terms: z.nullable(types.string()).optional(),
+    terms_id: z.nullable(types.string()).optional(),
     po_number: z.nullable(types.string()).optional(),
     reference: z.nullable(types.string()).optional(),
     status: z.nullable(InvoiceStatus$inboundSchema).optional(),
@@ -614,6 +623,7 @@ export const Invoice$inboundSchema: z.ZodType<Invoice, z.ZodTypeDef, unknown> =
       "department_id": "departmentId",
       "invoice_date": "invoiceDate",
       "due_date": "dueDate",
+      "terms_id": "termsId",
       "po_number": "poNumber",
       "invoice_sent": "invoiceSent",
       "currency_rate": "currencyRate",
@@ -669,6 +679,7 @@ export type InvoiceInput$Outbound = {
   invoice_date?: string | null | undefined;
   due_date?: string | null | undefined;
   terms?: string | null | undefined;
+  terms_id?: string | null | undefined;
   po_number?: string | null | undefined;
   reference?: string | null | undefined;
   status?: string | null | undefined;
@@ -730,6 +741,7 @@ export const InvoiceInput$outboundSchema: z.ZodType<
     z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
   ).optional(),
   terms: z.nullable(z.string()).optional(),
+  termsId: z.nullable(z.string()).optional(),
   poNumber: z.nullable(z.string()).optional(),
   reference: z.nullable(z.string()).optional(),
   status: z.nullable(InvoiceStatus$outboundSchema).optional(),
@@ -776,6 +788,7 @@ export const InvoiceInput$outboundSchema: z.ZodType<
     departmentId: "department_id",
     invoiceDate: "invoice_date",
     dueDate: "due_date",
+    termsId: "terms_id",
     poNumber: "po_number",
     invoiceSent: "invoice_sent",
     currencyRate: "currency_rate",
