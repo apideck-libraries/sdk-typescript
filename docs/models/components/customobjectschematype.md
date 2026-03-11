@@ -6,11 +6,11 @@
 import { CustomObjectSchemaType } from "@apideck/unify/models/components";
 
 let value: CustomObjectSchemaType = "string";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "string" | "number" | "integer" | "boolean" | "date" | "datetime" | "currency" | "email" | "phone" | "reference" | "select" | "multiselect" | Unrecognized<string>

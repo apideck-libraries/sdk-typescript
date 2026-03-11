@@ -8,11 +8,11 @@ The direction of the message.
 import { Direction } from "@apideck/unify/models/components";
 
 let value: Direction = "outbound-api";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "inbound" | "outbound-api" | "outbound-call" | "outbound-reply" | "unknown" | Unrecognized<string>

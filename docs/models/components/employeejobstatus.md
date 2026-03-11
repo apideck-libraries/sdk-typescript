@@ -8,11 +8,11 @@ Indicates the status of the job.
 import { EmployeeJobStatus } from "@apideck/unify/models/components";
 
 let value: EmployeeJobStatus = "active";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "active" | "inactive" | "other" | Unrecognized<string>

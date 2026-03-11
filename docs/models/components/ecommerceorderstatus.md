@@ -8,11 +8,11 @@ Current status of the order.
 import { EcommerceOrderStatus } from "@apideck/unify/models/components";
 
 let value: EcommerceOrderStatus = "active";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "active" | "completed" | "cancelled" | "archived" | "unknown" | "other" | Unrecognized<string>

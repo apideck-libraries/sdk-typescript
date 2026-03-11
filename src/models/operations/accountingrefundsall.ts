@@ -10,7 +10,7 @@ import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type HrisCompaniesAllGlobals = {
+export type AccountingRefundsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
@@ -21,7 +21,7 @@ export type HrisCompaniesAllGlobals = {
   appId?: string | undefined;
 };
 
-export type HrisCompaniesAllRequest = {
+export type AccountingRefundsAllRequest = {
   /**
    * Include raw response. Mostly used for debugging purposes
    */
@@ -47,6 +47,14 @@ export type HrisCompaniesAllRequest = {
    */
   limit?: number | undefined;
   /**
+   * Apply filters
+   */
+  filter?: components.RefundsFilter | undefined;
+  /**
+   * Apply sorting
+   */
+  sort?: components.RefundsSort | undefined;
+  /**
    * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
    */
   passThrough?: { [k: string]: any } | undefined;
@@ -56,12 +64,12 @@ export type HrisCompaniesAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type HrisCompaniesAllResponse = {
+export type AccountingRefundsAllResponse = {
   httpMeta: components.HTTPMetadata;
   /**
-   * Companies
+   * Refunds
    */
-  getHrisCompaniesResponse?: components.GetHrisCompaniesResponse | undefined;
+  getRefundsResponse?: components.GetRefundsResponse | undefined;
   /**
    * Unexpected error
    */
@@ -69,22 +77,24 @@ export type HrisCompaniesAllResponse = {
 };
 
 /** @internal */
-export type HrisCompaniesAllRequest$Outbound = {
+export type AccountingRefundsAllRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
   appId?: string | undefined;
   serviceId?: string | undefined;
   cursor?: string | null | undefined;
   limit: number;
+  filter?: components.RefundsFilter$Outbound | undefined;
+  sort?: components.RefundsSort$Outbound | undefined;
   pass_through?: { [k: string]: any } | undefined;
   fields?: string | null | undefined;
 };
 
 /** @internal */
-export const HrisCompaniesAllRequest$outboundSchema: z.ZodType<
-  HrisCompaniesAllRequest$Outbound,
+export const AccountingRefundsAllRequest$outboundSchema: z.ZodType<
+  AccountingRefundsAllRequest$Outbound,
   z.ZodTypeDef,
-  HrisCompaniesAllRequest
+  AccountingRefundsAllRequest
 > = z.object({
   raw: z.boolean().default(false),
   consumerId: z.string().optional(),
@@ -92,6 +102,8 @@ export const HrisCompaniesAllRequest$outboundSchema: z.ZodType<
   serviceId: z.string().optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  filter: components.RefundsFilter$outboundSchema.optional(),
+  sort: components.RefundsSort$outboundSchema.optional(),
   passThrough: z.record(z.any()).optional(),
   fields: z.nullable(z.string()).optional(),
 }).transform((v) => {
@@ -100,23 +112,25 @@ export const HrisCompaniesAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-export function hrisCompaniesAllRequestToJSON(
-  hrisCompaniesAllRequest: HrisCompaniesAllRequest,
+export function accountingRefundsAllRequestToJSON(
+  accountingRefundsAllRequest: AccountingRefundsAllRequest,
 ): string {
   return JSON.stringify(
-    HrisCompaniesAllRequest$outboundSchema.parse(hrisCompaniesAllRequest),
+    AccountingRefundsAllRequest$outboundSchema.parse(
+      accountingRefundsAllRequest,
+    ),
   );
 }
 
 /** @internal */
-export const HrisCompaniesAllResponse$inboundSchema: z.ZodType<
-  HrisCompaniesAllResponse,
+export const AccountingRefundsAllResponse$inboundSchema: z.ZodType<
+  AccountingRefundsAllResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
   HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetHrisCompaniesResponse: types.optional(
-    components.GetHrisCompaniesResponse$inboundSchema,
+  GetRefundsResponse: types.optional(
+    components.GetRefundsResponse$inboundSchema,
   ),
   UnexpectedErrorResponse: types.optional(
     components.UnexpectedErrorResponse$inboundSchema,
@@ -124,17 +138,17 @@ export const HrisCompaniesAllResponse$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "HttpMeta": "httpMeta",
-    "GetHrisCompaniesResponse": "getHrisCompaniesResponse",
+    "GetRefundsResponse": "getRefundsResponse",
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
 
-export function hrisCompaniesAllResponseFromJSON(
+export function accountingRefundsAllResponseFromJSON(
   jsonString: string,
-): SafeParseResult<HrisCompaniesAllResponse, SDKValidationError> {
+): SafeParseResult<AccountingRefundsAllResponse, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => HrisCompaniesAllResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisCompaniesAllResponse' from JSON`,
+    (x) => AccountingRefundsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingRefundsAllResponse' from JSON`,
   );
 }

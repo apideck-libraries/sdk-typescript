@@ -8,11 +8,11 @@ The type of account being referenced. Use `ledger_account` for GL accounts from 
 import { LinkedFinancialAccountAccountType } from "@apideck/unify/models/components";
 
 let value: LinkedFinancialAccountAccountType = "ledger_account";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "ledger_account" | "bank_account" | Unrecognized<string>

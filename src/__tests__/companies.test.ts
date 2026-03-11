@@ -32,8 +32,8 @@ test("Companies Crm Companies All", async () => {
     fields: "id,updated_at",
   });
   expect(result.httpMeta.response.status).toBe(200);
-  expect(result.getCompaniesResponse).toBeDefined();
-  expect(result.getCompaniesResponse).toEqual({
+  expect(result.getCompaniesResponse1).toBeDefined();
+  expect(result.getCompaniesResponse1).toEqual({
     statusCode: 200,
     status: "OK",
     service: "zoho-crm",
@@ -1589,6 +1589,54 @@ test("Companies Crm Companies Delete", async () => {
     operation: "delete",
     data: {
       id: "12345",
+    },
+  });
+});
+
+test("Companies Accounting Companies All", async () => {
+  const testHttpClient = createTestHTTPClient("accounting.companiesAll");
+
+  const apideck = new Apideck({
+    serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
+    httpClient: testHttpClient,
+    apiKey: process.env["APIDECK_API_KEY"] ?? "value",
+  });
+
+  const result = await apideck.accounting.companies.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+    serviceId: "salesforce",
+    companyId: "12345",
+    fields: "id,updated_at",
+  });
+  expect(result.httpMeta.response.status).toBe(200);
+  expect(result.getCompaniesResponse).toBeDefined();
+  expect(result.getCompaniesResponse).toEqual({
+    statusCode: 200,
+    status: "OK",
+    service: "xero",
+    resource: "companies",
+    operation: "all",
+    data: [
+      {
+        id: "12345",
+        name: "Acme Corporation",
+      },
+    ],
+    meta: {
+      itemsOnPage: 50,
+      cursors: {
+        previous: "em9oby1jcm06OnBhZ2U6OjE=",
+        current: "em9oby1jcm06OnBhZ2U6OjI=",
+        next: "em9oby1jcm06OnBhZ2U6OjM=",
+      },
+    },
+    links: {
+      previous:
+        "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D",
+      current: "https://unify.apideck.com/crm/companies",
+      next:
+        "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM",
     },
   });
 });

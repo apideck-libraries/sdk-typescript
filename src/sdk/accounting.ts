@@ -13,6 +13,7 @@ import { BankFeedStatements } from "./bankfeedstatements.js";
 import { BillPayments } from "./billpayments.js";
 import { Bills } from "./bills.js";
 import { Categories } from "./categories.js";
+import { Companies } from "./companies.js";
 import { CompanyInfo } from "./companyinfo.js";
 import { CreditNotes } from "./creditnotes.js";
 import { Customers } from "./customers.js";
@@ -31,6 +32,7 @@ import { ProfitAndLoss } from "./profitandloss.js";
 import { Projects } from "./projects.js";
 import { PurchaseOrders } from "./purchaseorders.js";
 import { Quotes } from "./quotes.js";
+import { Refunds } from "./refunds.js";
 import { Subsidiaries } from "./subsidiaries.js";
 import { Suppliers } from "./suppliers.js";
 import { TaxRates } from "./taxrates.js";
@@ -82,9 +84,19 @@ export class Accounting extends ClientSDK {
     return (this._payments ??= new Payments(this._options));
   }
 
+  private _refunds?: Refunds;
+  get refunds(): Refunds {
+    return (this._refunds ??= new Refunds(this._options));
+  }
+
   private _companyInfo?: CompanyInfo;
   get companyInfo(): CompanyInfo {
     return (this._companyInfo ??= new CompanyInfo(this._options));
+  }
+
+  private _companies?: Companies;
+  get companies(): Companies {
+    return (this._companies ??= new Companies(this._options));
   }
 
   private _balanceSheet?: BalanceSheet;

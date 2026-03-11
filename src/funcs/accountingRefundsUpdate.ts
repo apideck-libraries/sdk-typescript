@@ -3,13 +3,7 @@
  */
 
 import { ApideckCore } from "../core.js";
-import { dlv } from "../lib/dlv.js";
-import {
-  encodeDeepObjectQuery,
-  encodeFormQuery,
-  encodeSimple,
-  queryJoin,
-} from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -30,27 +24,50 @@ import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
-import {
-  createPageIterator,
-  haltIterator,
-  PageIterator,
-  Paginator,
-} from "../types/operations.js";
 
 /**
- * List Companies
+ * Update Refund
  *
  * @remarks
- * List Companies
+ * Update Refund
  */
-export function hrisCompaniesList(
+export function accountingRefundsUpdate(
   client: ApideckCore,
-  request: operations.HrisCompaniesAllRequest,
+  request: operations.AccountingRefundsUpdateRequest,
   options?: RequestOptions,
 ): APIPromise<
-  PageIterator<
+  Result<
+    operations.AccountingRefundsUpdateResponse,
+    | errors.BadRequestResponse
+    | errors.UnauthorizedResponse
+    | errors.PaymentRequiredResponse
+    | errors.NotFoundResponse
+    | errors.UnprocessableResponse
+    | ApideckError
+    | ResponseValidationError
+    | ConnectionError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
+  >
+> {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: ApideckCore,
+  request: operations.AccountingRefundsUpdateRequest,
+  options?: RequestOptions,
+): Promise<
+  [
     Result<
-      operations.HrisCompaniesAllResponse,
+      operations.AccountingRefundsUpdateResponse,
       | errors.BadRequestResponse
       | errors.UnauthorizedResponse
       | errors.PaymentRequiredResponse
@@ -65,70 +82,36 @@ export function hrisCompaniesList(
       | UnexpectedClientError
       | SDKValidationError
     >,
-    { cursor: string }
-  >
-> {
-  return new APIPromise($do(
-    client,
-    request,
-    options,
-  ));
-}
-
-async function $do(
-  client: ApideckCore,
-  request: operations.HrisCompaniesAllRequest,
-  options?: RequestOptions,
-): Promise<
-  [
-    PageIterator<
-      Result<
-        operations.HrisCompaniesAllResponse,
-        | errors.BadRequestResponse
-        | errors.UnauthorizedResponse
-        | errors.PaymentRequiredResponse
-        | errors.NotFoundResponse
-        | errors.UnprocessableResponse
-        | ApideckError
-        | ResponseValidationError
-        | ConnectionError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | InvalidRequestError
-        | UnexpectedClientError
-        | SDKValidationError
-      >,
-      { cursor: string }
-    >,
     APICall,
   ]
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.HrisCompaniesAllRequest$outboundSchema.parse(value),
+    (value) =>
+      operations.AccountingRefundsUpdateRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return [haltIterator(parsed), { status: "invalid" }];
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload.Refund, { explode: true });
 
-  const path = pathToFunc("/hris/companies")();
+  const pathParams = {
+    id: encodeSimple("id", payload.id, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
 
-  const query = queryJoin(
-    encodeDeepObjectQuery({
-      "pass_through": payload.pass_through,
-    }),
-    encodeFormQuery({
-      "cursor": payload.cursor,
-      "fields": payload.fields,
-      "limit": payload.limit,
-      "raw": payload.raw,
-    }),
-  );
+  const path = pathToFunc("/accounting/refunds/{id}")(pathParams);
+
+  const query = encodeFormQuery({
+    "raw": payload.raw,
+  });
 
   const headers = new Headers(compactMap({
+    "Content-Type": "application/json",
     Accept: "application/json",
     "x-apideck-app-id": encodeSimple(
       "x-apideck-app-id",
@@ -154,7 +137,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "hris.companiesAll",
+    operationID: "accounting.refundsUpdate",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
@@ -178,7 +161,7 @@ async function $do(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "PATCH",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
@@ -188,7 +171,7 @@ async function $do(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return [haltIterator(requestRes), { status: "invalid" }];
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -199,7 +182,7 @@ async function $do(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return [haltIterator(doResult), { status: "request-error", request: req }];
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -207,8 +190,8 @@ async function $do(
     HttpMeta: { Response: response, Request: req },
   };
 
-  const [result, raw] = await M.match<
-    operations.HrisCompaniesAllResponse,
+  const [result] = await M.match<
+    operations.AccountingRefundsUpdateResponse,
     | errors.BadRequestResponse
     | errors.UnauthorizedResponse
     | errors.PaymentRequiredResponse
@@ -223,8 +206,8 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.HrisCompaniesAllResponse$inboundSchema, {
-      key: "GetHrisCompaniesResponse",
+    M.json(200, operations.AccountingRefundsUpdateResponse$inboundSchema, {
+      key: "UpdateRefundResponse",
     }),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
@@ -233,66 +216,15 @@ async function $do(
     M.jsonErr(422, errors.UnprocessableResponse$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
-    M.json("default", operations.HrisCompaniesAllResponse$inboundSchema, {
-      key: "UnexpectedErrorResponse",
-    }),
+    M.json(
+      "default",
+      operations.AccountingRefundsUpdateResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
+    ),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
-    return [haltIterator(result), {
-      status: "complete",
-      request: req,
-      response,
-    }];
+    return [result, { status: "complete", request: req, response }];
   }
 
-  const nextFunc = (
-    responseData: unknown,
-  ): {
-    next: Paginator<
-      Result<
-        operations.HrisCompaniesAllResponse,
-        | errors.BadRequestResponse
-        | errors.UnauthorizedResponse
-        | errors.PaymentRequiredResponse
-        | errors.NotFoundResponse
-        | errors.UnprocessableResponse
-        | ApideckError
-        | ResponseValidationError
-        | ConnectionError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | InvalidRequestError
-        | UnexpectedClientError
-        | SDKValidationError
-      >
-    >;
-    "~next"?: { cursor: string };
-  } => {
-    const nextCursor = dlv(responseData, "meta.cursors.next");
-    if (typeof nextCursor !== "string") {
-      return { next: () => null };
-    }
-    if (nextCursor.trim() === "") {
-      return { next: () => null };
-    }
-
-    const nextVal = () =>
-      hrisCompaniesList(
-        client,
-        {
-          ...request,
-          cursor: nextCursor,
-        },
-        options,
-      );
-
-    return { next: nextVal, "~next": { cursor: nextCursor } };
-  };
-
-  const page = { ...result, ...nextFunc(raw) };
-  return [{ ...page, ...createPageIterator(page, (v) => !v.ok) }, {
-    status: "complete",
-    request: req,
-    response,
-  }];
+  return [result, { status: "complete", request: req, response }];
 }

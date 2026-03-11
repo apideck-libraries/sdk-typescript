@@ -40,6 +40,7 @@ type ExpenseStatus string
 const (
 	ExpenseStatusDraft  ExpenseStatus = "draft"
 	ExpenseStatusPosted ExpenseStatus = "posted"
+	ExpenseStatusVoided ExpenseStatus = "voided"
 )
 
 func (e ExpenseStatus) ToPointer() *ExpenseStatus {

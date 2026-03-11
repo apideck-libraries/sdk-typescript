@@ -180,6 +180,10 @@ export type Supplier = {
    */
   terms?: string | null | undefined;
   /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
+  /**
    * The channel through which the transaction is processed.
    */
   channel?: string | null | undefined;
@@ -307,6 +311,10 @@ export type SupplierInput = {
    */
   terms?: string | null | undefined;
   /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
+  /**
    * The channel through which the transaction is processed.
    */
   channel?: string | null | undefined;
@@ -385,6 +393,7 @@ export const Supplier$inboundSchema: z.ZodType<
   status: z.nullable(SupplierStatus$inboundSchema).optional(),
   payment_method: z.nullable(types.string()).optional(),
   terms: z.nullable(types.string()).optional(),
+  terms_id: z.nullable(types.string()).optional(),
   channel: z.nullable(types.string()).optional(),
   issued_method: z.nullable(types.string()).optional(),
   issued_email: z.nullable(types.string()).optional(),
@@ -420,6 +429,7 @@ export const Supplier$inboundSchema: z.ZodType<
     "tax_rate": "taxRate",
     "tax_number": "taxNumber",
     "payment_method": "paymentMethod",
+    "terms_id": "termsId",
     "issued_method": "issuedMethod",
     "issued_email": "issuedEmail",
     "custom_mappings": "customMappings",
@@ -474,6 +484,7 @@ export type SupplierInput$Outbound = {
   status?: string | null | undefined;
   payment_method?: string | null | undefined;
   terms?: string | null | undefined;
+  terms_id?: string | null | undefined;
   channel?: string | null | undefined;
   issued_method?: string | null | undefined;
   issued_email?: string | null | undefined;
@@ -517,6 +528,7 @@ export const SupplierInput$outboundSchema: z.ZodType<
   status: z.nullable(SupplierStatus$outboundSchema).optional(),
   paymentMethod: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
+  termsId: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   issuedMethod: z.nullable(z.string()).optional(),
   issuedEmail: z.nullable(z.string()).optional(),
@@ -543,6 +555,7 @@ export const SupplierInput$outboundSchema: z.ZodType<
     taxRate: "tax_rate",
     taxNumber: "tax_number",
     paymentMethod: "payment_method",
+    termsId: "terms_id",
     issuedMethod: "issued_method",
     issuedEmail: "issued_email",
     customFields: "custom_fields",

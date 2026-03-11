@@ -8,11 +8,11 @@ Line Item type
 import { LineItemType } from "@apideck/unify/models/components";
 
 let value: LineItemType = "expense_account";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "expense_item" | "expense_account" | "other" | Unrecognized<string>

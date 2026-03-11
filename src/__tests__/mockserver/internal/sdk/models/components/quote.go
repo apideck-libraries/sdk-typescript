@@ -52,6 +52,8 @@ type Quote struct {
 	ExpiryDate optionalnullable.OptionalNullable[types.Date] `json:"expiry_date,omitempty"`
 	// Terms of the quote.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// Optional reference identifier for the transaction.
 	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Quote status
@@ -193,6 +195,13 @@ func (o *Quote) GetTerms() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *Quote) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *Quote) GetReference() optionalnullable.OptionalNullable[string] {
@@ -389,6 +398,8 @@ type QuoteInput struct {
 	ExpiryDate optionalnullable.OptionalNullable[types.Date] `json:"expiry_date,omitempty"`
 	// Terms of the quote.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// Optional reference identifier for the transaction.
 	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Quote status
@@ -501,6 +512,13 @@ func (o *QuoteInput) GetTerms() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *QuoteInput) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *QuoteInput) GetReference() optionalnullable.OptionalNullable[string] {

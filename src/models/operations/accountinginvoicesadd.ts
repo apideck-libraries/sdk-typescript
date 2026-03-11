@@ -38,6 +38,10 @@ export type AccountingInvoicesAddRequest = {
    * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
    */
   serviceId?: string | undefined;
+  /**
+   * The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+   */
+  companyId?: string | undefined;
   invoice: components.InvoiceInput;
 };
 
@@ -59,6 +63,7 @@ export type AccountingInvoicesAddRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
   serviceId?: string | undefined;
+  companyId?: string | undefined;
   Invoice: components.InvoiceInput$Outbound;
 };
 
@@ -72,6 +77,7 @@ export const AccountingInvoicesAddRequest$outboundSchema: z.ZodType<
   consumerId: z.string().optional(),
   appId: z.string().optional(),
   serviceId: z.string().optional(),
+  companyId: z.string().optional(),
   invoice: components.InvoiceInput$outboundSchema,
 }).transform((v) => {
   return remap$(v, {

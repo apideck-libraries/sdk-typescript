@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.projects.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       name: "Website Redesign",
       status: "active",
@@ -71,6 +72,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingProjectsList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       name: "Website Redesign",
       status: "active",
@@ -141,6 +143,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.projects.create({
     serviceId: "salesforce",
+    companyId: "12345",
     project: {
       name: "Website Redesign Project",
       displayId: "PROJ-001",
@@ -265,6 +268,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingProjectsCreate(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     project: {
       name: "Website Redesign Project",
       displayId: "PROJ-001",
@@ -418,6 +422,7 @@ async function run() {
   const result = await apideck.accounting.projects.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
 
   console.log(result);
@@ -446,6 +451,7 @@ async function run() {
   const res = await accountingProjectsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -502,6 +508,7 @@ async function run() {
   const result = await apideck.accounting.projects.update({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     project: {
       name: "Website Redesign Project",
       displayId: "PROJ-001",
@@ -623,6 +630,7 @@ async function run() {
   const res = await accountingProjectsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     project: {
       name: "Website Redesign Project",
       displayId: "PROJ-001",
@@ -772,6 +780,7 @@ async function run() {
   const result = await apideck.accounting.projects.delete({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
 
   console.log(result);
@@ -800,6 +809,7 @@ async function run() {
   const res = await accountingProjectsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   if (res.ok) {
     const { value: result } = res;

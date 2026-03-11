@@ -8,11 +8,11 @@ Method used for billing this project
 import { BillingMethod } from "@apideck/unify/models/components";
 
 let value: BillingMethod = "time_and_materials";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "fixed_price" | "time_and_materials" | "milestone_based" | "retainer" | "non_billable" | Unrecognized<string>

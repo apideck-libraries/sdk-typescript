@@ -23,6 +23,10 @@ export type VaultConsumersAllRequest = {
    */
   appId?: string | undefined;
   /**
+   * Filter results
+   */
+  filter?: components.ConsumersFilter | undefined;
+  /**
    * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
    */
   cursor?: string | null | undefined;
@@ -47,6 +51,7 @@ export type VaultConsumersAllResponse = {
 /** @internal */
 export type VaultConsumersAllRequest$Outbound = {
   appId?: string | undefined;
+  filter?: components.ConsumersFilter$Outbound | undefined;
   cursor?: string | null | undefined;
   limit: number;
 };
@@ -58,6 +63,7 @@ export const VaultConsumersAllRequest$outboundSchema: z.ZodType<
   VaultConsumersAllRequest
 > = z.object({
   appId: z.string().optional(),
+  filter: components.ConsumersFilter$outboundSchema.optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
 });

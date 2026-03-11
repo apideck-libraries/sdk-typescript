@@ -113,6 +113,11 @@ async function $do(
       payload.appId ?? client._options.appId,
       { explode: false, charEncoding: "none" },
     ),
+    "x-apideck-company-id": encodeSimple(
+      "x-apideck-company-id",
+      payload.companyId,
+      { explode: false, charEncoding: "none" },
+    ),
     "x-apideck-consumer-id": encodeSimple(
       "x-apideck-consumer-id",
       payload.consumerId ?? client._options.consumerId,

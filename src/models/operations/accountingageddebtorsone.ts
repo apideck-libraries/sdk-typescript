@@ -39,6 +39,10 @@ export type AccountingAgedDebtorsOneRequest = {
    */
   serviceId?: string | undefined;
   /**
+   * The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+   */
+  companyId?: string | undefined;
+  /**
    * Apply filters
    */
   filter?: components.AgedReportFilter | undefined;
@@ -70,6 +74,7 @@ export type AccountingAgedDebtorsOneRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
   serviceId?: string | undefined;
+  companyId?: string | undefined;
   filter?: components.AgedReportFilter$Outbound | undefined;
   pass_through?: { [k: string]: any } | undefined;
   fields?: string | null | undefined;
@@ -85,6 +90,7 @@ export const AccountingAgedDebtorsOneRequest$outboundSchema: z.ZodType<
   consumerId: z.string().optional(),
   appId: z.string().optional(),
   serviceId: z.string().optional(),
+  companyId: z.string().optional(),
   filter: components.AgedReportFilter$outboundSchema.optional(),
   passThrough: z.record(z.any()).optional(),
   fields: z.nullable(z.string()).optional(),

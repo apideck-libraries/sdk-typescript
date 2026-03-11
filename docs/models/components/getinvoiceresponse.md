@@ -32,6 +32,7 @@ let value: GetInvoiceResponse = {
     invoiceDate: new Date("2020-09-30"),
     dueDate: new Date("2020-09-30"),
     terms: "Net 30 days",
+    termsId: "12345",
     poNumber: "90000117",
     reference: "INV-2024-001",
     status: "draft",

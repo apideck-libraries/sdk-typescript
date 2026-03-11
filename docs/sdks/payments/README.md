@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.payments.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       invoiceId: "123",
@@ -70,6 +71,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingPaymentsList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       invoiceId: "123",
@@ -139,6 +141,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.payments.create({
     serviceId: "salesforce",
+    companyId: "12345",
     payment: {
       currency: "USD",
       currencyRate: 0.69,
@@ -252,6 +255,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingPaymentsCreate(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     payment: {
       currency: "USD",
       currencyRate: 0.69,
@@ -394,6 +398,7 @@ async function run() {
   const result = await apideck.accounting.payments.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -423,6 +428,7 @@ async function run() {
   const res = await accountingPaymentsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {
@@ -480,6 +486,7 @@ async function run() {
   const result = await apideck.accounting.payments.update({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     payment: {
       currency: "USD",
       currencyRate: 0.69,
@@ -591,6 +598,7 @@ async function run() {
   const res = await accountingPaymentsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     payment: {
       currency: "USD",
       currencyRate: 0.69,
@@ -730,6 +738,7 @@ async function run() {
   const result = await apideck.accounting.payments.delete({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
 
   console.log(result);
@@ -758,6 +767,7 @@ async function run() {
   const res = await accountingPaymentsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   if (res.ok) {
     const { value: result } = res;

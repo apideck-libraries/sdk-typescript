@@ -1,11 +1,11 @@
-# HrisCompaniesAllRequest
+# HrisCompaniesAll2Request
 
 ## Example Usage
 
 ```typescript
-import { HrisCompaniesAllRequest } from "@apideck/unify/models/operations";
+import { HrisCompaniesAll2Request } from "@apideck/unify/models/operations";
 
-let value: HrisCompaniesAllRequest = {
+let value: HrisCompaniesAll2Request = {
   serviceId: "salesforce",
   passThrough: {
     "search": "San Francisco",

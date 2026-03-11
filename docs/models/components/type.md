@@ -8,11 +8,11 @@ The type of address.
 import { Type } from "@apideck/unify/models/components";
 
 let value: Type = "primary";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "primary" | "secondary" | "home" | "office" | "shipping" | "billing" | "work" | "other" | Unrecognized<string>

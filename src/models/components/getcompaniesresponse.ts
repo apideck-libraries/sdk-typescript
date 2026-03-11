@@ -8,7 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import { Company1, Company1$inboundSchema } from "./company1.js";
+import {
+  AccountingConnectionCompany,
+  AccountingConnectionCompany$inboundSchema,
+} from "./accountingconnectioncompany.js";
 import { Links, Links$inboundSchema } from "./links.js";
 import { Meta, Meta$inboundSchema } from "./meta.js";
 
@@ -36,7 +39,7 @@ export type GetCompaniesResponse = {
    * Operation performed
    */
   operation: string;
-  data: Array<Company1>;
+  data: Array<AccountingConnectionCompany>;
   /**
    * Response metadata
    */
@@ -45,10 +48,6 @@ export type GetCompaniesResponse = {
    * Links to navigate to previous or next pages through the API
    */
   links?: Links | undefined;
-  /**
-   * Raw response from the integration when raw=true query param is provided
-   */
-  raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -62,14 +61,12 @@ export const GetCompaniesResponse$inboundSchema: z.ZodType<
   service: types.string(),
   resource: types.string(),
   operation: types.string(),
-  data: z.array(Company1$inboundSchema),
+  data: z.array(AccountingConnectionCompany$inboundSchema),
   meta: types.optional(Meta$inboundSchema),
   links: types.optional(Links$inboundSchema),
-  _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
-    "_raw": "raw",
   });
 });
 
