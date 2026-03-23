@@ -118,7 +118,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc(
     "/accounting/attachments/{reference_type}/{reference_id}/{id}/download",
   )(pathParams);

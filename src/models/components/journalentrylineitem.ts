@@ -26,6 +26,12 @@ import {
   LinkedCustomerInput$outboundSchema,
 } from "./linkedcustomerinput.js";
 import {
+  LinkedEmployee,
+  LinkedEmployee$inboundSchema,
+  LinkedEmployee$Outbound,
+  LinkedEmployee$outboundSchema,
+} from "./linkedemployee.js";
+import {
   LinkedLedgerAccount,
   LinkedLedgerAccount$inboundSchema,
   LinkedLedgerAccount$Outbound,
@@ -73,6 +79,18 @@ export type JournalEntryLineItemType = OpenEnum<
   typeof JournalEntryLineItemType
 >;
 
+/**
+ * The tax applicability of this line item. Overrides the root-level tax_type for this line.
+ */
+export const TaxType = {
+  Sales: "sales",
+  Purchase: "purchase",
+} as const;
+/**
+ * The tax applicability of this line item. Overrides the root-level tax_type for this line.
+ */
+export type TaxType = OpenEnum<typeof TaxType>;
+
 export type JournalEntryLineItem = {
   /**
    * A unique identifier for an object.
@@ -97,8 +115,12 @@ export type JournalEntryLineItem = {
   /**
    * Debit entries are considered positive, and credit entries are considered negative.
    */
-  type: JournalEntryLineItemType;
+  type: JournalEntryLineItemType | null;
   taxRate?: LinkedTaxRate | undefined;
+  /**
+   * The tax applicability of this line item. Overrides the root-level tax_type for this line.
+   */
+  taxType?: TaxType | null | undefined;
   /**
    * @deprecated field: This field is deprecated and may be removed in a future version..
    */
@@ -116,6 +138,10 @@ export type JournalEntryLineItem = {
    * The supplier this entity is linked to.
    */
   supplier?: LinkedSupplier | null | undefined;
+  /**
+   * The employee this entity is linked to.
+   */
+  employee?: LinkedEmployee | null | undefined;
   /**
    * The ID of the department
    */
@@ -154,8 +180,12 @@ export type JournalEntryLineItemInput = {
   /**
    * Debit entries are considered positive, and credit entries are considered negative.
    */
-  type: JournalEntryLineItemType;
+  type: JournalEntryLineItemType | null;
   taxRate?: LinkedTaxRateInput | undefined;
+  /**
+   * The tax applicability of this line item. Overrides the root-level tax_type for this line.
+   */
+  taxType?: TaxType | null | undefined;
   /**
    * @deprecated field: This field is deprecated and may be removed in a future version..
    */
@@ -173,6 +203,10 @@ export type JournalEntryLineItemInput = {
    * The supplier this entity is linked to.
    */
   supplier?: LinkedSupplierInput | null | undefined;
+  /**
+   * The employee this entity is linked to.
+   */
+  employee?: LinkedEmployee | null | undefined;
   /**
    * The ID of the department
    */
@@ -205,6 +239,13 @@ export const JournalEntryLineItemType$outboundSchema: z.ZodType<
 > = openEnums.outboundSchema(JournalEntryLineItemType);
 
 /** @internal */
+export const TaxType$inboundSchema: z.ZodType<TaxType, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(TaxType);
+/** @internal */
+export const TaxType$outboundSchema: z.ZodType<string, z.ZodTypeDef, TaxType> =
+  openEnums.outboundSchema(TaxType);
+
+/** @internal */
 export const JournalEntryLineItem$inboundSchema: z.ZodType<
   JournalEntryLineItem,
   z.ZodTypeDef,
@@ -215,8 +256,9 @@ export const JournalEntryLineItem$inboundSchema: z.ZodType<
   tax_amount: z.nullable(types.number()).optional(),
   sub_total: z.nullable(types.number()).optional(),
   total_amount: z.nullable(types.number()).optional(),
-  type: JournalEntryLineItemType$inboundSchema,
+  type: types.nullable(JournalEntryLineItemType$inboundSchema),
   tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+  tax_type: z.nullable(TaxType$inboundSchema).optional(),
   tracking_category: z.nullable(DeprecatedLinkedTrackingCategory$inboundSchema)
     .optional(),
   tracking_categories: z.nullable(
@@ -225,6 +267,7 @@ export const JournalEntryLineItem$inboundSchema: z.ZodType<
   ledger_account: types.nullable(LinkedLedgerAccount$inboundSchema),
   customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
   supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
+  employee: z.nullable(LinkedEmployee$inboundSchema).optional(),
   department_id: z.nullable(types.string()).optional(),
   location_id: z.nullable(types.string()).optional(),
   line_number: z.nullable(types.number()).optional(),
@@ -237,6 +280,7 @@ export const JournalEntryLineItem$inboundSchema: z.ZodType<
     "sub_total": "subTotal",
     "total_amount": "totalAmount",
     "tax_rate": "taxRate",
+    "tax_type": "taxType",
     "tracking_category": "trackingCategory",
     "tracking_categories": "trackingCategories",
     "ledger_account": "ledgerAccount",
@@ -262,8 +306,9 @@ export type JournalEntryLineItemInput$Outbound = {
   tax_amount?: number | null | undefined;
   sub_total?: number | null | undefined;
   total_amount?: number | null | undefined;
-  type: string;
+  type: string | null;
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
+  tax_type?: string | null | undefined;
   tracking_category?:
     | DeprecatedLinkedTrackingCategory$Outbound
     | null
@@ -275,6 +320,7 @@ export type JournalEntryLineItemInput$Outbound = {
   ledger_account: LinkedLedgerAccount$Outbound | null;
   customer?: LinkedCustomerInput$Outbound | null | undefined;
   supplier?: LinkedSupplierInput$Outbound | null | undefined;
+  employee?: LinkedEmployee$Outbound | null | undefined;
   department_id?: string | null | undefined;
   location_id?: string | null | undefined;
   line_number?: number | null | undefined;
@@ -291,8 +337,9 @@ export const JournalEntryLineItemInput$outboundSchema: z.ZodType<
   taxAmount: z.nullable(z.number()).optional(),
   subTotal: z.nullable(z.number()).optional(),
   totalAmount: z.nullable(z.number()).optional(),
-  type: JournalEntryLineItemType$outboundSchema,
+  type: z.nullable(JournalEntryLineItemType$outboundSchema),
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
+  taxType: z.nullable(TaxType$outboundSchema).optional(),
   trackingCategory: z.nullable(DeprecatedLinkedTrackingCategory$outboundSchema)
     .optional(),
   trackingCategories: z.nullable(
@@ -301,6 +348,7 @@ export const JournalEntryLineItemInput$outboundSchema: z.ZodType<
   ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema),
   customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
+  employee: z.nullable(LinkedEmployee$outboundSchema).optional(),
   departmentId: z.nullable(z.string()).optional(),
   locationId: z.nullable(z.string()).optional(),
   lineNumber: z.nullable(z.number().int()).optional(),
@@ -311,6 +359,7 @@ export const JournalEntryLineItemInput$outboundSchema: z.ZodType<
     subTotal: "sub_total",
     totalAmount: "total_amount",
     taxRate: "tax_rate",
+    taxType: "tax_type",
     trackingCategory: "tracking_category",
     trackingCategories: "tracking_categories",
     ledgerAccount: "ledger_account",

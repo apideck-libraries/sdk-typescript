@@ -103,7 +103,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/file-storage/drive-groups/{id}")(pathParams);
 
   const query = encodeFormQuery({

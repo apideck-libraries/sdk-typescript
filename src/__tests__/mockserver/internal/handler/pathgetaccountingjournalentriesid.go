@@ -66,7 +66,7 @@ func testAccountingJournalEntriesOneAccountingJournalEntriesOne0(w http.Response
 					TaxAmount:   optionalnullable.From(types.Float64(27500)),
 					SubTotal:    optionalnullable.From(types.Float64(27500)),
 					TotalAmount: optionalnullable.From(types.Float64(27500)),
-					Type:        components.JournalEntryLineItemTypeDebit,
+					Type:        components.JournalEntryLineItemTypeDebit.ToPointer(),
 					TaxRate: &components.LinkedTaxRate{
 						ID:   optionalnullable.From(types.String("123456")),
 						Code: optionalnullable.From(types.String("N-T")),
@@ -138,7 +138,7 @@ func testAccountingJournalEntriesOneAccountingJournalEntriesOne0(w http.Response
 					TaxAmount:   optionalnullable.From(types.Float64(27500)),
 					SubTotal:    optionalnullable.From(types.Float64(27500)),
 					TotalAmount: optionalnullable.From(types.Float64(27500)),
-					Type:        components.JournalEntryLineItemTypeDebit,
+					Type:        components.JournalEntryLineItemTypeDebit.ToPointer(),
 					TaxRate: &components.LinkedTaxRate{
 						ID:   optionalnullable.From(types.String("123456")),
 						Code: optionalnullable.From(types.String("N-T")),
@@ -210,7 +210,7 @@ func testAccountingJournalEntriesOneAccountingJournalEntriesOne0(w http.Response
 					TaxAmount:   optionalnullable.From(types.Float64(27500)),
 					SubTotal:    optionalnullable.From(types.Float64(27500)),
 					TotalAmount: optionalnullable.From(types.Float64(27500)),
-					Type:        components.JournalEntryLineItemTypeDebit,
+					Type:        components.JournalEntryLineItemTypeDebit.ToPointer(),
 					TaxRate: &components.LinkedTaxRate{
 						ID:   optionalnullable.From(types.String("123456")),
 						Code: optionalnullable.From(types.String("N-T")),

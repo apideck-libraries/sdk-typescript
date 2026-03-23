@@ -108,7 +108,7 @@ func testAccountingExpenseReportsAllAccountingExpenseReportsAll0(w http.Response
 							DisplayID:    optionalnullable.From(types.String("Airfare")),
 							Name:         optionalnullable.From(types.String("Airfare")),
 						},
-						Account:     optionalnullable.From[components.LinkedLedgerAccount](nil),
+						Account:     nil,
 						Description: optionalnullable.From(types.String("Flight to New York")),
 						Quantity:    optionalnullable.From(types.Float64(1)),
 						UnitPrice:   optionalnullable.From(types.Float64(27500.5)),

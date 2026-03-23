@@ -107,7 +107,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/crm/contacts/{id}")(pathParams);
 
   const query = queryJoin(

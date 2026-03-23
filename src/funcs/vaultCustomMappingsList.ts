@@ -107,7 +107,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/vault/custom-mappings/{unified_api}/{service_id}")(
     pathParams,
   );

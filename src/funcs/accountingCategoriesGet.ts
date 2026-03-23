@@ -108,7 +108,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/accounting/categories/{id}")(pathParams);
 
   const query = queryJoin(

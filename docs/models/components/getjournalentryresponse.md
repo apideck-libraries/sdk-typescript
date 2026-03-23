@@ -36,6 +36,7 @@ let value: GetJournalEntryResponse = {
           name: "GST on Purchases",
           rate: 10,
         },
+        taxType: "sales",
         trackingCategories: [
           {
             id: "123456",
@@ -93,6 +94,7 @@ let value: GetJournalEntryResponse = {
             rowVersion: "1-12345",
           },
         },
+        employee: null,
         departmentId: "12345",
         locationId: "12345",
         lineNumber: 1,
@@ -108,10 +110,17 @@ let value: GetJournalEntryResponse = {
     memo: "Thank you for your business and have a great day!",
     postedAt: new Date("2020-09-30T07:43:32.000Z"),
     journalSymbol: "IND",
-    taxType: "sales",
     taxCode: "1234",
     number: "OIT00546",
-    trackingCategories: null,
+    trackingCategories: [
+      {
+        id: "123456",
+        code: "100",
+        name: "New York",
+        parentId: "123456",
+        parentName: "New York",
+      },
+    ],
     accountingPeriod: "01-24",
     taxInclusive: true,
     sourceType: "manual",

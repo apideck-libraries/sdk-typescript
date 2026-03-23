@@ -107,7 +107,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc(
     "/hris/time-off-requests/employees/{employee_id}/time-off-requests/{id}",
   )(pathParams);

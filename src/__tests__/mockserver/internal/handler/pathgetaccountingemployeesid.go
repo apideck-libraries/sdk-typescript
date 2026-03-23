@@ -146,6 +146,20 @@ func testAccountingEmployeesOneAccountingEmployeesOne0(w http.ResponseWriter, re
 					Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 				},
 			},
+			BankAccount: &components.BankAccount{
+				BankName:         optionalnullable.From(types.String("Chase Bank")),
+				AccountNumber:    optionalnullable.From(types.String("123465")),
+				AccountName:      optionalnullable.From(types.String("Main Operating Account")),
+				AccountType:      optionalnullable.From(components.BankAccountAccountTypeCreditCard.ToPointer()),
+				Iban:             optionalnullable.From(types.String("GB33BUKB20201555555555")),
+				Bic:              optionalnullable.From(types.String("CHASUS33")),
+				RoutingNumber:    optionalnullable.From(types.String("021000021")),
+				BsbNumber:        optionalnullable.From(types.String("062-001")),
+				BranchIdentifier: optionalnullable.From(types.String("001")),
+				BankCode:         optionalnullable.From(types.String("BNH")),
+				Currency:         optionalnullable.From(components.CurrencyUsd.ToPointer()),
+				Country:          optionalnullable.From(types.String("US")),
+			},
 			CustomFields: []components.CustomFieldUnion{
 				components.CreateCustomFieldUnionCustomField1(
 					components.CustomField1{

@@ -457,6 +457,7 @@ export * from "./linkeddepartment.js";
 export * from "./linkeddepartmentinput.js";
 export * from "./linkedecommercecustomer.js";
 export * from "./linkedecommerceorder.js";
+export * from "./linkedemployee.js";
 export * from "./linkedexpensecategory.js";
 export * from "./linkedfinancialaccount.js";
 export * from "./linkedfolder.js";

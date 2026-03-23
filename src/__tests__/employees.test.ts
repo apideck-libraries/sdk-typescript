@@ -2568,6 +2568,20 @@ test("Employees Accounting Employees Add", async () => {
           type: "primary",
         },
       ],
+      bankAccount: {
+        bankName: "Chase Bank",
+        accountNumber: "123465",
+        accountName: "Main Operating Account",
+        accountType: "credit_card",
+        iban: "GB33BUKB20201555555555",
+        bic: "CHASUS33",
+        routingNumber: "021000021",
+        bsbNumber: "062-001",
+        branchIdentifier: "001",
+        bankCode: "BNH",
+        currency: "USD",
+        country: "US",
+      },
       customFields: [
         {
           id: "2389328923893298",
@@ -2725,6 +2739,20 @@ test("Employees Accounting Employees One", async () => {
           type: "primary",
         },
       ],
+      bankAccount: {
+        bankName: "Chase Bank",
+        accountNumber: "123465",
+        accountName: "Main Operating Account",
+        accountType: "credit_card",
+        iban: "GB33BUKB20201555555555",
+        bic: "CHASUS33",
+        routingNumber: "021000021",
+        bsbNumber: "062-001",
+        branchIdentifier: "001",
+        bankCode: "BNH",
+        currency: "USD",
+        country: "US",
+      },
       customFields: [
         {
           id: "2389328923893298",
@@ -2856,6 +2884,20 @@ test("Employees Accounting Employees Update", async () => {
           type: "primary",
         },
       ],
+      bankAccount: {
+        bankName: "Chase Bank",
+        accountNumber: "123465",
+        accountName: "Main Operating Account",
+        accountType: "credit_card",
+        iban: "GB33BUKB20201555555555",
+        bic: "CHASUS33",
+        routingNumber: "021000021",
+        bsbNumber: "062-001",
+        branchIdentifier: "001",
+        bankCode: "BNH",
+        currency: "USD",
+        country: "US",
+      },
       customFields: [
         {
           id: "2389328923893298",

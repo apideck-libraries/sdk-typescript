@@ -28,6 +28,7 @@ let value: AccountingJournalEntriesUpdateRequest = {
           code: "N-T",
           rate: 10,
         },
+        taxType: "sales",
         trackingCategories: [
           {
             id: "123456",
@@ -81,6 +82,11 @@ let value: AccountingJournalEntriesUpdateRequest = {
             rowVersion: "1-12345",
           },
         },
+        employee: {
+          id: "12345",
+          displayId: "EH",
+          displayName: "Ester Henderson",
+        },
         departmentId: "12345",
         locationId: "12345",
         lineNumber: 1,
@@ -96,7 +102,6 @@ let value: AccountingJournalEntriesUpdateRequest = {
     memo: "Thank you for your business and have a great day!",
     postedAt: new Date("2020-09-30T07:43:32.000Z"),
     journalSymbol: "IND",
-    taxType: "sales",
     taxCode: "1234",
     number: "OIT00546",
     trackingCategories: [

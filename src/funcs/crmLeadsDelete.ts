@@ -102,7 +102,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/crm/leads/{id}")(pathParams);
 
   const query = encodeFormQuery({

@@ -111,7 +111,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc(
     "/vault/connections/{unified_api}/{service_id}/{resource}/config",
   )(pathParams);

@@ -17,6 +17,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export const LinkedFinancialAccountAccountType = {
   LedgerAccount: "ledger_account",
   BankAccount: "bank_account",
+  Employee: "employee",
 } as const;
 /**
  * The type of account being referenced. Use `ledger_account` for GL accounts from the chart of accounts, or `bank_account` for bank account entities. When not specified, the connector will use its default behavior.
@@ -26,7 +27,7 @@ export type LinkedFinancialAccountAccountType = OpenEnum<
 >;
 
 /**
- * A flexible account reference that can represent either a ledger account (GL account) or a bank account, depending on the connector's requirements.
+ * A flexible account reference that can represent a ledger account (GL account), a bank account, or an employee payable account, depending on the connector's requirements.
  */
 export type LinkedFinancialAccount = {
   /**
@@ -60,7 +61,7 @@ export type LinkedFinancialAccount = {
 };
 
 /**
- * A flexible account reference that can represent either a ledger account (GL account) or a bank account, depending on the connector's requirements.
+ * A flexible account reference that can represent a ledger account (GL account), a bank account, or an employee payable account, depending on the connector's requirements.
  */
 export type LinkedFinancialAccountInput = {
   /**
