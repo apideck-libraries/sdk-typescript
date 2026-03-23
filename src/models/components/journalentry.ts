@@ -109,7 +109,9 @@ export type JournalEntry = {
    */
   journalSymbol?: string | null | undefined;
   /**
-   * The specific category of tax associated with a transaction like sales or purchase
+   * Deprecated — use line_items[].tax_type for per-line tax applicability. Kept as fallback: applies to all lines that do not set their own tax_type.
+   *
+   * @deprecated field: Deprecated — use line_items[]..
    */
   taxType?: string | null | undefined;
   /**
@@ -213,7 +215,9 @@ export type JournalEntryInput = {
    */
   journalSymbol?: string | null | undefined;
   /**
-   * The specific category of tax associated with a transaction like sales or purchase
+   * Deprecated — use line_items[].tax_type for per-line tax applicability. Kept as fallback: applies to all lines that do not set their own tax_type.
+   *
+   * @deprecated field: Deprecated — use line_items[]..
    */
   taxType?: string | null | undefined;
   /**

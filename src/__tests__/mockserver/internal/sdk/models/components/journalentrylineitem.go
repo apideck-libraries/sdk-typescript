@@ -18,6 +18,18 @@ func (e JournalEntryLineItemType) ToPointer() *JournalEntryLineItemType {
 	return &e
 }
 
+// TaxType - The tax applicability of this line item. Overrides the root-level tax_type for this line.
+type TaxType string
+
+const (
+	TaxTypeSales    TaxType = "sales"
+	TaxTypePurchase TaxType = "purchase"
+)
+
+func (e TaxType) ToPointer() *TaxType {
+	return &e
+}
+
 type JournalEntryLineItem struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
@@ -30,8 +42,10 @@ type JournalEntryLineItem struct {
 	// Debit entries are considered positive, and credit entries are considered negative.
 	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
 	// Debit entries are considered positive, and credit entries are considered negative.
-	Type    JournalEntryLineItemType `json:"type"`
-	TaxRate *LinkedTaxRate           `json:"tax_rate,omitempty"`
+	Type    *JournalEntryLineItemType `json:"type"`
+	TaxRate *LinkedTaxRate            `json:"tax_rate,omitempty"`
+	// The tax applicability of this line item. Overrides the root-level tax_type for this line.
+	TaxType optionalnullable.OptionalNullable[TaxType] `json:"tax_type,omitempty"`
 	// Deprecated: This field is deprecated and may be removed in a future version..
 	TrackingCategory optionalnullable.OptionalNullable[DeprecatedLinkedTrackingCategory] `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
@@ -41,6 +55,8 @@ type JournalEntryLineItem struct {
 	Customer optionalnullable.OptionalNullable[LinkedCustomer] `json:"customer,omitempty"`
 	// The supplier this entity is linked to.
 	Supplier optionalnullable.OptionalNullable[LinkedSupplier] `json:"supplier,omitempty"`
+	// The employee this entity is linked to.
+	Employee optionalnullable.OptionalNullable[LinkedEmployee] `json:"employee,omitempty"`
 	// The ID of the department
 	DepartmentID optionalnullable.OptionalNullable[string] `json:"department_id,omitempty"`
 	// The ID of the location
@@ -86,9 +102,9 @@ func (o *JournalEntryLineItem) GetTotalAmount() optionalnullable.OptionalNullabl
 	return o.TotalAmount
 }
 
-func (o *JournalEntryLineItem) GetType() JournalEntryLineItemType {
+func (o *JournalEntryLineItem) GetType() *JournalEntryLineItemType {
 	if o == nil {
-		return JournalEntryLineItemType("")
+		return nil
 	}
 	return o.Type
 }
@@ -98,6 +114,13 @@ func (o *JournalEntryLineItem) GetTaxRate() *LinkedTaxRate {
 		return nil
 	}
 	return o.TaxRate
+}
+
+func (o *JournalEntryLineItem) GetTaxType() optionalnullable.OptionalNullable[TaxType] {
+	if o == nil {
+		return nil
+	}
+	return o.TaxType
 }
 
 func (o *JournalEntryLineItem) GetTrackingCategory() optionalnullable.OptionalNullable[DeprecatedLinkedTrackingCategory] {
@@ -133,6 +156,13 @@ func (o *JournalEntryLineItem) GetSupplier() optionalnullable.OptionalNullable[L
 		return nil
 	}
 	return o.Supplier
+}
+
+func (o *JournalEntryLineItem) GetEmployee() optionalnullable.OptionalNullable[LinkedEmployee] {
+	if o == nil {
+		return nil
+	}
+	return o.Employee
 }
 
 func (o *JournalEntryLineItem) GetDepartmentID() optionalnullable.OptionalNullable[string] {
@@ -173,8 +203,10 @@ type JournalEntryLineItemInput struct {
 	// Debit entries are considered positive, and credit entries are considered negative.
 	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
 	// Debit entries are considered positive, and credit entries are considered negative.
-	Type    JournalEntryLineItemType `json:"type"`
-	TaxRate *LinkedTaxRateInput      `json:"tax_rate,omitempty"`
+	Type    *JournalEntryLineItemType `json:"type"`
+	TaxRate *LinkedTaxRateInput       `json:"tax_rate,omitempty"`
+	// The tax applicability of this line item. Overrides the root-level tax_type for this line.
+	TaxType optionalnullable.OptionalNullable[TaxType] `json:"tax_type,omitempty"`
 	// Deprecated: This field is deprecated and may be removed in a future version..
 	TrackingCategory optionalnullable.OptionalNullable[DeprecatedLinkedTrackingCategory] `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
@@ -184,6 +216,8 @@ type JournalEntryLineItemInput struct {
 	Customer optionalnullable.OptionalNullable[LinkedCustomerInput] `json:"customer,omitempty"`
 	// The supplier this entity is linked to.
 	Supplier optionalnullable.OptionalNullable[LinkedSupplierInput] `json:"supplier,omitempty"`
+	// The employee this entity is linked to.
+	Employee optionalnullable.OptionalNullable[LinkedEmployee] `json:"employee,omitempty"`
 	// The ID of the department
 	DepartmentID optionalnullable.OptionalNullable[string] `json:"department_id,omitempty"`
 	// The ID of the location
@@ -222,9 +256,9 @@ func (o *JournalEntryLineItemInput) GetTotalAmount() optionalnullable.OptionalNu
 	return o.TotalAmount
 }
 
-func (o *JournalEntryLineItemInput) GetType() JournalEntryLineItemType {
+func (o *JournalEntryLineItemInput) GetType() *JournalEntryLineItemType {
 	if o == nil {
-		return JournalEntryLineItemType("")
+		return nil
 	}
 	return o.Type
 }
@@ -234,6 +268,13 @@ func (o *JournalEntryLineItemInput) GetTaxRate() *LinkedTaxRateInput {
 		return nil
 	}
 	return o.TaxRate
+}
+
+func (o *JournalEntryLineItemInput) GetTaxType() optionalnullable.OptionalNullable[TaxType] {
+	if o == nil {
+		return nil
+	}
+	return o.TaxType
 }
 
 func (o *JournalEntryLineItemInput) GetTrackingCategory() optionalnullable.OptionalNullable[DeprecatedLinkedTrackingCategory] {
@@ -269,6 +310,13 @@ func (o *JournalEntryLineItemInput) GetSupplier() optionalnullable.OptionalNulla
 		return nil
 	}
 	return o.Supplier
+}
+
+func (o *JournalEntryLineItemInput) GetEmployee() optionalnullable.OptionalNullable[LinkedEmployee] {
+	if o == nil {
+		return nil
+	}
+	return o.Employee
 }
 
 func (o *JournalEntryLineItemInput) GetDepartmentID() optionalnullable.OptionalNullable[string] {

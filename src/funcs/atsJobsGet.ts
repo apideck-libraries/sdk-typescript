@@ -102,7 +102,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/ats/jobs/{id}")(pathParams);
 
   const query = encodeFormQuery({

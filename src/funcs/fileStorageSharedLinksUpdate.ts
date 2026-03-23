@@ -105,7 +105,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/file-storage/shared-links/{id}")(pathParams);
 
   const query = encodeFormQuery({

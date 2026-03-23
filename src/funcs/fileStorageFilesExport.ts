@@ -108,7 +108,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/file-storage/files/{id}/export")(pathParams);
 
   const query = encodeFormQuery({

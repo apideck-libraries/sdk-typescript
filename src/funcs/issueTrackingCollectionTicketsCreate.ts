@@ -105,7 +105,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc(
     "/issue-tracking/collections/{collection_id}/tickets",
   )(pathParams);

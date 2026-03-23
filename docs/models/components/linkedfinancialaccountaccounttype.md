@@ -15,5 +15,5 @@ let value: LinkedFinancialAccountAccountType = "ledger_account";
 ## Values
 
 ```typescript
-"ledger_account" | "bank_account" | Unrecognized<string>
+"ledger_account" | "bank_account" | "employee" | Unrecognized<string>
 ```

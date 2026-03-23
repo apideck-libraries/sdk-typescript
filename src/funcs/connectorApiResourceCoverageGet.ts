@@ -105,7 +105,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc(
     "/connector/apis/{id}/resources/{resource_id}/coverage",
   )(pathParams);

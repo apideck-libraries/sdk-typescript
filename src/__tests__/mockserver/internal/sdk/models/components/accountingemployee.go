@@ -90,6 +90,7 @@ type AccountingEmployee struct {
 	Addresses []Address `json:"addresses,omitempty"`
 	// Phone numbers of the employee.
 	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
+	BankAccount  *BankAccount       `json:"bank_account,omitempty"`
 	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
@@ -282,6 +283,13 @@ func (o *AccountingEmployee) GetPhoneNumbers() []PhoneNumber {
 	return o.PhoneNumbers
 }
 
+func (o *AccountingEmployee) GetBankAccount() *BankAccount {
+	if o == nil {
+		return nil
+	}
+	return o.BankAccount
+}
+
 func (o *AccountingEmployee) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
@@ -366,6 +374,7 @@ type AccountingEmployeeInput struct {
 	Addresses []Address `json:"addresses,omitempty"`
 	// Phone numbers of the employee.
 	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
+	BankAccount  *BankAccount       `json:"bank_account,omitempty"`
 	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
@@ -536,6 +545,13 @@ func (o *AccountingEmployeeInput) GetPhoneNumbers() []PhoneNumber {
 		return nil
 	}
 	return o.PhoneNumbers
+}
+
+func (o *AccountingEmployeeInput) GetBankAccount() *BankAccount {
+	if o == nil {
+		return nil
+	}
+	return o.BankAccount
 }
 
 func (o *AccountingEmployeeInput) GetCustomFields() []CustomFieldUnion {

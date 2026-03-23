@@ -12,13 +12,14 @@ type LinkedFinancialAccountAccountType string
 const (
 	LinkedFinancialAccountAccountTypeLedgerAccount LinkedFinancialAccountAccountType = "ledger_account"
 	LinkedFinancialAccountAccountTypeBankAccount   LinkedFinancialAccountAccountType = "bank_account"
+	LinkedFinancialAccountAccountTypeEmployee      LinkedFinancialAccountAccountType = "employee"
 )
 
 func (e LinkedFinancialAccountAccountType) ToPointer() *LinkedFinancialAccountAccountType {
 	return &e
 }
 
-// LinkedFinancialAccount - A flexible account reference that can represent either a ledger account (GL account) or a bank account, depending on the connector's requirements.
+// LinkedFinancialAccount - A flexible account reference that can represent a ledger account (GL account), a bank account, or an employee payable account, depending on the connector's requirements.
 type LinkedFinancialAccount struct {
 	// The unique identifier for the account. This can be a ledger account ID or bank account ID depending on the `type` field.
 	ID *string `json:"id,omitempty"`
@@ -85,7 +86,7 @@ func (o *LinkedFinancialAccount) GetDownstreamID() optionalnullable.OptionalNull
 	return o.DownstreamID
 }
 
-// LinkedFinancialAccountInput - A flexible account reference that can represent either a ledger account (GL account) or a bank account, depending on the connector's requirements.
+// LinkedFinancialAccountInput - A flexible account reference that can represent a ledger account (GL account), a bank account, or an employee payable account, depending on the connector's requirements.
 type LinkedFinancialAccountInput struct {
 	// The unique identifier for the account. This can be a ledger account ID or bank account ID depending on the `type` field.
 	ID *string `json:"id,omitempty"`

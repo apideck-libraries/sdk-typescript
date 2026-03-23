@@ -103,7 +103,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/file-storage/folders/{id}/copy")(pathParams);
 
   const query = encodeFormQuery({

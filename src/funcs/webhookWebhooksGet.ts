@@ -102,7 +102,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/webhook/webhooks/{id}")(pathParams);
 
   const headers = new Headers(compactMap({

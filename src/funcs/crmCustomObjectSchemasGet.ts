@@ -103,7 +103,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/crm/custom-object-schemas/{id}")(pathParams);
 
   const query = encodeFormQuery({

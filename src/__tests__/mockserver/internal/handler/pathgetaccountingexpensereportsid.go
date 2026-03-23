@@ -143,7 +143,7 @@ func testAccountingExpenseReportsOneAccountingExpenseReportsOne0(w http.Response
 						Name:         optionalnullable.From(types.String("Acme Inc.")),
 						DownstreamID: optionalnullable.From(types.String("12345")),
 					}),
-					Location: optionalnullable.From[components.LinkedLocation](nil),
+					Location: nil,
 					TrackingCategories: optionalnullable.From(types.Pointer([]*components.LinkedTrackingCategory{
 						&components.LinkedTrackingCategory{
 							ID:         types.String("123456"),

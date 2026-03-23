@@ -102,7 +102,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/sms/messages/{id}")(pathParams);
 
   const query = encodeFormQuery({

@@ -17,6 +17,12 @@ import {
   Address$outboundSchema,
 } from "./address.js";
 import {
+  BankAccount,
+  BankAccount$inboundSchema,
+  BankAccount$Outbound,
+  BankAccount$outboundSchema,
+} from "./bankaccount.js";
+import {
   Currency,
   Currency$inboundSchema,
   Currency$outboundSchema,
@@ -199,6 +205,7 @@ export type AccountingEmployee = {
    * Phone numbers of the employee.
    */
   phoneNumbers?: Array<PhoneNumber> | undefined;
+  bankAccount?: BankAccount | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
@@ -302,6 +309,7 @@ export type AccountingEmployeeInput = {
    * Phone numbers of the employee.
    */
   phoneNumbers?: Array<PhoneNumber> | undefined;
+  bankAccount?: BankAccount | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -402,6 +410,7 @@ export const AccountingEmployee$inboundSchema: z.ZodType<
   notes: z.nullable(types.string()).optional(),
   addresses: types.optional(z.array(Address$inboundSchema)),
   phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+  bank_account: types.optional(BankAccount$inboundSchema),
   custom_fields: types.optional(z.array(CustomField$inboundSchema)),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
   row_version: z.nullable(types.string()).optional(),
@@ -423,6 +432,7 @@ export const AccountingEmployee$inboundSchema: z.ZodType<
     "birth_date": "birthDate",
     "tracking_categories": "trackingCategories",
     "phone_numbers": "phoneNumbers",
+    "bank_account": "bankAccount",
     "custom_fields": "customFields",
     "custom_mappings": "customMappings",
     "row_version": "rowVersion",
@@ -469,6 +479,7 @@ export type AccountingEmployeeInput$Outbound = {
   notes?: string | null | undefined;
   addresses?: Array<Address$Outbound> | undefined;
   phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
+  bank_account?: BankAccount$Outbound | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
@@ -510,6 +521,7 @@ export const AccountingEmployeeInput$outboundSchema: z.ZodType<
   notes: z.nullable(z.string()).optional(),
   addresses: z.array(Address$outboundSchema).optional(),
   phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
+  bankAccount: BankAccount$outboundSchema.optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
@@ -527,6 +539,7 @@ export const AccountingEmployeeInput$outboundSchema: z.ZodType<
     birthDate: "birth_date",
     trackingCategories: "tracking_categories",
     phoneNumbers: "phone_numbers",
+    bankAccount: "bank_account",
     customFields: "custom_fields",
     rowVersion: "row_version",
     passThrough: "pass_through",

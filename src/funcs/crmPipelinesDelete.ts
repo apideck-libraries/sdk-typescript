@@ -102,7 +102,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/crm/pipelines/{id}")(pathParams);
 
   const query = encodeFormQuery({
