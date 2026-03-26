@@ -1,26 +1,26 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 8e30502b1de6fd23138eb9c321a354e9
-  docVersion: 10.24.7
-  speakeasyVersion: 1.759.1
-  generationVersion: 2.869.10
-  releaseVersion: 0.39.1
-  configChecksum: e178775038bc121c492453d074ad18e7
+  docChecksum: 135473acf19662d9c8e7b8f99c7c1760
+  docVersion: 10.24.9
+  speakeasyVersion: 1.759.3
+  generationVersion: 2.869.25
+  releaseVersion: 0.39.2
+  configChecksum: a79751ed458ee3b67874eea42741daee
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: d0394913-391b-453b-b705-314efa63861a
-  pristine_commit_hash: 0e17c6f1c896dcc8c38b4c314e84ea54d3d6063e
-  pristine_tree_hash: ebd9fc635aed890e3fceb993b8c96ddae563f844
+  generation_id: f512ba1a-acf2-46c7-8b4e-172b9920edcf
+  pristine_commit_hash: 2f53a600f9fdb61ddd9aad8157c82df98d00094f
+  pristine_tree_hash: 8ff8928119675ce251a0146dfb49810e63ad578e
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.3
     constsAndDefaults: 0.1.14
-    core: 3.26.43
+    core: 3.26.44
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -8411,12 +8411,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:62f06160be5526593dbd8867cdedb4ee219800dc
-    pristine_git_object: 115e832982d1a1cfd9a4c2998489e75e07fa7e74
+    last_write_checksum: sha1:723a631fb0b933b7b6f64d06ae0b92a64d734a60
+    pristine_git_object: ebb6bbb194089622864c16ad2a4d9b4e43822998
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:73e54e7833b253f1642f5acfc20c731acc9a3e70
-    pristine_git_object: 9c3609c59d2c0812435aa8a54b21dfd361baf11f
+    last_write_checksum: sha1:3edfd8aff499253080968f48b21f245085f52aec
+    pristine_git_object: b1b367a06ffd12bf5112f0df4bc849bb84c5a7f9
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -12845,16 +12845,16 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:56f1b496e4210ecc6f0403bbf9973b1331c340b6
-    pristine_git_object: be30a524153744e476cb805c604043b30ea9963f
+    last_write_checksum: sha1:89ae49c88a50c4c87397e5a7c49a5dc094e582b9
+    pristine_git_object: d4fa826265824e44bd5ebe1973971687640b0652
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
     pristine_git_object: e81091f5e536f82739f71379b1fddc2d147c49e2
   src/lib/encodings.ts:
     id: 3bd8ead98afd
-    last_write_checksum: sha1:d20c131976ab8ac68b22bdde2b7ed84b5b873922
-    pristine_git_object: 31cd3733907afbee3641b9ab680ed417247a7d33
+    last_write_checksum: sha1:14a1c57947f58b6851f480ab87aef14def989fa0
+    pristine_git_object: d21ccfedbfd9f8460372edcf9b65273612aaa955
   src/lib/env.ts:
     id: c52972a3b198
     last_write_checksum: sha1:cb54b2f57b26a017f9cc801d772e60096e053e95
@@ -34031,7 +34031,6 @@ generatedTests:
   ats.jobsAdd: "2026-03-11T13:14:11Z"
   ats.jobsUpdate: "2026-03-11T13:14:11Z"
   ats.jobsDelete: "2026-03-11T13:14:11Z"
-releaseNotes: "## Typescript SDK Changes:\n* `apideck.accounting.journalEntries.list()`:  `response.data[].lineItems[]` **Changed** (Breaking ⚠️)\n* `apideck.accounting.journalEntries.get()`:  `response.data.lineItems[]` **Changed** (Breaking ⚠️)\n* `apideck.accounting.journalEntries.create()`: \n  *  `request.journalEntry.lineItems[]` **Changed**\n* `apideck.accounting.journalEntries.update()`: \n  *  `request.journalEntry.lineItems[]` **Changed**\n* `apideck.accounting.expenses.list()`:  `response.data[].account.type.enum(employee)` **Added**\n* `apideck.accounting.expenses.create()`: \n  *  `request.expense.account.type.enum(employee)` **Added**\n* `apideck.accounting.expenses.get()`:  `response.data.account.type.enum(employee)` **Added**\n* `apideck.accounting.expenses.update()`: \n  *  `request.expense.account.type.enum(employee)` **Added**\n* `apideck.accounting.employees.list()`:  `response.data[].bankAccount` **Added**\n* `apideck.accounting.employees.create()`: \n  *  `request.accountingEmployee.bankAccount` **Added**\n* `apideck.accounting.employees.get()`:  `response.data.bankAccount` **Added**\n* `apideck.accounting.employees.update()`: \n  *  `request.accountingEmployee.bankAccount` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
