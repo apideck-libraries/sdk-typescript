@@ -43,6 +43,7 @@ let value: Consumer = {
       createdAt: "2020-09-19T12:18:37.071Z",
       updatedAt: "2020-09-19T12:18:37.071Z",
       state: "authorized",
+      health: "ok",
     },
   ],
   services: [

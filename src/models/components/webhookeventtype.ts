@@ -36,6 +36,9 @@ export const WebhookEventType = {
   VaultConnectionCallable: "vault.connection.callable",
   VaultConnectionRevoked: "vault.connection.revoked",
   VaultConnectionTokenRefreshFailed: "vault.connection.token_refresh.failed",
+  VaultConnectionTokenRefreshPending: "vault.connection.token_refresh.pending",
+  VaultConnectionTokenRefreshRecovered:
+    "vault.connection.token_refresh.recovered",
   AtsJobCreated: "ats.job.created",
   AtsJobUpdated: "ats.job.updated",
   AtsJobDeleted: "ats.job.deleted",

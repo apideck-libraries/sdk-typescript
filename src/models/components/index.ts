@@ -68,6 +68,7 @@ export * from "./company1.js";
 export * from "./companyinfo.js";
 export * from "./compensation.js";
 export * from "./connection.js";
+export * from "./connectionhealth.js";
 export * from "./connectionimportdata.js";
 export * from "./connectionstate.js";
 export * from "./connector.js";
