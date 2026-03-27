@@ -27,6 +27,12 @@ type ConsumerConnection struct {
 	UpdatedAt optionalnullable.OptionalNullable[string]         `json:"updated_at,omitempty"`
 	// [Connection state flow](#section/Connection-state)
 	State *ConnectionState `json:"state,omitempty"`
+	// The operational health status of the connection
+	Health *ConnectionHealth `json:"health,omitempty"`
+	// ISO 8601 timestamp indicating when credentials will be cleared if token refresh continues to fail. Only present when connection health is pending_refresh and a retention window is active.
+	CredentialsExpireAt optionalnullable.OptionalNullable[string] `json:"credentials_expire_at,omitempty"`
+	// ISO 8601 timestamp of the most recent token refresh failure. Only present when connection has experienced refresh failures.
+	LastRefreshFailedAt optionalnullable.OptionalNullable[string] `json:"last_refresh_failed_at,omitempty"`
 }
 
 func (o *ConsumerConnection) GetID() *string {
@@ -139,4 +145,25 @@ func (o *ConsumerConnection) GetState() *ConnectionState {
 		return nil
 	}
 	return o.State
+}
+
+func (o *ConsumerConnection) GetHealth() *ConnectionHealth {
+	if o == nil {
+		return nil
+	}
+	return o.Health
+}
+
+func (o *ConsumerConnection) GetCredentialsExpireAt() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.CredentialsExpireAt
+}
+
+func (o *ConsumerConnection) GetLastRefreshFailedAt() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.LastRefreshFailedAt
 }

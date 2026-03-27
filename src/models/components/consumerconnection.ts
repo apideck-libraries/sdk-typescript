@@ -10,6 +10,10 @@ import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { AuthType, AuthType$inboundSchema } from "./authtype.js";
 import {
+  ConnectionHealth,
+  ConnectionHealth$inboundSchema,
+} from "./connectionhealth.js";
+import {
   ConnectionState,
   ConnectionState$inboundSchema,
 } from "./connectionstate.js";
@@ -43,6 +47,18 @@ export type ConsumerConnection = {
    * [Connection state flow](#section/Connection-state)
    */
   state?: ConnectionState | undefined;
+  /**
+   * The operational health status of the connection
+   */
+  health?: ConnectionHealth | undefined;
+  /**
+   * ISO 8601 timestamp indicating when credentials will be cleared if token refresh continues to fail. Only present when connection health is pending_refresh and a retention window is active.
+   */
+  credentialsExpireAt?: string | null | undefined;
+  /**
+   * ISO 8601 timestamp of the most recent token refresh failure. Only present when connection has experienced refresh failures.
+   */
+  lastRefreshFailedAt?: string | null | undefined;
 };
 
 /** @internal */
@@ -67,6 +83,9 @@ export const ConsumerConnection$inboundSchema: z.ZodType<
   created_at: types.optional(types.string()),
   updated_at: z.nullable(types.string()).optional(),
   state: types.optional(ConnectionState$inboundSchema),
+  health: types.optional(ConnectionHealth$inboundSchema),
+  credentials_expire_at: z.nullable(types.string()).optional(),
+  last_refresh_failed_at: z.nullable(types.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "tag_line": "tagLine",
@@ -76,6 +95,8 @@ export const ConsumerConnection$inboundSchema: z.ZodType<
     "auth_type": "authType",
     "created_at": "createdAt",
     "updated_at": "updatedAt",
+    "credentials_expire_at": "credentialsExpireAt",
+    "last_refresh_failed_at": "lastRefreshFailedAt",
   });
 });
 
