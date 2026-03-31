@@ -1,26 +1,26 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: aaccfaf769a5ef00ecc6f004f8f0a38e
-  docVersion: 10.24.10
-  speakeasyVersion: 1.759.3
-  generationVersion: 2.869.25
-  releaseVersion: 0.39.3
-  configChecksum: 2634bb426e2c20fa6f4a271ba997d94d
+  docChecksum: 97d22df53affc8a9a7ca8183172d67d7
+  docVersion: 10.24.12
+  speakeasyVersion: 1.761.0
+  generationVersion: 2.879.1
+  releaseVersion: 0.39.4
+  configChecksum: 48830dce3f3f468bc09f22d88e2b85c1
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: b52ac694-e101-4219-b61d-555db51156b6
-  pristine_commit_hash: 088c3254022726864a855b94ec0210cafa69b8f9
-  pristine_tree_hash: 8416a28f6b8b05d8ba087dc57646b036fc6df04b
+  generation_id: 7621ff0f-81d4-4a33-b1c2-8f5eaa933f12
+  pristine_commit_hash: 96fe7129a00f6e3a964af702df2a7f2791d5d5ce
+  pristine_tree_hash: 3e4c1e8707d6c367be9022a10460917b4709fbc2
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.3
     constsAndDefaults: 0.1.14
-    core: 3.26.44
+    core: 3.26.46
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -28,7 +28,7 @@ features:
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
     errors: 2.86.2
-    globalSecurity: 2.82.15
+    globalSecurity: 2.82.16
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.1
     globalServerURLs: 2.83.1
@@ -8415,12 +8415,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:46a73ab588b0a0d087917907907036b7d5745275
-    pristine_git_object: 25aa985984761ca1b5ede4cf19c7d32b4493e2fd
+    last_write_checksum: sha1:e447798a1b7583bdee0c0f26a6fa2558be37a370
+    pristine_git_object: d09a3f9caa7047680a48dea0bd109a2411f3648b
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:873eca74dbba1d08451ad2ca6cf298f46a68f409
-    pristine_git_object: 7a04f4097fe3814758e38bcf390f07fa1cc71331
+    last_write_checksum: sha1:9d01d945c8e90ed2a0d4e8b657e40e747d9e4585
+    pristine_git_object: 88acd13bd2ade4b5cc2bb695448d9cae18b18cdc
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -12851,8 +12851,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:479e8167603b9af446630c581713ece042412554
-    pristine_git_object: a260b32896c950333cce090ace9de589035355de
+    last_write_checksum: sha1:2e50599054190eb3637244ef28f88ef2b90118c3
+    pristine_git_object: 2057681a87214ec460c4287213cc3846eadf0374
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -12903,8 +12903,8 @@ trackedFiles:
     pristine_git_object: 9f1a2d04faa975f3b27260d3f0a15823ab04e7b8
   src/lib/security.ts:
     id: 0502afa7922e
-    last_write_checksum: sha1:ed7b948c464e25e68f587c653912c823182a3543
-    pristine_git_object: e8afcb3d862129e11dee08e24b29df3da2043527
+    last_write_checksum: sha1:ee70d061eba9f48111f2464fd00bf9c5576d18d0
+    pristine_git_object: cb9ee6913a58d7d61d675cf74ab2e0f1216505ff
   src/lib/url.ts:
     id: b0057e24ed76
     last_write_checksum: sha1:3bceadd74bf0b31adf13eb06b7531077c3e07d65
@@ -34041,7 +34041,6 @@ generatedTests:
   ats.jobsAdd: "2026-03-11T13:14:11Z"
   ats.jobsUpdate: "2026-03-11T13:14:11Z"
   ats.jobsDelete: "2026-03-11T13:14:11Z"
-releaseNotes: "## Typescript SDK Changes:\n* `apideck.vault.consumers.create()`:  `response.data.connections[]` **Changed**\n* `apideck.vault.consumers.get()`:  `response.data.connections[]` **Changed**\n* `apideck.vault.consumers.update()`:  `response.data.connections[]` **Changed**\n* `apideck.webhook.webhooks.list()`:  `response.data[].events[]` **Changed**\n* `apideck.webhook.webhooks.create()`: \n  *  `request.createWebhookRequest.events[]` **Changed**\n  *  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.get()`:  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.update()`: \n  *  `request.updateWebhookRequest.events[]` **Changed**\n  *  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.delete()`:  `response.data.events[]` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
