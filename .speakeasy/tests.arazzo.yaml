@@ -51977,6 +51977,9 @@ workflows:
           - name: x-apideck-downstream-authorization
             in: header
             value: Bearer <token>
+          - name: x-apideck-timeout
+            in: header
+            value: 30000
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -52009,6 +52012,9 @@ workflows:
           - name: x-apideck-downstream-authorization
             in: header
             value: Bearer <token>
+          - name: x-apideck-timeout
+            in: header
+            value: 30000
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -52041,6 +52047,9 @@ workflows:
           - name: x-apideck-downstream-authorization
             in: header
             value: Bearer <token>
+          - name: x-apideck-timeout
+            in: header
+            value: 30000
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -52073,6 +52082,9 @@ workflows:
           - name: x-apideck-downstream-authorization
             in: header
             value: Bearer <token>
+          - name: x-apideck-timeout
+            in: header
+            value: 30000
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -52105,6 +52117,9 @@ workflows:
           - name: x-apideck-downstream-authorization
             in: header
             value: Bearer <token>
+          - name: x-apideck-timeout
+            in: header
+            value: 30000
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -52137,6 +52152,9 @@ workflows:
           - name: x-apideck-downstream-authorization
             in: header
             value: Bearer <token>
+          - name: x-apideck-timeout
+            in: header
+            value: 30000
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
