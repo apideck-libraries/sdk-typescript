@@ -46,6 +46,10 @@ export type ProxyGetProxyRequest = {
    * Downstream authorization header. This will skip the Vault token injection.
    */
   downstreamAuthorization?: string | undefined;
+  /**
+   * Override the default downstream request timeout in milliseconds. The default is 28000 (28 seconds).
+   */
+  timeout?: number | undefined;
 };
 
 export type ProxyGetProxyResponse = {
@@ -100,6 +104,7 @@ export type ProxyGetProxyRequest$Outbound = {
   unifiedApi?: string | undefined;
   downstreamUrl: string;
   downstreamAuthorization?: string | undefined;
+  timeout: number;
 };
 
 /** @internal */
@@ -114,6 +119,7 @@ export const ProxyGetProxyRequest$outboundSchema: z.ZodType<
   unifiedApi: z.string().optional(),
   downstreamUrl: z.string(),
   downstreamAuthorization: z.string().optional(),
+  timeout: z.number().int().default(28000),
 });
 
 export function proxyGetProxyRequestToJSON(

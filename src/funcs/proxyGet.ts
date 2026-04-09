@@ -129,6 +129,10 @@ async function $do(
       payload.serviceId,
       { explode: false, charEncoding: "none" },
     ),
+    "x-apideck-timeout": encodeSimple("x-apideck-timeout", payload.timeout, {
+      explode: false,
+      charEncoding: "none",
+    }),
     "x-apideck-unified-api": encodeSimple(
       "x-apideck-unified-api",
       payload.unifiedApi,

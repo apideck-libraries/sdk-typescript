@@ -3,6 +3,21 @@
  */
 
 import * as z from "zod/v3";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
+
+/**
+ * Filter by tax rate status
+ */
+export const TaxRatesFilterStatus = {
+  Active: "active",
+  Inactive: "inactive",
+  Archived: "archived",
+} as const;
+/**
+ * Filter by tax rate status
+ */
+export type TaxRatesFilterStatus = OpenEnum<typeof TaxRatesFilterStatus>;
 
 export type TaxRatesFilter = {
   /**
@@ -25,7 +40,18 @@ export type TaxRatesFilter = {
    * Boolean to describe if tax rate can be used for revenue accounts
    */
   revenue?: boolean | undefined;
+  /**
+   * Filter by tax rate status
+   */
+  status?: TaxRatesFilterStatus | undefined;
 };
+
+/** @internal */
+export const TaxRatesFilterStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  TaxRatesFilterStatus
+> = openEnums.outboundSchema(TaxRatesFilterStatus);
 
 /** @internal */
 export type TaxRatesFilter$Outbound = {
@@ -34,6 +60,7 @@ export type TaxRatesFilter$Outbound = {
   expenses?: boolean | undefined;
   liabilities?: boolean | undefined;
   revenue?: boolean | undefined;
+  status?: string | undefined;
 };
 
 /** @internal */
@@ -47,6 +74,7 @@ export const TaxRatesFilter$outboundSchema: z.ZodType<
   expenses: z.boolean().optional(),
   liabilities: z.boolean().optional(),
   revenue: z.boolean().optional(),
+  status: TaxRatesFilterStatus$outboundSchema.optional(),
 });
 
 export function taxRatesFilterToJSON(taxRatesFilter: TaxRatesFilter): string {

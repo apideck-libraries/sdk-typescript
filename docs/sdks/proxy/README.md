@@ -35,6 +35,7 @@ async function run() {
     unifiedApi: "hris",
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
+    timeout: 30000,
   });
 
   console.log(result);
@@ -65,6 +66,7 @@ async function run() {
     unifiedApi: "hris",
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
+    timeout: 30000,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -121,6 +123,7 @@ async function run() {
     unifiedApi: "hris",
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
+    timeout: 30000,
   });
 
   console.log(result);
@@ -151,6 +154,7 @@ async function run() {
     unifiedApi: "hris",
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
+    timeout: 30000,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -207,6 +211,7 @@ async function run() {
     unifiedApi: "hris",
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
+    timeout: 30000,
   });
 
   console.log(result);
@@ -237,6 +242,7 @@ async function run() {
     unifiedApi: "hris",
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
+    timeout: 30000,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -293,6 +299,7 @@ async function run() {
     unifiedApi: "hris",
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
+    timeout: 30000,
   });
 
   console.log(result);
@@ -323,6 +330,7 @@ async function run() {
     unifiedApi: "hris",
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
+    timeout: 30000,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -379,6 +387,7 @@ async function run() {
     unifiedApi: "hris",
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
+    timeout: 30000,
   });
 
   console.log(result);
@@ -409,6 +418,7 @@ async function run() {
     unifiedApi: "hris",
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
+    timeout: 30000,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -465,6 +475,7 @@ async function run() {
     unifiedApi: "hris",
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
+    timeout: 30000,
   });
 
   console.log(result);
@@ -495,6 +506,7 @@ async function run() {
     unifiedApi: "hris",
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
+    timeout: 30000,
   });
   if (res.ok) {
     const { value: result } = res;

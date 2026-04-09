@@ -5,6 +5,7 @@ package operations
 import (
 	"io"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/utils"
 )
 
 type ProxyOptionsProxyGlobals struct {
@@ -41,6 +42,19 @@ type ProxyOptionsProxyRequest struct {
 	DownstreamURL string `header:"style=simple,explode=false,name=x-apideck-downstream-url"`
 	// Downstream authorization header. This will skip the Vault token injection.
 	DownstreamAuthorization *string `header:"style=simple,explode=false,name=x-apideck-downstream-authorization"`
+	// Override the default downstream request timeout in milliseconds. The default is 28000 (28 seconds).
+	Timeout *int64 `default:"28000" header:"style=simple,explode=false,name=x-apideck-timeout"`
+}
+
+func (p ProxyOptionsProxyRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProxyOptionsProxyRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"x-apideck-service-id", "x-apideck-downstream-url"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ProxyOptionsProxyRequest) GetConsumerID() *string {
@@ -83,6 +97,13 @@ func (o *ProxyOptionsProxyRequest) GetDownstreamAuthorization() *string {
 		return nil
 	}
 	return o.DownstreamAuthorization
+}
+
+func (o *ProxyOptionsProxyRequest) GetTimeout() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Timeout
 }
 
 type ProxyOptionsProxyResponse struct {

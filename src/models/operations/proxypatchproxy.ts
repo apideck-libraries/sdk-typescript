@@ -51,6 +51,10 @@ export type ProxyPatchProxyRequest = {
    */
   downstreamAuthorization?: string | undefined;
   /**
+   * Override the default downstream request timeout in milliseconds. The default is 28000 (28 seconds).
+   */
+  timeout?: number | undefined;
+  /**
    * Depending on the verb/method of the request this will contain the request body you want to POST/PATCH/PUT.
    */
   requestBody?:
@@ -153,6 +157,7 @@ export type ProxyPatchProxyRequest$Outbound = {
   unifiedApi?: string | undefined;
   downstreamUrl: string;
   downstreamAuthorization?: string | undefined;
+  timeout: number;
   RequestBody?:
     | ReadableStream<Uint8Array>
     | Blob
@@ -173,6 +178,7 @@ export const ProxyPatchProxyRequest$outboundSchema: z.ZodType<
   unifiedApi: z.string().optional(),
   downstreamUrl: z.string(),
   downstreamAuthorization: z.string().optional(),
+  timeout: z.number().int().default(28000),
   requestBody: z.union([
     z.instanceof(ReadableStream<Uint8Array>),
     z.instanceof(Blob),
