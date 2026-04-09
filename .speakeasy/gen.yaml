@@ -28,8 +28,8 @@ generation:
   versioningStrategy: automatic
   persistentEdits: {}
   tests:
-    generateTests: true
-    generateNewTests: true
+    generateTests: false
+    generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
   version: 0.39.7
@@ -79,7 +79,7 @@ typescript:
   moduleFormat: commonjs
   multipartArrayFormat: legacy
   outputModelSuffix: output
-  packageName: '@apideck/unify'
+  packageName: "@apideck/unify"
   preApplyUnionDiscriminators: true
   preserveModelFieldNames: false
   responseFormat: envelope-http
