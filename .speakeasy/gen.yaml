@@ -27,12 +27,8 @@ generation:
   requestBodyFieldName: ""
   versioningStrategy: automatic
   persistentEdits: {}
-  tests:
-    generateTests: false
-    generateNewTests: false
-    skipResponseBodyAssertions: false
 typescript:
-  version: 0.39.7
+  version: 0.40.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -79,7 +75,7 @@ typescript:
   moduleFormat: commonjs
   multipartArrayFormat: legacy
   outputModelSuffix: output
-  packageName: "@apideck/unify"
+  packageName: '@apideck/unify'
   preApplyUnionDiscriminators: true
   preserveModelFieldNames: false
   responseFormat: envelope-http
