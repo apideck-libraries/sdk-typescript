@@ -46,6 +46,12 @@ import {
   LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
 import {
+  LinkedPaymentAllocations,
+  LinkedPaymentAllocations$inboundSchema,
+  LinkedPaymentAllocations$Outbound,
+  LinkedPaymentAllocations$outboundSchema,
+} from "./linkedpaymentallocations.js";
+import {
   LinkedSupplier,
   LinkedSupplier$inboundSchema,
 } from "./linkedsupplier.js";
@@ -250,6 +256,13 @@ export type Bill = {
    */
   sourceDocumentUrl?: string | null | undefined;
   /**
+   * A list of linked payment allocations.
+   */
+  paymentAllocations?:
+    | Array<LinkedPaymentAllocations | null>
+    | null
+    | undefined;
+  /**
    * A list of linked tracking categories.
    */
   trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
@@ -431,6 +444,13 @@ export type BillInput = {
    */
   sourceDocumentUrl?: string | null | undefined;
   /**
+   * A list of linked payment allocations.
+   */
+  paymentAllocations?:
+    | Array<LinkedPaymentAllocations | null>
+    | null
+    | undefined;
+  /**
    * A list of linked tracking categories.
    */
   trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
@@ -519,6 +539,9 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
     tax_method: z.nullable(types.string()).optional(),
     document_received: z.nullable(types.boolean()).optional(),
     source_document_url: z.nullable(types.string()).optional(),
+    payment_allocations: z.nullable(
+      z.array(types.nullable(LinkedPaymentAllocations$inboundSchema)),
+    ).optional(),
     tracking_categories: z.nullable(
       z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
     ).optional(),
@@ -564,6 +587,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
       "tax_method": "taxMethod",
       "document_received": "documentReceived",
       "source_document_url": "sourceDocumentUrl",
+      "payment_allocations": "paymentAllocations",
       "tracking_categories": "trackingCategories",
       "updated_by": "updatedBy",
       "created_by": "createdBy",
@@ -627,6 +651,10 @@ export type BillInput$Outbound = {
   tax_method?: string | null | undefined;
   document_received?: boolean | null | undefined;
   source_document_url?: string | null | undefined;
+  payment_allocations?:
+    | Array<LinkedPaymentAllocations$Outbound | null>
+    | null
+    | undefined;
   tracking_categories?:
     | Array<LinkedTrackingCategory$Outbound | null>
     | null
@@ -688,6 +716,9 @@ export const BillInput$outboundSchema: z.ZodType<
   taxMethod: z.nullable(z.string()).optional(),
   documentReceived: z.nullable(z.boolean()).optional(),
   sourceDocumentUrl: z.nullable(z.string()).optional(),
+  paymentAllocations: z.nullable(
+    z.array(z.nullable(LinkedPaymentAllocations$outboundSchema)),
+  ).optional(),
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
@@ -725,6 +756,7 @@ export const BillInput$outboundSchema: z.ZodType<
     taxMethod: "tax_method",
     documentReceived: "document_received",
     sourceDocumentUrl: "source_document_url",
+    paymentAllocations: "payment_allocations",
     trackingCategories: "tracking_categories",
     rowVersion: "row_version",
     customFields: "custom_fields",

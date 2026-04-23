@@ -119,6 +119,8 @@ type Bill struct {
 	DocumentReceived optionalnullable.OptionalNullable[bool] `json:"document_received,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
 	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
+	// A list of linked payment allocations.
+	PaymentAllocations optionalnullable.OptionalNullable[[]*LinkedPaymentAllocations] `json:"payment_allocations,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// The user who last updated the object.
@@ -432,6 +434,13 @@ func (o *Bill) GetSourceDocumentURL() optionalnullable.OptionalNullable[string] 
 	return o.SourceDocumentURL
 }
 
+func (o *Bill) GetPaymentAllocations() optionalnullable.OptionalNullable[[]*LinkedPaymentAllocations] {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentAllocations
+}
+
 func (o *Bill) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
@@ -582,6 +591,8 @@ type BillInput struct {
 	DocumentReceived optionalnullable.OptionalNullable[bool] `json:"document_received,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
 	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
+	// A list of linked payment allocations.
+	PaymentAllocations optionalnullable.OptionalNullable[[]*LinkedPaymentAllocations] `json:"payment_allocations,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -869,6 +880,13 @@ func (o *BillInput) GetSourceDocumentURL() optionalnullable.OptionalNullable[str
 		return nil
 	}
 	return o.SourceDocumentURL
+}
+
+func (o *BillInput) GetPaymentAllocations() optionalnullable.OptionalNullable[[]*LinkedPaymentAllocations] {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentAllocations
 }
 
 func (o *BillInput) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
