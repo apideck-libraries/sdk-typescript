@@ -16,6 +16,7 @@ import {
 export const InvoicesSortBy = {
   CreatedAt: "created_at",
   UpdatedAt: "updated_at",
+  Id: "id",
 } as const;
 /**
  * The field on which to sort the Invoices

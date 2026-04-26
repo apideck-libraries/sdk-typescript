@@ -15,5 +15,5 @@ let value: RebillStatus = "billed";
 ## Values
 
 ```typescript
-"pending" | "billed" | "voided" | Unrecognized<string>
+"pending" | "billed" | "voided" | "other" | Unrecognized<string>
 ```

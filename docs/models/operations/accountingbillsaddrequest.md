@@ -173,6 +173,13 @@ let value: AccountingBillsAddRequest = {
     taxMethod: "Due to supplier",
     documentReceived: true,
     sourceDocumentUrl: "https://www.invoicesolution.com/bill/123456",
+    paymentAllocations: [
+      {
+        id: "123456",
+        allocatedAmount: 1000,
+        date: new Date("2020-09-30T07:43:32.000Z"),
+      },
+    ],
     trackingCategories: [
       {
         id: "123456",

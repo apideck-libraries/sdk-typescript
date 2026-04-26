@@ -15,5 +15,5 @@ let value: InvoicesSortBy = "updated_at";
 ## Values
 
 ```typescript
-"created_at" | "updated_at" | Unrecognized<string>
+"created_at" | "updated_at" | "id" | Unrecognized<string>
 ```

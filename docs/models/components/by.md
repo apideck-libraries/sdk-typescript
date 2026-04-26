@@ -15,5 +15,5 @@ let value: By = "updated_at";
 ## Values
 
 ```typescript
-"updated_at" | "created_at" | Unrecognized<string>
+"updated_at" | "created_at" | "id" | Unrecognized<string>
 ```
