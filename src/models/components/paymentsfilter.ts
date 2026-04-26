@@ -19,15 +19,38 @@ export const PaymentsFilterType = {
 } as const;
 export type PaymentsFilterType = OpenEnum<typeof PaymentsFilterType>;
 
+/**
+ * Filter by payment status
+ */
+export const PaymentsFilterPaymentStatus = {
+  Draft: "draft",
+  Authorised: "authorised",
+  Rejected: "rejected",
+  Paid: "paid",
+  Voided: "voided",
+  Deleted: "deleted",
+} as const;
+/**
+ * Filter by payment status
+ */
+export type PaymentsFilterPaymentStatus = OpenEnum<
+  typeof PaymentsFilterPaymentStatus
+>;
+
 export type PaymentsFilter = {
   updatedSince?: Date | undefined;
   invoiceId?: string | undefined;
+  billId?: string | undefined;
   supplierId?: string | undefined;
   /**
    * Filter by customer id
    */
   customerId?: string | undefined;
   type?: PaymentsFilterType | undefined;
+  /**
+   * Filter by payment status
+   */
+  status?: PaymentsFilterPaymentStatus | undefined;
 };
 
 /** @internal */
@@ -38,12 +61,21 @@ export const PaymentsFilterType$outboundSchema: z.ZodType<
 > = openEnums.outboundSchema(PaymentsFilterType);
 
 /** @internal */
+export const PaymentsFilterPaymentStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  PaymentsFilterPaymentStatus
+> = openEnums.outboundSchema(PaymentsFilterPaymentStatus);
+
+/** @internal */
 export type PaymentsFilter$Outbound = {
   updated_since?: string | undefined;
   invoice_id?: string | undefined;
+  bill_id?: string | undefined;
   supplier_id?: string | undefined;
   customer_id?: string | undefined;
   type?: string | undefined;
+  status?: string | undefined;
 };
 
 /** @internal */
@@ -54,13 +86,16 @@ export const PaymentsFilter$outboundSchema: z.ZodType<
 > = z.object({
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   invoiceId: z.string().optional(),
+  billId: z.string().optional(),
   supplierId: z.string().optional(),
   customerId: z.string().optional(),
   type: PaymentsFilterType$outboundSchema.optional(),
+  status: PaymentsFilterPaymentStatus$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",
     invoiceId: "invoice_id",
+    billId: "bill_id",
     supplierId: "supplier_id",
     customerId: "customer_id",
   });

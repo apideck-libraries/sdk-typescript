@@ -6,11 +6,16 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 
 export type CreditNotesFilter = {
+  /**
+   * Return records with a row ID greater than or equal to the given value
+   */
+  idSince?: string | undefined;
   updatedSince?: Date | undefined;
 };
 
 /** @internal */
 export type CreditNotesFilter$Outbound = {
+  id_since?: string | undefined;
   updated_since?: string | undefined;
 };
 
@@ -20,9 +25,11 @@ export const CreditNotesFilter$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreditNotesFilter
 > = z.object({
+  idSince: z.string().optional(),
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
 }).transform((v) => {
   return remap$(v, {
+    idSince: "id_since",
     updatedSince: "updated_since",
   });
 });

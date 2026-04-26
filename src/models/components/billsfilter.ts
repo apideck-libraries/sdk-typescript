@@ -21,6 +21,10 @@ export const BillsFilterStatus = {
 export type BillsFilterStatus = OpenEnum<typeof BillsFilterStatus>;
 
 export type BillsFilter = {
+  /**
+   * Return records with a row ID greater than or equal to the given value
+   */
+  idSince?: string | undefined;
   updatedSince?: Date | undefined;
   /**
    * Filter by bill status
@@ -37,6 +41,7 @@ export const BillsFilterStatus$outboundSchema: z.ZodType<
 
 /** @internal */
 export type BillsFilter$Outbound = {
+  id_since?: string | undefined;
   updated_since?: string | undefined;
   status?: string | undefined;
 };
@@ -47,10 +52,12 @@ export const BillsFilter$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   BillsFilter
 > = z.object({
+  idSince: z.string().optional(),
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   status: BillsFilterStatus$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
+    idSince: "id_since",
     updatedSince: "updated_since",
   });
 });

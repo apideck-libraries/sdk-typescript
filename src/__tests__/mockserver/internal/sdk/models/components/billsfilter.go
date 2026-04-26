@@ -21,6 +21,8 @@ func (e BillsFilterStatus) ToPointer() *BillsFilterStatus {
 }
 
 type BillsFilter struct {
+	// Return records with a row ID greater than or equal to the given value
+	IDSince      *string    `queryParam:"name=id_since"`
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
 	// Filter by bill status
 	Status *BillsFilterStatus `queryParam:"name=status"`
@@ -35,6 +37,13 @@ func (b *BillsFilter) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *BillsFilter) GetIDSince() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IDSince
 }
 
 func (o *BillsFilter) GetUpdatedSince() *time.Time {

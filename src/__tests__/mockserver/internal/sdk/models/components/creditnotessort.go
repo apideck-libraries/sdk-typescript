@@ -12,6 +12,7 @@ type CreditNotesSortBy string
 const (
 	CreditNotesSortByCreatedAt CreditNotesSortBy = "created_at"
 	CreditNotesSortByUpdatedAt CreditNotesSortBy = "updated_at"
+	CreditNotesSortByID        CreditNotesSortBy = "id"
 )
 
 func (e CreditNotesSortBy) ToPointer() *CreditNotesSortBy {

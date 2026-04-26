@@ -12,6 +12,7 @@ type BillsSortBy string
 const (
 	BillsSortByUpdatedAt BillsSortBy = "updated_at"
 	BillsSortByCreatedAt BillsSortBy = "created_at"
+	BillsSortByID        BillsSortBy = "id"
 )
 
 func (e BillsSortBy) ToPointer() *BillsSortBy {

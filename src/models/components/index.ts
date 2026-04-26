@@ -467,6 +467,7 @@ export * from "./linkedledgeraccount.js";
 export * from "./linkedlocation.js";
 export * from "./linkedlocationinput.js";
 export * from "./linkedparentcustomer.js";
+export * from "./linkedpaymentallocations.js";
 export * from "./linkedpurchaseorder.js";
 export * from "./linkedsubsidiary.js";
 export * from "./linkedsubsidiaryinput.js";

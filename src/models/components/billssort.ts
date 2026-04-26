@@ -16,6 +16,7 @@ import {
 export const By = {
   UpdatedAt: "updated_at",
   CreatedAt: "created_at",
+  Id: "id",
 } as const;
 /**
  * The field on which to sort the Bills
