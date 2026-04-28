@@ -24,13 +24,32 @@ func (e PaymentsFilterType) ToPointer() *PaymentsFilterType {
 	return &e
 }
 
+// PaymentsFilterPaymentStatus - Filter by payment status
+type PaymentsFilterPaymentStatus string
+
+const (
+	PaymentsFilterPaymentStatusDraft      PaymentsFilterPaymentStatus = "draft"
+	PaymentsFilterPaymentStatusAuthorised PaymentsFilterPaymentStatus = "authorised"
+	PaymentsFilterPaymentStatusRejected   PaymentsFilterPaymentStatus = "rejected"
+	PaymentsFilterPaymentStatusPaid       PaymentsFilterPaymentStatus = "paid"
+	PaymentsFilterPaymentStatusVoided     PaymentsFilterPaymentStatus = "voided"
+	PaymentsFilterPaymentStatusDeleted    PaymentsFilterPaymentStatus = "deleted"
+)
+
+func (e PaymentsFilterPaymentStatus) ToPointer() *PaymentsFilterPaymentStatus {
+	return &e
+}
+
 type PaymentsFilter struct {
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
 	InvoiceID    *string    `queryParam:"name=invoice_id"`
+	BillID       *string    `queryParam:"name=bill_id"`
 	SupplierID   *string    `queryParam:"name=supplier_id"`
 	// Filter by customer id
 	CustomerID *string             `queryParam:"name=customer_id"`
 	Type       *PaymentsFilterType `queryParam:"name=type"`
+	// Filter by payment status
+	Status *PaymentsFilterPaymentStatus `queryParam:"name=status"`
 }
 
 func (p PaymentsFilter) MarshalJSON() ([]byte, error) {
@@ -58,6 +77,13 @@ func (o *PaymentsFilter) GetInvoiceID() *string {
 	return o.InvoiceID
 }
 
+func (o *PaymentsFilter) GetBillID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BillID
+}
+
 func (o *PaymentsFilter) GetSupplierID() *string {
 	if o == nil {
 		return nil
@@ -77,4 +103,11 @@ func (o *PaymentsFilter) GetType() *PaymentsFilterType {
 		return nil
 	}
 	return o.Type
+}
+
+func (o *PaymentsFilter) GetStatus() *PaymentsFilterPaymentStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
 }

@@ -13,6 +13,7 @@ const (
 	RebillStatusPending RebillStatus = "pending"
 	RebillStatusBilled  RebillStatus = "billed"
 	RebillStatusVoided  RebillStatus = "voided"
+	RebillStatusOther   RebillStatus = "other"
 )
 
 func (e RebillStatus) ToPointer() *RebillStatus {

@@ -1,6 +1,6 @@
 # AccountingMethod
 
-The accounting method used for the report: cash or accrual.
+The accounting basis used by the company for financial reports.
 
 ## Example Usage
 

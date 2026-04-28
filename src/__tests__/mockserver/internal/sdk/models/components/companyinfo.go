@@ -57,6 +57,18 @@ func (e TrackingCategoriesMode) ToPointer() *TrackingCategoriesMode {
 	return &e
 }
 
+// CompanyInfoAccountingMethod - The accounting basis used by the company for financial reports.
+type CompanyInfoAccountingMethod string
+
+const (
+	CompanyInfoAccountingMethodCash    CompanyInfoAccountingMethod = "cash"
+	CompanyInfoAccountingMethodAccrual CompanyInfoAccountingMethod = "accrual"
+)
+
+func (e CompanyInfoAccountingMethod) ToPointer() *CompanyInfoAccountingMethod {
+	return &e
+}
+
 type CompanyInfo struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
@@ -91,6 +103,8 @@ type CompanyInfo struct {
 	TrackingCategoriesEnabled *bool `json:"tracking_categories_enabled,omitempty"`
 	// The mode of tracking categories for the company on transactions
 	TrackingCategoriesMode *TrackingCategoriesMode `json:"tracking_categories_mode,omitempty"`
+	// The accounting basis used by the company for financial reports.
+	AccountingMethod optionalnullable.OptionalNullable[CompanyInfoAccountingMethod] `json:"accounting_method,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -245,6 +259,13 @@ func (o *CompanyInfo) GetTrackingCategoriesMode() *TrackingCategoriesMode {
 		return nil
 	}
 	return o.TrackingCategoriesMode
+}
+
+func (o *CompanyInfo) GetAccountingMethod() optionalnullable.OptionalNullable[CompanyInfoAccountingMethod] {
+	if o == nil {
+		return nil
+	}
+	return o.AccountingMethod
 }
 
 func (o *CompanyInfo) GetRowVersion() optionalnullable.OptionalNullable[string] {
