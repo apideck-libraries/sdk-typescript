@@ -18,6 +18,7 @@ export const RebillStatus = {
   Pending: "pending",
   Billed: "billed",
   Voided: "voided",
+  Other: "other",
 } as const;
 /**
  * Status of the rebilling process for this line item.

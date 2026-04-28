@@ -8,6 +8,8 @@ import (
 )
 
 type InvoicesFilter struct {
+	// Return records with a row ID greater than or equal to the given value
+	IDSince      *string    `queryParam:"name=id_since"`
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
 	CreatedSince *time.Time `queryParam:"name=created_since"`
 	// Invoice number to search for
@@ -25,6 +27,13 @@ func (i *InvoicesFilter) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *InvoicesFilter) GetIDSince() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IDSince
 }
 
 func (o *InvoicesFilter) GetUpdatedSince() *time.Time {

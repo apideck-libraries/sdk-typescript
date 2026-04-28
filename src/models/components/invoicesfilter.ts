@@ -6,6 +6,10 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 
 export type InvoicesFilter = {
+  /**
+   * Return records with a row ID greater than or equal to the given value
+   */
+  idSince?: string | undefined;
   updatedSince?: Date | undefined;
   createdSince?: Date | undefined;
   /**
@@ -20,6 +24,7 @@ export type InvoicesFilter = {
 
 /** @internal */
 export type InvoicesFilter$Outbound = {
+  id_since?: string | undefined;
   updated_since?: string | undefined;
   created_since?: string | undefined;
   number?: string | undefined;
@@ -32,12 +37,14 @@ export const InvoicesFilter$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   InvoicesFilter
 > = z.object({
+  idSince: z.string().optional(),
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   createdSince: z.date().transform(v => v.toISOString()).optional(),
   number: z.string().optional(),
   supplierId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
+    idSince: "id_since",
     updatedSince: "updated_since",
     createdSince: "created_since",
     supplierId: "supplier_id",

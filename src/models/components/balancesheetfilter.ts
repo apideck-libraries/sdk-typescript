@@ -23,14 +23,16 @@ export type PeriodType = OpenEnum<typeof PeriodType>;
 /**
  * The accounting method used for the report: cash or accrual.
  */
-export const AccountingMethod = {
+export const BalanceSheetFilterAccountingMethod = {
   Cash: "cash",
   Accrual: "accrual",
 } as const;
 /**
  * The accounting method used for the report: cash or accrual.
  */
-export type AccountingMethod = OpenEnum<typeof AccountingMethod>;
+export type BalanceSheetFilterAccountingMethod = OpenEnum<
+  typeof BalanceSheetFilterAccountingMethod
+>;
 
 export type BalanceSheetFilter = {
   /**
@@ -58,7 +60,7 @@ export type BalanceSheetFilter = {
   /**
    * The accounting method used for the report: cash or accrual.
    */
-  accountingMethod?: AccountingMethod | undefined;
+  accountingMethod?: BalanceSheetFilterAccountingMethod | undefined;
 };
 
 /** @internal */
@@ -69,11 +71,11 @@ export const PeriodType$outboundSchema: z.ZodType<
 > = openEnums.outboundSchema(PeriodType);
 
 /** @internal */
-export const AccountingMethod$outboundSchema: z.ZodType<
+export const BalanceSheetFilterAccountingMethod$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
-  AccountingMethod
-> = openEnums.outboundSchema(AccountingMethod);
+  BalanceSheetFilterAccountingMethod
+> = openEnums.outboundSchema(BalanceSheetFilterAccountingMethod);
 
 /** @internal */
 export type BalanceSheetFilter$Outbound = {
@@ -96,7 +98,8 @@ export const BalanceSheetFilter$outboundSchema: z.ZodType<
   periodCount: z.number().int().optional(),
   periodType: PeriodType$outboundSchema.optional(),
   locationId: z.string().optional(),
-  accountingMethod: AccountingMethod$outboundSchema.optional(),
+  accountingMethod: BalanceSheetFilterAccountingMethod$outboundSchema
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     startDate: "start_date",

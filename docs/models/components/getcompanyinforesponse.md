@@ -123,6 +123,7 @@ let value: GetCompanyInfoResponse = {
       },
     ],
     trackingCategoriesMode: "disabled",
+    accountingMethod: "accrual",
     rowVersion: "1-12345",
     updatedBy: "12345",
     createdBy: "12345",

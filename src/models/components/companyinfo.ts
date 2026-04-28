@@ -66,6 +66,18 @@ export const TrackingCategoriesMode = {
  */
 export type TrackingCategoriesMode = OpenEnum<typeof TrackingCategoriesMode>;
 
+/**
+ * The accounting basis used by the company for financial reports.
+ */
+export const AccountingMethod = {
+  Cash: "cash",
+  Accrual: "accrual",
+} as const;
+/**
+ * The accounting basis used by the company for financial reports.
+ */
+export type AccountingMethod = OpenEnum<typeof AccountingMethod>;
+
 export type CompanyInfo = {
   /**
    * A unique identifier for an object.
@@ -129,6 +141,10 @@ export type CompanyInfo = {
    */
   trackingCategoriesMode?: TrackingCategoriesMode | undefined;
   /**
+   * The accounting basis used by the company for financial reports.
+   */
+  accountingMethod?: AccountingMethod | null | undefined;
+  /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
@@ -172,6 +188,13 @@ export const TrackingCategoriesMode$inboundSchema: z.ZodType<
 > = openEnums.inboundSchema(TrackingCategoriesMode);
 
 /** @internal */
+export const AccountingMethod$inboundSchema: z.ZodType<
+  AccountingMethod,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(AccountingMethod);
+
+/** @internal */
 export const CompanyInfo$inboundSchema: z.ZodType<
   CompanyInfo,
   z.ZodTypeDef,
@@ -200,6 +223,7 @@ export const CompanyInfo$inboundSchema: z.ZodType<
   tracking_categories_mode: types.optional(
     TrackingCategoriesMode$inboundSchema,
   ),
+  accounting_method: z.nullable(AccountingMethod$inboundSchema).optional(),
   row_version: z.nullable(types.string()).optional(),
   updated_by: z.nullable(types.string()).optional(),
   created_by: z.nullable(types.string()).optional(),
@@ -219,6 +243,7 @@ export const CompanyInfo$inboundSchema: z.ZodType<
     "custom_mappings": "customMappings",
     "tracking_categories_enabled": "trackingCategoriesEnabled",
     "tracking_categories_mode": "trackingCategoriesMode",
+    "accounting_method": "accountingMethod",
     "row_version": "rowVersion",
     "updated_by": "updatedBy",
     "created_by": "createdBy",
