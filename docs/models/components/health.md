@@ -15,5 +15,5 @@ let value: Health = "ok";
 ## Values
 
 ```typescript
-"revoked" | "missing_settings" | "needs_consent" | "needs_auth" | "pending_refresh" | "ok" | Unrecognized<string>
+"revoked" | "missing_settings" | "needs_consent" | "pending_confirmation" | "needs_auth" | "pending_refresh" | "ok" | Unrecognized<string>
 ```
