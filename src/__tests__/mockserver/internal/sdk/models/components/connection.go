@@ -305,12 +305,13 @@ func (o *Configuration) GetDefaults() []Default {
 type Health string
 
 const (
-	HealthRevoked         Health = "revoked"
-	HealthMissingSettings Health = "missing_settings"
-	HealthNeedsConsent    Health = "needs_consent"
-	HealthNeedsAuth       Health = "needs_auth"
-	HealthPendingRefresh  Health = "pending_refresh"
-	HealthOk              Health = "ok"
+	HealthRevoked             Health = "revoked"
+	HealthMissingSettings     Health = "missing_settings"
+	HealthNeedsConsent        Health = "needs_consent"
+	HealthPendingConfirmation Health = "pending_confirmation"
+	HealthNeedsAuth           Health = "needs_auth"
+	HealthPendingRefresh      Health = "pending_refresh"
+	HealthOk                  Health = "ok"
 )
 
 func (e Health) ToPointer() *Health {

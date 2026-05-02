@@ -15,5 +15,5 @@ let value: ConnectionHealth = "ok";
 ## Values
 
 ```typescript
-"ok" | "pending_refresh" | "needs_auth" | "needs_consent" | "revoked" | "missing_settings" | Unrecognized<string>
+"ok" | "pending_refresh" | "needs_auth" | "pending_confirmation" | "needs_consent" | "revoked" | "missing_settings" | Unrecognized<string>
 ```

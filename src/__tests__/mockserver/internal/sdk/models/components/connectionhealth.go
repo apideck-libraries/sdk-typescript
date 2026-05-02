@@ -6,12 +6,13 @@ package components
 type ConnectionHealth string
 
 const (
-	ConnectionHealthOk              ConnectionHealth = "ok"
-	ConnectionHealthPendingRefresh  ConnectionHealth = "pending_refresh"
-	ConnectionHealthNeedsAuth       ConnectionHealth = "needs_auth"
-	ConnectionHealthNeedsConsent    ConnectionHealth = "needs_consent"
-	ConnectionHealthRevoked         ConnectionHealth = "revoked"
-	ConnectionHealthMissingSettings ConnectionHealth = "missing_settings"
+	ConnectionHealthOk                  ConnectionHealth = "ok"
+	ConnectionHealthPendingRefresh      ConnectionHealth = "pending_refresh"
+	ConnectionHealthNeedsAuth           ConnectionHealth = "needs_auth"
+	ConnectionHealthPendingConfirmation ConnectionHealth = "pending_confirmation"
+	ConnectionHealthNeedsConsent        ConnectionHealth = "needs_consent"
+	ConnectionHealthRevoked             ConnectionHealth = "revoked"
+	ConnectionHealthMissingSettings     ConnectionHealth = "missing_settings"
 )
 
 func (e ConnectionHealth) ToPointer() *ConnectionHealth {
