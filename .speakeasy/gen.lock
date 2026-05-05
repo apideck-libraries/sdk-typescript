@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 72ca3d7499d2fec3157164e0b342a283
+  docChecksum: 7bbd181639c46c01f38ae709df2a3b12
   docVersion: 10.24.30
   speakeasyVersion: 1.761.11
   generationVersion: 2.881.17
-  releaseVersion: 0.41.2
-  configChecksum: a6d28ddc8ae784e2fc2fe15b44df7451
+  releaseVersion: 0.41.3
+  configChecksum: 99059419edf4069cc760686bb2a2124e
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: bc4312d0-0b72-4c77-9d2d-ea67d2265dae
-  pristine_commit_hash: d182834c0bcf451a1903a7026d6dca23fe3c6b81
-  pristine_tree_hash: a125162b644eb99e6e2b93c364182279c2473f63
+  generation_id: fbb7651a-b224-4f16-95d1-fdc6d3809ad6
+  pristine_commit_hash: 9737ba97149fc48920071e631b7aa9aa13b06563
+  pristine_tree_hash: 1025e4074b9b47ea53c2076954c59b6cf47674a5
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -8431,12 +8431,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:8115fb6cf10cb75aa69bb0fd95b8bc52a4f6da8b
-    pristine_git_object: 6039627d239f6fbea6ceeeb311caf9a3a24e2f21
+    last_write_checksum: sha1:60cad1fe5b3094f735a04dea8d38d5ce6605117e
+    pristine_git_object: d10b445277dfe6a115074ccb887414cd3b193c99
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:1ac8ec0ff612258fa29b0c1452b4de46bd0ebaf1
-    pristine_git_object: 6090dd67b451770aeebef827bb0185adfa3406ad
+    last_write_checksum: sha1:0a4c6b4114bd27655ed734c8062ffbd4c711f4d4
+    pristine_git_object: 0b062877370333bb333fbf247a9762365d2f817f
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -12869,8 +12869,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:4dc0074c2f334581c3fc3b4431ea865391c9974e
-    pristine_git_object: 8ba7ce11715c546e084991636ca9b71b97555bf6
+    last_write_checksum: sha1:76f088cc527bb5848e484ca73d50bb20cfc426b2
+    pristine_git_object: 1c787e245c5a80a61a81138f7072d88970f10b85
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -34069,18 +34069,6 @@ generatedTests:
   ats.jobsAdd: "2026-03-11T13:14:11Z"
   ats.jobsUpdate: "2026-03-11T13:14:11Z"
   ats.jobsDelete: "2026-03-11T13:14:11Z"
-releaseNotes: |
-  ## Typescript SDK Changes:
-  * `apideck.vault.consumers.create()`:  `response.data.connections[].health.enum(pendingConfirmation)` **Added**
-  * `apideck.vault.consumers.get()`:  `response.data.connections[].health.enum(pendingConfirmation)` **Added**
-  * `apideck.vault.consumers.update()`:  `response.data.connections[].health.enum(pendingConfirmation)` **Added**
-  * `apideck.vault.connections.list()`:  `response.data[].health.enum(pendingConfirmation)` **Added**
-  * `apideck.vault.connections.get()`:  `response.data.health.enum(pendingConfirmation)` **Added**
-  * `apideck.vault.connections.update()`:  `response.data.health.enum(pendingConfirmation)` **Added**
-  * `apideck.vault.connections.imports()`:  `response.data.health.enum(pendingConfirmation)` **Added**
-  * `apideck.vault.connections.token()`:  `response.data.health.enum(pendingConfirmation)` **Added**
-  * `apideck.vault.connectionSettings.list()`:  `response.data.health.enum(pendingConfirmation)` **Added**
-  * `apideck.vault.connectionSettings.update()`:  `response.data.health.enum(pendingConfirmation)` **Added**
 generatedFiles:
   - .gitattributes
   - .npmignore
