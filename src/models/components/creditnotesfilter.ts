@@ -11,12 +11,19 @@ export type CreditNotesFilter = {
    */
   idSince?: string | undefined;
   updatedSince?: Date | undefined;
+  createdSince?: Date | undefined;
+  /**
+   * Credit note number to search for
+   */
+  number?: string | undefined;
 };
 
 /** @internal */
 export type CreditNotesFilter$Outbound = {
   id_since?: string | undefined;
   updated_since?: string | undefined;
+  created_since?: string | undefined;
+  number?: string | undefined;
 };
 
 /** @internal */
@@ -27,10 +34,13 @@ export const CreditNotesFilter$outboundSchema: z.ZodType<
 > = z.object({
   idSince: z.string().optional(),
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  createdSince: z.date().transform(v => v.toISOString()).optional(),
+  number: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     idSince: "id_since",
     updatedSince: "updated_since",
+    createdSince: "created_since",
   });
 });
 

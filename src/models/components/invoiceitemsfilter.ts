@@ -35,6 +35,10 @@ export type TransactionType = OpenEnum<typeof TransactionType>;
 export type InvoiceItemsFilter = {
   updatedSince?: Date | undefined;
   /**
+   * Comma-separated list of invoice item IDs to filter by (e.g. `12345,67890`).
+   */
+  ids?: string | undefined;
+  /**
    * Name of Invoice Items to search for
    */
   name?: string | undefined;
@@ -65,6 +69,7 @@ export const TransactionType$outboundSchema: z.ZodType<
 /** @internal */
 export type InvoiceItemsFilter$Outbound = {
   updated_since?: string | undefined;
+  ids?: string | undefined;
   name?: string | undefined;
   type?: string | null | undefined;
   transaction_type?: string | null | undefined;
@@ -77,6 +82,7 @@ export const InvoiceItemsFilter$outboundSchema: z.ZodType<
   InvoiceItemsFilter
 > = z.object({
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  ids: z.string().optional(),
   name: z.string().optional(),
   type: z.nullable(InvoiceItemType$outboundSchema).optional(),
   transactionType: z.nullable(TransactionType$outboundSchema).optional(),
