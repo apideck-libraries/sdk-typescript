@@ -50,7 +50,7 @@ export type Webhook = {
    */
   disabledReason?: DisabledReason | undefined;
   /**
-   * The delivery url of the webhook endpoint.
+   * The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the delivery is recorded as failed.
    */
   deliveryUrl: string;
   /**

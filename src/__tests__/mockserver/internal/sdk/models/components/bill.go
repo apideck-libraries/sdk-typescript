@@ -54,7 +54,8 @@ type Bill struct {
 	// The supplier this entity is linked to.
 	Supplier optionalnullable.OptionalNullable[LinkedSupplier] `json:"supplier,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
+	CompanyID  optionalnullable.OptionalNullable[string]           `json:"company_id,omitempty"`
+	Subsidiary optionalnullable.OptionalNullable[LinkedSubsidiary] `json:"subsidiary,omitempty"`
 	// The ID of the location
 	LocationID optionalnullable.OptionalNullable[string] `json:"location_id,omitempty"`
 	// The ID of the department
@@ -194,6 +195,13 @@ func (o *Bill) GetCompanyID() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *Bill) GetSubsidiary() optionalnullable.OptionalNullable[LinkedSubsidiary] {
+	if o == nil {
+		return nil
+	}
+	return o.Subsidiary
 }
 
 func (o *Bill) GetLocationID() optionalnullable.OptionalNullable[string] {
@@ -526,7 +534,8 @@ type BillInput struct {
 	// The supplier this entity is linked to.
 	Supplier optionalnullable.OptionalNullable[LinkedSupplierInput] `json:"supplier,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
+	CompanyID  optionalnullable.OptionalNullable[string]                `json:"company_id,omitempty"`
+	Subsidiary optionalnullable.OptionalNullable[LinkedSubsidiaryInput] `json:"subsidiary,omitempty"`
 	// The ID of the location
 	LocationID optionalnullable.OptionalNullable[string] `json:"location_id,omitempty"`
 	// The ID of the department
@@ -642,6 +651,13 @@ func (o *BillInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *BillInput) GetSubsidiary() optionalnullable.OptionalNullable[LinkedSubsidiaryInput] {
+	if o == nil {
+		return nil
+	}
+	return o.Subsidiary
 }
 
 func (o *BillInput) GetLocationID() optionalnullable.OptionalNullable[string] {

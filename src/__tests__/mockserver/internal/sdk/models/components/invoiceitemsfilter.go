@@ -35,6 +35,8 @@ func (e InvoiceItemsFilterTransactionType) ToPointer() *InvoiceItemsFilterTransa
 
 type InvoiceItemsFilter struct {
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
+	// Comma-separated list of invoice item IDs to filter by (e.g. `12345,67890`).
+	Ids *string `queryParam:"name=ids"`
 	// Name of Invoice Items to search for
 	Name *string `queryParam:"name=name"`
 	// The type of invoice item, indicating whether it is an inventory item, a service, or another type.
@@ -59,6 +61,13 @@ func (o *InvoiceItemsFilter) GetUpdatedSince() *time.Time {
 		return nil
 	}
 	return o.UpdatedSince
+}
+
+func (o *InvoiceItemsFilter) GetIds() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ids
 }
 
 func (o *InvoiceItemsFilter) GetName() *string {

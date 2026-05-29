@@ -62,6 +62,15 @@ import {
   LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
 import {
+  LinkedSubsidiary,
+  LinkedSubsidiary$inboundSchema,
+} from "./linkedsubsidiary.js";
+import {
+  LinkedSubsidiaryInput,
+  LinkedSubsidiaryInput$Outbound,
+  LinkedSubsidiaryInput$outboundSchema,
+} from "./linkedsubsidiaryinput.js";
+import {
   LinkedTrackingCategory,
   LinkedTrackingCategory$inboundSchema,
   LinkedTrackingCategory$Outbound,
@@ -154,6 +163,7 @@ export type Invoice = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  subsidiary?: LinkedSubsidiary | null | undefined;
   /**
    * The ID of the location
    */
@@ -335,6 +345,7 @@ export type InvoiceInput = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  subsidiary?: LinkedSubsidiaryInput | null | undefined;
   /**
    * The ID of the location
    */
@@ -564,6 +575,7 @@ export const Invoice$inboundSchema: z.ZodType<Invoice, z.ZodTypeDef, unknown> =
     number: z.nullable(types.string()).optional(),
     customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
     company_id: z.nullable(types.string()).optional(),
+    subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
     location_id: z.nullable(types.string()).optional(),
     department_id: z.nullable(types.string()).optional(),
     invoice_date: z.nullable(types.date()).optional(),
@@ -674,6 +686,7 @@ export type InvoiceInput$Outbound = {
   number?: string | null | undefined;
   customer?: LinkedCustomerInput$Outbound | null | undefined;
   company_id?: string | null | undefined;
+  subsidiary?: LinkedSubsidiaryInput$Outbound | null | undefined;
   location_id?: string | null | undefined;
   department_id?: string | null | undefined;
   invoice_date?: string | null | undefined;
@@ -732,6 +745,7 @@ export const InvoiceInput$outboundSchema: z.ZodType<
   number: z.nullable(z.string()).optional(),
   customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
+  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
   locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
   invoiceDate: z.nullable(

@@ -29,6 +29,15 @@ import {
   JournalEntryLineItemInput$outboundSchema,
 } from "./journalentrylineitem.js";
 import {
+  LinkedSubsidiary,
+  LinkedSubsidiary$inboundSchema,
+} from "./linkedsubsidiary.js";
+import {
+  LinkedSubsidiaryInput,
+  LinkedSubsidiaryInput$Outbound,
+  LinkedSubsidiaryInput$outboundSchema,
+} from "./linkedsubsidiaryinput.js";
+import {
   LinkedTrackingCategory,
   LinkedTrackingCategory$inboundSchema,
   LinkedTrackingCategory$Outbound,
@@ -88,6 +97,7 @@ export type JournalEntry = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  subsidiary?: LinkedSubsidiary | null | undefined;
   /**
    * Requires a minimum of 2 line items that sum to 0
    */
@@ -194,6 +204,7 @@ export type JournalEntryInput = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  subsidiary?: LinkedSubsidiaryInput | null | undefined;
   /**
    * Requires a minimum of 2 line items that sum to 0
    */
@@ -285,6 +296,7 @@ export const JournalEntry$inboundSchema: z.ZodType<
   currency_rate: z.nullable(types.number()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
   company_id: z.nullable(types.string()).optional(),
+  subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
   line_items: types.optional(z.array(JournalEntryLineItem$inboundSchema)),
   status: z.nullable(JournalEntryStatus$inboundSchema).optional(),
   memo: z.nullable(types.string()).optional(),
@@ -352,6 +364,7 @@ export type JournalEntryInput$Outbound = {
   currency_rate?: number | null | undefined;
   currency?: string | null | undefined;
   company_id?: string | null | undefined;
+  subsidiary?: LinkedSubsidiaryInput$Outbound | null | undefined;
   line_items?: Array<JournalEntryLineItemInput$Outbound> | undefined;
   status?: string | null | undefined;
   memo?: string | null | undefined;
@@ -384,6 +397,7 @@ export const JournalEntryInput$outboundSchema: z.ZodType<
   currencyRate: z.nullable(z.number()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
+  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
   lineItems: z.array(JournalEntryLineItemInput$outboundSchema).optional(),
   status: z.nullable(JournalEntryStatus$outboundSchema).optional(),
   memo: z.nullable(z.string()).optional(),

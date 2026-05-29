@@ -25,6 +25,11 @@ let value: GetCreditNotesResponse = {
         email: "boring@boring.com",
       },
       companyId: "12345",
+      subsidiary: {
+        id: "12345",
+        displayId: "123456",
+        name: "Acme Inc.",
+      },
       locationId: "12345",
       departmentId: "12345",
       currency: "USD",

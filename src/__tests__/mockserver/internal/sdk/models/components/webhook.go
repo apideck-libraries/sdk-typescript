@@ -32,7 +32,7 @@ type Webhook struct {
 	Status Status `json:"status"`
 	// Indicates why the webhook has been disabled. `retry_limit`: webhook reached its retry limit. `usage_limit`: account is over its usage limit. `delivery_url_validation_failed`: delivery URL failed validation during webhook creation or update.
 	DisabledReason *DisabledReason `json:"disabled_reason,omitempty"`
-	// The delivery url of the webhook endpoint.
+	// The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the delivery is recorded as failed.
 	DeliveryURL string `json:"delivery_url"`
 	// The Unify Base URL events from connectors will be sent to after service id is appended.
 	ExecuteBaseURL string `json:"execute_base_url"`

@@ -111,7 +111,8 @@ type BillPayment struct {
 	// The supplier this entity is linked to.
 	Supplier optionalnullable.OptionalNullable[LinkedSupplier] `json:"supplier,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
+	CompanyID  optionalnullable.OptionalNullable[string]           `json:"company_id,omitempty"`
+	Subsidiary optionalnullable.OptionalNullable[LinkedSubsidiary] `json:"subsidiary,omitempty"`
 	// Indicates if the transaction has been reconciled.
 	Reconciled optionalnullable.OptionalNullable[bool] `json:"reconciled,omitempty"`
 	// Status of payment
@@ -244,6 +245,13 @@ func (o *BillPayment) GetCompanyID() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *BillPayment) GetSubsidiary() optionalnullable.OptionalNullable[LinkedSubsidiary] {
+	if o == nil {
+		return nil
+	}
+	return o.Subsidiary
 }
 
 func (o *BillPayment) GetReconciled() optionalnullable.OptionalNullable[bool] {
@@ -418,7 +426,8 @@ type BillPaymentInput struct {
 	// The supplier this entity is linked to.
 	Supplier optionalnullable.OptionalNullable[LinkedSupplierInput] `json:"supplier,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
+	CompanyID  optionalnullable.OptionalNullable[string]                `json:"company_id,omitempty"`
+	Subsidiary optionalnullable.OptionalNullable[LinkedSubsidiaryInput] `json:"subsidiary,omitempty"`
 	// Indicates if the transaction has been reconciled.
 	Reconciled optionalnullable.OptionalNullable[bool] `json:"reconciled,omitempty"`
 	// Status of payment
@@ -527,6 +536,13 @@ func (o *BillPaymentInput) GetCompanyID() optionalnullable.OptionalNullable[stri
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *BillPaymentInput) GetSubsidiary() optionalnullable.OptionalNullable[LinkedSubsidiaryInput] {
+	if o == nil {
+		return nil
+	}
+	return o.Subsidiary
 }
 
 func (o *BillPaymentInput) GetReconciled() optionalnullable.OptionalNullable[bool] {

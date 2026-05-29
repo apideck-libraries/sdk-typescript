@@ -24,6 +24,11 @@ let value: GetCreditNoteResponse = {
       email: "boring@boring.com",
     },
     companyId: "12345",
+    subsidiary: {
+      id: "12345",
+      displayId: "123456",
+      name: "Acme Inc.",
+    },
     locationId: "12345",
     departmentId: "12345",
     currency: "USD",
@@ -189,15 +194,7 @@ let value: GetCreditNoteResponse = {
       notes: "Address notes or delivery instructions.",
       rowVersion: "1-12345",
     },
-    trackingCategories: [
-      {
-        id: "123456",
-        code: "100",
-        name: "New York",
-        parentId: "123456",
-        parentName: "New York",
-      },
-    ],
+    trackingCategories: null,
     customFields: [
       {
         id: "2389328923893298",

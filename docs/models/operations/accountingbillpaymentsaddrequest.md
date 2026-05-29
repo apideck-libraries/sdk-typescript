@@ -57,6 +57,10 @@ let value: AccountingBillPaymentsAddRequest = {
       },
     },
     companyId: "12345",
+    subsidiary: {
+      displayId: "123456",
+      name: "Acme Inc.",
+    },
     reconciled: true,
     status: "authorised",
     type: "accounts_payable",

@@ -66,6 +66,11 @@ let value: GetBillPaymentResponse = {
       },
     },
     companyId: "12345",
+    subsidiary: {
+      id: "12345",
+      displayId: "123456",
+      name: "Acme Inc.",
+    },
     reconciled: true,
     status: "authorised",
     type: "accounts_payable",

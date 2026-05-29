@@ -31,6 +31,10 @@ let value: AccountingPaymentsAddRequest = {
       email: "boring@boring.com",
     },
     companyId: "12345",
+    subsidiary: {
+      displayId: "123456",
+      name: "Acme Inc.",
+    },
     reconciled: true,
     status: "authorised",
     type: "accounts_receivable",

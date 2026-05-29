@@ -14,6 +14,10 @@ let value: AccountingJournalEntriesAddRequest = {
     currencyRate: 0.69,
     currency: "USD",
     companyId: "12345",
+    subsidiary: {
+      displayId: "123456",
+      name: "Acme Inc.",
+    },
     lineItems: [
       {
         description:

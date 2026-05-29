@@ -31,6 +31,11 @@ import {
   LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
 import {
+  LinkedSubsidiaryInput,
+  LinkedSubsidiaryInput$Outbound,
+  LinkedSubsidiaryInput$outboundSchema,
+} from "./linkedsubsidiaryinput.js";
+import {
   LinkedTrackingCategory,
   LinkedTrackingCategory$Outbound,
   LinkedTrackingCategory$outboundSchema,
@@ -106,6 +111,7 @@ export type PaymentInput = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  subsidiary?: LinkedSubsidiaryInput | null | undefined;
   /**
    * Indicates if the transaction has been reconciled.
    */
@@ -162,6 +168,7 @@ export type PaymentInput$Outbound = {
   customer?: LinkedCustomerInput$Outbound | null | undefined;
   supplier?: DeprecatedLinkedSupplierInput$Outbound | null | undefined;
   company_id?: string | null | undefined;
+  subsidiary?: LinkedSubsidiaryInput$Outbound | null | undefined;
   reconciled?: boolean | null | undefined;
   status?: string | undefined;
   type?: string | undefined;
@@ -198,6 +205,7 @@ export const PaymentInput$outboundSchema: z.ZodType<
   customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
   supplier: z.nullable(DeprecatedLinkedSupplierInput$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
+  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
   reconciled: z.nullable(z.boolean()).optional(),
   status: PaymentStatus$outboundSchema.optional(),
   type: PaymentType$outboundSchema.optional(),

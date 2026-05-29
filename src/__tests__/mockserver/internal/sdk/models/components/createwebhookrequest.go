@@ -13,7 +13,7 @@ type CreateWebhookRequest struct {
 	UnifiedAPI UnifiedAPIID `json:"unified_api"`
 	// The status of the webhook.
 	Status Status `json:"status"`
-	// The delivery url of the webhook endpoint.
+	// The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the delivery is recorded as failed.
 	DeliveryURL string `json:"delivery_url"`
 	// The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
 	Events []WebhookEventType `json:"events"`
