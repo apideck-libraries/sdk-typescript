@@ -24,6 +24,10 @@ import {
   LinkedLedgerAccount$inboundSchema,
 } from "./linkedledgeraccount.js";
 import {
+  LinkedSubsidiary,
+  LinkedSubsidiary$inboundSchema,
+} from "./linkedsubsidiary.js";
+import {
   LinkedTrackingCategory,
   LinkedTrackingCategory$inboundSchema,
 } from "./linkedtrackingcategory.js";
@@ -102,6 +106,7 @@ export type Payment = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  subsidiary?: LinkedSubsidiary | null | undefined;
   /**
    * Indicates if the transaction has been reconciled.
    */
@@ -181,6 +186,7 @@ export const Payment$inboundSchema: z.ZodType<Payment, z.ZodTypeDef, unknown> =
     customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
     supplier: z.nullable(DeprecatedLinkedSupplier$inboundSchema).optional(),
     company_id: z.nullable(types.string()).optional(),
+    subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
     reconciled: z.nullable(types.boolean()).optional(),
     status: types.optional(PaymentStatus$inboundSchema),
     type: types.optional(PaymentType$inboundSchema),

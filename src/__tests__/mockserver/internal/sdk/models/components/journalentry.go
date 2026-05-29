@@ -40,7 +40,8 @@ type JournalEntry struct {
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
+	CompanyID  optionalnullable.OptionalNullable[string]           `json:"company_id,omitempty"`
+	Subsidiary optionalnullable.OptionalNullable[LinkedSubsidiary] `json:"subsidiary,omitempty"`
 	// Requires a minimum of 2 line items that sum to 0
 	LineItems []JournalEntryLineItem `json:"line_items,omitempty"`
 	// Journal entry status
@@ -144,6 +145,13 @@ func (o *JournalEntry) GetCompanyID() optionalnullable.OptionalNullable[string] 
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *JournalEntry) GetSubsidiary() optionalnullable.OptionalNullable[LinkedSubsidiary] {
+	if o == nil {
+		return nil
+	}
+	return o.Subsidiary
 }
 
 func (o *JournalEntry) GetLineItems() []JournalEntryLineItem {
@@ -303,7 +311,8 @@ type JournalEntryInput struct {
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
+	CompanyID  optionalnullable.OptionalNullable[string]                `json:"company_id,omitempty"`
+	Subsidiary optionalnullable.OptionalNullable[LinkedSubsidiaryInput] `json:"subsidiary,omitempty"`
 	// Requires a minimum of 2 line items that sum to 0
 	LineItems []JournalEntryLineItemInput `json:"line_items,omitempty"`
 	// Journal entry status
@@ -383,6 +392,13 @@ func (o *JournalEntryInput) GetCompanyID() optionalnullable.OptionalNullable[str
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *JournalEntryInput) GetSubsidiary() optionalnullable.OptionalNullable[LinkedSubsidiaryInput] {
+	if o == nil {
+		return nil
+	}
+	return o.Subsidiary
 }
 
 func (o *JournalEntryInput) GetLineItems() []JournalEntryLineItemInput {

@@ -31,6 +31,7 @@ export const UnifiedApiId = {
   Script: "script",
   Sms: "sms",
   Spreadsheet: "spreadsheet",
+  SubscriptionAnalytics: "subscription-analytics",
   TeamMessaging: "team-messaging",
   IssueTracking: "issue-tracking",
   TimeRegistration: "time-registration",

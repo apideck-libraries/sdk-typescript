@@ -45,7 +45,8 @@ type CreditNote struct {
 	// The customer this entity is linked to.
 	Customer optionalnullable.OptionalNullable[LinkedCustomer] `json:"customer,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
+	CompanyID  optionalnullable.OptionalNullable[string]           `json:"company_id,omitempty"`
+	Subsidiary optionalnullable.OptionalNullable[LinkedSubsidiary] `json:"subsidiary,omitempty"`
 	// The ID of the location
 	LocationID optionalnullable.OptionalNullable[string] `json:"location_id,omitempty"`
 	// The ID of the department
@@ -145,6 +146,13 @@ func (o *CreditNote) GetCompanyID() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *CreditNote) GetSubsidiary() optionalnullable.OptionalNullable[LinkedSubsidiary] {
+	if o == nil {
+		return nil
+	}
+	return o.Subsidiary
 }
 
 func (o *CreditNote) GetLocationID() optionalnullable.OptionalNullable[string] {
@@ -384,7 +392,8 @@ type CreditNoteInput struct {
 	// The customer this entity is linked to.
 	Customer optionalnullable.OptionalNullable[LinkedCustomerInput] `json:"customer,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
+	CompanyID  optionalnullable.OptionalNullable[string]                `json:"company_id,omitempty"`
+	Subsidiary optionalnullable.OptionalNullable[LinkedSubsidiaryInput] `json:"subsidiary,omitempty"`
 	// The ID of the location
 	LocationID optionalnullable.OptionalNullable[string] `json:"location_id,omitempty"`
 	// The ID of the department
@@ -467,6 +476,13 @@ func (o *CreditNoteInput) GetCompanyID() optionalnullable.OptionalNullable[strin
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *CreditNoteInput) GetSubsidiary() optionalnullable.OptionalNullable[LinkedSubsidiaryInput] {
+	if o == nil {
+		return nil
+	}
+	return o.Subsidiary
 }
 
 func (o *CreditNoteInput) GetLocationID() optionalnullable.OptionalNullable[string] {

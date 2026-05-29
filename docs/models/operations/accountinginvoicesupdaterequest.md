@@ -18,6 +18,7 @@ let value: AccountingInvoicesUpdateRequest = {
       email: "boring@boring.com",
     },
     companyId: "12345",
+    subsidiary: null,
     locationId: "12345",
     departmentId: "12345",
     invoiceDate: new Date("2020-09-30"),
@@ -40,7 +41,15 @@ let value: AccountingInvoicesUpdateRequest = {
     balance: 27500,
     deposit: 0,
     customerMemo: "Thank you for your business and have a great day!",
-    trackingCategories: null,
+    trackingCategories: [
+      {
+        id: "123456",
+        code: "100",
+        name: "New York",
+        parentId: "123456",
+        parentName: "New York",
+      },
+    ],
     lineItems: [
       {
         id: "12345",
@@ -168,13 +177,7 @@ let value: AccountingInvoicesUpdateRequest = {
     },
     templateId: "123456",
     sourceDocumentUrl: "https://www.invoicesolution.com/invoice/123456",
-    paymentAllocations: [
-      {
-        id: "123456",
-        allocatedAmount: 1000,
-        date: new Date("2020-09-30T07:43:32.000Z"),
-      },
-    ],
+    paymentAllocations: null,
     paymentMethod: "cash",
     channel: "email",
     language: "EN",
@@ -193,7 +196,14 @@ let value: AccountingInvoicesUpdateRequest = {
       currency: "USD",
       country: "US",
     },
-    ledgerAccount: null,
+    ledgerAccount: {
+      id: "123456",
+      name: "Bank account",
+      nominalCode: "N091",
+      code: "453",
+      parentId: "123456",
+      displayId: "123456",
+    },
     customFields: [
       {
         id: "2389328923893298",

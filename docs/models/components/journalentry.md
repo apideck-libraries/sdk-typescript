@@ -13,6 +13,7 @@ let value: JournalEntry = {
   currencyRate: 0.69,
   currency: "USD",
   companyId: "12345",
+  subsidiary: null,
   lineItems: [
     {
       id: "12345",
@@ -53,40 +54,12 @@ let value: JournalEntry = {
         companyName: "The boring company",
         email: "boring@boring.com",
       },
-      supplier: {
+      supplier: null,
+      employee: {
         id: "12345",
-        displayId: "SUPP00101",
-        displayName: "Windsurf Shop",
-        companyName: "The boring company",
-        address: {
-          id: "123",
-          type: "primary",
-          string: "25 Spring Street, Blackburn, VIC 3130",
-          name: "HQ US",
-          line1: "Main street",
-          line2: "apt #",
-          line3: "Suite #",
-          line4: "delivery instructions",
-          line5: "Attention: Finance Dept",
-          streetNumber: "25",
-          city: "San Francisco",
-          state: "CA",
-          postalCode: "94104",
-          country: "US",
-          latitude: "40.759211",
-          longitude: "-73.984638",
-          county: "Santa Clara",
-          contactName: "Elon Musk",
-          salutation: "Mr",
-          phoneNumber: "111-111-1111",
-          fax: "122-111-1111",
-          email: "elon@musk.com",
-          website: "https://elonmusk.com",
-          notes: "Address notes or delivery instructions.",
-          rowVersion: "1-12345",
-        },
+        displayId: "EH",
+        displayName: "Ester Henderson",
       },
-      employee: null,
       departmentId: "12345",
       locationId: "12345",
       lineNumber: 1,
@@ -104,7 +77,15 @@ let value: JournalEntry = {
   journalSymbol: "IND",
   taxCode: "1234",
   number: "OIT00546",
-  trackingCategories: null,
+  trackingCategories: [
+    {
+      id: "123456",
+      code: "100",
+      name: "New York",
+      parentId: "123456",
+      parentName: "New York",
+    },
+  ],
   accountingPeriod: "01-24",
   taxInclusive: true,
   sourceType: "manual",
@@ -151,6 +132,7 @@ let value: JournalEntry = {
 | `currencyRate`                                                                                                                                                                                                  | *number*                                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                              | Currency Exchange Rate at the time entity was recorded/generated.                                                                                                                                               | 0.69                                                                                                                                                                                                            |
 | `currency`                                                                                                                                                                                                      | [components.Currency](../../models/components/currency.md)                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                              | Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).                                                                              | USD                                                                                                                                                                                                             |
 | `companyId`                                                                                                                                                                                                     | *string*                                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                              | The company ID the transaction belongs to                                                                                                                                                                       | 12345                                                                                                                                                                                                           |
+| `subsidiary`                                                                                                                                                                                                    | [components.LinkedSubsidiary](../../models/components/linkedsubsidiary.md)                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                              | N/A                                                                                                                                                                                                             |                                                                                                                                                                                                                 |
 | `lineItems`                                                                                                                                                                                                     | [components.JournalEntryLineItem](../../models/components/journalentrylineitem.md)[]                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                              | Requires a minimum of 2 line items that sum to 0                                                                                                                                                                |                                                                                                                                                                                                                 |
 | `status`                                                                                                                                                                                                        | [components.JournalEntryStatus](../../models/components/journalentrystatus.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                              | Journal entry status                                                                                                                                                                                            | draft                                                                                                                                                                                                           |
 | `memo`                                                                                                                                                                                                          | *string*                                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                              | Reference for the journal entry.                                                                                                                                                                                | Thank you for your business and have a great day!                                                                                                                                                               |

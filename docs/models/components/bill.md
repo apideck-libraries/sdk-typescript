@@ -12,6 +12,11 @@ let value: Bill = {
   billNumber: "10001",
   supplier: null,
   companyId: "12345",
+  subsidiary: {
+    id: "12345",
+    displayId: "123456",
+    name: "Acme Inc.",
+  },
   locationId: "12345",
   departmentId: "12345",
   currency: "USD",
@@ -83,14 +88,13 @@ let value: Bill = {
           parentName: "New York",
         },
       ],
-      customer: {
-        id: "12345",
-        displayId: "CUST00101",
-        displayName: "Windsurf Shop",
-        companyName: "The boring company",
-        email: "boring@boring.com",
+      customer: null,
+      rebilling: {
+        rebillable: true,
+        rebillStatus: "billed",
+        linkedTransactionId: "txn_abc123",
+        linkedTransactionLineId: "line_xyz789",
       },
-      rebilling: null,
       rowVersion: "1-12345",
       updatedBy: "12345",
       createdBy: "12345",
@@ -146,13 +150,7 @@ let value: Bill = {
   taxMethod: "Due to supplier",
   documentReceived: true,
   sourceDocumentUrl: "https://www.invoicesolution.com/bill/123456",
-  paymentAllocations: [
-    {
-      id: "123456",
-      allocatedAmount: 1000,
-      date: new Date("2020-09-30T07:43:32.000Z"),
-    },
-  ],
+  paymentAllocations: null,
   trackingCategories: null,
   updatedBy: "12345",
   createdBy: "12345",
@@ -206,6 +204,7 @@ let value: Bill = {
 | `billNumber`                                                                                                                                                     | *string*                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                               | Reference to supplier bill number                                                                                                                                | 10001                                                                                                                                                            |
 | `supplier`                                                                                                                                                       | [components.LinkedSupplier](../../models/components/linkedsupplier.md)                                                                                           | :heavy_minus_sign:                                                                                                                                               | The supplier this entity is linked to.                                                                                                                           |                                                                                                                                                                  |
 | `companyId`                                                                                                                                                      | *string*                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                               | The company ID the transaction belongs to                                                                                                                        | 12345                                                                                                                                                            |
+| `subsidiary`                                                                                                                                                     | [components.LinkedSubsidiary](../../models/components/linkedsubsidiary.md)                                                                                       | :heavy_minus_sign:                                                                                                                                               | N/A                                                                                                                                                              |                                                                                                                                                                  |
 | `locationId`                                                                                                                                                     | *string*                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                               | The ID of the location                                                                                                                                           | 12345                                                                                                                                                            |
 | `departmentId`                                                                                                                                                   | *string*                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                               | The ID of the department                                                                                                                                         | 12345                                                                                                                                                            |
 | `currency`                                                                                                                                                       | [components.Currency](../../models/components/currency.md)                                                                                                       | :heavy_minus_sign:                                                                                                                                               | Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).                               | USD                                                                                                                                                              |

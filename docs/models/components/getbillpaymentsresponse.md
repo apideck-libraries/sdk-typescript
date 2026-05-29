@@ -60,6 +60,11 @@ let value: GetBillPaymentsResponse = {
         },
       },
       companyId: "12345",
+      subsidiary: {
+        id: "12345",
+        displayId: "123456",
+        name: "Acme Inc.",
+      },
       reconciled: true,
       status: "authorised",
       type: "accounts_payable",
@@ -74,15 +79,7 @@ let value: GetBillPaymentsResponse = {
       ],
       note: "Some notes about this transaction",
       number: "123456",
-      trackingCategories: [
-        {
-          id: "123456",
-          code: "100",
-          name: "New York",
-          parentId: "123456",
-          parentName: "New York",
-        },
-      ],
+      trackingCategories: null,
       customFields: [
         {
           id: "2389328923893298",

@@ -42,6 +42,10 @@ let value: AccountingBillsAddRequest = {
       },
     },
     companyId: "12345",
+    subsidiary: {
+      displayId: "123456",
+      name: "Acme Inc.",
+    },
     locationId: "12345",
     departmentId: "12345",
     currency: "USD",

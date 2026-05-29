@@ -11,6 +11,9 @@ type CreditNotesFilter struct {
 	// Return records with a row ID greater than or equal to the given value
 	IDSince      *string    `queryParam:"name=id_since"`
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
+	CreatedSince *time.Time `queryParam:"name=created_since"`
+	// Credit note number to search for
+	Number *string `queryParam:"name=number"`
 }
 
 func (c CreditNotesFilter) MarshalJSON() ([]byte, error) {
@@ -36,4 +39,18 @@ func (o *CreditNotesFilter) GetUpdatedSince() *time.Time {
 		return nil
 	}
 	return o.UpdatedSince
+}
+
+func (o *CreditNotesFilter) GetCreatedSince() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedSince
+}
+
+func (o *CreditNotesFilter) GetNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Number
 }

@@ -28,6 +28,15 @@ import {
   LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
 import {
+  LinkedSubsidiary,
+  LinkedSubsidiary$inboundSchema,
+} from "./linkedsubsidiary.js";
+import {
+  LinkedSubsidiaryInput,
+  LinkedSubsidiaryInput$Outbound,
+  LinkedSubsidiaryInput$outboundSchema,
+} from "./linkedsubsidiaryinput.js";
+import {
   LinkedSupplier,
   LinkedSupplier$inboundSchema,
 } from "./linkedsupplier.js";
@@ -157,6 +166,7 @@ export type BillPayment = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  subsidiary?: LinkedSubsidiary | null | undefined;
   /**
    * Indicates if the transaction has been reconciled.
    */
@@ -278,6 +288,7 @@ export type BillPaymentInput = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  subsidiary?: LinkedSubsidiaryInput | null | undefined;
   /**
    * Indicates if the transaction has been reconciled.
    */
@@ -390,6 +401,7 @@ export const BillPayment$inboundSchema: z.ZodType<
   transaction_date: types.nullable(types.date()),
   supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
   company_id: z.nullable(types.string()).optional(),
+  subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
   reconciled: z.nullable(types.boolean()).optional(),
   status: types.optional(PaymentStatus$inboundSchema),
   type: types.optional(BillPaymentType$inboundSchema),
@@ -486,6 +498,7 @@ export type BillPaymentInput$Outbound = {
   transaction_date: string | null;
   supplier?: LinkedSupplierInput$Outbound | null | undefined;
   company_id?: string | null | undefined;
+  subsidiary?: LinkedSubsidiaryInput$Outbound | null | undefined;
   reconciled?: boolean | null | undefined;
   status?: string | undefined;
   type?: string | undefined;
@@ -519,6 +532,7 @@ export const BillPaymentInput$outboundSchema: z.ZodType<
   transactionDate: z.nullable(z.date().transform(v => v.toISOString())),
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
+  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
   reconciled: z.nullable(z.boolean()).optional(),
   status: PaymentStatus$outboundSchema.optional(),
   type: BillPaymentType$outboundSchema.optional(),

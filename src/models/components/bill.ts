@@ -52,6 +52,15 @@ import {
   LinkedPaymentAllocations$outboundSchema,
 } from "./linkedpaymentallocations.js";
 import {
+  LinkedSubsidiary,
+  LinkedSubsidiary$inboundSchema,
+} from "./linkedsubsidiary.js";
+import {
+  LinkedSubsidiaryInput,
+  LinkedSubsidiaryInput$Outbound,
+  LinkedSubsidiaryInput$outboundSchema,
+} from "./linkedsubsidiaryinput.js";
+import {
   LinkedSupplier,
   LinkedSupplier$inboundSchema,
 } from "./linkedsupplier.js";
@@ -131,6 +140,7 @@ export type Bill = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  subsidiary?: LinkedSubsidiary | null | undefined;
   /**
    * The ID of the location
    */
@@ -319,6 +329,7 @@ export type BillInput = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  subsidiary?: LinkedSubsidiaryInput | null | undefined;
   /**
    * The ID of the location
    */
@@ -505,6 +516,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
     bill_number: z.nullable(types.string()).optional(),
     supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
     company_id: z.nullable(types.string()).optional(),
+    subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
     location_id: z.nullable(types.string()).optional(),
     department_id: z.nullable(types.string()).optional(),
     currency: z.nullable(Currency$inboundSchema).optional(),
@@ -617,6 +629,7 @@ export type BillInput$Outbound = {
   bill_number?: string | null | undefined;
   supplier?: LinkedSupplierInput$Outbound | null | undefined;
   company_id?: string | null | undefined;
+  subsidiary?: LinkedSubsidiaryInput$Outbound | null | undefined;
   location_id?: string | null | undefined;
   department_id?: string | null | undefined;
   currency?: string | null | undefined;
@@ -676,6 +689,7 @@ export const BillInput$outboundSchema: z.ZodType<
   billNumber: z.nullable(z.string()).optional(),
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
+  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
   locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),

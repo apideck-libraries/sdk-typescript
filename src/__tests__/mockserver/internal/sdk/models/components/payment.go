@@ -45,7 +45,8 @@ type Payment struct {
 	// Deprecated: This field is deprecated and may be removed in a future version..
 	Supplier optionalnullable.OptionalNullable[DeprecatedLinkedSupplier] `json:"supplier,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
+	CompanyID  optionalnullable.OptionalNullable[string]           `json:"company_id,omitempty"`
+	Subsidiary optionalnullable.OptionalNullable[LinkedSubsidiary] `json:"subsidiary,omitempty"`
 	// Indicates if the transaction has been reconciled.
 	Reconciled optionalnullable.OptionalNullable[bool] `json:"reconciled,omitempty"`
 	// Status of payment
@@ -199,6 +200,13 @@ func (o *Payment) GetCompanyID() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *Payment) GetSubsidiary() optionalnullable.OptionalNullable[LinkedSubsidiary] {
+	if o == nil {
+		return nil
+	}
+	return o.Subsidiary
 }
 
 func (o *Payment) GetReconciled() optionalnullable.OptionalNullable[bool] {

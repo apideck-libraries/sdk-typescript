@@ -27,6 +27,20 @@ export const Classification = {
  */
 export type Classification = OpenEnum<typeof Classification>;
 
+/**
+ * Filter by account status.
+ */
+export const LedgerAccountsFilterStatus = {
+  Active: "active",
+  Inactive: "inactive",
+} as const;
+/**
+ * Filter by account status.
+ */
+export type LedgerAccountsFilterStatus = OpenEnum<
+  typeof LedgerAccountsFilterStatus
+>;
+
 export type LedgerAccountsFilter = {
   /**
    * Filter by ledger account name
@@ -37,6 +51,10 @@ export type LedgerAccountsFilter = {
    * Filter by account classification.
    */
   classification?: Classification | undefined;
+  /**
+   * Filter by account status.
+   */
+  status?: LedgerAccountsFilterStatus | undefined;
 };
 
 /** @internal */
@@ -47,10 +65,18 @@ export const Classification$outboundSchema: z.ZodType<
 > = openEnums.outboundSchema(Classification);
 
 /** @internal */
+export const LedgerAccountsFilterStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  LedgerAccountsFilterStatus
+> = openEnums.outboundSchema(LedgerAccountsFilterStatus);
+
+/** @internal */
 export type LedgerAccountsFilter$Outbound = {
   name?: string | undefined;
   updated_since?: string | undefined;
   classification?: string | undefined;
+  status?: string | undefined;
 };
 
 /** @internal */
@@ -62,6 +88,7 @@ export const LedgerAccountsFilter$outboundSchema: z.ZodType<
   name: z.string().optional(),
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   classification: Classification$outboundSchema.optional(),
+  status: LedgerAccountsFilterStatus$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",

@@ -27,12 +27,26 @@ func (e LedgerAccountsFilterClassification) ToPointer() *LedgerAccountsFilterCla
 	return &e
 }
 
+// LedgerAccountsFilterStatus - Filter by account status.
+type LedgerAccountsFilterStatus string
+
+const (
+	LedgerAccountsFilterStatusActive   LedgerAccountsFilterStatus = "active"
+	LedgerAccountsFilterStatusInactive LedgerAccountsFilterStatus = "inactive"
+)
+
+func (e LedgerAccountsFilterStatus) ToPointer() *LedgerAccountsFilterStatus {
+	return &e
+}
+
 type LedgerAccountsFilter struct {
 	// Filter by ledger account name
 	Name         *string    `queryParam:"name=name"`
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
 	// Filter by account classification.
 	Classification *LedgerAccountsFilterClassification `queryParam:"name=classification"`
+	// Filter by account status.
+	Status *LedgerAccountsFilterStatus `queryParam:"name=status"`
 }
 
 func (l LedgerAccountsFilter) MarshalJSON() ([]byte, error) {
@@ -65,4 +79,11 @@ func (o *LedgerAccountsFilter) GetClassification() *LedgerAccountsFilterClassifi
 		return nil
 	}
 	return o.Classification
+}
+
+func (o *LedgerAccountsFilter) GetStatus() *LedgerAccountsFilterStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
 }
