@@ -8,6 +8,14 @@ import { VaultLogsAllRequest } from "@apideck/unify/models/operations";
 let value: VaultLogsAllRequest = {
   filter: {
     connectorId: "crm+salesforce",
+    path: "/crm/contacts",
+    httpMethod: "GET",
+    httpMethods: [
+      "GET",
+      "POST",
+    ],
+    startDate: new Date("2024-01-01T00:00:00.000Z"),
+    endDate: new Date("2024-01-31T23:59:59.999Z"),
     statusCode: 201,
     statusCodes: [
       200,
