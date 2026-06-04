@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 1803ddfd5e36ae5814ba2e66616b657e
-  docVersion: 10.24.37
-  speakeasyVersion: 1.769.2
-  generationVersion: 2.892.5
-  releaseVersion: 0.42.0
-  configChecksum: 5a3c478405b54a5d734f4881449400ee
+  docChecksum: 9c2270cbf7ade2fdce4480609d8d26a5
+  docVersion: 10.24.39
+  speakeasyVersion: 1.770.0
+  generationVersion: 2.893.0
+  releaseVersion: 0.42.1
+  configChecksum: 4c962aad0f6ad5391ffe12c2618766f8
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: e60455e8-01cc-41f9-b8d2-8f0e147afba6
-  pristine_commit_hash: 80644e4304ed37302d0b30c4341150361846a119
-  pristine_tree_hash: 1c8dcf70d2d46cb3d793cfa2e040133e4681d775
+  generation_id: effaa515-4e59-492a-a107-f69419def133
+  pristine_commit_hash: 022eaa3b16b3b61720fd1940ce332e97673c43e7
+  pristine_tree_hash: 52fc1261feb721de8fc5d434da613fd6a337b7e3
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -2811,8 +2811,8 @@ trackedFiles:
     pristine_git_object: 934af174e650117e8afb419cd93d1be893726dad
   docs/models/components/logsfilter.md:
     id: f4e8c53a3dd2
-    last_write_checksum: sha1:c978c379540be2bcaf7410196053f580998892d1
-    pristine_git_object: 1f83d0955522f847dc9293e709271284daa034d1
+    last_write_checksum: sha1:05a4fe5084612d5a20b2247ddbbffeb6c94b3f24
+    pristine_git_object: 405503da36d212f637e7fd720a3261504ddec68e
   docs/models/components/managedvia.md:
     id: 9ec73eafe59d
     last_write_checksum: sha1:3b6ad548aa082628eef7ac75e78c3e2c0304c463
@@ -2957,6 +2957,10 @@ trackedFiles:
     id: b494fc447f96
     last_write_checksum: sha1:f5c19852d3e771bcf6717b965687ff8e903c7991
     pristine_git_object: 983dd3d7a0f2fd4abcd546b4a9d5d4c3dc5c93d2
+  docs/models/components/pathmatchmode.md:
+    id: 1718be53964f
+    last_write_checksum: sha1:f884d397e91a02d88ffbdae6ee2d3159c422effa
+    pristine_git_object: 27703537b6672d7149b6b07b0e856e980350db74
   docs/models/components/payment.md:
     id: ee93002f93bc
     last_write_checksum: sha1:d64fa9aa20e366b05495391f8cb4092a25ff6a73
@@ -7935,8 +7939,8 @@ trackedFiles:
     pristine_git_object: 136363ffc0db9a36b0f378d56d13627764630c26
   docs/models/operations/vaultlogsallrequest.md:
     id: 27ffd75d3908
-    last_write_checksum: sha1:8deebfec361b29d6e7b0b90f1bbe5934cdf3126b
-    pristine_git_object: 965ae09a52ff67a86e8b68072cdd787fb62b75e9
+    last_write_checksum: sha1:96c0a8ffef2f80ea85ea58757edda589adf7ad54
+    pristine_git_object: 7a458689656df4f1d0e228dd3a2c5b1e81f95d77
   docs/models/operations/vaultlogsallresponse.md:
     id: 865d25232e8c
     last_write_checksum: sha1:bba07b588223fbac8fa1335094f9269f4350e827
@@ -8435,12 +8439,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:13ee0608cd1027f1021738f047affb66b724bf8a
-    pristine_git_object: 3ca0af4e819da4fcec96fd90293abf761ae1a9fe
+    last_write_checksum: sha1:bbf45f32f51d2ae84474b22a3daab94fb8c82e8b
+    pristine_git_object: 27ec975a2c075c91603a075373e276578671f944
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:8cf2ccff6a60ca6fbd16c9fcffa1653aba8799d0
-    pristine_git_object: 8612beafa995211b898768cd1459192d42f08ddd
+    last_write_checksum: sha1:7f3004d5cac69a907e5af9ce9a367bde87bebb1f
+    pristine_git_object: b43c5309266cc0150d5056e25bf014c076ee84f4
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -12015,8 +12019,8 @@ trackedFiles:
     pristine_git_object: 19babb7e42aa09b62a299845a948b77b554930ad
   src/__tests__/mockserver/internal/sdk/models/components/logsfilter.go:
     id: 22c68ddcc653
-    last_write_checksum: sha1:67c15c6f675a47e263b71c1df1b9126c84ce06a6
-    pristine_git_object: baa28cadb0640661445d2413c0ff033b9cf542b4
+    last_write_checksum: sha1:3152c40e08f9a5c08ce7921dca2ddb68290b4c6e
+    pristine_git_object: 8cf41fe98f052f57641efb89ebfa7d83b952da29
   src/__tests__/mockserver/internal/sdk/models/components/message.go:
     id: "557109702270"
     last_write_checksum: sha1:c970a47a579e65498e9326a98eee122e64009678
@@ -15575,8 +15579,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:3d730d20166ea5fe87ee00126a0b92ea0ecae1d1
-    pristine_git_object: 4a8527b18de17a559234eef3b232ce2b1ac04513
+    last_write_checksum: sha1:66db6e6232658828d2832e3086ea6bab2906f32b
+    pristine_git_object: a2bd01cdf7ecfa10bd54e04a88191130ef4807d4
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -17555,8 +17559,8 @@ trackedFiles:
     pristine_git_object: 9f0bbf994aee63591fdf0b32239e3ea0bd44e6fc
   src/models/components/logsfilter.ts:
     id: b10c331416b5
-    last_write_checksum: sha1:e3175ab8b97ffb83ff3feeebeaf722817ad6717b
-    pristine_git_object: 4b9b9bb17b6a329f58bf2f6cc147748effe9dc80
+    last_write_checksum: sha1:1d364e7c6cf2de093f715fa6c8b2f1f1b92f7819
+    pristine_git_object: 1614a184e90365fb01bf4a70ecb425522bc25c7f
   src/models/components/message.ts:
     id: c1f7bf936709
     last_write_checksum: sha1:d4f9a34c53b3f670c713fb0fcb3a8b06e1632b87
@@ -34301,7 +34305,7 @@ examples:
     speakeasy-default-vault-logs-all:
       parameters:
         query:
-          filter: {"connector_id": "crm+salesforce", "status_code": 201, "status_codes": [200, 201, 204], "exclude_unified_apis": "vault,proxy"}
+          filter: {"connector_id": "crm+salesforce", "path": "/crm/contacts", "path_match_mode": "CONTAINS", "http_method": "GET", "http_methods": ["GET", "POST"], "start_date": "2024-01-01T00:00:00.000Z", "end_date": "2024-01-31T23:59:59.999Z", "status_code": 201, "status_codes": [200, 201, 204], "exclude_unified_apis": "vault,proxy"}
           limit: 20
         header:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
@@ -36775,6 +36779,7 @@ generatedTests:
   ats.jobsAdd: "2026-03-11T13:14:11Z"
   ats.jobsUpdate: "2026-03-11T13:14:11Z"
   ats.jobsDelete: "2026-03-11T13:14:11Z"
+releaseNotes: "## Typescript SDK Changes:\n* `apideck.vault.logs.list()`: \n  *  `request.filter` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore

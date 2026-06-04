@@ -4,10 +4,39 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
+	"time"
 )
 
+// PathMatchMode - How the path filter is matched. CONTAINS matches the path anywhere; STARTS_WITH / ENDS_WITH anchor the match; EXACT requires the whole path to match. Only applied when path is set.
+type PathMatchMode string
+
+const (
+	PathMatchModeContains   PathMatchMode = "CONTAINS"
+	PathMatchModeStartsWith PathMatchMode = "STARTS_WITH"
+	PathMatchModeEndsWith   PathMatchMode = "ENDS_WITH"
+	PathMatchModeExact      PathMatchMode = "EXACT"
+)
+
+func (e PathMatchMode) ToPointer() *PathMatchMode {
+	return &e
+}
+
 type LogsFilter struct {
+	// Filter by connector ID. Known limitation: this field is not currently applied at the log query resolver — connector filtering is performed via the service identifier internally (see GH-10099).
 	ConnectorID optionalnullable.OptionalNullable[string] `queryParam:"name=connector_id"`
+	// Filter by request path. Match behavior is controlled by path_match_mode (defaults to CONTAINS).
+	Path optionalnullable.OptionalNullable[string] `queryParam:"name=path"`
+	// How the path filter is matched. CONTAINS matches the path anywhere; STARTS_WITH / ENDS_WITH anchor the match; EXACT requires the whole path to match. Only applied when path is set.
+	PathMatchMode optionalnullable.OptionalNullable[PathMatchMode] `default:"CONTAINS" queryParam:"name=path_match_mode"`
+	// Filter by a single HTTP method.
+	HTTPMethod optionalnullable.OptionalNullable[string] `queryParam:"name=http_method"`
+	// Filter by multiple HTTP methods.
+	HTTPMethods optionalnullable.OptionalNullable[[]string] `queryParam:"name=http_methods"`
+	// Filter logs at or after this ISO 8601 date-time (inclusive).
+	StartDate optionalnullable.OptionalNullable[time.Time] `queryParam:"name=start_date"`
+	// Filter logs at or before this ISO 8601 date-time (inclusive). Must be on or after start_date.
+	EndDate optionalnullable.OptionalNullable[time.Time] `queryParam:"name=end_date"`
 	// Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple values.
 	StatusCode optionalnullable.OptionalNullable[float64] `queryParam:"name=status_code"`
 	// Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes allowed.
@@ -15,11 +44,64 @@ type LogsFilter struct {
 	ExcludeUnifiedApis optionalnullable.OptionalNullable[string]    `queryParam:"name=exclude_unified_apis"`
 }
 
+func (l LogsFilter) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LogsFilter) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *LogsFilter) GetConnectorID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ConnectorID
+}
+
+func (o *LogsFilter) GetPath() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.Path
+}
+
+func (o *LogsFilter) GetPathMatchMode() optionalnullable.OptionalNullable[PathMatchMode] {
+	if o == nil {
+		return nil
+	}
+	return o.PathMatchMode
+}
+
+func (o *LogsFilter) GetHTTPMethod() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.HTTPMethod
+}
+
+func (o *LogsFilter) GetHTTPMethods() optionalnullable.OptionalNullable[[]string] {
+	if o == nil {
+		return nil
+	}
+	return o.HTTPMethods
+}
+
+func (o *LogsFilter) GetStartDate() optionalnullable.OptionalNullable[time.Time] {
+	if o == nil {
+		return nil
+	}
+	return o.StartDate
+}
+
+func (o *LogsFilter) GetEndDate() optionalnullable.OptionalNullable[time.Time] {
+	if o == nil {
+		return nil
+	}
+	return o.EndDate
 }
 
 func (o *LogsFilter) GetStatusCode() optionalnullable.OptionalNullable[float64] {

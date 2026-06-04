@@ -4,9 +4,52 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
+
+/**
+ * How the path filter is matched. CONTAINS matches the path anywhere; STARTS_WITH / ENDS_WITH anchor the match; EXACT requires the whole path to match. Only applied when path is set.
+ */
+export const PathMatchMode = {
+  Contains: "CONTAINS",
+  StartsWith: "STARTS_WITH",
+  EndsWith: "ENDS_WITH",
+  Exact: "EXACT",
+} as const;
+/**
+ * How the path filter is matched. CONTAINS matches the path anywhere; STARTS_WITH / ENDS_WITH anchor the match; EXACT requires the whole path to match. Only applied when path is set.
+ */
+export type PathMatchMode = OpenEnum<typeof PathMatchMode>;
 
 export type LogsFilter = {
+  /**
+   * Filter by connector ID. Known limitation: this field is not currently applied at the log query resolver — connector filtering is performed via the service identifier internally (see GH-10099).
+   */
   connectorId?: string | null | undefined;
+  /**
+   * Filter by request path. Match behavior is controlled by path_match_mode (defaults to CONTAINS).
+   */
+  path?: string | null | undefined;
+  /**
+   * How the path filter is matched. CONTAINS matches the path anywhere; STARTS_WITH / ENDS_WITH anchor the match; EXACT requires the whole path to match. Only applied when path is set.
+   */
+  pathMatchMode?: PathMatchMode | null | undefined;
+  /**
+   * Filter by a single HTTP method.
+   */
+  httpMethod?: string | null | undefined;
+  /**
+   * Filter by multiple HTTP methods.
+   */
+  httpMethods?: Array<string> | null | undefined;
+  /**
+   * Filter logs at or after this ISO 8601 date-time (inclusive).
+   */
+  startDate?: Date | null | undefined;
+  /**
+   * Filter logs at or before this ISO 8601 date-time (inclusive). Must be on or after start_date.
+   */
+  endDate?: Date | null | undefined;
   /**
    * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple values.
    */
@@ -19,8 +62,21 @@ export type LogsFilter = {
 };
 
 /** @internal */
+export const PathMatchMode$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  PathMatchMode
+> = openEnums.outboundSchema(PathMatchMode);
+
+/** @internal */
 export type LogsFilter$Outbound = {
   connector_id?: string | null | undefined;
+  path?: string | null | undefined;
+  path_match_mode: string | null;
+  http_method?: string | null | undefined;
+  http_methods?: Array<string> | null | undefined;
+  start_date?: string | null | undefined;
+  end_date?: string | null | undefined;
   status_code?: number | null | undefined;
   status_codes?: Array<number> | null | undefined;
   exclude_unified_apis?: string | null | undefined;
@@ -33,12 +89,23 @@ export const LogsFilter$outboundSchema: z.ZodType<
   LogsFilter
 > = z.object({
   connectorId: z.nullable(z.string()).optional(),
+  path: z.nullable(z.string()).optional(),
+  pathMatchMode: z.nullable(PathMatchMode$outboundSchema.default("CONTAINS")),
+  httpMethod: z.nullable(z.string()).optional(),
+  httpMethods: z.nullable(z.array(z.string())).optional(),
+  startDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  endDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   statusCode: z.nullable(z.number()).optional(),
   statusCodes: z.nullable(z.array(z.number())).optional(),
   excludeUnifiedApis: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     connectorId: "connector_id",
+    pathMatchMode: "path_match_mode",
+    httpMethod: "http_method",
+    httpMethods: "http_methods",
+    startDate: "start_date",
+    endDate: "end_date",
     statusCode: "status_code",
     statusCodes: "status_codes",
     excludeUnifiedApis: "exclude_unified_apis",
