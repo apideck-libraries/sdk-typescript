@@ -50,6 +50,10 @@ export type AccountingQuotesAllRequest = {
    * Number of results to return. Minimum 1, Maximum 200, Default 20
    */
   limit?: number | undefined;
+  /**
+   * Apply filters
+   */
+  filter?: components.QuotesFilter | undefined;
 };
 
 export type AccountingQuotesAllResponse = {
@@ -73,6 +77,7 @@ export type AccountingQuotesAllRequest$Outbound = {
   companyId?: string | undefined;
   cursor?: string | null | undefined;
   limit: number;
+  filter?: components.QuotesFilter$Outbound | undefined;
 };
 
 /** @internal */
@@ -88,6 +93,7 @@ export const AccountingQuotesAllRequest$outboundSchema: z.ZodType<
   companyId: z.string().optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  filter: components.QuotesFilter$outboundSchema.optional(),
 });
 
 export function accountingQuotesAllRequestToJSON(

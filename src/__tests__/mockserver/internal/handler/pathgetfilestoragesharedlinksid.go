@@ -61,7 +61,7 @@ func testFileStorageSharedLinksOneFileStorageSharedLinksOne0(w http.ResponseWrit
 				Name: optionalnullable.From(types.String("sample.jpg")),
 				Type: optionalnullable.From(components.FileTypeFile.ToPointer()),
 			},
-			Scope:     optionalnullable.From(components.ScopeCompany.ToPointer()),
+			Scope:     optionalnullable.From(components.SharedLinkScopeCompany.ToPointer()),
 			ExpiresAt: optionalnullable.From(types.MustNewTimeFromString("2022-09-30T07:43:32.000Z")),
 			UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),

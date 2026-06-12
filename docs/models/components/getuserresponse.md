@@ -17,6 +17,7 @@ let value: GetUserResponse = {
     id: "12345",
     parentId: "54321",
     username: "masterofcoin",
+    name: "Acme Inc.",
     firstName: "Elon",
     lastName: "Musk",
     title: "CEO",

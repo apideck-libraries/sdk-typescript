@@ -296,6 +296,7 @@ let value: CreateConnectionResponse = {
     health: "ok",
     credentialsExpireAt: 1730172800000,
     lastRefreshFailedAt: 1730000000000,
+    lastDownstreamErrorAt: 1730000000000,
     createdAt: 1615563533390,
     updatedAt: 1616662325753,
   },

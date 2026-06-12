@@ -8,12 +8,17 @@ import { remap as remap$ } from "../../lib/primitives.js";
 export type PurchaseOrdersFilter = {
   updatedSince?: Date | undefined;
   supplierId?: string | undefined;
+  /**
+   * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+   */
+  subsidiaryId?: string | undefined;
 };
 
 /** @internal */
 export type PurchaseOrdersFilter$Outbound = {
   updated_since?: string | undefined;
   supplier_id?: string | undefined;
+  subsidiary_id?: string | undefined;
 };
 
 /** @internal */
@@ -24,10 +29,12 @@ export const PurchaseOrdersFilter$outboundSchema: z.ZodType<
 > = z.object({
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   supplierId: z.string().optional(),
+  subsidiaryId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",
     supplierId: "supplier_id",
+    subsidiaryId: "subsidiary_id",
   });
 });
 

@@ -3,7 +3,6 @@
  */
 
 import { ApideckCore } from "../core.js";
-import { dlv } from "../lib/dlv.js";
 import {
   encodeDeepObjectQuery,
   encodeFormQuery,
@@ -282,7 +281,11 @@ async function $do(
     >;
     "~next"?: { cursor: string };
   } => {
-    const nextCursor = dlv(responseData, "meta.cursors.next");
+    const nextCursor =
+      (responseData as
+        | { meta?: { cursors?: { next?: unknown } } }
+        | null
+        | undefined)?.meta?.cursors?.next;
     if (typeof nextCursor !== "string") {
       return { next: () => null };
     }

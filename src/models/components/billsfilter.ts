@@ -30,6 +30,10 @@ export type BillsFilter = {
    * Filter by bill status
    */
   status?: BillsFilterStatus | undefined;
+  /**
+   * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+   */
+  subsidiaryId?: string | undefined;
 };
 
 /** @internal */
@@ -44,6 +48,7 @@ export type BillsFilter$Outbound = {
   id_since?: string | undefined;
   updated_since?: string | undefined;
   status?: string | undefined;
+  subsidiary_id?: string | undefined;
 };
 
 /** @internal */
@@ -55,10 +60,12 @@ export const BillsFilter$outboundSchema: z.ZodType<
   idSince: z.string().optional(),
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   status: BillsFilterStatus$outboundSchema.optional(),
+  subsidiaryId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     idSince: "id_since",
     updatedSince: "updated_since",
+    subsidiaryId: "subsidiary_id",
   });
 });
 

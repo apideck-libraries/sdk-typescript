@@ -10,6 +10,7 @@ let value: CrmUsersAddRequest = {
   user: {
     parentId: "54321",
     username: "masterofcoin",
+    name: "Acme Inc.",
     firstName: "Elon",
     lastName: "Musk",
     title: "CEO",

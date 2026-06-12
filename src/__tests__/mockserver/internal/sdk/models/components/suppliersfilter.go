@@ -19,6 +19,8 @@ type SuppliersFilter struct {
 	// Email of supplier to search for
 	Email        *string    `queryParam:"name=email"`
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
+	// Filter by the subsidiary (legal entity) the supplier's primary subsidiary belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+	SubsidiaryID *string `queryParam:"name=subsidiary_id"`
 }
 
 func (s SuppliersFilter) MarshalJSON() ([]byte, error) {
@@ -72,4 +74,11 @@ func (o *SuppliersFilter) GetUpdatedSince() *time.Time {
 		return nil
 	}
 	return o.UpdatedSince
+}
+
+func (o *SuppliersFilter) GetSubsidiaryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubsidiaryID
 }

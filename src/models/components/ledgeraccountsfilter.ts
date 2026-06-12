@@ -55,6 +55,10 @@ export type LedgerAccountsFilter = {
    * Filter by account status.
    */
   status?: LedgerAccountsFilterStatus | undefined;
+  /**
+   * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+   */
+  subsidiaryId?: string | undefined;
 };
 
 /** @internal */
@@ -77,6 +81,7 @@ export type LedgerAccountsFilter$Outbound = {
   updated_since?: string | undefined;
   classification?: string | undefined;
   status?: string | undefined;
+  subsidiary_id?: string | undefined;
 };
 
 /** @internal */
@@ -89,9 +94,11 @@ export const LedgerAccountsFilter$outboundSchema: z.ZodType<
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   classification: Classification$outboundSchema.optional(),
   status: LedgerAccountsFilterStatus$outboundSchema.optional(),
+  subsidiaryId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",
+    subsidiaryId: "subsidiary_id",
   });
 });
 

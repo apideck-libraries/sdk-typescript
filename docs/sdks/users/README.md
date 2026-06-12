@@ -29,6 +29,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.crm.users.list({
     serviceId: "salesforce",
+    filter: {
+      email: "elon@apideck.com",
+    },
     passThrough: {
       "search": "San Francisco",
     },
@@ -62,6 +65,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await crmUsersList(apideck, {
     serviceId: "salesforce",
+    filter: {
+      email: "elon@apideck.com",
+    },
     passThrough: {
       "search": "San Francisco",
     },

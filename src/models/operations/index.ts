@@ -74,6 +74,8 @@ export * from "./accountingexpensesall.js";
 export * from "./accountingexpensesdelete.js";
 export * from "./accountingexpensesone.js";
 export * from "./accountingexpensesupdate.js";
+export * from "./accountinggeneralledgertransactionsall.js";
+export * from "./accountinggeneralledgertransactionsone.js";
 export * from "./accountinginvoiceitemsadd.js";
 export * from "./accountinginvoiceitemsall.js";
 export * from "./accountinginvoiceitemsdelete.js";

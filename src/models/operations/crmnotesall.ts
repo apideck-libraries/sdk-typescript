@@ -47,6 +47,10 @@ export type CrmNotesAllRequest = {
    */
   limit?: number | undefined;
   /**
+   * Apply filters
+   */
+  filter?: components.NotesFilter | undefined;
+  /**
    * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
    */
   passThrough?: { [k: string]: any } | undefined;
@@ -76,6 +80,7 @@ export type CrmNotesAllRequest$Outbound = {
   serviceId?: string | undefined;
   cursor?: string | null | undefined;
   limit: number;
+  filter?: components.NotesFilter$Outbound | undefined;
   pass_through?: { [k: string]: any } | undefined;
   fields?: string | null | undefined;
 };
@@ -92,6 +97,7 @@ export const CrmNotesAllRequest$outboundSchema: z.ZodType<
   serviceId: z.string().optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  filter: components.NotesFilter$outboundSchema.optional(),
   passThrough: z.record(z.any()).optional(),
   fields: z.nullable(z.string()).optional(),
 }).transform((v) => {

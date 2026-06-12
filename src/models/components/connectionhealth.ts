@@ -17,6 +17,7 @@ export const ConnectionHealth = {
   NeedsConsent: "needs_consent",
   Revoked: "revoked",
   MissingSettings: "missing_settings",
+  Degraded: "degraded",
 } as const;
 /**
  * The operational health status of the connection

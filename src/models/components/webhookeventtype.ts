@@ -39,6 +39,8 @@ export const WebhookEventType = {
   VaultConnectionTokenRefreshPending: "vault.connection.token_refresh.pending",
   VaultConnectionTokenRefreshRecovered:
     "vault.connection.token_refresh.recovered",
+  VaultConnectionDownstreamDegraded: "vault.connection.downstream.degraded",
+  VaultConnectionDownstreamRecovered: "vault.connection.downstream.recovered",
   AtsJobCreated: "ats.job.created",
   AtsJobUpdated: "ats.job.updated",
   AtsJobDeleted: "ats.job.deleted",

@@ -32,7 +32,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.42.1
+  version: 0.43.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -41,6 +41,7 @@ typescript:
   additionalPackageJSON: {}
   additionalScripts: {}
   alwaysIncludeInboundAndOutbound: false
+  apiPromiseHelpers: false
   author: Speakeasy
   baseErrorName: ApideckError
   clientServerStatusCodesAsErrors: true
@@ -51,6 +52,7 @@ typescript:
   enableReactQuery: false
   enumFormat: union
   envVarPrefix: APIDECK
+  eventStreamClassName: EventStream
   exportZodModelNamespace: false
   fixEnumNameSanitization: false
   flatAdditionalProperties: false
@@ -83,6 +85,7 @@ typescript:
   preApplyUnionDiscriminators: true
   preserveModelFieldNames: false
   privateIdentifierPrefix: '#'
+  requestExtras: false
   responseFormat: envelope-http
   sseFlatResponse: false
   templateVersion: v2

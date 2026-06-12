@@ -8,15 +8,15 @@ import (
 	"time"
 )
 
-// Scope - The scope of the shared link.
-type Scope string
+// SharedLinkScope - The scope of the shared link.
+type SharedLinkScope string
 
 const (
-	ScopePublic  Scope = "public"
-	ScopeCompany Scope = "company"
+	SharedLinkScopePublic  SharedLinkScope = "public"
+	SharedLinkScopeCompany SharedLinkScope = "company"
 )
 
-func (e Scope) ToPointer() *Scope {
+func (e SharedLinkScope) ToPointer() *SharedLinkScope {
 	return &e
 }
 
@@ -27,7 +27,7 @@ type SharedLinkOutput struct {
 	DownloadURL optionalnullable.OptionalNullable[string] `json:"download_url,omitempty"`
 	Target      *SharedLinkTarget                         `json:"target,omitempty"`
 	// The scope of the shared link.
-	Scope optionalnullable.OptionalNullable[Scope] `json:"scope,omitempty"`
+	Scope optionalnullable.OptionalNullable[SharedLinkScope] `json:"scope,omitempty"`
 	// Indicated if the shared link is password protected.
 	PasswordProtected optionalnullable.OptionalNullable[bool]      `json:"password_protected,omitempty"`
 	ExpiresAt         optionalnullable.OptionalNullable[time.Time] `json:"expires_at,omitempty"`
@@ -71,7 +71,7 @@ func (o *SharedLinkOutput) GetTarget() *SharedLinkTarget {
 	return o.Target
 }
 
-func (o *SharedLinkOutput) GetScope() optionalnullable.OptionalNullable[Scope] {
+func (o *SharedLinkOutput) GetScope() optionalnullable.OptionalNullable[SharedLinkScope] {
 	if o == nil {
 		return nil
 	}
@@ -119,7 +119,7 @@ type SharedLinkInput struct {
 	// The ID of the file or folder to link.
 	TargetID *string `json:"target_id"`
 	// The scope of the shared link.
-	Scope optionalnullable.OptionalNullable[Scope] `json:"scope,omitempty"`
+	Scope optionalnullable.OptionalNullable[SharedLinkScope] `json:"scope,omitempty"`
 	// Optional password for the shared link.
 	Password optionalnullable.OptionalNullable[string] `json:"password,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -140,7 +140,7 @@ func (o *SharedLinkInput) GetTargetID() *string {
 	return o.TargetID
 }
 
-func (o *SharedLinkInput) GetScope() optionalnullable.OptionalNullable[Scope] {
+func (o *SharedLinkInput) GetScope() optionalnullable.OptionalNullable[SharedLinkScope] {
 	if o == nil {
 		return nil
 	}

@@ -42,6 +42,10 @@ export type ProjectsFilter = {
    * Return projects modified after this date
    */
   updatedSince?: Date | undefined;
+  /**
+   * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+   */
+  subsidiaryId?: string | undefined;
 };
 
 /** @internal */
@@ -57,6 +61,7 @@ export type ProjectsFilter$Outbound = {
   status?: string | undefined;
   customer_id?: string | undefined;
   updated_since?: string | undefined;
+  subsidiary_id?: string | undefined;
 };
 
 /** @internal */
@@ -69,10 +74,12 @@ export const ProjectsFilter$outboundSchema: z.ZodType<
   status: ProjectStatus$outboundSchema.optional(),
   customerId: z.string().optional(),
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  subsidiaryId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     customerId: "customer_id",
     updatedSince: "updated_since",
+    subsidiaryId: "subsidiary_id",
   });
 });
 
