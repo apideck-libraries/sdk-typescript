@@ -20,6 +20,11 @@ test("Quotes Accounting Quotes All", async () => {
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     companyId: "12345",
+    filter: {
+      updatedSince: new Date("2020-09-30T07:43:32.000Z"),
+      createdSince: new Date("2020-09-30T07:43:32.000Z"),
+      number: "OIT00546",
+    },
   });
   expect(result.httpMeta.response.status).toBe(200);
   expect(result.getQuotesResponse).toBeDefined();

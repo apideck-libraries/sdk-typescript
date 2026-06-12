@@ -50,6 +50,8 @@ type PaymentsFilter struct {
 	Type       *PaymentsFilterType `queryParam:"name=type"`
 	// Filter by payment status
 	Status *PaymentsFilterPaymentStatus `queryParam:"name=status"`
+	// Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+	SubsidiaryID *string `queryParam:"name=subsidiary_id"`
 }
 
 func (p PaymentsFilter) MarshalJSON() ([]byte, error) {
@@ -110,4 +112,11 @@ func (o *PaymentsFilter) GetStatus() *PaymentsFilterPaymentStatus {
 		return nil
 	}
 	return o.Status
+}
+
+func (o *PaymentsFilter) GetSubsidiaryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubsidiaryID
 }

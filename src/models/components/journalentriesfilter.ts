@@ -21,9 +21,31 @@ export type JournalEntriesFilterStatus = OpenEnum<
   typeof JournalEntriesFilterStatus
 >;
 
+/**
+ * Connector-specific scope hint that controls which downstream source backs the read. On Xero, `manual` reads from `ManualJournals` (free in every tier), while `system` reads from `Journals` (the full general ledger view including manual journal postings, paid post 2026-03-02). Omitting the filter is equivalent to `system` and preserves the legacy default. Only honored on connectors where the distinction is exposed; ignored elsewhere.
+ */
+export const JournalEntriesFilterScope = {
+  Manual: "manual",
+  System: "system",
+} as const;
+/**
+ * Connector-specific scope hint that controls which downstream source backs the read. On Xero, `manual` reads from `ManualJournals` (free in every tier), while `system` reads from `Journals` (the full general ledger view including manual journal postings, paid post 2026-03-02). Omitting the filter is equivalent to `system` and preserves the legacy default. Only honored on connectors where the distinction is exposed; ignored elsewhere.
+ */
+export type JournalEntriesFilterScope = OpenEnum<
+  typeof JournalEntriesFilterScope
+>;
+
 export type JournalEntriesFilter = {
   updatedSince?: Date | undefined;
   status?: JournalEntriesFilterStatus | undefined;
+  /**
+   * Connector-specific scope hint that controls which downstream source backs the read. On Xero, `manual` reads from `ManualJournals` (free in every tier), while `system` reads from `Journals` (the full general ledger view including manual journal postings, paid post 2026-03-02). Omitting the filter is equivalent to `system` and preserves the legacy default. Only honored on connectors where the distinction is exposed; ignored elsewhere.
+   */
+  scope?: JournalEntriesFilterScope | undefined;
+  /**
+   * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+   */
+  subsidiaryId?: string | undefined;
 };
 
 /** @internal */
@@ -34,9 +56,18 @@ export const JournalEntriesFilterStatus$outboundSchema: z.ZodType<
 > = openEnums.outboundSchema(JournalEntriesFilterStatus);
 
 /** @internal */
+export const JournalEntriesFilterScope$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  JournalEntriesFilterScope
+> = openEnums.outboundSchema(JournalEntriesFilterScope);
+
+/** @internal */
 export type JournalEntriesFilter$Outbound = {
   updated_since?: string | undefined;
   status?: string | undefined;
+  scope?: string | undefined;
+  subsidiary_id?: string | undefined;
 };
 
 /** @internal */
@@ -47,9 +78,12 @@ export const JournalEntriesFilter$outboundSchema: z.ZodType<
 > = z.object({
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   status: JournalEntriesFilterStatus$outboundSchema.optional(),
+  scope: JournalEntriesFilterScope$outboundSchema.optional(),
+  subsidiaryId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",
+    subsidiaryId: "subsidiary_id",
   });
 });
 

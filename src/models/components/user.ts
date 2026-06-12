@@ -30,6 +30,10 @@ export type User = {
    */
   username?: string | null | undefined;
   /**
+   * The name of the resource.
+   */
+  name?: string | null | undefined;
+  /**
    * The first name of the person.
    */
   firstName?: string | null | undefined;
@@ -102,6 +106,7 @@ export const User$inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z
     id: types.optional(types.string()),
     parent_id: z.nullable(types.string()).optional(),
     username: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
     first_name: z.nullable(types.string()).optional(),
     last_name: z.nullable(types.string()).optional(),
     title: z.nullable(types.string()).optional(),

@@ -27,6 +27,10 @@ export type SuppliersFilter = {
    */
   email?: string | undefined;
   updatedSince?: Date | undefined;
+  /**
+   * Filter by the subsidiary (legal entity) the supplier's primary subsidiary belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+   */
+  subsidiaryId?: string | undefined;
 };
 
 /** @internal */
@@ -37,6 +41,7 @@ export type SuppliersFilter$Outbound = {
   last_name?: string | undefined;
   email?: string | undefined;
   updated_since?: string | undefined;
+  subsidiary_id?: string | undefined;
 };
 
 /** @internal */
@@ -51,6 +56,7 @@ export const SuppliersFilter$outboundSchema: z.ZodType<
   lastName: z.string().optional(),
   email: z.string().optional(),
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  subsidiaryId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     companyName: "company_name",
@@ -58,6 +64,7 @@ export const SuppliersFilter$outboundSchema: z.ZodType<
     firstName: "first_name",
     lastName: "last_name",
     updatedSince: "updated_since",
+    subsidiaryId: "subsidiary_id",
   });
 });
 

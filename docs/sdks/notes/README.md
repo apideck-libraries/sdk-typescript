@@ -29,6 +29,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.crm.notes.list({
     serviceId: "salesforce",
+    filter: {
+      title: "Follow up call",
+    },
     passThrough: {
       "search": "San Francisco",
     },
@@ -62,6 +65,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await crmNotesList(apideck, {
     serviceId: "salesforce",
+    filter: {
+      title: "Follow up call",
+    },
     passThrough: {
       "search": "San Francisco",
     },

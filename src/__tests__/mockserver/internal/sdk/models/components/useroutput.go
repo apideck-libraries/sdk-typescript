@@ -13,6 +13,8 @@ type UserOutput struct {
 	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
 	// The username of the user
 	Username optionalnullable.OptionalNullable[string] `json:"username,omitempty"`
+	// The name of the resource.
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The first name of the person.
 	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// The last name of the person.
@@ -69,6 +71,13 @@ func (o *UserOutput) GetUsername() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Username
+}
+
+func (o *UserOutput) GetName() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 func (o *UserOutput) GetFirstName() optionalnullable.OptionalNullable[string] {

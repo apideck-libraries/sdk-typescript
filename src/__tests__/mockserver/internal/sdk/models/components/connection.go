@@ -312,6 +312,7 @@ const (
 	HealthNeedsAuth           Health = "needs_auth"
 	HealthPendingRefresh      Health = "pending_refresh"
 	HealthOk                  Health = "ok"
+	HealthDegraded            Health = "degraded"
 )
 
 func (e Health) ToPointer() *Health {
@@ -380,9 +381,11 @@ type Connection struct {
 	// Unix timestamp in milliseconds when credentials will be deleted if token refresh continues to fail. A value of 0 indicates no active retention window (connection is healthy or not using OAuth token refresh).
 	CredentialsExpireAt *float64 `json:"credentials_expire_at,omitempty"`
 	// Unix timestamp in milliseconds of the last failed token refresh attempt. A value of 0 indicates no recent failures. This field is used internally to enforce cooldown periods between retry attempts.
-	LastRefreshFailedAt *float64                                   `json:"last_refresh_failed_at,omitempty"`
-	CreatedAt           *float64                                   `json:"created_at,omitempty"`
-	UpdatedAt           optionalnullable.OptionalNullable[float64] `json:"updated_at,omitempty"`
+	LastRefreshFailedAt *float64 `json:"last_refresh_failed_at,omitempty"`
+	// Unix timestamp in milliseconds of the last downstream unreachable error (502/504 network class). A value of 0 indicates no active error. Connection remains callable while this is set; health surfaces as 'degraded'.
+	LastDownstreamErrorAt *float64                                   `json:"last_downstream_error_at,omitempty"`
+	CreatedAt             *float64                                   `json:"created_at,omitempty"`
+	UpdatedAt             optionalnullable.OptionalNullable[float64] `json:"updated_at,omitempty"`
 }
 
 func (o *Connection) GetID() *string {
@@ -635,6 +638,13 @@ func (o *Connection) GetLastRefreshFailedAt() *float64 {
 		return nil
 	}
 	return o.LastRefreshFailedAt
+}
+
+func (o *Connection) GetLastDownstreamErrorAt() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.LastDownstreamErrorAt
 }
 
 func (o *Connection) GetCreatedAt() *float64 {

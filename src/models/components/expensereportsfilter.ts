@@ -27,6 +27,10 @@ export type ExpenseReportsFilter = {
    * Filter by employee ID
    */
   employeeId?: string | undefined;
+  /**
+   * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+   */
+  subsidiaryId?: string | undefined;
 };
 
 /** @internal */
@@ -41,6 +45,7 @@ export type ExpenseReportsFilter$Outbound = {
   updated_since?: string | undefined;
   status?: string | undefined;
   employee_id?: string | undefined;
+  subsidiary_id?: string | undefined;
 };
 
 /** @internal */
@@ -52,10 +57,12 @@ export const ExpenseReportsFilter$outboundSchema: z.ZodType<
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   status: ExpenseReportsFilterStatus$outboundSchema.optional(),
   employeeId: z.string().optional(),
+  subsidiaryId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",
     employeeId: "employee_id",
+    subsidiaryId: "subsidiary_id",
   });
 });
 

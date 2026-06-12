@@ -36,6 +36,8 @@ const (
 	WebhookEventTypeVaultConnectionTokenRefreshFailed    WebhookEventType = "vault.connection.token_refresh.failed"
 	WebhookEventTypeVaultConnectionTokenRefreshPending   WebhookEventType = "vault.connection.token_refresh.pending"
 	WebhookEventTypeVaultConnectionTokenRefreshRecovered WebhookEventType = "vault.connection.token_refresh.recovered"
+	WebhookEventTypeVaultConnectionDownstreamDegraded    WebhookEventType = "vault.connection.downstream.degraded"
+	WebhookEventTypeVaultConnectionDownstreamRecovered   WebhookEventType = "vault.connection.downstream.recovered"
 	WebhookEventTypeAtsJobCreated                        WebhookEventType = "ats.job.created"
 	WebhookEventTypeAtsJobUpdated                        WebhookEventType = "ats.job.updated"
 	WebhookEventTypeAtsJobDeleted                        WebhookEventType = "ats.job.deleted"

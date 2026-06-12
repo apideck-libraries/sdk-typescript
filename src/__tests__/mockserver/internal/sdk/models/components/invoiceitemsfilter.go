@@ -43,6 +43,8 @@ type InvoiceItemsFilter struct {
 	Type optionalnullable.OptionalNullable[InvoiceItemsFilterInvoiceItemType] `queryParam:"name=type"`
 	// The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
 	TransactionType optionalnullable.OptionalNullable[InvoiceItemsFilterTransactionType] `queryParam:"name=transaction_type"`
+	// Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+	SubsidiaryID *string `queryParam:"name=subsidiary_id"`
 }
 
 func (i InvoiceItemsFilter) MarshalJSON() ([]byte, error) {
@@ -89,4 +91,11 @@ func (o *InvoiceItemsFilter) GetTransactionType() optionalnullable.OptionalNulla
 		return nil
 	}
 	return o.TransactionType
+}
+
+func (o *InvoiceItemsFilter) GetSubsidiaryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubsidiaryID
 }

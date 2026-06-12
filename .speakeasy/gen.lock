@@ -1,26 +1,26 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 9c2270cbf7ade2fdce4480609d8d26a5
-  docVersion: 10.24.39
-  speakeasyVersion: 1.770.0
-  generationVersion: 2.893.0
-  releaseVersion: 0.42.1
-  configChecksum: 4c962aad0f6ad5391ffe12c2618766f8
+  docChecksum: 0bd20ed3eea3b6629c09d81e827d35bf
+  docVersion: 10.24.43
+  speakeasyVersion: 1.777.2
+  generationVersion: 2.903.5
+  releaseVersion: 0.43.0
+  configChecksum: 78e652a16c8f740bb4877fc9d68f9b69
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: effaa515-4e59-492a-a107-f69419def133
-  pristine_commit_hash: 022eaa3b16b3b61720fd1940ce332e97673c43e7
-  pristine_tree_hash: 52fc1261feb721de8fc5d434da613fd6a337b7e3
+  generation_id: ba77a663-f1d4-4389-883f-5ed97f16356e
+  pristine_commit_hash: 5130b2c12090cbf034a05aa16f0b381e1500a1b2
+  pristine_tree_hash: f07b424f63de22f6933857e56f314e2112957bf1
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.3
     constsAndDefaults: 0.1.14
-    core: 3.27.0
+    core: 3.31.1
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -39,7 +39,7 @@ features:
     mockServer: 0.1.4
     nameOverrides: 2.81.4
     nullables: 0.1.1
-    openEnums: 0.1.2
+    openEnums: 0.1.3
     pagination: 2.83.2
     responseFormat: 0.3.0
     retries: 2.83.0
@@ -479,8 +479,8 @@ trackedFiles:
     pristine_git_object: cd2d44851329ad009725522f279d701cc9c7f0b5
   docs/models/components/billsfilter.md:
     id: d9547573d030
-    last_write_checksum: sha1:7af72b1920d5580db24ab4fe30648d85b861a141
-    pristine_git_object: f7fd3d7af72a85c1e1c7934f0dce894322956c75
+    last_write_checksum: sha1:e92a9051c323721dccfd118b378599f9de6db287
+    pristine_git_object: 6d20ce0e948bd5f172b193efaae9780a0f64d243
   docs/models/components/billsfilterstatus.md:
     id: 8719d0140b8c
     last_write_checksum: sha1:801255876a93783e249ee2475dc7b69e74856e66
@@ -619,8 +619,8 @@ trackedFiles:
     pristine_git_object: b64c92de9b08ef1ecac30295d629cdae4682a258
   docs/models/components/connection.md:
     id: d23163567720
-    last_write_checksum: sha1:4d7e2e6610c909ee53f1dbe119dff9a9f4bdf413
-    pristine_git_object: b343f51cf5b472b500e87ae93855c71fb0ce1024
+    last_write_checksum: sha1:0ad232c3ad1fb76c527414f5a547af81ca6bcb47
+    pristine_git_object: db7197f5e65c51b9f9d29a475c99cd7503da8d2c
   docs/models/components/connectionconfiguration.md:
     id: 5ee3fce9a529
     last_write_checksum: sha1:1d2cb8e28c8ef6542c0f7c7a29b6e72200bdeb41
@@ -631,8 +631,8 @@ trackedFiles:
     pristine_git_object: 60f73b81fab2b434a8036555cb254a527c22f9b7
   docs/models/components/connectionhealth.md:
     id: 0d9b32221078
-    last_write_checksum: sha1:4968ae577e21d2e4b3b9717216751456b4b741f7
-    pristine_git_object: 1cb5549532defc9c96e423a79fc45000fb7d668d
+    last_write_checksum: sha1:04cb8ec4fbccb4dc28ffeeb2603c73fd6203649c
+    pristine_git_object: 81ed61cdacce474ddb6aee74af94f38d8824f7e9
   docs/models/components/connectionimportdata.md:
     id: bf2d23b1d017
     last_write_checksum: sha1:eabd756ff7e48de57a45508283cc7d6f8fdd6c91
@@ -843,8 +843,8 @@ trackedFiles:
     pristine_git_object: d14d425eb357f15fbc5dc5e7d092fed8d3027a90
   docs/models/components/createconnectionresponse.md:
     id: 1dd7c305c259
-    last_write_checksum: sha1:ec8b0b97d876a15efd2dc1ae67ecdfc668bdc4ff
-    pristine_git_object: 47565d595cd3a6f351af87d78b47c382b1af891f
+    last_write_checksum: sha1:e4daf54ba6ecd0b2858239820153bd85fad49318
+    pristine_git_object: 44517329a98afd29775764899aa491e0b8ebf555
   docs/models/components/createconsumerrequest.md:
     id: d0f5aa365f83
     last_write_checksum: sha1:c1ed8810563b49dcaa529c194ed85d7204f3fe8f
@@ -1043,8 +1043,8 @@ trackedFiles:
     pristine_git_object: c153bf9b57049500ff9b00846fa2dd9d7621fc60
   docs/models/components/creditnotesfilter.md:
     id: da6742ff1983
-    last_write_checksum: sha1:9240ef90eb4e78277ddb3bb9d78ddb866ee5c14f
-    pristine_git_object: 9e917de8331e7ba992acaff5211ad86662435fa5
+    last_write_checksum: sha1:642d252a3725c2d4d82c67c2cb474b3ed5983db8
+    pristine_git_object: e68d2977b0340774bbf04d3f34a37ebbbd95d444
   docs/models/components/creditnotessort.md:
     id: b28a8f253329
     last_write_checksum: sha1:2133e6d535c8f2e7bf3cfb49d65730e44e0d1bfc
@@ -1083,8 +1083,8 @@ trackedFiles:
     pristine_git_object: 09df6523d9665f35ae7584e05a0d3971ad4bf29c
   docs/models/components/customersfilter.md:
     id: 5912443a5c51
-    last_write_checksum: sha1:fe69ae65f12f5104b0763ddfcb7dd1eebc5ec9f7
-    pristine_git_object: 302458d8468d56b7f57c666cd6525e50ea95448b
+    last_write_checksum: sha1:96ecc5ec014fed82e06be4fa5271ccf992243be0
+    pristine_git_object: faf4ea79bd3c4fa2be962872cd1952a2eaa9f10b
   docs/models/components/customersfilterstatus.md:
     id: b576e6ef689b
     last_write_checksum: sha1:03bceb5c3c6726c8406e63e47e4f2c032adf4782
@@ -1719,8 +1719,8 @@ trackedFiles:
     pristine_git_object: 9c777b40ac036280ba192ee292d51b28efed4e8d
   docs/models/components/expensereportsfilter.md:
     id: fbeeb54088fe
-    last_write_checksum: sha1:ed2b8addb87569da0cf5f972dcc5da35591cf952
-    pristine_git_object: dd2925c84e423522acffde39f4d214726e105805
+    last_write_checksum: sha1:67b86e39854101e455225e56c810ca6d756f45f0
+    pristine_git_object: b43e1398991418aa7f018406fddb5f575dd3e4da
   docs/models/components/expensereportsfilterstatus.md:
     id: 42003313c390
     last_write_checksum: sha1:51d1444622b36865fc7f23c89fe25288c4a51a9f
@@ -1825,6 +1825,34 @@ trackedFiles:
     id: 0af406e5993a
     last_write_checksum: sha1:41f90eb9ad5237aa9072555de4fc7674959bcbf7
     pristine_git_object: a6bea8699a9acd5df1281674600a7b8f899c06ba
+  docs/models/components/generalledgertransaction.md:
+    id: b538b44356b4
+    last_write_checksum: sha1:078fd8300acc6216ff359d3458590761959c9c53
+    pristine_git_object: 5f07a895adaeae6b7f97e7777b0ce3ddfddb93a7
+  docs/models/components/generalledgertransactionlineitem.md:
+    id: 45e266ea5f29
+    last_write_checksum: sha1:9d55262febfc752de2373399712ddc92422e1771
+    pristine_git_object: e9356c3f7134ee7c7e0b93b88c3caad04e81d818
+  docs/models/components/generalledgertransactionlineitemtype.md:
+    id: c08644a8ce5b
+    last_write_checksum: sha1:bdc6f0aafad1abbc35d84096b82d2ffc75a5e1dc
+    pristine_git_object: 34d9c3af1fa0a91107ee4f0622e32f22f70fa398
+  docs/models/components/generalledgertransactionsfilter.md:
+    id: 2fe233e927a5
+    last_write_checksum: sha1:cc9a7ea94b2627751eec5cd9bdc9e0880f523e3f
+    pristine_git_object: bbaa347e7a53ec6b0eeb90b326835c2321a6bb2c
+  docs/models/components/generalledgertransactionsourcetype.md:
+    id: 9e9aad28aa83
+    last_write_checksum: sha1:e83c0f03ad11f190f292605091b30dd81f4bbcd2
+    pristine_git_object: 2c55b726737fb70523d8b303826e508967f51d2a
+  docs/models/components/generalledgertransactionssort.md:
+    id: c6c6e38505bf
+    last_write_checksum: sha1:0d5426d9fb300554d79b6c79086f5efcce1bf6fb
+    pristine_git_object: 265c4f4ac0ae055265616754d9c1ef2988e46a44
+  docs/models/components/generalledgertransactionssortby.md:
+    id: 0298c45c9c21
+    last_write_checksum: sha1:7023b91dcf838b58dedc4d5a2bacdb65a429bed6
+    pristine_git_object: d385ad4e5ffc97e195486754bb309535692f6a65
   docs/models/components/getaccountingdepartmentresponse.md:
     id: f97ba75177c2
     last_write_checksum: sha1:b26c5aaae11d729ac6132351c7e2fdd191eaec8c
@@ -2003,8 +2031,8 @@ trackedFiles:
     pristine_git_object: cf4a1508d6a7421603e0a7daf906208f531eee0f
   docs/models/components/getconnectionresponse.md:
     id: e321ba100c6a
-    last_write_checksum: sha1:94d093aee1f43f7fdc0132df70e75e9d6eb53d98
-    pristine_git_object: 82c7025413c35117892e70965f87c425290d26ad
+    last_write_checksum: sha1:f93370cfca39a1a9eb1c0c3c8bc9f53d0e8504df
+    pristine_git_object: e9ba78fcb27b9c7686ac88e193666217b4b6e933
   docs/models/components/getconnectionsresponse.md:
     id: fc8939e82721
     last_write_checksum: sha1:4e473db67c4bd84a929676f699558c84eaf20291
@@ -2177,6 +2205,14 @@ trackedFiles:
     id: 775f8143da5f
     last_write_checksum: sha1:b97b4f61029eae5e78c661cd5f1741c0bfea983d
     pristine_git_object: a29637d319492297b719b170a9b762885b82b422
+  docs/models/components/getgeneralledgertransactionresponse.md:
+    id: d4e88c83943a
+    last_write_checksum: sha1:3c21e6dbba7a900be202873641da1dc526ee6697
+    pristine_git_object: 0e4b2b7f85e41ade5fc027bc0e34ee837dc0775e
+  docs/models/components/getgeneralledgertransactionsresponse.md:
+    id: 4986c9c00ca9
+    last_write_checksum: sha1:bb0b37db7f2e320d72c6196f4e0f5a7fe83f95e8
+    pristine_git_object: 7764f5ffac15150587051935a03deed4397903af
   docs/models/components/gethriscompaniesresponse.md:
     id: 23e4cf154148
     last_write_checksum: sha1:05c8c7edb12deb436abe2c00f645f0ad57a5a499
@@ -2395,12 +2431,12 @@ trackedFiles:
     pristine_git_object: 02dfbcf9d687f3440aae5dfcbc5c52f485967f9b
   docs/models/components/getuserresponse.md:
     id: d138b4cd199a
-    last_write_checksum: sha1:c61affb44470f1f8d4393d184d075a81d10c1681
-    pristine_git_object: 71cae0ec313ea70fc787986a89aa2a19d092a99b
+    last_write_checksum: sha1:ca5009bb02d5497de4cb53dfb7eb4dcad5d94bdd
+    pristine_git_object: 3c0cf8c58a5766f8692e4bc86a94f73b8051596b
   docs/models/components/getusersresponse.md:
     id: 0e8d76df0386
-    last_write_checksum: sha1:73bc990b55eed410b5bb5754c0f3f2411eae7839
-    pristine_git_object: 8d701025a2593f863f9326f020e683fc19d76f94
+    last_write_checksum: sha1:f86bdfb4a57c21a4f674967f962cddd1f1d40f9c
+    pristine_git_object: ac9ae1cd39272cb0a7b722cd4f28147d75adcaa6
   docs/models/components/getwebhookeventlogsresponse.md:
     id: 68a4aad63837
     last_write_checksum: sha1:103851e3a6bbf4f8d3ead586de7c1c6eb6a76547
@@ -2415,8 +2451,8 @@ trackedFiles:
     pristine_git_object: bad0e9e3588d8cd750690b235bcf29d05e29e89d
   docs/models/components/health.md:
     id: 4aa53911d97e
-    last_write_checksum: sha1:f92b0aa759aab2b5069f64c4f2f19beee3424ad0
-    pristine_git_object: 8f7808be79d2ba39f15fa64a6f6e894c91b76d47
+    last_write_checksum: sha1:57853a1870635fced05f5a0830cf29aa0965d53c
+    pristine_git_object: 52675ad833fe65bcda695df58c225a35ebac4bc6
   docs/models/components/hriscompany.md:
     id: c38b0e83db6b
     last_write_checksum: sha1:bac292e80132523e635fde064f6006434aee085c
@@ -2483,8 +2519,8 @@ trackedFiles:
     pristine_git_object: a1899c4c65a723bdb81dc2f33a2a814a5ff03b1d
   docs/models/components/invoiceitemsfilter.md:
     id: 0ad5d7b875fd
-    last_write_checksum: sha1:7e33e37bc9c8c7e85195b282384e08ab6188afb6
-    pristine_git_object: 43a6ecee72954281d0afd2b0cf34d41014f1ce57
+    last_write_checksum: sha1:3db79a7d28327d729cdee6d6e18688f8d2c5d478
+    pristine_git_object: 16f75484e4fd160c84dd936f40209a6c16dff216
   docs/models/components/invoiceitemssort.md:
     id: cd8a5bb067cf
     last_write_checksum: sha1:63270851a86880d78823ec67321efcffb5ef73b7
@@ -2519,8 +2555,8 @@ trackedFiles:
     pristine_git_object: e52d3dde99aa6931ff09e44935f35dea168b3462
   docs/models/components/invoicesfilter.md:
     id: 794380577e6e
-    last_write_checksum: sha1:0a9b031a9b6e36f03b849738576553ef65d0c6e3
-    pristine_git_object: f2537e0ec03f50e1b11d1a7442d53a4486041f8e
+    last_write_checksum: sha1:68c78a7f0092495c70b607ecf5b07a33debf557a
+    pristine_git_object: 2696a60a18ed306bb98ca016685f04b58f43dcea
   docs/models/components/invoicessort.md:
     id: 183a55ba24d2
     last_write_checksum: sha1:ba764928f1b7e5af854ae0fd7ba78ce17a8db80d
@@ -2567,8 +2603,12 @@ trackedFiles:
     pristine_git_object: 9972ffc5719bb4e76c56dff327e1c118ac2425d3
   docs/models/components/journalentriesfilter.md:
     id: 819bc66fec88
-    last_write_checksum: sha1:a86e0c7ffa411184de3506c15bdd95c55dc4eafb
-    pristine_git_object: f6c92163aeb1f4dd62ff6dae1747a40715185673
+    last_write_checksum: sha1:8b2b92a23e4c12b4517225dbe0aaaf31e5ab3538
+    pristine_git_object: 1dbadece84d4ef916a142e6014eab4bb79a82aa0
+  docs/models/components/journalentriesfilterscope.md:
+    id: 2cee55f0b5bc
+    last_write_checksum: sha1:054a4ced5a6b2bfb339cc1c7a1a4f9c2a6129f82
+    pristine_git_object: 1cc00e470394c724aa6a7947c512f2416a12e41b
   docs/models/components/journalentriesfilterstatus.md:
     id: 328254c4059f
     last_write_checksum: sha1:3a70cec33cedb9c80e56dba77dd167fd8465bccb
@@ -2643,8 +2683,8 @@ trackedFiles:
     pristine_git_object: 7f0fb3a63b22626b50640281815793056aa7fbfb
   docs/models/components/ledgeraccountsfilter.md:
     id: 7635e5c3f5a0
-    last_write_checksum: sha1:31baa9467781fb995461c328ee6dd411f6680f09
-    pristine_git_object: f531a29dd4da73a99e1ec77367dda0756e9401f0
+    last_write_checksum: sha1:3cf9402f9391c191933fa7f34c9bff67996cd6fa
+    pristine_git_object: e5b6f3929336ecfc83680ca83d5105e92a38afc8
   docs/models/components/ledgeraccountsfilterstatus.md:
     id: 315b610a4ad8
     last_write_checksum: sha1:97e9c28927803a9fe642f1d3b817a763f3a8141c
@@ -2857,6 +2897,10 @@ trackedFiles:
     id: 121e055391ff
     last_write_checksum: sha1:c68097f986330ce5301198bf759978c90b9c4e14
     pristine_git_object: 30f00f3638a6764d829410550b41c418bdd5c531
+  docs/models/components/notesfilter.md:
+    id: 2ff1ec05f822
+    last_write_checksum: sha1:8e18e685c061c7e1a10638dd5b0b8d607bf167e7
+    pristine_git_object: e86968028945fde54bd0b7c28a92537609000b37
   docs/models/components/oauthcredentialssource.md:
     id: 12c7610801c5
     last_write_checksum: sha1:1cab993077fa421fc803b8cba1531514c71cabd7
@@ -2979,8 +3023,8 @@ trackedFiles:
     pristine_git_object: fdfeaa17156d9f65c935e0513e0fe1f6eeb952ea
   docs/models/components/paymentsfilter.md:
     id: 4ed75257c049
-    last_write_checksum: sha1:8ee070099283fd7da8e88cb3f451f15de8578687
-    pristine_git_object: 0ece77920f1420370f2da6ab9d5a11398055cf80
+    last_write_checksum: sha1:97c5a2e08f623f039c9cbea5c3c589697b2117f6
+    pristine_git_object: 421a6f228fac0619071defe5ae72c2a3faf11d7b
   docs/models/components/paymentsfilterpaymentstatus.md:
     id: 85361f4aa481
     last_write_checksum: sha1:604c3e8c7355e5f2b063adcb709ada5939a5879e
@@ -3115,8 +3159,8 @@ trackedFiles:
     pristine_git_object: 25bd8b8bf39c90951ecface7f3173b628bbdcd6c
   docs/models/components/projectsfilter.md:
     id: bb1d268c656f
-    last_write_checksum: sha1:5961efb0e9747948cc58676940a89cce6bf24a41
-    pristine_git_object: 4aeb8543e8171e5bea94481e8ca70ca0821f47d4
+    last_write_checksum: sha1:ad2a0bea5a86bc49502b91837ad8272bb4b99612
+    pristine_git_object: 9e030a2710e0d5051bf74cc96c9d5bb071e7a832
   docs/models/components/projectssort.md:
     id: 8acc59b059ed
     last_write_checksum: sha1:36a8141c219015b3e9587b612c82d1a78da67b59
@@ -3151,8 +3195,8 @@ trackedFiles:
     pristine_git_object: e30694468a5984851444291d665610c3d11ec203
   docs/models/components/purchaseordersfilter.md:
     id: f344e020666c
-    last_write_checksum: sha1:4b574dc49d2e18e42d2fdf844bd267547afd4628
-    pristine_git_object: b700aa1f1b6b48ad9c2929f82896b4c86312d91c
+    last_write_checksum: sha1:043b354a15490971d4d4da723521363495d87e92
+    pristine_git_object: 1dd7148420ac991052a4a7eb1c05face2494e3e6
   docs/models/components/purchaseorderssort.md:
     id: 81a631f73ca2
     last_write_checksum: sha1:aa1ef11f429f30bf7f4282115eab104c50810d2a
@@ -3185,6 +3229,10 @@ trackedFiles:
     id: e5cf93b59a9c
     last_write_checksum: sha1:39d0912fd4270620890e15eaa88f96611bd19b62
     pristine_git_object: cf6f175dcc30062d57d4e8ea817a848254f984b2
+  docs/models/components/quotesfilter.md:
+    id: 93f3bb187ff6
+    last_write_checksum: sha1:1c3f33c14c220e969d11e9a167ff6324a542d7e1
+    pristine_git_object: 8792d8778266e630150a3740c7cd90d0b741dab6
   docs/models/components/quotestatus.md:
     id: 0338b8b887d4
     last_write_checksum: sha1:48ebb554606fd698fcd0f38b3c368228cdab5a36
@@ -3329,6 +3377,10 @@ trackedFiles:
     id: 220131802aa3
     last_write_checksum: sha1:a69b7f72cf770074434f25e5ca1bc5bc5eb424eb
     pristine_git_object: 611e7efddfeabe821a73e8afd741b50c2af73c25
+  docs/models/components/sourcetype.md:
+    id: 618ed8957b63
+    last_write_checksum: sha1:d940c4ba19031c01771a85053bdebb73eb7de31c
+    pristine_git_object: f266e7a54544bdd85b43d0e71e883a204048fe5c
   docs/models/components/stage.md:
     id: f8b4715ddbb8
     last_write_checksum: sha1:903289aa3e81442f3a6739c4be6fec82c11c6ef3
@@ -3387,8 +3439,8 @@ trackedFiles:
     pristine_git_object: 7a10408481e3efc7419728730b328e3e2c3dbc34
   docs/models/components/suppliersfilter.md:
     id: b9da9071aec8
-    last_write_checksum: sha1:13b9ed236faf6a71104a4f806c567569786c3af9
-    pristine_git_object: 7058249e4dca89357939a86552a22c50eb8c3624
+    last_write_checksum: sha1:2289b90ba10fce6590a0ae75c4fc83c2ac46e58d
+    pristine_git_object: 6f0514ae5f13d050ca4a8c48ea83ef6033d74c24
   docs/models/components/supplierssort.md:
     id: ebcbb3bebec1
     last_write_checksum: sha1:473fe0f46076248d27cb73ccdc743e113bb2eabe
@@ -3623,8 +3675,8 @@ trackedFiles:
     pristine_git_object: d904c04e071381d595fb1ee0f2eb45c082a23bd6
   docs/models/components/updateconnectionresponse.md:
     id: 730b4d225a45
-    last_write_checksum: sha1:491cfa2185692add0c7d1de160d451bace6752ab
-    pristine_git_object: 910deb91cf127963767b8452d4b9923323b79979
+    last_write_checksum: sha1:acd19e8fb0805f9ed35d0576753145844193865c
+    pristine_git_object: 01474d1566469053e23a6913517026ed4915878f
   docs/models/components/updateconsentrequest.md:
     id: 766f26ed85b0
     last_write_checksum: sha1:2bd0778e19d6ba9b7d9133c1159b4830ecb62f40
@@ -3823,12 +3875,16 @@ trackedFiles:
     pristine_git_object: e5f173a708c36d74ef76711a53f16a0795c0bb22
   docs/models/components/user.md:
     id: 9615438c874c
-    last_write_checksum: sha1:5a309d458c210917b4f7afc59c2c98983d956612
-    pristine_git_object: e1635f549629f428d0b3ef1463114c5ea04c07df
+    last_write_checksum: sha1:857706a407addebce4b4462622f1ea460621d43a
+    pristine_git_object: f294435fc0c82627d9929b259d65a627b7ec43de
   docs/models/components/userinput.md:
     id: 99bd874e64b5
-    last_write_checksum: sha1:7b59a8065ce60c8650314143c9292fe1e047cc2d
-    pristine_git_object: ed47c51ad64ba66d1ff1dc39fa5177406972fbf2
+    last_write_checksum: sha1:867e2461caea446904c9d2aad9064e818228effe
+    pristine_git_object: 7fbf9738b32d468518c7efadb595f28511846338
+  docs/models/components/usersfilter.md:
+    id: a022f1b7e21f
+    last_write_checksum: sha1:90c1d05686cb1af6477d42962749bb3baad746b6
+    pristine_git_object: bb7f8346a2ec46a50a1f4752216e3725f1db14b4
   docs/models/components/validateconnectionstateresponse.md:
     id: 3039b79849a7
     last_write_checksum: sha1:59f576a6444978964d86218ec5ac44c4660fe958
@@ -3879,8 +3935,8 @@ trackedFiles:
     pristine_git_object: 435b265caae17123756c30600bc9fa3ee8a3eca8
   docs/models/components/webhookeventtype.md:
     id: b979b3765280
-    last_write_checksum: sha1:e6ec0b1a8cdb785d38274e74835a746dd9a57e12
-    pristine_git_object: cc9bdd2756badc3c616dc66b788a769510487915
+    last_write_checksum: sha1:044300e96f13ba0b282a89d8704e1fdd744f8141
+    pristine_git_object: 7895768dad31a264a3935f2273c88262a3e9d783
   docs/models/components/webhooksubscription.md:
     id: c88220e1de92
     last_write_checksum: sha1:076830406a24c7275b0821a3df6d4ad0a7bfb433
@@ -4853,6 +4909,30 @@ trackedFiles:
     id: a230b0038ff0
     last_write_checksum: sha1:4ba8cd23edcb8f77a5838da2e184e11162f8a552
     pristine_git_object: 6f0e5ac9aa5db023fee955a283b42ed9b8311bfb
+  docs/models/operations/accountinggeneralledgertransactionsallglobals.md:
+    id: b2bda74e42e4
+    last_write_checksum: sha1:ea0705302a831784f64bb382fe505ae69f3d7ca9
+    pristine_git_object: acbfc463928e440aaef31e984f0dcbbd2c0e1d41
+  docs/models/operations/accountinggeneralledgertransactionsallrequest.md:
+    id: c580718e8978
+    last_write_checksum: sha1:045a401fa933188b45e2d0af334bb94b8fbddc63
+    pristine_git_object: 61bd677f7b9c5f99fa8198a6a2943e5ebec60724
+  docs/models/operations/accountinggeneralledgertransactionsallresponse.md:
+    id: f51432c4cd82
+    last_write_checksum: sha1:1732980bf89f14c0d55a82eb46bdce22bb1cb3ab
+    pristine_git_object: d69ce6ad1c6469e1c999a84a286ceee9bccfccdc
+  docs/models/operations/accountinggeneralledgertransactionsoneglobals.md:
+    id: 8f9467397115
+    last_write_checksum: sha1:5ca1f4c8bef8b33511e710cd80f5a955d4af8b26
+    pristine_git_object: cee3725f0b30b89f6343e9fadcfb1be8ec098c50
+  docs/models/operations/accountinggeneralledgertransactionsonerequest.md:
+    id: 6fc8b5c7806c
+    last_write_checksum: sha1:2f1f86f702b0ed489d39656a55dc072c3f706b95
+    pristine_git_object: d467236960448b262ce73dd4f4e88b7802609fb8
+  docs/models/operations/accountinggeneralledgertransactionsoneresponse.md:
+    id: 315c0e8747b9
+    last_write_checksum: sha1:edc22173ebdd80759fed95842fbe8a4fd2c9a405
+    pristine_git_object: 25f8131f55ec601cb44ba61085d69dfaa127cbed
   docs/models/operations/accountinginvoiceitemsaddglobals.md:
     id: d37efde6f9ec
     last_write_checksum: sha1:f4c9b4b175ecd8416b9c150c27c9b60196bd0106
@@ -5363,8 +5443,8 @@ trackedFiles:
     pristine_git_object: 1339e4634cbe2792f11b60c3544b139d42fc01e8
   docs/models/operations/accountingquotesallrequest.md:
     id: aaf1fccdec9a
-    last_write_checksum: sha1:be4e586345a298377d8fac16be9e664e36d481da
-    pristine_git_object: 1905d09658b1c08ff8f3175e4e4bba6d4368695c
+    last_write_checksum: sha1:b9c48b794526ec4368b39b8f9a3369319e1b9e8e
+    pristine_git_object: 48025f84ffe666a5ef24247214ce97a22e1c0486
   docs/models/operations/accountingquotesallresponse.md:
     id: bd3493a2afa9
     last_write_checksum: sha1:82f8383a678bb6cbe10549e2762d3bdb30d1eee8
@@ -6359,8 +6439,8 @@ trackedFiles:
     pristine_git_object: a3d5942fadf3c091d252819d423b4e7d5ed0e87f
   docs/models/operations/crmnotesallrequest.md:
     id: 45cc5a467b20
-    last_write_checksum: sha1:518cf056d8024414b70bfd925a8d915ccdd68bb5
-    pristine_git_object: d9e9bf587662a41133a962bde5109481ab1d95be
+    last_write_checksum: sha1:e014c221cdfb86183c00869d39d6ca9902fa734a
+    pristine_git_object: 9469251f492322eb213c388720edda63e7ff711f
   docs/models/operations/crmnotesallresponse.md:
     id: ffe47b3961db
     last_write_checksum: sha1:9755ed54ec2263049842b8ebaf92d3bebbbd2332
@@ -6527,8 +6607,8 @@ trackedFiles:
     pristine_git_object: 072641592be4a3a44e5f0ac915c8210df67c588e
   docs/models/operations/crmusersaddrequest.md:
     id: 5d1c11dc3e55
-    last_write_checksum: sha1:2afa08bb9b6e28b8faf66736c986c477f6564214
-    pristine_git_object: 728c71cc16726559589217700697bf06235b771c
+    last_write_checksum: sha1:4a22fe1fbb1c382dfd54d6087fe09c5e26de1b5c
+    pristine_git_object: ddadf4fd4381fdb560e17599f45996afe3ecc513
   docs/models/operations/crmusersaddresponse.md:
     id: 4aecec967ded
     last_write_checksum: sha1:9583cc4ffcc620ce7d9034d10bbb9205c0663f54
@@ -6539,8 +6619,8 @@ trackedFiles:
     pristine_git_object: 840a214090231dc68b0a56ab06c05f9e499fef82
   docs/models/operations/crmusersallrequest.md:
     id: b24b28f72ce4
-    last_write_checksum: sha1:0761adb3cc4fbef2e8cc7e7bb28f7bd39cc8dab0
-    pristine_git_object: d9acb4807b808b212da755c4230af8b4dccd5f42
+    last_write_checksum: sha1:0a5cb86f7a51e8eca163195d5c3e4618be30a388
+    pristine_git_object: 34f3a1a1e102b478b61d12e14791dd24682a8ed6
   docs/models/operations/crmusersallresponse.md:
     id: a56230bdc919
     last_write_checksum: sha1:f60bda7b88e729394b0000e788a62f00598f42d1
@@ -6575,8 +6655,8 @@ trackedFiles:
     pristine_git_object: f457cec2168a6799371a84c44b0d3c39a3efef8b
   docs/models/operations/crmusersupdaterequest.md:
     id: fc3385547ca4
-    last_write_checksum: sha1:a44e78229f053f04ea9c569d7d762175fd864a94
-    pristine_git_object: 1a8ca4fa50f32c48b5cc53ab4dd6ca34811db3e3
+    last_write_checksum: sha1:325d19b538b383abed0e76fcd656a79ab717b56f
+    pristine_git_object: 105d3ca091ee112b56f534e766a7f82e8bae03a1
   docs/models/operations/crmusersupdateresponse.md:
     id: 5981758b0cf9
     last_write_checksum: sha1:4abca79b242fb7a06591ae990a5e4c4dbe05c8f8
@@ -8277,6 +8357,10 @@ trackedFiles:
     id: ffb38e069dec
     last_write_checksum: sha1:a8beea44c0fa7c3da41740397a8f3b83fb54e344
     pristine_git_object: d52e5accdc0971f0a83ac915c6e8743545af001e
+  docs/sdks/generalledgertransactions/README.md:
+    id: 08248e876436
+    last_write_checksum: sha1:79f37e64d5549587bc44983f4f960a138e6ea099
+    pristine_git_object: 67ff842d5cea214f44e9516ccd190c4f190374ab
   docs/sdks/invoiceitems/README.md:
     id: 546dbc84e138
     last_write_checksum: sha1:69b33c6c5d11b59b1fcb35ef506cc589f3e81654
@@ -8315,8 +8399,8 @@ trackedFiles:
     pristine_git_object: 6be5e1cb350041d9da1a8c061572ca69694bc4de
   docs/sdks/notes/README.md:
     id: 541aead547ce
-    last_write_checksum: sha1:c531f7b32d33aee6cd9ff426a06b9f2496fe185c
-    pristine_git_object: dc09d35eea04281561e7d12ab56a952f44afcec3
+    last_write_checksum: sha1:803e1293006740534b7c098067a7175c17b905bb
+    pristine_git_object: 8c98917dfe9c22e67cf5422d390c0f85197e5387
   docs/sdks/opportunities/README.md:
     id: 28cc90122db0
     last_write_checksum: sha1:0455c9e961f17b3f2e649167f808b972f2b3363e
@@ -8359,8 +8443,8 @@ trackedFiles:
     pristine_git_object: bd0732764504f7714bdc1f8d7b33b27ce3037c1c
   docs/sdks/quotes/README.md:
     id: 05d5cafc463e
-    last_write_checksum: sha1:6d9be45d263bc4a3207cae17b72daaef1ad2de5f
-    pristine_git_object: d4de6e0041019a9377373f6a98f2fd639c98ef26
+    last_write_checksum: sha1:5b59daf4f451c7cde61398c9efaaafe285040876
+    pristine_git_object: 67bb97151c06b2023bc4e9ae118b6662d4989171
   docs/sdks/refunds/README.md:
     id: 451a9838a921
     last_write_checksum: sha1:c0101ebbf5dadcc1d9619e2ad0b676ace5c78286
@@ -8403,8 +8487,8 @@ trackedFiles:
     pristine_git_object: 5e9bb2401574f07f3d97055cdb54e6354925e2c4
   docs/sdks/users/README.md:
     id: 5d80027045fe
-    last_write_checksum: sha1:218b1929931950f27228d0fde8ea0052c12a3ecf
-    pristine_git_object: da98863d41ae9591bee1c3ab6cb0b3ec5312a39a
+    last_write_checksum: sha1:5b279b4bc8dd5f202fda56982ee36b8bbe51cb17
+    pristine_git_object: 5e09e27d4e438e8b8850bcead46c0e6123afcc7d
   docs/sdks/validateconnection/README.md:
     id: 8755afabedd1
     last_write_checksum: sha1:ad1c18150106eccdd69043e33a02026a4f7baf90
@@ -8439,12 +8523,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:bbf45f32f51d2ae84474b22a3daab94fb8c82e8b
-    pristine_git_object: 27ec975a2c075c91603a075373e276578671f944
+    last_write_checksum: sha1:5b4d7b57ccf7a2d12d4ce3784519195bb4a48ae9
+    pristine_git_object: 1301e43c6f148079b8b1e7e53bb2e89bab184243
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:7f3004d5cac69a907e5af9ce9a367bde87bebb1f
-    pristine_git_object: b43c5309266cc0150d5056e25bf014c076ee84f4
+    last_write_checksum: sha1:bbd128cb0e9e2c07aca8891c12a56720de26ae55
+    pristine_git_object: 70021b41e3145af61f492a24bedeba6283540456
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -9431,12 +9515,12 @@ trackedFiles:
     pristine_git_object: bf03f9ad8e67fc2475cb8c0aebe612d2abc94c17
   src/__tests__/mockserver/internal/handler/pathgetfilestoragesharedlinks.go:
     id: 968e8f69a8d9
-    last_write_checksum: sha1:d604b0bbc7f7e284947eef8884dcb8c0f5132ae5
-    pristine_git_object: aaf843823fb8deb4e1976fd434a1daca108baa4d
+    last_write_checksum: sha1:f7fc5c102d8ed4301a1293888c08ade7a851f012
+    pristine_git_object: b5a2d5bce6cae37887075e23357cedcfd4d3589a
   src/__tests__/mockserver/internal/handler/pathgetfilestoragesharedlinksid.go:
     id: 9b11ed3a9a87
-    last_write_checksum: sha1:cfdf99f4cb63d347828ba2c641935379628fca23
-    pristine_git_object: 4569f9d37902d3f0b182addd7886c38ce845edc7
+    last_write_checksum: sha1:af2d30b31bbe3080e50bcf0bb53387f82bfdc63b
+    pristine_git_object: 1f706a55fde31d8ac83106258bab0a69154d6e52
   src/__tests__/mockserver/internal/handler/pathgetfilestorageuploadsessionsid.go:
     id: dfc4c5b8f796
     last_write_checksum: sha1:b17ecf1a5f54fc5311d4591ac257c66ff9aaf2f8
@@ -10295,8 +10379,8 @@ trackedFiles:
     pristine_git_object: 372884e9569079e72f5f54ef2bd67b5dd442fec7
   src/__tests__/mockserver/internal/sdk/models/components/billsfilter.go:
     id: 39413954b7d6
-    last_write_checksum: sha1:524cc46f5c2e80bf5de89281e5d7ca5da5f4ea6e
-    pristine_git_object: 665d5ea39d6f82f1b5ae18a7c4b809887b01c8a4
+    last_write_checksum: sha1:8b0314a2aae21e0d44d108cd7e611c81dc5a50be
+    pristine_git_object: 4bf6977f2f71cf7f62152329035cdd3f091faf3b
   src/__tests__/mockserver/internal/sdk/models/components/billssort.go:
     id: 41e23e3eca57
     last_write_checksum: sha1:86089904e203c275d63432830c6f7512bb3db283
@@ -10363,12 +10447,12 @@ trackedFiles:
     pristine_git_object: 3bb45c316e8df7ab353b08e0772412e7ee498096
   src/__tests__/mockserver/internal/sdk/models/components/connection.go:
     id: b5a30a9a99b7
-    last_write_checksum: sha1:2b158ab941f3b10d9d6219a90e4471ba4968aa0f
-    pristine_git_object: becfd028ce23582cef88ff2935ce02ca062c424b
+    last_write_checksum: sha1:6716b4e36d39530a45a150282bfe11139c92dfac
+    pristine_git_object: 716ff655c58527c5e6c45f3534a7cb29fbc2aae6
   src/__tests__/mockserver/internal/sdk/models/components/connectionhealth.go:
     id: 0ee3f410a08f
-    last_write_checksum: sha1:de096dc042d6e631767af97ce9c973333e9daf62
-    pristine_git_object: 4ef5bf4b634fbb4a1256e5fda3e7bd6279d8f91a
+    last_write_checksum: sha1:52d824f5d5cf5a56e47d81cdfad445cdc3a79ba0
+    pristine_git_object: cdcdb5b8ff05a55f096e9dd70009156a8e87b995
   src/__tests__/mockserver/internal/sdk/models/components/connectionimportdata.go:
     id: 62c0ef543955
     last_write_checksum: sha1:6b8f94cfc2786ed2a5ba9f6353f94782ca41ab10
@@ -10707,8 +10791,8 @@ trackedFiles:
     pristine_git_object: 04500aa718ce950cd90d626cb2c177aaec4d1e25
   src/__tests__/mockserver/internal/sdk/models/components/creditnotesfilter.go:
     id: b12754c29697
-    last_write_checksum: sha1:7d6d3c1a47523d3aac9131a00255729eafceed53
-    pristine_git_object: 6aa8a908e6f4fbfee6b4eff4d2b9bce7535f22dd
+    last_write_checksum: sha1:237cd051dc8fd6a149f0e8f3e90adc49b10150c1
+    pristine_git_object: 50895461091adda88aebf4792a5abb658a43af10
   src/__tests__/mockserver/internal/sdk/models/components/creditnotessort.go:
     id: 24307e41eac4
     last_write_checksum: sha1:3931556fc3c761e33d0e9d05ce75a9d1852ff373
@@ -10727,8 +10811,8 @@ trackedFiles:
     pristine_git_object: f12ecfc7822170824731bc2f5f10e0ee1e473cae
   src/__tests__/mockserver/internal/sdk/models/components/customersfilter.go:
     id: b7461bbded35
-    last_write_checksum: sha1:06bf166ffd2ab6fc837e10f7c057df975768b2fa
-    pristine_git_object: b65fd2d6e9e4262d41d30650acc7eb16cc61a745
+    last_write_checksum: sha1:e93c43f519c3cac7bf15be31973709575ae9b3f3
+    pristine_git_object: e7c769167b2d31e26a2f49288a1bb93c568ee669
   src/__tests__/mockserver/internal/sdk/models/components/customerssort.go:
     id: 7b1a6727e8ae
     last_write_checksum: sha1:5d53b43149409bc2cf9f16cd127b5e1afdda8582
@@ -11155,8 +11239,8 @@ trackedFiles:
     pristine_git_object: 37afec0ef470652109f8433f1ccf98a828202e0a
   src/__tests__/mockserver/internal/sdk/models/components/expensereportsfilter.go:
     id: 563a4ea587aa
-    last_write_checksum: sha1:43ea0c1efc4bbedcbf761ad34b5ce5da8c0fc599
-    pristine_git_object: 394d14ef82070ecfa4c33ceb0b83930a3cde60a5
+    last_write_checksum: sha1:35ec276b87a977a34fe09d5c2658d39a0a75cee9
+    pristine_git_object: cc4305e96f9d1a2482cbb10afedfeb71fa1f0497
   src/__tests__/mockserver/internal/sdk/models/components/expensesfilter.go:
     id: 4bb1652122db
     last_write_checksum: sha1:1b19944351c06c432f336b7fb7cb5bed9bdc60f8
@@ -11197,6 +11281,22 @@ trackedFiles:
     id: 38c3bb1b253b
     last_write_checksum: sha1:42d48d38e138391a36d3f6e64b6627e48af3c642
     pristine_git_object: fd937cc7b02ee632cc09b85b87f9346a83158b3c
+  src/__tests__/mockserver/internal/sdk/models/components/generalledgertransaction.go:
+    id: 15346647f739
+    last_write_checksum: sha1:ce09939e5506e235282201206d280a066c3c6dbf
+    pristine_git_object: 5801ebf1d66719fb94df38b3103cf4216475c24e
+  src/__tests__/mockserver/internal/sdk/models/components/generalledgertransactionlineitem.go:
+    id: c1ca69d8e28d
+    last_write_checksum: sha1:faa6f86359868ebd012f62616f006b0f5dd8bef8
+    pristine_git_object: e7257035ad7d9e7194b86d8086e8544071265f9d
+  src/__tests__/mockserver/internal/sdk/models/components/generalledgertransactionsfilter.go:
+    id: 6e8888ec895d
+    last_write_checksum: sha1:47a4d277f7e09bac65abfe575087b7fabd6c9a91
+    pristine_git_object: 3ef148ccd872f7753ebb94c416d238c253543e3a
+  src/__tests__/mockserver/internal/sdk/models/components/generalledgertransactionssort.go:
+    id: f02cc70c62fc
+    last_write_checksum: sha1:6f1fefb129df91b887e483d896af6d23cee187ae
+    pristine_git_object: 6a82651b2cc1930db11095b6300f2b7ff2c104dc
   src/__tests__/mockserver/internal/sdk/models/components/getaccountingdepartmentresponse.go:
     id: 1f95828c29b0
     last_write_checksum: sha1:bc1161fbf9cbcca507d537aeef37be2cf04cae96
@@ -11549,6 +11649,14 @@ trackedFiles:
     id: ab7a17ece8f8
     last_write_checksum: sha1:634b6bfdeced45518f059ca8c50f571a17001cab
     pristine_git_object: 3d4e55d680b6b07a315b63f7d4a268e4f509c7a3
+  src/__tests__/mockserver/internal/sdk/models/components/getgeneralledgertransactionresponse.go:
+    id: 23f2f7431a3d
+    last_write_checksum: sha1:af52d1abc147271a3c63aa37ba1bcecc548ee5cb
+    pristine_git_object: d1d4ec1d895b6244e2e264d19e47f9756bf7aa74
+  src/__tests__/mockserver/internal/sdk/models/components/getgeneralledgertransactionsresponse.go:
+    id: f79b92e0e7cf
+    last_write_checksum: sha1:2bb2d756d4fa44e5637dbf39394a62147a675197
+    pristine_git_object: 2f2a9e20c58b3c49442310c289b64329f3706c84
   src/__tests__/mockserver/internal/sdk/models/components/gethriscompaniesresponse.go:
     id: d08165c8ee8c
     last_write_checksum: sha1:a5dd35408d9c3e9e45d9d3c14e0eeaecfad2e4d7
@@ -11811,8 +11919,8 @@ trackedFiles:
     pristine_git_object: a2b4beab39b8a393ded50ec2f860146fae81e382
   src/__tests__/mockserver/internal/sdk/models/components/invoiceitemsfilter.go:
     id: be29beb06fc5
-    last_write_checksum: sha1:3bf7a86d71bc9cdf9f56bed603fc068f894f53ff
-    pristine_git_object: 46820bf080b2b1066de81404f374ffbda936be6b
+    last_write_checksum: sha1:f2d4433883afe84343f41eaecdffa2b983b74412
+    pristine_git_object: fb334776d2b1c2c9b6fb882d2e48237c6c719c5d
   src/__tests__/mockserver/internal/sdk/models/components/invoiceitemssort.go:
     id: 688f9d9c0e09
     last_write_checksum: sha1:f3b75cbd4b6b93b202c9a412dbbf4ca41f2a46a5
@@ -11827,8 +11935,8 @@ trackedFiles:
     pristine_git_object: 26803e8fe78dac66e1baedae7c4fae310af41ce3
   src/__tests__/mockserver/internal/sdk/models/components/invoicesfilter.go:
     id: 7bfdf1dd7d6d
-    last_write_checksum: sha1:5ee636f7d44f936d056f2c56b71d821529c5b9e1
-    pristine_git_object: 82ef602b7a6137eafb08b314a038d3747cdac849
+    last_write_checksum: sha1:5612e9ab8861e013248efc92289fa97dbd398484
+    pristine_git_object: cede94ff15722064efa9e667e337ca1b64f55d44
   src/__tests__/mockserver/internal/sdk/models/components/invoicessort.go:
     id: b1e935d56e55
     last_write_checksum: sha1:1300c59a2abec4327c07ce6d6e7b157231782f42
@@ -11847,8 +11955,8 @@ trackedFiles:
     pristine_git_object: 5e0cfd01c9d63c6a0aae466775692835b97b274d
   src/__tests__/mockserver/internal/sdk/models/components/journalentriesfilter.go:
     id: 5ecc39276546
-    last_write_checksum: sha1:20dff02bea2579146e82ad7087267252cefdef0d
-    pristine_git_object: 7ede5dbbec408d32e7bcfcff574d0c190f04fb4a
+    last_write_checksum: sha1:8baf6aace3cf23fe620afb1e091440c7bfe0d7e4
+    pristine_git_object: 6fc850646298f99b7ba5fc96ca40ac7abb58137c
   src/__tests__/mockserver/internal/sdk/models/components/journalentriessort.go:
     id: 8799a2a9f032
     last_write_checksum: sha1:17ae0c7a56cce09acddab2520b48830f50f26ba2
@@ -11883,8 +11991,8 @@ trackedFiles:
     pristine_git_object: 934a26cc12913f5242fd3ce97141ecdb96c9fa45
   src/__tests__/mockserver/internal/sdk/models/components/ledgeraccountsfilter.go:
     id: 69a7dfc1565c
-    last_write_checksum: sha1:3e217828b845bfb3e129d1ee3e8bda5d465e9cad
-    pristine_git_object: 57e7136b6f316cf5b54bdcf48f781f7d2ab09b70
+    last_write_checksum: sha1:1e88928c1ef8bf18e00a7c105bf113d3f6b58a4c
+    pristine_git_object: 17bf34064d620e2157aee7d06b06fb0904511fed
   src/__tests__/mockserver/internal/sdk/models/components/ledgeraccountssort.go:
     id: 33cd3dc9dde9
     last_write_checksum: sha1:7bfc06c99666851ca6b4a80b8f7a9a59d87bb20d
@@ -12037,6 +12145,10 @@ trackedFiles:
     id: 551d3d10b5b7
     last_write_checksum: sha1:36dcb4da64bf25118bfb5469c4d74b6ffe7b0f20
     pristine_git_object: 6a4f87cb0ca99cd16f12e6e19831181019a8487d
+  src/__tests__/mockserver/internal/sdk/models/components/notesfilter.go:
+    id: 40f6222d170f
+    last_write_checksum: sha1:14522e6658c83a3c6197fd9c0f7ac84aeceea91c
+    pristine_git_object: 0bce7401378bc3d9b4a5811cd3b3b366f8e8f664
   src/__tests__/mockserver/internal/sdk/models/components/notfoundresponseerror.go:
     id: f79a254a3776
     last_write_checksum: sha1:c5790da8d90f4abbfaacfac76faec80fd482dec8
@@ -12103,8 +12215,8 @@ trackedFiles:
     pristine_git_object: 49af23f03aeda94b190296f03fa51b835c0e68c0
   src/__tests__/mockserver/internal/sdk/models/components/paymentsfilter.go:
     id: 590562d0c49c
-    last_write_checksum: sha1:0cb6f9f09c21cf1d6ecbca8e4ee6400ea70d51e9
-    pristine_git_object: f40f3be88e84dcd7cb54e5c5734471cd3f150cc0
+    last_write_checksum: sha1:d86e2188225801e374720939229bd40f17cd8a34
+    pristine_git_object: 9c23fd248f9fc81cdd33c6aef5b29fe863a438c8
   src/__tests__/mockserver/internal/sdk/models/components/paymentssort.go:
     id: bcfae73248bd
     last_write_checksum: sha1:69e081443019ad99cbfc5df22142eb6177404742
@@ -12175,8 +12287,8 @@ trackedFiles:
     pristine_git_object: 58a12fe7313fb5cd56c873a7e40a9c266652baa9
   src/__tests__/mockserver/internal/sdk/models/components/projectsfilter.go:
     id: 3108d2b47081
-    last_write_checksum: sha1:e9e3b6865400dd222c4904836a5728c7ccf052c5
-    pristine_git_object: ff46c23a043236b9455c8086623424abf4ca16ec
+    last_write_checksum: sha1:d2a4f28d6b5c7e505b187e18430394d17435286d
+    pristine_git_object: 304d918a5ed5c8e02de47e02344f0ee797e8af4a
   src/__tests__/mockserver/internal/sdk/models/components/projectssort.go:
     id: 099af4807a80
     last_write_checksum: sha1:c215bd0c5425915ab0e9a1567910242fb8baeae9
@@ -12187,8 +12299,8 @@ trackedFiles:
     pristine_git_object: a6c18c70112acfb2739954c9b9ae444ecc196ca4
   src/__tests__/mockserver/internal/sdk/models/components/purchaseordersfilter.go:
     id: c041c8b3a67d
-    last_write_checksum: sha1:58a6e12c53ebb4c1474a67ec2accbfe10168b75a
-    pristine_git_object: 7a62d5bf832deed9ed8264a5b653766f51079466
+    last_write_checksum: sha1:533da491d398dd4f20d5b679a68be4303e9e3403
+    pristine_git_object: 3a3749c0a4f43080df7c08b2a1f0f3355be24080
   src/__tests__/mockserver/internal/sdk/models/components/purchaseorderssort.go:
     id: 4be983d05289
     last_write_checksum: sha1:e057638e0eea03e007d8fe0803168c11319d0fec
@@ -12201,6 +12313,10 @@ trackedFiles:
     id: 1d4c35f298df
     last_write_checksum: sha1:f801fdf37f8a16492eb76b4e91aebc75574d91dd
     pristine_git_object: 32b0cc7e0b8ea9896430c03aeece607739d7492c
+  src/__tests__/mockserver/internal/sdk/models/components/quotesfilter.go:
+    id: 17827af9d27e
+    last_write_checksum: sha1:59afc385b9450f572d36b03b772e72b540b18f44
+    pristine_git_object: 8e86e7390b364e795d6c220d301d86b03af8e3f8
   src/__tests__/mockserver/internal/sdk/models/components/rebilling.go:
     id: "688334519610"
     last_write_checksum: sha1:45fa650a8d9de6ffe348d05beb6d5c289618268a
@@ -12255,8 +12371,8 @@ trackedFiles:
     pristine_git_object: d60b875f3e157da4fa0ee295ce0c7bade69cd465
   src/__tests__/mockserver/internal/sdk/models/components/sharedlinkoutput.go:
     id: 5dfd53a9e25e
-    last_write_checksum: sha1:a73008b0aff38eae1c352b0c5f88a376c9257255
-    pristine_git_object: 7781eb1203751f996c853823692bcfe266173565
+    last_write_checksum: sha1:d5045e078e4baa97b35b0ac3f62e8a78bf169298
+    pristine_git_object: e8165477623ebc35bb7ee6f12a705804f68e2934
   src/__tests__/mockserver/internal/sdk/models/components/sharedlinktarget.go:
     id: 9f046dcded4a
     last_write_checksum: sha1:e47562b3b7e671d5fdb6911446d94400bb653c3d
@@ -12295,8 +12411,8 @@ trackedFiles:
     pristine_git_object: 3ee430bbc18ba429be002b05c5a9798cb95f4bc6
   src/__tests__/mockserver/internal/sdk/models/components/suppliersfilter.go:
     id: 0629ddc7d9ff
-    last_write_checksum: sha1:b2ff5ba70f35c07344fcd48263e837f12e873763
-    pristine_git_object: c37c18f1ff9d582b8870180952613a3f482929dd
+    last_write_checksum: sha1:862b7f10387538d90ba8c5721906f633ecff6142
+    pristine_git_object: 5ad4d1685a45fa8a789587c6e51cb53b6c47f8e6
   src/__tests__/mockserver/internal/sdk/models/components/supplierssort.go:
     id: ea8ca018a0c1
     last_write_checksum: sha1:55aa1d2f273ded4fa458d3a4e80ba2489584ef85
@@ -12623,12 +12739,16 @@ trackedFiles:
     pristine_git_object: 8265f3e6b8210447984ac2a9447e02ed7d319bd7
   src/__tests__/mockserver/internal/sdk/models/components/userinput.go:
     id: 92a1a69a666a
-    last_write_checksum: sha1:6baabbfc087a129382c57af89069a1cd1ee94e41
-    pristine_git_object: a3af04bc34e665d1a25a303c9e3affb6e6442b14
+    last_write_checksum: sha1:9305f4366311c334754895f5e132abfdfa735ea0
+    pristine_git_object: 674ebb2852c61b666857cbdd3af29145c2e2bfc1
   src/__tests__/mockserver/internal/sdk/models/components/useroutput.go:
     id: abe9a661a68d
-    last_write_checksum: sha1:daa5280c8dfe97c3ec1f5cfeef0860f5c22dafb3
-    pristine_git_object: fc2a843043a80f73a9015784eafd60e3546f25af
+    last_write_checksum: sha1:f7766c80dd5da961ed071ea0fae9395559110438
+    pristine_git_object: 0d4cc26438339dba2d8de57120188e14b5b91311
+  src/__tests__/mockserver/internal/sdk/models/components/usersfilter.go:
+    id: 8595beb896fa
+    last_write_checksum: sha1:5d5cd438620ef5db3bd8526822a4bfb0f03d5610
+    pristine_git_object: 789f2f8d0fe3a4442c590c943886172166cbc5ba
   src/__tests__/mockserver/internal/sdk/models/components/validateconnectionstateresponse.go:
     id: 5ccc118fc2c2
     last_write_checksum: sha1:cf6baa0feb87554add1566d43be480a460816a30
@@ -12647,8 +12767,8 @@ trackedFiles:
     pristine_git_object: f8db6af45f837fdd58c8ff3709b994060ccf4e60
   src/__tests__/mockserver/internal/sdk/models/components/webhookeventtype.go:
     id: 0fe44aa86051
-    last_write_checksum: sha1:e11fbec91fa8f13f27ea7d089e719ee8e567f00c
-    pristine_git_object: bedbde1b762caa51919c0316bb3cdad08af2322e
+    last_write_checksum: sha1:c637028afce1adfa826b2d6c43ed5853a197135d
+    pristine_git_object: 3fc587239c2e30dc9ffe3f7d628e980c4d6e9e6a
   src/__tests__/mockserver/internal/sdk/models/components/webhooksubscription.go:
     id: 7d3283b99416
     last_write_checksum: sha1:bbbef08f93d23bc70fd984176200ee8531783218
@@ -12949,6 +13069,14 @@ trackedFiles:
     id: 8a5376060595
     last_write_checksum: sha1:bd38e2da5950a4884d4c8d8d684e8b8cafb959e9
     pristine_git_object: 5d7b2218998fda6a8289fcfcbc4642480200b161
+  src/__tests__/mockserver/internal/sdk/models/operations/accountinggeneralledgertransactionsall.go:
+    id: 74e337029345
+    last_write_checksum: sha1:48f8bfea5e6e90ddf3363c64dd5f28610996dc5d
+    pristine_git_object: 7c1d472b6bafc34a5c64aa0c93eced96f49af276
+  src/__tests__/mockserver/internal/sdk/models/operations/accountinggeneralledgertransactionsone.go:
+    id: 096f7e7bed8e
+    last_write_checksum: sha1:4b8cff81f66c7545255f20c1ece9e00fd5797251
+    pristine_git_object: 7f9214c73726dda1b28a59101672f114767e3c4c
   src/__tests__/mockserver/internal/sdk/models/operations/accountinginvoiceitemsadd.go:
     id: add1987a8062
     last_write_checksum: sha1:86d3977f6d7897749728b4bea30ae3efe91fe4bb
@@ -13119,8 +13247,8 @@ trackedFiles:
     pristine_git_object: 8fd953ccb134dd3a36e67f56b61f93a9ee653657
   src/__tests__/mockserver/internal/sdk/models/operations/accountingquotesall.go:
     id: 0a56ecc22daa
-    last_write_checksum: sha1:b4177ceb749ab7da5d49621d018e19439a176690
-    pristine_git_object: 25a06ee831297fb7036ace1cc607ff434145e490
+    last_write_checksum: sha1:28befe80cf6676f7d3190d311483a61a014ad162
+    pristine_git_object: 9f03e9458c6be489ac6e1408d1bfeefda7248239
   src/__tests__/mockserver/internal/sdk/models/operations/accountingquotesdelete.go:
     id: a7744f1fc6ff
     last_write_checksum: sha1:c4f067220393358281038709bef6a5ca4cdb896e
@@ -13451,8 +13579,8 @@ trackedFiles:
     pristine_git_object: 50ad4f6fdfcce64aeb1306be5d205d52f7bbc2ea
   src/__tests__/mockserver/internal/sdk/models/operations/crmnotesall.go:
     id: 1a8450e312dd
-    last_write_checksum: sha1:ce6f69959dcf57c145ab3b83b00bf20c6b7a521c
-    pristine_git_object: 30cfe45c30e8b4c5d8b59985ff08a805073fc164
+    last_write_checksum: sha1:458ecfec16c29c82c1596aa538a514b7bfeee6e9
+    pristine_git_object: e9a49e754a218817f15289e829ce831c4ba2ba09
   src/__tests__/mockserver/internal/sdk/models/operations/crmnotesdelete.go:
     id: b69e330bd2bf
     last_write_checksum: sha1:8dbb4a6a6cb912ffa204058f1d4a4c951f041c9b
@@ -13511,8 +13639,8 @@ trackedFiles:
     pristine_git_object: 9c9e0ba3b50ba96192422c13d852ed7055e5b6ee
   src/__tests__/mockserver/internal/sdk/models/operations/crmusersall.go:
     id: 1c82bd7b85f2
-    last_write_checksum: sha1:5ff09539b16819e1ce3dcd8d4410760a86419222
-    pristine_git_object: 75032d25631f7700635eae7e97dbe21183ca5a66
+    last_write_checksum: sha1:346b6a9e19e65641473a018335b0d92e76c289ad
+    pristine_git_object: 532108cfeab40abaedf1c3fe5c5dc1adaf9698e7
   src/__tests__/mockserver/internal/sdk/models/operations/crmusersdelete.go:
     id: 19b2fb374aa4
     last_write_checksum: sha1:9a287db1949dad03ca8e71e203ba92b3fbe3678d
@@ -14155,8 +14283,8 @@ trackedFiles:
     pristine_git_object: 8940299eec61caa3ba144bfe24741f043cf17265
   src/__tests__/quotes.test.ts:
     id: 638f7eb95366
-    last_write_checksum: sha1:5751f6908e6e5ae77ee7af762016aaa2d8c267a0
-    pristine_git_object: f8744a3da78cee7cbf6c61cfea61aecbe5c71761
+    last_write_checksum: sha1:76c24a2087edcb2b6ef659116e93e1dc6cd0e384
+    pristine_git_object: f9ddc70a2955f53f30a509fc262b60e50825cd18
   src/__tests__/refunds.test.ts:
     id: e5c1ca28889a
     last_write_checksum: sha1:80de793783125b9db3c3d0166302988574cb65a0
@@ -14239,8 +14367,8 @@ trackedFiles:
     pristine_git_object: 7a1a72409825c3372b3d04c9cdd4ac720d86e5cb
   src/funcs/accountingAttachmentsList.ts:
     id: 1a6e8a670906
-    last_write_checksum: sha1:c6a4edb525ff515a64bae3d7452491eb19be935e
-    pristine_git_object: 741e4e0c1340dd8702963648252e551c21595d41
+    last_write_checksum: sha1:11fc8d3b67c2925f53cb9edb41098cfdea6ed075
+    pristine_git_object: 3a56a53e7c876840a005dd59842211ce13b4f571
   src/funcs/accountingAttachmentsUpload.ts:
     id: 5b9c3ddc6d0d
     last_write_checksum: sha1:5546baf841ffaefabf9b412cec3ca6096042352d
@@ -14263,8 +14391,8 @@ trackedFiles:
     pristine_git_object: 8e94a8b1c325fcbe11d5ae7a5f69fe05272e028f
   src/funcs/accountingBankAccountsList.ts:
     id: 53928de62bdd
-    last_write_checksum: sha1:6e660bc944157449f4a2356d02ebb787c473f172
-    pristine_git_object: a1c28dd83bdd9368953c5480a98bc18032fdc01d
+    last_write_checksum: sha1:296da2bddbc81fc3440d28b7c62f5d1e489f1e51
+    pristine_git_object: b00b4e478764a4dfb560124e47f78893db237d6c
   src/funcs/accountingBankAccountsUpdate.ts:
     id: c3849ce3963e
     last_write_checksum: sha1:d76c5c7911bc6aa0456376c9739e3105e2061761
@@ -14283,8 +14411,8 @@ trackedFiles:
     pristine_git_object: dfc07c5bb9cd108ec34ac86497e0bd93f2fe4754
   src/funcs/accountingBankFeedAccountsList.ts:
     id: 14cc89974681
-    last_write_checksum: sha1:70178e62015f3bb8cd409b04c5110319ddc1dd88
-    pristine_git_object: 7b2ce39010fcd9010f739f93f4c952f73200ac19
+    last_write_checksum: sha1:dda60de1dc837618404ec05c487d92c6cf4b78e3
+    pristine_git_object: 48284ce2f6510be86facaf16b8acc3f7c5783ba9
   src/funcs/accountingBankFeedAccountsUpdate.ts:
     id: b11fee9c581a
     last_write_checksum: sha1:2a57fa8075074eddec12c15441cf35714014e501
@@ -14303,8 +14431,8 @@ trackedFiles:
     pristine_git_object: 65ef8af0363a24a808d070b0d66a30533b4d31e8
   src/funcs/accountingBankFeedStatementsList.ts:
     id: a87210d97b1c
-    last_write_checksum: sha1:8fd091682d945b8dac2d8124a44a9b3813e63400
-    pristine_git_object: d6514ef5dcc2708a25637303b4a07bfe6e6ce55c
+    last_write_checksum: sha1:65ca10a3c29cb2dfdd66405e4aa33cec9d8dbfa1
+    pristine_git_object: 4f39ae6a112759d8c13e1735c52688afb9026c93
   src/funcs/accountingBankFeedStatementsUpdate.ts:
     id: 96e1706c7cca
     last_write_checksum: sha1:f59865b5291dcaf145084f8260e7c96f2f804e0f
@@ -14323,8 +14451,8 @@ trackedFiles:
     pristine_git_object: cfe8e314d4f35312b216f834737e45a619582340
   src/funcs/accountingBillPaymentsList.ts:
     id: 241fb04ba6bf
-    last_write_checksum: sha1:e7101d0aabd5693e75855c7865a1316da41c0870
-    pristine_git_object: 9a3675fa0977b2402ea271bb2eba3199d2307d3e
+    last_write_checksum: sha1:b5eafb91a3d578cbb25542572b58d4e62d52f713
+    pristine_git_object: 2e3cb39141c1b2be0603ca2017bd75d3179e6484
   src/funcs/accountingBillPaymentsUpdate.ts:
     id: c94beed5e823
     last_write_checksum: sha1:c637b0981f123d8a30da292f0dcceac21b16526f
@@ -14343,8 +14471,8 @@ trackedFiles:
     pristine_git_object: 8c14b5f88595cb30289bcc772c6acab96bd15f1d
   src/funcs/accountingBillsList.ts:
     id: 74e1147ef139
-    last_write_checksum: sha1:bcd79de612565c16805642a8c86d553f330424e3
-    pristine_git_object: f447a458843e063656df7235311e2439d8587bb6
+    last_write_checksum: sha1:494fec8260f5842c67c21670f096d44f1b38f827
+    pristine_git_object: de3e2038f01934b745a7b7d0979e4a790df75902
   src/funcs/accountingBillsUpdate.ts:
     id: 4411c4358f28
     last_write_checksum: sha1:fc9e009d2dd3a1dc11b8ea4c56f30b4a575ca6dc
@@ -14355,12 +14483,12 @@ trackedFiles:
     pristine_git_object: 3712e5454ecdc4bb18719c2f9ef322bc676788db
   src/funcs/accountingCategoriesList.ts:
     id: 90ab1cceaa1a
-    last_write_checksum: sha1:a8952afa681afd989b9297548ebca568afaa20ab
-    pristine_git_object: 2c2aeee0ebc058a47a3a1ecbd71f6a122785f0ec
+    last_write_checksum: sha1:a79a3183c8ad7b716b14bcb2f47c3372f40aa97f
+    pristine_git_object: 540ffe2241e1a32bf20aaf8f4f8e0e4cc4ef98a4
   src/funcs/accountingCompaniesList.ts:
     id: 9b22221f9f4e
-    last_write_checksum: sha1:36ed7c76fb3bec32876503680d3338ce2a734420
-    pristine_git_object: f2c192b833c7c94e26153d38f2d96ca270071c09
+    last_write_checksum: sha1:d4de3c7977b8401f6b7e5ea02964101f1b0ffc2c
+    pristine_git_object: 26a43e82f6e519a91671bdb746a1c51c9bbcf08d
   src/funcs/accountingCompanyInfoGet.ts:
     id: f566564fd590
     last_write_checksum: sha1:ff2b491818040ca1def0d86ec240ca0545ea6def
@@ -14379,8 +14507,8 @@ trackedFiles:
     pristine_git_object: af42c0cfbcd5b278c5d05099505187b434803c38
   src/funcs/accountingCreditNotesList.ts:
     id: 9248a0ccb517
-    last_write_checksum: sha1:97233dae998501e124a7e111532a839fd5af4914
-    pristine_git_object: 99bd540011685d31fd5a97dec6efbe544f7a6918
+    last_write_checksum: sha1:cffe8a207660eef35df75b1621eddab7707a4273
+    pristine_git_object: 63551cc415f43a4c473343ebd06dbee05768def0
   src/funcs/accountingCreditNotesUpdate.ts:
     id: d4bd1561cff1
     last_write_checksum: sha1:f93ac4e11c86849a640f40248aabd3302cad020b
@@ -14399,8 +14527,8 @@ trackedFiles:
     pristine_git_object: 1df46463fd400bea8d9bb3e68a2530b3ef458db6
   src/funcs/accountingCustomersList.ts:
     id: 690983eb674b
-    last_write_checksum: sha1:27efe198869460919f1789b0c26914b5c66783e5
-    pristine_git_object: aedb7bf0dc72c052ed608eac3288e409f2598379
+    last_write_checksum: sha1:0b6b3aab1394fd4b4319274ba405d38158dfee7a
+    pristine_git_object: 7747fc8b3d965aeb9fc3024efd23dbcc68982854
   src/funcs/accountingCustomersUpdate.ts:
     id: 81075795aa62
     last_write_checksum: sha1:5d168b145f19014a80c197271ccb6e02cab8c75c
@@ -14419,8 +14547,8 @@ trackedFiles:
     pristine_git_object: 80e6df965a6631848082da842d67309bc9efe05b
   src/funcs/accountingDepartmentsList.ts:
     id: 7a7af81a3af1
-    last_write_checksum: sha1:93955f42ca73ea0d80cbfcd617028badaedc3cde
-    pristine_git_object: 85d7671f0ec7daeef39b2db591d74441fc86d0c9
+    last_write_checksum: sha1:d8c7f9db99c66b6886cf4046df552cb2efe3f75e
+    pristine_git_object: 07d6d7856745aa5176320e91640c3a455247898a
   src/funcs/accountingDepartmentsUpdate.ts:
     id: 4102193ad5d9
     last_write_checksum: sha1:67dd4eeb9fbcf5de7ca4dd9eb2a849fb65d78dc3
@@ -14439,8 +14567,8 @@ trackedFiles:
     pristine_git_object: f68ef796324405f99150ec22f415830d06e52c88
   src/funcs/accountingEmployeesList.ts:
     id: db9b9d6801a7
-    last_write_checksum: sha1:dbeca41c49eb274c8797e273fc1e56a871e10eee
-    pristine_git_object: 664f4929867c6e5a33052b3d32f06913b7f524d3
+    last_write_checksum: sha1:4dad5ea640a9cafcdd627fa7bd6c4c982dfc9e9c
+    pristine_git_object: b88ff2a300aa82307af69a37ba50bbf9f8ecb417
   src/funcs/accountingEmployeesUpdate.ts:
     id: 9d0522db75c1
     last_write_checksum: sha1:942d2620d069a8d07735532b210c762ea7087abc
@@ -14459,8 +14587,8 @@ trackedFiles:
     pristine_git_object: 5a8f0931a04799372cea1a579fae7974af0a4fc5
   src/funcs/accountingExpenseCategoriesList.ts:
     id: c45eb8a1b7de
-    last_write_checksum: sha1:2aee1015cb4976d8407bd2b66666d12947133015
-    pristine_git_object: 7151e00a5aa6c38c1d80ccac649ae522a9cc97cc
+    last_write_checksum: sha1:7b0ecd2e5f82c26ca42afb9cd66b0c445de61ad4
+    pristine_git_object: 760c837c15230d16afd24131a6930508c8520e18
   src/funcs/accountingExpenseCategoriesUpdate.ts:
     id: a31b8feb449b
     last_write_checksum: sha1:dbaaf331e687ed05c8c3a4a32bc4bc6499f36eda
@@ -14479,8 +14607,8 @@ trackedFiles:
     pristine_git_object: a642e13c95556beedd214b2b94b9391b08239579
   src/funcs/accountingExpenseReportsList.ts:
     id: 37db8580e06a
-    last_write_checksum: sha1:390d3608ce91588e316cf2c4027a769c09153d9c
-    pristine_git_object: a2d248e8cd68d9963bb757de58dbb64531148e07
+    last_write_checksum: sha1:70b47b8df847a755af5cf5c61fada2cc521bb50c
+    pristine_git_object: 8a46949f08bb75c9edc1892df324fc8ef40ed6d7
   src/funcs/accountingExpenseReportsUpdate.ts:
     id: 81f9e96dfa6e
     last_write_checksum: sha1:fc200060ef912c8edf84edb2dbe7c569f8efbc69
@@ -14499,12 +14627,20 @@ trackedFiles:
     pristine_git_object: c9c56205b00446b1d25e3002e96421c5694d6458
   src/funcs/accountingExpensesList.ts:
     id: d44f0e382226
-    last_write_checksum: sha1:4554947cab300132627ceacbb57720bc34888019
-    pristine_git_object: fad3a8bb645c30f6641f5d0ce21b6970d596d528
+    last_write_checksum: sha1:0dcc145e69fa98ad6ea37d0a2b64b8f91a7636ab
+    pristine_git_object: a02347b3c829419b005ba00d91c0826695b397de
   src/funcs/accountingExpensesUpdate.ts:
     id: 70b62684900f
     last_write_checksum: sha1:6b08b1f582f338f20caafc36b551325d878412fe
     pristine_git_object: 201314ea1dd22f90f9f62f383958eaa171b10425
+  src/funcs/accountingGeneralLedgerTransactionsGet.ts:
+    id: 9f63e506e4eb
+    last_write_checksum: sha1:d4e0378c33ef8179436efb5bb27f3398d4d110ac
+    pristine_git_object: bc4d442b6bc8f12ba4fbf278eda5e3d7cd086a6c
+  src/funcs/accountingGeneralLedgerTransactionsList.ts:
+    id: d0e1b7982d4b
+    last_write_checksum: sha1:5320c696641a6c5fbdc711389e03f4f2bc059317
+    pristine_git_object: 372dc1262f132bef72099c11a7ff4dfaa5eef8fe
   src/funcs/accountingInvoiceItemsCreate.ts:
     id: 28c1df957409
     last_write_checksum: sha1:fc1af1baeb2dc062f271388d92cbf02cd9788691
@@ -14519,8 +14655,8 @@ trackedFiles:
     pristine_git_object: e7ac6486127685b76713ce9430d8bc5176b935cc
   src/funcs/accountingInvoiceItemsList.ts:
     id: 3163468c0d25
-    last_write_checksum: sha1:87cf5d1bacc1c5360d49b2b80ae075bc16fb77c8
-    pristine_git_object: 3212a2e68e2774fb08da3d261266784c7b292b44
+    last_write_checksum: sha1:010810fe4d130cf645efa605005dc29a26e20376
+    pristine_git_object: 7ebf04636d096152e0fcbd6956d4a7a0b09f1313
   src/funcs/accountingInvoiceItemsUpdate.ts:
     id: 7adcc9189b46
     last_write_checksum: sha1:2b37831b920ac251afad1d0924fb931074236d71
@@ -14539,8 +14675,8 @@ trackedFiles:
     pristine_git_object: 2fb166ad729002768686a5a2c02ee28699c5028a
   src/funcs/accountingInvoicesList.ts:
     id: 43d42603060f
-    last_write_checksum: sha1:b942e72d30403dd0cd292875ab35e851ea6bd63e
-    pristine_git_object: 2fa2245339128136062222c046af365812377f5b
+    last_write_checksum: sha1:54f98d0e93e6bd5b3246f083459cd43c3517143b
+    pristine_git_object: 1edd774b4ad74a63102702f6e4dd77043f8e54bf
   src/funcs/accountingInvoicesUpdate.ts:
     id: 8fff2689ae81
     last_write_checksum: sha1:3c4d4b1187bfc6530535eedfc603e2adb8f55c8d
@@ -14559,8 +14695,8 @@ trackedFiles:
     pristine_git_object: 47655087647ff75d2d7955ca467915cc2748a70a
   src/funcs/accountingJournalEntriesList.ts:
     id: 33feaa72483d
-    last_write_checksum: sha1:0bd3f040375abdf6eb0aa607c4a8feaf694e6c14
-    pristine_git_object: d9065e8d2ec51e5c450a2751ef88c1fa22d8669b
+    last_write_checksum: sha1:4d5c404d8160d0e40321f5e02171ce093bc9e953
+    pristine_git_object: d06a278164b08fb4b971d2b770d67bdbef417e2a
   src/funcs/accountingJournalEntriesUpdate.ts:
     id: 3ed25ec3d481
     last_write_checksum: sha1:6cc52bd0a1413f7d4de6479ce5dbf5166d665e1f
@@ -14579,8 +14715,8 @@ trackedFiles:
     pristine_git_object: 55b3bb3483fb0df3cf439e0ef21658a55518f95b
   src/funcs/accountingLedgerAccountsList.ts:
     id: ee39931a0c02
-    last_write_checksum: sha1:f068d0a404e42ac8d02ceea75dde9f2500416736
-    pristine_git_object: d841e70b9f7ecc7ff3c5dd80c18efa738c96772b
+    last_write_checksum: sha1:e1f133d0d28d4268e18576e8f376e7a25414e75a
+    pristine_git_object: 6661b8511ef204fcdbdc9719ed976df6512412d0
   src/funcs/accountingLedgerAccountsUpdate.ts:
     id: 0eebaea5d6f5
     last_write_checksum: sha1:634bf26ebd65aa0779dbabd8a1ae5404232e5de7
@@ -14599,8 +14735,8 @@ trackedFiles:
     pristine_git_object: 249fa6acb4aecc144a0f3adf6a306b68ddc1af92
   src/funcs/accountingLocationsList.ts:
     id: 03df0b44d8ad
-    last_write_checksum: sha1:29ae645f3d076e4f961e2267e2fd7b834fadc5ab
-    pristine_git_object: e77123a35d2472e3c867b59ea1e397dc90bfeaed
+    last_write_checksum: sha1:0605fa27805c674c3aebbde363ed6b77108a8b7b
+    pristine_git_object: fc9a9b76bc84d00472337258ed64dc4594fa7071
   src/funcs/accountingLocationsUpdate.ts:
     id: e10359ed55ef
     last_write_checksum: sha1:32b2597103a0d3d54a150bb9bd98b4b0e422eb4c
@@ -14619,8 +14755,8 @@ trackedFiles:
     pristine_git_object: 42bc938ed8da1372b33c2347f19c91b23464e508
   src/funcs/accountingPaymentsList.ts:
     id: 6defafeb1315
-    last_write_checksum: sha1:80d366248d422f07876a5ce06f274801b82a27a8
-    pristine_git_object: b68f519a2e854536c8108f0f72fa356e5fccba6c
+    last_write_checksum: sha1:d4c7658b50fd55635c4cffb689c4230d354d955f
+    pristine_git_object: af87e62eeefea9697d36f353e7eb8e7dea280cdd
   src/funcs/accountingPaymentsUpdate.ts:
     id: d2183c5dc988
     last_write_checksum: sha1:39103524074d028e59e3101017b1e1f28635784d
@@ -14643,8 +14779,8 @@ trackedFiles:
     pristine_git_object: b77af90f119e98ac8c8bf15433ae6a2651795771
   src/funcs/accountingProjectsList.ts:
     id: 5e2a94d803a6
-    last_write_checksum: sha1:9e5ead5bb17310d45b198b4ca3d486c9706d6c8f
-    pristine_git_object: a2ae00449b7544eb9e5dfeefa1966c3de68e0ce4
+    last_write_checksum: sha1:75a4c0d22fac95c3c6d239ef18981320f17f6f15
+    pristine_git_object: 8faeecc1033051e2b931a48692663dcb00cc18b2
   src/funcs/accountingProjectsUpdate.ts:
     id: 9b5e31e14591
     last_write_checksum: sha1:843040ee2dabb2e864ab9b6c801d406bc9ddb7f3
@@ -14663,8 +14799,8 @@ trackedFiles:
     pristine_git_object: 8e13f0b6549c18e393ce4d9795567237d882609e
   src/funcs/accountingPurchaseOrdersList.ts:
     id: 7af49794e1da
-    last_write_checksum: sha1:1b260124ab30d1fdef5e173ae02e334346a72f4d
-    pristine_git_object: 833b94278b8c2769f4c29d28ca071973f8816ad4
+    last_write_checksum: sha1:0de6e49416bc658c6063e0ac07b0cc90481fca90
+    pristine_git_object: 69fc7a5b1f0a52482e9858e5296c3a169eab5391
   src/funcs/accountingPurchaseOrdersUpdate.ts:
     id: fe5fed0c7300
     last_write_checksum: sha1:6f1fdd4954853fb14885ed882d6b55aa8154085b
@@ -14683,8 +14819,8 @@ trackedFiles:
     pristine_git_object: 92e6bd07f12299c51d6c4564dfe945d355aa2cf3
   src/funcs/accountingQuotesList.ts:
     id: 4d5284af11ed
-    last_write_checksum: sha1:4a1fce947bd8bb83e84ed465a0466c0dbc4845b7
-    pristine_git_object: 1a09bda373587e5bdea843b50e21276cfbd72bc2
+    last_write_checksum: sha1:519f4d7482b0a035a68ed94cf6e02910c88a7a5a
+    pristine_git_object: 497e80965ebaf9dc75857e3bc1a5d63d622f87b2
   src/funcs/accountingQuotesUpdate.ts:
     id: 199bffa2c0d7
     last_write_checksum: sha1:a382a4037cfc749f85924a351f9579e51baa0b87
@@ -14703,8 +14839,8 @@ trackedFiles:
     pristine_git_object: afa80c6caeda2579d82ed6d0aa46bb44794bb0ca
   src/funcs/accountingRefundsList.ts:
     id: 772b79dd479c
-    last_write_checksum: sha1:cf05128601a331ca7936bae20e7f50c4ef9af7c8
-    pristine_git_object: 00779f879e125d5afe8fbaaa4a020e380b2e0ff4
+    last_write_checksum: sha1:533c463a1200afe8e2372e57cc86dfff832b82fe
+    pristine_git_object: efc3f64213c6706a8b0b062e361df4c7ac1fd465
   src/funcs/accountingRefundsUpdate.ts:
     id: c35d7b60c5fe
     last_write_checksum: sha1:1c806514c6a046e471c7de7d54583b36b00f7014
@@ -14723,8 +14859,8 @@ trackedFiles:
     pristine_git_object: 7841d34ea515a6f58f89dc8713975e794776976d
   src/funcs/accountingSubsidiariesList.ts:
     id: 332a786e37db
-    last_write_checksum: sha1:534d51635ba4125afd704728a13ef9e3ebb8578f
-    pristine_git_object: 9ed3e50b99e5ce5402b90490970f46859958b194
+    last_write_checksum: sha1:06cbe091394e8dcbaaa381d319c356e01249fba0
+    pristine_git_object: beb7276308f343c682c49a3ec9759454d0bbee8b
   src/funcs/accountingSubsidiariesUpdate.ts:
     id: aec74ab48cdd
     last_write_checksum: sha1:5a6b2970cb82a61c5c79ebb4a6efc3bcb2711ca3
@@ -14743,8 +14879,8 @@ trackedFiles:
     pristine_git_object: 0c3a5075fb47d5645805676da4ac157495bb3a22
   src/funcs/accountingSuppliersList.ts:
     id: 4b8adcb7f4e2
-    last_write_checksum: sha1:58096225e5f44e3eef1c0218a8159920486b5994
-    pristine_git_object: 26c85c8b863f471ac2246ae80507256e96875392
+    last_write_checksum: sha1:cf3cca8559dbb38f0365282a58706c5eb1dddda8
+    pristine_git_object: beaf015e22c5c3af3f570fa32806e4596b5ff5da
   src/funcs/accountingSuppliersUpdate.ts:
     id: 50320852c50a
     last_write_checksum: sha1:1210cc0543796fceea42d7db9834a906b15a0d72
@@ -14763,8 +14899,8 @@ trackedFiles:
     pristine_git_object: 20bbfd4b02f2a1f3fde6da8965d4ff7f4dd46104
   src/funcs/accountingTaxRatesList.ts:
     id: e8fa0ff9b83f
-    last_write_checksum: sha1:69f4838a549b0778803a0d9c3cdf8f44a15c485f
-    pristine_git_object: 4e82fc53fbafdf172b812ce80eb0c11a7649ba7d
+    last_write_checksum: sha1:b91c4475bf87d1c93e9904647c03f68b2ee1f5ef
+    pristine_git_object: 09c3528a81a30376bdcb84f56f6796fbc35770ab
   src/funcs/accountingTaxRatesUpdate.ts:
     id: 1790092cb3ec
     last_write_checksum: sha1:f8a79a57315c04a787e799933d9d3f0dffacc4a6
@@ -14783,8 +14919,8 @@ trackedFiles:
     pristine_git_object: ed5c8524f6ebbcac01e1c2ad676c02552461e9f5
   src/funcs/accountingTrackingCategoriesList.ts:
     id: e94e05d2464b
-    last_write_checksum: sha1:e4d47cd6f734173adadf6033c4b09665f33bf43c
-    pristine_git_object: 6d5cf985e7cdac6ddd6daf3f80eef2d85c647368
+    last_write_checksum: sha1:0486490182bea811c23a447098b688939a51ed36
+    pristine_git_object: 955e3c2004fb8fa5962a2a248b3cf03eb6425949
   src/funcs/accountingTrackingCategoriesUpdate.ts:
     id: dc13b3f30341
     last_write_checksum: sha1:2d8d234565c36e22e5cba1b46d8cef1510b85af0
@@ -14803,8 +14939,8 @@ trackedFiles:
     pristine_git_object: 9576b7848bd602ea2a3ccd58ea0e04e12d2ada92
   src/funcs/atsApplicantsList.ts:
     id: 4481d209a218
-    last_write_checksum: sha1:e966d13b7c4fccc79079c0bb65bb229359867c70
-    pristine_git_object: c4fb033f2bc20602e57989164827d38ff7e9c2b3
+    last_write_checksum: sha1:294fd03e7da0f9aa34428d14f15d7b38c87705cc
+    pristine_git_object: bd877ab3c337bf57f2b8248c9b96fe174cbb48fc
   src/funcs/atsApplicantsUpdate.ts:
     id: 6ebc31cada86
     last_write_checksum: sha1:44d99bebd1fe5d8e4b1a512b6bb3085e5ae31a9c
@@ -14823,8 +14959,8 @@ trackedFiles:
     pristine_git_object: cd21a79af5d788d16b7d60689ff7108aa590b9c9
   src/funcs/atsApplicationsList.ts:
     id: 0f3469b803f8
-    last_write_checksum: sha1:850e2cb23914b208fc4c3fcb0f44fca999041617
-    pristine_git_object: 531a8ee41cd0b4fe0a40655778e1aa8684c3659e
+    last_write_checksum: sha1:393928380ab65bc5ca3503956f79522335d26d62
+    pristine_git_object: afc17becdef3a79d96b7159fa0d7023ec7ae49cb
   src/funcs/atsApplicationsUpdate.ts:
     id: 72594a08278a
     last_write_checksum: sha1:5ec66aa4070febc9a05c26f6532cf8524b268069
@@ -14843,8 +14979,8 @@ trackedFiles:
     pristine_git_object: 1c5a2a9e2f85fb4d7931b9c554ad73275328ee7a
   src/funcs/atsJobsList.ts:
     id: 2bfd502be5b0
-    last_write_checksum: sha1:c9d733413a824b115c41d985628c50c11d008575
-    pristine_git_object: f45a8cee13a68c77ff768d935c84306e7e93b0cb
+    last_write_checksum: sha1:09b10d9673106b0de372e185d8600ca6e55c80de
+    pristine_git_object: e953da441b7af6f9df0006ccacb4bd5b132d57bb
   src/funcs/atsJobsUpdate.ts:
     id: c3ecc57fd6c6
     last_write_checksum: sha1:7c1734b9c98962a72bcbc72e56f570b29393efbb
@@ -14863,8 +14999,8 @@ trackedFiles:
     pristine_git_object: 25326c314a335a10b625d332d96d213551f9cc52
   src/funcs/connectorApisList.ts:
     id: 2d13a64f4e66
-    last_write_checksum: sha1:d87ff0250e4d9d92c29c1411d51f37fdcbb10536
-    pristine_git_object: c7b2783ff783629ff3e2d630665390f47658f114
+    last_write_checksum: sha1:9cf1dc45ac360e173613ee47c39f52c9a3f44c6c
+    pristine_git_object: 9d40462db55ec2d9d641baf0d9975e623e70d8cc
   src/funcs/connectorConnectorDocsGet.ts:
     id: f5a18ee428a1
     last_write_checksum: sha1:e6a814a02f3b4cbd1bf14b15fc534b643b8f840c
@@ -14879,8 +15015,8 @@ trackedFiles:
     pristine_git_object: 80cbfe2a65ac0dd849bdfb33738bcf2735f98bfb
   src/funcs/connectorConnectorsList.ts:
     id: 68f9196fe2bb
-    last_write_checksum: sha1:ed36a7177b4615d4eaee88a958de617051ccb7a0
-    pristine_git_object: ccfac5968aeb6af186244d8d6c113818310ab30f
+    last_write_checksum: sha1:5d6be3719affaec56fc478c107d7a54f7d5e301e
+    pristine_git_object: 532c67bd4581d45ef69bfabd6fe39d5424cb62c5
   src/funcs/crmActivitiesCreate.ts:
     id: 52b93b3a29ac
     last_write_checksum: sha1:ac0e31aa574db2e26809fd272940e205bb8834c6
@@ -14895,8 +15031,8 @@ trackedFiles:
     pristine_git_object: 2b841b3ede36d760babe4fb33540048d48575537
   src/funcs/crmActivitiesList.ts:
     id: 22faf8fcf8d6
-    last_write_checksum: sha1:9aff7c40e960a1d5dbabaa9d10c807024782b66a
-    pristine_git_object: f91ab7f88813eb9eb2497aa2fc4dc50a05c801a2
+    last_write_checksum: sha1:41103b98e6cf1a7c017ab35749c38fa2d140460e
+    pristine_git_object: 4c70039722dbfa6f9fb5720e225369848faabc0e
   src/funcs/crmActivitiesUpdate.ts:
     id: 3c3353e1233b
     last_write_checksum: sha1:b236ed1298fd469d0b2f792cf23d437b1d6b207c
@@ -14915,8 +15051,8 @@ trackedFiles:
     pristine_git_object: ca9399b91947e7ab3b7caab057e5cd3b1a905196
   src/funcs/crmCompaniesList.ts:
     id: 41968465b88f
-    last_write_checksum: sha1:da7300e93df48b834be460d0ebbbfa52dfa3ffa8
-    pristine_git_object: 50399c56e8865b9daa01358c03aa937465856943
+    last_write_checksum: sha1:eb109c21f84e680ba64d1df32f99571f44f056db
+    pristine_git_object: 59dba0276ada18806abcaeadb4a5ec61c8da037d
   src/funcs/crmCompaniesUpdate.ts:
     id: aa4eb2cfaceb
     last_write_checksum: sha1:3adbf77c947201dbb1561a4098f618da8101ffd9
@@ -14935,8 +15071,8 @@ trackedFiles:
     pristine_git_object: 9aa920fb7308515a4b840b4b627570f6f3f7f30f
   src/funcs/crmContactsList.ts:
     id: fccbcd325583
-    last_write_checksum: sha1:f2d043540faae8e5aea48a72920d8baf947b5e19
-    pristine_git_object: f83a7cf48e511450cea8c6eb48c201df975d706c
+    last_write_checksum: sha1:35036b6f48de2ef4e3d62c15bb16b1fbbbdabfce
+    pristine_git_object: 316df5e4a3c09d40518e4a8ac2cbb3b975726496
   src/funcs/crmContactsUpdate.ts:
     id: e42301349d61
     last_write_checksum: sha1:139d472e993a84c0d742c90c499bc3fcf40e758a
@@ -14955,8 +15091,8 @@ trackedFiles:
     pristine_git_object: dc18a57e16ab6f552c1c02f51333717f08a314d9
   src/funcs/crmCustomObjectSchemasList.ts:
     id: db5896478a54
-    last_write_checksum: sha1:e5050bf244db8f7d1f89909e6217e092fe598c5b
-    pristine_git_object: 8ee988cb30c922c99ca6f269652a008bc206fe77
+    last_write_checksum: sha1:d435835fc7647edb7af960c07d12b8a3579bfbb4
+    pristine_git_object: 00da8b08075c6ac23d7aca25629e87b0b99cf5fa
   src/funcs/crmCustomObjectSchemasUpdate.ts:
     id: a696fa0fcb3b
     last_write_checksum: sha1:135c4b06412e0065ac6bea57dfad94378f90de42
@@ -14975,8 +15111,8 @@ trackedFiles:
     pristine_git_object: 2ca52523885ca421eeb16118baafeac29658b330
   src/funcs/crmCustomObjectsList.ts:
     id: f4b360265f15
-    last_write_checksum: sha1:3d5435ced5eb3bb410758b8c0e1ab58c8a798c55
-    pristine_git_object: 87d5376c8f355a1372cbe902af9c5ab3ef446e5b
+    last_write_checksum: sha1:6ca82561245374d251a8430d95d6c1ce9b2e6c11
+    pristine_git_object: 2d538c2718a8e864daf75cce94aa8dc4048c900d
   src/funcs/crmCustomObjectsUpdate.ts:
     id: 4f8cc3029a9f
     last_write_checksum: sha1:e9566dd69e184cca58db848a62676f8bacb4388c
@@ -14995,8 +15131,8 @@ trackedFiles:
     pristine_git_object: 3aaf0f6d476b01ec870ef00fe17859b35555e1d5
   src/funcs/crmLeadsList.ts:
     id: 6ab46c399d94
-    last_write_checksum: sha1:1a04ad4072c795b6ed0066c8e9b55364661242ce
-    pristine_git_object: 87f54d353a960e528d917b1489c9513b1cf3b534
+    last_write_checksum: sha1:5dd74a87db82ce0b586dcb5e24ad3e83fcf5bae4
+    pristine_git_object: 555723c3f8cb7ec3c4403c3c76755a52696a1f08
   src/funcs/crmLeadsUpdate.ts:
     id: a0eb17c5903d
     last_write_checksum: sha1:5fa3bb43241e71e2a9c8f1ccda7b3fb6beabd0ce
@@ -15015,8 +15151,8 @@ trackedFiles:
     pristine_git_object: 6e3bd995f7f91fc0e484ce3c47cb7d7bbb1a287f
   src/funcs/crmNotesList.ts:
     id: b9c5c134d1ad
-    last_write_checksum: sha1:10dd782efcc44eaf1cb6696f2e0460386653e00d
-    pristine_git_object: fc2438c343f685538e50cfb9cdecdcf581cbd1ee
+    last_write_checksum: sha1:452f7daa05fb80fb15f7339bbad30c05f1843237
+    pristine_git_object: e59c1935c6228e6a22e0ba2479d8251d5ea30888
   src/funcs/crmNotesUpdate.ts:
     id: 7b4c8eed3502
     last_write_checksum: sha1:66128575888bbb586ad335b5b577335a36f9f539
@@ -15035,8 +15171,8 @@ trackedFiles:
     pristine_git_object: 3d9ded86e29842ba41abecc183f513f6fd13e3d4
   src/funcs/crmOpportunitiesList.ts:
     id: 2739a3351295
-    last_write_checksum: sha1:32c3aee4d9e371752b9c1b9e4af274864bf4b180
-    pristine_git_object: 7ce062b4f63d1711e881ded0df9ada4beee24e81
+    last_write_checksum: sha1:4aa45538893285860aac3688d67b7d3e85314e00
+    pristine_git_object: f2a8a6429d662bc892f7d5e3f69527d4c6463146
   src/funcs/crmOpportunitiesUpdate.ts:
     id: 6898f5b2a6de
     last_write_checksum: sha1:b56d247d99c047a61c6b1a44d0b735a7120e9206
@@ -15055,8 +15191,8 @@ trackedFiles:
     pristine_git_object: 689df8641a2807e9f47b75556f0cc958c94f7d03
   src/funcs/crmPipelinesList.ts:
     id: 9a6eb7b36a51
-    last_write_checksum: sha1:6139e1a16bfc06ae3142abe3dec2d9534332fe6d
-    pristine_git_object: 31b2d88ce4c086843f64d1eca1fceed479bbad85
+    last_write_checksum: sha1:298870ade8a0908111f6f19e232ef941fd20103f
+    pristine_git_object: 0ffcfe0b9b55f6a0776ffea2e7d592b64f058d68
   src/funcs/crmPipelinesUpdate.ts:
     id: d7391e8934cd
     last_write_checksum: sha1:7153db2c754ff633d0b5b0298bf528f976516d7a
@@ -15075,8 +15211,8 @@ trackedFiles:
     pristine_git_object: f21d5c2fa50b0e9f4032500dd386e22cd6108292
   src/funcs/crmUsersList.ts:
     id: 9c60b8243f99
-    last_write_checksum: sha1:f55b65c8e34c049860dad48ac1fdab8370b36e4a
-    pristine_git_object: 98ad1df83b260514b6e04040ee7d88225a4b37ed
+    last_write_checksum: sha1:6b23858d8a8225eebe8bc1a7480e2d5a18475a8a
+    pristine_git_object: 8909e47f20d726a2dde2e453a261fa3c6a698d9c
   src/funcs/crmUsersUpdate.ts:
     id: 7824ddaeb4a9
     last_write_checksum: sha1:c510382a07763d2e95fd54f4b10913f0ad929b2d
@@ -15087,24 +15223,24 @@ trackedFiles:
     pristine_git_object: 2a4ce13290d3001803a5ce5060d3f4c9659beb02
   src/funcs/ecommerceCustomersList.ts:
     id: d2f5dbd289c1
-    last_write_checksum: sha1:d9d9e38cf2f31ce9dc49398ab40ce10d48c65a12
-    pristine_git_object: a4b977f28a7bf05e68cbf42b36d46871c7db3b2f
+    last_write_checksum: sha1:ef3dc6c18cbba0281aeba6aff5d441238afbe65d
+    pristine_git_object: cc4d0c061ff70fdd4619f910a01961a5029265c4
   src/funcs/ecommerceOrdersGet.ts:
     id: "4050257779e0"
     last_write_checksum: sha1:fe12fe28ab8f6b2607ee780cbdb9cfc6fb4a29a6
     pristine_git_object: ae2917a3fcac9ccb2116b1f68655503a10cf026b
   src/funcs/ecommerceOrdersList.ts:
     id: c5034f3af99f
-    last_write_checksum: sha1:05be6bd7df6e7a246594b94f09778955ee2839b7
-    pristine_git_object: 828993d1647a0ea27012de83a913d3789d7dfae2
+    last_write_checksum: sha1:e15d3ecf02da678610199d9196d0a461799749c5
+    pristine_git_object: 9a1608794687e774c6951005f3fe100fcd3f9c01
   src/funcs/ecommerceProductsGet.ts:
     id: 8ebde804d97d
     last_write_checksum: sha1:f0b084b74f539614d760cf1e4bb19915f91cf408
     pristine_git_object: 4a615af9315b3a0a99d3860e86bf45e98000cf9c
   src/funcs/ecommerceProductsList.ts:
     id: 15de773aea4e
-    last_write_checksum: sha1:4236683c58e7fe89b2bcd0b09509672f3ad26c6d
-    pristine_git_object: 7fefab06889cf68161087a2d75086ada45f9c94e
+    last_write_checksum: sha1:590ba44f5d4158e8ffa56987c810ead042db36b6
+    pristine_git_object: 8639746ac8534d2b06e8d5d507c259cb5e8416d6
   src/funcs/ecommerceStoresGet.ts:
     id: 39b088a6de2e
     last_write_checksum: sha1:67ebe5be72a940dcfb90a11c2daedf13ab7553e3
@@ -15123,8 +15259,8 @@ trackedFiles:
     pristine_git_object: 3427c30416e935a09977bfe0dc790856b5b3f922
   src/funcs/fileStorageDriveGroupsList.ts:
     id: 7169a8c58ccc
-    last_write_checksum: sha1:7c08779158ba66b8578fe37f30c7545fd0b8af35
-    pristine_git_object: b5ae9927ab9f097b71562035d27918f1ee1f8919
+    last_write_checksum: sha1:a698f22cb99c9481f3d3d89d872321fc6a64defa
+    pristine_git_object: 50e0609797507035bef8a9679e5a885b4f6773c5
   src/funcs/fileStorageDriveGroupsUpdate.ts:
     id: 4d7e3de9f86a
     last_write_checksum: sha1:f63d349631ce0c86c6e82f39cb813e110654619c
@@ -15143,8 +15279,8 @@ trackedFiles:
     pristine_git_object: 4282a747a6046e3203e9e50fdf0a41b092cf4a92
   src/funcs/fileStorageDrivesList.ts:
     id: fe72336ccc04
-    last_write_checksum: sha1:06b1f36cd6195f7624bd90e2f645abe4a1763bcd
-    pristine_git_object: 56aad4031e36b3b409de5b2c746fd1f2800ccd52
+    last_write_checksum: sha1:f592abe268246574d8c9ffb0e3e4b4b1398e5b0a
+    pristine_git_object: 43b9caac2d7a7ff0a9a6287abf54972b7d9f7cf0
   src/funcs/fileStorageDrivesUpdate.ts:
     id: 97a65930a1dd
     last_write_checksum: sha1:81b348b1198e66ef70c2c7c3a17411827001d458
@@ -15167,8 +15303,8 @@ trackedFiles:
     pristine_git_object: 50dc278238ec5a6ed347e20d990a9ff98b756973
   src/funcs/fileStorageFilesList.ts:
     id: cb5acf1148c8
-    last_write_checksum: sha1:ca7ff10c0d5376e30e7697ba58ead34d93b070c0
-    pristine_git_object: c84b5ebca1ef837979b168a5ac3fd06371b6f70a
+    last_write_checksum: sha1:98937daa4c7257fa52a67bae6eb066187159b0de
+    pristine_git_object: 87fd20fc36c76b8a36e62a7592e6d5f7b46706c7
   src/funcs/fileStorageFilesSearch.ts:
     id: af698e8fcf70
     last_write_checksum: sha1:9cc131e2ab31b3d725d289c377fd5d3283153295
@@ -15211,8 +15347,8 @@ trackedFiles:
     pristine_git_object: cac5320763d21a6aab5a272ab615ab451af89328
   src/funcs/fileStorageSharedLinksList.ts:
     id: 7610d3400551
-    last_write_checksum: sha1:76a6082e9073e1c4bf0f38c34787bbdc6189ee62
-    pristine_git_object: 86d1e9a813c8917ff11e409c89df865d5c29d14f
+    last_write_checksum: sha1:d56493de8009ecaa769987c2d57f7c8598651faa
+    pristine_git_object: 79406029b307b56ddc62ab584db4b4884aee97c7
   src/funcs/fileStorageSharedLinksUpdate.ts:
     id: 1437d74d6f3d
     last_write_checksum: sha1:6f4b868f082ba3e045531bfa9fab1ee2f0f7d842
@@ -15251,8 +15387,8 @@ trackedFiles:
     pristine_git_object: 2befc3032e61dbcd4f9763d9cbc7d3c2cc208d3e
   src/funcs/hrisCompaniesList.ts:
     id: e1bf22e8b401
-    last_write_checksum: sha1:148c240598e53a80037a0d86a2c780e3d5a47c79
-    pristine_git_object: 305e5a35102ea8aadeb67827fb283989e53c47bd
+    last_write_checksum: sha1:5b150340f65c30b5fc82fe6fda4d9d392aa46809
+    pristine_git_object: e95b158ebe96e00cbd8ccd0482b8d546e06a6d0a
   src/funcs/hrisCompaniesUpdate.ts:
     id: c0e7489ce117
     last_write_checksum: sha1:0f48a8620223015335b206dc421ee17047e73dc1
@@ -15271,8 +15407,8 @@ trackedFiles:
     pristine_git_object: d36335b3cf218876f05504234dad854142ca52fb
   src/funcs/hrisDepartmentsList.ts:
     id: 0cb728da0849
-    last_write_checksum: sha1:a4b053be00828dd8120d1143f0885e89c2bf3ced
-    pristine_git_object: c76c040dc7b5d4b5ee6522cab85c9787ad60e794
+    last_write_checksum: sha1:973af2e79a383008673b1f501bd13aadf713aea8
+    pristine_git_object: e0bcf427c04638d2f9cb1a245c5c4b6d78b499c3
   src/funcs/hrisDepartmentsUpdate.ts:
     id: 7c9fc73ad525
     last_write_checksum: sha1:0be66833ec4f4c8ddee882a49100c2edd3e34f25
@@ -15303,8 +15439,8 @@ trackedFiles:
     pristine_git_object: d303e0ddd9d41293168edc355f1ce8990a20d9a9
   src/funcs/hrisEmployeesList.ts:
     id: 3f7b0465bb37
-    last_write_checksum: sha1:28f0def2e1cd3fadafa9d913d72c6de5d8396b79
-    pristine_git_object: 147555a3da2fb41eccf05af32722fb69afc7fa08
+    last_write_checksum: sha1:6b37f9ccbbf70a9071bcb686289ec6b9952753e0
+    pristine_git_object: 31c35ff6a9c6f85f1f8378aeb6c75699098d486e
   src/funcs/hrisEmployeesUpdate.ts:
     id: ed1254ccbcb2
     last_write_checksum: sha1:1e4498e115f5854f3c73ba6cab415342a2b2297b
@@ -15331,16 +15467,16 @@ trackedFiles:
     pristine_git_object: 9405737574967b9b038d746fd85030b556d6ae04
   src/funcs/hrisTimeOffRequestsList.ts:
     id: 697f854eb3d1
-    last_write_checksum: sha1:5482478418acde7a634f5dd112b27a8452ce376b
-    pristine_git_object: eda13317c7810553189f47dc4b0c1149b099d561
+    last_write_checksum: sha1:5905c3a2dab7e53f50ad55734a20e5062bc5d5bf
+    pristine_git_object: 586f8331aaa2f842b50092890b41d2343ba75c33
   src/funcs/hrisTimeOffRequestsUpdate.ts:
     id: c67ee90080ea
     last_write_checksum: sha1:88acb48c906835e4338d9672e25542b6dc48451f
     pristine_git_object: d223c0e73344175fa152181db3bf9f01cd3d5576
   src/funcs/issueTrackingCollectionTagsList.ts:
     id: 43659a696a9e
-    last_write_checksum: sha1:2edceffa850a8e23bd0a491ea59ee715d2954e5f
-    pristine_git_object: c4a7db31779ceef761ff88280acf19e6bcb883a8
+    last_write_checksum: sha1:b3f6e0e064d3460501ffc04141d1cce206ec8aa3
+    pristine_git_object: 355947d84f8492e8a1dea2ecb36a340a42f15ec0
   src/funcs/issueTrackingCollectionTicketCommentsCreate.ts:
     id: 759109dacf62
     last_write_checksum: sha1:79b23e617cb22bd8731da2a758ccb83c2c65310f
@@ -15351,12 +15487,12 @@ trackedFiles:
     pristine_git_object: 9a5c407c77bf504ba50a4d701b186865a6e7626b
   src/funcs/issueTrackingCollectionTicketCommentsGet.ts:
     id: 672317c5d5d2
-    last_write_checksum: sha1:ea04a8e86320ed2ca008edb720c6efec3b6d3474
-    pristine_git_object: eb85ba0d5f8d416315d3cbcdc5c11a9d4f1280d0
+    last_write_checksum: sha1:7bb8abc62b06f68e57a430998c76d52e7f1f8afd
+    pristine_git_object: 654db9e1e30100c5d3c28674070f3f6fafc720bf
   src/funcs/issueTrackingCollectionTicketCommentsList.ts:
     id: 042afa53b8cd
-    last_write_checksum: sha1:c729ea5627433affce635ff31ed7f448fe8e3431
-    pristine_git_object: 2e7de4d222010a8d1d7a55b6b839246833da7132
+    last_write_checksum: sha1:1d23cca2a0e48dc0bacb2b7114f28df3ee3fbb89
+    pristine_git_object: dbf65373be0810ff7ab2fe80ef1b881f61ed2ecc
   src/funcs/issueTrackingCollectionTicketCommentsUpdate.ts:
     id: 3fe7ce830dbd
     last_write_checksum: sha1:8393732eec0fdb490f2d6db4ded23ddfd9aa6cac
@@ -15375,8 +15511,8 @@ trackedFiles:
     pristine_git_object: 8f2ab2a39e895fa52dc631c2db006162b2ad5d93
   src/funcs/issueTrackingCollectionTicketsList.ts:
     id: 1cc54390c865
-    last_write_checksum: sha1:766e851d4de5ac76ea1d3728890d8d2d7eb7297f
-    pristine_git_object: ecaa0f87e16f289d7f974295057f02f2f64571a2
+    last_write_checksum: sha1:1ae19ab6905b6f51f53107ed34c605cbb8cdf51e
+    pristine_git_object: 1a10dbcbea8ef30c5f6219ee03d81712de851b70
   src/funcs/issueTrackingCollectionTicketsUpdate.ts:
     id: e2500937a7f3
     last_write_checksum: sha1:19d50e3c8071b7b7b722a5072047199a2c06fc4d
@@ -15387,16 +15523,16 @@ trackedFiles:
     pristine_git_object: 2642f0449d7f1ac9927b4a8eb46b1850edaa41fa
   src/funcs/issueTrackingCollectionUsersList.ts:
     id: 787bfc663791
-    last_write_checksum: sha1:832e57bc520fc58fc400bf475fa2e9c5b8ff7864
-    pristine_git_object: 6fbfdb7cd8674ee70a0b7934919196abdae5393b
+    last_write_checksum: sha1:b6596de2dbd2b21b15263abccb572bd98ae43cb5
+    pristine_git_object: cb02bfed03426da2c1174b9568c5c53ebf943634
   src/funcs/issueTrackingCollectionsGet.ts:
     id: fefaa4e0b44d
     last_write_checksum: sha1:f7e5fe1e1f334cc4d5de084ccd5a8efd866924e6
     pristine_git_object: d7a5e4b2b8930a06103cbc284e58a71c0702fe79
   src/funcs/issueTrackingCollectionsList.ts:
     id: b30c32e83860
-    last_write_checksum: sha1:b1c926a824b81d231f44552995a0e0e8ac52de78
-    pristine_git_object: e21e3b8010de8919f1652fff4d1f40547cee9d03
+    last_write_checksum: sha1:1e6f8cc1ae1620b7dfcba0bba4301d3118380090
+    pristine_git_object: 998483cf4e24df40c017173796a4f959e32d0460
   src/funcs/proxyDelete.ts:
     id: b643ac268675
     last_write_checksum: sha1:41bed460d8cd5b61abea2101912c199ad6286c06
@@ -15435,8 +15571,8 @@ trackedFiles:
     pristine_git_object: a62f4c854769da730a5b67198ccc7f6a8c3b9bb2
   src/funcs/smsMessagesList.ts:
     id: 228fee10ed0b
-    last_write_checksum: sha1:8f352542bea8e79ec2f43d5c887fc03cb25cfe1e
-    pristine_git_object: d721732533b880ace619711d98aa2de09a0d0eb2
+    last_write_checksum: sha1:ef955587feb4f5d8f78bb868630e113dfba7da4b
+    pristine_git_object: b6174883a2813da3b345131d59510168dce34254
   src/funcs/smsMessagesUpdate.ts:
     id: 18f5fef5adab
     last_write_checksum: sha1:dfec68bc1aeecfd7d3ea1f9f4f78f3d8a7f74e77
@@ -15503,8 +15639,8 @@ trackedFiles:
     pristine_git_object: aaca8bd4acd4051283bd27c8ca8a72f3b888960a
   src/funcs/vaultConsumersList.ts:
     id: 36de212358e8
-    last_write_checksum: sha1:6c3fe97cd608ba8d2e83e0789ad2c71da6262a2b
-    pristine_git_object: 5ce635706bf71bdb367818edc998f9c4787ac1d1
+    last_write_checksum: sha1:e7297223b636c59317d93cf74235d298fe0eca0f
+    pristine_git_object: 296785c7e0099db8a4c25d2ebdb5e730acfd0a8e
   src/funcs/vaultConsumersUpdate.ts:
     id: e47856922a5d
     last_write_checksum: sha1:cd6bff2e13543276282e3acec0295e7d17432591
@@ -15523,8 +15659,8 @@ trackedFiles:
     pristine_git_object: 10b707bc9c65091c63363a30330e30c252994d53
   src/funcs/vaultLogsList.ts:
     id: 43f174f15d39
-    last_write_checksum: sha1:b613a06c0aa0040c906eeb00a421c6d9c9409848
-    pristine_git_object: 8fd39115e5a0d922b08dbda182ad6f96aeb7baf0
+    last_write_checksum: sha1:74005241018ee458534e44ba4959c179f7d68d9c
+    pristine_git_object: bbdf28d7d1b92fc480a2e360e4eebddbd5e666d1
   src/funcs/vaultSessionsCreate.ts:
     id: 9918609e42e7
     last_write_checksum: sha1:38e263633a20f3e3a08ef98a3d4ea3d325962bef
@@ -15535,8 +15671,8 @@ trackedFiles:
     pristine_git_object: 4574aa1989571575b2b57f3e7e29d55f03c9e848
   src/funcs/webhookEventLogsList.ts:
     id: 46fe947e357f
-    last_write_checksum: sha1:b4ecfd5e8d7d2295ffef9123a4158fd8c4b8ab74
-    pristine_git_object: c0a9e08a98fb5882b06f88e99884f25c99115c4d
+    last_write_checksum: sha1:e04d20513628fa8b9e2c89b956ad082eb4dc26a1
+    pristine_git_object: 99aca086fd619d959ed8e9e10cf1240ac58555a2
   src/funcs/webhookWebhooksCreate.ts:
     id: 3e67f2141726
     last_write_checksum: sha1:baac4d88a228693531e45d20f9ff8848e988cb31
@@ -15551,8 +15687,8 @@ trackedFiles:
     pristine_git_object: b6e821a3134dbc1b32735b184757080ea57caec1
   src/funcs/webhookWebhooksList.ts:
     id: 5322e6f9017a
-    last_write_checksum: sha1:9b6a827452dc44395c562b57ddfc7f431da37297
-    pristine_git_object: 6e9821f727766cf206dc29774aaddcff5b1b6afd
+    last_write_checksum: sha1:e96f8c11f6e5e37646ff05fca5f920a1ef656502
+    pristine_git_object: ac2a6478cbf3932e1e250beca3ca2eb1a3b0f1a1
   src/funcs/webhookWebhooksUpdate.ts:
     id: 642b494754b8
     last_write_checksum: sha1:b24db6cd6a119c2f18827009de4fbcfb6605171d
@@ -15567,8 +15703,8 @@ trackedFiles:
     pristine_git_object: f60ec7acd76141a71d78008c5a362eb0236d8335
   src/hooks/types.ts:
     id: 2a02d86ec24f
-    last_write_checksum: sha1:29372122898cc523fa47576f3f6608a28ec6080e
-    pristine_git_object: 8bfe4fe8137138decea7af0a5ed791bf01201789
+    last_write_checksum: sha1:da18f72efc4b8bef7912bc70fc6166b4be2f8a95
+    pristine_git_object: 5ffda46a9def49d060911f29656c75d88095bcdd
   src/index.ts:
     id: c5fb850250c7
     last_write_checksum: sha1:35c9cde3ae14b18b3f893a1afe8b6c44f8760f24
@@ -15579,20 +15715,16 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:66db6e6232658828d2832e3086ea6bab2906f32b
-    pristine_git_object: a2bd01cdf7ecfa10bd54e04a88191130ef4807d4
-  src/lib/dlv.ts:
-    id: b1988214835a
-    last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
-    pristine_git_object: e81091f5e536f82739f71379b1fddc2d147c49e2
+    last_write_checksum: sha1:27595b6ba1f8807c65748abb5f5f593959eebbe2
+    pristine_git_object: b5e1387623c037adf9460a977959c099bea3884a
   src/lib/encodings.ts:
     id: 3bd8ead98afd
-    last_write_checksum: sha1:d47614c415b37e092965c34cb668562195701004
-    pristine_git_object: 2791d25bc4f7cf6eec17a65f899851e225fa3deb
+    last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
+    pristine_git_object: dcab511b4b4d98f1e4b7dd94866e2b41c478b7f0
   src/lib/env.ts:
     id: c52972a3b198
-    last_write_checksum: sha1:cb54b2f57b26a017f9cc801d772e60096e053e95
-    pristine_git_object: 60e407ebf4e06c81eb92e68820f8a7e2c949e3e5
+    last_write_checksum: sha1:f4b8cb2dc90966cf8c13b77fe237184591dfff30
+    pristine_git_object: 1d0c699b37368870dbb5e91ba08c0f6c679688f2
   src/lib/files.ts:
     id: e5efa54fcb95
     last_write_checksum: sha1:795c14026405d547bfc47012f7ad9666e530fa7f
@@ -15601,22 +15733,18 @@ trackedFiles:
     id: 63a80782d37e
     last_write_checksum: sha1:797cbf16d3c7c4d62d3ba0eedb08617524938457
     pristine_git_object: 13cf1fd7894a89f727b8d2db2ad24313a94f68c7
-  src/lib/is-plain-object.ts:
-    id: b9862591096a
-    last_write_checksum: sha1:df687f25a9590b6fd95d39df41a652ae3fd4e517
-    pristine_git_object: 61070d3d7c7e5e95b1ed7e7ea21869eb0767db77
   src/lib/logger.ts:
     id: 7ee7741a02bf
     last_write_checksum: sha1:0ec9d3a2a34c362746b767e4f9a746c055d57a7b
     pristine_git_object: d181f2937d4128afbe9b0327e0f81d1fa9c877b7
   src/lib/matchers.ts:
     id: d54b2253b719
-    last_write_checksum: sha1:a1ec5a729b1d8ded0f3366a7a1a45605bb3b6231
-    pristine_git_object: 00f2871971380783cf2a0a623185114779e4affd
+    last_write_checksum: sha1:a3ce362a2b5a5b6f2dde6665b202294e2ce381f7
+    pristine_git_object: fd294794b5097d03fe6ad306fbf203503ca49a3c
   src/lib/primitives.ts:
     id: 74859f750b28
-    last_write_checksum: sha1:987869fc54790b9c22e9182099103d6aa7c67016
-    pristine_git_object: d21f1dc49affa4e6d324bdd60811b470fdfa7eb6
+    last_write_checksum: sha1:fe3abb7d6b61596e346873519bcec9b2eaa61467
+    pristine_git_object: 8ce65db0f7c0d6b68f5edc3ebf518121e284e954
   src/lib/retries.ts:
     id: b24a69d15639
     last_write_checksum: sha1:f3da74dffcbe2756c69393f8600205aa1dc06e68
@@ -15627,8 +15755,8 @@ trackedFiles:
     pristine_git_object: 47edb9725c2482c667e2ddc8a56b1fec4285c492
   src/lib/sdks.ts:
     id: 8a6d91f1218d
-    last_write_checksum: sha1:6467b5ab26548cd2fac6fa6d2742af607d6c41df
-    pristine_git_object: 52745d1551fcf667bc25cd9fa00ba06954073854
+    last_write_checksum: sha1:9b898bba1a4b986537d5c0d244c1ed81495a6255
+    pristine_git_object: 5220eef19574adad1a569ae896dc576a3eacb294
   src/lib/security.ts:
     id: 0502afa7922e
     last_write_checksum: sha1:ee70d061eba9f48111f2464fd00bf9c5576d18d0
@@ -15831,8 +15959,8 @@ trackedFiles:
     pristine_git_object: 421a292de4fbf3006202d2a600ebc3f9f15bd051
   src/models/components/billsfilter.ts:
     id: a6a0b6c62381
-    last_write_checksum: sha1:6f86697582bbb4d7f5883bd3993134e12bf0a9f8
-    pristine_git_object: 2adb2a5110fc098e5c4abb80b1c6a6bd832c86b7
+    last_write_checksum: sha1:5c1a9c66a64bf052b6e09cb1709b405358fedd26
+    pristine_git_object: 86081d786692098758730dbef831e841cda0ac1b
   src/models/components/billssort.ts:
     id: cef4161189a0
     last_write_checksum: sha1:85af10b6da35ec6f8a7c21647adb59aa07bd4d98
@@ -15899,12 +16027,12 @@ trackedFiles:
     pristine_git_object: 59af3f5f121cc0c1f691452048bfe0788bc1c7ad
   src/models/components/connection.ts:
     id: 4af5d21716f2
-    last_write_checksum: sha1:560834b4e02ff50bdc0152d335f832431df79b7e
-    pristine_git_object: b1c7517c7b3696e575fb21eae19718a9018b1b01
+    last_write_checksum: sha1:8b35b76280316b396a90769db546814feab10518
+    pristine_git_object: b0fd7c3d3c859728c0ce3b2c52cb8b92d8db9229
   src/models/components/connectionhealth.ts:
     id: 8ab415a21c82
-    last_write_checksum: sha1:0c3bda1d9ec24906b45d77b37fec7b25bd322727
-    pristine_git_object: 4a9cd639203f46bea5d187a7bfad4919ced43571
+    last_write_checksum: sha1:a98f38316861ca3530270d29c83da65092d1aab4
+    pristine_git_object: 435c17932bebe03fc0dc66662e3def42caf7cf0a
   src/models/components/connectionimportdata.ts:
     id: 813eade82a14
     last_write_checksum: sha1:50c396d834ff30c421c5b70c6430bf71baa515e1
@@ -16243,8 +16371,8 @@ trackedFiles:
     pristine_git_object: de823a7029b15a51eca2090d280b10a395c2f2a1
   src/models/components/creditnotesfilter.ts:
     id: b8726fe474a5
-    last_write_checksum: sha1:4637736a8fbdb34cf79022ee6c5947231a531165
-    pristine_git_object: a797fb275a1ff017d4aa2e1495afddeaf03dd661
+    last_write_checksum: sha1:d4375cc4b0ce80bc8bc7c3bd6826012204e85f0c
+    pristine_git_object: 7e96ed9c8a676dcbb29dcbe8153fe02fd1dc1fad
   src/models/components/creditnotessort.ts:
     id: 5507bd16423b
     last_write_checksum: sha1:c2544c6969881795f4bf31ddf8e66fa71f2b221c
@@ -16263,8 +16391,8 @@ trackedFiles:
     pristine_git_object: e57b6ac929070f10787f1b216b76d0cbcb3b6bcc
   src/models/components/customersfilter.ts:
     id: 07e9a2d68763
-    last_write_checksum: sha1:78b82bb6647aab66da3064d7aa13b7b90950aaee
-    pristine_git_object: abd506e988dcb8293b0a3947de7baf52639e3340
+    last_write_checksum: sha1:2607eb5f1a559d29336d9b168337f10bcde02419
+    pristine_git_object: 9004dfebcb206d963007d59aea6947cda21b77ee
   src/models/components/customerssort.ts:
     id: 2201eb7c7535
     last_write_checksum: sha1:276f550fc64c9eee45858616d575dcb35829d5c7
@@ -16691,8 +16819,8 @@ trackedFiles:
     pristine_git_object: ef8f8d0862a6e19d0845a3345f51fad9e5a65333
   src/models/components/expensereportsfilter.ts:
     id: e85cdfab09f0
-    last_write_checksum: sha1:b43f2d592891c178a9b1c48923409ffc2c0244a8
-    pristine_git_object: c2db4bb6e1e12f0dfd8883c2dc770c291e7d0536
+    last_write_checksum: sha1:f37ac1bbe59221a2dac8076da6171a082359ce6e
+    pristine_git_object: 8d17849d3540a3e0416c929945559066c8783aed
   src/models/components/expensesfilter.ts:
     id: 9ef062cd690d
     last_write_checksum: sha1:0ccd6e4d5fa20c2bc52dd564176b2e449391ea28
@@ -16733,6 +16861,22 @@ trackedFiles:
     id: 46954fe2dbe3
     last_write_checksum: sha1:d26219d64061c635908ed22c0c2ed1aad4ec66c5
     pristine_git_object: 7fbbdd812bf3f536a4653072a11a9c41778d71cf
+  src/models/components/generalledgertransaction.ts:
+    id: edaca894640d
+    last_write_checksum: sha1:3ab3c0e5f103c8df50be0da507a715edc140d767
+    pristine_git_object: f31b506d3e2d20655d3b6bd0a0dc4c36fd0978a2
+  src/models/components/generalledgertransactionlineitem.ts:
+    id: 1acb9918f26f
+    last_write_checksum: sha1:f0905555b87bc6cc7d18818464d3d4843aa400e9
+    pristine_git_object: 77c8c609c87a525978a11544076713cc34743359
+  src/models/components/generalledgertransactionsfilter.ts:
+    id: dff94f7fe97d
+    last_write_checksum: sha1:ed3d944430dcffabb01a299bdcc30e2aa742d715
+    pristine_git_object: f83265ecfb98ed5b179024a2e8aa8644bbba30d8
+  src/models/components/generalledgertransactionssort.ts:
+    id: 9171eea72276
+    last_write_checksum: sha1:d4969054d07cd8aee588c4aa246e4c8c37900bcc
+    pristine_git_object: 546da9dfb976d7ca7d5a4ce98e0ad7aab1da5ee1
   src/models/components/getaccountingdepartmentresponse.ts:
     id: 9bb039d485e7
     last_write_checksum: sha1:f7717a6e6863f3c7c607ab19b8999903eda26fd8
@@ -17085,6 +17229,14 @@ trackedFiles:
     id: 3916b97a9ec5
     last_write_checksum: sha1:b4f63eb244ab397f70dacaf9dba7630255b50264
     pristine_git_object: 1e8e3935cf9857a4879ac3ad59afbcddec90f29e
+  src/models/components/getgeneralledgertransactionresponse.ts:
+    id: 827ab2f7cc92
+    last_write_checksum: sha1:4b87e854db3021494dbf23925b7d622ca4001d51
+    pristine_git_object: 8daadedcf87cdf494c8d2aab88e0f7f81907a377
+  src/models/components/getgeneralledgertransactionsresponse.ts:
+    id: b84236d6290f
+    last_write_checksum: sha1:e25b0717a1821e4bba823ae42d4507408ca1eed9
+    pristine_git_object: 7e1cfaff489b2e8d67aad1f8b7579870d19d7445
   src/models/components/gethriscompaniesresponse.ts:
     id: 6136f5903027
     last_write_checksum: sha1:fbcbb17e8372546e6809f3de57c3894dc3e646cd
@@ -17331,8 +17483,8 @@ trackedFiles:
     pristine_git_object: 3e67d85a4e57fc0795209c6461e6f74c2c4ace32
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:f8aa7ce6df82386c1fca6fc61619ce823d09043e
-    pristine_git_object: 84fb40776517b44b92e8c269a1e9c3ec779b9405
+    last_write_checksum: sha1:febfb3ffeae3e090f117794782ca0e0e690be96a
+    pristine_git_object: 2bf0219d73c289ce29b01623d38791dc3d05b7ad
   src/models/components/integrationstate.ts:
     id: 8bf93ce382c4
     last_write_checksum: sha1:2e71bd757ba028681d86d1c2d901b3888409097d
@@ -17351,8 +17503,8 @@ trackedFiles:
     pristine_git_object: 48bacfeaf24715a0f0926b651dfda67997b1be9f
   src/models/components/invoiceitemsfilter.ts:
     id: "749986494749"
-    last_write_checksum: sha1:d5072a5d9a1cb9cad1a17ef9a6998800ddfef743
-    pristine_git_object: ea34fd4f7d7958d213ee54f5d3f928c614dbac87
+    last_write_checksum: sha1:e2ab72c93369b56380fcd137512b0b409bb13b98
+    pristine_git_object: 4cb6e7e82030d09b38bb40ed3c170bb59697e8c8
   src/models/components/invoiceitemssort.ts:
     id: 9a0c152d1af5
     last_write_checksum: sha1:a1956f3b8adb70ce54c4d2f5ce1f0b3381f86f1b
@@ -17367,8 +17519,8 @@ trackedFiles:
     pristine_git_object: 8142f7b8f3c59cc258fdd48abe8d1e93fc883974
   src/models/components/invoicesfilter.ts:
     id: b31606c1ebf3
-    last_write_checksum: sha1:67672e7acc08be368537b43570c0ac1b2f57c15b
-    pristine_git_object: 0b7e592cb988bf83916b42f93696a920eed73441
+    last_write_checksum: sha1:9b089c535e2f715de71e29fd26528ddea2225e2c
+    pristine_git_object: e96bec8dfac551348ef6af2840fd68d6197c20e8
   src/models/components/invoicessort.ts:
     id: 04a83b3b3ea5
     last_write_checksum: sha1:2388e4d93b18f68370a44805738251e4f9c1b1bd
@@ -17387,8 +17539,8 @@ trackedFiles:
     pristine_git_object: 5bb419055e6f89dd151a40b8b1ffe5a713dc60cc
   src/models/components/journalentriesfilter.ts:
     id: 9d11428b424f
-    last_write_checksum: sha1:ab6b80d4e0a0aaa811d138d525e327571bcd5832
-    pristine_git_object: b25a6c31ff1ef98b40fdfddc9822039357e73b10
+    last_write_checksum: sha1:d8a88ad4023a49470ff82c91d4a91d9c86ff9c35
+    pristine_git_object: 1c4be9f2359d71221715c6931140dd48aa10fcc7
   src/models/components/journalentriessort.ts:
     id: 5709d6396c8d
     last_write_checksum: sha1:c6999ef79ab1828c2cebcd839757c6fdf3864623
@@ -17423,8 +17575,8 @@ trackedFiles:
     pristine_git_object: be3be92acf5e71b1b12ed6b49645b0b3a3b04936
   src/models/components/ledgeraccountsfilter.ts:
     id: 9fbc362ec04c
-    last_write_checksum: sha1:bf5b839a5fd78851e6ebdf3a1b7ffaea71fa11b4
-    pristine_git_object: d2dec71a05e4e2a01132865f98a9f43bba02918c
+    last_write_checksum: sha1:90e95378ff75d8884e42eb79e865638ef06179e5
+    pristine_git_object: 4610a6e91829f878c1339b3597d44bd3d2696f31
   src/models/components/ledgeraccountssort.ts:
     id: e1a4edaf1972
     last_write_checksum: sha1:8fd3ad27f755f04b5ce3e3725d5c383ad5db0142
@@ -17577,6 +17729,10 @@ trackedFiles:
     id: 9a6f22ce6ec6
     last_write_checksum: sha1:a418127aef5a8a72040bebe3a83c563bef60356c
     pristine_git_object: 925c74d5fea8b1f2e01cd3df68c75676d1cc30fd
+  src/models/components/notesfilter.ts:
+    id: 0dc311253e56
+    last_write_checksum: sha1:ea7f34c7392011e0db00a0149109dd38d21dcadc
+    pristine_git_object: 7c18c2bb8048e49f90812d7212f1d21a220220b4
   src/models/components/oauthgranttype.ts:
     id: 9352f0a400a9
     last_write_checksum: sha1:3bf94f51dc33238996741b5aa203991b33962aa3
@@ -17639,8 +17795,8 @@ trackedFiles:
     pristine_git_object: 4450f4acf72d65d82880c1f431ca3353de62813a
   src/models/components/paymentsfilter.ts:
     id: 9d515ad4bc16
-    last_write_checksum: sha1:7093c02e290ff3ac20532365e75b4dbed9c67099
-    pristine_git_object: 3869287c39a9bab40a7c935dcfb6166f7aebcfb6
+    last_write_checksum: sha1:187777a68addd5f9e076cd3d06a8361a709a4b57
+    pristine_git_object: 8ac9cb6812ae18028087b1001758ef7558bb5b10
   src/models/components/paymentssort.ts:
     id: 4c9e0e47e846
     last_write_checksum: sha1:3243401bcda5e38d250f84061c54ecd7587a94fe
@@ -17711,8 +17867,8 @@ trackedFiles:
     pristine_git_object: 1012872d192a71bb98248f05a9aef2a3131e4728
   src/models/components/projectsfilter.ts:
     id: 6967848af9a6
-    last_write_checksum: sha1:b54eb583fa7f2aa6992eee6f5df1baac589df202
-    pristine_git_object: 2d2b232c8e0c4ded1f54af40d1904c3d71b611e5
+    last_write_checksum: sha1:e8d7b14b17792acafbbc89161eb6f24180b93a85
+    pristine_git_object: 41134b51fa396497906ad1a10b7edbd7e3b6c91d
   src/models/components/projectssort.ts:
     id: fd0afe30a31d
     last_write_checksum: sha1:3392dd61a75ba5fdcba8bfe387e90157fb0caf50
@@ -17723,8 +17879,8 @@ trackedFiles:
     pristine_git_object: d7ad09f3d774af1597999f4070dfb73fe519cd2e
   src/models/components/purchaseordersfilter.ts:
     id: 07dce787701f
-    last_write_checksum: sha1:7562fe810d98b68dbd4205e862accd72a5371dc3
-    pristine_git_object: 04fd8bd8b0dcea74f2932094578a5b66e42361d5
+    last_write_checksum: sha1:03c207baed4eb9fc73261faf1f0717962f8b8a2a
+    pristine_git_object: a99f1460b64de1581503c3c4ac34f5992d7a5d16
   src/models/components/purchaseorderssort.ts:
     id: 461faa3ecc8a
     last_write_checksum: sha1:19d6adf4d5ad7001a136e8ddacbb04991510514e
@@ -17737,6 +17893,10 @@ trackedFiles:
     id: cb0b315540f8
     last_write_checksum: sha1:2f1fb0efd100e32cac53897e7221284257984450
     pristine_git_object: 52b8987f67f98be392d40b14d2779cc2b37009ad
+  src/models/components/quotesfilter.ts:
+    id: 10666db17432
+    last_write_checksum: sha1:511866180331de39bd3ab17b9c53940491fb1333
+    pristine_git_object: d09e276983b63ec0de95d5dfc80c4c7bc16a6d9b
   src/models/components/rebilling.ts:
     id: 4161a6a26469
     last_write_checksum: sha1:48a8f4a4873ca211321a1aae6ab4f567f885acec
@@ -17831,8 +17991,8 @@ trackedFiles:
     pristine_git_object: 3c294f2ced6211c9ef43b8e683ca333a5b09d915
   src/models/components/suppliersfilter.ts:
     id: 2755ce2f9218
-    last_write_checksum: sha1:46350933297dbbe77ff1d6bd415c4550bc0dca1f
-    pristine_git_object: ff6979e2a2e980b9d812ae3c635dd39ae929aea6
+    last_write_checksum: sha1:b5189e4ad337763cd29816b38342a24cf52d20c6
+    pristine_git_object: 7633410f8e972110b2434ae3a759ae8d7c091473
   src/models/components/supplierssort.ts:
     id: 34cc8a438b5e
     last_write_checksum: sha1:8cb7ba87f4a80c54369b0bafaa5dd8c354a103ce
@@ -18147,12 +18307,16 @@ trackedFiles:
     pristine_git_object: ae336f9a14d61ce7928cb77b12043e0edeaa1d5f
   src/models/components/user.ts:
     id: d5d9f526a022
-    last_write_checksum: sha1:cfd8177996c02bf73e913482475e9cf8bfe9d542
-    pristine_git_object: be20bd545ccc0a047b1cc57af4d7978e39922c2f
+    last_write_checksum: sha1:48102a3a5d9526a5301cb4280e153aac0fabe37a
+    pristine_git_object: e8714f838072c6ca3c26154ed5f808ca8137326c
   src/models/components/userinput.ts:
     id: ca6cccae8900
-    last_write_checksum: sha1:e7f83a383e5084aea348c4cde17ec17d04dba59b
-    pristine_git_object: 360540d446efbc60a4a04f59255d8a40d532efe4
+    last_write_checksum: sha1:49ce0757328d92f76b5d153d88416171ac985f94
+    pristine_git_object: 93e4573d86fb71c2e1e5431ae1891d910aeaee47
+  src/models/components/usersfilter.ts:
+    id: 72d747a5be18
+    last_write_checksum: sha1:e0600edd813e14693eb0cdeb053e9f70b467390c
+    pristine_git_object: c855a2fa46b35e608a4b54b543ebe14d1438bc07
   src/models/components/validateconnectionstateresponse.ts:
     id: 5961334d6d6c
     last_write_checksum: sha1:dcd5a24c1240cd59a15e1176e03a1cf16507031b
@@ -18171,8 +18335,8 @@ trackedFiles:
     pristine_git_object: 664036449fd89b7b4d877931ba2de76bbb10924a
   src/models/components/webhookeventtype.ts:
     id: 403cfdafa866
-    last_write_checksum: sha1:02623434cb067bbe16008ee44cd3127fd285de7a
-    pristine_git_object: e5b751203f0f11d17cd3213cbceaaeddbfed76e9
+    last_write_checksum: sha1:4b10b1e33007bfdb37b9c4dfa61830f58dc9d3f8
+    pristine_git_object: 26b0fcaa9781562661c39ae256871bd810e653d1
   src/models/components/webhooksubscription.ts:
     id: 058595b8ad39
     last_write_checksum: sha1:e0ed3dd9218160eeb45cd5e877a435e6bb2df2a8
@@ -18521,6 +18685,14 @@ trackedFiles:
     id: 553e7829eb37
     last_write_checksum: sha1:5be5bbd327c151c6ba304dea6502c5da9f735c3d
     pristine_git_object: 7913c8e25beb26a992b05c7c3290c46255dae3f9
+  src/models/operations/accountinggeneralledgertransactionsall.ts:
+    id: ee16ad481253
+    last_write_checksum: sha1:284d73ac62fd2836c780da1b81c1d87475734415
+    pristine_git_object: 074d2410ffa2cc3a8a6371f449b2058404428a3b
+  src/models/operations/accountinggeneralledgertransactionsone.ts:
+    id: c73df2a5c82f
+    last_write_checksum: sha1:c640a0fd38d3c6faec8936b3efbe8f6e0c7eb019
+    pristine_git_object: d07fc3de735264480530e835ff77a65fc2744ae3
   src/models/operations/accountinginvoiceitemsadd.ts:
     id: d5a7f8b2be3d
     last_write_checksum: sha1:1ecb9c6dee9dabbfee402dd27ddf86b13ca980c7
@@ -18691,8 +18863,8 @@ trackedFiles:
     pristine_git_object: bd427628b2819311571be763a9bb3365fe98c36d
   src/models/operations/accountingquotesall.ts:
     id: 8f1e6e0d4c09
-    last_write_checksum: sha1:0162c6451f9c3223acd1a7cd9751c770baaaaf6a
-    pristine_git_object: 215e0ed97f282dc54307c1470be22bcae5d22900
+    last_write_checksum: sha1:8709894fccee964f2cbf3ebab0a35312f274243c
+    pristine_git_object: 3d8d296ba46e838e847809a36fc1f31fda8d460f
   src/models/operations/accountingquotesdelete.ts:
     id: c58b129b2705
     last_write_checksum: sha1:befd411ad99c696c578356a4c2087d9547a955bf
@@ -19023,8 +19195,8 @@ trackedFiles:
     pristine_git_object: e9809ad98741b2862ea0c542d7dae09c52be9dd7
   src/models/operations/crmnotesall.ts:
     id: c52887185162
-    last_write_checksum: sha1:2fd6bc2e61a39d033573f2e615d9dac18b0ecb01
-    pristine_git_object: c1bb8fe6d26624bf01144269cc26ef31f57fcf63
+    last_write_checksum: sha1:84ed27ac6f30dded266f1ece430155306fa6a566
+    pristine_git_object: ff1f90cab92ca4526844aaab0cf977e6303831b9
   src/models/operations/crmnotesdelete.ts:
     id: b6cc7f0057f2
     last_write_checksum: sha1:68b781da2f9a77b375eef70259f60754a5c0e805
@@ -19083,8 +19255,8 @@ trackedFiles:
     pristine_git_object: 11f4d8688fad468e606838de7f7953cc1942d03b
   src/models/operations/crmusersall.ts:
     id: 2bbbd8b3fab0
-    last_write_checksum: sha1:b9bf57474d9fde62f0311c59c7db5a2b0c0fe6e8
-    pristine_git_object: 61d47868e231f25b81d54815832835c487322937
+    last_write_checksum: sha1:3bce958bea3bfc940f05cf076f3a96831f5024c1
+    pristine_git_object: 633c1063f01d5aa349c20ed165e2138a3784e6e8
   src/models/operations/crmusersdelete.ts:
     id: e0fca44fc9f7
     last_write_checksum: sha1:577cee5c6aadbad0c142d70adb12369268a6d4c8
@@ -19355,8 +19527,8 @@ trackedFiles:
     pristine_git_object: a050e482005d5e78d421d1a49e2aeb1e88430e55
   src/models/operations/index.ts:
     id: 0d9ffaf774d2
-    last_write_checksum: sha1:05f679b8c58243be5b534154bc115bf58081de95
-    pristine_git_object: fd621a9afc445c3c439fc94abaf6d535a4c716ed
+    last_write_checksum: sha1:fab2cf471d39d5d1a1c7bf409aa31d6be3fcc33e
+    pristine_git_object: e3c298dda37851c0a72958e83dbc7068d75f37d6
   src/models/operations/issuetrackingcollectionsall.ts:
     id: 983c9105664d
     last_write_checksum: sha1:9e0d1853de82f1f3a10e629bfba2e7220553d440
@@ -19579,8 +19751,8 @@ trackedFiles:
     pristine_git_object: 7b089a00bfb8f1529eb315fefd1cc7163c6f8a2a
   src/sdk/accounting.ts:
     id: e0128a734bc9
-    last_write_checksum: sha1:d748bfc2eb164507f00564fdc662483b135ba0cc
-    pristine_git_object: d0f7db2ae5a86a2f653a7746b69e9709a5f16534
+    last_write_checksum: sha1:7e46ff4965fdd327c9a03a1ac40ef262c900a48b
+    pristine_git_object: 6c1735b2571958fd528c6b6ccd835ba62c5090a9
   src/sdk/activities.ts:
     id: 44c47815e433
     last_write_checksum: sha1:b2eb8039f8e92a2cf97260610e5751e45bfb9a17
@@ -19833,6 +20005,10 @@ trackedFiles:
     id: 2d186e1d91d4
     last_write_checksum: sha1:b11b43a73094e67807a3592a1af436bce0b242a4
     pristine_git_object: 36f43fe6e0c47a4066bf1c9fef7d855aa703e067
+  src/sdk/generalledgertransactions.ts:
+    id: b01dc8b2cc1a
+    last_write_checksum: sha1:6d01a85e4e1ccc218e13a9fe2fd8597fed3e1aef
+    pristine_git_object: 4072a546876e22d1f7818af6f0bbdec1c1a7180e
   src/sdk/hris.ts:
     id: b7831a6209ac
     last_write_checksum: sha1:f6d9b88839ef2c37e78e2510b9ed273931b4b981
@@ -27739,6 +27915,7 @@ examples:
           limit: 20
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
+          filter: {"title": "Follow up call"}
         header:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
@@ -28002,6 +28179,7 @@ examples:
           limit: 20
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
+          filter: {"email": "elon@apideck.com"}
         header:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
@@ -28056,7 +28234,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"parent_id": "54321", "username": "masterofcoin", "first_name": "Elon", "last_name": "Musk", "title": "CEO", "division": "Europe", "company_name": "SpaceX", "employee_number": "123456-AB", "description": "A description", "image": "https://logo.clearbit.com/spacex.com?s=128", "language": "EN", "status": "active", "password": "supersecretpassword", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"parent_id": "54321", "username": "masterofcoin", "name": "Acme Inc.", "first_name": "Elon", "last_name": "Musk", "title": "CEO", "division": "Europe", "company_name": "SpaceX", "employee_number": "123456-AB", "description": "A description", "image": "https://logo.clearbit.com/spacex.com?s=128", "language": "EN", "status": "active", "password": "supersecretpassword", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "201":
           application/json: {"status_code": 200, "status": "OK", "service": "zoho-crm", "resource": "users", "operation": "add", "data": {"id": "12345"}}
@@ -28112,7 +28290,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "zoho-crm", "resource": "companies", "operation": "one", "data": {"id": "12345", "parent_id": "54321", "username": "masterofcoin", "first_name": "Elon", "last_name": "Musk", "title": "CEO", "division": "Europe", "company_name": "SpaceX", "employee_number": "123456-AB", "description": "A description", "image": "https://logo.clearbit.com/spacex.com?s=128", "language": "EN", "status": "active", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [], "updated_at": "2017-08-12T20:43:21.291Z", "created_at": "2017-08-12T20:43:21.291Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "zoho-crm", "resource": "companies", "operation": "one", "data": {"id": "12345", "parent_id": "54321", "username": "masterofcoin", "name": "Acme Inc.", "first_name": "Elon", "last_name": "Musk", "title": "CEO", "division": "Europe", "company_name": "SpaceX", "employee_number": "123456-AB", "description": "A description", "image": "https://logo.clearbit.com/spacex.com?s=128", "language": "EN", "status": "active", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [], "updated_at": "2017-08-12T20:43:21.291Z", "created_at": "2017-08-12T20:43:21.291Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
         "401":
@@ -28164,7 +28342,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"parent_id": "54321", "username": "masterofcoin", "first_name": "Elon", "last_name": "Musk", "title": "CEO", "division": "Europe", "company_name": "SpaceX", "employee_number": "123456-AB", "description": "A description", "image": "https://logo.clearbit.com/spacex.com?s=128", "language": "EN", "status": "active", "password": "supersecretpassword", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"parent_id": "54321", "username": "masterofcoin", "name": "Acme Inc.", "first_name": "Elon", "last_name": "Musk", "title": "CEO", "division": "Europe", "company_name": "SpaceX", "employee_number": "123456-AB", "description": "A description", "image": "https://logo.clearbit.com/spacex.com?s=128", "language": "EN", "status": "active", "password": "supersecretpassword", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "zoho-crm", "resource": "companies", "operation": "update", "data": {"id": "12345"}}
@@ -33675,7 +33853,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "health": "ok", "credentials_expire_at": 1730172800000, "last_refresh_failed_at": 1730000000000, "created_at": 1615563533390, "updated_at": 1616662325753}}
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "health": "ok", "credentials_expire_at": 1730172800000, "last_refresh_failed_at": 1730000000000, "last_downstream_error_at": 1730000000000, "created_at": 1615563533390, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
         "401":
@@ -33726,7 +33904,7 @@ examples:
         application/json: {"enabled": true, "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "configuration": [{"resource": "leads", "defaults": [{"id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "custom_mappings": [{"value": "$.root.training.first_aid"}], "consent_state": "granted", "latest_consent": {"granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}}
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "health": "ok", "credentials_expire_at": 1730172800000, "last_refresh_failed_at": 1730000000000, "created_at": 1615563533390, "updated_at": 1616662325753}}
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "health": "ok", "credentials_expire_at": 1730172800000, "last_refresh_failed_at": 1730000000000, "last_downstream_error_at": 1730000000000, "created_at": 1615563533390, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
         "401":
@@ -33820,7 +33998,7 @@ examples:
         application/json: {"credentials": {"refresh_token": "<refresh_token>", "access_token": "<access_token>"}, "settings": {"instance_url": "https://eu28.salesforce.com"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}}
       responses:
         "200":
-          application/json: {"status_code": 201, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "health": "ok", "credentials_expire_at": 1730172800000, "last_refresh_failed_at": 1730000000000, "created_at": 1615563533390, "updated_at": 1616662325753}}
+          application/json: {"status_code": 201, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "health": "ok", "credentials_expire_at": 1730172800000, "last_refresh_failed_at": 1730000000000, "last_downstream_error_at": 1730000000000, "created_at": 1615563533390, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
         "401":
@@ -33867,7 +34045,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "health": "ok", "credentials_expire_at": 1730172800000, "last_refresh_failed_at": 1730000000000, "created_at": 1615563533390, "updated_at": 1616662325753}}
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "health": "ok", "credentials_expire_at": 1730172800000, "last_refresh_failed_at": 1730000000000, "last_downstream_error_at": 1730000000000, "created_at": 1615563533390, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
         "401":
@@ -34014,7 +34192,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "health": "ok", "credentials_expire_at": 1730172800000, "last_refresh_failed_at": 1730000000000, "created_at": 1615563533390, "updated_at": 1616662325753}}
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "health": "ok", "credentials_expire_at": 1730172800000, "last_refresh_failed_at": 1730000000000, "last_downstream_error_at": 1730000000000, "created_at": 1615563533390, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
         "401":
@@ -34067,7 +34245,7 @@ examples:
         application/json: {"enabled": true, "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "configuration": [{"resource": "leads", "defaults": [{"id": "ProductInterest", "options": [{"label": "General Channel", "options": [{"label": "General Channel", "value": "general", "option_type": "simple"}], "option_type": "group"}], "value": "GC5000 series"}]}], "custom_mappings": [{"value": "$.root.training.first_aid"}], "consent_state": "granted", "latest_consent": {"granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}}
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "health": "ok", "credentials_expire_at": 1730172800000, "last_refresh_failed_at": 1730000000000, "created_at": 1615563533390, "updated_at": 1616662325753}}
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "health": "ok", "credentials_expire_at": 1730172800000, "last_refresh_failed_at": 1730000000000, "last_downstream_error_at": 1730000000000, "created_at": 1615563533390, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
         "401":
@@ -35186,6 +35364,7 @@ examples:
         query:
           raw: false
           limit: 20
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "created_since": "2020-09-30T07:43:32.000Z", "number": "OIT00546"}
         header:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
@@ -36446,6 +36625,64 @@ examples:
           application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
         default:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.generalLedgerTransactionsAll:
+    speakeasy-default-accounting-general-ledger-transactions-all:
+      parameters:
+        query:
+          raw: false
+          limit: 20
+          filter: {"source_type": "invoice", "updated_since": "2024-09-30T07:43:32.000Z"}
+          sort: {"by": "posted_at", "direction": "desc"}
+          pass_through: {"search": "San Francisco"}
+          fields: "id,updated_at"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+          x-apideck-company-id: "12345"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "general-ledger-transactions", "operation": "all", "data": [], "meta": {"items_on_page": 50, "cursors": {"previous": "em9oby1jcm06OnBhZ2U6OjE=", "current": "em9oby1jcm06OnBhZ2U6OjI=", "next": "em9oby1jcm06OnBhZ2U6OjM="}}, "links": {"previous": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D", "current": "https://unify.apideck.com/crm/companies", "next": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.generalLedgerTransactionsOne:
+    speakeasy-default-accounting-general-ledger-transactions-one:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+          fields: "id,updated_at"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+          x-apideck-company-id: "12345"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "general-ledger-transactions", "operation": "one", "data": {"id": "12345", "source_type": "invoice", "source_id": "12345", "posted_at": "2020-09-30T07:43:32.000Z", "reference": "INV-2024-001", "number": "JNL-001", "currency": "USD", "currency_rate": 0.69, "memo": "Year-end adjustment for inventory revaluation", "line_items": [{"id": "12345", "description": "Sales revenue from Q3 batch", "net_amount": 27500, "type": "debit", "tax_amount": 0, "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "line_number": 1}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests:
   accounting.taxRatesAll: "2025-04-22T11:14:40+01:00"
@@ -36779,7 +37016,7 @@ generatedTests:
   ats.jobsAdd: "2026-03-11T13:14:11Z"
   ats.jobsUpdate: "2026-03-11T13:14:11Z"
   ats.jobsDelete: "2026-03-11T13:14:11Z"
-releaseNotes: "## Typescript SDK Changes:\n* `apideck.vault.logs.list()`: \n  *  `request.filter` **Changed**\n"
+releaseNotes: "## Typescript SDK Changes:\n* `apideck.accounting.generalLedgerTransactions.list()`: **Added**\n* `apideck.accounting.generalLedgerTransactions.get()`: **Added**\n* `apideck.accounting.bills.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.invoices.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.ledgerAccounts.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.invoiceItems.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.creditNotes.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.customers.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.suppliers.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.payments.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.journalEntries.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.purchaseOrders.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.billPayments.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.quotes.list()`: \n  *  `request.filter` **Added**\n* `apideck.accounting.projects.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.expenseReports.list()`: \n  *  `request.filter` **Changed**\n* `apideck.crm.notes.list()`: \n  *  `request.filter` **Added**\n* `apideck.crm.users.list()`: \n  *  `request.filter` **Added**\n  *  `response.data[].name` **Added**\n* `apideck.crm.users.create()`: \n  *  `request.user.name` **Added**\n* `apideck.crm.users.get()`:  `response.data.name` **Added**\n* `apideck.crm.users.update()`: \n  *  `request.user.name` **Added**\n* `apideck.vault.consumers.create()`:  `response.data.connections[].health.enum(degraded)` **Added**\n* `apideck.vault.consumers.get()`:  `response.data.connections[].health.enum(degraded)` **Added**\n* `apideck.vault.consumers.update()`:  `response.data.connections[].health.enum(degraded)` **Added**\n* `apideck.vault.connections.list()`:  `response.data[]` **Changed**\n* `apideck.vault.connections.get()`:  `response.data` **Changed**\n* `apideck.vault.connections.update()`:  `response.data` **Changed**\n* `apideck.vault.connections.imports()`:  `response.data` **Changed**\n* `apideck.vault.connections.token()`:  `response.data` **Changed**\n* `apideck.vault.connectionSettings.list()`:  `response.data` **Changed**\n* `apideck.vault.connectionSettings.update()`:  `response.data` **Changed**\n* `apideck.webhook.webhooks.list()`:  `response.data[].events[]` **Changed**\n* `apideck.webhook.webhooks.create()`: \n  *  `request.createWebhookRequest.events[]` **Changed**\n  *  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.get()`:  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.update()`: \n  *  `request.updateWebhookRequest.events[]` **Changed**\n  *  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.delete()`:  `response.data.events[]` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore

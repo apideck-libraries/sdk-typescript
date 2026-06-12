@@ -28,6 +28,8 @@ type ExpenseReportsFilter struct {
 	Status       *ExpenseReportsFilterStatus `queryParam:"name=status"`
 	// Filter by employee ID
 	EmployeeID *string `queryParam:"name=employee_id"`
+	// Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+	SubsidiaryID *string `queryParam:"name=subsidiary_id"`
 }
 
 func (e ExpenseReportsFilter) MarshalJSON() ([]byte, error) {
@@ -60,4 +62,11 @@ func (o *ExpenseReportsFilter) GetEmployeeID() *string {
 		return nil
 	}
 	return o.EmployeeID
+}
+
+func (o *ExpenseReportsFilter) GetSubsidiaryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubsidiaryID
 }

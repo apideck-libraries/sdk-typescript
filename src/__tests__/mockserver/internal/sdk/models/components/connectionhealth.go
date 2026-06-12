@@ -13,6 +13,7 @@ const (
 	ConnectionHealthNeedsConsent        ConnectionHealth = "needs_consent"
 	ConnectionHealthRevoked             ConnectionHealth = "revoked"
 	ConnectionHealthMissingSettings     ConnectionHealth = "missing_settings"
+	ConnectionHealthDegraded            ConnectionHealth = "degraded"
 )
 
 func (e ConnectionHealth) ToPointer() *ConnectionHealth {

@@ -3,8 +3,12 @@
  */
 
 import { ApideckCore } from "../core.js";
-import { dlv } from "../lib/dlv.js";
-import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import {
+  encodeDeepObjectQuery,
+  encodeFormQuery,
+  encodeSimple,
+  queryJoin,
+} from "../lib/encodings.js";
 import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
@@ -113,11 +117,16 @@ async function $do(
 
   const path = pathToFunc("/accounting/quotes")();
 
-  const query = encodeFormQuery({
-    "cursor": payload.cursor,
-    "limit": payload.limit,
-    "raw": payload.raw,
-  });
+  const query = queryJoin(
+    encodeDeepObjectQuery({
+      "filter": payload.filter,
+    }),
+    encodeFormQuery({
+      "cursor": payload.cursor,
+      "limit": payload.limit,
+      "raw": payload.raw,
+    }),
+  );
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -265,7 +274,11 @@ async function $do(
     >;
     "~next"?: { cursor: string };
   } => {
-    const nextCursor = dlv(responseData, "meta.cursors.next");
+    const nextCursor =
+      (responseData as
+        | { meta?: { cursors?: { next?: unknown } } }
+        | null
+        | undefined)?.meta?.cursors?.next;
     if (typeof nextCursor !== "string") {
       return { next: () => null };
     }

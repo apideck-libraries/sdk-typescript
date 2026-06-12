@@ -50,6 +50,10 @@ export type InvoiceItemsFilter = {
    * The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
    */
   transactionType?: TransactionType | null | undefined;
+  /**
+   * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+   */
+  subsidiaryId?: string | undefined;
 };
 
 /** @internal */
@@ -73,6 +77,7 @@ export type InvoiceItemsFilter$Outbound = {
   name?: string | undefined;
   type?: string | null | undefined;
   transaction_type?: string | null | undefined;
+  subsidiary_id?: string | undefined;
 };
 
 /** @internal */
@@ -86,10 +91,12 @@ export const InvoiceItemsFilter$outboundSchema: z.ZodType<
   name: z.string().optional(),
   type: z.nullable(InvoiceItemType$outboundSchema).optional(),
   transactionType: z.nullable(TransactionType$outboundSchema).optional(),
+  subsidiaryId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",
     transactionType: "transaction_type",
+    subsidiaryId: "subsidiary_id",
   });
 });
 

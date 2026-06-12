@@ -31,6 +31,10 @@ export type UserInput = {
    */
   username?: string | null | undefined;
   /**
+   * The name of the resource.
+   */
+  name?: string | null | undefined;
+  /**
    * The first name of the person.
    */
   firstName?: string | null | undefined;
@@ -93,6 +97,7 @@ export type UserInput = {
 export type UserInput$Outbound = {
   parent_id?: string | null | undefined;
   username?: string | null | undefined;
+  name?: string | null | undefined;
   first_name?: string | null | undefined;
   last_name?: string | null | undefined;
   title?: string | null | undefined;
@@ -119,6 +124,7 @@ export const UserInput$outboundSchema: z.ZodType<
 > = z.object({
   parentId: z.nullable(z.string()).optional(),
   username: z.nullable(z.string()).optional(),
+  name: z.nullable(z.string()).optional(),
   firstName: z.nullable(z.string()).optional(),
   lastName: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),

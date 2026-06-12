@@ -116,6 +116,7 @@ export const Health = {
   NeedsAuth: "needs_auth",
   PendingRefresh: "pending_refresh",
   Ok: "ok",
+  Degraded: "degraded",
 } as const;
 /**
  * Operational health status of the connection
@@ -237,6 +238,10 @@ export type Connection = {
    * Unix timestamp in milliseconds of the last failed token refresh attempt. A value of 0 indicates no recent failures. This field is used internally to enforce cooldown periods between retry attempts.
    */
   lastRefreshFailedAt?: number | undefined;
+  /**
+   * Unix timestamp in milliseconds of the last downstream unreachable error (502/504 network class). A value of 0 indicates no active error. Connection remains callable while this is set; health surfaces as 'degraded'.
+   */
+  lastDownstreamErrorAt?: number | undefined;
   createdAt?: number | undefined;
   updatedAt?: number | null | undefined;
 };
@@ -467,6 +472,7 @@ export const Connection$inboundSchema: z.ZodType<
   health: types.optional(Health$inboundSchema),
   credentials_expire_at: types.optional(types.number()),
   last_refresh_failed_at: types.optional(types.number()),
+  last_downstream_error_at: types.optional(types.number()),
   created_at: types.optional(types.number()),
   updated_at: z.nullable(types.number()).optional(),
 }).transform((v) => {
@@ -493,6 +499,7 @@ export const Connection$inboundSchema: z.ZodType<
     "application_data_scopes": "applicationDataScopes",
     "credentials_expire_at": "credentialsExpireAt",
     "last_refresh_failed_at": "lastRefreshFailedAt",
+    "last_downstream_error_at": "lastDownstreamErrorAt",
     "created_at": "createdAt",
     "updated_at": "updatedAt",
   });

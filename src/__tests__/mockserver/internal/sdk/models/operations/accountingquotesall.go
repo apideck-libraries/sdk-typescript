@@ -44,6 +44,8 @@ type AccountingQuotesAllRequest struct {
 	Cursor optionalnullable.OptionalNullable[string] `queryParam:"style=form,explode=true,name=cursor"`
 	// Number of results to return. Minimum 1, Maximum 200, Default 20
 	Limit *int64 `default:"20" queryParam:"style=form,explode=true,name=limit"`
+	// Apply filters
+	Filter *components.QuotesFilter `queryParam:"style=deepObject,explode=true,name=filter"`
 }
 
 func (a AccountingQuotesAllRequest) MarshalJSON() ([]byte, error) {
@@ -104,6 +106,13 @@ func (o *AccountingQuotesAllRequest) GetLimit() *int64 {
 		return nil
 	}
 	return o.Limit
+}
+
+func (o *AccountingQuotesAllRequest) GetFilter() *components.QuotesFilter {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
 }
 
 type AccountingQuotesAllResponse struct {

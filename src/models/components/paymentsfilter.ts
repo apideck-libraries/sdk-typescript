@@ -51,6 +51,10 @@ export type PaymentsFilter = {
    * Filter by payment status
    */
   status?: PaymentsFilterPaymentStatus | undefined;
+  /**
+   * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+   */
+  subsidiaryId?: string | undefined;
 };
 
 /** @internal */
@@ -76,6 +80,7 @@ export type PaymentsFilter$Outbound = {
   customer_id?: string | undefined;
   type?: string | undefined;
   status?: string | undefined;
+  subsidiary_id?: string | undefined;
 };
 
 /** @internal */
@@ -91,6 +96,7 @@ export const PaymentsFilter$outboundSchema: z.ZodType<
   customerId: z.string().optional(),
   type: PaymentsFilterType$outboundSchema.optional(),
   status: PaymentsFilterPaymentStatus$outboundSchema.optional(),
+  subsidiaryId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",
@@ -98,6 +104,7 @@ export const PaymentsFilter$outboundSchema: z.ZodType<
     billId: "bill_id",
     supplierId: "supplier_id",
     customerId: "customer_id",
+    subsidiaryId: "subsidiary_id",
   });
 });
 

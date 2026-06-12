@@ -22,6 +22,7 @@ import { Employees } from "./employees.js";
 import { ExpenseCategories } from "./expensecategories.js";
 import { ExpenseReports } from "./expensereports.js";
 import { Expenses } from "./expenses.js";
+import { GeneralLedgerTransactions } from "./generalledgertransactions.js";
 import { InvoiceItems } from "./invoiceitems.js";
 import { Invoices } from "./invoices.js";
 import { JournalEntries } from "./journalentries.js";
@@ -112,6 +113,13 @@ export class Accounting extends ClientSDK {
   private _journalEntries?: JournalEntries;
   get journalEntries(): JournalEntries {
     return (this._journalEntries ??= new JournalEntries(this._options));
+  }
+
+  private _generalLedgerTransactions?: GeneralLedgerTransactions;
+  get generalLedgerTransactions(): GeneralLedgerTransactions {
+    return (this._generalLedgerTransactions ??= new GeneralLedgerTransactions(
+      this._options,
+    ));
   }
 
   private _purchaseOrders?: PurchaseOrders;

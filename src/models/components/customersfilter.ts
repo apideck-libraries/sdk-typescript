@@ -51,6 +51,10 @@ export type CustomersFilter = {
    * Supplier ID of customer to search for
    */
   supplierId?: string | undefined;
+  /**
+   * Filter by the subsidiary (legal entity) the customer's primary subsidiary belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+   */
+  subsidiaryId?: string | undefined;
 };
 
 /** @internal */
@@ -70,6 +74,7 @@ export type CustomersFilter$Outbound = {
   status?: string | null | undefined;
   updated_since?: string | undefined;
   supplier_id?: string | undefined;
+  subsidiary_id?: string | undefined;
 };
 
 /** @internal */
@@ -86,6 +91,7 @@ export const CustomersFilter$outboundSchema: z.ZodType<
   status: z.nullable(CustomersFilterStatus$outboundSchema).optional(),
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   supplierId: z.string().optional(),
+  subsidiaryId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     companyName: "company_name",
@@ -94,6 +100,7 @@ export const CustomersFilter$outboundSchema: z.ZodType<
     lastName: "last_name",
     updatedSince: "updated_since",
     supplierId: "supplier_id",
+    subsidiaryId: "subsidiary_id",
   });
 });
 
