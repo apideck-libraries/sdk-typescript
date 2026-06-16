@@ -43,6 +43,8 @@ type Meta struct {
 	ItemsOnPage *int64 `json:"items_on_page,omitempty"`
 	// Cursors to navigate to previous or next pages through the API
 	Cursors *Cursors `json:"cursors,omitempty"`
+	// Number of records available in total for this resource
+	TotalCount *int64 `json:"total_count,omitempty"`
 }
 
 func (o *Meta) GetItemsOnPage() *int64 {
@@ -57,4 +59,11 @@ func (o *Meta) GetCursors() *Cursors {
 		return nil
 	}
 	return o.Cursors
+}
+
+func (o *Meta) GetTotalCount() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.TotalCount
 }
