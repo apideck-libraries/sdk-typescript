@@ -14,6 +14,7 @@ let value: Meta = {
     current: "em9oby1jcm06OnBhZ2U6OjI=",
     next: "em9oby1jcm06OnBhZ2U6OjM=",
   },
+  totalCount: 1,
 };
 ```
 
@@ -23,3 +24,4 @@ let value: Meta = {
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
 | `itemsOnPage`                                                 | *number*                                                      | :heavy_minus_sign:                                            | Number of items returned in the data property of the response | 50                                                            |
 | `cursors`                                                     | [components.Cursors](../../models/components/cursors.md)      | :heavy_minus_sign:                                            | Cursors to navigate to previous or next pages through the API |                                                               |
+| `totalCount`                                                  | *number*                                                      | :heavy_minus_sign:                                            | Number of records available in total for this resource        | 1                                                             |

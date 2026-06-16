@@ -10,6 +10,7 @@ export const AttachmentReferenceType = {
   Invoice: "invoice",
   Bill: "bill",
   Expense: "expense",
+  ExpenseReport: "expense-report",
   Quote: "quote",
 } as const;
 export type AttachmentReferenceType = OpenEnum<typeof AttachmentReferenceType>;

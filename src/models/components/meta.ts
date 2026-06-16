@@ -39,6 +39,10 @@ export type Meta = {
    * Cursors to navigate to previous or next pages through the API
    */
   cursors?: Cursors | undefined;
+  /**
+   * Number of records available in total for this resource
+   */
+  totalCount?: number | undefined;
 };
 
 /** @internal */
@@ -64,9 +68,11 @@ export const Meta$inboundSchema: z.ZodType<Meta, z.ZodTypeDef, unknown> = z
   .object({
     items_on_page: types.optional(types.number()),
     cursors: types.optional(z.lazy(() => Cursors$inboundSchema)),
+    total_count: types.optional(types.number()),
   }).transform((v) => {
     return remap$(v, {
       "items_on_page": "itemsOnPage",
+      "total_count": "totalCount",
     });
   });
 

@@ -21,6 +21,7 @@ let value: GetInvoicesResponse = {
       current: "em9oby1jcm06OnBhZ2U6OjI=",
       next: "em9oby1jcm06OnBhZ2U6OjM=",
     },
+    totalCount: 1,
   },
   links: {
     previous:
