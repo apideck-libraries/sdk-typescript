@@ -65,6 +65,8 @@ type EcommerceOrder struct {
 	TotalAmount optionalnullable.OptionalNullable[string] `json:"total_amount,omitempty"`
 	// Refunded amount, if any.
 	RefundedAmount optionalnullable.OptionalNullable[string] `json:"refunded_amount,omitempty"`
+	// Indicates whether the order's monetary amounts are inclusive of tax.
+	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// Current status of the order.
 	Status optionalnullable.OptionalNullable[EcommerceOrderStatus] `json:"status,omitempty"`
 	// Current payment status of the order.
@@ -178,6 +180,13 @@ func (o *EcommerceOrder) GetRefundedAmount() optionalnullable.OptionalNullable[s
 		return nil
 	}
 	return o.RefundedAmount
+}
+
+func (o *EcommerceOrder) GetTaxInclusive() optionalnullable.OptionalNullable[bool] {
+	if o == nil {
+		return nil
+	}
+	return o.TaxInclusive
 }
 
 func (o *EcommerceOrder) GetStatus() optionalnullable.OptionalNullable[EcommerceOrderStatus] {

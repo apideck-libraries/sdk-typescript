@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: f0a6d0b9d5a4d6d2b6fb63d849fefac3
-  docVersion: 10.24.43
-  speakeasyVersion: 1.778.0
-  generationVersion: 2.904.2
-  releaseVersion: 0.43.1
-  configChecksum: 3549b8a6769980d6c4cf63a884d4fd52
+  docChecksum: 1366ae5a5fd96fa353ba6f2628435561
+  docVersion: 10.24.44
+  speakeasyVersion: 1.783.1
+  generationVersion: 2.910.1
+  releaseVersion: 0.43.2
+  configChecksum: f7c538a52ae2ad65594cc16a1f6aadd9
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: 94cb9791-9f87-4577-b06c-04509f934950
-  pristine_commit_hash: a0a6786465cab69f7656c1ec9afd15adf1a92840
-  pristine_tree_hash: b1958a370f731dee104c7341752c5c41e669a667
+  generation_id: aca5b325-d8f0-41d3-ba53-d2a5381c8f66
+  pristine_commit_hash: 9123ece888960ba9af04fdf2af65c69ed0d56313
+  pristine_tree_hash: 052bf86a81a7c6611671a19819b074cdfd1d00ba
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -42,7 +42,7 @@ features:
     openEnums: 0.1.3
     pagination: 2.83.2
     responseFormat: 0.3.0
-    retries: 2.83.0
+    retries: 2.83.1
     sdkHooks: 0.4.0
     tests: 0.17.7
     typeOverrides: 2.81.1
@@ -1507,8 +1507,8 @@ trackedFiles:
     pristine_git_object: 8aff42b479cab68f3ef3d326c91d034937db5216
   docs/models/components/ecommerceorder.md:
     id: 96b86e9ec927
-    last_write_checksum: sha1:1be642d1cd603f07aed9e24ed33fc8bb64373a92
-    pristine_git_object: 78de37154a5209d09817ac898b9c734271cf1e20
+    last_write_checksum: sha1:8696bac0be907c282f1d991fefbf0bfb690cbbb0
+    pristine_git_object: a9f7df2a3aa8650c60b120a6611555b56701aa81
   docs/models/components/ecommerceorderlineitem.md:
     id: 4b2594ba9365
     last_write_checksum: sha1:9c2232157a8e1c332429ace49d599685ce2c4e00
@@ -2143,8 +2143,8 @@ trackedFiles:
     pristine_git_object: 71062ffa070efc382402a6ed8a81166400f7ca78
   docs/models/components/getecommerceorderresponse.md:
     id: ce201f2a17b7
-    last_write_checksum: sha1:4fd976b7c2bbb9378579f27f60764cce61955108
-    pristine_git_object: 73f9f307fb26e04c9bf60517eae43679ba8fda8d
+    last_write_checksum: sha1:577a86495ec7bb9d6fedf0fa09c67d1cd0c30b05
+    pristine_git_object: f273e54e424b85e408c838af26b1334129ab74b8
   docs/models/components/getecommerceordersresponse.md:
     id: 0a52fbe68676
     last_write_checksum: sha1:966a619667be72a7f720725de6f31131405a9a6c
@@ -8523,12 +8523,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:8c0ac5bf8b4ab9c9607d5aee6c7dc2cff8c36420
-    pristine_git_object: 31582d5b8b87e045d5d73cf36c452838b815cb84
+    last_write_checksum: sha1:1f8e3651e1f3d1ab442ff9d5b2db9707aba780ba
+    pristine_git_object: e5a4f45d4872898b320b464c94a49fed3d35ba55
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:321ce9d95ec1f7d592bc171285b7c738c617ac02
-    pristine_git_object: 9343e7b812c731eaa11e2393dfa198ade160115a
+    last_write_checksum: sha1:c9237e4d6ed63a2e110fa6250903021eda6b64f2
+    pristine_git_object: da9460404b13b64c3f95cce15b3345f0bb354a45
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -11135,8 +11135,8 @@ trackedFiles:
     pristine_git_object: c7660c623c075f7cb511f8cbba80e5098986878b
   src/__tests__/mockserver/internal/sdk/models/components/ecommerceorder.go:
     id: 68e76f283523
-    last_write_checksum: sha1:a5cf99f29bcc840bc8f865c1339879addb93b1fb
-    pristine_git_object: 727f11722e8440dba0ec9d1186bfa4d3125d6ca1
+    last_write_checksum: sha1:df1641214c7d4ad23452363430d072cc87ffc2bf
+    pristine_git_object: 1a763270e095fa45be3104f504a743737631e2b5
   src/__tests__/mockserver/internal/sdk/models/components/ecommerceorderlineitem.go:
     id: a87cd98b415e
     last_write_checksum: sha1:508bd603686a79058d20fb6f0186c3eef537df8a
@@ -15715,8 +15715,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:f2dbf8dd0dade066e3e93ee16baa03f092b40fbf
-    pristine_git_object: 137ad2123f288c58a4993c2598a0bbfe852c954c
+    last_write_checksum: sha1:973c0561ff56abc51212b43675fd7cc36b76b838
+    pristine_git_object: 6d043f7844c4de8581c48f26e48a8956a9d86327
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -15747,8 +15747,8 @@ trackedFiles:
     pristine_git_object: 8ce65db0f7c0d6b68f5edc3ebf518121e284e954
   src/lib/retries.ts:
     id: b24a69d15639
-    last_write_checksum: sha1:f3da74dffcbe2756c69393f8600205aa1dc06e68
-    pristine_git_object: e3ce9aba72150fc3c18f3105d39b21aba809377b
+    last_write_checksum: sha1:42c8f6cc4c875be236230a8c760f4f32d8c1ab68
+    pristine_git_object: 21a647e1e9ae64817fcd63b5dd6bb5a51b63d225
   src/lib/schemas.ts:
     id: deb4b531fae1
     last_write_checksum: sha1:209cfaabfa7fc1c1310f97453215cb0755619c6e
@@ -16715,8 +16715,8 @@ trackedFiles:
     pristine_git_object: 0a4f248a13c4b7ca38a0e2a8f17e444238f234c7
   src/models/components/ecommerceorder.ts:
     id: 88ceb20ddcd6
-    last_write_checksum: sha1:81af1f5ea01f93ac4888c426376169d78b8b282c
-    pristine_git_object: 97aeafe416fededc0a3718cc36a5f90a6bf8094f
+    last_write_checksum: sha1:051a106637c3c0dc829164f1f2af986c2493e7b0
+    pristine_git_object: e11b60c8e8457550c87a4ca52c8cd47c1032573a
   src/models/components/ecommerceorderlineitem.ts:
     id: 99c7491ef713
     last_write_checksum: sha1:a845421e52026bb7ef80b0b6a9d09d41571769d1
@@ -28773,7 +28773,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "shopify", "resource": "orders", "operation": "one", "data": {"id": "12345", "order_number": "123456789", "currency": "USD", "discounts": [{"code": "SUMMER20", "amount": "5.99", "percentage": "0.1"}], "sub_total": "45.17", "shipping_cost": "5.17", "coupon_discount": "5.5", "total_discount": "5.5", "total_tax": "5.16", "total_amount": "50.17", "refunded_amount": "5.5", "status": "active", "payment_status": "paid", "fulfillment_status": "shipped", "payment_method": "credit_card", "customer": {"id": "12345", "name": "John Doe", "first_name": "John", "last_name": "Doe", "company_name": "Acme Inc.", "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}]}, "billing_address": {"line1": "123 Main Street", "line2": "Apt 1", "company_name": "Acme Inc.", "city": "New York", "state": "NY", "postal_code": "10001", "country": "US"}, "shipping_address": {"line1": "123 Main Street", "line2": "Apt 1", "company_name": "Acme Inc.", "city": "New York", "state": "NY", "postal_code": "10001", "country": "US"}, "tracking": [{"provider": "UPS", "number": "1Z9999999999999999", "url": "https://www.ups.com/track?tracknum=1Z9999999999999999", "updated_at": "2020-09-30T07:43:32.000Z"}], "line_items": [{"id": "12345", "product_id": "def456", "variant_id": "ghi789", "sku": "MBP123-16GB-SILVER-13", "name": "Midnight 16inch MacBook Pro", "description": "Powerful and portable, the MacBook Pro is perfect for professionals and creatives.", "options": [{"id": "jkl012", "name": "Color", "value": "Silver"}], "quantity": "2", "unit_price": "19.99", "tax_rate": "0.08", "tax_amount": "1.6", "is_refunded": false, "refunded_amount": "0", "refunded_quantity": "0", "sub_total": "43.18", "total_amount": "43.18", "discounts": [{"code": "SUMMER20", "amount": "5.99", "percentage": "0.1"}]}], "note": "Special instructions for delivery", "refunds": [{"id": "12345", "amount": "100", "currency": "USD", "reason": "Customer requested a refund", "created_at": "2020-09-30T07:43:32.000Z"}], "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z"}}
+          application/json: {"status_code": 200, "status": "OK", "service": "shopify", "resource": "orders", "operation": "one", "data": {"id": "12345", "order_number": "123456789", "currency": "USD", "discounts": [{"code": "SUMMER20", "amount": "5.99", "percentage": "0.1"}], "sub_total": "45.17", "shipping_cost": "5.17", "coupon_discount": "5.5", "total_discount": "5.5", "total_tax": "5.16", "total_amount": "50.17", "refunded_amount": "5.5", "tax_inclusive": true, "status": "active", "payment_status": "paid", "fulfillment_status": "shipped", "payment_method": "credit_card", "customer": {"id": "12345", "name": "John Doe", "first_name": "John", "last_name": "Doe", "company_name": "Acme Inc.", "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}]}, "billing_address": {"line1": "123 Main Street", "line2": "Apt 1", "company_name": "Acme Inc.", "city": "New York", "state": "NY", "postal_code": "10001", "country": "US"}, "shipping_address": {"line1": "123 Main Street", "line2": "Apt 1", "company_name": "Acme Inc.", "city": "New York", "state": "NY", "postal_code": "10001", "country": "US"}, "tracking": [{"provider": "UPS", "number": "1Z9999999999999999", "url": "https://www.ups.com/track?tracknum=1Z9999999999999999", "updated_at": "2020-09-30T07:43:32.000Z"}], "line_items": [{"id": "12345", "product_id": "def456", "variant_id": "ghi789", "sku": "MBP123-16GB-SILVER-13", "name": "Midnight 16inch MacBook Pro", "description": "Powerful and portable, the MacBook Pro is perfect for professionals and creatives.", "options": [{"id": "jkl012", "name": "Color", "value": "Silver"}], "quantity": "2", "unit_price": "19.99", "tax_rate": "0.08", "tax_amount": "1.6", "is_refunded": false, "refunded_amount": "0", "refunded_quantity": "0", "sub_total": "43.18", "total_amount": "43.18", "discounts": [{"code": "SUMMER20", "amount": "5.99", "percentage": "0.1"}]}], "note": "Special instructions for delivery", "refunds": [{"id": "12345", "amount": "100", "currency": "USD", "reason": "Customer requested a refund", "created_at": "2020-09-30T07:43:32.000Z"}], "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z"}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
         "401":
@@ -37016,7 +37016,10 @@ generatedTests:
   ats.jobsAdd: "2026-03-11T13:14:11Z"
   ats.jobsUpdate: "2026-03-11T13:14:11Z"
   ats.jobsDelete: "2026-03-11T13:14:11Z"
-releaseNotes: "## Typescript SDK Changes:\n* `apideck.accounting.taxRates.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.bills.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.invoices.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.ledgerAccounts.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.invoiceItems.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.creditNotes.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.customers.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.suppliers.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.payments.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.refunds.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.companies.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.journalEntries.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.generalLedgerTransactions.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.purchaseOrders.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.subsidiaries.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.locations.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.departments.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.attachments.list()`: \n  *  `request.referenceType` **Changed**\n  *  `response` **Changed**\n* `apideck.accounting.attachments.upload()`: \n  *  `request.referenceType` **Changed**\n* `apideck.accounting.attachments.get()`: \n  *  `request.referenceType` **Changed**\n  *  `response.data.reference.type.enum(expenseReport)` **Added**\n* `apideck.accounting.attachments.delete()`: \n  *  `request.referenceType` **Changed**\n* `apideck.accounting.attachments.download()`: \n  *  `request.referenceType` **Changed**\n* `apideck.accounting.bankAccounts.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.trackingCategories.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.billPayments.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.expenses.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.bankFeedAccounts.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.bankFeedStatements.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.categories.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.quotes.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.projects.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.employees.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.expenseCategories.list()`:  `response.meta.totalCount` **Added**\n* `apideck.accounting.expenseReports.list()`:  `response.meta.totalCount` **Added**\n* `apideck.ats.jobs.list()`:  `response.meta.totalCount` **Added**\n* `apideck.ats.applicants.list()`:  `response.meta.totalCount` **Added**\n* `apideck.ats.applications.list()`:  `response.meta.totalCount` **Added**\n* `apideck.crm.companies.list()`:  `response.meta.totalCount` **Added**\n* `apideck.crm.contacts.list()`:  `response.meta.totalCount` **Added**\n* `apideck.crm.opportunities.list()`:  `response.meta.totalCount` **Added**\n* `apideck.crm.leads.list()`:  `response.meta.totalCount` **Added**\n* `apideck.crm.pipelines.list()`:  `response.meta.totalCount` **Added**\n* `apideck.crm.notes.list()`:  `response.meta.totalCount` **Added**\n* `apideck.crm.users.list()`:  `response.meta.totalCount` **Added**\n* `apideck.crm.activities.list()`:  `response.meta.totalCount` **Added**\n* `apideck.crm.customObjectSchemas.list()`:  `response.meta.totalCount` **Added**\n* `apideck.crm.customObjects.list()`:  `response.meta.totalCount` **Added**\n* `apideck.ecommerce.orders.list()`:  `response.meta.totalCount` **Added**\n* `apideck.ecommerce.products.list()`:  `response.meta.totalCount` **Added**\n* `apideck.ecommerce.customers.list()`:  `response.meta.totalCount` **Added**\n* `apideck.fileStorage.files.list()`:  `response.meta.totalCount` **Added**\n* `apideck.fileStorage.files.search()`:  `response.meta.totalCount` **Added**\n* `apideck.fileStorage.sharedLinks.list()`:  `response.meta.totalCount` **Added**\n* `apideck.fileStorage.drives.list()`:  `response.meta.totalCount` **Added**\n* `apideck.fileStorage.driveGroups.list()`:  `response.meta.totalCount` **Added**\n* `apideck.hris.employees.list()`:  `response.meta.totalCount` **Added**\n* `apideck.hris.companies.list()`:  `response.meta.totalCount` **Added**\n* `apideck.hris.departments.list()`:  `response.meta.totalCount` **Added**\n* `apideck.hris.timeOffRequests.list()`:  `response.meta.totalCount` **Added**\n* `apideck.sms.messages.list()`:  `response.meta.totalCount` **Added**\n* `apideck.issueTracking.collections.list()`:  `response.meta.totalCount` **Added**\n* `apideck.issueTracking.collectionTickets.list()`:  `response.meta.totalCount` **Added**\n* `apideck.issueTracking.collectionTicketComments.list()`:  `response.meta.totalCount` **Added**\n* `apideck.issueTracking.collectionUsers.list()`:  `response.meta.totalCount` **Added**\n* `apideck.issueTracking.collectionTags.list()`:  `response.meta.totalCount` **Added**\n* `apideck.connector.connectors.list()`:  `response.meta.totalCount` **Added**\n* `apideck.connector.connectors.get()`:  `response.meta.totalCount` **Added**\n* `apideck.connector.connectorResources.get()`:  `response.meta.totalCount` **Added**\n* `apideck.connector.apis.list()`:  `response.meta.totalCount` **Added**\n* `apideck.connector.apis.get()`:  `response.meta.totalCount` **Added**\n* `apideck.connector.apiResources.get()`:  `response.meta.totalCount` **Added**\n* `apideck.connector.apiResourceCoverage.get()`:  `response.meta.totalCount` **Added**\n* `apideck.vault.consumers.list()`:  `response.meta.totalCount` **Added**\n* `apideck.vault.logs.list()`:  `response.meta.totalCount` **Added**\n* `apideck.webhook.webhooks.list()`:  `response.meta.totalCount` **Added**\n* `apideck.webhook.eventLogs.list()`:  `response.meta.totalCount` **Added**\n"
+releaseNotes: |
+  ## Typescript SDK Changes:
+  * `apideck.ecommerce.orders.list()`:  `response.data[].taxInclusive` **Added**
+  * `apideck.ecommerce.orders.get()`:  `response.data.taxInclusive` **Added**
 generatedFiles:
   - .gitattributes
   - .npmignore
