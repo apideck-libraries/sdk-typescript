@@ -31,6 +31,7 @@ let value: GetEcommerceOrderResponse = {
     totalTax: "5.16",
     totalAmount: "50.17",
     refundedAmount: "5.5",
+    taxInclusive: true,
     status: "active",
     paymentStatus: "paid",
     fulfillmentStatus: "shipped",

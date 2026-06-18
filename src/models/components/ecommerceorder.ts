@@ -117,6 +117,10 @@ export type EcommerceOrder = {
    */
   refundedAmount?: string | null | undefined;
   /**
+   * Indicates whether the order's monetary amounts are inclusive of tax.
+   */
+  taxInclusive?: boolean | null | undefined;
+  /**
    * Current status of the order.
    */
   status?: EcommerceOrderStatus | null | undefined;
@@ -196,6 +200,7 @@ export const EcommerceOrder$inboundSchema: z.ZodType<
   total_tax: z.nullable(types.string()).optional(),
   total_amount: z.nullable(types.string()).optional(),
   refunded_amount: z.nullable(types.string()).optional(),
+  tax_inclusive: z.nullable(types.boolean()).optional(),
   status: z.nullable(EcommerceOrderStatus$inboundSchema).optional(),
   payment_status: z.nullable(EcommerceOrderPaymentStatus$inboundSchema)
     .optional(),
@@ -221,6 +226,7 @@ export const EcommerceOrder$inboundSchema: z.ZodType<
     "total_tax": "totalTax",
     "total_amount": "totalAmount",
     "refunded_amount": "refundedAmount",
+    "tax_inclusive": "taxInclusive",
     "payment_status": "paymentStatus",
     "fulfillment_status": "fulfillmentStatus",
     "payment_method": "paymentMethod",
