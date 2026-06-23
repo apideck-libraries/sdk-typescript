@@ -9,6 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { AgedDebtors, AgedDebtors$inboundSchema } from "./ageddebtors.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Aged Debtors
@@ -36,6 +37,10 @@ export type GetAgedDebtorsResponse = {
   operation: string;
   data: AgedDebtors;
   /**
+   * Response metadata
+   */
+  meta?: Meta | undefined;
+  /**
    * Raw response from the integration when raw=true query param is provided
    */
   raw?: { [k: string]: any } | null | undefined;
@@ -53,6 +58,7 @@ export const GetAgedDebtorsResponse$inboundSchema: z.ZodType<
   resource: types.string(),
   operation: types.string(),
   data: AgedDebtors$inboundSchema,
+  meta: types.optional(Meta$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {

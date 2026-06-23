@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 import {
   TimeOffRequest,
   TimeOffRequest$inboundSchema,
@@ -39,6 +40,10 @@ export type GetTimeOffRequestResponse = {
   operation: string;
   data: TimeOffRequest;
   /**
+   * Response metadata
+   */
+  meta?: Meta | undefined;
+  /**
    * Raw response from the integration when raw=true query param is provided
    */
   raw?: { [k: string]: any } | null | undefined;
@@ -56,6 +61,7 @@ export const GetTimeOffRequestResponse$inboundSchema: z.ZodType<
   resource: types.string(),
   operation: types.string(),
   data: TimeOffRequest$inboundSchema,
+  meta: types.optional(Meta$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {

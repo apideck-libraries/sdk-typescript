@@ -19,6 +19,8 @@ type GetEmployeeSchedulesResponse struct {
 	// Operation performed
 	Operation string            `json:"operation"`
 	Data      EmployeeSchedules `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetEmployeeSchedulesResponse) GetData() EmployeeSchedules {
 		return EmployeeSchedules{}
 	}
 	return o.Data
+}
+
+func (o *GetEmployeeSchedulesResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetEmployeeSchedulesResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

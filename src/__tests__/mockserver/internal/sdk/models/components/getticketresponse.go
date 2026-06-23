@@ -19,6 +19,8 @@ type GetTicketResponse struct {
 	// Operation performed
 	Operation string `json:"operation"`
 	Data      Ticket `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetTicketResponse) GetData() Ticket {
 		return Ticket{}
 	}
 	return o.Data
+}
+
+func (o *GetTicketResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetTicketResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

@@ -65,6 +65,22 @@ let value: GetConsumerResponse = {
     modified: "2021-05-07T12:55:42.242Z",
     requestCountUpdated: "2021-05-07T12:55:42.242Z",
   },
+  meta: {
+    itemsOnPage: 50,
+    cursors: {
+      previous: "em9oby1jcm06OnBhZ2U6OjE=",
+      current: "em9oby1jcm06OnBhZ2U6OjI=",
+      next: "em9oby1jcm06OnBhZ2U6OjM=",
+    },
+    totalCount: 1,
+    warnings: [
+      {
+        type: "downstream_request_failed",
+        statusCode: 429,
+        operation: "getManager",
+      },
+    ],
+  },
 };
 ```
 
@@ -75,4 +91,5 @@ let value: GetConsumerResponse = {
 | `statusCode`                                                            | *number*                                                                | :heavy_check_mark:                                                      | HTTP Response Status Code                                               | 200                                                                     |
 | `status`                                                                | *string*                                                                | :heavy_check_mark:                                                      | HTTP Response Status                                                    | OK                                                                      |
 | `data`                                                                  | [components.Consumer](../../models/components/consumer.md)              | :heavy_check_mark:                                                      | N/A                                                                     |                                                                         |
+| `meta`                                                                  | [components.Meta](../../models/components/meta.md)                      | :heavy_minus_sign:                                                      | Response metadata                                                       |                                                                         |
 | `raw`                                                                   | Record<string, *any*>                                                   | :heavy_minus_sign:                                                      | Raw response from the integration when raw=true query param is provided |                                                                         |

@@ -40,6 +40,22 @@ let value: GetBankFeedStatementResponse = {
     updatedAt: new Date("2020-09-30T07:43:32.000Z"),
     updatedBy: "12345",
   },
+  meta: {
+    itemsOnPage: 50,
+    cursors: {
+      previous: "em9oby1jcm06OnBhZ2U6OjE=",
+      current: "em9oby1jcm06OnBhZ2U6OjI=",
+      next: "em9oby1jcm06OnBhZ2U6OjM=",
+    },
+    totalCount: 1,
+    warnings: [
+      {
+        type: "downstream_request_failed",
+        statusCode: 429,
+        operation: "getManager",
+      },
+    ],
+  },
 };
 ```
 
@@ -53,4 +69,5 @@ let value: GetBankFeedStatementResponse = {
 | `resource`                                                                   | *string*                                                                     | :heavy_check_mark:                                                           | Unified API resource name                                                    | bank-feed-statements                                                         |
 | `operation`                                                                  | *string*                                                                     | :heavy_check_mark:                                                           | Operation performed                                                          | one                                                                          |
 | `data`                                                                       | [components.BankFeedStatement](../../models/components/bankfeedstatement.md) | :heavy_check_mark:                                                           | N/A                                                                          |                                                                              |
+| `meta`                                                                       | [components.Meta](../../models/components/meta.md)                           | :heavy_minus_sign:                                                           | Response metadata                                                            |                                                                              |
 | `raw`                                                                        | Record<string, *any*>                                                        | :heavy_minus_sign:                                                           | Raw response from the integration when raw=true query param is provided      |                                                                              |

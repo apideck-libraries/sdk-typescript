@@ -9,6 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Consumer, Consumer$inboundSchema } from "./consumer.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Consumer
@@ -24,6 +25,10 @@ export type GetConsumerResponse = {
   status: string;
   data: Consumer;
   /**
+   * Response metadata
+   */
+  meta?: Meta | undefined;
+  /**
    * Raw response from the integration when raw=true query param is provided
    */
   raw?: { [k: string]: any } | null | undefined;
@@ -38,6 +43,7 @@ export const GetConsumerResponse$inboundSchema: z.ZodType<
   status_code: types.number(),
   status: types.string(),
   data: Consumer$inboundSchema,
+  meta: types.optional(Meta$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {

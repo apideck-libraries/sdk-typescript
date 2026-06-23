@@ -19,6 +19,8 @@ type GetAgedCreditorsResponse struct {
 	// Operation performed
 	Operation string        `json:"operation"`
 	Data      AgedCreditors `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetAgedCreditorsResponse) GetData() AgedCreditors {
 		return AgedCreditors{}
 	}
 	return o.Data
+}
+
+func (o *GetAgedCreditorsResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetAgedCreditorsResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

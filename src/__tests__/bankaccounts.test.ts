@@ -82,6 +82,13 @@ test("Bankaccounts Accounting Bank Accounts All", async () => {
         next: "em9oby1jcm06OnBhZ2U6OjM=",
       },
       totalCount: 1,
+      warnings: [
+        {
+          type: "downstream_request_failed",
+          statusCode: 429,
+          operation: "getManager",
+        },
+      ],
     },
     links: {
       previous:
@@ -226,6 +233,22 @@ test("Bankaccounts Accounting Bank Accounts One", async () => {
       updatedAt: new Date("2020-09-30T07:43:32.000Z"),
       createdBy: "12345",
       updatedBy: "12345",
+    },
+    meta: {
+      itemsOnPage: 50,
+      cursors: {
+        previous: "em9oby1jcm06OnBhZ2U6OjE=",
+        current: "em9oby1jcm06OnBhZ2U6OjI=",
+        next: "em9oby1jcm06OnBhZ2U6OjM=",
+      },
+      totalCount: 1,
+      warnings: [
+        {
+          type: "downstream_request_failed",
+          statusCode: 429,
+          operation: "getManager",
+        },
+      ],
     },
   });
 });

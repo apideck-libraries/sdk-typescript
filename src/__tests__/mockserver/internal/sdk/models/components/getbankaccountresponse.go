@@ -15,6 +15,8 @@ type GetBankAccountResponse struct {
 	// Operation performed
 	Operation *string               `json:"operation,omitempty"`
 	Data      AccountingBankAccount `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 }
 
 func (o *GetBankAccountResponse) GetStatusCode() int64 {
@@ -57,4 +59,11 @@ func (o *GetBankAccountResponse) GetData() AccountingBankAccount {
 		return AccountingBankAccount{}
 	}
 	return o.Data
+}
+
+func (o *GetBankAccountResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }

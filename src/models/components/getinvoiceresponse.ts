@@ -9,6 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Invoice, Invoice$inboundSchema } from "./invoice.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Invoice
@@ -36,6 +37,10 @@ export type GetInvoiceResponse = {
   operation: string;
   data: Invoice;
   /**
+   * Response metadata
+   */
+  meta?: Meta | undefined;
+  /**
    * Raw response from the integration when raw=true query param is provided
    */
   raw?: { [k: string]: any } | null | undefined;
@@ -53,6 +58,7 @@ export const GetInvoiceResponse$inboundSchema: z.ZodType<
   resource: types.string(),
   operation: types.string(),
   data: Invoice$inboundSchema,
+  meta: types.optional(Meta$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {

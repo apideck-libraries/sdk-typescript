@@ -19,6 +19,8 @@ type GetGeneralLedgerTransactionResponse struct {
 	// Operation performed
 	Operation string                   `json:"operation"`
 	Data      GeneralLedgerTransaction `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetGeneralLedgerTransactionResponse) GetData() GeneralLedgerTransaction
 		return GeneralLedgerTransaction{}
 	}
 	return o.Data
+}
+
+func (o *GetGeneralLedgerTransactionResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetGeneralLedgerTransactionResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

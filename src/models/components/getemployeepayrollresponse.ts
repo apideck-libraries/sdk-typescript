@@ -12,6 +12,7 @@ import {
   EmployeePayroll,
   EmployeePayroll$inboundSchema,
 } from "./employeepayroll.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Payrolls
@@ -39,6 +40,10 @@ export type GetEmployeePayrollResponse = {
   operation: string;
   data: EmployeePayroll;
   /**
+   * Response metadata
+   */
+  meta?: Meta | undefined;
+  /**
    * Raw response from the integration when raw=true query param is provided
    */
   raw?: { [k: string]: any } | null | undefined;
@@ -56,6 +61,7 @@ export const GetEmployeePayrollResponse$inboundSchema: z.ZodType<
   resource: types.string(),
   operation: types.string(),
   data: EmployeePayroll$inboundSchema,
+  meta: types.optional(Meta$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {

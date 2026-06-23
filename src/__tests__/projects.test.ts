@@ -51,6 +51,7 @@ test("Projects Accounting Projects All", async () => {
         next: "em9oby1jcm06OnBhZ2U6OjM=",
       },
       totalCount: 1,
+      warnings: null,
     },
     links: {
       previous:
@@ -322,6 +323,22 @@ test("Projects Accounting Projects One", async () => {
       createdBy: "12345",
       createdAt: new Date("2020-09-30T07:43:32.000Z"),
       updatedAt: new Date("2020-09-30T07:43:32.000Z"),
+    },
+    meta: {
+      itemsOnPage: 50,
+      cursors: {
+        previous: "em9oby1jcm06OnBhZ2U6OjE=",
+        current: "em9oby1jcm06OnBhZ2U6OjI=",
+        next: "em9oby1jcm06OnBhZ2U6OjM=",
+      },
+      totalCount: 1,
+      warnings: [
+        {
+          type: "downstream_request_failed",
+          statusCode: 429,
+          operation: "getManager",
+        },
+      ],
     },
   });
 });

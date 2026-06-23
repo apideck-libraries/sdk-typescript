@@ -9,6 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Department, Department$inboundSchema } from "./department.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Departments
@@ -36,6 +37,10 @@ export type GetDepartmentResponse = {
   operation: string;
   data: Department;
   /**
+   * Response metadata
+   */
+  meta?: Meta | undefined;
+  /**
    * Raw response from the integration when raw=true query param is provided
    */
   raw?: { [k: string]: any } | null | undefined;
@@ -53,6 +58,7 @@ export const GetDepartmentResponse$inboundSchema: z.ZodType<
   resource: types.string(),
   operation: types.string(),
   data: Department$inboundSchema,
+  meta: types.optional(Meta$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {

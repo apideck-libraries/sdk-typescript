@@ -19,6 +19,8 @@ type GetExpenseCategoryResponse struct {
 	// Operation performed
 	Operation string          `json:"operation"`
 	Data      ExpenseCategory `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetExpenseCategoryResponse) GetData() ExpenseCategory {
 		return ExpenseCategory{}
 	}
 	return o.Data
+}
+
+func (o *GetExpenseCategoryResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetExpenseCategoryResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

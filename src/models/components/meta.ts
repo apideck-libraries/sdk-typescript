@@ -28,6 +28,32 @@ export type Cursors = {
 };
 
 /**
+ * Advisory warning emitted when an optional workflow step fails non-fatally. The overall request still succeeds (HTTP 200); inspect this to detect partial or degraded data.
+ */
+export type Warnings = {
+  /**
+   * Discriminator for the warning kind.
+   */
+  type?: string | undefined;
+  /**
+   * HTTP status code returned by the failed downstream request, when available.
+   */
+  statusCode?: number | null | undefined;
+  /**
+   * Short error description from the downstream provider, when available.
+   */
+  error?: string | null | undefined;
+  /**
+   * Identifier of the workflow step that failed.
+   */
+  operation?: string | null | undefined;
+  /**
+   * Detailed message from the downstream provider, when available.
+   */
+  message?: string | null | undefined;
+};
+
+/**
  * Response metadata
  */
 export type Meta = {
@@ -43,6 +69,10 @@ export type Meta = {
    * Number of records available in total for this resource
    */
   totalCount?: number | undefined;
+  /**
+   * Non-fatal warnings emitted when optional workflow steps failed. Present only when at least one step degraded; the response status remains 200.
+   */
+  warnings?: Array<Warnings> | null | undefined;
 };
 
 /** @internal */
@@ -64,11 +94,40 @@ export function cursorsFromJSON(
 }
 
 /** @internal */
+export const Warnings$inboundSchema: z.ZodType<
+  Warnings,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  type: types.optional(types.string()),
+  status_code: z.nullable(types.number()).optional(),
+  error: z.nullable(types.string()).optional(),
+  operation: z.nullable(types.string()).optional(),
+  message: z.nullable(types.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "status_code": "statusCode",
+  });
+});
+
+export function warningsFromJSON(
+  jsonString: string,
+): SafeParseResult<Warnings, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Warnings$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Warnings' from JSON`,
+  );
+}
+
+/** @internal */
 export const Meta$inboundSchema: z.ZodType<Meta, z.ZodTypeDef, unknown> = z
   .object({
     items_on_page: types.optional(types.number()),
     cursors: types.optional(z.lazy(() => Cursors$inboundSchema)),
     total_count: types.optional(types.number()),
+    warnings: z.nullable(z.array(z.lazy(() => Warnings$inboundSchema)))
+      .optional(),
   }).transform((v) => {
     return remap$(v, {
       "items_on_page": "itemsOnPage",

@@ -19,6 +19,8 @@ type GetAccountingDepartmentResponse struct {
 	// Operation performed
 	Operation string               `json:"operation"`
 	Data      AccountingDepartment `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetAccountingDepartmentResponse) GetData() AccountingDepartment {
 		return AccountingDepartment{}
 	}
 	return o.Data
+}
+
+func (o *GetAccountingDepartmentResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetAccountingDepartmentResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

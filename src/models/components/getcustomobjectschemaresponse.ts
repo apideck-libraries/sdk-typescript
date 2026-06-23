@@ -12,6 +12,7 @@ import {
   CustomObjectSchema,
   CustomObjectSchema$inboundSchema,
 } from "./customobjectschema.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Custom object schema
@@ -39,6 +40,10 @@ export type GetCustomObjectSchemaResponse = {
   operation: string;
   data: CustomObjectSchema;
   /**
+   * Response metadata
+   */
+  meta?: Meta | undefined;
+  /**
    * Raw response from the integration when raw=true query param is provided
    */
   raw?: { [k: string]: any } | null | undefined;
@@ -56,6 +61,7 @@ export const GetCustomObjectSchemaResponse$inboundSchema: z.ZodType<
   resource: types.string(),
   operation: types.string(),
   data: CustomObjectSchema$inboundSchema,
+  meta: types.optional(Meta$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {

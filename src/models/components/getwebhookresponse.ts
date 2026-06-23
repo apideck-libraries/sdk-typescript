@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 import { Webhook, Webhook$inboundSchema } from "./webhook.js";
 
 /**
@@ -24,6 +25,10 @@ export type GetWebhookResponse = {
   status: string;
   data: Webhook;
   /**
+   * Response metadata
+   */
+  meta?: Meta | undefined;
+  /**
    * Raw response from the integration when raw=true query param is provided
    */
   raw?: { [k: string]: any } | null | undefined;
@@ -38,6 +43,7 @@ export const GetWebhookResponse$inboundSchema: z.ZodType<
   status_code: types.number(),
   status: types.string(),
   data: Webhook$inboundSchema,
+  meta: types.optional(Meta$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {

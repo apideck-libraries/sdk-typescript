@@ -166,6 +166,22 @@ func testAccountingProjectsOneAccountingProjectsOne0(w http.ResponseWriter, req 
 			CreatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			UpdatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 		},
+		Meta: &components.Meta{
+			ItemsOnPage: types.Int64(50),
+			Cursors: &components.Cursors{
+				Previous: optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjE=")),
+				Current:  optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjI=")),
+				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
+			},
+			TotalCount: types.Int64(1),
+			Warnings: optionalnullable.From(types.Pointer([]components.Warning{
+				components.Warning{
+					Type:       types.String("downstream_request_failed"),
+					StatusCode: optionalnullable.From(types.Int64(429)),
+					Operation:  optionalnullable.From(types.String("getManager")),
+				},
+			})),
+		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)
 

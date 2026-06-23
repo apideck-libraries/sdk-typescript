@@ -15,6 +15,8 @@ type GetQuoteResponse struct {
 	// Operation performed
 	Operation string `json:"operation"`
 	Data      Quote  `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 }
 
 func (o *GetQuoteResponse) GetStatusCode() int64 {
@@ -57,4 +59,11 @@ func (o *GetQuoteResponse) GetData() Quote {
 		return Quote{}
 	}
 	return o.Data
+}
+
+func (o *GetQuoteResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }

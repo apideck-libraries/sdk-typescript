@@ -55,6 +55,22 @@ let value: GetBankAccountResponse = {
     createdBy: "12345",
     updatedBy: "12345",
   },
+  meta: {
+    itemsOnPage: 50,
+    cursors: {
+      previous: "em9oby1jcm06OnBhZ2U6OjE=",
+      current: "em9oby1jcm06OnBhZ2U6OjI=",
+      next: "em9oby1jcm06OnBhZ2U6OjM=",
+    },
+    totalCount: 1,
+    warnings: [
+      {
+        type: "downstream_request_failed",
+        statusCode: 429,
+        operation: "getManager",
+      },
+    ],
+  },
 };
 ```
 
@@ -68,3 +84,4 @@ let value: GetBankAccountResponse = {
 | `resource`                                                                           | *string*                                                                             | :heavy_minus_sign:                                                                   | Unified API resource name                                                            | bank-accounts                                                                        |
 | `operation`                                                                          | *string*                                                                             | :heavy_minus_sign:                                                                   | Operation performed                                                                  | one                                                                                  |
 | `data`                                                                               | [components.AccountingBankAccount](../../models/components/accountingbankaccount.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |                                                                                      |
+| `meta`                                                                               | [components.Meta](../../models/components/meta.md)                                   | :heavy_minus_sign:                                                                   | Response metadata                                                                    |                                                                                      |

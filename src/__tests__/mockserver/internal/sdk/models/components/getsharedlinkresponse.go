@@ -19,6 +19,8 @@ type GetSharedLinkResponse struct {
 	// Operation performed
 	Operation string           `json:"operation"`
 	Data      SharedLinkOutput `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetSharedLinkResponse) GetData() SharedLinkOutput {
 		return SharedLinkOutput{}
 	}
 	return o.Data
+}
+
+func (o *GetSharedLinkResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetSharedLinkResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

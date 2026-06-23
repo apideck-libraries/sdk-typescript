@@ -23,6 +23,22 @@ let value: GetCollectionUserResponse = {
     updatedAt: new Date("2020-09-30T07:43:32.000Z"),
     createdAt: new Date("2020-09-30T07:43:32.000Z"),
   },
+  meta: {
+    itemsOnPage: 50,
+    cursors: {
+      previous: "em9oby1jcm06OnBhZ2U6OjE=",
+      current: "em9oby1jcm06OnBhZ2U6OjI=",
+      next: "em9oby1jcm06OnBhZ2U6OjM=",
+    },
+    totalCount: 1,
+    warnings: [
+      {
+        type: "downstream_request_failed",
+        statusCode: 429,
+        operation: "getManager",
+      },
+    ],
+  },
 };
 ```
 
@@ -36,4 +52,5 @@ let value: GetCollectionUserResponse = {
 | `resource`                                                              | *string*                                                                | :heavy_check_mark:                                                      | Unified API resource name                                               | Tickets                                                                 |
 | `operation`                                                             | *string*                                                                | :heavy_check_mark:                                                      | Operation performed                                                     | one                                                                     |
 | `data`                                                                  | [components.CollectionUser](../../models/components/collectionuser.md)  | :heavy_check_mark:                                                      | N/A                                                                     |                                                                         |
+| `meta`                                                                  | [components.Meta](../../models/components/meta.md)                      | :heavy_minus_sign:                                                      | Response metadata                                                       |                                                                         |
 | `raw`                                                                   | Record<string, *any*>                                                   | :heavy_minus_sign:                                                      | Raw response from the integration when raw=true query param is provided |                                                                         |

@@ -2458,6 +2458,7 @@ test("Employees Accounting Employees All", async () => {
         next: "em9oby1jcm06OnBhZ2U6OjM=",
       },
       totalCount: 1,
+      warnings: null,
     },
     links: {
       previous:
@@ -2778,6 +2779,22 @@ test("Employees Accounting Employees One", async () => {
               },
             },
           ],
+        },
+      ],
+    },
+    meta: {
+      itemsOnPage: 50,
+      cursors: {
+        previous: "em9oby1jcm06OnBhZ2U6OjE=",
+        current: "em9oby1jcm06OnBhZ2U6OjI=",
+        next: "em9oby1jcm06OnBhZ2U6OjM=",
+      },
+      totalCount: 1,
+      warnings: [
+        {
+          type: "downstream_request_failed",
+          statusCode: 429,
+          operation: "getManager",
         },
       ],
     },
