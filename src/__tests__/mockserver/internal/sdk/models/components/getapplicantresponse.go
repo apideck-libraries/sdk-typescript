@@ -19,6 +19,8 @@ type GetApplicantResponse struct {
 	// Operation performed
 	Operation string    `json:"operation"`
 	Data      Applicant `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetApplicantResponse) GetData() Applicant {
 		return Applicant{}
 	}
 	return o.Data
+}
+
+func (o *GetApplicantResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetApplicantResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

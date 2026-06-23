@@ -12,6 +12,7 @@ import {
   ExpenseCategory,
   ExpenseCategory$inboundSchema,
 } from "./expensecategory.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Expense Categories
@@ -39,6 +40,10 @@ export type GetExpenseCategoryResponse = {
   operation: string;
   data: ExpenseCategory;
   /**
+   * Response metadata
+   */
+  meta?: Meta | undefined;
+  /**
    * Raw response from the integration when raw=true query param is provided
    */
   raw?: { [k: string]: any } | null | undefined;
@@ -56,6 +61,7 @@ export const GetExpenseCategoryResponse$inboundSchema: z.ZodType<
   resource: types.string(),
   operation: types.string(),
   data: ExpenseCategory$inboundSchema,
+  meta: types.optional(Meta$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {

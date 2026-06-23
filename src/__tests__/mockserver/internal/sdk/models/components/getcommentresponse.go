@@ -19,6 +19,8 @@ type GetCommentResponse struct {
 	// Operation performed
 	Operation string                  `json:"operation"`
 	Data      CollectionTicketComment `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetCommentResponse) GetData() CollectionTicketComment {
 		return CollectionTicketComment{}
 	}
 	return o.Data
+}
+
+func (o *GetCommentResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetCommentResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

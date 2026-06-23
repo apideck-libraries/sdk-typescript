@@ -19,6 +19,8 @@ type GetCategoryResponse struct {
 	// Operation performed
 	Operation string   `json:"operation"`
 	Data      Category `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetCategoryResponse) GetData() Category {
 		return Category{}
 	}
 	return o.Data
+}
+
+func (o *GetCategoryResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetCategoryResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

@@ -62,6 +62,7 @@ func testAccountingProjectsAllAccountingProjectsAll0(w http.ResponseWriter, req 
 				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
 			},
 			TotalCount: types.Int64(1),
+			Warnings:   nil,
 		},
 		Links: &components.Links{
 			Previous: optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D")),

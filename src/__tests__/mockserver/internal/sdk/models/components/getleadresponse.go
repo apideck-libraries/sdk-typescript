@@ -19,6 +19,8 @@ type GetLeadResponse struct {
 	// Operation performed
 	Operation string `json:"operation"`
 	Data      Lead   `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetLeadResponse) GetData() Lead {
 		return Lead{}
 	}
 	return o.Data
+}
+
+func (o *GetLeadResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetLeadResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

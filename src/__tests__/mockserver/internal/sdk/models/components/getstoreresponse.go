@@ -19,6 +19,8 @@ type GetStoreResponse struct {
 	// Operation performed
 	Operation string         `json:"operation"`
 	Data      EcommerceStore `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetStoreResponse) GetData() EcommerceStore {
 		return EcommerceStore{}
 	}
 	return o.Data
+}
+
+func (o *GetStoreResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetStoreResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

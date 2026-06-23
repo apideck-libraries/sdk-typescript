@@ -13,6 +13,8 @@ type GetWebhookResponse struct {
 	// HTTP Response Status
 	Status string  `json:"status"`
 	Data   Webhook `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -36,6 +38,13 @@ func (o *GetWebhookResponse) GetData() Webhook {
 		return Webhook{}
 	}
 	return o.Data
+}
+
+func (o *GetWebhookResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetWebhookResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

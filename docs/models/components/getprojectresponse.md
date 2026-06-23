@@ -123,6 +123,22 @@ let value: GetProjectResponse = {
     createdAt: new Date("2020-09-30T07:43:32.000Z"),
     updatedAt: new Date("2020-09-30T07:43:32.000Z"),
   },
+  meta: {
+    itemsOnPage: 50,
+    cursors: {
+      previous: "em9oby1jcm06OnBhZ2U6OjE=",
+      current: "em9oby1jcm06OnBhZ2U6OjI=",
+      next: "em9oby1jcm06OnBhZ2U6OjM=",
+    },
+    totalCount: 1,
+    warnings: [
+      {
+        type: "downstream_request_failed",
+        statusCode: 429,
+        operation: "getManager",
+      },
+    ],
+  },
 };
 ```
 
@@ -136,3 +152,4 @@ let value: GetProjectResponse = {
 | `resource`                                               | *string*                                                 | :heavy_check_mark:                                       | Unified API resource name                                | Projects                                                 |
 | `operation`                                              | *string*                                                 | :heavy_check_mark:                                       | Operation performed                                      | one                                                      |
 | `data`                                                   | [components.Project](../../models/components/project.md) | :heavy_check_mark:                                       | N/A                                                      |                                                          |
+| `meta`                                                   | [components.Meta](../../models/components/meta.md)       | :heavy_minus_sign:                                       | Response metadata                                        |                                                          |

@@ -43,6 +43,13 @@ let value: GetConsumersResponse = {
       next: "em9oby1jcm06OnBhZ2U6OjM=",
     },
     totalCount: 1,
+    warnings: [
+      {
+        type: "downstream_request_failed",
+        statusCode: 429,
+        operation: "getManager",
+      },
+    ],
   },
   links: {
     previous:

@@ -12,6 +12,7 @@ import {
   CollectionTicketComment,
   CollectionTicketComment$inboundSchema,
 } from "./collectionticketcomment.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Get a Comment
@@ -39,6 +40,10 @@ export type GetCommentResponse = {
   operation: string;
   data: CollectionTicketComment;
   /**
+   * Response metadata
+   */
+  meta?: Meta | undefined;
+  /**
    * Raw response from the integration when raw=true query param is provided
    */
   raw?: { [k: string]: any } | null | undefined;
@@ -56,6 +61,7 @@ export const GetCommentResponse$inboundSchema: z.ZodType<
   resource: types.string(),
   operation: types.string(),
   data: CollectionTicketComment$inboundSchema,
+  meta: types.optional(Meta$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {

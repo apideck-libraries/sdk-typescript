@@ -19,6 +19,8 @@ type GetBillResponse struct {
 	// Operation performed
 	Operation string `json:"operation"`
 	Data      Bill   `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetBillResponse) GetData() Bill {
 		return Bill{}
 	}
 	return o.Data
+}
+
+func (o *GetBillResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetBillResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

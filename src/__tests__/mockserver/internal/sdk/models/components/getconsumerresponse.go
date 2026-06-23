@@ -13,6 +13,8 @@ type GetConsumerResponse struct {
 	// HTTP Response Status
 	Status string   `json:"status"`
 	Data   Consumer `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -36,6 +38,13 @@ func (o *GetConsumerResponse) GetData() Consumer {
 		return Consumer{}
 	}
 	return o.Data
+}
+
+func (o *GetConsumerResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetConsumerResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

@@ -19,6 +19,8 @@ type GetAttachmentResponse struct {
 	// Operation performed
 	Operation string     `json:"operation"`
 	Data      Attachment `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetAttachmentResponse) GetData() Attachment {
 		return Attachment{}
 	}
 	return o.Data
+}
+
+func (o *GetAttachmentResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetAttachmentResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

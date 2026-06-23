@@ -197,6 +197,13 @@ test("Expensereports Accounting Expense Reports All", async () => {
         next: "em9oby1jcm06OnBhZ2U6OjM=",
       },
       totalCount: 1,
+      warnings: [
+        {
+          type: "downstream_request_failed",
+          statusCode: 429,
+          operation: "getManager",
+        },
+      ],
     },
     links: {
       previous:
@@ -490,6 +497,22 @@ test("Expensereports Accounting Expense Reports One", async () => {
               },
             },
           ],
+        },
+      ],
+    },
+    meta: {
+      itemsOnPage: 50,
+      cursors: {
+        previous: "em9oby1jcm06OnBhZ2U6OjE=",
+        current: "em9oby1jcm06OnBhZ2U6OjI=",
+        next: "em9oby1jcm06OnBhZ2U6OjM=",
+      },
+      totalCount: 1,
+      warnings: [
+        {
+          type: "downstream_request_failed",
+          statusCode: 429,
+          operation: "getManager",
         },
       ],
     },

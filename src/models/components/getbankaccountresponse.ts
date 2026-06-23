@@ -12,6 +12,7 @@ import {
   AccountingBankAccount,
   AccountingBankAccount$inboundSchema,
 } from "./accountingbankaccount.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Bank Account
@@ -38,6 +39,10 @@ export type GetBankAccountResponse = {
    */
   operation?: string | undefined;
   data: AccountingBankAccount;
+  /**
+   * Response metadata
+   */
+  meta?: Meta | undefined;
 };
 
 /** @internal */
@@ -52,6 +57,7 @@ export const GetBankAccountResponse$inboundSchema: z.ZodType<
   resource: types.optional(types.string()),
   operation: types.optional(types.string()),
   data: AccountingBankAccount$inboundSchema,
+  meta: types.optional(Meta$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",

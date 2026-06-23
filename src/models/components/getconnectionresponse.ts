@@ -9,6 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Connection, Connection$inboundSchema } from "./connection.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Connection
@@ -24,6 +25,10 @@ export type GetConnectionResponse = {
   status: string;
   data: Connection;
   /**
+   * Response metadata
+   */
+  meta?: Meta | undefined;
+  /**
    * Raw response from the integration when raw=true query param is provided
    */
   raw?: { [k: string]: any } | null | undefined;
@@ -38,6 +43,7 @@ export const GetConnectionResponse$inboundSchema: z.ZodType<
   status_code: types.number(),
   status: types.string(),
   data: Connection$inboundSchema,
+  meta: types.optional(Meta$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {

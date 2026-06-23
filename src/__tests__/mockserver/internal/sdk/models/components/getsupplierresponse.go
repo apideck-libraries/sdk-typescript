@@ -19,6 +19,8 @@ type GetSupplierResponse struct {
 	// Operation performed
 	Operation string   `json:"operation"`
 	Data      Supplier `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetSupplierResponse) GetData() Supplier {
 		return Supplier{}
 	}
 	return o.Data
+}
+
+func (o *GetSupplierResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetSupplierResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

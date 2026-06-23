@@ -19,6 +19,8 @@ type GetInvoiceResponse struct {
 	// Operation performed
 	Operation string  `json:"operation"`
 	Data      Invoice `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetInvoiceResponse) GetData() Invoice {
 		return Invoice{}
 	}
 	return o.Data
+}
+
+func (o *GetInvoiceResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetInvoiceResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

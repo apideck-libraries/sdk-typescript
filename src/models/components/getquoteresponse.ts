@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 import { Quote, Quote$inboundSchema } from "./quote.js";
 
 /**
@@ -35,6 +36,10 @@ export type GetQuoteResponse = {
    */
   operation: string;
   data: Quote;
+  /**
+   * Response metadata
+   */
+  meta?: Meta | undefined;
 };
 
 /** @internal */
@@ -49,6 +54,7 @@ export const GetQuoteResponse$inboundSchema: z.ZodType<
   resource: types.string(),
   operation: types.string(),
   data: Quote$inboundSchema,
+  meta: types.optional(Meta$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",

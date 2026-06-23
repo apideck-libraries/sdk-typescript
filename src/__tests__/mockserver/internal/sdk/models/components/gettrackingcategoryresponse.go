@@ -19,6 +19,8 @@ type GetTrackingCategoryResponse struct {
 	// Operation performed
 	Operation string           `json:"operation"`
 	Data      TrackingCategory `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetTrackingCategoryResponse) GetData() TrackingCategory {
 		return TrackingCategory{}
 	}
 	return o.Data
+}
+
+func (o *GetTrackingCategoryResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetTrackingCategoryResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

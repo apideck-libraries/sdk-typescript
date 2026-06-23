@@ -19,6 +19,8 @@ type GetCustomObjectSchemaResponse struct {
 	// Operation performed
 	Operation string             `json:"operation"`
 	Data      CustomObjectSchema `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetCustomObjectSchemaResponse) GetData() CustomObjectSchema {
 		return CustomObjectSchema{}
 	}
 	return o.Data
+}
+
+func (o *GetCustomObjectSchemaResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetCustomObjectSchemaResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 import { Project, Project$inboundSchema } from "./project.js";
 
 /**
@@ -35,6 +36,10 @@ export type GetProjectResponse = {
    */
   operation: string;
   data: Project;
+  /**
+   * Response metadata
+   */
+  meta?: Meta | undefined;
 };
 
 /** @internal */
@@ -49,6 +54,7 @@ export const GetProjectResponse$inboundSchema: z.ZodType<
   resource: types.string(),
   operation: types.string(),
   data: Project$inboundSchema,
+  meta: types.optional(Meta$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",

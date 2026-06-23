@@ -19,6 +19,8 @@ type GetProfitAndLossResponse struct {
 	// Operation performed
 	Operation string        `json:"operation"`
 	Data      ProfitAndLoss `json:"data"`
+	// Response metadata
+	Meta *Meta `json:"meta,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
@@ -63,6 +65,13 @@ func (o *GetProfitAndLossResponse) GetData() ProfitAndLoss {
 		return ProfitAndLoss{}
 	}
 	return o.Data
+}
+
+func (o *GetProfitAndLossResponse) GetMeta() *Meta {
+	if o == nil {
+		return nil
+	}
+	return o.Meta
 }
 
 func (o *GetProfitAndLossResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {

@@ -62,6 +62,13 @@ func testAccountingExpenseCategoriesAllAccountingExpenseCategoriesAll0(w http.Re
 				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
 			},
 			TotalCount: types.Int64(1),
+			Warnings: optionalnullable.From(types.Pointer([]components.Warning{
+				components.Warning{
+					Type:       types.String("downstream_request_failed"),
+					StatusCode: optionalnullable.From(types.Int64(429)),
+					Operation:  optionalnullable.From(types.String("getManager")),
+				},
+			})),
 		},
 		Links: &components.Links{
 			Previous: optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D")),
