@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 9fb172abecf9e00b87ece9a928938a58
-  docVersion: 10.24.45
+  docChecksum: 0255bcee6b7b46efd5ff4bb8fc8b8514
+  docVersion: 10.24.46
   speakeasyVersion: 1.787.0
   generationVersion: 2.914.0
-  releaseVersion: 0.43.9
-  configChecksum: 46cc5d22cfe8dc1184d6b876a6aabeb4
+  releaseVersion: 0.43.10
+  configChecksum: a4ffcb385e3ed2c481a428bb6d59a6b6
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: f1181363-0cbd-4982-94f2-ae5a07d8bc72
-  pristine_commit_hash: fe3d746bc0e8147d31eb7f62c82aabb93f689d80
-  pristine_tree_hash: f76915b97722b656a21c050c2f1de9f3e6e8ca37
+  generation_id: 255efcf1-d44f-41ac-bbd6-e0028ecb4d07
+  pristine_commit_hash: 4b9c4e36af377ed866a56470c133ced4195e3ceb
+  pristine_tree_hash: a403d0d05b82d767a2177b2a4b24ffd5aa204e31
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -8527,12 +8527,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:707d4cf06222b8e727fb1299a6915bb3ce7b3787
-    pristine_git_object: 19837128f6bd869f32a872ce2a27eb5c826289fe
+    last_write_checksum: sha1:c39781567565561eb79898b8e9386233c391f517
+    pristine_git_object: 06a770aaaec6a01ead4f94247e51a80c308b153c
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:6797a422c91d0bfd142679985afca245e9474d88
-    pristine_git_object: bb351d8ccee7f81bc38aa265bac0a9d31433bf40
+    last_write_checksum: sha1:3a3d97e327ed9f23e14cdf30876a7a7594bc1768
+    pristine_git_object: a162b409979b1ba35ef292fa26a284ade00b7d60
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -15719,8 +15719,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:ed74fa30db48ab434f04d63eece9966d646b2598
-    pristine_git_object: 1d89614eb730cd1096dba473998694213bb10d73
+    last_write_checksum: sha1:ad850ab7fe942c563d73c38263b79ffe06a897db
+    pristine_git_object: e63ee482c01b70a0d23a888dc7c5223a739addd8
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
