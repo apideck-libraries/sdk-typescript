@@ -2,7 +2,7 @@
 
 {
   "name": "@apideck/unify",
-  "version": "0.43.10",
+  "version": "0.43.11",
   "exports": {
     ".": "./src/index.ts",    
     "./models/errors": "./src/models/errors/index.ts",    
