@@ -139,6 +139,9 @@ export const WebhookEventType = {
   AccountingProjectCreated: "accounting.project.created",
   AccountingProjectUpdated: "accounting.project.updated",
   AccountingProjectDeleted: "accounting.project.deleted",
+  AccountingTrackingCategoryCreated: "accounting.tracking_category.created",
+  AccountingTrackingCategoryUpdated: "accounting.tracking_category.updated",
+  AccountingTrackingCategoryDeleted: "accounting.tracking_category.deleted",
 } as const;
 export type WebhookEventType = OpenEnum<typeof WebhookEventType>;
 

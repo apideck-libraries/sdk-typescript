@@ -27,7 +27,7 @@ func (e LedgerAccountsFilterClassification) ToPointer() *LedgerAccountsFilterCla
 	return &e
 }
 
-// LedgerAccountsFilterStatus - Filter by account status.
+// LedgerAccountsFilterStatus - Filter by account status. Supported only on a subset of connectors (e.g. NetSuite); connectors that do not support it reject `filter[status]` with a `400 UnsupportedFiltersError` — read the account's `status` field in the response and filter client-side instead. See the error's `supported_filters` or the connector's supported filters.
 type LedgerAccountsFilterStatus string
 
 const (
@@ -45,7 +45,7 @@ type LedgerAccountsFilter struct {
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
 	// Filter by account classification.
 	Classification *LedgerAccountsFilterClassification `queryParam:"name=classification"`
-	// Filter by account status.
+	// Filter by account status. Supported only on a subset of connectors (e.g. NetSuite); connectors that do not support it reject `filter[status]` with a `400 UnsupportedFiltersError` — read the account's `status` field in the response and filter client-side instead. See the error's `supported_filters` or the connector's supported filters.
 	Status *LedgerAccountsFilterStatus `queryParam:"name=status"`
 	// Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
 	SubsidiaryID *string `queryParam:"name=subsidiary_id"`

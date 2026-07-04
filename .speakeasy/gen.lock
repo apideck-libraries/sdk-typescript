@@ -1,26 +1,26 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 0255bcee6b7b46efd5ff4bb8fc8b8514
-  docVersion: 10.24.46
-  speakeasyVersion: 1.787.0
-  generationVersion: 2.914.0
-  releaseVersion: 0.43.10
-  configChecksum: a4ffcb385e3ed2c481a428bb6d59a6b6
+  docChecksum: 050df171336a3f72c7d9fa293aee56ef
+  docVersion: 10.24.47
+  speakeasyVersion: 1.788.1
+  generationVersion: 2.915.1
+  releaseVersion: 0.43.11
+  configChecksum: efc63fa634c969e63cd980f4cb93b594
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: 255efcf1-d44f-41ac-bbd6-e0028ecb4d07
-  pristine_commit_hash: 4b9c4e36af377ed866a56470c133ced4195e3ceb
-  pristine_tree_hash: a403d0d05b82d767a2177b2a4b24ffd5aa204e31
+  generation_id: 81cbc48a-6ed2-4042-8175-945187965db4
+  pristine_commit_hash: 7b71018a0edcfe8e48c73f1d48c6ae68bb7cc130
+  pristine_tree_hash: 25e2fb01315a393b3bf18783c4600f032e4c0319
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.3
     constsAndDefaults: 0.1.14
-    core: 3.31.2
+    core: 3.31.3
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -2683,12 +2683,12 @@ trackedFiles:
     pristine_git_object: 7f0fb3a63b22626b50640281815793056aa7fbfb
   docs/models/components/ledgeraccountsfilter.md:
     id: 7635e5c3f5a0
-    last_write_checksum: sha1:3cf9402f9391c191933fa7f34c9bff67996cd6fa
-    pristine_git_object: e5b6f3929336ecfc83680ca83d5105e92a38afc8
+    last_write_checksum: sha1:8cdf7dfe480e41075f3a15db9c9b17aa7bf1d2ef
+    pristine_git_object: d88c1dc88a606120110eae8ebe0a08afc1c34e0a
   docs/models/components/ledgeraccountsfilterstatus.md:
     id: 315b610a4ad8
-    last_write_checksum: sha1:97e9c28927803a9fe642f1d3b817a763f3a8141c
-    pristine_git_object: 02992c75263d0cdbc3066b5cb45ae182a28a6955
+    last_write_checksum: sha1:be865853704346527b28e04682fd19c2cb711a78
+    pristine_git_object: f8839acfcd3dc652483683ab9cc880c188c460db
   docs/models/components/ledgeraccountssort.md:
     id: ea7491279bca
     last_write_checksum: sha1:fb8e83f8244eb21b191e371c495868b312c1eeac
@@ -3939,8 +3939,8 @@ trackedFiles:
     pristine_git_object: 435b265caae17123756c30600bc9fa3ee8a3eca8
   docs/models/components/webhookeventtype.md:
     id: b979b3765280
-    last_write_checksum: sha1:044300e96f13ba0b282a89d8704e1fdd744f8141
-    pristine_git_object: 7895768dad31a264a3935f2273c88262a3e9d783
+    last_write_checksum: sha1:e29f52c08f66ea75acb50f2ebfa7544951b5e4b9
+    pristine_git_object: 3e1cb820e512a9cae158cd98c41e89cc7b28628d
   docs/models/components/webhooksubscription.md:
     id: c88220e1de92
     last_write_checksum: sha1:076830406a24c7275b0821a3df6d4ad0a7bfb433
@@ -8527,12 +8527,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:c39781567565561eb79898b8e9386233c391f517
-    pristine_git_object: 06a770aaaec6a01ead4f94247e51a80c308b153c
+    last_write_checksum: sha1:5906fe0d3496d848ce1f7350046fd5871f246497
+    pristine_git_object: 43747d98489239875b719ab2818104de0b45ea00
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:3a3d97e327ed9f23e14cdf30876a7a7594bc1768
-    pristine_git_object: a162b409979b1ba35ef292fa26a284ade00b7d60
+    last_write_checksum: sha1:5ffd96a4673331e16918d2193531e90f15a5426d
+    pristine_git_object: 558d038181939772e10f29e15b303b80d9344a06
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -11995,8 +11995,8 @@ trackedFiles:
     pristine_git_object: 934a26cc12913f5242fd3ce97141ecdb96c9fa45
   src/__tests__/mockserver/internal/sdk/models/components/ledgeraccountsfilter.go:
     id: 69a7dfc1565c
-    last_write_checksum: sha1:1e88928c1ef8bf18e00a7c105bf113d3f6b58a4c
-    pristine_git_object: 17bf34064d620e2157aee7d06b06fb0904511fed
+    last_write_checksum: sha1:581f28485754fd1d85e765aec8a7f4fc6130f0d7
+    pristine_git_object: 95782a28df3d7044c5bdba6455ed1fa67820a7a9
   src/__tests__/mockserver/internal/sdk/models/components/ledgeraccountssort.go:
     id: 33cd3dc9dde9
     last_write_checksum: sha1:7bfc06c99666851ca6b4a80b8f7a9a59d87bb20d
@@ -12771,8 +12771,8 @@ trackedFiles:
     pristine_git_object: f8db6af45f837fdd58c8ff3709b994060ccf4e60
   src/__tests__/mockserver/internal/sdk/models/components/webhookeventtype.go:
     id: 0fe44aa86051
-    last_write_checksum: sha1:c637028afce1adfa826b2d6c43ed5853a197135d
-    pristine_git_object: 3fc587239c2e30dc9ffe3f7d628e980c4d6e9e6a
+    last_write_checksum: sha1:4def2b9f144cc9a25cedfb64b675d2621e0bab35
+    pristine_git_object: 6bd5b0f8506d897f5afc74d01afda9b635fe0802
   src/__tests__/mockserver/internal/sdk/models/components/webhooksubscription.go:
     id: 7d3283b99416
     last_write_checksum: sha1:bbbef08f93d23bc70fd984176200ee8531783218
@@ -15719,8 +15719,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:ad850ab7fe942c563d73c38263b79ffe06a897db
-    pristine_git_object: e63ee482c01b70a0d23a888dc7c5223a739addd8
+    last_write_checksum: sha1:c0f43fda309a17de21e63203b5571ce212e3ee6b
+    pristine_git_object: 29e01dd68dded0691509897800e68137335681c2
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -17579,8 +17579,8 @@ trackedFiles:
     pristine_git_object: be3be92acf5e71b1b12ed6b49645b0b3a3b04936
   src/models/components/ledgeraccountsfilter.ts:
     id: 9fbc362ec04c
-    last_write_checksum: sha1:90e95378ff75d8884e42eb79e865638ef06179e5
-    pristine_git_object: 4610a6e91829f878c1339b3597d44bd3d2696f31
+    last_write_checksum: sha1:cce99c0b5b430df22a2a91ed039d8021586f782d
+    pristine_git_object: eeb66ec4e16654887b6749737c05f60dbdd7a453
   src/models/components/ledgeraccountssort.ts:
     id: e1a4edaf1972
     last_write_checksum: sha1:8fd3ad27f755f04b5ce3e3725d5c383ad5db0142
@@ -18339,8 +18339,8 @@ trackedFiles:
     pristine_git_object: 664036449fd89b7b4d877931ba2de76bbb10924a
   src/models/components/webhookeventtype.ts:
     id: 403cfdafa866
-    last_write_checksum: sha1:4b10b1e33007bfdb37b9c4dfa61830f58dc9d3f8
-    pristine_git_object: 26b0fcaa9781562661c39ae256871bd810e653d1
+    last_write_checksum: sha1:cd670d944806105b7f156086c6942ca1fb02c99b
+    pristine_git_object: 3392b583c779d9d83186aaa251ded3c748f62c4f
   src/models/components/webhooksubscription.ts:
     id: 058595b8ad39
     last_write_checksum: sha1:e0ed3dd9218160eeb45cd5e877a435e6bb2df2a8
@@ -37020,6 +37020,7 @@ generatedTests:
   ats.jobsAdd: "2026-03-11T13:14:11Z"
   ats.jobsUpdate: "2026-03-11T13:14:11Z"
   ats.jobsDelete: "2026-03-11T13:14:11Z"
+releaseNotes: "## Typescript SDK Changes:\n* `apideck.webhook.webhooks.list()`:  `response.data[].events[]` **Changed**\n* `apideck.webhook.webhooks.create()`: \n  *  `request.createWebhookRequest.events[]` **Changed**\n  *  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.get()`:  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.update()`: \n  *  `request.updateWebhookRequest.events[]` **Changed**\n  *  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.delete()`:  `response.data.events[]` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
