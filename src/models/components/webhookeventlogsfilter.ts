@@ -15,6 +15,34 @@ export type WebhookEventLogsFilter = {
   consumerId?: string | null | undefined;
   entityType?: string | null | undefined;
   eventType?: string | null | undefined;
+  /**
+   * Filter logs at or after this ISO 8601 date-time (inclusive).
+   */
+  startDate?: Date | null | undefined;
+  /**
+   * Filter logs at or before this ISO 8601 date-time (inclusive). Must be on or after start_date.
+   */
+  endDate?: Date | null | undefined;
+  /**
+   * Filter by delivery success or failure.
+   */
+  success?: boolean | null | undefined;
+  /**
+   * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple values.
+   */
+  statusCode?: number | null | undefined;
+  /**
+   * Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes allowed.
+   */
+  statusCodes?: Array<number> | null | undefined;
+  /**
+   * Filter by webhook event ID.
+   */
+  eventId?: string | null | undefined;
+  /**
+   * Filter by the delivery attempt number.
+   */
+  executionAttempt?: number | null | undefined;
 };
 
 /** @internal */
@@ -48,6 +76,13 @@ export type WebhookEventLogsFilter$Outbound = {
   consumer_id?: string | null | undefined;
   entity_type?: string | null | undefined;
   event_type?: string | null | undefined;
+  start_date?: string | null | undefined;
+  end_date?: string | null | undefined;
+  success?: boolean | null | undefined;
+  status_code?: number | null | undefined;
+  status_codes?: Array<number> | null | undefined;
+  event_id?: string | null | undefined;
+  execution_attempt?: number | null | undefined;
 };
 
 /** @internal */
@@ -63,12 +98,25 @@ export const WebhookEventLogsFilter$outboundSchema: z.ZodType<
   consumerId: z.nullable(z.string()).optional(),
   entityType: z.nullable(z.string()).optional(),
   eventType: z.nullable(z.string()).optional(),
+  startDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  endDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  success: z.nullable(z.boolean()).optional(),
+  statusCode: z.nullable(z.number()).optional(),
+  statusCodes: z.nullable(z.array(z.number())).optional(),
+  eventId: z.nullable(z.string()).optional(),
+  executionAttempt: z.nullable(z.number()).optional(),
 }).transform((v) => {
   return remap$(v, {
     excludeApis: "exclude_apis",
     consumerId: "consumer_id",
     entityType: "entity_type",
     eventType: "event_type",
+    startDate: "start_date",
+    endDate: "end_date",
+    statusCode: "status_code",
+    statusCodes: "status_codes",
+    eventId: "event_id",
+    executionAttempt: "execution_attempt",
   });
 });
 

@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 050df171336a3f72c7d9fa293aee56ef
+  docChecksum: dfe6f0f5d02c51f97215a38a4147d219
   docVersion: 10.24.47
   speakeasyVersion: 1.788.1
   generationVersion: 2.915.1
-  releaseVersion: 0.43.11
-  configChecksum: efc63fa634c969e63cd980f4cb93b594
+  releaseVersion: 0.43.12
+  configChecksum: b0a0ef48e77cdc8ef960272d8eb13087
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: 81cbc48a-6ed2-4042-8175-945187965db4
-  pristine_commit_hash: 7b71018a0edcfe8e48c73f1d48c6ae68bb7cc130
-  pristine_tree_hash: 25e2fb01315a393b3bf18783c4600f032e4c0319
+  generation_id: d2aa25a2-9fa1-41dc-ab0d-9afb425100f0
+  pristine_commit_hash: 87c81b33f039931c9f163addc7822cc7c51c0071
+  pristine_tree_hash: b96abe280cb04095b04054eeef17ccf4954cdd39
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -3931,8 +3931,8 @@ trackedFiles:
     pristine_git_object: 499f28080bbcb74657694b4c61d8a000c6c2450b
   docs/models/components/webhookeventlogsfilter.md:
     id: 8d450c131dc4
-    last_write_checksum: sha1:d88b3ccdcbfbbc6edb05bc1e83daf2629d7327ee
-    pristine_git_object: b32316703412b8307a29f4680276bb68258974a6
+    last_write_checksum: sha1:d0eade7f056732cc987dd648afac281201317d76
+    pristine_git_object: 9fbf86b33e152f3d3de893a847d5389839014cc7
   docs/models/components/webhookeventlogsfilterservice.md:
     id: 08961a186736
     last_write_checksum: sha1:4b74b3a6533145ed13024462b35c1208567f8719
@@ -8063,8 +8063,8 @@ trackedFiles:
     pristine_git_object: 8f08b9d95f551afde24dddc9923ba5cd2be1e3ac
   docs/models/operations/webhookeventlogsallrequest.md:
     id: d371a8c79d16
-    last_write_checksum: sha1:e31729b0e851ce7214a4c1c85f0ecd6e8b0342ef
-    pristine_git_object: 75390b1b6111dbaf85b7e6f458b753b8461f4a52
+    last_write_checksum: sha1:a24cf5632805b87f65480406fac2aebd9fd2ea1e
+    pristine_git_object: 4ab760c1a29d3a18a1578b00821a821a3515f729
   docs/models/operations/webhookeventlogsallresponse.md:
     id: c447a7758846
     last_write_checksum: sha1:598d861927fa5f6b11da4021d582d20e8afeb023
@@ -8527,12 +8527,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:5906fe0d3496d848ce1f7350046fd5871f246497
-    pristine_git_object: 43747d98489239875b719ab2818104de0b45ea00
+    last_write_checksum: sha1:afc673e6e105077c8db56dbf266231265ef5a265
+    pristine_git_object: 44fc06410b63818a790506bc43578e1da0318f3d
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:5ffd96a4673331e16918d2193531e90f15a5426d
-    pristine_git_object: 558d038181939772e10f29e15b303b80d9344a06
+    last_write_checksum: sha1:d12f2c606eb3331f0637bc8627df44d51a05c20b
+    pristine_git_object: 288a0a355a7afa5e63266dd56f06c1036c91a2d0
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -12767,8 +12767,8 @@ trackedFiles:
     pristine_git_object: d8d3d1caf3af6fbd282af9a2a1bd2252cd6b5c93
   src/__tests__/mockserver/internal/sdk/models/components/webhookeventlogsfilter.go:
     id: bff0ec8beda3
-    last_write_checksum: sha1:7cbe49ededc4cbfc93a2491796d3a7a77709a807
-    pristine_git_object: f8db6af45f837fdd58c8ff3709b994060ccf4e60
+    last_write_checksum: sha1:1cfb4ead835d5e960bede60c72a29d55829b8ff8
+    pristine_git_object: d94326e35ebe7c622cbec8d7c2755c52cf70c74b
   src/__tests__/mockserver/internal/sdk/models/components/webhookeventtype.go:
     id: 0fe44aa86051
     last_write_checksum: sha1:4def2b9f144cc9a25cedfb64b675d2621e0bab35
@@ -15719,8 +15719,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:c0f43fda309a17de21e63203b5571ce212e3ee6b
-    pristine_git_object: 29e01dd68dded0691509897800e68137335681c2
+    last_write_checksum: sha1:4e80e9670bc064ddbf83c2bf82908b9b68f32cb1
+    pristine_git_object: e034684847f4e39ae461db81dfaf0bcf0c292d2c
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -18335,8 +18335,8 @@ trackedFiles:
     pristine_git_object: 4f2f6eb0c44a21ab5baa4ca24bda0ec9ccc08fbc
   src/models/components/webhookeventlogsfilter.ts:
     id: c07840fab890
-    last_write_checksum: sha1:979380ae746a6e2a5d1e908587d84c2410838aa3
-    pristine_git_object: 664036449fd89b7b4d877931ba2de76bbb10924a
+    last_write_checksum: sha1:0c302456d04ba96f2200c64ce7bae55315e2f14a
+    pristine_git_object: fa2f6135e203d3d6c7c41626548be5a376a13f2a
   src/models/components/webhookeventtype.ts:
     id: 403cfdafa866
     last_write_checksum: sha1:cd670d944806105b7f156086c6942ca1fb02c99b
@@ -34753,7 +34753,7 @@ examples:
       parameters:
         query:
           limit: 20
-          filter: {"exclude_apis": "vault,proxy", "consumer_id": "test_user_id", "entity_type": "Connection", "event_type": "vault.connection.callable"}
+          filter: {"exclude_apis": "vault,proxy", "consumer_id": "test_user_id", "entity_type": "Connection", "event_type": "vault.connection.callable", "start_date": "2024-01-01T00:00:00.000Z", "end_date": "2024-01-31T23:59:59.999Z", "status_code": 201, "status_codes": [200, 201, 204]}
         header:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
       responses:
@@ -37020,7 +37020,7 @@ generatedTests:
   ats.jobsAdd: "2026-03-11T13:14:11Z"
   ats.jobsUpdate: "2026-03-11T13:14:11Z"
   ats.jobsDelete: "2026-03-11T13:14:11Z"
-releaseNotes: "## Typescript SDK Changes:\n* `apideck.webhook.webhooks.list()`:  `response.data[].events[]` **Changed**\n* `apideck.webhook.webhooks.create()`: \n  *  `request.createWebhookRequest.events[]` **Changed**\n  *  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.get()`:  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.update()`: \n  *  `request.updateWebhookRequest.events[]` **Changed**\n  *  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.delete()`:  `response.data.events[]` **Changed**\n"
+releaseNotes: "## Typescript SDK Changes:\n* `apideck.webhook.eventLogs.list()`: \n  *  `request.filter` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
