@@ -4,6 +4,8 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
+	"time"
 )
 
 type WebhookEventLogsFilterService struct {
@@ -23,6 +25,31 @@ type WebhookEventLogsFilter struct {
 	ConsumerID  optionalnullable.OptionalNullable[string]                        `queryParam:"name=consumer_id"`
 	EntityType  optionalnullable.OptionalNullable[string]                        `queryParam:"name=entity_type"`
 	EventType   optionalnullable.OptionalNullable[string]                        `queryParam:"name=event_type"`
+	// Filter logs at or after this ISO 8601 date-time (inclusive).
+	StartDate optionalnullable.OptionalNullable[time.Time] `queryParam:"name=start_date"`
+	// Filter logs at or before this ISO 8601 date-time (inclusive). Must be on or after start_date.
+	EndDate optionalnullable.OptionalNullable[time.Time] `queryParam:"name=end_date"`
+	// Filter by delivery success or failure.
+	Success optionalnullable.OptionalNullable[bool] `queryParam:"name=success"`
+	// Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple values.
+	StatusCode optionalnullable.OptionalNullable[float64] `queryParam:"name=status_code"`
+	// Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes allowed.
+	StatusCodes optionalnullable.OptionalNullable[[]float64] `queryParam:"name=status_codes"`
+	// Filter by webhook event ID.
+	EventID optionalnullable.OptionalNullable[string] `queryParam:"name=event_id"`
+	// Filter by the delivery attempt number.
+	ExecutionAttempt optionalnullable.OptionalNullable[float64] `queryParam:"name=execution_attempt"`
+}
+
+func (w WebhookEventLogsFilter) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(w, "", false)
+}
+
+func (w *WebhookEventLogsFilter) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &w, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *WebhookEventLogsFilter) GetExcludeApis() optionalnullable.OptionalNullable[string] {
@@ -58,4 +85,53 @@ func (o *WebhookEventLogsFilter) GetEventType() optionalnullable.OptionalNullabl
 		return nil
 	}
 	return o.EventType
+}
+
+func (o *WebhookEventLogsFilter) GetStartDate() optionalnullable.OptionalNullable[time.Time] {
+	if o == nil {
+		return nil
+	}
+	return o.StartDate
+}
+
+func (o *WebhookEventLogsFilter) GetEndDate() optionalnullable.OptionalNullable[time.Time] {
+	if o == nil {
+		return nil
+	}
+	return o.EndDate
+}
+
+func (o *WebhookEventLogsFilter) GetSuccess() optionalnullable.OptionalNullable[bool] {
+	if o == nil {
+		return nil
+	}
+	return o.Success
+}
+
+func (o *WebhookEventLogsFilter) GetStatusCode() optionalnullable.OptionalNullable[float64] {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCode
+}
+
+func (o *WebhookEventLogsFilter) GetStatusCodes() optionalnullable.OptionalNullable[[]float64] {
+	if o == nil {
+		return nil
+	}
+	return o.StatusCodes
+}
+
+func (o *WebhookEventLogsFilter) GetEventID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.EventID
+}
+
+func (o *WebhookEventLogsFilter) GetExecutionAttempt() optionalnullable.OptionalNullable[float64] {
+	if o == nil {
+		return nil
+	}
+	return o.ExecutionAttempt
 }

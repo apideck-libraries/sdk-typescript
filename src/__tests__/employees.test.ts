@@ -2440,6 +2440,9 @@ test("Employees Accounting Employees All", async () => {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       status: "active",
     },
+    passThrough: {
+      "search": "San Francisco",
+    },
   });
   expect(result.httpMeta.response.status).toBe(200);
   expect(result.getAccountingEmployeesResponse).toBeDefined();

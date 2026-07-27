@@ -35,6 +35,9 @@ async function run() {
       createdSince: new Date("2020-09-30T07:43:32.000Z"),
       number: "OIT00546",
     },
+    passThrough: {
+      "search": "San Francisco",
+    },
   });
 
   for await (const page of result) {
@@ -69,6 +72,9 @@ async function run() {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       createdSince: new Date("2020-09-30T07:43:32.000Z"),
       number: "OIT00546",
+    },
+    passThrough: {
+      "search": "San Francisco",
     },
   });
   if (res.ok) {

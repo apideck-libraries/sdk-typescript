@@ -9,16 +9,16 @@ import (
 	"time"
 )
 
-// Visibility - The visibility of the job
-type Visibility string
+// JobVisibility - The visibility of the job
+type JobVisibility string
 
 const (
-	VisibilityDraft    Visibility = "draft"
-	VisibilityPublic   Visibility = "public"
-	VisibilityInternal Visibility = "internal"
+	JobVisibilityDraft    JobVisibility = "draft"
+	JobVisibilityPublic   JobVisibility = "public"
+	JobVisibilityInternal JobVisibility = "internal"
 )
 
-func (e Visibility) ToPointer() *Visibility {
+func (e JobVisibility) ToPointer() *JobVisibility {
 	return &e
 }
 
@@ -159,7 +159,7 @@ type Job struct {
 	// Sequence in relation to other jobs.
 	Sequence *int64 `json:"sequence,omitempty"`
 	// The visibility of the job
-	Visibility *Visibility `json:"visibility,omitempty"`
+	Visibility *JobVisibility `json:"visibility,omitempty"`
 	// The status of the job.
 	Status *JobStatus `json:"status,omitempty"`
 	// The code of the job.
@@ -264,7 +264,7 @@ func (o *Job) GetSequence() *int64 {
 	return o.Sequence
 }
 
-func (o *Job) GetVisibility() *Visibility {
+func (o *Job) GetVisibility() *JobVisibility {
 	if o == nil {
 		return nil
 	}
@@ -550,7 +550,7 @@ type JobInput struct {
 	// Sequence in relation to other jobs.
 	Sequence *int64 `json:"sequence,omitempty"`
 	// The visibility of the job
-	Visibility *Visibility `json:"visibility,omitempty"`
+	Visibility *JobVisibility `json:"visibility,omitempty"`
 	// The status of the job.
 	Status *JobStatus `json:"status,omitempty"`
 	// The code of the job.
@@ -637,7 +637,7 @@ func (o *JobInput) GetSequence() *int64 {
 	return o.Sequence
 }
 
-func (o *JobInput) GetVisibility() *Visibility {
+func (o *JobInput) GetVisibility() *JobVisibility {
 	if o == nil {
 		return nil
 	}

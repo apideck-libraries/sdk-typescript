@@ -53,11 +53,13 @@ test("Connections Vault Connections All", async () => {
           "api_key": "12345xxxxxx",
         },
         metadata: {
-          "account": {
-            "name": "My Company",
-            "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+          additionalProperties: {
+            "account": {
+              "name": "My Company",
+              "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+            },
+            "plan": "enterprise",
           },
-          "plan": "enterprise",
         },
         formFields: [
           {
@@ -287,11 +289,13 @@ test("Connections Vault Connections All", async () => {
           "api_key": "12345xxxxxx",
         },
         metadata: {
-          "account": {
-            "name": "My Company",
-            "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+          additionalProperties: {
+            "account": {
+              "name": "My Company",
+              "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+            },
+            "plan": "enterprise",
           },
-          "plan": "enterprise",
         },
         formFields: [
           {
@@ -452,11 +456,13 @@ test("Connections Vault Connections All", async () => {
           "api_key": "12345xxxxxx",
         },
         metadata: {
-          "account": {
-            "name": "My Company",
-            "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+          additionalProperties: {
+            "account": {
+              "name": "My Company",
+              "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+            },
+            "plan": "enterprise",
           },
-          "plan": "enterprise",
         },
         formFields: [
           {
@@ -864,11 +870,13 @@ test("Connections Vault Connections One", async () => {
         "api_key": "12345xxxxxx",
       },
       metadata: {
-        "account": {
-          "name": "My Company",
-          "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+        additionalProperties: {
+          "account": {
+            "name": "My Company",
+            "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+          },
+          "plan": "enterprise",
         },
-        "plan": "enterprise",
       },
       formFields: [
         {
@@ -1121,11 +1129,13 @@ test("Connections Vault Connections Update", async () => {
         "instance_url": "https://eu28.salesforce.com",
       },
       metadata: {
-        "account": {
-          "id": "c01458a5-7276-41ce-bc19-639906b0450a",
-          "name": "My Company",
+        additionalProperties: {
+          "account": {
+            "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+            "name": "My Company",
+          },
+          "plan": "enterprise",
         },
-        "plan": "enterprise",
       },
       configuration: [
         {
@@ -1327,11 +1337,13 @@ test("Connections Vault Connections Update", async () => {
         "api_key": "12345xxxxxx",
       },
       metadata: {
-        "account": {
-          "name": "My Company",
-          "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+        additionalProperties: {
+          "account": {
+            "name": "My Company",
+            "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+          },
+          "plan": "enterprise",
         },
-        "plan": "enterprise",
       },
       formFields: [
         {
@@ -1651,11 +1663,13 @@ test("Connections Vault Connections Import", async () => {
         "api_key": "12345xxxxxx",
       },
       metadata: {
-        "account": {
-          "name": "My Company",
-          "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+        additionalProperties: {
+          "account": {
+            "name": "My Company",
+            "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+          },
+          "plan": "enterprise",
         },
-        "plan": "enterprise",
       },
       formFields: [
         {
@@ -1999,11 +2013,13 @@ test("Connections Vault Connections Token", async () => {
         "api_key": "12345xxxxxx",
       },
       metadata: {
-        "account": {
-          "name": "My Company",
-          "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+        additionalProperties: {
+          "account": {
+            "name": "My Company",
+            "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+          },
+          "plan": "enterprise",
         },
-        "plan": "enterprise",
       },
       formFields: [
         {

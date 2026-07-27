@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -71,6 +74,17 @@ export const ConnectionStatus = {
  * Status of the connection.
  */
 export type ConnectionStatus = OpenEnum<typeof ConnectionStatus>;
+
+/**
+ * Attach your own consumer specific metadata
+ */
+export type ConnectionMetadata = {
+  /**
+   * Normalized identifier of the authorized organization, copied from the connector-specific setting (e.g. Xero tenant_id, QuickBooks realm_id, NetSuite account_id).
+   */
+  companyId?: string | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
+};
 
 export const Target = {
   CustomFields: "custom_fields",
@@ -192,7 +206,7 @@ export type Connection = {
   /**
    * Attach your own consumer specific metadata
    */
-  metadata?: { [k: string]: any } | null | undefined;
+  metadata?: ConnectionMetadata | null | undefined;
   /**
    * The settings that are wanted to create a connection.
    */
@@ -246,6 +260,13 @@ export type Connection = {
   updatedAt?: number | null | undefined;
 };
 
+/**
+ * Attach your own consumer specific metadata
+ */
+export type ConnectionMetadataInput = {
+  additionalProperties?: { [k: string]: any } | undefined;
+};
+
 export type ConnectionDefaults = {
   id?: string | undefined;
   options?: Array<FormFieldOption> | undefined;
@@ -275,7 +296,7 @@ export type ConnectionInput = {
   /**
    * Attach your own consumer specific metadata
    */
-  metadata?: { [k: string]: any } | null | undefined;
+  metadata?: ConnectionMetadataInput | null | undefined;
   configuration?: Array<ConnectionConfiguration> | undefined;
   /**
    * List of custom mappings configured for this connection
@@ -295,6 +316,33 @@ export const ConnectionStatus$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = openEnums.inboundSchema(ConnectionStatus);
+
+/** @internal */
+export const ConnectionMetadata$inboundSchema: z.ZodType<
+  ConnectionMetadata,
+  z.ZodTypeDef,
+  unknown
+> = collectExtraKeys$(
+  z.object({
+    company_id: types.optional(types.string()),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
+  return remap$(v, {
+    "company_id": "companyId",
+  });
+});
+
+export function connectionMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionMetadata' from JSON`,
+  );
+}
 
 /** @internal */
 export const Target$inboundSchema: z.ZodType<Target, z.ZodTypeDef, unknown> =
@@ -451,7 +499,8 @@ export const Connection$inboundSchema: z.ZodType<
   authorize_url: z.nullable(types.string()).optional(),
   revoke_url: z.nullable(types.string()).optional(),
   settings: z.nullable(z.record(z.any())).optional(),
-  metadata: z.nullable(z.record(z.any())).optional(),
+  metadata: z.nullable(z.lazy(() => ConnectionMetadata$inboundSchema))
+    .optional(),
   form_fields: types.optional(z.array(FormField$inboundSchema)),
   configuration: types.optional(
     z.array(z.lazy(() => Configuration$inboundSchema)),
@@ -512,6 +561,35 @@ export function connectionFromJSON(
     jsonString,
     (x) => Connection$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Connection' from JSON`,
+  );
+}
+
+/** @internal */
+export type ConnectionMetadataInput$Outbound = {
+  [additionalProperties: string]: unknown;
+};
+
+/** @internal */
+export const ConnectionMetadataInput$outboundSchema: z.ZodType<
+  ConnectionMetadataInput$Outbound,
+  z.ZodTypeDef,
+  ConnectionMetadataInput
+> = z.object({
+  additionalProperties: z.record(z.any()).optional(),
+}).transform((v) => {
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      additionalProperties: null,
+    }),
+  };
+});
+
+export function connectionMetadataInputToJSON(
+  connectionMetadataInput: ConnectionMetadataInput,
+): string {
+  return JSON.stringify(
+    ConnectionMetadataInput$outboundSchema.parse(connectionMetadataInput),
   );
 }
 
@@ -581,7 +659,7 @@ export function connectionConfigurationToJSON(
 export type ConnectionInput$Outbound = {
   enabled?: boolean | undefined;
   settings?: { [k: string]: any } | null | undefined;
-  metadata?: { [k: string]: any } | null | undefined;
+  metadata?: ConnectionMetadataInput$Outbound | null | undefined;
   configuration?: Array<ConnectionConfiguration$Outbound> | undefined;
   custom_mappings?: Array<CustomMappingInput$Outbound> | undefined;
   consent_state?: string | undefined;
@@ -597,7 +675,8 @@ export const ConnectionInput$outboundSchema: z.ZodType<
 > = z.object({
   enabled: z.boolean().optional(),
   settings: z.nullable(z.record(z.any())).optional(),
-  metadata: z.nullable(z.record(z.any())).optional(),
+  metadata: z.nullable(z.lazy(() => ConnectionMetadataInput$outboundSchema))
+    .optional(),
   configuration: z.array(z.lazy(() => ConnectionConfiguration$outboundSchema))
     .optional(),
   customMappings: z.array(CustomMappingInput$outboundSchema).optional(),

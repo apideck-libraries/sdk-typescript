@@ -4,7 +4,40 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
+
+// ConsumerConnectionMetadata - Attach your own consumer specific metadata
+type ConsumerConnectionMetadata struct {
+	// Normalized identifier of the authorized organization, copied from the connector-specific setting (e.g. Xero tenant_id, QuickBooks realm_id, NetSuite account_id).
+	CompanyID            *string        `json:"company_id,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (c ConsumerConnectionMetadata) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ConsumerConnectionMetadata) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ConsumerConnectionMetadata) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *ConsumerConnectionMetadata) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
 
 type ConsumerConnection struct {
 	ID         *string `json:"id,omitempty"`
@@ -22,9 +55,9 @@ type ConsumerConnection struct {
 	// Connection settings. Values will persist to `form_fields` with corresponding id
 	Settings optionalnullable.OptionalNullable[map[string]any] `json:"settings,omitempty"`
 	// Attach your own consumer specific metadata
-	Metadata  optionalnullable.OptionalNullable[map[string]any] `json:"metadata,omitempty"`
-	CreatedAt *string                                           `json:"created_at,omitempty"`
-	UpdatedAt optionalnullable.OptionalNullable[string]         `json:"updated_at,omitempty"`
+	Metadata  optionalnullable.OptionalNullable[ConsumerConnectionMetadata] `json:"metadata,omitempty"`
+	CreatedAt *string                                                       `json:"created_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[string]                     `json:"updated_at,omitempty"`
 	// [Connection state flow](#section/Connection-state)
 	State *ConnectionState `json:"state,omitempty"`
 	// The operational health status of the connection
@@ -119,7 +152,7 @@ func (o *ConsumerConnection) GetSettings() optionalnullable.OptionalNullable[map
 	return o.Settings
 }
 
-func (o *ConsumerConnection) GetMetadata() optionalnullable.OptionalNullable[map[string]any] {
+func (o *ConsumerConnection) GetMetadata() optionalnullable.OptionalNullable[ConsumerConnectionMetadata] {
 	if o == nil {
 		return nil
 	}

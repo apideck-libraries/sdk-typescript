@@ -122,11 +122,13 @@ async function run() {
         "api_key": "12345xxxxxx",
       },
       metadata: {
-        "account": {
-          "name": "My Company",
-          "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+        additionalProperties: {
+          "account": {
+            "name": "My Company",
+            "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+          },
+          "plan": "enterprise",
         },
-        "plan": "enterprise",
       },
       configuration: [
         {
@@ -245,11 +247,13 @@ async function run() {
         "api_key": "12345xxxxxx",
       },
       metadata: {
-        "account": {
-          "name": "My Company",
-          "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+        additionalProperties: {
+          "account": {
+            "name": "My Company",
+            "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+          },
+          "plan": "enterprise",
         },
-        "plan": "enterprise",
       },
       configuration: [
         {

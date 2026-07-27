@@ -34,6 +34,9 @@ async function run() {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       status: "active",
     },
+    passThrough: {
+      "search": "San Francisco",
+    },
   });
 
   for await (const page of result) {
@@ -67,6 +70,9 @@ async function run() {
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       status: "active",
+    },
+    passThrough: {
+      "search": "San Francisco",
     },
   });
   if (res.ok) {

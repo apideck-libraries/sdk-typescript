@@ -1608,6 +1608,9 @@ test("Companies Accounting Companies All", async () => {
     serviceId: "salesforce",
     companyId: "12345",
     fields: "id,updated_at",
+    passThrough: {
+      "search": "San Francisco",
+    },
   });
   expect(result.httpMeta.response.status).toBe(200);
   expect(result.getCompaniesResponse).toBeDefined();

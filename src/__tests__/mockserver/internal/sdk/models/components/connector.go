@@ -236,7 +236,9 @@ type Connector struct {
 	// When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
 	SchemaSupport *SchemaSupport `json:"schema_support,omitempty"`
 	Docs          []ConnectorDoc `json:"docs,omitempty"`
-	TLSSupport    *TLSSupport    `json:"tls_support,omitempty"`
+	// Editorial overview metadata for the connector, used to render the connector's Overview documentation (implementation difficulty, partnership requirements, sandbox availability, and other at-a-glance facts).
+	Overview   *ConnectorOverview `json:"overview,omitempty"`
+	TLSSupport *TLSSupport        `json:"tls_support,omitempty"`
 }
 
 func (o *Connector) GetID() *string {
@@ -426,6 +428,13 @@ func (o *Connector) GetDocs() []ConnectorDoc {
 		return nil
 	}
 	return o.Docs
+}
+
+func (o *Connector) GetOverview() *ConnectorOverview {
+	if o == nil {
+		return nil
+	}
+	return o.Overview
 }
 
 func (o *Connector) GetTLSSupport() *TLSSupport {

@@ -121,6 +121,7 @@ let value: GetExpenseReportResponse = {
         createdAt: new Date("2020-09-30T07:43:32.000Z"),
       },
     ],
+    reference: "INV-2024-001",
     subsidiary: {
       id: "12345",
       displayId: "123456",

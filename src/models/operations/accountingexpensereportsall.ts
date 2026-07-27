@@ -54,6 +54,10 @@ export type AccountingExpenseReportsAllRequest = {
    * Apply filters
    */
   filter?: components.ExpenseReportsFilter | undefined;
+  /**
+   * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
+   */
+  passThrough?: { [k: string]: any } | undefined;
 };
 
 export type AccountingExpenseReportsAllResponse = {
@@ -78,6 +82,7 @@ export type AccountingExpenseReportsAllRequest$Outbound = {
   limit: number;
   fields?: string | null | undefined;
   filter?: components.ExpenseReportsFilter$Outbound | undefined;
+  pass_through?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -94,6 +99,11 @@ export const AccountingExpenseReportsAllRequest$outboundSchema: z.ZodType<
   limit: z.number().int().default(20),
   fields: z.nullable(z.string()).optional(),
   filter: components.ExpenseReportsFilter$outboundSchema.optional(),
+  passThrough: z.record(z.any()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    passThrough: "pass_through",
+  });
 });
 
 export function accountingExpenseReportsAllRequestToJSON(

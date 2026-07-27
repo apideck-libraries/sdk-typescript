@@ -16,6 +16,10 @@ import {
   ConnectorEvent$inboundSchema,
 } from "./connectorevent.js";
 import {
+  ConnectorOverview,
+  ConnectorOverview$inboundSchema,
+} from "./connectoroverview.js";
+import {
   ConnectorSetting,
   ConnectorSetting$inboundSchema,
 } from "./connectorsetting.js";
@@ -242,6 +246,10 @@ export type Connector = {
    */
   schemaSupport?: SchemaSupport | undefined;
   docs?: Array<ConnectorDoc> | undefined;
+  /**
+   * Editorial overview metadata for the connector, used to render the connector's Overview documentation (implementation difficulty, partnership requirements, sandbox availability, and other at-a-glance facts).
+   */
+  overview?: ConnectorOverview | undefined;
   tlsSupport?: TlsSupport | undefined;
 };
 
@@ -409,6 +417,7 @@ export const Connector$inboundSchema: z.ZodType<
   webhook_support: types.optional(WebhookSupport$inboundSchema),
   schema_support: types.optional(SchemaSupport$inboundSchema),
   docs: types.optional(z.array(ConnectorDoc$inboundSchema)),
+  overview: types.optional(ConnectorOverview$inboundSchema),
   tls_support: types.optional(z.lazy(() => TlsSupport$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {

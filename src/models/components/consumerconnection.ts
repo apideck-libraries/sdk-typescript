@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -17,6 +20,17 @@ import {
   ConnectionState,
   ConnectionState$inboundSchema,
 } from "./connectionstate.js";
+
+/**
+ * Attach your own consumer specific metadata
+ */
+export type Metadata = {
+  /**
+   * Normalized identifier of the authorized organization, copied from the connector-specific setting (e.g. Xero tenant_id, QuickBooks realm_id, NetSuite account_id).
+   */
+  companyId?: string | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
+};
 
 export type ConsumerConnection = {
   id?: string | undefined;
@@ -40,7 +54,7 @@ export type ConsumerConnection = {
   /**
    * Attach your own consumer specific metadata
    */
-  metadata?: { [k: string]: any } | null | undefined;
+  metadata?: Metadata | null | undefined;
   createdAt?: string | undefined;
   updatedAt?: string | null | undefined;
   /**
@@ -62,6 +76,33 @@ export type ConsumerConnection = {
 };
 
 /** @internal */
+export const Metadata$inboundSchema: z.ZodType<
+  Metadata,
+  z.ZodTypeDef,
+  unknown
+> = collectExtraKeys$(
+  z.object({
+    company_id: types.optional(types.string()),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
+  return remap$(v, {
+    "company_id": "companyId",
+  });
+});
+
+export function metadataFromJSON(
+  jsonString: string,
+): SafeParseResult<Metadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Metadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Metadata' from JSON`,
+  );
+}
+
+/** @internal */
 export const ConsumerConnection$inboundSchema: z.ZodType<
   ConsumerConnection,
   z.ZodTypeDef,
@@ -79,7 +120,7 @@ export const ConsumerConnection$inboundSchema: z.ZodType<
   auth_type: types.optional(AuthType$inboundSchema),
   enabled: types.optional(types.boolean()),
   settings: z.nullable(z.record(z.any())).optional(),
-  metadata: z.nullable(z.record(z.any())).optional(),
+  metadata: z.nullable(z.lazy(() => Metadata$inboundSchema)).optional(),
   created_at: types.optional(types.string()),
   updated_at: z.nullable(types.string()).optional(),
   state: types.optional(ConnectionState$inboundSchema),

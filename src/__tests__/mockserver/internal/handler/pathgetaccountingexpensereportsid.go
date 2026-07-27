@@ -161,6 +161,7 @@ func testAccountingExpenseReportsOneAccountingExpenseReportsOne0(w http.Response
 					CreatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				},
 			},
+			Reference: optionalnullable.From(types.String("INV-2024-001")),
 			Subsidiary: optionalnullable.From(&components.LinkedSubsidiary{
 				ID:        types.String("12345"),
 				DisplayID: optionalnullable.From(types.String("123456")),

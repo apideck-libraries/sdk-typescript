@@ -22,6 +22,38 @@ func (e ConnectionStatus) ToPointer() *ConnectionStatus {
 	return &e
 }
 
+// ConnectionMetadata - Attach your own consumer specific metadata
+type ConnectionMetadata struct {
+	// Normalized identifier of the authorized organization, copied from the connector-specific setting (e.g. Xero tenant_id, QuickBooks realm_id, NetSuite account_id).
+	CompanyID            *string        `json:"company_id,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (c ConnectionMetadata) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ConnectionMetadata) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ConnectionMetadata) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
+}
+
+func (o *ConnectionMetadata) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type Target string
 
 const (
@@ -354,7 +386,7 @@ type Connection struct {
 	// Connection settings. Values will persist to `form_fields` with corresponding id
 	Settings optionalnullable.OptionalNullable[map[string]any] `json:"settings,omitempty"`
 	// Attach your own consumer specific metadata
-	Metadata optionalnullable.OptionalNullable[map[string]any] `json:"metadata,omitempty"`
+	Metadata optionalnullable.OptionalNullable[ConnectionMetadata] `json:"metadata,omitempty"`
 	// The settings that are wanted to create a connection.
 	FormFields              []FormField     `json:"form_fields,omitempty"`
 	Configuration           []Configuration `json:"configuration,omitempty"`
@@ -507,7 +539,7 @@ func (o *Connection) GetSettings() optionalnullable.OptionalNullable[map[string]
 	return o.Settings
 }
 
-func (o *Connection) GetMetadata() optionalnullable.OptionalNullable[map[string]any] {
+func (o *Connection) GetMetadata() optionalnullable.OptionalNullable[ConnectionMetadata] {
 	if o == nil {
 		return nil
 	}
@@ -661,6 +693,29 @@ func (o *Connection) GetUpdatedAt() optionalnullable.OptionalNullable[float64] {
 	return o.UpdatedAt
 }
 
+// MetadataInput - Attach your own consumer specific metadata
+type MetadataInput struct {
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (m MetadataInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MetadataInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *MetadataInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type DefaultInput struct {
 	ID      *string           `json:"id,omitempty"`
 	Options []FormFieldOption `json:"options,omitempty"`
@@ -713,8 +768,8 @@ type ConnectionInput struct {
 	// Connection settings. Values will persist to `form_fields` with corresponding id
 	Settings optionalnullable.OptionalNullable[map[string]any] `json:"settings,omitempty"`
 	// Attach your own consumer specific metadata
-	Metadata      optionalnullable.OptionalNullable[map[string]any] `json:"metadata,omitempty"`
-	Configuration []ConfigurationInput                              `json:"configuration,omitempty"`
+	Metadata      optionalnullable.OptionalNullable[MetadataInput] `json:"metadata,omitempty"`
+	Configuration []ConfigurationInput                             `json:"configuration,omitempty"`
 	// List of custom mappings configured for this connection
 	CustomMappings []CustomMappingInput `json:"custom_mappings,omitempty"`
 	// The current consent state of the connection
@@ -737,7 +792,7 @@ func (o *ConnectionInput) GetSettings() optionalnullable.OptionalNullable[map[st
 	return o.Settings
 }
 
-func (o *ConnectionInput) GetMetadata() optionalnullable.OptionalNullable[map[string]any] {
+func (o *ConnectionInput) GetMetadata() optionalnullable.OptionalNullable[MetadataInput] {
 	if o == nil {
 		return nil
 	}

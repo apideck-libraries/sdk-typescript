@@ -75,13 +75,15 @@ func testVaultConnectionsImportVaultConnectionsImport0(w http.ResponseWriter, re
 				"instance_url": "https://eu28.salesforce.com",
 				"api_key":      "12345xxxxxx",
 			})),
-			Metadata: optionalnullable.From(types.Pointer(map[string]any{
-				"account": map[string]any{
-					"name": "My Company",
-					"id":   "c01458a5-7276-41ce-bc19-639906b0450a",
+			Metadata: optionalnullable.From(&components.ConnectionMetadata{
+				AdditionalProperties: map[string]any{
+					"account": map[string]any{
+						"name": "My Company",
+						"id":   "c01458a5-7276-41ce-bc19-639906b0450a",
+					},
+					"plan": "enterprise",
 				},
-				"plan": "enterprise",
-			})),
+			}),
 			FormFields: []components.FormField{
 				components.FormField{
 					ID:                types.String("instance_url"),

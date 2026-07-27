@@ -61,11 +61,13 @@ test("Consumers Vault Consumers Add", async () => {
             "instance_url": "https://eu28.salesforce.com",
           },
           metadata: {
-            "account": {
-              "name": "My Company",
-              "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+            additionalProperties: {
+              "account": {
+                "name": "My Company",
+                "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+              },
+              "plan": "enterprise",
             },
-            "plan": "enterprise",
           },
           createdAt: "2020-09-19T12:18:37.071Z",
           updatedAt: "2020-09-19T12:18:37.071Z",
@@ -90,11 +92,13 @@ test("Consumers Vault Consumers Add", async () => {
             "instance_url": "https://eu28.salesforce.com",
           },
           metadata: {
-            "account": {
-              "name": "My Company",
-              "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+            additionalProperties: {
+              "account": {
+                "name": "My Company",
+                "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+              },
+              "plan": "enterprise",
             },
-            "plan": "enterprise",
           },
           createdAt: "2020-09-19T12:18:37.071Z",
           updatedAt: "2020-09-19T12:18:37.071Z",
@@ -271,11 +275,13 @@ test("Consumers Vault Consumers One", async () => {
             "instance_url": "https://eu28.salesforce.com",
           },
           metadata: {
-            "account": {
-              "name": "My Company",
-              "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+            additionalProperties: {
+              "account": {
+                "name": "My Company",
+                "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+              },
+              "plan": "enterprise",
             },
-            "plan": "enterprise",
           },
           createdAt: "2020-09-19T12:18:37.071Z",
           updatedAt: "2020-09-19T12:18:37.071Z",
@@ -300,11 +306,13 @@ test("Consumers Vault Consumers One", async () => {
             "instance_url": "https://eu28.salesforce.com",
           },
           metadata: {
-            "account": {
-              "name": "My Company",
-              "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+            additionalProperties: {
+              "account": {
+                "name": "My Company",
+                "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+              },
+              "plan": "enterprise",
             },
-            "plan": "enterprise",
           },
           createdAt: "2020-09-19T12:18:37.071Z",
           updatedAt: "2020-09-19T12:18:37.071Z",
@@ -329,11 +337,13 @@ test("Consumers Vault Consumers One", async () => {
             "instance_url": "https://eu28.salesforce.com",
           },
           metadata: {
-            "account": {
-              "name": "My Company",
-              "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+            additionalProperties: {
+              "account": {
+                "name": "My Company",
+                "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+              },
+              "plan": "enterprise",
             },
-            "plan": "enterprise",
           },
           createdAt: "2020-09-19T12:18:37.071Z",
           updatedAt: "2020-09-19T12:18:37.071Z",
@@ -412,11 +422,13 @@ test("Consumers Vault Consumers Update", async () => {
             "instance_url": "https://eu28.salesforce.com",
           },
           metadata: {
-            "account": {
-              "name": "My Company",
-              "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+            additionalProperties: {
+              "account": {
+                "name": "My Company",
+                "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+              },
+              "plan": "enterprise",
             },
-            "plan": "enterprise",
           },
           createdAt: "2020-09-19T12:18:37.071Z",
           updatedAt: "2020-09-19T12:18:37.071Z",
@@ -441,11 +453,13 @@ test("Consumers Vault Consumers Update", async () => {
             "instance_url": "https://eu28.salesforce.com",
           },
           metadata: {
-            "account": {
-              "name": "My Company",
-              "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+            additionalProperties: {
+              "account": {
+                "name": "My Company",
+                "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+              },
+              "plan": "enterprise",
             },
-            "plan": "enterprise",
           },
           createdAt: "2020-09-19T12:18:37.071Z",
           updatedAt: "2020-09-19T12:18:37.071Z",
@@ -470,11 +484,13 @@ test("Consumers Vault Consumers Update", async () => {
             "instance_url": "https://eu28.salesforce.com",
           },
           metadata: {
-            "account": {
-              "name": "My Company",
-              "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+            additionalProperties: {
+              "account": {
+                "name": "My Company",
+                "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+              },
+              "plan": "enterprise",
             },
-            "plan": "enterprise",
           },
           createdAt: "2020-09-19T12:18:37.071Z",
           updatedAt: "2020-09-19T12:18:37.071Z",

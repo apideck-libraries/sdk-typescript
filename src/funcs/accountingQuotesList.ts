@@ -120,6 +120,7 @@ async function $do(
   const query = queryJoin(
     encodeDeepObjectQuery({
       "filter": payload.filter,
+      "pass_through": payload.pass_through,
     }),
     encodeFormQuery({
       "cursor": payload.cursor,
