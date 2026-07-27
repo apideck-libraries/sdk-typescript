@@ -131,7 +131,9 @@ type ExpenseReport struct {
 	// The accounting period the expense report is posted to.
 	AccountingPeriod optionalnullable.OptionalNullable[AccountingPeriod] `json:"accounting_period,omitempty"`
 	// Expense line items linked to this expense report.
-	LineItems  []ExpenseReportLineItem                             `json:"line_items"`
+	LineItems []ExpenseReportLineItem `json:"line_items"`
+	// Optional reference identifier for the transaction.
+	Reference  optionalnullable.OptionalNullable[string]           `json:"reference,omitempty"`
 	Subsidiary optionalnullable.OptionalNullable[LinkedSubsidiary] `json:"subsidiary,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
@@ -314,6 +316,13 @@ func (o *ExpenseReport) GetLineItems() []ExpenseReportLineItem {
 	return o.LineItems
 }
 
+func (o *ExpenseReport) GetReference() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.Reference
+}
+
 func (o *ExpenseReport) GetSubsidiary() optionalnullable.OptionalNullable[LinkedSubsidiary] {
 	if o == nil {
 		return nil
@@ -435,7 +444,9 @@ type ExpenseReportInput struct {
 	// The accounting period the expense report is posted to.
 	AccountingPeriod optionalnullable.OptionalNullable[AccountingPeriod] `json:"accounting_period,omitempty"`
 	// Expense line items linked to this expense report.
-	LineItems  []ExpenseReportLineItemInput                             `json:"line_items"`
+	LineItems []ExpenseReportLineItemInput `json:"line_items"`
+	// Optional reference identifier for the transaction.
+	Reference  optionalnullable.OptionalNullable[string]                `json:"reference,omitempty"`
 	Subsidiary optionalnullable.OptionalNullable[LinkedSubsidiaryInput] `json:"subsidiary,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
@@ -599,6 +610,13 @@ func (o *ExpenseReportInput) GetLineItems() []ExpenseReportLineItemInput {
 		return []ExpenseReportLineItemInput{}
 	}
 	return o.LineItems
+}
+
+func (o *ExpenseReportInput) GetReference() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.Reference
 }
 
 func (o *ExpenseReportInput) GetSubsidiary() optionalnullable.OptionalNullable[LinkedSubsidiaryInput] {

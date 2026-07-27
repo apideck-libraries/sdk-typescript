@@ -24,6 +24,9 @@ test("Expensereports Accounting Expense Reports All", async () => {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       status: "submitted",
     },
+    passThrough: {
+      "search": "San Francisco",
+    },
   });
   expect(result.httpMeta.response.status).toBe(200);
   expect(result.getExpenseReportsResponse).toBeDefined();
@@ -262,6 +265,7 @@ test("Expensereports Accounting Expense Reports Add", async () => {
         name: "Q1 2024",
       },
       lineItems: [],
+      reference: "INV-2024-001",
       subsidiary: {
         displayId: "123456",
         name: "Acme Inc.",
@@ -452,6 +456,7 @@ test("Expensereports Accounting Expense Reports One", async () => {
           createdAt: new Date("2020-09-30T07:43:32.000Z"),
         },
       ],
+      reference: "INV-2024-001",
       subsidiary: {
         id: "12345",
         displayId: "123456",
@@ -576,6 +581,7 @@ test("Expensereports Accounting Expense Reports Update", async () => {
         name: "Q1 2024",
       },
       lineItems: [],
+      reference: "INV-2024-001",
       subsidiary: {
         displayId: "123456",
         name: "Acme Inc.",

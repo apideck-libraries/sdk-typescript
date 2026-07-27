@@ -49,6 +49,7 @@ let value: AccountingExpenseReportsUpdateRequest = {
       name: "Q1 2024",
     },
     lineItems: [],
+    reference: "INV-2024-001",
     subsidiary: {
       displayId: "123456",
       name: "Acme Inc.",

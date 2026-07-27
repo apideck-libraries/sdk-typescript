@@ -31,6 +31,9 @@ async function run() {
     filter: {
       type: "expense",
     },
+    passThrough: {
+      "search": "San Francisco",
+    },
   });
 
   for await (const page of result) {
@@ -64,6 +67,9 @@ async function run() {
     fields: "id,updated_at",
     filter: {
       type: "expense",
+    },
+    passThrough: {
+      "search": "San Francisco",
     },
   });
   if (res.ok) {

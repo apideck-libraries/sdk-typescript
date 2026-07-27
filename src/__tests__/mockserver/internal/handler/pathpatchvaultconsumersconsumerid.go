@@ -80,13 +80,15 @@ func testVaultConsumersUpdateVaultConsumersUpdate0(w http.ResponseWriter, req *h
 					Settings: optionalnullable.From(types.Pointer(map[string]any{
 						"instance_url": "https://eu28.salesforce.com",
 					})),
-					Metadata: optionalnullable.From(types.Pointer(map[string]any{
-						"account": map[string]any{
-							"name": "My Company",
-							"id":   "c01458a5-7276-41ce-bc19-639906b0450a",
+					Metadata: optionalnullable.From(&components.ConsumerConnectionMetadata{
+						AdditionalProperties: map[string]any{
+							"account": map[string]any{
+								"name": "My Company",
+								"id":   "c01458a5-7276-41ce-bc19-639906b0450a",
+							},
+							"plan": "enterprise",
 						},
-						"plan": "enterprise",
-					})),
+					}),
 					CreatedAt: types.String("2020-09-19T12:18:37.071Z"),
 					UpdatedAt: optionalnullable.From(types.String("2020-09-19T12:18:37.071Z")),
 					State:     components.ConnectionStateAuthorized.ToPointer(),
@@ -106,13 +108,15 @@ func testVaultConsumersUpdateVaultConsumersUpdate0(w http.ResponseWriter, req *h
 					Settings: optionalnullable.From(types.Pointer(map[string]any{
 						"instance_url": "https://eu28.salesforce.com",
 					})),
-					Metadata: optionalnullable.From(types.Pointer(map[string]any{
-						"account": map[string]any{
-							"name": "My Company",
-							"id":   "c01458a5-7276-41ce-bc19-639906b0450a",
+					Metadata: optionalnullable.From(&components.ConsumerConnectionMetadata{
+						AdditionalProperties: map[string]any{
+							"account": map[string]any{
+								"name": "My Company",
+								"id":   "c01458a5-7276-41ce-bc19-639906b0450a",
+							},
+							"plan": "enterprise",
 						},
-						"plan": "enterprise",
-					})),
+					}),
 					CreatedAt: types.String("2020-09-19T12:18:37.071Z"),
 					UpdatedAt: optionalnullable.From(types.String("2020-09-19T12:18:37.071Z")),
 					State:     components.ConnectionStateAuthorized.ToPointer(),
@@ -132,13 +136,15 @@ func testVaultConsumersUpdateVaultConsumersUpdate0(w http.ResponseWriter, req *h
 					Settings: optionalnullable.From(types.Pointer(map[string]any{
 						"instance_url": "https://eu28.salesforce.com",
 					})),
-					Metadata: optionalnullable.From(types.Pointer(map[string]any{
-						"account": map[string]any{
-							"name": "My Company",
-							"id":   "c01458a5-7276-41ce-bc19-639906b0450a",
+					Metadata: optionalnullable.From(&components.ConsumerConnectionMetadata{
+						AdditionalProperties: map[string]any{
+							"account": map[string]any{
+								"name": "My Company",
+								"id":   "c01458a5-7276-41ce-bc19-639906b0450a",
+							},
+							"plan": "enterprise",
 						},
-						"plan": "enterprise",
-					})),
+					}),
 					CreatedAt: types.String("2020-09-19T12:18:37.071Z"),
 					UpdatedAt: optionalnullable.From(types.String("2020-09-19T12:18:37.071Z")),
 					State:     components.ConnectionStateAuthorized.ToPointer(),

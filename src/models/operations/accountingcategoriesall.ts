@@ -58,6 +58,10 @@ export type AccountingCategoriesAllRequest = {
    * Apply filters
    */
   filter?: components.CategoriesFilter | undefined;
+  /**
+   * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
+   */
+  passThrough?: { [k: string]: any } | undefined;
 };
 
 export type AccountingCategoriesAllResponse = {
@@ -83,6 +87,7 @@ export type AccountingCategoriesAllRequest$Outbound = {
   limit: number;
   fields?: string | null | undefined;
   filter?: components.CategoriesFilter$Outbound | undefined;
+  pass_through?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -100,6 +105,11 @@ export const AccountingCategoriesAllRequest$outboundSchema: z.ZodType<
   limit: z.number().int().default(20),
   fields: z.nullable(z.string()).optional(),
   filter: components.CategoriesFilter$outboundSchema.optional(),
+  passThrough: z.record(z.any()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    passThrough: "pass_through",
+  });
 });
 
 export function accountingCategoriesAllRequestToJSON(

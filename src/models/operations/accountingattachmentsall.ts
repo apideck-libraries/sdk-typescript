@@ -62,6 +62,10 @@ export type AccountingAttachmentsAllRequest = {
    * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
    */
   fields?: string | null | undefined;
+  /**
+   * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
+   */
+  passThrough?: { [k: string]: any } | undefined;
 };
 
 export type AccountingAttachmentsAllResponse = {
@@ -88,6 +92,7 @@ export type AccountingAttachmentsAllRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
   fields?: string | null | undefined;
+  pass_through?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -106,10 +111,12 @@ export const AccountingAttachmentsAllRequest$outboundSchema: z.ZodType<
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
   fields: z.nullable(z.string()).optional(),
+  passThrough: z.record(z.any()).optional(),
 }).transform((v) => {
   return remap$(v, {
     referenceType: "reference_type",
     referenceId: "reference_id",
+    passThrough: "pass_through",
   });
 });
 

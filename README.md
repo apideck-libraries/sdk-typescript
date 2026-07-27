@@ -472,6 +472,11 @@ run();
 * [update](docs/sdks/leads/README.md#update) - Update lead
 * [delete](docs/sdks/leads/README.md#delete) - Delete lead
 
+### [Crm.Lists](docs/sdks/lists/README.md)
+
+* [list](docs/sdks/lists/README.md#list) - List lists
+* [get](docs/sdks/lists/README.md#get) - Get list
+
 ### [Crm.Notes](docs/sdks/notes/README.md)
 
 * [list](docs/sdks/notes/README.md#list) - List notes
@@ -956,6 +961,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`crmLeadsGet`](docs/sdks/leads/README.md#get) - Get lead
 - [`crmLeadsList`](docs/sdks/leads/README.md#list) - List leads
 - [`crmLeadsUpdate`](docs/sdks/leads/README.md#update) - Update lead
+- [`crmListsGet`](docs/sdks/lists/README.md#get) - Get list
+- [`crmListsList`](docs/sdks/lists/README.md#list) - List lists
 - [`crmNotesCreate`](docs/sdks/notes/README.md#create) - Create note
 - [`crmNotesDelete`](docs/sdks/notes/README.md#delete) - Delete note
 - [`crmNotesGet`](docs/sdks/notes/README.md#get) - Get note
@@ -1378,7 +1385,7 @@ run();
 
 
 **Inherit from [`ApideckError`](./src/models/errors/apideckerror.ts)**:
-* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 337 methods.*
+* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 339 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>

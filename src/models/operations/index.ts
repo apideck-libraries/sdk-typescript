@@ -200,6 +200,8 @@ export * from "./crmleadsall.js";
 export * from "./crmleadsdelete.js";
 export * from "./crmleadsone.js";
 export * from "./crmleadsupdate.js";
+export * from "./crmlistsall.js";
+export * from "./crmlistsone.js";
 export * from "./crmnotesadd.js";
 export * from "./crmnotesall.js";
 export * from "./crmnotesdelete.js";

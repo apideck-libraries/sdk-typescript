@@ -11,6 +11,14 @@ let value: WebhookEventLogsAllRequest = {
     consumerId: "test_user_id",
     entityType: "Connection",
     eventType: "vault.connection.callable",
+    startDate: new Date("2024-01-01T00:00:00.000Z"),
+    endDate: new Date("2024-01-31T23:59:59.999Z"),
+    statusCode: 201,
+    statusCodes: [
+      200,
+      201,
+      204,
+    ],
   },
 };
 ```

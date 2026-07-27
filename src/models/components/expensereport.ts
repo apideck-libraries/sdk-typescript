@@ -211,6 +211,10 @@ export type ExpenseReport = {
    * Expense line items linked to this expense report.
    */
   lineItems: Array<ExpenseReportLineItem>;
+  /**
+   * Optional reference identifier for the transaction.
+   */
+  reference?: string | null | undefined;
   subsidiary?: LinkedSubsidiary | null | undefined;
   /**
    * A list of linked tracking categories.
@@ -327,6 +331,10 @@ export type ExpenseReportInput = {
    * Expense line items linked to this expense report.
    */
   lineItems: Array<ExpenseReportLineItemInput>;
+  /**
+   * Optional reference identifier for the transaction.
+   */
+  reference?: string | null | undefined;
   subsidiary?: LinkedSubsidiaryInput | null | undefined;
   /**
    * A list of linked tracking categories.
@@ -530,6 +538,7 @@ export const ExpenseReport$inboundSchema: z.ZodType<
   accounting_period: z.nullable(z.lazy(() => AccountingPeriod$inboundSchema))
     .optional(),
   line_items: z.array(ExpenseReportLineItem$inboundSchema),
+  reference: z.nullable(types.string()).optional(),
   subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
   tracking_categories: z.nullable(
     z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
@@ -603,6 +612,7 @@ export type ExpenseReportInput$Outbound = {
   account?: LinkedLedgerAccount$Outbound | null | undefined;
   accounting_period?: AccountingPeriod$Outbound | null | undefined;
   line_items: Array<ExpenseReportLineItemInput$Outbound>;
+  reference?: string | null | undefined;
   subsidiary?: LinkedSubsidiaryInput$Outbound | null | undefined;
   tracking_categories?:
     | Array<LinkedTrackingCategory$Outbound | null>
@@ -646,6 +656,7 @@ export const ExpenseReportInput$outboundSchema: z.ZodType<
   accountingPeriod: z.nullable(z.lazy(() => AccountingPeriod$outboundSchema))
     .optional(),
   lineItems: z.array(ExpenseReportLineItemInput$outboundSchema),
+  reference: z.nullable(z.string()).optional(),
   subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),

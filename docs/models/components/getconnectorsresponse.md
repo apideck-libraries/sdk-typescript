@@ -120,6 +120,17 @@ let value: GetConnectorsResponse = {
             "https://unify.apideck.com/connector/connectors/workday/docs/consumer+connection",
         },
       ],
+      overview: {
+        beta: false,
+        demo: false,
+        difficulty: "moderate",
+        difficultyReason: "Self-Service Signup + App Review Required",
+        partnershipRequired: true,
+        apideckCredentialsAvailable: true,
+        accountTypeRequired: "<value>",
+        sandboxAvailable: true,
+        consumerAccessLevel: "<value>",
+      },
     },
   ],
   meta: {

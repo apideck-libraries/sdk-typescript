@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -24,6 +25,10 @@ type BillsFilter struct {
 	// Return records with a row ID greater than or equal to the given value
 	IDSince      *string    `queryParam:"name=id_since"`
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
+	// Return bills with a document date (`bill_date`) on or after the given date (YYYY-MM-DD).
+	BilledSince *types.Date `queryParam:"name=billed_since"`
+	// Return bills with a due date (`due_date`) on or after the given date (YYYY-MM-DD).
+	DueSince *types.Date `queryParam:"name=due_since"`
 	// Filter by bill status
 	Status *BillsFilterStatus `queryParam:"name=status"`
 	// Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
@@ -53,6 +58,20 @@ func (o *BillsFilter) GetUpdatedSince() *time.Time {
 		return nil
 	}
 	return o.UpdatedSince
+}
+
+func (o *BillsFilter) GetBilledSince() *types.Date {
+	if o == nil {
+		return nil
+	}
+	return o.BilledSince
+}
+
+func (o *BillsFilter) GetDueSince() *types.Date {
+	if o == nil {
+		return nil
+	}
+	return o.DueSince
 }
 
 func (o *BillsFilter) GetStatus() *BillsFilterStatus {

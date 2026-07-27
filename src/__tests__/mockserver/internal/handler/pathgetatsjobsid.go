@@ -58,7 +58,7 @@ func testAtsJobsOneAtsJobsOne0(w http.ResponseWriter, req *http.Request) {
 			Slug:            optionalnullable.From(types.String("ceo")),
 			Title:           optionalnullable.From(types.String("CEO")),
 			Sequence:        types.Int64(3),
-			Visibility:      components.VisibilityInternal.ToPointer(),
+			Visibility:      components.JobVisibilityInternal.ToPointer(),
 			Status:          components.JobStatusCompleted.ToPointer(),
 			Code:            types.String("123-OC"),
 			Language:        optionalnullable.From(types.String("EN")),

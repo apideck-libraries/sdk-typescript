@@ -25,6 +25,9 @@ test("Quotes Accounting Quotes All", async () => {
       createdSince: new Date("2020-09-30T07:43:32.000Z"),
       number: "OIT00546",
     },
+    passThrough: {
+      "search": "San Francisco",
+    },
   });
   expect(result.httpMeta.response.status).toBe(200);
   expect(result.getQuotesResponse).toBeDefined();

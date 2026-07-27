@@ -27,6 +27,14 @@ export type BillsFilter = {
   idSince?: string | undefined;
   updatedSince?: Date | undefined;
   /**
+   * Return bills with a document date (`bill_date`) on or after the given date (YYYY-MM-DD).
+   */
+  billedSince?: Date | undefined;
+  /**
+   * Return bills with a due date (`due_date`) on or after the given date (YYYY-MM-DD).
+   */
+  dueSince?: Date | undefined;
+  /**
    * Filter by bill status
    */
   status?: BillsFilterStatus | undefined;
@@ -47,6 +55,8 @@ export const BillsFilterStatus$outboundSchema: z.ZodType<
 export type BillsFilter$Outbound = {
   id_since?: string | undefined;
   updated_since?: string | undefined;
+  billed_since?: string | undefined;
+  due_since?: string | undefined;
   status?: string | undefined;
   subsidiary_id?: string | undefined;
 };
@@ -59,12 +69,20 @@ export const BillsFilter$outboundSchema: z.ZodType<
 > = z.object({
   idSince: z.string().optional(),
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  billedSince: z.date().transform(v =>
+    v.toISOString().slice(0, "YYYY-MM-DD".length)
+  ).optional(),
+  dueSince: z.date().transform(v =>
+    v.toISOString().slice(0, "YYYY-MM-DD".length)
+  ).optional(),
   status: BillsFilterStatus$outboundSchema.optional(),
   subsidiaryId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     idSince: "id_since",
     updatedSince: "updated_since",
+    billedSince: "billed_since",
+    dueSince: "due_since",
     subsidiaryId: "subsidiary_id",
   });
 });

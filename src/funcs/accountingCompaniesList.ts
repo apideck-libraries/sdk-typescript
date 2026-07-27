@@ -3,7 +3,12 @@
  */
 
 import { ApideckCore } from "../core.js";
-import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import {
+  encodeDeepObjectQuery,
+  encodeFormQuery,
+  encodeSimple,
+  queryJoin,
+} from "../lib/encodings.js";
 import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
@@ -112,12 +117,17 @@ async function $do(
 
   const path = pathToFunc("/accounting/companies")();
 
-  const query = encodeFormQuery({
-    "cursor": payload.cursor,
-    "fields": payload.fields,
-    "limit": payload.limit,
-    "raw": payload.raw,
-  });
+  const query = queryJoin(
+    encodeDeepObjectQuery({
+      "pass_through": payload.pass_through,
+    }),
+    encodeFormQuery({
+      "cursor": payload.cursor,
+      "fields": payload.fields,
+      "limit": payload.limit,
+      "raw": payload.raw,
+    }),
+  );
 
   const headers = new Headers(compactMap({
     Accept: "application/json",

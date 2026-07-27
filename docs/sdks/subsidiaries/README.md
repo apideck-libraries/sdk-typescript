@@ -31,6 +31,9 @@ async function run() {
     serviceId: "salesforce",
     companyId: "12345",
     fields: "id,updated_at",
+    passThrough: {
+      "search": "San Francisco",
+    },
   });
 
   for await (const page of result) {
@@ -62,6 +65,9 @@ async function run() {
     serviceId: "salesforce",
     companyId: "12345",
     fields: "id,updated_at",
+    passThrough: {
+      "search": "San Francisco",
+    },
   });
   if (res.ok) {
     const { value: result } = res;
