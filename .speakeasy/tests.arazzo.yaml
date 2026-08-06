@@ -50899,6 +50899,7 @@ workflows:
             in: query
             value:
               created_since: "2020-09-30T07:43:32.000Z"
+              customer_id: 123abc
               number: OIT00546
               updated_since: "2020-09-30T07:43:32.000Z"
           - name: pass_through

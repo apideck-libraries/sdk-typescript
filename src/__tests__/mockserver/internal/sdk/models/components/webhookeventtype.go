@@ -33,6 +33,7 @@ const (
 	WebhookEventTypeVaultConnectionDeleted               WebhookEventType = "vault.connection.deleted"
 	WebhookEventTypeVaultConnectionCallable              WebhookEventType = "vault.connection.callable"
 	WebhookEventTypeVaultConnectionRevoked               WebhookEventType = "vault.connection.revoked"
+	WebhookEventTypeVaultConnectionMigrated              WebhookEventType = "vault.connection.migrated"
 	WebhookEventTypeVaultConnectionTokenRefreshFailed    WebhookEventType = "vault.connection.token_refresh.failed"
 	WebhookEventTypeVaultConnectionTokenRefreshPending   WebhookEventType = "vault.connection.token_refresh.pending"
 	WebhookEventTypeVaultConnectionTokenRefreshRecovered WebhookEventType = "vault.connection.token_refresh.recovered"

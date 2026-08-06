@@ -185,6 +185,10 @@ export type Connector = {
    */
   freeTrialAvailable?: boolean | undefined;
   /**
+   * Service ids of connectors this connector's connections can be migrated to via the Vault connectionsMigrate operation.
+   */
+  migrationTargets?: Array<string> | undefined;
+  /**
    * Type of authorization used by the connector
    */
   authType?: ConnectorAuthType | undefined;
@@ -392,6 +396,7 @@ export const Connector$inboundSchema: z.ZodType<
   signup_url: types.optional(types.string()),
   partner_signup_url: types.optional(types.string()),
   free_trial_available: types.optional(types.boolean()),
+  migration_targets: types.optional(z.array(types.string())),
   auth_type: types.optional(ConnectorAuthType$inboundSchema),
   auth_only: types.optional(types.boolean()),
   blind_mapped: types.optional(types.boolean()),
@@ -427,6 +432,7 @@ export const Connector$inboundSchema: z.ZodType<
     "signup_url": "signupUrl",
     "partner_signup_url": "partnerSignupUrl",
     "free_trial_available": "freeTrialAvailable",
+    "migration_targets": "migrationTargets",
     "auth_type": "authType",
     "auth_only": "authOnly",
     "blind_mapped": "blindMapped",

@@ -24,6 +24,7 @@ test("Quotes Accounting Quotes All", async () => {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       createdSince: new Date("2020-09-30T07:43:32.000Z"),
       number: "OIT00546",
+      customerId: "123abc",
     },
     passThrough: {
       "search": "San Francisco",

@@ -20,6 +20,10 @@ export type CreditNotesFilter = {
    * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
    */
   subsidiaryId?: string | undefined;
+  /**
+   * Filter by customer id
+   */
+  customerId?: string | undefined;
 };
 
 /** @internal */
@@ -29,6 +33,7 @@ export type CreditNotesFilter$Outbound = {
   created_since?: string | undefined;
   number?: string | undefined;
   subsidiary_id?: string | undefined;
+  customer_id?: string | undefined;
 };
 
 /** @internal */
@@ -42,12 +47,14 @@ export const CreditNotesFilter$outboundSchema: z.ZodType<
   createdSince: z.date().transform(v => v.toISOString()).optional(),
   number: z.string().optional(),
   subsidiaryId: z.string().optional(),
+  customerId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     idSince: "id_since",
     updatedSince: "updated_since",
     createdSince: "created_since",
     subsidiaryId: "subsidiary_id",
+    customerId: "customer_id",
   });
 });
 

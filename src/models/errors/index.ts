@@ -5,6 +5,7 @@
 export * from "./apideckerror.js";
 export * from "./apierror.js";
 export * from "./badrequestresponse.js";
+export * from "./conflictresponse.js";
 export * from "./httpclienterrors.js";
 export * from "./notfoundresponse.js";
 export * from "./paymentrequiredresponse.js";

@@ -472,6 +472,10 @@ run();
 * [update](docs/sdks/leads/README.md#update) - Update lead
 * [delete](docs/sdks/leads/README.md#delete) - Delete lead
 
+### [Crm.ListMembers](docs/sdks/listmembers/README.md)
+
+* [list](docs/sdks/listmembers/README.md#list) - List list members
+
 ### [Crm.Lists](docs/sdks/lists/README.md)
 
 * [list](docs/sdks/lists/README.md#list) - List lists
@@ -690,6 +694,7 @@ run();
 * [update](docs/sdks/connections/README.md#update) - Update connection
 * [delete](docs/sdks/connections/README.md#delete) - Deletes a connection
 * [imports](docs/sdks/connections/README.md#imports) - Import connection
+* [migrate](docs/sdks/connections/README.md#migrate) - Migrate connection
 * [token](docs/sdks/connections/README.md#token) - Authorize Access Token
 
 ### [Vault.ConnectionSettings](docs/sdks/connectionsettings/README.md)
@@ -961,6 +966,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`crmLeadsGet`](docs/sdks/leads/README.md#get) - Get lead
 - [`crmLeadsList`](docs/sdks/leads/README.md#list) - List leads
 - [`crmLeadsUpdate`](docs/sdks/leads/README.md#update) - Update lead
+- [`crmListMembersList`](docs/sdks/listmembers/README.md#list) - List list members
 - [`crmListsGet`](docs/sdks/lists/README.md#get) - Get list
 - [`crmListsList`](docs/sdks/lists/README.md#list) - List lists
 - [`crmNotesCreate`](docs/sdks/notes/README.md#create) - Create note
@@ -1082,6 +1088,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`vaultConnectionsGet`](docs/sdks/connections/README.md#get) - Get connection
 - [`vaultConnectionsImports`](docs/sdks/connections/README.md#imports) - Import connection
 - [`vaultConnectionsList`](docs/sdks/connections/README.md#list) - Get all connections
+- [`vaultConnectionsMigrate`](docs/sdks/connections/README.md#migrate) - Migrate connection
 - [`vaultConnectionsToken`](docs/sdks/connections/README.md#token) - Authorize Access Token
 - [`vaultConnectionsUpdate`](docs/sdks/connections/README.md#update) - Update connection
 - [`vaultConsumerRequestCountsList`](docs/sdks/consumerrequestcounts/README.md#list) - Consumer request counts
@@ -1372,7 +1379,7 @@ run();
   * [`BadRequestResponse`](./src/models/errors/badrequestresponse.ts): Bad Request. Status code `400`. *
   * [`UnprocessableResponse`](./src/models/errors/unprocessableresponse.ts): Unprocessable. Status code `422`. *
 
-<details><summary>Less common errors (7)</summary>
+<details><summary>Less common errors (8)</summary>
 
 <br />
 
@@ -1385,7 +1392,8 @@ run();
 
 
 **Inherit from [`ApideckError`](./src/models/errors/apideckerror.ts)**:
-* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 339 methods.*
+* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 341 methods.*
+* [`ConflictResponse`](./src/models/errors/conflictresponse.ts): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 341 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>

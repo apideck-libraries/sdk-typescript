@@ -12,6 +12,11 @@ let value: Customer = {
   displayName: "Windsurf Shop",
   companyName: "SpaceX",
   companyId: "12345",
+  subsidiary: {
+    id: "12345",
+    displayId: "123456",
+    name: "Acme Inc.",
+  },
   customerCategory: "Insurance",
   title: "CEO",
   firstName: "Elon",
@@ -99,15 +104,11 @@ let value: Customer = {
   taxNumber: "US123945459",
   taxable: true,
   currency: "USD",
-  account: {
-    id: "123456",
-    name: "Bank account",
-    nominalCode: "N091",
-    code: "453",
-    parentId: "123456",
-    displayId: "123456",
+  account: null,
+  parent: {
+    id: "12345",
+    name: "Windsurf Shop",
   },
-  parent: null,
   status: "active",
   paymentMethod: "cash",
   terms: "Net 30 days",
@@ -154,6 +155,7 @@ let value: Customer = {
 | `displayName`                                                                                                                                           | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Display name                                                                                                                                            | Windsurf Shop                                                                                                                                           |
 | `companyName`                                                                                                                                           | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The name of the company.                                                                                                                                | SpaceX                                                                                                                                                  |
 | `companyId`                                                                                                                                             | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The company ID the transaction belongs to                                                                                                               | 12345                                                                                                                                                   |
+| `subsidiary`                                                                                                                                            | [components.LinkedSubsidiary](../../models/components/linkedsubsidiary.md)                                                                              | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
 | `customerCategory`                                                                                                                                      | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The category/type of the customer                                                                                                                       | Insurance                                                                                                                                               |
 | `title`                                                                                                                                                 | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The job title of the person.                                                                                                                            | CEO                                                                                                                                                     |
 | `firstName`                                                                                                                                             | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The first name of the person.                                                                                                                           | Elon                                                                                                                                                    |

@@ -51,6 +51,15 @@ import {
   LinkedParentCustomer$Outbound,
   LinkedParentCustomer$outboundSchema,
 } from "./linkedparentcustomer.js";
+import {
+  LinkedSubsidiary,
+  LinkedSubsidiary$inboundSchema,
+} from "./linkedsubsidiary.js";
+import {
+  LinkedSubsidiaryInput,
+  LinkedSubsidiaryInput$Outbound,
+  LinkedSubsidiaryInput$outboundSchema,
+} from "./linkedsubsidiaryinput.js";
 import { LinkedTaxRate, LinkedTaxRate$inboundSchema } from "./linkedtaxrate.js";
 import {
   LinkedTaxRateInput,
@@ -116,6 +125,7 @@ export type Customer = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  subsidiary?: LinkedSubsidiary | null | undefined;
   /**
    * The category/type of the customer
    */
@@ -237,6 +247,7 @@ export type CustomerInput = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  subsidiary?: LinkedSubsidiaryInput | null | undefined;
   /**
    * The category/type of the customer
    */
@@ -346,6 +357,7 @@ export const Customer$inboundSchema: z.ZodType<
   display_name: z.nullable(types.string()).optional(),
   company_name: z.nullable(types.string()).optional(),
   company_id: z.nullable(types.string()).optional(),
+  subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
   customer_category: z.nullable(types.string()).optional(),
   title: z.nullable(types.string()).optional(),
   first_name: z.nullable(types.string()).optional(),
@@ -423,6 +435,7 @@ export type CustomerInput$Outbound = {
   display_name?: string | null | undefined;
   company_name?: string | null | undefined;
   company_id?: string | null | undefined;
+  subsidiary?: LinkedSubsidiaryInput$Outbound | null | undefined;
   customer_category?: string | null | undefined;
   title?: string | null | undefined;
   first_name?: string | null | undefined;
@@ -463,6 +476,7 @@ export const CustomerInput$outboundSchema: z.ZodType<
   displayName: z.nullable(z.string()).optional(),
   companyName: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
+  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
   customerCategory: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   firstName: z.nullable(z.string()).optional(),
