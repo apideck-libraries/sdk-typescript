@@ -9,6 +9,7 @@ import { Contacts } from "./contacts.js";
 import { CustomObjects } from "./customobjects.js";
 import { CustomObjectSchemas } from "./customobjectschemas.js";
 import { Leads } from "./leads.js";
+import { ListMembers } from "./listmembers.js";
 import { Lists } from "./lists.js";
 import { Notes } from "./notes.js";
 import { Opportunities } from "./opportunities.js";
@@ -44,6 +45,11 @@ export class Crm extends ClientSDK {
   private _lists?: Lists;
   get lists(): Lists {
     return (this._lists ??= new Lists(this._options));
+  }
+
+  private _listMembers?: ListMembers;
+  get listMembers(): ListMembers {
+    return (this._listMembers ??= new ListMembers(this._options));
   }
 
   private _notes?: Notes;

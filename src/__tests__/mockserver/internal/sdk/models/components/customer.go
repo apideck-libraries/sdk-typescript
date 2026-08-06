@@ -35,7 +35,8 @@ type Customer struct {
 	// The name of the company.
 	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
+	CompanyID  optionalnullable.OptionalNullable[string]           `json:"company_id,omitempty"`
+	Subsidiary optionalnullable.OptionalNullable[LinkedSubsidiary] `json:"subsidiary,omitempty"`
 	// The category/type of the customer
 	CustomerCategory optionalnullable.OptionalNullable[string] `json:"customer_category,omitempty"`
 	// The job title of the person.
@@ -145,6 +146,13 @@ func (o *Customer) GetCompanyID() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *Customer) GetSubsidiary() optionalnullable.OptionalNullable[LinkedSubsidiary] {
+	if o == nil {
+		return nil
+	}
+	return o.Subsidiary
 }
 
 func (o *Customer) GetCustomerCategory() optionalnullable.OptionalNullable[string] {
@@ -386,7 +394,8 @@ type CustomerInput struct {
 	// The name of the company.
 	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
+	CompanyID  optionalnullable.OptionalNullable[string]                `json:"company_id,omitempty"`
+	Subsidiary optionalnullable.OptionalNullable[LinkedSubsidiaryInput] `json:"subsidiary,omitempty"`
 	// The category/type of the customer
 	CustomerCategory optionalnullable.OptionalNullable[string] `json:"customer_category,omitempty"`
 	// The job title of the person.
@@ -461,6 +470,13 @@ func (o *CustomerInput) GetCompanyID() optionalnullable.OptionalNullable[string]
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *CustomerInput) GetSubsidiary() optionalnullable.OptionalNullable[LinkedSubsidiaryInput] {
+	if o == nil {
+		return nil
+	}
+	return o.Subsidiary
 }
 
 func (o *CustomerInput) GetCustomerCategory() optionalnullable.OptionalNullable[string] {

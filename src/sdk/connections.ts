@@ -6,6 +6,7 @@ import { vaultConnectionsDelete } from "../funcs/vaultConnectionsDelete.js";
 import { vaultConnectionsGet } from "../funcs/vaultConnectionsGet.js";
 import { vaultConnectionsImports } from "../funcs/vaultConnectionsImports.js";
 import { vaultConnectionsList } from "../funcs/vaultConnectionsList.js";
+import { vaultConnectionsMigrate } from "../funcs/vaultConnectionsMigrate.js";
 import { vaultConnectionsToken } from "../funcs/vaultConnectionsToken.js";
 import { vaultConnectionsUpdate } from "../funcs/vaultConnectionsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -94,6 +95,33 @@ export class Connections extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.VaultConnectionsImportResponse> {
     return unwrapAsync(vaultConnectionsImports(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Migrate connection
+   *
+   * @remarks
+   * Migrate the connection to the target connector, keeping its credentials and connection state
+   * (settings, metadata, configuration, subscriptions, consents). The source connection record is
+   * removed WITHOUT revoking or disconnecting the downstream token.
+   *
+   * Available migration targets are declared per connector — refer to the connector's
+   * documentation page or the Connector API's `migration_targets` field.
+   *
+   * Migrated tokens carry the source connector's OAuth scopes, so operations exclusive to the
+   * target connector may require re-authorization.
+   *
+   * Retries are idempotent: a partially-completed migration resumes where it left off.
+   */
+  async migrate(
+    request: operations.VaultConnectionsMigrateRequest,
+    options?: RequestOptions,
+  ): Promise<operations.VaultConnectionsMigrateResponse> {
+    return unwrapAsync(vaultConnectionsMigrate(
       this,
       request,
       options,

@@ -13,6 +13,10 @@ let value: AccountingCustomersUpdateRequest = {
     displayName: "Windsurf Shop",
     companyName: "SpaceX",
     companyId: "12345",
+    subsidiary: {
+      displayId: "123456",
+      name: "Acme Inc.",
+    },
     customerCategory: "Insurance",
     title: "CEO",
     firstName: "Elon",

@@ -12,6 +12,10 @@ export type QuotesFilter = {
    * Quote number to search for
    */
   number?: string | undefined;
+  /**
+   * Filter by customer id
+   */
+  customerId?: string | undefined;
 };
 
 /** @internal */
@@ -19,6 +23,7 @@ export type QuotesFilter$Outbound = {
   updated_since?: string | undefined;
   created_since?: string | undefined;
   number?: string | undefined;
+  customer_id?: string | undefined;
 };
 
 /** @internal */
@@ -30,10 +35,12 @@ export const QuotesFilter$outboundSchema: z.ZodType<
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   createdSince: z.date().transform(v => v.toISOString()).optional(),
   number: z.string().optional(),
+  customerId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",
     createdSince: "created_since",
+    customerId: "customer_id",
   });
 });
 

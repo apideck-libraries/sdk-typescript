@@ -20,6 +20,11 @@ let value: GetSupplierResponse = {
     displayName: "Windsurf Shop",
     companyName: "SpaceX",
     companyId: "12345",
+    subsidiary: {
+      id: "12345",
+      displayId: "123456",
+      name: "Acme Inc.",
+    },
     supplierCategory: "Insurance",
     title: "CEO",
     firstName: "Elon",

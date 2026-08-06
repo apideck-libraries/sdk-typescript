@@ -10,7 +10,7 @@ import { GetBankFeedStatementResponse } from "@apideck/unify/models/components";
 let value: GetBankFeedStatementResponse = {
   statusCode: 200,
   status: "OK",
-  service: "quickbooks",
+  service: "xero",
   resource: "bank-feed-statements",
   operation: "one",
   data: {
@@ -65,7 +65,7 @@ let value: GetBankFeedStatementResponse = {
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `statusCode`                                                                 | *number*                                                                     | :heavy_check_mark:                                                           | HTTP Response Status Code                                                    | 200                                                                          |
 | `status`                                                                     | *string*                                                                     | :heavy_check_mark:                                                           | HTTP Response Status                                                         | OK                                                                           |
-| `service`                                                                    | *string*                                                                     | :heavy_check_mark:                                                           | Apideck ID of service provider                                               | quickbooks                                                                   |
+| `service`                                                                    | *string*                                                                     | :heavy_check_mark:                                                           | Apideck ID of service provider                                               | xero                                                                         |
 | `resource`                                                                   | *string*                                                                     | :heavy_check_mark:                                                           | Unified API resource name                                                    | bank-feed-statements                                                         |
 | `operation`                                                                  | *string*                                                                     | :heavy_check_mark:                                                           | Operation performed                                                          | one                                                                          |
 | `data`                                                                       | [components.BankFeedStatement](../../models/components/bankfeedstatement.md) | :heavy_check_mark:                                                           | N/A                                                                          |                                                                              |

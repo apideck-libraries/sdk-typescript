@@ -46,6 +46,15 @@ import {
   LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
 import {
+  LinkedSubsidiary,
+  LinkedSubsidiary$inboundSchema,
+} from "./linkedsubsidiary.js";
+import {
+  LinkedSubsidiaryInput,
+  LinkedSubsidiaryInput$Outbound,
+  LinkedSubsidiaryInput$outboundSchema,
+} from "./linkedsubsidiaryinput.js";
+import {
   LinkedTaxDetail,
   LinkedTaxDetail$inboundSchema,
   LinkedTaxDetail$Outbound,
@@ -122,6 +131,7 @@ export type Supplier = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  subsidiary?: LinkedSubsidiary | null | undefined;
   /**
    * The category/type of the supplier
    */
@@ -253,6 +263,7 @@ export type SupplierInput = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  subsidiary?: LinkedSubsidiaryInput | null | undefined;
   /**
    * The category/type of the supplier
    */
@@ -372,6 +383,7 @@ export const Supplier$inboundSchema: z.ZodType<
   display_name: z.nullable(types.string()).optional(),
   company_name: z.nullable(types.string()).optional(),
   company_id: z.nullable(types.string()).optional(),
+  subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
   supplier_category: z.nullable(types.string()).optional(),
   title: z.nullable(types.string()).optional(),
   first_name: z.nullable(types.string()).optional(),
@@ -463,6 +475,7 @@ export type SupplierInput$Outbound = {
   display_name?: string | null | undefined;
   company_name?: string | null | undefined;
   company_id?: string | null | undefined;
+  subsidiary?: LinkedSubsidiaryInput$Outbound | null | undefined;
   supplier_category?: string | null | undefined;
   title?: string | null | undefined;
   first_name?: string | null | undefined;
@@ -507,6 +520,7 @@ export const SupplierInput$outboundSchema: z.ZodType<
   displayName: z.nullable(z.string()).optional(),
   companyName: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
+  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
   supplierCategory: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   firstName: z.nullable(z.string()).optional(),

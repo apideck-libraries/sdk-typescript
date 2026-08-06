@@ -24,6 +24,10 @@ export type InvoicesFilter = {
    * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
    */
   subsidiaryId?: string | undefined;
+  /**
+   * Filter by customer id
+   */
+  customerId?: string | undefined;
 };
 
 /** @internal */
@@ -34,6 +38,7 @@ export type InvoicesFilter$Outbound = {
   number?: string | undefined;
   supplier_id?: string | undefined;
   subsidiary_id?: string | undefined;
+  customer_id?: string | undefined;
 };
 
 /** @internal */
@@ -48,6 +53,7 @@ export const InvoicesFilter$outboundSchema: z.ZodType<
   number: z.string().optional(),
   supplierId: z.string().optional(),
   subsidiaryId: z.string().optional(),
+  customerId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     idSince: "id_since",
@@ -55,6 +61,7 @@ export const InvoicesFilter$outboundSchema: z.ZodType<
     createdSince: "created_since",
     supplierId: "supplier_id",
     subsidiaryId: "subsidiary_id",
+    customerId: "customer_id",
   });
 });
 
