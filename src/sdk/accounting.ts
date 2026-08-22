@@ -28,12 +28,14 @@ import { Invoices } from "./invoices.js";
 import { JournalEntries } from "./journalentries.js";
 import { LedgerAccounts } from "./ledgeraccounts.js";
 import { Locations } from "./locations.js";
+import { PaymentMethods } from "./paymentmethods.js";
 import { Payments } from "./payments.js";
 import { ProfitAndLoss } from "./profitandloss.js";
 import { Projects } from "./projects.js";
 import { PurchaseOrders } from "./purchaseorders.js";
 import { Quotes } from "./quotes.js";
 import { Refunds } from "./refunds.js";
+import { SalesReceipts } from "./salesreceipts.js";
 import { Subsidiaries } from "./subsidiaries.js";
 import { Suppliers } from "./suppliers.js";
 import { TaxRates } from "./taxrates.js";
@@ -120,6 +122,11 @@ export class Accounting extends ClientSDK {
     return (this._generalLedgerTransactions ??= new GeneralLedgerTransactions(
       this._options,
     ));
+  }
+
+  private _salesReceipts?: SalesReceipts;
+  get salesReceipts(): SalesReceipts {
+    return (this._salesReceipts ??= new SalesReceipts(this._options));
   }
 
   private _purchaseOrders?: PurchaseOrders;
@@ -210,6 +217,11 @@ export class Accounting extends ClientSDK {
   private _expenseCategories?: ExpenseCategories;
   get expenseCategories(): ExpenseCategories {
     return (this._expenseCategories ??= new ExpenseCategories(this._options));
+  }
+
+  private _paymentMethods?: PaymentMethods;
+  get paymentMethods(): PaymentMethods {
+    return (this._paymentMethods ??= new PaymentMethods(this._options));
   }
 
   private _expenseReports?: ExpenseReports;

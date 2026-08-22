@@ -1,0 +1,73 @@
+# GetPaymentMethodResponse
+
+Payment Methods
+
+## Example Usage
+
+```typescript
+import { GetPaymentMethodResponse } from "@apideck/unify/models/components";
+
+let value: GetPaymentMethodResponse = {
+  statusCode: 200,
+  status: "OK",
+  service: "quickbooks",
+  resource: "PaymentMethods",
+  operation: "one",
+  data: {
+    id: "12345",
+    name: "Cash",
+    type: "cash",
+    status: "active",
+    downstreamId: "12345",
+    rowVersion: "1-12345",
+    updatedBy: "12345",
+    createdBy: "12345",
+    updatedAt: new Date("2020-09-30T07:43:32.000Z"),
+    createdAt: new Date("2020-09-30T07:43:32.000Z"),
+    passThrough: [
+      {
+        serviceId: "<id>",
+        extendPaths: [
+          {
+            path: "$.nested.property",
+            value: {
+              "TaxClassificationRef": {
+                "value": "EUC-99990201-V1-00020000",
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
+  meta: {
+    itemsOnPage: 50,
+    cursors: {
+      previous: "em9oby1jcm06OnBhZ2U6OjE=",
+      current: "em9oby1jcm06OnBhZ2U6OjI=",
+      next: "em9oby1jcm06OnBhZ2U6OjM=",
+    },
+    totalCount: 1,
+    warnings: [
+      {
+        type: "downstream_request_failed",
+        statusCode: 429,
+        operation: "getManager",
+      },
+    ],
+  },
+};
+```
+
+## Fields
+
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              | Example                                                                                  |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `statusCode`                                                                             | *number*                                                                                 | :heavy_check_mark:                                                                       | HTTP Response Status Code                                                                | 200                                                                                      |
+| `status`                                                                                 | *string*                                                                                 | :heavy_check_mark:                                                                       | HTTP Response Status                                                                     | OK                                                                                       |
+| `service`                                                                                | *string*                                                                                 | :heavy_check_mark:                                                                       | Apideck ID of service provider                                                           | quickbooks                                                                               |
+| `resource`                                                                               | *string*                                                                                 | :heavy_check_mark:                                                                       | Unified API resource name                                                                | PaymentMethods                                                                           |
+| `operation`                                                                              | *string*                                                                                 | :heavy_check_mark:                                                                       | Operation performed                                                                      | one                                                                                      |
+| `data`                                                                                   | [components.AccountingPaymentMethod](../../models/components/accountingpaymentmethod.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |                                                                                          |
+| `meta`                                                                                   | [components.Meta](../../models/components/meta.md)                                       | :heavy_minus_sign:                                                                       | Response metadata                                                                        |                                                                                          |
+| `raw`                                                                                    | Record<string, *any*>                                                                    | :heavy_minus_sign:                                                                       | Raw response from the integration when raw=true query param is provided                  |                                                                                          |

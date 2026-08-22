@@ -6,6 +6,7 @@ import (
 	"io"
 	"mockserver/internal/sdk/models/components"
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type AccountingAttachmentsDownloadGlobals struct {
@@ -46,6 +47,19 @@ type AccountingAttachmentsDownloadRequest struct {
 	CompanyID *string `header:"style=simple,explode=false,name=x-apideck-company-id"`
 	// The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
 	Fields optionalnullable.OptionalNullable[string] `queryParam:"style=form,explode=true,name=fields"`
+	// Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x` response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry, which you can fetch explicitly. Use this if your client automatically forwards the `Authorization` header onto redirects, since the downstream storage provider will reject that request. Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+	FollowRedirects *bool `default:"true" header:"style=simple,explode=false,name=x-apideck-follow-redirects"`
+}
+
+func (a AccountingAttachmentsDownloadRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AccountingAttachmentsDownloadRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"reference_type", "reference_id", "id"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *AccountingAttachmentsDownloadRequest) GetReferenceType() components.AttachmentReferenceType {
@@ -104,9 +118,16 @@ func (o *AccountingAttachmentsDownloadRequest) GetFields() optionalnullable.Opti
 	return o.Fields
 }
 
+func (o *AccountingAttachmentsDownloadRequest) GetFollowRedirects() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.FollowRedirects
+}
+
 type AccountingAttachmentsDownloadResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// Attachment Download
+	// Attachment Download. When the request includes `x-apideck-follow-redirects: false` and the download would otherwise redirect to a presigned URL, the response body is instead an `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve the attachment.
 	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
 	GetAttachmentDownloadResponse io.ReadCloser
 	// Unexpected error

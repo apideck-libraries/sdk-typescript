@@ -39,12 +39,20 @@ type BankFeedAccount struct {
 	BankAccountType *BankAccountType `json:"bank_account_type,omitempty"`
 	// The source account's unique identifier.
 	SourceAccountID *string `json:"source_account_id,omitempty"`
+	// Bank routing number (US)
+	SourceRoutingNumber optionalnullable.OptionalNullable[string] `json:"source_routing_number,omitempty"`
+	// The bank account number
+	SourceAccountNumber optionalnullable.OptionalNullable[string] `json:"source_account_number,omitempty"`
 	// The target account's unique identifier in the accounting connector.
 	TargetAccountID *string `json:"target_account_id,omitempty"`
 	// Name associated with the target account.
 	TargetAccountName *string `json:"target_account_name,omitempty"`
 	// Account number of the destination bank account.
 	TargetAccountNumber *string `json:"target_account_number,omitempty"`
+	// The current balance of the source bank account.
+	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
+	// The available balance of the source bank account (considering pending transactions and overdraft).
+	AvailableBalance optionalnullable.OptionalNullable[float64] `json:"available_balance,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Current status of the bank feed.
@@ -96,6 +104,20 @@ func (o *BankFeedAccount) GetSourceAccountID() *string {
 	return o.SourceAccountID
 }
 
+func (o *BankFeedAccount) GetSourceRoutingNumber() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.SourceRoutingNumber
+}
+
+func (o *BankFeedAccount) GetSourceAccountNumber() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.SourceAccountNumber
+}
+
 func (o *BankFeedAccount) GetTargetAccountID() *string {
 	if o == nil {
 		return nil
@@ -115,6 +137,20 @@ func (o *BankFeedAccount) GetTargetAccountNumber() *string {
 		return nil
 	}
 	return o.TargetAccountNumber
+}
+
+func (o *BankFeedAccount) GetBalance() optionalnullable.OptionalNullable[float64] {
+	if o == nil {
+		return nil
+	}
+	return o.Balance
+}
+
+func (o *BankFeedAccount) GetAvailableBalance() optionalnullable.OptionalNullable[float64] {
+	if o == nil {
+		return nil
+	}
+	return o.AvailableBalance
 }
 
 func (o *BankFeedAccount) GetCurrency() optionalnullable.OptionalNullable[Currency] {
@@ -185,12 +221,20 @@ type BankFeedAccountInput struct {
 	BankAccountType *BankAccountType `json:"bank_account_type,omitempty"`
 	// The source account's unique identifier.
 	SourceAccountID *string `json:"source_account_id,omitempty"`
+	// Bank routing number (US)
+	SourceRoutingNumber optionalnullable.OptionalNullable[string] `json:"source_routing_number,omitempty"`
+	// The bank account number
+	SourceAccountNumber optionalnullable.OptionalNullable[string] `json:"source_account_number,omitempty"`
 	// The target account's unique identifier in the accounting connector.
 	TargetAccountID *string `json:"target_account_id,omitempty"`
 	// Name associated with the target account.
 	TargetAccountName *string `json:"target_account_name,omitempty"`
 	// Account number of the destination bank account.
 	TargetAccountNumber *string `json:"target_account_number,omitempty"`
+	// The current balance of the source bank account.
+	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
+	// The available balance of the source bank account (considering pending transactions and overdraft).
+	AvailableBalance optionalnullable.OptionalNullable[float64] `json:"available_balance,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Current status of the bank feed.
@@ -214,6 +258,20 @@ func (o *BankFeedAccountInput) GetSourceAccountID() *string {
 	return o.SourceAccountID
 }
 
+func (o *BankFeedAccountInput) GetSourceRoutingNumber() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.SourceRoutingNumber
+}
+
+func (o *BankFeedAccountInput) GetSourceAccountNumber() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.SourceAccountNumber
+}
+
 func (o *BankFeedAccountInput) GetTargetAccountID() *string {
 	if o == nil {
 		return nil
@@ -233,6 +291,20 @@ func (o *BankFeedAccountInput) GetTargetAccountNumber() *string {
 		return nil
 	}
 	return o.TargetAccountNumber
+}
+
+func (o *BankFeedAccountInput) GetBalance() optionalnullable.OptionalNullable[float64] {
+	if o == nil {
+		return nil
+	}
+	return o.Balance
+}
+
+func (o *BankFeedAccountInput) GetAvailableBalance() optionalnullable.OptionalNullable[float64] {
+	if o == nil {
+		return nil
+	}
+	return o.AvailableBalance
 }
 
 func (o *BankFeedAccountInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {

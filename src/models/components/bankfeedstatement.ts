@@ -80,6 +80,10 @@ export type Transactions = {
    * Type of transaction.
    */
   transactionType?: BankFeedStatementTransactionType | undefined;
+  /**
+   * The ISO 18245 merchant category code (MCC) classifying the merchant for this transaction, expected as a four-digit code such as `5812`. The format is not enforced by the API, matching the other bank identifier fields.
+   */
+  merchantCategoryCode?: string | null | undefined;
 };
 
 export type BankFeedStatement = {
@@ -222,12 +226,14 @@ export const Transactions$inboundSchema: z.ZodType<
   transaction_type: types.optional(
     BankFeedStatementTransactionType$inboundSchema,
   ),
+  merchant_category_code: z.nullable(types.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "posted_date": "postedDate",
     "credit_or_debit": "creditOrDebit",
     "source_transaction_id": "sourceTransactionId",
     "transaction_type": "transactionType",
+    "merchant_category_code": "merchantCategoryCode",
   });
 });
 /** @internal */
@@ -240,6 +246,7 @@ export type Transactions$Outbound = {
   counterparty?: string | undefined;
   reference?: string | undefined;
   transaction_type?: string | undefined;
+  merchant_category_code?: string | null | undefined;
 };
 
 /** @internal */
@@ -256,12 +263,14 @@ export const Transactions$outboundSchema: z.ZodType<
   counterparty: z.string().optional(),
   reference: z.string().optional(),
   transactionType: BankFeedStatementTransactionType$outboundSchema.optional(),
+  merchantCategoryCode: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     postedDate: "posted_date",
     creditOrDebit: "credit_or_debit",
     sourceTransactionId: "source_transaction_id",
     transactionType: "transaction_type",
+    merchantCategoryCode: "merchant_category_code",
   });
 });
 

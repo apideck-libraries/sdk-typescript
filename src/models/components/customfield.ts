@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
@@ -29,6 +30,10 @@ export type CustomField2 = {
    * Name of the custom field.
    */
   name: string | null;
+  /**
+   * Display name of the record a reference-type custom field points at. `value` carries that record's id; this carries its human-readable name, so a consumer does not need a second lookup to render it.
+   */
+  refName?: string | null | undefined;
   /**
    * More information about the custom field
    */
@@ -63,6 +68,10 @@ export type CustomField1 = {
    * Name of the custom field.
    */
   name?: string | null | undefined;
+  /**
+   * Display name of the record a reference-type custom field points at. `value` carries that record's id; this carries its human-readable name, so a consumer does not need a second lookup to render it.
+   */
+  refName?: string | null | undefined;
   /**
    * More information about the custom field
    */
@@ -187,6 +196,7 @@ export const CustomField2$inboundSchema: z.ZodType<
 > = z.object({
   id: z.nullable(types.string()).optional(),
   name: types.nullable(types.string()),
+  ref_name: z.nullable(types.string()).optional(),
   description: z.nullable(types.string()).optional(),
   value: z.nullable(
     smartUnion([
@@ -206,11 +216,16 @@ export const CustomField2$inboundSchema: z.ZodType<
       ),
     ]),
   ).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "ref_name": "refName",
+  });
 });
 /** @internal */
 export type CustomField2$Outbound = {
   id?: string | null | undefined;
   name: string | null;
+  ref_name?: string | null | undefined;
   description?: string | null | undefined;
   value?:
     | string
@@ -230,6 +245,7 @@ export const CustomField2$outboundSchema: z.ZodType<
 > = z.object({
   id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()),
+  refName: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   value: z.nullable(
     smartUnion([
@@ -244,6 +260,10 @@ export const CustomField2$outboundSchema: z.ZodType<
       ),
     ]),
   ).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    refName: "ref_name",
+  });
 });
 
 export function customField2ToJSON(customField2: CustomField2): string {
@@ -367,6 +387,7 @@ export const CustomField1$inboundSchema: z.ZodType<
 > = z.object({
   id: types.nullable(types.string()),
   name: z.nullable(types.string()).optional(),
+  ref_name: z.nullable(types.string()).optional(),
   description: z.nullable(types.string()).optional(),
   value: z.nullable(
     smartUnion([
@@ -386,11 +407,16 @@ export const CustomField1$inboundSchema: z.ZodType<
       ),
     ]),
   ).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "ref_name": "refName",
+  });
 });
 /** @internal */
 export type CustomField1$Outbound = {
   id: string | null;
   name?: string | null | undefined;
+  ref_name?: string | null | undefined;
   description?: string | null | undefined;
   value?:
     | string
@@ -410,6 +436,7 @@ export const CustomField1$outboundSchema: z.ZodType<
 > = z.object({
   id: z.nullable(z.string()),
   name: z.nullable(z.string()).optional(),
+  refName: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   value: z.nullable(
     smartUnion([
@@ -424,6 +451,10 @@ export const CustomField1$outboundSchema: z.ZodType<
       ),
     ]),
   ).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    refName: "ref_name",
+  });
 });
 
 export function customField1ToJSON(customField1: CustomField1): string {

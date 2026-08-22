@@ -250,6 +250,8 @@ type CustomField2 struct {
 	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// Name of the custom field.
 	Name *string `json:"name"`
+	// Display name of the record a reference-type custom field points at. `value` carries that record's id; this carries its human-readable name, so a consumer does not need a second lookup to render it.
+	RefName optionalnullable.OptionalNullable[string] `json:"ref_name,omitempty"`
 	// More information about the custom field
 	Description optionalnullable.OptionalNullable[string]            `json:"description,omitempty"`
 	Value       optionalnullable.OptionalNullable[CustomFieldValue4] `json:"value,omitempty"`
@@ -278,6 +280,13 @@ func (o *CustomField2) GetName() *string {
 		return nil
 	}
 	return o.Name
+}
+
+func (o *CustomField2) GetRefName() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.RefName
 }
 
 func (o *CustomField2) GetDescription() optionalnullable.OptionalNullable[string] {
@@ -535,6 +544,8 @@ type CustomField1 struct {
 	ID *string `json:"id"`
 	// Name of the custom field.
 	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
+	// Display name of the record a reference-type custom field points at. `value` carries that record's id; this carries its human-readable name, so a consumer does not need a second lookup to render it.
+	RefName optionalnullable.OptionalNullable[string] `json:"ref_name,omitempty"`
 	// More information about the custom field
 	Description optionalnullable.OptionalNullable[string]            `json:"description,omitempty"`
 	Value       optionalnullable.OptionalNullable[CustomFieldValue2] `json:"value,omitempty"`
@@ -563,6 +574,13 @@ func (o *CustomField1) GetName() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Name
+}
+
+func (o *CustomField1) GetRefName() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.RefName
 }
 
 func (o *CustomField1) GetDescription() optionalnullable.OptionalNullable[string] {

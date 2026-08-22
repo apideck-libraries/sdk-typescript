@@ -24,6 +24,7 @@ let value: GetAttachmentResponse = {
       id: "12345",
     },
     description: "A sample image",
+    fileUrl: "https://example.com/files/sample.jpg",
     parentFolderId: "123",
     updatedBy: "12345",
     createdBy: "12345",

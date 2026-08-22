@@ -27,6 +27,7 @@ let value: AccountingBankFeedStatementsUpdateRequest = {
         counterparty: "ACME Corp",
         reference: "INV-2025-01",
         transactionType: "payment",
+        merchantCategoryCode: "5812",
       },
     ],
   },

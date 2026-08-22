@@ -37,6 +37,14 @@ export type JournalEntriesFilterScope = OpenEnum<
 
 export type JournalEntriesFilter = {
   updatedSince?: Date | undefined;
+  /**
+   * Return journal entries posted on or after this date (posting date, inclusive). Connectors without date-range support reject this filter with UnsupportedFiltersError.
+   */
+  startDate?: Date | undefined;
+  /**
+   * Return journal entries posted on or before this date (posting date, inclusive). Connectors without date-range support reject this filter with UnsupportedFiltersError.
+   */
+  endDate?: Date | undefined;
   status?: JournalEntriesFilterStatus | undefined;
   /**
    * Connector-specific scope hint that controls which downstream source backs the read. On Xero, `manual` reads from `ManualJournals` (free in every tier), while `system` reads from `Journals` (the full general ledger view including manual journal postings, paid post 2026-03-02). Omitting the filter is equivalent to `system` and preserves the legacy default. Only honored on connectors where the distinction is exposed; ignored elsewhere.
@@ -65,6 +73,8 @@ export const JournalEntriesFilterScope$outboundSchema: z.ZodType<
 /** @internal */
 export type JournalEntriesFilter$Outbound = {
   updated_since?: string | undefined;
+  start_date?: string | undefined;
+  end_date?: string | undefined;
   status?: string | undefined;
   scope?: string | undefined;
   subsidiary_id?: string | undefined;
@@ -77,12 +87,20 @@ export const JournalEntriesFilter$outboundSchema: z.ZodType<
   JournalEntriesFilter
 > = z.object({
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  startDate: z.date().transform(v =>
+    v.toISOString().slice(0, "YYYY-MM-DD".length)
+  ).optional(),
+  endDate: z.date().transform(v =>
+    v.toISOString().slice(0, "YYYY-MM-DD".length)
+  ).optional(),
   status: JournalEntriesFilterStatus$outboundSchema.optional(),
   scope: JournalEntriesFilterScope$outboundSchema.optional(),
   subsidiaryId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",
+    startDate: "start_date",
+    endDate: "end_date",
     subsidiaryId: "subsidiary_id",
   });
 });

@@ -144,6 +144,11 @@ async function $do(
       payload.consumerId ?? client._options.consumerId,
       { explode: false, charEncoding: "none" },
     ),
+    "x-apideck-follow-redirects": encodeSimple(
+      "x-apideck-follow-redirects",
+      payload.followRedirects,
+      { explode: false, charEncoding: "none" },
+    ),
     "x-apideck-service-id": encodeSimple(
       "x-apideck-service-id",
       payload.serviceId,

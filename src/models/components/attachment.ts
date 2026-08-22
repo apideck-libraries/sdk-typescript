@@ -44,6 +44,10 @@ export type Attachment = {
    */
   description?: string | null | undefined;
   /**
+   * The URL to download or preview the file
+   */
+  fileUrl?: string | null | undefined;
+  /**
    * The folder id where this attachment belong to
    */
   parentFolderId?: string | null | undefined;
@@ -82,6 +86,7 @@ export const Attachment$inboundSchema: z.ZodType<
   size: z.nullable(types.number()).optional(),
   reference: types.optional(AttachmentReference$inboundSchema),
   description: z.nullable(types.string()).optional(),
+  file_url: z.nullable(types.string()).optional(),
   parent_folder_id: z.nullable(types.string()).optional(),
   updated_by: z.nullable(types.string()).optional(),
   created_by: z.nullable(types.string()).optional(),
@@ -92,6 +97,7 @@ export const Attachment$inboundSchema: z.ZodType<
   return remap$(v, {
     "display_id": "displayId",
     "mime_type": "mimeType",
+    "file_url": "fileUrl",
     "parent_folder_id": "parentFolderId",
     "updated_by": "updatedBy",
     "created_by": "createdBy",
