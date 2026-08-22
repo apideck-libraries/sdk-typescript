@@ -36,6 +36,7 @@ async function run() {
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
     timeout: 30000,
+    followRedirects: false,
   });
 
   console.log(result);
@@ -67,6 +68,7 @@ async function run() {
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
     timeout: 30000,
+    followRedirects: false,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -124,6 +126,7 @@ async function run() {
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
     timeout: 30000,
+    followRedirects: false,
   });
 
   console.log(result);
@@ -155,6 +158,7 @@ async function run() {
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
     timeout: 30000,
+    followRedirects: false,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -212,6 +216,7 @@ async function run() {
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
     timeout: 30000,
+    followRedirects: false,
   });
 
   console.log(result);
@@ -243,6 +248,7 @@ async function run() {
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
     timeout: 30000,
+    followRedirects: false,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -300,6 +306,7 @@ async function run() {
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
     timeout: 30000,
+    followRedirects: false,
   });
 
   console.log(result);
@@ -331,6 +338,7 @@ async function run() {
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
     timeout: 30000,
+    followRedirects: false,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -388,6 +396,7 @@ async function run() {
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
     timeout: 30000,
+    followRedirects: false,
   });
 
   console.log(result);
@@ -419,6 +428,7 @@ async function run() {
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
     timeout: 30000,
+    followRedirects: false,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -476,6 +486,7 @@ async function run() {
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
     timeout: 30000,
+    followRedirects: false,
   });
 
   console.log(result);
@@ -507,6 +518,7 @@ async function run() {
     downstreamUrl: "https://api.close.com/api/v1/lead",
     downstreamAuthorization: "Bearer <token>",
     timeout: 30000,
+    followRedirects: false,
   });
   if (res.ok) {
     const { value: result } = res;

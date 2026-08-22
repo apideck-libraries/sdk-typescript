@@ -88,7 +88,7 @@ func (o *FileStorageFilesExportRequest) GetFormat() string {
 
 type FileStorageFilesExportResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// File Download
+	// File Download. When the request includes `x-apideck-follow-redirects: false` and the download would otherwise redirect to a presigned URL, the response body is instead an `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve the file.
 	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
 	GetFileDownloadResponse io.ReadCloser
 	// Unexpected error

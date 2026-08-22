@@ -51991,6 +51991,9 @@ workflows:
           - name: x-apideck-timeout
             in: header
             value: 30000
+          - name: x-apideck-follow-redirects
+            in: header
+            value: false
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -52026,6 +52029,9 @@ workflows:
           - name: x-apideck-timeout
             in: header
             value: 30000
+          - name: x-apideck-follow-redirects
+            in: header
+            value: false
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -52061,6 +52067,9 @@ workflows:
           - name: x-apideck-timeout
             in: header
             value: 30000
+          - name: x-apideck-follow-redirects
+            in: header
+            value: false
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -52096,6 +52105,9 @@ workflows:
           - name: x-apideck-timeout
             in: header
             value: 30000
+          - name: x-apideck-follow-redirects
+            in: header
+            value: false
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -52131,6 +52143,9 @@ workflows:
           - name: x-apideck-timeout
             in: header
             value: 30000
+          - name: x-apideck-follow-redirects
+            in: header
+            value: false
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -52166,6 +52181,9 @@ workflows:
           - name: x-apideck-timeout
             in: header
             value: 30000
+          - name: x-apideck-follow-redirects
+            in: header
+            value: false
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json

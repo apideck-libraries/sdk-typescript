@@ -31,7 +31,7 @@ type RefundInput struct {
 	RefundDate optionalnullable.OptionalNullable[time.Time] `json:"refund_date,omitempty"`
 	// Status of refund. Maps to: QBO (limited status), NetSuite CashRefund status, Sage Intacct state (draft/posted/voided), Zoho Books vis_state.
 	Status *RefundStatus `json:"status,omitempty"`
-	// Type of refund. `refund_receipt` for itemized refunds with product/service lines and payment (QBO RefundReceipt, NetSuite CashRefund). `cash_refund` for cash-out refunds with GL distribution or allocations (Sage Intacct). `credit_note_refund` for refunds applied against a credit note (Zoho Books).
+	// Type of refund. `refund_receipt` for itemized refunds with product/service lines and payment (QBO RefundReceipt; also NetSuite's apply-list-based CustomerRefund). `cash_refund` for cash-out refunds with GL distribution or allocations (Sage Intacct). `credit_note_refund` for refunds applied against a credit note (Zoho Books). `sale_refund` for itemized refunds tied to a cash sale or return authorization, without an apply-list (NetSuite CashRefund) — NetSuite's apply-list-based CustomerRefund reports as `refund_receipt` instead.
 	Type *RefundType `json:"type,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
@@ -40,7 +40,7 @@ type RefundInput struct {
 	// A unique identifier for an object.
 	PaymentMethodID optionalnullable.OptionalNullable[string]              `json:"payment_method_id,omitempty"`
 	Account         optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
-	// Line items for itemized refunds (type: refund_receipt). Used when the refund includes product/service details with quantities and pricing. Supported by QBO RefundReceipt and NetSuite CashRefund.
+	// Line items for itemized refunds (type: refund_receipt or sale_refund). Used when the refund includes product/service details with quantities and pricing. Supported by QBO RefundReceipt and NetSuite CashRefund.
 	LineItems []InvoiceLineItemInput `json:"line_items,omitempty"`
 	// Allocations linking refund to existing documents (invoices, credit notes, overpayments). Used for credit_note_refund and cash_refund types where the refund is applied against prior transactions. Supported by Sage Intacct and Zoho Books.
 	Allocations []AllocationInput `json:"allocations,omitempty"`

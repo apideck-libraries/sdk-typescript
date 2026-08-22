@@ -60,6 +60,14 @@ export type BankFeedAccount = {
    */
   sourceAccountId?: string | undefined;
   /**
+   * Bank routing number (US)
+   */
+  sourceRoutingNumber?: string | null | undefined;
+  /**
+   * The bank account number
+   */
+  sourceAccountNumber?: string | null | undefined;
+  /**
    * The target account's unique identifier in the accounting connector.
    */
   targetAccountId?: string | undefined;
@@ -71,6 +79,14 @@ export type BankFeedAccount = {
    * Account number of the destination bank account.
    */
   targetAccountNumber?: string | undefined;
+  /**
+   * The current balance of the source bank account.
+   */
+  balance?: number | null | undefined;
+  /**
+   * The available balance of the source bank account (considering pending transactions and overdraft).
+   */
+  availableBalance?: number | null | undefined;
   /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
@@ -116,6 +132,14 @@ export type BankFeedAccountInput = {
    */
   sourceAccountId?: string | undefined;
   /**
+   * Bank routing number (US)
+   */
+  sourceRoutingNumber?: string | null | undefined;
+  /**
+   * The bank account number
+   */
+  sourceAccountNumber?: string | null | undefined;
+  /**
    * The target account's unique identifier in the accounting connector.
    */
   targetAccountId?: string | undefined;
@@ -127,6 +151,14 @@ export type BankFeedAccountInput = {
    * Account number of the destination bank account.
    */
   targetAccountNumber?: string | undefined;
+  /**
+   * The current balance of the source bank account.
+   */
+  balance?: number | null | undefined;
+  /**
+   * The available balance of the source bank account (considering pending transactions and overdraft).
+   */
+  availableBalance?: number | null | undefined;
   /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
@@ -177,9 +209,13 @@ export const BankFeedAccount$inboundSchema: z.ZodType<
   id: types.string(),
   bank_account_type: types.optional(BankAccountType$inboundSchema),
   source_account_id: types.optional(types.string()),
+  source_routing_number: z.nullable(types.string()).optional(),
+  source_account_number: z.nullable(types.string()).optional(),
   target_account_id: types.optional(types.string()),
   target_account_name: types.optional(types.string()),
   target_account_number: types.optional(types.string()),
+  balance: z.nullable(types.number()).optional(),
+  available_balance: z.nullable(types.number()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
   feed_status: types.optional(FeedStatus$inboundSchema),
   country: z.nullable(types.string()).optional(),
@@ -193,9 +229,12 @@ export const BankFeedAccount$inboundSchema: z.ZodType<
   return remap$(v, {
     "bank_account_type": "bankAccountType",
     "source_account_id": "sourceAccountId",
+    "source_routing_number": "sourceRoutingNumber",
+    "source_account_number": "sourceAccountNumber",
     "target_account_id": "targetAccountId",
     "target_account_name": "targetAccountName",
     "target_account_number": "targetAccountNumber",
+    "available_balance": "availableBalance",
     "feed_status": "feedStatus",
     "custom_fields": "customFields",
     "custom_mappings": "customMappings",
@@ -220,9 +259,13 @@ export function bankFeedAccountFromJSON(
 export type BankFeedAccountInput$Outbound = {
   bank_account_type?: string | undefined;
   source_account_id?: string | undefined;
+  source_routing_number?: string | null | undefined;
+  source_account_number?: string | null | undefined;
   target_account_id?: string | undefined;
   target_account_name?: string | undefined;
   target_account_number?: string | undefined;
+  balance?: number | null | undefined;
+  available_balance?: number | null | undefined;
   currency?: string | null | undefined;
   feed_status?: string | undefined;
   country?: string | null | undefined;
@@ -237,9 +280,13 @@ export const BankFeedAccountInput$outboundSchema: z.ZodType<
 > = z.object({
   bankAccountType: BankAccountType$outboundSchema.optional(),
   sourceAccountId: z.string().optional(),
+  sourceRoutingNumber: z.nullable(z.string()).optional(),
+  sourceAccountNumber: z.nullable(z.string()).optional(),
   targetAccountId: z.string().optional(),
   targetAccountName: z.string().optional(),
   targetAccountNumber: z.string().optional(),
+  balance: z.nullable(z.number()).optional(),
+  availableBalance: z.nullable(z.number()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   feedStatus: FeedStatus$outboundSchema.optional(),
   country: z.nullable(z.string()).optional(),
@@ -248,9 +295,12 @@ export const BankFeedAccountInput$outboundSchema: z.ZodType<
   return remap$(v, {
     bankAccountType: "bank_account_type",
     sourceAccountId: "source_account_id",
+    sourceRoutingNumber: "source_routing_number",
+    sourceAccountNumber: "source_account_number",
     targetAccountId: "target_account_id",
     targetAccountName: "target_account_name",
     targetAccountNumber: "target_account_number",
+    availableBalance: "available_balance",
     feedStatus: "feed_status",
     customFields: "custom_fields",
   });

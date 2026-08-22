@@ -34,6 +34,7 @@ let value: GetBankFeedStatementsResponse = {
           counterparty: "ACME Corp",
           reference: "INV-2025-01",
           transactionType: "payment",
+          merchantCategoryCode: "5812",
         },
       ],
       createdAt: new Date("2020-09-30T07:43:32.000Z"),

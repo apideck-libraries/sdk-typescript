@@ -298,6 +298,14 @@ run();
 * [update](docs/sdks/locations/README.md#update) - Update Location
 * [delete](docs/sdks/locations/README.md#delete) - Delete Location
 
+### [Accounting.PaymentMethods](docs/sdks/paymentmethods/README.md)
+
+* [list](docs/sdks/paymentmethods/README.md#list) - List Payment Methods
+* [create](docs/sdks/paymentmethods/README.md#create) - Create Payment Method
+* [get](docs/sdks/paymentmethods/README.md#get) - Get Payment Method
+* [update](docs/sdks/paymentmethods/README.md#update) - Update Payment Method
+* [delete](docs/sdks/paymentmethods/README.md#delete) - Delete Payment Method
+
 ### [Accounting.Payments](docs/sdks/payments/README.md)
 
 * [list](docs/sdks/payments/README.md#list) - List Payments
@@ -341,6 +349,14 @@ run();
 * [get](docs/sdks/refunds/README.md#get) - Get Refund
 * [update](docs/sdks/refunds/README.md#update) - Update Refund
 * [delete](docs/sdks/refunds/README.md#delete) - Delete Refund
+
+### [Accounting.SalesReceipts](docs/sdks/salesreceipts/README.md)
+
+* [list](docs/sdks/salesreceipts/README.md#list) - List Sales Receipts
+* [create](docs/sdks/salesreceipts/README.md#create) - Create Sales Receipt
+* [get](docs/sdks/salesreceipts/README.md#get) - Get Sales Receipt
+* [update](docs/sdks/salesreceipts/README.md#update) - Update Sales Receipt
+* [delete](docs/sdks/salesreceipts/README.md#delete) - Delete Sales Receipt
 
 ### [Accounting.Subsidiaries](docs/sdks/subsidiaries/README.md)
 
@@ -867,6 +883,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingLocationsGet`](docs/sdks/locations/README.md#get) - Get Location
 - [`accountingLocationsList`](docs/sdks/locations/README.md#list) - List Locations
 - [`accountingLocationsUpdate`](docs/sdks/locations/README.md#update) - Update Location
+- [`accountingPaymentMethodsCreate`](docs/sdks/paymentmethods/README.md#create) - Create Payment Method
+- [`accountingPaymentMethodsDelete`](docs/sdks/paymentmethods/README.md#delete) - Delete Payment Method
+- [`accountingPaymentMethodsGet`](docs/sdks/paymentmethods/README.md#get) - Get Payment Method
+- [`accountingPaymentMethodsList`](docs/sdks/paymentmethods/README.md#list) - List Payment Methods
+- [`accountingPaymentMethodsUpdate`](docs/sdks/paymentmethods/README.md#update) - Update Payment Method
 - [`accountingPaymentsCreate`](docs/sdks/payments/README.md#create) - Create Payment
 - [`accountingPaymentsDelete`](docs/sdks/payments/README.md#delete) - Delete Payment
 - [`accountingPaymentsGet`](docs/sdks/payments/README.md#get) - Get Payment
@@ -893,6 +914,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingRefundsGet`](docs/sdks/refunds/README.md#get) - Get Refund
 - [`accountingRefundsList`](docs/sdks/refunds/README.md#list) - List Refunds
 - [`accountingRefundsUpdate`](docs/sdks/refunds/README.md#update) - Update Refund
+- [`accountingSalesReceiptsCreate`](docs/sdks/salesreceipts/README.md#create) - Create Sales Receipt
+- [`accountingSalesReceiptsDelete`](docs/sdks/salesreceipts/README.md#delete) - Delete Sales Receipt
+- [`accountingSalesReceiptsGet`](docs/sdks/salesreceipts/README.md#get) - Get Sales Receipt
+- [`accountingSalesReceiptsList`](docs/sdks/salesreceipts/README.md#list) - List Sales Receipts
+- [`accountingSalesReceiptsUpdate`](docs/sdks/salesreceipts/README.md#update) - Update Sales Receipt
 - [`accountingSubsidiariesCreate`](docs/sdks/subsidiaries/README.md#create) - Create Subsidiary
 - [`accountingSubsidiariesDelete`](docs/sdks/subsidiaries/README.md#delete) - Delete Subsidiary
 - [`accountingSubsidiariesGet`](docs/sdks/subsidiaries/README.md#get) - Get Subsidiary
@@ -1392,8 +1418,8 @@ run();
 
 
 **Inherit from [`ApideckError`](./src/models/errors/apideckerror.ts)**:
-* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 341 methods.*
-* [`ConflictResponse`](./src/models/errors/conflictresponse.ts): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 341 methods.*
+* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 351 methods.*
+* [`ConflictResponse`](./src/models/errors/conflictresponse.ts): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 351 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>

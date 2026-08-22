@@ -55,6 +55,10 @@ export type ProxyPostProxyRequest = {
    */
   timeout?: number | undefined;
   /**
+   * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x` response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry, which you can fetch explicitly. Use this if your client automatically forwards the `Authorization` header onto redirects, since the downstream storage provider will reject that request. Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+   */
+  followRedirects?: boolean | undefined;
+  /**
    * Depending on the verb/method of the request this will contain the request body you want to POST/PATCH/PUT.
    */
   requestBody?:
@@ -68,27 +72,27 @@ export type ProxyPostProxyRequest = {
 export type ProxyPostProxyResponse = {
   httpMeta: components.HTTPMetadata;
   /**
-   * Ok
+   * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would otherwise redirect to a presigned URL (oversized responses), the body is instead an `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve the payload.
    */
   responseJson?: { [k: string]: any } | undefined;
   /**
-   * Ok
+   * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would otherwise redirect to a presigned URL (oversized responses), the body is instead an `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve the payload.
    */
   responseBinary?: ReadableStream<Uint8Array> | undefined;
   /**
-   * Ok
+   * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would otherwise redirect to a presigned URL (oversized responses), the body is instead an `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve the payload.
    */
   responsePdf?: ReadableStream<Uint8Array> | undefined;
   /**
-   * Ok
+   * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would otherwise redirect to a presigned URL (oversized responses), the body is instead an `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve the payload.
    */
   responseXml?: string | undefined;
   /**
-   * Ok
+   * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would otherwise redirect to a presigned URL (oversized responses), the body is instead an `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve the payload.
    */
   responseCsv?: string | undefined;
   /**
-   * Ok
+   * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would otherwise redirect to a presigned URL (oversized responses), the body is instead an `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve the payload.
    */
   responseText?: string | undefined;
   /**
@@ -143,6 +147,7 @@ export type ProxyPostProxyRequest$Outbound = {
   downstreamUrl: string;
   downstreamAuthorization?: string | undefined;
   timeout: number;
+  followRedirects: boolean;
   RequestBody?:
     | ReadableStream<Uint8Array>
     | Blob
@@ -164,6 +169,7 @@ export const ProxyPostProxyRequest$outboundSchema: z.ZodType<
   downstreamUrl: z.string(),
   downstreamAuthorization: z.string().optional(),
   timeout: z.number().int().default(28000),
+  followRedirects: z.boolean().default(true),
   requestBody: z.union([
     z.instanceof(ReadableStream<Uint8Array>),
     z.instanceof(Blob),

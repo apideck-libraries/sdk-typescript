@@ -11,9 +11,13 @@ let value: AccountingBankFeedAccountsUpdateRequest = {
   bankFeedAccount: {
     bankAccountType: "bank",
     sourceAccountId: "src_456",
+    sourceRoutingNumber: "021000021",
+    sourceAccountNumber: "123465",
     targetAccountId: "tgt_789",
     targetAccountName: "Main Company Checking",
     targetAccountNumber: "NL91ABNA0417164300",
+    balance: 25000,
+    availableBalance: 24500,
     currency: "USD",
     feedStatus: "pending",
     country: "US",
@@ -21,6 +25,7 @@ let value: AccountingBankFeedAccountsUpdateRequest = {
       {
         id: "2389328923893298",
         name: "employee_level",
+        refName: "Marketing",
         description: "Employee Level",
         value: "Uses Salesforce and Marketo",
       },

@@ -131,6 +131,7 @@ let value: GetPurchaseOrderResponse = {
           {
             id: "2389328923893298",
             name: "employee_level",
+            refName: "Marketing",
             description: "Employee Level",
             value: "Uses Salesforce and Marketo",
           },
@@ -245,6 +246,7 @@ let value: GetPurchaseOrderResponse = {
       {
         id: "2389328923893298",
         name: "employee_level",
+        refName: "Marketing",
         description: "Employee Level",
         value: "Uses Salesforce and Marketo",
       },

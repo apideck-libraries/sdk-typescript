@@ -407,6 +407,7 @@ async function run() {
     serviceId: "salesforce",
     companyId: "12345",
     fields: "id,updated_at",
+    followRedirects: false,
   });
 
   console.log(result);
@@ -439,6 +440,7 @@ async function run() {
     serviceId: "salesforce",
     companyId: "12345",
     fields: "id,updated_at",
+    followRedirects: false,
   });
   if (res.ok) {
     const { value: result } = res;

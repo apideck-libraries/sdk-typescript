@@ -9,6 +9,7 @@
 const value: components.CustomField1 = {
   id: "2389328923893298",
   name: "employee_level",
+  refName: "Marketing",
   description: "Employee Level",
   value: "Uses Salesforce and Marketo",
 };
@@ -20,6 +21,7 @@ const value: components.CustomField1 = {
 const value: components.CustomField2 = {
   id: "2389328923893298",
   name: "employee_level",
+  refName: "Marketing",
   description: "Employee Level",
   value: "Uses Salesforce and Marketo",
 };

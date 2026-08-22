@@ -545,6 +545,7 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
     fields: "id,updated_at",
+    followRedirects: false,
   });
 
   console.log(result);
@@ -574,6 +575,7 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
     fields: "id,updated_at",
+    followRedirects: false,
   });
   if (res.ok) {
     const { value: result } = res;

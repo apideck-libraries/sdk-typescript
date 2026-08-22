@@ -22,6 +22,8 @@ type Attachment struct {
 	Reference *AttachmentReference                     `json:"reference,omitempty"`
 	// Optional description of the file
 	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
+	// The URL to download or preview the file
+	FileURL optionalnullable.OptionalNullable[string] `json:"file_url,omitempty"`
 	// The folder id where this attachment belong to
 	ParentFolderID optionalnullable.OptionalNullable[string] `json:"parent_folder_id,omitempty"`
 	// The user who last updated the object.
@@ -94,6 +96,13 @@ func (o *Attachment) GetDescription() optionalnullable.OptionalNullable[string] 
 		return nil
 	}
 	return o.Description
+}
+
+func (o *Attachment) GetFileURL() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.FileURL
 }
 
 func (o *Attachment) GetParentFolderID() optionalnullable.OptionalNullable[string] {
