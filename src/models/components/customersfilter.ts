@@ -23,6 +23,10 @@ export type CustomersFilterStatus = OpenEnum<typeof CustomersFilterStatus>;
 
 export type CustomersFilter = {
   /**
+   * Comma-separated list of customer IDs to filter by (e.g. `12345,67890`).
+   */
+  ids?: string | undefined;
+  /**
    * Company Name of customer to search for
    */
   companyName?: string | undefined;
@@ -66,6 +70,7 @@ export const CustomersFilterStatus$outboundSchema: z.ZodType<
 
 /** @internal */
 export type CustomersFilter$Outbound = {
+  ids?: string | undefined;
   company_name?: string | undefined;
   display_name?: string | undefined;
   first_name?: string | undefined;
@@ -83,6 +88,7 @@ export const CustomersFilter$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CustomersFilter
 > = z.object({
+  ids: z.string().optional(),
   companyName: z.string().optional(),
   displayName: z.string().optional(),
   firstName: z.string().optional(),

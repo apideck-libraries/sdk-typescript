@@ -8,6 +8,8 @@ import (
 )
 
 type CreditNotesFilter struct {
+	// Comma-separated list of credit note IDs to filter by (e.g. `12345,67890`). On some connectors (e.g. DualEntry) the credit note ID is the credit note number.
+	Ids *string `queryParam:"name=ids"`
 	// Return records with a row ID greater than or equal to the given value
 	IDSince      *string    `queryParam:"name=id_since"`
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
@@ -29,6 +31,13 @@ func (c *CreditNotesFilter) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *CreditNotesFilter) GetIds() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ids
 }
 
 func (o *CreditNotesFilter) GetIDSince() *string {
