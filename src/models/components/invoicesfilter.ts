@@ -7,6 +7,10 @@ import { remap as remap$ } from "../../lib/primitives.js";
 
 export type InvoicesFilter = {
   /**
+   * Comma-separated list of invoice IDs to filter by (e.g. `12345,67890`). On some connectors (e.g. DualEntry) the invoice ID is the invoice number.
+   */
+  ids?: string | undefined;
+  /**
    * Return records with a row ID greater than or equal to the given value
    */
   idSince?: string | undefined;
@@ -32,6 +36,7 @@ export type InvoicesFilter = {
 
 /** @internal */
 export type InvoicesFilter$Outbound = {
+  ids?: string | undefined;
   id_since?: string | undefined;
   updated_since?: string | undefined;
   created_since?: string | undefined;
@@ -47,6 +52,7 @@ export const InvoicesFilter$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   InvoicesFilter
 > = z.object({
+  ids: z.string().optional(),
   idSince: z.string().optional(),
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   createdSince: z.date().transform(v => v.toISOString()).optional(),

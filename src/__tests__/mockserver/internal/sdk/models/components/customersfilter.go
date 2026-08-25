@@ -23,6 +23,8 @@ func (e CustomersFilterStatus) ToPointer() *CustomersFilterStatus {
 }
 
 type CustomersFilter struct {
+	// Comma-separated list of customer IDs to filter by (e.g. `12345,67890`).
+	Ids *string `queryParam:"name=ids"`
 	// Company Name of customer to search for
 	CompanyName *string `queryParam:"name=company_name"`
 	// Display Name of customer to search for
@@ -51,6 +53,13 @@ func (c *CustomersFilter) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *CustomersFilter) GetIds() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ids
 }
 
 func (o *CustomersFilter) GetCompanyName() *string {
