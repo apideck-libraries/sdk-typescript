@@ -53,7 +53,7 @@ export class TaxRates extends ClientSDK {
    * Get Tax Rate
    *
    * @remarks
-   * Get Tax Rate. Note: Not all connectors return the actual rate/percentage value. In this case, only the tax code or reference is returned. Support will soon be added to return the actual rate/percentage by doing additional calls in the background to provide the full view of a given tax rate. Connectors Affected: Quickbooks
+   * Get Tax Rate. Note: Not all connectors return the actual rate/percentage value. In this case, only the tax code or reference is returned. Connectors Affected: Quickbooks
    */
   async get(
     request: operations.AccountingTaxRatesOneRequest,
