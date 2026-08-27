@@ -1,26 +1,26 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 031b70d18f3cd86477200b3d51d3369c
+  docChecksum: 46d632f3613c82f908742397d2bb1d28
   docVersion: 10.45.0
-  speakeasyVersion: 1.795.3
-  generationVersion: 2.932.9
-  releaseVersion: 0.47.1
-  configChecksum: ffe2442ff61af85fd6f6aa8d1d7e89fa
+  speakeasyVersion: 1.796.0
+  generationVersion: 2.932.15
+  releaseVersion: 0.47.2
+  configChecksum: 6f06979637fddd0c8b5b4e33944dd83e
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: 6fc79ee6-7562-4f5e-9656-192d00d2082c
-  pristine_commit_hash: 2a1499ed82c60bd9d7662fe5eeb3bbc6218e99ac
-  pristine_tree_hash: 94ade2b1fff17005c98fd59f0054b75efbf25749
+  generation_id: 652ee5d4-699e-4415-8b07-69b0cfd46a86
+  pristine_commit_hash: ad9079d0cfe53d482e3c8476dc5ba1090e50b3b2
+  pristine_tree_hash: af95ffbc7c14cce51e0b62556b46ff0855d7468c
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.4
     constsAndDefaults: 0.1.14
-    core: 3.31.5
+    core: 3.31.6
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -8811,8 +8811,8 @@ trackedFiles:
     pristine_git_object: 941eba6398d83bcbf7482117ffe976134da12048
   docs/sdks/taxrates/README.md:
     id: 6358000da833
-    last_write_checksum: sha1:67821d71e0ba755f28f7fac1293cca2d133e61fb
-    pristine_git_object: aa20dc15862a1a9f8217c69e0cdef408a192e306
+    last_write_checksum: sha1:133d9b0b3eef7a915737bb743903dd637a635d42
+    pristine_git_object: 3af3e5e8fc9cd9590c8898039bf6da9f812cfa63
   docs/sdks/timeoffrequests/README.md:
     id: e94091d49fcb
     last_write_checksum: sha1:9b278dc4f36462c5ed61504f6dc80281ea8b9f46
@@ -8863,12 +8863,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:cf6ec73095f060b36e267e84191a7a9d0edf0b5c
-    pristine_git_object: 817277397bf9126ac39daea210db19dce79323eb
+    last_write_checksum: sha1:cebfcbb9ee2a55e6cb8d5af0973be893adb0eb92
+    pristine_git_object: 021eb654e8c1fa1188d2401674bf470f9e74b0e8
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:98873f2a551afaf10da8d6f7c619265ac57687b5
-    pristine_git_object: 73ab3d4746f85332800a091a0b97ba785acd56f8
+    last_write_checksum: sha1:6a9c78659edd21c3c9b7fdf432ee8ba8c22727d3
+    pristine_git_object: c3abcc813010e40e2319c01da9d30755e3f701f9
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -15427,8 +15427,8 @@ trackedFiles:
     pristine_git_object: 8dd72124986ab15e7ca13149e3a5d984ca13614a
   src/funcs/accountingTaxRatesGet.ts:
     id: 9a0ba05806df
-    last_write_checksum: sha1:36c15f3ad376640c67d1ee3721e0e0e7e9771a0c
-    pristine_git_object: 20bbfd4b02f2a1f3fde6da8965d4ff7f4dd46104
+    last_write_checksum: sha1:b5f2fb50f068787f30eeed8d1518b8c66cf556ae
+    pristine_git_object: 92e2a369771f2631631314092bf68d8f547fab57
   src/funcs/accountingTaxRatesList.ts:
     id: e8fa0ff9b83f
     last_write_checksum: sha1:b91c4475bf87d1c93e9904647c03f68b2ee1f5ef
@@ -16263,12 +16263,12 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:086cab60f84e847497f9e9d39f0129e4b7625228
-    pristine_git_object: 221e5e61e6d539af1b346064b2558557c6e74ae7
+    last_write_checksum: sha1:824dff2b693d65d83a3fa3b67477107eaa8ff871
+    pristine_git_object: 77cbbd97e5807188e55f9a2a04a53a99a6142b4c
   src/lib/encodings.ts:
     id: 3bd8ead98afd
-    last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
-    pristine_git_object: dcab511b4b4d98f1e4b7dd94866e2b41c478b7f0
+    last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
+    pristine_git_object: d6e751fe6a9a39af519df802d05c999f6783bae8
   src/lib/env.ts:
     id: c52972a3b198
     last_write_checksum: sha1:f4b8cb2dc90966cf8c13b77fe237184591dfff30
@@ -20851,8 +20851,8 @@ trackedFiles:
     pristine_git_object: ae1a7f6c6b5163869dd4b230d0d2601cf0848281
   src/sdk/taxrates.ts:
     id: 63bf016c7c3d
-    last_write_checksum: sha1:634b218044d45ba40d7e307ba5c3e4d3bc81096f
-    pristine_git_object: 482f32d26520f45ad183da99822d9c06d63fee68
+    last_write_checksum: sha1:81cc2f446a2046fe626cbde9ec084ee32f659c2a
+    pristine_git_object: e8d48c3781715877bcbff06910900265b65710a2
   src/sdk/timeoffrequests.ts:
     id: d43a9d5eb29f
     last_write_checksum: sha1:556229575944f483261ddc71d950bdd5089980a6
