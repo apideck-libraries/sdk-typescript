@@ -168,6 +168,14 @@ run();
 * [update](docs/sdks/bankfeedstatements/README.md#update) - Update Bank Feed Statement
 * [delete](docs/sdks/bankfeedstatements/README.md#delete) - Delete Bank Feed Statement
 
+### [Accounting.BillCreditNotes](docs/sdks/billcreditnotes/README.md)
+
+* [list](docs/sdks/billcreditnotes/README.md#list) - List Bill Credit Notes
+* [create](docs/sdks/billcreditnotes/README.md#create) - Create Bill Credit Note
+* [get](docs/sdks/billcreditnotes/README.md#get) - Get Bill Credit Note
+* [update](docs/sdks/billcreditnotes/README.md#update) - Update Bill Credit Note
+* [delete](docs/sdks/billcreditnotes/README.md#delete) - Delete Bill Credit Note
+
 ### [Accounting.BillPayments](docs/sdks/billpayments/README.md)
 
 * [list](docs/sdks/billpayments/README.md#list) - List Bill Payments
@@ -807,6 +815,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingBankFeedStatementsGet`](docs/sdks/bankfeedstatements/README.md#get) - Get Bank Feed Statement
 - [`accountingBankFeedStatementsList`](docs/sdks/bankfeedstatements/README.md#list) - List Bank Feed Statements
 - [`accountingBankFeedStatementsUpdate`](docs/sdks/bankfeedstatements/README.md#update) - Update Bank Feed Statement
+- [`accountingBillCreditNotesCreate`](docs/sdks/billcreditnotes/README.md#create) - Create Bill Credit Note
+- [`accountingBillCreditNotesDelete`](docs/sdks/billcreditnotes/README.md#delete) - Delete Bill Credit Note
+- [`accountingBillCreditNotesGet`](docs/sdks/billcreditnotes/README.md#get) - Get Bill Credit Note
+- [`accountingBillCreditNotesList`](docs/sdks/billcreditnotes/README.md#list) - List Bill Credit Notes
+- [`accountingBillCreditNotesUpdate`](docs/sdks/billcreditnotes/README.md#update) - Update Bill Credit Note
 - [`accountingBillPaymentsCreate`](docs/sdks/billpayments/README.md#create) - Create Bill Payment
 - [`accountingBillPaymentsDelete`](docs/sdks/billpayments/README.md#delete) - Delete Bill Payment
 - [`accountingBillPaymentsGet`](docs/sdks/billpayments/README.md#get) - Get Bill Payment
@@ -1418,8 +1431,8 @@ run();
 
 
 **Inherit from [`ApideckError`](./src/models/errors/apideckerror.ts)**:
-* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 351 methods.*
-* [`ConflictResponse`](./src/models/errors/conflictresponse.ts): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 351 methods.*
+* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 356 methods.*
+* [`ConflictResponse`](./src/models/errors/conflictresponse.ts): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 356 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>

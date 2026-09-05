@@ -10,6 +10,7 @@ import { BalanceSheet } from "./balancesheet.js";
 import { BankAccounts } from "./bankaccounts.js";
 import { BankFeedAccounts } from "./bankfeedaccounts.js";
 import { BankFeedStatements } from "./bankfeedstatements.js";
+import { BillCreditNotes } from "./billcreditnotes.js";
 import { BillPayments } from "./billpayments.js";
 import { Bills } from "./bills.js";
 import { Categories } from "./categories.js";
@@ -70,6 +71,11 @@ export class Accounting extends ClientSDK {
   private _creditNotes?: CreditNotes;
   get creditNotes(): CreditNotes {
     return (this._creditNotes ??= new CreditNotes(this._options));
+  }
+
+  private _billCreditNotes?: BillCreditNotes;
+  get billCreditNotes(): BillCreditNotes {
+    return (this._billCreditNotes ??= new BillCreditNotes(this._options));
   }
 
   private _customers?: Customers;
