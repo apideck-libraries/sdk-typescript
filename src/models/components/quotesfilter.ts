@@ -16,6 +16,10 @@ export type QuotesFilter = {
    * Filter by customer id
    */
   customerId?: string | undefined;
+  /**
+   * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+   */
+  subsidiaryId?: string | undefined;
 };
 
 /** @internal */
@@ -24,6 +28,7 @@ export type QuotesFilter$Outbound = {
   created_since?: string | undefined;
   number?: string | undefined;
   customer_id?: string | undefined;
+  subsidiary_id?: string | undefined;
 };
 
 /** @internal */
@@ -36,11 +41,13 @@ export const QuotesFilter$outboundSchema: z.ZodType<
   createdSince: z.date().transform(v => v.toISOString()).optional(),
   number: z.string().optional(),
   customerId: z.string().optional(),
+  subsidiaryId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",
     createdSince: "created_since",
     customerId: "customer_id",
+    subsidiaryId: "subsidiary_id",
   });
 });
 
