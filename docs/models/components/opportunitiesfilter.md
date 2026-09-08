@@ -17,6 +17,7 @@ let value: OpportunitiesFilter = {
 | ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
 | `title`                               | *string*                              | :heavy_minus_sign:                    | Title of the opportunity to filter on | Tesla deal                            |
 | `status`                              | *string*                              | :heavy_minus_sign:                    | Status to filter on                   | Completed                             |
+| `statusId`                            | *string*                              | :heavy_minus_sign:                    | Status ID to filter on                | 1234                                  |
 | `monetaryAmount`                      | *number*                              | :heavy_minus_sign:                    | Monetary amount to filter on          | 75000                                 |
 | `winProbability`                      | *number*                              | :heavy_minus_sign:                    | Win probability to filter on          | 50                                    |
 | `companyId`                           | *string*                              | :heavy_minus_sign:                    | Company ID to filter on               | 1234                                  |

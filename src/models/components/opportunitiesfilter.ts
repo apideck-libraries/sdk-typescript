@@ -15,6 +15,10 @@ export type OpportunitiesFilter = {
    */
   status?: string | undefined;
   /**
+   * Status ID to filter on
+   */
+  statusId?: string | undefined;
+  /**
    * Monetary amount to filter on
    */
   monetaryAmount?: number | undefined;
@@ -40,6 +44,7 @@ export type OpportunitiesFilter = {
 export type OpportunitiesFilter$Outbound = {
   title?: string | undefined;
   status?: string | undefined;
+  status_id?: string | undefined;
   monetary_amount?: number | undefined;
   win_probability?: number | undefined;
   company_id?: string | undefined;
@@ -55,6 +60,7 @@ export const OpportunitiesFilter$outboundSchema: z.ZodType<
 > = z.object({
   title: z.string().optional(),
   status: z.string().optional(),
+  statusId: z.string().optional(),
   monetaryAmount: z.number().optional(),
   winProbability: z.number().optional(),
   companyId: z.string().optional(),
@@ -62,6 +68,7 @@ export const OpportunitiesFilter$outboundSchema: z.ZodType<
   primaryContactId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
+    statusId: "status_id",
     monetaryAmount: "monetary_amount",
     winProbability: "win_probability",
     companyId: "company_id",

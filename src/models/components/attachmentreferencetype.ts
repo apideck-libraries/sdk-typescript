@@ -9,6 +9,7 @@ import { OpenEnum } from "../../types/enums.js";
 export const AttachmentReferenceType = {
   Invoice: "invoice",
   Bill: "bill",
+  BillCreditNote: "bill-credit-note",
   Expense: "expense",
   ExpenseReport: "expense-report",
   Quote: "quote",

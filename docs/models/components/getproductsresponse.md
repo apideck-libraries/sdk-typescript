@@ -20,6 +20,7 @@ let value: GetProductsResponse = {
       description:
         "Powerful and portable, the MacBook Pro is perfect for professionals and creatives.",
       status: "active",
+      taxStatus: "taxable",
       price: "1999.99",
       sku: "MBP123",
       inventoryQuantity: "10",
