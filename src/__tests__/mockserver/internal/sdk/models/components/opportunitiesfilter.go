@@ -7,6 +7,8 @@ type OpportunitiesFilter struct {
 	Title *string `queryParam:"name=title"`
 	// Status to filter on
 	Status *string `queryParam:"name=status"`
+	// Status ID to filter on
+	StatusID *string `queryParam:"name=status_id"`
 	// Monetary amount to filter on
 	MonetaryAmount *float64 `queryParam:"name=monetary_amount"`
 	// Win probability to filter on
@@ -31,6 +33,13 @@ func (o *OpportunitiesFilter) GetStatus() *string {
 		return nil
 	}
 	return o.Status
+}
+
+func (o *OpportunitiesFilter) GetStatusID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StatusID
 }
 
 func (o *OpportunitiesFilter) GetMonetaryAmount() *float64 {

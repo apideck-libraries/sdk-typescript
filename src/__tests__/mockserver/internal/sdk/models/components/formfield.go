@@ -88,6 +88,8 @@ type FormField struct {
 	AllowCustomValues *bool `default:"false" json:"allow_custom_values"`
 	// Indicates if the form field is displayed in a “read-only” mode.
 	Disabled optionalnullable.OptionalNullable[bool] `json:"disabled,omitempty"`
+	// Indicates if the options for a form field failed to be fetched from the downstream service. Only applicable to fields with dynamic options. When true, a retry mechanism should be provided to the user.
+	OptionsFetchError optionalnullable.OptionalNullable[bool] `json:"options_fetch_error,omitempty"`
 	// Indicates if the form field is not displayed but the value that is being stored on the connection.
 	Hidden optionalnullable.OptionalNullable[bool] `json:"hidden,omitempty"`
 	// When the setting is deprecated, it should be hidden from the user interface. The value will still be stored on the connection for the sake of backwards compatibility.
@@ -173,6 +175,13 @@ func (o *FormField) GetDisabled() optionalnullable.OptionalNullable[bool] {
 		return nil
 	}
 	return o.Disabled
+}
+
+func (o *FormField) GetOptionsFetchError() optionalnullable.OptionalNullable[bool] {
+	if o == nil {
+		return nil
+	}
+	return o.OptionsFetchError
 }
 
 func (o *FormField) GetHidden() optionalnullable.OptionalNullable[bool] {

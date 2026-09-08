@@ -23,6 +23,19 @@ export const ProductStatus = {
  */
 export type ProductStatus = OpenEnum<typeof ProductStatus>;
 
+/**
+ * The tax applicability of the product: `taxable` (the product is taxed), `shipping` (only the shipping is taxed, the product itself is exempt) or `none` (neither is taxed).
+ */
+export const TaxStatus = {
+  Taxable: "taxable",
+  Shipping: "shipping",
+  None: "none",
+} as const;
+/**
+ * The tax applicability of the product: `taxable` (the product is taxed), `shipping` (only the shipping is taxed, the product itself is exempt) or `none` (neither is taxed).
+ */
+export type TaxStatus = OpenEnum<typeof TaxStatus>;
+
 export type Images = {
   /**
    * A unique identifier for an object.
@@ -134,6 +147,10 @@ export type EcommerceProduct = {
    */
   status?: ProductStatus | null | undefined;
   /**
+   * The tax applicability of the product: `taxable` (the product is taxed), `shipping` (only the shipping is taxed, the product itself is exempt) or `none` (neither is taxed).
+   */
+  taxStatus?: TaxStatus | null | undefined;
+  /**
    * The price of the product.
    */
   price?: string | null | undefined;
@@ -190,6 +207,13 @@ export const ProductStatus$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = openEnums.inboundSchema(ProductStatus);
+
+/** @internal */
+export const TaxStatus$inboundSchema: z.ZodType<
+  TaxStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(TaxStatus);
 
 /** @internal */
 export const Images$inboundSchema: z.ZodType<Images, z.ZodTypeDef, unknown> = z
@@ -336,6 +360,7 @@ export const EcommerceProduct$inboundSchema: z.ZodType<
   name: z.nullable(types.string()).optional(),
   description: z.nullable(types.string()).optional(),
   status: z.nullable(ProductStatus$inboundSchema).optional(),
+  tax_status: z.nullable(TaxStatus$inboundSchema).optional(),
   price: z.nullable(types.string()).optional(),
   sku: z.nullable(types.string()).optional(),
   inventory_quantity: z.nullable(types.string()).optional(),
@@ -355,6 +380,7 @@ export const EcommerceProduct$inboundSchema: z.ZodType<
   updated_at: z.nullable(types.date()).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "tax_status": "taxStatus",
     "inventory_quantity": "inventoryQuantity",
     "weight_unit": "weightUnit",
     "custom_mappings": "customMappings",

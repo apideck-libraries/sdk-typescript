@@ -20,6 +20,19 @@ func (e ProductStatus) ToPointer() *ProductStatus {
 	return &e
 }
 
+// TaxStatus - The tax applicability of the product: `taxable` (the product is taxed), `shipping` (only the shipping is taxed, the product itself is exempt) or `none` (neither is taxed).
+type TaxStatus string
+
+const (
+	TaxStatusTaxable  TaxStatus = "taxable"
+	TaxStatusShipping TaxStatus = "shipping"
+	TaxStatusNone     TaxStatus = "none"
+)
+
+func (e TaxStatus) ToPointer() *TaxStatus {
+	return &e
+}
+
 type Image struct {
 	// A unique identifier for an object.
 	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
@@ -233,6 +246,8 @@ type EcommerceProduct struct {
 	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The current status of the product (active or archived).
 	Status optionalnullable.OptionalNullable[ProductStatus] `json:"status,omitempty"`
+	// The tax applicability of the product: `taxable` (the product is taxed), `shipping` (only the shipping is taxed, the product itself is exempt) or `none` (neither is taxed).
+	TaxStatus optionalnullable.OptionalNullable[TaxStatus] `json:"tax_status,omitempty"`
 	// The price of the product.
 	Price optionalnullable.OptionalNullable[string] `json:"price,omitempty"`
 	// The stock keeping unit of the product.
@@ -297,6 +312,13 @@ func (o *EcommerceProduct) GetStatus() optionalnullable.OptionalNullable[Product
 		return nil
 	}
 	return o.Status
+}
+
+func (o *EcommerceProduct) GetTaxStatus() optionalnullable.OptionalNullable[TaxStatus] {
+	if o == nil {
+		return nil
+	}
+	return o.TaxStatus
 }
 
 func (o *EcommerceProduct) GetPrice() optionalnullable.OptionalNullable[string] {

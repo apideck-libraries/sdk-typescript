@@ -65,6 +65,10 @@ export type FormField = {
    */
   disabled?: boolean | null | undefined;
   /**
+   * Indicates if the options for a form field failed to be fetched from the downstream service. Only applicable to fields with dynamic options. When true, a retry mechanism should be provided to the user.
+   */
+  optionsFetchError?: boolean | null | undefined;
+  /**
    * Indicates if the form field is not displayed but the value that is being stored on the connection.
    */
   hidden?: boolean | null | undefined;
@@ -109,6 +113,7 @@ export const FormField$inboundSchema: z.ZodType<
   custom_field: types.optional(types.boolean()),
   allow_custom_values: types.boolean().default(false),
   disabled: z.nullable(types.boolean()).optional(),
+  options_fetch_error: z.nullable(types.boolean()).optional(),
   hidden: z.nullable(types.boolean()).optional(),
   deprecated: z.nullable(types.boolean()).optional(),
   sensitive: z.nullable(types.boolean()).optional(),
@@ -119,6 +124,7 @@ export const FormField$inboundSchema: z.ZodType<
   return remap$(v, {
     "custom_field": "customField",
     "allow_custom_values": "allowCustomValues",
+    "options_fetch_error": "optionsFetchError",
   });
 });
 
