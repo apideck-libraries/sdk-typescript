@@ -13,5 +13,5 @@ let value: AttachmentReferenceType = "invoice";
 ## Values
 
 ```typescript
-"invoice" | "bill" | "bill-credit-note" | "expense" | "expense-report" | "quote" | Unrecognized<string>
+"invoice" | "bill" | "bill-credit-note" | "credit-note" | "expense" | "expense-report" | "quote" | "journal-entry" | Unrecognized<string>
 ```

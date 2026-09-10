@@ -11,7 +11,7 @@ type LinkedAttachment struct {
 	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The MIME type of the file.
 	MimeType optionalnullable.OptionalNullable[string] `json:"mime_type,omitempty"`
-	// Whether the file is c ompressed.
+	// Whether the file is compressed.
 	IsCompressed optionalnullable.OptionalNullable[bool] `json:"is_compressed,omitempty"`
 	// The encoding of the file.
 	Encoding optionalnullable.OptionalNullable[string] `json:"encoding,omitempty"`

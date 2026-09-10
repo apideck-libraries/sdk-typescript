@@ -29,6 +29,12 @@ import {
   JournalEntryLineItemInput$outboundSchema,
 } from "./journalentrylineitem.js";
 import {
+  LinkedAttachment,
+  LinkedAttachment$inboundSchema,
+  LinkedAttachment$Outbound,
+  LinkedAttachment$outboundSchema,
+} from "./linkedattachment.js";
+import {
   LinkedSubsidiary,
   LinkedSubsidiary$inboundSchema,
 } from "./linkedsubsidiary.js";
@@ -115,7 +121,7 @@ export type JournalEntry = {
    */
   postedAt?: Date | undefined;
   /**
-   * Journal symbol of the entry. For example IND for indirect costs
+   * Journal symbol of the entry. For example IND for indirect costs. Where supported, list /accounting/journals to discover available journals and their posting rules. For Exact Online, supply the journal code, not its id.
    */
   journalSymbol?: string | null | undefined;
   /**
@@ -144,6 +150,10 @@ export type JournalEntry = {
    * Amounts are including tax
    */
   taxInclusive?: boolean | null | undefined;
+  /**
+   * Files attached to this journal entry. Use the attachments endpoints with reference_type=journal-entry and this entry's id where the connector supports it.
+   */
+  attachments?: Array<LinkedAttachment | null> | undefined;
   /**
    * The source type of the journal entry
    */
@@ -222,7 +232,7 @@ export type JournalEntryInput = {
    */
   postedAt?: Date | undefined;
   /**
-   * Journal symbol of the entry. For example IND for indirect costs
+   * Journal symbol of the entry. For example IND for indirect costs. Where supported, list /accounting/journals to discover available journals and their posting rules. For Exact Online, supply the journal code, not its id.
    */
   journalSymbol?: string | null | undefined;
   /**
@@ -251,6 +261,10 @@ export type JournalEntryInput = {
    * Amounts are including tax
    */
   taxInclusive?: boolean | null | undefined;
+  /**
+   * Files attached to this journal entry. Use the attachments endpoints with reference_type=journal-entry and this entry's id where the connector supports it.
+   */
+  attachments?: Array<LinkedAttachment | null> | undefined;
   /**
    * The source type of the journal entry
    */
@@ -310,6 +324,9 @@ export const JournalEntry$inboundSchema: z.ZodType<
   ).optional(),
   accounting_period: z.nullable(types.string()).optional(),
   tax_inclusive: z.nullable(types.boolean()).optional(),
+  attachments: types.optional(
+    z.array(types.nullable(LinkedAttachment$inboundSchema)),
+  ),
   source_type: z.nullable(types.string()).optional(),
   source_id: z.nullable(types.string()).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
@@ -379,6 +396,7 @@ export type JournalEntryInput$Outbound = {
     | undefined;
   accounting_period?: string | null | undefined;
   tax_inclusive?: boolean | null | undefined;
+  attachments?: Array<LinkedAttachment$Outbound | null> | undefined;
   source_type?: string | null | undefined;
   source_id?: string | null | undefined;
   row_version?: string | null | undefined;
@@ -411,6 +429,7 @@ export const JournalEntryInput$outboundSchema: z.ZodType<
   ).optional(),
   accountingPeriod: z.nullable(z.string()).optional(),
   taxInclusive: z.nullable(z.boolean()).optional(),
+  attachments: z.array(z.nullable(LinkedAttachment$outboundSchema)).optional(),
   sourceType: z.nullable(z.string()).optional(),
   sourceId: z.nullable(z.string()).optional(),
   rowVersion: z.nullable(z.string()).optional(),

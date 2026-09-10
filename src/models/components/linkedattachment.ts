@@ -19,7 +19,7 @@ export type LinkedAttachment = {
    */
   mimeType?: string | null | undefined;
   /**
-   * Whether the file is c ompressed.
+   * Whether the file is compressed.
    */
   isCompressed?: boolean | null | undefined;
   /**

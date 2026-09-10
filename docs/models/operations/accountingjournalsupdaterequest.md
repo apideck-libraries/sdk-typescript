@@ -1,0 +1,42 @@
+# AccountingJournalsUpdateRequest
+
+## Example Usage
+
+```typescript
+import { AccountingJournalsUpdateRequest } from "@apideck/unify/models/operations";
+
+let value: AccountingJournalsUpdateRequest = {
+  id: "<id>",
+  serviceId: "salesforce",
+  companyId: "12345",
+  journal: {
+    code: "90",
+    name: "General journal",
+    description: "General journal",
+    type: "general",
+    allowVat: true,
+    currency: "USD",
+    iban: "GB33BUKB20201555555555",
+    defaultAccount: {
+      id: "123456",
+      type: "ledger_account",
+      code: "1100",
+      displayId: "123456",
+      accountNumber: "123465",
+    },
+    blocked: false,
+  },
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                        | Type                                                                                                                                                         | Required                                                                                                                                                     | Description                                                                                                                                                  | Example                                                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `id`                                                                                                                                                         | *string*                                                                                                                                                     | :heavy_check_mark:                                                                                                                                           | ID of the record you are acting upon.                                                                                                                        |                                                                                                                                                              |
+| `consumerId`                                                                                                                                                 | *string*                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                           | ID of the consumer which you want to get or push data from                                                                                                   | test-consumer                                                                                                                                                |
+| `appId`                                                                                                                                                      | *string*                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                           | The ID of your Unify application                                                                                                                             | dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX                                                                                                                      |
+| `serviceId`                                                                                                                                                  | *string*                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                           | Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.                | salesforce                                                                                                                                                   |
+| `companyId`                                                                                                                                                  | *string*                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                           | The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings. | 12345                                                                                                                                                        |
+| `raw`                                                                                                                                                        | *boolean*                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                           | Include raw response. Mostly used for debugging purposes                                                                                                     |                                                                                                                                                              |
+| `journal`                                                                                                                                                    | [components.JournalInput](../../models/components/journalinput.md)                                                                                           | :heavy_check_mark:                                                                                                                                           | N/A                                                                                                                                                          |                                                                                                                                                              |
