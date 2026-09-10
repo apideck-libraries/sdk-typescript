@@ -27,6 +27,7 @@ import { GeneralLedgerTransactions } from "./generalledgertransactions.js";
 import { InvoiceItems } from "./invoiceitems.js";
 import { Invoices } from "./invoices.js";
 import { JournalEntries } from "./journalentries.js";
+import { Journals } from "./journals.js";
 import { LedgerAccounts } from "./ledgeraccounts.js";
 import { Locations } from "./locations.js";
 import { PaymentMethods } from "./paymentmethods.js";
@@ -163,6 +164,11 @@ export class Accounting extends ClientSDK {
   private _bankAccounts?: BankAccounts;
   get bankAccounts(): BankAccounts {
     return (this._bankAccounts ??= new BankAccounts(this._options));
+  }
+
+  private _journals?: Journals;
+  get journals(): Journals {
+    return (this._journals ??= new Journals(this._options));
   }
 
   private _trackingCategories?: TrackingCategories;

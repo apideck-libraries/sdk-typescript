@@ -50,7 +50,7 @@ type JournalEntry struct {
 	Memo optionalnullable.OptionalNullable[string] `json:"memo,omitempty"`
 	// This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.
 	PostedAt *time.Time `json:"posted_at,omitempty"`
-	// Journal symbol of the entry. For example IND for indirect costs
+	// Journal symbol of the entry. For example IND for indirect costs. Where supported, list /accounting/journals to discover available journals and their posting rules. For Exact Online, supply the journal code, not its id.
 	JournalSymbol optionalnullable.OptionalNullable[string] `json:"journal_symbol,omitempty"`
 	// Deprecated — use line_items[].tax_type for per-line tax applicability. Kept as fallback: applies to all lines that do not set their own tax_type.
 	//
@@ -66,6 +66,8 @@ type JournalEntry struct {
 	AccountingPeriod optionalnullable.OptionalNullable[string] `json:"accounting_period,omitempty"`
 	// Amounts are including tax
 	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
+	// Files attached to this journal entry. Use the attachments endpoints with reference_type=journal-entry and this entry's id where the connector supports it.
+	Attachments []*LinkedAttachment `json:"attachments,omitempty"`
 	// The source type of the journal entry
 	SourceType optionalnullable.OptionalNullable[string] `json:"source_type,omitempty"`
 	// A unique identifier for the source of the journal entry
@@ -231,6 +233,13 @@ func (o *JournalEntry) GetTaxInclusive() optionalnullable.OptionalNullable[bool]
 	return o.TaxInclusive
 }
 
+func (o *JournalEntry) GetAttachments() []*LinkedAttachment {
+	if o == nil {
+		return nil
+	}
+	return o.Attachments
+}
+
 func (o *JournalEntry) GetSourceType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
@@ -321,7 +330,7 @@ type JournalEntryInput struct {
 	Memo optionalnullable.OptionalNullable[string] `json:"memo,omitempty"`
 	// This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.
 	PostedAt *time.Time `json:"posted_at,omitempty"`
-	// Journal symbol of the entry. For example IND for indirect costs
+	// Journal symbol of the entry. For example IND for indirect costs. Where supported, list /accounting/journals to discover available journals and their posting rules. For Exact Online, supply the journal code, not its id.
 	JournalSymbol optionalnullable.OptionalNullable[string] `json:"journal_symbol,omitempty"`
 	// Deprecated — use line_items[].tax_type for per-line tax applicability. Kept as fallback: applies to all lines that do not set their own tax_type.
 	//
@@ -337,6 +346,8 @@ type JournalEntryInput struct {
 	AccountingPeriod optionalnullable.OptionalNullable[string] `json:"accounting_period,omitempty"`
 	// Amounts are including tax
 	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
+	// Files attached to this journal entry. Use the attachments endpoints with reference_type=journal-entry and this entry's id where the connector supports it.
+	Attachments []*LinkedAttachment `json:"attachments,omitempty"`
 	// The source type of the journal entry
 	SourceType optionalnullable.OptionalNullable[string] `json:"source_type,omitempty"`
 	// A unique identifier for the source of the journal entry
@@ -476,6 +487,13 @@ func (o *JournalEntryInput) GetTaxInclusive() optionalnullable.OptionalNullable[
 		return nil
 	}
 	return o.TaxInclusive
+}
+
+func (o *JournalEntryInput) GetAttachments() []*LinkedAttachment {
+	if o == nil {
+		return nil
+	}
+	return o.Attachments
 }
 
 func (o *JournalEntryInput) GetSourceType() optionalnullable.OptionalNullable[string] {

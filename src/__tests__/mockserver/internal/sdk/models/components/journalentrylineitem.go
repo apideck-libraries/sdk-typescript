@@ -41,6 +41,8 @@ type JournalEntryLineItem struct {
 	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Debit entries are considered positive, and credit entries are considered negative.
 	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
+	// Amount for this line in the company's base currency. Used when the journal entry currency differs from the company's base currency.
+	BaseCurrencyAmount optionalnullable.OptionalNullable[float64] `json:"base_currency_amount,omitempty"`
 	// Debit entries are considered positive, and credit entries are considered negative.
 	Type    *JournalEntryLineItemType `json:"type"`
 	TaxRate *LinkedTaxRate            `json:"tax_rate,omitempty"`
@@ -100,6 +102,13 @@ func (o *JournalEntryLineItem) GetTotalAmount() optionalnullable.OptionalNullabl
 		return nil
 	}
 	return o.TotalAmount
+}
+
+func (o *JournalEntryLineItem) GetBaseCurrencyAmount() optionalnullable.OptionalNullable[float64] {
+	if o == nil {
+		return nil
+	}
+	return o.BaseCurrencyAmount
 }
 
 func (o *JournalEntryLineItem) GetType() *JournalEntryLineItemType {
@@ -202,6 +211,8 @@ type JournalEntryLineItemInput struct {
 	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Debit entries are considered positive, and credit entries are considered negative.
 	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
+	// Amount for this line in the company's base currency. Used when the journal entry currency differs from the company's base currency.
+	BaseCurrencyAmount optionalnullable.OptionalNullable[float64] `json:"base_currency_amount,omitempty"`
 	// Debit entries are considered positive, and credit entries are considered negative.
 	Type    *JournalEntryLineItemType `json:"type"`
 	TaxRate *LinkedTaxRateInput       `json:"tax_rate,omitempty"`
@@ -254,6 +265,13 @@ func (o *JournalEntryLineItemInput) GetTotalAmount() optionalnullable.OptionalNu
 		return nil
 	}
 	return o.TotalAmount
+}
+
+func (o *JournalEntryLineItemInput) GetBaseCurrencyAmount() optionalnullable.OptionalNullable[float64] {
+	if o == nil {
+		return nil
+	}
+	return o.BaseCurrencyAmount
 }
 
 func (o *JournalEntryLineItemInput) GetType() *JournalEntryLineItemType {

@@ -34,6 +34,7 @@ let value: GetJournalEntryResponse = {
         taxAmount: 27500,
         subTotal: 27500,
         totalAmount: 27500,
+        baseCurrencyAmount: 27500,
         type: "debit",
         taxRate: {
           id: "123456",
@@ -100,6 +101,16 @@ let value: GetJournalEntryResponse = {
     ],
     accountingPeriod: "01-24",
     taxInclusive: true,
+    attachments: [
+      {
+        name: "sample.jpg",
+        mimeType: "image/jpeg",
+        isCompressed: false,
+        encoding: "base64",
+        content: "data:image/jpeg;base64,...",
+        notes: "A sample image",
+      },
+    ],
     sourceType: "manual",
     sourceId: "12345",
     updatedBy: "12345",

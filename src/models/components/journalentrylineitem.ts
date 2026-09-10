@@ -113,6 +113,10 @@ export type JournalEntryLineItem = {
    */
   totalAmount?: number | null | undefined;
   /**
+   * Amount for this line in the company's base currency. Used when the journal entry currency differs from the company's base currency.
+   */
+  baseCurrencyAmount?: number | null | undefined;
+  /**
    * Debit entries are considered positive, and credit entries are considered negative.
    */
   type: JournalEntryLineItemType | null;
@@ -177,6 +181,10 @@ export type JournalEntryLineItemInput = {
    * Debit entries are considered positive, and credit entries are considered negative.
    */
   totalAmount?: number | null | undefined;
+  /**
+   * Amount for this line in the company's base currency. Used when the journal entry currency differs from the company's base currency.
+   */
+  baseCurrencyAmount?: number | null | undefined;
   /**
    * Debit entries are considered positive, and credit entries are considered negative.
    */
@@ -256,6 +264,7 @@ export const JournalEntryLineItem$inboundSchema: z.ZodType<
   tax_amount: z.nullable(types.number()).optional(),
   sub_total: z.nullable(types.number()).optional(),
   total_amount: z.nullable(types.number()).optional(),
+  base_currency_amount: z.nullable(types.number()).optional(),
   type: types.nullable(JournalEntryLineItemType$inboundSchema),
   tax_rate: types.optional(LinkedTaxRate$inboundSchema),
   tax_type: z.nullable(TaxType$inboundSchema).optional(),
@@ -279,6 +288,7 @@ export const JournalEntryLineItem$inboundSchema: z.ZodType<
     "tax_amount": "taxAmount",
     "sub_total": "subTotal",
     "total_amount": "totalAmount",
+    "base_currency_amount": "baseCurrencyAmount",
     "tax_rate": "taxRate",
     "tax_type": "taxType",
     "tracking_category": "trackingCategory",
@@ -306,6 +316,7 @@ export type JournalEntryLineItemInput$Outbound = {
   tax_amount?: number | null | undefined;
   sub_total?: number | null | undefined;
   total_amount?: number | null | undefined;
+  base_currency_amount?: number | null | undefined;
   type: string | null;
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   tax_type?: string | null | undefined;
@@ -337,6 +348,7 @@ export const JournalEntryLineItemInput$outboundSchema: z.ZodType<
   taxAmount: z.nullable(z.number()).optional(),
   subTotal: z.nullable(z.number()).optional(),
   totalAmount: z.nullable(z.number()).optional(),
+  baseCurrencyAmount: z.nullable(z.number()).optional(),
   type: z.nullable(JournalEntryLineItemType$outboundSchema),
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   taxType: z.nullable(TaxType$outboundSchema).optional(),
@@ -358,6 +370,7 @@ export const JournalEntryLineItemInput$outboundSchema: z.ZodType<
     taxAmount: "tax_amount",
     subTotal: "sub_total",
     totalAmount: "total_amount",
+    baseCurrencyAmount: "base_currency_amount",
     taxRate: "tax_rate",
     taxType: "tax_type",
     trackingCategory: "tracking_category",

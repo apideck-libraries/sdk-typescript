@@ -8,9 +8,11 @@ const (
 	AttachmentReferenceTypeInvoice        AttachmentReferenceType = "invoice"
 	AttachmentReferenceTypeBill           AttachmentReferenceType = "bill"
 	AttachmentReferenceTypeBillCreditNote AttachmentReferenceType = "bill-credit-note"
+	AttachmentReferenceTypeCreditNote     AttachmentReferenceType = "credit-note"
 	AttachmentReferenceTypeExpense        AttachmentReferenceType = "expense"
 	AttachmentReferenceTypeExpenseReport  AttachmentReferenceType = "expense-report"
 	AttachmentReferenceTypeQuote          AttachmentReferenceType = "quote"
+	AttachmentReferenceTypeJournalEntry   AttachmentReferenceType = "journal-entry"
 )
 
 func (e AttachmentReferenceType) ToPointer() *AttachmentReferenceType {

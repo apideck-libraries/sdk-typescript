@@ -290,6 +290,14 @@ run();
 * [update](docs/sdks/journalentries/README.md#update) - Update Journal Entry
 * [delete](docs/sdks/journalentries/README.md#delete) - Delete Journal Entry
 
+### [Accounting.Journals](docs/sdks/journals/README.md)
+
+* [list](docs/sdks/journals/README.md#list) - List Journals
+* [create](docs/sdks/journals/README.md#create) - Create Journal
+* [get](docs/sdks/journals/README.md#get) - Get Journal
+* [update](docs/sdks/journals/README.md#update) - Update Journal
+* [delete](docs/sdks/journals/README.md#delete) - Delete Journal
+
 ### [Accounting.LedgerAccounts](docs/sdks/ledgeraccounts/README.md)
 
 * [list](docs/sdks/ledgeraccounts/README.md#list) - List Ledger Accounts
@@ -886,6 +894,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingJournalEntriesGet`](docs/sdks/journalentries/README.md#get) - Get Journal Entry
 - [`accountingJournalEntriesList`](docs/sdks/journalentries/README.md#list) - List Journal Entries
 - [`accountingJournalEntriesUpdate`](docs/sdks/journalentries/README.md#update) - Update Journal Entry
+- [`accountingJournalsCreate`](docs/sdks/journals/README.md#create) - Create Journal
+- [`accountingJournalsDelete`](docs/sdks/journals/README.md#delete) - Delete Journal
+- [`accountingJournalsGet`](docs/sdks/journals/README.md#get) - Get Journal
+- [`accountingJournalsList`](docs/sdks/journals/README.md#list) - List Journals
+- [`accountingJournalsUpdate`](docs/sdks/journals/README.md#update) - Update Journal
 - [`accountingLedgerAccountsCreate`](docs/sdks/ledgeraccounts/README.md#create) - Create Ledger Account
 - [`accountingLedgerAccountsDelete`](docs/sdks/ledgeraccounts/README.md#delete) - Delete Ledger Account
 - [`accountingLedgerAccountsGet`](docs/sdks/ledgeraccounts/README.md#get) - Get Ledger Account
@@ -1431,8 +1444,8 @@ run();
 
 
 **Inherit from [`ApideckError`](./src/models/errors/apideckerror.ts)**:
-* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 356 methods.*
-* [`ConflictResponse`](./src/models/errors/conflictresponse.ts): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 356 methods.*
+* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 361 methods.*
+* [`ConflictResponse`](./src/models/errors/conflictresponse.ts): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 361 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
