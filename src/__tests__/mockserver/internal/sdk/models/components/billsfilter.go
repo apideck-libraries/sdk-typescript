@@ -25,6 +25,10 @@ type BillsFilter struct {
 	// Return records with a row ID greater than or equal to the given value
 	IDSince      *string    `queryParam:"name=id_since"`
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
+	// Return bills whose `bill_number` equals the given value (exact match). Use this to verify whether a create that timed out (`outcome: uncertain`) was persisted before retrying. Bill numbers are not guaranteed unique on every connector, so more than one bill can be returned.
+	BillNumber *string `queryParam:"name=bill_number"`
+	// Return bills whose `reference` equals the given value (exact match). Use this to look up a bill by the reference you supplied on create, for example after a create that timed out (`outcome: uncertain`).
+	Reference *string `queryParam:"name=reference"`
 	// Return bills with a document date (`bill_date`) on or after the given date (YYYY-MM-DD).
 	BilledSince *types.Date `queryParam:"name=billed_since"`
 	// Return bills with a due date (`due_date`) on or after the given date (YYYY-MM-DD).
@@ -58,6 +62,20 @@ func (o *BillsFilter) GetUpdatedSince() *time.Time {
 		return nil
 	}
 	return o.UpdatedSince
+}
+
+func (o *BillsFilter) GetBillNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BillNumber
+}
+
+func (o *BillsFilter) GetReference() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Reference
 }
 
 func (o *BillsFilter) GetBilledSince() *types.Date {

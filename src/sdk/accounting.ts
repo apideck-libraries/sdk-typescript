@@ -24,6 +24,7 @@ import { ExpenseCategories } from "./expensecategories.js";
 import { ExpenseReports } from "./expensereports.js";
 import { Expenses } from "./expenses.js";
 import { GeneralLedgerTransactions } from "./generalledgertransactions.js";
+import { GoodsReceipts } from "./goodsreceipts.js";
 import { InvoiceItems } from "./invoiceitems.js";
 import { Invoices } from "./invoices.js";
 import { JournalEntries } from "./journalentries.js";
@@ -139,6 +140,11 @@ export class Accounting extends ClientSDK {
   private _purchaseOrders?: PurchaseOrders;
   get purchaseOrders(): PurchaseOrders {
     return (this._purchaseOrders ??= new PurchaseOrders(this._options));
+  }
+
+  private _goodsReceipts?: GoodsReceipts;
+  get goodsReceipts(): GoodsReceipts {
+    return (this._goodsReceipts ??= new GoodsReceipts(this._options));
   }
 
   private _subsidiaries?: Subsidiaries;
