@@ -27,6 +27,14 @@ export type BillsFilter = {
   idSince?: string | undefined;
   updatedSince?: Date | undefined;
   /**
+   * Return bills whose `bill_number` equals the given value (exact match). Use this to verify whether a create that timed out (`outcome: uncertain`) was persisted before retrying. Bill numbers are not guaranteed unique on every connector, so more than one bill can be returned.
+   */
+  billNumber?: string | undefined;
+  /**
+   * Return bills whose `reference` equals the given value (exact match). Use this to look up a bill by the reference you supplied on create, for example after a create that timed out (`outcome: uncertain`).
+   */
+  reference?: string | undefined;
+  /**
    * Return bills with a document date (`bill_date`) on or after the given date (YYYY-MM-DD).
    */
   billedSince?: Date | undefined;
@@ -55,6 +63,8 @@ export const BillsFilterStatus$outboundSchema: z.ZodType<
 export type BillsFilter$Outbound = {
   id_since?: string | undefined;
   updated_since?: string | undefined;
+  bill_number?: string | undefined;
+  reference?: string | undefined;
   billed_since?: string | undefined;
   due_since?: string | undefined;
   status?: string | undefined;
@@ -69,6 +79,8 @@ export const BillsFilter$outboundSchema: z.ZodType<
 > = z.object({
   idSince: z.string().optional(),
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  billNumber: z.string().optional(),
+  reference: z.string().optional(),
   billedSince: z.date().transform(v =>
     v.toISOString().slice(0, "YYYY-MM-DD".length)
   ).optional(),
@@ -81,6 +93,7 @@ export const BillsFilter$outboundSchema: z.ZodType<
   return remap$(v, {
     idSince: "id_since",
     updatedSince: "updated_since",
+    billNumber: "bill_number",
     billedSince: "billed_since",
     dueSince: "due_since",
     subsidiaryId: "subsidiary_id",
