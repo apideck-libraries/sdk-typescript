@@ -96,6 +96,7 @@ let value: GetPurchaseOrdersResponse = {
             code: "120-C",
             name: "Model Y",
           },
+          taxable: true,
           taxApplicableOn: "Domestic_Purchase_of_Goods_and_Services",
           taxRecoverability: "Fully_Recoverable",
           taxMethod: "Due_to_Supplier",

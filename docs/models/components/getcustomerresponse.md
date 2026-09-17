@@ -112,6 +112,7 @@ let value: GetCustomerResponse = {
     taxNumber: "US123945459",
     taxable: true,
     currency: "USD",
+    balance: 1250,
     account: {
       id: "123456",
       name: "Bank account",

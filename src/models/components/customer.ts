@@ -174,6 +174,10 @@ export type Customer = {
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
   currency?: Currency | null | undefined;
+  /**
+   * The customer's outstanding balance: the amount the customer currently owes, in the customer's currency. A positive value means the customer owes the business.
+   */
+  balance?: number | null | undefined;
   account?: LinkedLedgerAccount | null | undefined;
   /**
    * The parent customer this entity is linked to.
@@ -376,6 +380,7 @@ export const Customer$inboundSchema: z.ZodType<
   tax_number: z.nullable(types.string()).optional(),
   taxable: z.nullable(types.boolean()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
+  balance: z.nullable(types.number()).optional(),
   account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
   parent: z.nullable(LinkedParentCustomer$inboundSchema).optional(),
   status: z.nullable(CustomerStatusStatus$inboundSchema).optional(),
