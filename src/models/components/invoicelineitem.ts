@@ -144,6 +144,10 @@ export type InvoiceLineItem = {
   prepaid?: boolean | null | undefined;
   item?: LinkedInvoiceItem | undefined;
   /**
+   * If true, this line item is subject to tax. Read-only, and only populated by connectors that record taxability on the line itself.
+   */
+  taxable?: boolean | null | undefined;
+  /**
    * Tax applicable on
    */
   taxApplicableOn?: string | null | undefined;
@@ -338,6 +342,7 @@ export const InvoiceLineItem$inboundSchema: z.ZodType<
   memo: z.nullable(types.string()).optional(),
   prepaid: z.nullable(types.boolean()).optional(),
   item: types.optional(LinkedInvoiceItem$inboundSchema),
+  taxable: z.nullable(types.boolean()).optional(),
   tax_applicable_on: z.nullable(types.string()).optional(),
   tax_recoverability: z.nullable(types.string()).optional(),
   tax_method: z.nullable(types.string()).optional(),
