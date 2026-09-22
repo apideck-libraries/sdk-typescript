@@ -124,7 +124,7 @@ export type BillCreditNote = {
   /**
    * Unique identifier representing the entity
    */
-  id: string;
+  id?: string | undefined;
   /**
    * Bill credit note number.
    */
@@ -155,7 +155,7 @@ export type BillCreditNote = {
   /**
    * Amount of transaction
    */
-  totalAmount: number;
+  totalAmount?: number | undefined;
   /**
    * Total tax amount applied to this bill credit note.
    */
@@ -269,7 +269,7 @@ export type BillCreditNoteInput = {
   /**
    * Amount of transaction
    */
-  totalAmount: number;
+  totalAmount?: number | undefined;
   /**
    * Total tax amount applied to this bill credit note.
    */
@@ -364,7 +364,7 @@ export const BillCreditNote$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: types.string(),
+  id: types.optional(types.string()),
   number: z.nullable(types.string()).optional(),
   supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
   subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
@@ -374,7 +374,7 @@ export const BillCreditNote$inboundSchema: z.ZodType<
   currency_rate: z.nullable(types.number()).optional(),
   tax_inclusive: z.nullable(types.boolean()).optional(),
   sub_total: z.nullable(types.number()).optional(),
-  total_amount: types.number(),
+  total_amount: types.optional(types.number()),
   total_tax: z.nullable(types.number()).optional(),
   tax_code: z.nullable(types.string()).optional(),
   balance: z.nullable(types.number()).optional(),
@@ -445,7 +445,7 @@ export type BillCreditNoteInput$Outbound = {
   currency_rate?: number | null | undefined;
   tax_inclusive?: boolean | null | undefined;
   sub_total?: number | null | undefined;
-  total_amount: number;
+  total_amount?: number | undefined;
   total_tax?: number | null | undefined;
   tax_code?: string | null | undefined;
   balance?: number | null | undefined;
@@ -484,7 +484,7 @@ export const BillCreditNoteInput$outboundSchema: z.ZodType<
   currencyRate: z.nullable(z.number()).optional(),
   taxInclusive: z.nullable(z.boolean()).optional(),
   subTotal: z.nullable(z.number()).optional(),
-  totalAmount: z.number(),
+  totalAmount: z.number().optional(),
   totalTax: z.nullable(z.number()).optional(),
   taxCode: z.nullable(z.string()).optional(),
   balance: z.nullable(z.number()).optional(),

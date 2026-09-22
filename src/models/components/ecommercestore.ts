@@ -8,6 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  EcommerceAddress,
+  EcommerceAddress$inboundSchema,
+} from "./ecommerceaddress.js";
 
 export type EcommerceStore = {
   /**
@@ -26,6 +30,10 @@ export type EcommerceStore = {
    * The store's admin login URL
    */
   adminUrl?: string | null | undefined;
+  /**
+   * Seller-side addresses exposed by the platform for this store. Currently holds the store's default shipping origin when the platform designates one. Empty when none is available.
+   */
+  addresses?: Array<EcommerceAddress> | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
@@ -50,6 +58,7 @@ export const EcommerceStore$inboundSchema: z.ZodType<
   name: z.nullable(types.string()).optional(),
   store_url: z.nullable(types.string()).optional(),
   admin_url: z.nullable(types.string()).optional(),
+  addresses: types.optional(z.array(EcommerceAddress$inboundSchema)),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
   created_at: z.nullable(types.date()).optional(),
   updated_at: z.nullable(types.date()).optional(),

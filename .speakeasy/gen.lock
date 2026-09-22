@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 29afb99a6174c2624d4dda46decc838d
-  docVersion: 10.58.2
+  docChecksum: 11a5285e5e4d03d3907da27703c2fc58
+  docVersion: 10.58.7
   speakeasyVersion: 1.798.0
   generationVersion: 2.938.0
-  releaseVersion: 0.52.1
-  configChecksum: c063bcd4a83f98713517f53225016d2c
+  releaseVersion: 0.52.2
+  configChecksum: 590703d906b81290b230df24467cc808
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: c0548e9b-29cf-461c-ae62-20d13d0958d3
-  pristine_commit_hash: 0376b622607602a88b757e08a6e40b6f2ce1988e
-  pristine_tree_hash: aa09ea0fef832ea929ed7395b1d433d5256b7fec
+  generation_id: 015eb319-9f27-4d94-a461-7e5a4806ab5a
+  pristine_commit_hash: 2535f5dc22f858bc5b790b85b77c6e0e8612cd13
+  pristine_tree_hash: 7bd979c148796a33815ee8b82accd7e9d0ab24ad
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -459,12 +459,12 @@ trackedFiles:
     pristine_git_object: 0ae75fe3dd7a97873bf8ef2b8d520e11dc21d221
   docs/models/components/billcreditnote.md:
     id: 0658f0b851fb
-    last_write_checksum: sha1:4f73a4bff779ed32d1c5295014637f04f1927b79
-    pristine_git_object: f71674fd5d22ba224d125e1cdcd706b60549d1ce
+    last_write_checksum: sha1:1accf40f0ef04328fa4fc2d23940c19ef54eac3c
+    pristine_git_object: ba718c9ae21c38dd5753d7364537085876cf078e
   docs/models/components/billcreditnoteinput.md:
     id: 96661cf0fb59
-    last_write_checksum: sha1:51f08371cdd54be4422f305f531e40f494665a98
-    pristine_git_object: 9a0e2b6a4c44d9f336187d870307cf299502b962
+    last_write_checksum: sha1:1eb201cce67d7bf244e3601eadc5e2debc536eb3
+    pristine_git_object: a26a31fadd478c7152ce1c7bbbca946496221448
   docs/models/components/billcreditnotelineitem.md:
     id: 66f61807a84f
     last_write_checksum: sha1:e1cac12d7e172c5b524fec51ea268ca8fb7257b6
@@ -643,8 +643,8 @@ trackedFiles:
     pristine_git_object: 6625a891220ab4a3700fd679a5d5675da191942e
   docs/models/components/company1input.md:
     id: 20e6365c2143
-    last_write_checksum: sha1:3846465dca25472d780cbb64c1aafa1f3a67a353
-    pristine_git_object: 165cd81b5f35dead8d43070b85f0abdc2a0db471
+    last_write_checksum: sha1:5d41a5352e9722483b222cf7bccb8d29b89da1a0
+    pristine_git_object: ddc1e36affeaf71258038abac3922a2f3586e63c
   docs/models/components/companyinfo.md:
     id: dbd620356849
     last_write_checksum: sha1:5d097c2246fe8d77909b9b2a76e101dbffac7aee
@@ -1659,8 +1659,8 @@ trackedFiles:
     pristine_git_object: 9b0a86ac547d8021a36d7906a5bad2b081e1b5c1
   docs/models/components/ecommercestore.md:
     id: 976a52f9020a
-    last_write_checksum: sha1:4cbe055961d94e05e5ffa2c3ed06b1121e0bc346
-    pristine_git_object: 5a5cb5c165cdec4408e9bfc222fad7c590a9309c
+    last_write_checksum: sha1:59a385dc3537c4ea65c46525b0c6deea8ae0daee
+    pristine_git_object: 67a47fdc16c26b115ac2d6bb664a87b681a0cec1
   docs/models/components/email.md:
     id: 5a343be3b18a
     last_write_checksum: sha1:fab668e9ea10c8a1f728dce126a885c7f2fc3831
@@ -2379,8 +2379,8 @@ trackedFiles:
     pristine_git_object: ded7e7031e94bd7f05b1c85ce368f3ded9647836
   docs/models/components/getjournalentryresponse.md:
     id: b2bb00cfa059
-    last_write_checksum: sha1:46f458fea6e1b58e096dcc2f5ef98c730ef2f4a4
-    pristine_git_object: 814b53f3bd57a00d37baaf520e1a451585a3908d
+    last_write_checksum: sha1:62bfd953cdaf8c51d53fdf2850f2278b7675096f
+    pristine_git_object: 976c93a7d09a331a844ee99f0a5368557bd4e248
   docs/models/components/getjournalresponse.md:
     id: 9f8f52266c0d
     last_write_checksum: sha1:df7cccd352b9937ad8e36fc77535f72b1676bb21
@@ -2539,8 +2539,8 @@ trackedFiles:
     pristine_git_object: 8e7a3aea74448525f74a104da53826a52256fe75
   docs/models/components/getstoreresponse.md:
     id: 0af5b61e540e
-    last_write_checksum: sha1:16f6677d04940803b42c2a99ae93d1fcc51917ca
-    pristine_git_object: fa859579fa438fb6fe28a370e26fc03f8b613ad8
+    last_write_checksum: sha1:1392e183f6406eb1cdd1f6a6eb535bafa98f17d5
+    pristine_git_object: 12f88ca9e73d85cef0a1ede984f05d2619981f24
   docs/models/components/getsubsidiariesresponse.md:
     id: 6d16a89b7686
     last_write_checksum: sha1:748516b344eea9fd313790cf5e91bc5b4cecd4e9
@@ -2815,20 +2815,20 @@ trackedFiles:
     pristine_git_object: 2dd2bf8fe6697942c16e2f25362ae4104a258771
   docs/models/components/journalentry.md:
     id: cf7eb004be1b
-    last_write_checksum: sha1:a9a3a44abdc058aad7d0996bf5ca6e3e360d6dc3
-    pristine_git_object: 019061061515bb491c940724aa5191a5d594c87c
+    last_write_checksum: sha1:81a7cc540e0ed04d2f6cafd0e1e05ca504bbd246
+    pristine_git_object: 7c4b132527102bb3857b840250996bb2df866628
   docs/models/components/journalentryinput.md:
     id: 6c8fbb06b524
-    last_write_checksum: sha1:c88ce6e38bed1c5b50e06ff89614f927eda3894f
-    pristine_git_object: 9c5ab34146da380fa775383927301113238f5fa2
+    last_write_checksum: sha1:8ad7046ec91f281006981a7ecbb460eace9f12ee
+    pristine_git_object: 872c4d7f3057eaebb23edb79d0064030010dc186
   docs/models/components/journalentrylineitem.md:
     id: ffe09a4f945a
-    last_write_checksum: sha1:23cb5503e3b604d6700be1af7d32ef67bc485f8f
-    pristine_git_object: 0812b6ac43fcabb2d48e57c4a1a036a0fde94961
+    last_write_checksum: sha1:7f4990795af751074410339a70384b647e8a7d17
+    pristine_git_object: e79d5d9deea4e9be262086ff2dd02aee0857ff0d
   docs/models/components/journalentrylineiteminput.md:
     id: 8f6296e23527
-    last_write_checksum: sha1:129cecd465367680abdc1d4994d917ab31a1b175
-    pristine_git_object: 5bf2bfa9452a83ea8c2f59450a61e4380db1a541
+    last_write_checksum: sha1:82d4e4b567560b26d597ef77bb806004b891857d
+    pristine_git_object: 4f2e1c5cead35534e017d672c4aec4370b0ea559
   docs/models/components/journalentrylineitemtype.md:
     id: 0ccdf677bf84
     last_write_checksum: sha1:3400927094e2b2e009e3a7662ec5bdcf82a53d7a
@@ -5423,8 +5423,8 @@ trackedFiles:
     pristine_git_object: 61f5690d8ea406aa45cb81a56e03bc725ed4d992
   docs/models/operations/accountingjournalentriesaddrequest.md:
     id: e0ef6da3b24e
-    last_write_checksum: sha1:30c570dad64792ccef5703c231a4721741f6b883
-    pristine_git_object: ce4c39b41e8b28ef4622d656cdc46917fac52914
+    last_write_checksum: sha1:fb585a4a43cb3c789e06964f8adb7f35c3097cd9
+    pristine_git_object: 0ae1396c714aa0efe09d8865edfff1b67d871d92
   docs/models/operations/accountingjournalentriesaddresponse.md:
     id: 24d8d6fece04
     last_write_checksum: sha1:ff7dbf443462cbb83701713963d0e1fd34611394
@@ -5471,8 +5471,8 @@ trackedFiles:
     pristine_git_object: 7807a4ba444bca45459257481706740e82270b6d
   docs/models/operations/accountingjournalentriesupdaterequest.md:
     id: 7ecf18ceeb56
-    last_write_checksum: sha1:d7bc9f125bba738fc9fe47abccea32eec0df0e1c
-    pristine_git_object: 4b758d5641e67c376825922ea05c64fef82af35b
+    last_write_checksum: sha1:c4fdce6e4edc598062ffe87531309d3206215466
+    pristine_git_object: 8cc41a62f367d8412af39cb931f5ba00fc45c69e
   docs/models/operations/accountingjournalentriesupdateresponse.md:
     id: 80952ec6da30
     last_write_checksum: sha1:d245640b475d679a7ff7690045fc86e79e6c2726
@@ -6671,8 +6671,8 @@ trackedFiles:
     pristine_git_object: 3ddf6bbf791e5794fd06125a1c1028ce0b0f4a6d
   docs/models/operations/crmcompaniesaddrequest.md:
     id: 4745cc2999b1
-    last_write_checksum: sha1:e8fb4653bad153f796ad148fb25b1734011f8536
-    pristine_git_object: ffdac24da028a777f221a233f73b5f09e2ff15f3
+    last_write_checksum: sha1:764e93f7249cef23e8c6b3aaf7cb6a7401cbc7ac
+    pristine_git_object: dd70c81ca6007a097772ae8c2d8a41c471781573
   docs/models/operations/crmcompaniesaddresponse.md:
     id: 78cfbb191296
     last_write_checksum: sha1:d9007e744ff5a72ae460ffd8358d9b09d1639871
@@ -6719,8 +6719,8 @@ trackedFiles:
     pristine_git_object: dad97d707e487613b8f6b3b48c5280cd911a13bc
   docs/models/operations/crmcompaniesupdaterequest.md:
     id: cb1162b38ab6
-    last_write_checksum: sha1:188b0537f087373049984285b7f6742027cf5d4a
-    pristine_git_object: 3c8c95cd2e46a2a046c94f08a00a844b7943bb34
+    last_write_checksum: sha1:7c11048625f9243e42a672850e73f897c5f1914a
+    pristine_git_object: 984d081650524a0594ca087f9703251ac3b0cafa
   docs/models/operations/crmcompaniesupdateresponse.md:
     id: 7dc3716b5824
     last_write_checksum: sha1:30ee697b2f2b197b6c66d9924a84307b585358d2
@@ -9143,12 +9143,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:1d4556cf8e9bf776ba519e4420b7925b219525b2
-    pristine_git_object: c0a4ae3ab5a1c0791a66028eb8a747290287446f
+    last_write_checksum: sha1:79634afb1358e7c9985b9b1de57f2d94589df1a5
+    pristine_git_object: a737f75b5d2bc8cdd1a65402996881f71246a21f
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:b967dc601d6de1086f5195da6327e4f51dc842f8
-    pristine_git_object: 9949cfc859ead0445fe1941281dc56aa30b52665
+    last_write_checksum: sha1:6c45f357c67a9efadd317181e7b10abf0c0afcd9
+    pristine_git_object: 15865b02f98dfaf4befb93473d33f68a36e52d8c
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -10991,8 +10991,8 @@ trackedFiles:
     pristine_git_object: 00d001afaad09eb0649de7d479b69213c5dffd09
   src/__tests__/mockserver/internal/sdk/models/components/billcreditnote.go:
     id: de0d87b9da0c
-    last_write_checksum: sha1:185f3c913e7e9de21ba53617ab4d49a6387e0f2e
-    pristine_git_object: 2a4a1e3d4a9cf5ac6d6535ea7e7075227ef9c2a4
+    last_write_checksum: sha1:847caf547fb94428b21c0e8f2ff9284dfa00a863
+    pristine_git_object: 871139f6c5aca7175d9c2448afacd51d039b9911
   src/__tests__/mockserver/internal/sdk/models/components/billcreditnotelineitem.go:
     id: 2e161edbcfac
     last_write_checksum: sha1:5b9873456fdb7e66e8801cb41464d544ea058064
@@ -11079,8 +11079,8 @@ trackedFiles:
     pristine_git_object: c6d6c4f2a6e8ca87b713b75889a546d8ab0307b4
   src/__tests__/mockserver/internal/sdk/models/components/company1.go:
     id: 787ef7ad6aea
-    last_write_checksum: sha1:e9e39fb9352f4c001af8fa4ca0fc426c47671ad0
-    pristine_git_object: 850edf055db5824e1e2bb2e983adc752b16bbf65
+    last_write_checksum: sha1:a433437d1c38538483030e45677575c523c512fc
+    pristine_git_object: 6137475cdffca2eccc9232f02409a367f500cf21
   src/__tests__/mockserver/internal/sdk/models/components/companyinfo.go:
     id: 916cffffbed8
     last_write_checksum: sha1:50cd2162ab1c7007b3f3602c12684257002ec3f1
@@ -11851,8 +11851,8 @@ trackedFiles:
     pristine_git_object: b094db4c9cb9bd36c8ca7d4387037ecc540060eb
   src/__tests__/mockserver/internal/sdk/models/components/ecommercestore.go:
     id: 01b66cde214e
-    last_write_checksum: sha1:c6fc61f2163c3f78c186d65c5fbbd677cb6728b4
-    pristine_git_object: 4ef3d1d7eca453a5fd0f0040b80b718350beb500
+    last_write_checksum: sha1:0b47c83e6fe8ee9cced022a54b85c051decfb34c
+    pristine_git_object: 77fe3bbeb69d3848e00dfe267e63bc5e86849638
   src/__tests__/mockserver/internal/sdk/models/components/email.go:
     id: f583d8f1be68
     last_write_checksum: sha1:e5f31e5dc1681637863f68279a2d922a15c65a3f
@@ -12727,8 +12727,8 @@ trackedFiles:
     pristine_git_object: dddefeb7aa3fe3b2a9ddcd8ae469e9b6c72ea92c
   src/__tests__/mockserver/internal/sdk/models/components/journalentrylineitem.go:
     id: 848db74d6a42
-    last_write_checksum: sha1:3f0c2e8c24c193dcd25c6ee8ed69532e6d204586
-    pristine_git_object: c5103274e8973c8a2ddb8126e12deeb4fe14c384
+    last_write_checksum: sha1:b53805e073903f0daca9bdc864d69f232eb1e436
+    pristine_git_object: c78530a89f0f1a39182fcaf7f8e09468a0cf0144
   src/__tests__/mockserver/internal/sdk/models/components/lead.go:
     id: 634426cef402
     last_write_checksum: sha1:2fd35c321e3fe41e6945b73dd75ef704a3cf8ad8
@@ -16727,8 +16727,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:eb63fc5eb2b2f666a52470ef0fc5d373ba3e5f28
-    pristine_git_object: bb59ce7d5d2664cc9be708353efbcc790f558827
+    last_write_checksum: sha1:0ddbf12436d8fa66fa3aafb0d4ef8217e97a215b
+    pristine_git_object: 8b00cd0bf42d28c27ea5a7927194ef986845066f
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
@@ -16963,8 +16963,8 @@ trackedFiles:
     pristine_git_object: a0142f6fc848553f6d8cd794588c941b7e7c36b3
   src/models/components/billcreditnote.ts:
     id: bf555ca294e2
-    last_write_checksum: sha1:daf37ecbda333fe6bcf87685d54433bb617d294d
-    pristine_git_object: 15e9cb6cb2d9ea7afb06938f14f50f136a47efc3
+    last_write_checksum: sha1:f0f26d8aca9497f2ae514410f53b342d2ad3ba9a
+    pristine_git_object: 1ab4a2decf86fd84cfe11e76adfc5a23dac08df6
   src/models/components/billcreditnotelineitem.ts:
     id: a55d6fc6ba2b
     last_write_checksum: sha1:392efc9cf276dd20cb53c1971571903c78709c6c
@@ -17051,8 +17051,8 @@ trackedFiles:
     pristine_git_object: c91c495b321eb01416a1cd23132a4e04637768a2
   src/models/components/company1.ts:
     id: 32476f926178
-    last_write_checksum: sha1:938158e7bf0dcec59ae16fa707ef6cabf15ba41e
-    pristine_git_object: 8f83252a86c9c350389d1b5ef68b92a223566e6c
+    last_write_checksum: sha1:d91f4166fc8ebf5cf630973ec0301b2448921288
+    pristine_git_object: 403d674cb3aee779e591dc4091c73db2258b4da1
   src/models/components/companyinfo.ts:
     id: 6b996345237b
     last_write_checksum: sha1:d515860cf01b9ebd0e922263b7780a57a7ba56f4
@@ -17819,8 +17819,8 @@ trackedFiles:
     pristine_git_object: c5d9b73aed9fdc134bc33e98055ed820e77d9325
   src/models/components/ecommercestore.ts:
     id: 1cbd9ea10345
-    last_write_checksum: sha1:515aba644ecb090b5d1d06decb6bb2ce9bf24056
-    pristine_git_object: d8bc64eec66acf7fbe0f49146bd285e92d80e3b8
+    last_write_checksum: sha1:4b467158ea336e62243e58493651a3a6e5b87c61
+    pristine_git_object: 5c56dd7e8ce46693060ff16a192aa8d7dfd79a99
   src/models/components/email.ts:
     id: ac718675e00d
     last_write_checksum: sha1:1c610e1705671f25130764a0ee9fff9900427b72
@@ -18699,8 +18699,8 @@ trackedFiles:
     pristine_git_object: 80eec162e88aa7f4f938d4d8f7f53876e6f10aa7
   src/models/components/journalentrylineitem.ts:
     id: bac163b40648
-    last_write_checksum: sha1:1e0ed3ed7a748359eb3b0e4e1d0c6ee6eadc8487
-    pristine_git_object: 84ca299cf085b07fde0456f1a330b3926b9a97d0
+    last_write_checksum: sha1:efd8bc24e08c582347293275aeef8000e868bcf7
+    pristine_git_object: fd9bdf01a29581f14ac856050250467831370797
   src/models/components/lead.ts:
     id: 3992e00758a8
     last_write_checksum: sha1:9163fd8a7bb8ad0987cc9f7d4e5cc85a3b45d479
@@ -27970,7 +27970,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"name": "SpaceX", "owner_id": "12345", "image": "https://www.spacex.com/static/images/share.jpg", "description": "Space Exploration Technologies Corp. is an American aerospace manufacturer, space transportation services and communications company headquartered in Hawthorne, California.", "vat_number": "BE0689615164", "currency": "USD", "status": "Open", "fax": "+12129876543", "annual_revenue": "+$35m", "number_of_employees": "500-1000", "industry": "Apparel", "ownership": "Public", "sales_tax_number": "12456EN", "payee_number": "78932EN", "abn_or_tfn": "46 115 614 695", "abn_branch": "123", "acn": "XXX XXX XXX", "first_name": "Elon", "last_name": "Musk", "bank_accounts": [{"bank_name": "Monzo", "account_number": "123465", "account_name": "SPACEX LLC", "account_type": "credit_card", "iban": "CH2989144532982975332", "bic": "AUDSCHGGXXX", "routing_number": "012345678", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD"}], "websites": [{"id": "12345", "url": "http://example.com", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "social_links": [{"id": "12345", "url": "https://www.twitter.com/apideck", "type": "twitter"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "row_type": {"id": "12345", "name": "Customer Account"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "tags": ["New"], "read_only": false, "salutation": "Mr", "birthday": "2000-08-12", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"name": "SpaceX", "owner_id": "12345", "image": "https://www.spacex.com/static/images/share.jpg", "description": "Space Exploration Technologies Corp. is an American aerospace manufacturer, space transportation services and communications company headquartered in Hawthorne, California.", "vat_number": "BE0689615164", "currency": "USD", "status": "Open", "fax": "+12129876543", "annual_revenue": "+$35m", "number_of_employees": "500-1000", "industry": "Apparel", "ownership": "Public", "sales_tax_number": "12456EN", "payee_number": "78932EN", "abn_or_tfn": "46 115 614 695", "abn_branch": "123", "acn": "XXX XXX XXX", "first_name": "Elon", "last_name": "Musk", "parent_id": "22345", "bank_accounts": [{"bank_name": "Monzo", "account_number": "123465", "account_name": "SPACEX LLC", "account_type": "credit_card", "iban": "CH2989144532982975332", "bic": "AUDSCHGGXXX", "routing_number": "012345678", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD"}], "websites": [{"id": "12345", "url": "http://example.com", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "social_links": [{"id": "12345", "url": "https://www.twitter.com/apideck", "type": "twitter"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "row_type": {"id": "12345", "name": "Customer Account"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "tags": ["New"], "read_only": false, "salutation": "Mr", "birthday": "2000-08-12", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "201":
           application/json: {"status_code": 200, "status": "OK", "service": "zoho-crm", "resource": "companies", "operation": "add", "data": {"id": "12345"}}
@@ -28078,7 +28078,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"name": "SpaceX", "owner_id": "12345", "image": "https://www.spacex.com/static/images/share.jpg", "description": "Space Exploration Technologies Corp. is an American aerospace manufacturer, space transportation services and communications company headquartered in Hawthorne, California.", "vat_number": "BE0689615164", "currency": "USD", "status": "Open", "fax": "+12129876543", "annual_revenue": "+$35m", "number_of_employees": "500-1000", "industry": "Apparel", "ownership": "Public", "sales_tax_number": "12456EN", "payee_number": "78932EN", "abn_or_tfn": "46 115 614 695", "abn_branch": "123", "acn": "XXX XXX XXX", "first_name": "Elon", "last_name": "Musk", "bank_accounts": [{"bank_name": "Monzo", "account_number": "123465", "account_name": "SPACEX LLC", "account_type": "credit_card", "iban": "CH2989144532982975332", "bic": "AUDSCHGGXXX", "routing_number": "012345678", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD"}], "websites": [{"id": "12345", "url": "http://example.com", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "social_links": [{"id": "12345", "url": "https://www.twitter.com/apideck", "type": "twitter"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "row_type": {"id": "12345", "name": "Customer Account"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": null}], "tags": ["New"], "read_only": false, "salutation": "Mr", "birthday": "2000-08-12", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"name": "SpaceX", "owner_id": "12345", "image": "https://www.spacex.com/static/images/share.jpg", "description": "Space Exploration Technologies Corp. is an American aerospace manufacturer, space transportation services and communications company headquartered in Hawthorne, California.", "vat_number": "BE0689615164", "currency": "USD", "status": "Open", "fax": "+12129876543", "annual_revenue": "+$35m", "number_of_employees": "500-1000", "industry": "Apparel", "ownership": "Public", "sales_tax_number": "12456EN", "payee_number": "78932EN", "abn_or_tfn": "46 115 614 695", "abn_branch": "123", "acn": "XXX XXX XXX", "first_name": "Elon", "last_name": "Musk", "parent_id": "22345", "bank_accounts": [{"bank_name": "Monzo", "account_number": "123465", "account_name": "SPACEX LLC", "account_type": "credit_card", "iban": "CH2989144532982975332", "bic": "AUDSCHGGXXX", "routing_number": "012345678", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD"}], "websites": [{"id": "12345", "url": "http://example.com", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "social_links": [{"id": "12345", "url": "https://www.twitter.com/apideck", "type": "twitter"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "row_type": {"id": "12345", "name": "Customer Account"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": null}], "tags": ["New"], "read_only": false, "salutation": "Mr", "birthday": "2000-08-12", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "zoho-crm", "resource": "companies", "operation": "update", "data": {"id": "12345"}}
@@ -30367,7 +30367,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "shopify", "resource": "stores", "operation": "one", "data": {"id": "12345", "name": "My Store", "store_url": "https://mybrand.com/shop", "admin_url": "https://mybrand.com/admin", "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z"}, "meta": {"items_on_page": 50, "cursors": {"previous": "em9oby1jcm06OnBhZ2U6OjE=", "current": "em9oby1jcm06OnBhZ2U6OjI=", "next": "em9oby1jcm06OnBhZ2U6OjM="}, "total_count": 1, "warnings": [{"type": "downstream_request_failed", "status_code": 429, "operation": "getManager"}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "shopify", "resource": "stores", "operation": "one", "data": {"id": "12345", "name": "My Store", "store_url": "https://mybrand.com/shop", "admin_url": "https://mybrand.com/admin", "addresses": [{"line1": "123 Main Street", "line2": "Apt 1", "company_name": "Acme Inc.", "city": "New York", "state": "NY", "postal_code": "10001", "country": "US"}], "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z"}, "meta": {"items_on_page": 50, "cursors": {"previous": "em9oby1jcm06OnBhZ2U6OjE=", "current": "em9oby1jcm06OnBhZ2U6OjI=", "next": "em9oby1jcm06OnBhZ2U6OjM="}, "total_count": 1, "warnings": [{"type": "downstream_request_failed", "status_code": 429, "operation": "getManager"}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
         "401":
@@ -39081,6 +39081,7 @@ generatedTests:
   ats.jobsAdd: "2026-03-11T13:14:11Z"
   ats.jobsUpdate: "2026-03-11T13:14:11Z"
   ats.jobsDelete: "2026-03-11T13:14:11Z"
+releaseNotes: "## Typescript SDK Changes:\n* `apideck.accounting.billCreditNotes.list()`:  `response.data[]` **Changed**\n* `apideck.accounting.billCreditNotes.create()`: \n  *  `request.billCreditNote.totalAmount` **Changed**\n* `apideck.accounting.billCreditNotes.get()`:  `response.data` **Changed**\n* `apideck.accounting.billCreditNotes.update()`: \n  *  `request.billCreditNote.totalAmount` **Changed**\n* `apideck.accounting.journalEntries.list()`:  `response.data[].lineItems[]` **Changed**\n* `apideck.accounting.journalEntries.create()`: \n  *  `request.journalEntry.lineItems[]` **Changed**\n* `apideck.accounting.journalEntries.get()`:  `response.data.lineItems[]` **Changed**\n* `apideck.accounting.journalEntries.update()`: \n  *  `request.journalEntry.lineItems[]` **Changed**\n* `apideck.crm.companies.create()`: \n  *  `request.company1.parentId` **Added**\n* `apideck.crm.companies.update()`: \n  *  `request.company1.parentId` **Added**\n* `apideck.ecommerce.stores.get()`:  `response.data.addresses` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore

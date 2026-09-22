@@ -162,6 +162,14 @@ export type JournalEntryLineItem = {
    * Worktags of the line item. This is currently only supported in Workday.
    */
   worktags?: Array<LinkedWorktag | null> | undefined;
+  /**
+   * The financial date of this specific line, when it differs from the journal entry's own posted_at date - for example when booking a historical or backdated transaction. Not populated by every connector: some post the entry date at the header level only, in which case this line-level date is legitimately absent rather than wrong.
+   */
+  date?: Date | null | undefined;
+  /**
+   * A unique identifier for the source of this specific line, distinct from the journal entry's own source_id. Useful for reconciling an individual line back to an external system's own record when a single journal entry aggregates lines originating from more than one source.
+   */
+  sourceId?: string | null | undefined;
 };
 
 export type JournalEntryLineItemInput = {
@@ -231,6 +239,14 @@ export type JournalEntryLineItemInput = {
    * Worktags of the line item. This is currently only supported in Workday.
    */
   worktags?: Array<LinkedWorktag | null> | undefined;
+  /**
+   * The financial date of this specific line, when it differs from the journal entry's own posted_at date - for example when booking a historical or backdated transaction. Not populated by every connector: some post the entry date at the header level only, in which case this line-level date is legitimately absent rather than wrong.
+   */
+  date?: Date | null | undefined;
+  /**
+   * A unique identifier for the source of this specific line, distinct from the journal entry's own source_id. Useful for reconciling an individual line back to an external system's own record when a single journal entry aggregates lines originating from more than one source.
+   */
+  sourceId?: string | null | undefined;
 };
 
 /** @internal */
@@ -283,6 +299,8 @@ export const JournalEntryLineItem$inboundSchema: z.ZodType<
   worktags: types.optional(
     z.array(types.nullable(LinkedWorktag$inboundSchema)),
   ),
+  date: z.nullable(types.date()).optional(),
+  source_id: z.nullable(types.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "tax_amount": "taxAmount",
@@ -297,6 +315,7 @@ export const JournalEntryLineItem$inboundSchema: z.ZodType<
     "department_id": "departmentId",
     "location_id": "locationId",
     "line_number": "lineNumber",
+    "source_id": "sourceId",
   });
 });
 
@@ -336,6 +355,8 @@ export type JournalEntryLineItemInput$Outbound = {
   location_id?: string | null | undefined;
   line_number?: number | null | undefined;
   worktags?: Array<LinkedWorktag$Outbound | null> | undefined;
+  date?: string | null | undefined;
+  source_id?: string | null | undefined;
 };
 
 /** @internal */
@@ -365,6 +386,10 @@ export const JournalEntryLineItemInput$outboundSchema: z.ZodType<
   locationId: z.nullable(z.string()).optional(),
   lineNumber: z.nullable(z.number().int()).optional(),
   worktags: z.array(z.nullable(LinkedWorktag$outboundSchema)).optional(),
+  date: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
+  sourceId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     taxAmount: "tax_amount",
@@ -379,6 +404,7 @@ export const JournalEntryLineItemInput$outboundSchema: z.ZodType<
     departmentId: "department_id",
     locationId: "location_id",
     lineNumber: "line_number",
+    sourceId: "source_id",
   });
 });
 
