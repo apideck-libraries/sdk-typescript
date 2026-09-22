@@ -28,6 +28,7 @@ let value: CrmCompaniesAddRequest = {
     acn: "XXX XXX XXX",
     firstName: "Elon",
     lastName: "Musk",
+    parentId: "22345",
     bankAccounts: [
       {
         bankName: "Chase Bank",

@@ -18,6 +18,17 @@ let value: GetStoreResponse = {
     name: "My Store",
     storeUrl: "https://mybrand.com/shop",
     adminUrl: "https://mybrand.com/admin",
+    addresses: [
+      {
+        line1: "123 Main Street",
+        line2: "Apt 1",
+        companyName: "Acme Inc.",
+        city: "New York",
+        state: "NY",
+        postalCode: "10001",
+        country: "US",
+      },
+    ],
     createdAt: new Date("2020-09-30T07:43:32.000Z"),
     updatedAt: new Date("2020-09-30T07:43:32.000Z"),
   },

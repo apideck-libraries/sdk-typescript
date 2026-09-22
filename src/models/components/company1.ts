@@ -288,6 +288,10 @@ export type Company1Input = {
    * The last name of the person.
    */
   lastName?: string | null | undefined;
+  /**
+   * Parent ID
+   */
+  parentId?: string | null | undefined;
   bankAccounts?: Array<BankAccount1> | undefined;
   websites?: Array<Website> | undefined;
   addresses?: Array<Address> | undefined;
@@ -462,6 +466,7 @@ export type Company1Input$Outbound = {
   acn?: string | null | undefined;
   first_name?: string | null | undefined;
   last_name?: string | null | undefined;
+  parent_id?: string | null | undefined;
   bank_accounts?: Array<BankAccount1$Outbound> | undefined;
   websites?: Array<Website$Outbound> | undefined;
   addresses?: Array<Address$Outbound> | undefined;
@@ -502,6 +507,7 @@ export const Company1Input$outboundSchema: z.ZodType<
   acn: z.nullable(z.string()).optional(),
   firstName: z.nullable(z.string()).optional(),
   lastName: z.nullable(z.string()).optional(),
+  parentId: z.nullable(z.string()).optional(),
   bankAccounts: z.array(BankAccount1$outboundSchema).optional(),
   websites: z.array(Website$outboundSchema).optional(),
   addresses: z.array(Address$outboundSchema).optional(),
@@ -529,6 +535,7 @@ export const Company1Input$outboundSchema: z.ZodType<
     abnBranch: "abn_branch",
     firstName: "first_name",
     lastName: "last_name",
+    parentId: "parent_id",
     bankAccounts: "bank_accounts",
     socialLinks: "social_links",
     phoneNumbers: "phone_numbers",

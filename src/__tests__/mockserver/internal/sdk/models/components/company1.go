@@ -449,7 +449,9 @@ type Company1Input struct {
 	// The first name of the person.
 	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// The last name of the person.
-	LastName     optionalnullable.OptionalNullable[string]   `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
+	// Parent ID
+	ParentID     optionalnullable.OptionalNullable[string]   `json:"parent_id,omitempty"`
 	BankAccounts []BankAccount1                              `json:"bank_accounts,omitempty"`
 	Websites     []Website                                   `json:"websites,omitempty"`
 	Addresses    []Address                                   `json:"addresses,omitempty"`
@@ -611,6 +613,13 @@ func (o *Company1Input) GetLastName() optionalnullable.OptionalNullable[string] 
 		return nil
 	}
 	return o.LastName
+}
+
+func (o *Company1Input) GetParentID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.ParentID
 }
 
 func (o *Company1Input) GetBankAccounts() []BankAccount1 {

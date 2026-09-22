@@ -100,6 +100,8 @@ let value: AccountingJournalEntriesAddRequest = {
             value: "New York",
           },
         ],
+        date: new Date("2020-09-30"),
+        sourceId: "12345",
       },
     ],
     status: "draft",

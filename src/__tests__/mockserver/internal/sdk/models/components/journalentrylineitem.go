@@ -4,6 +4,8 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/types"
+	"mockserver/internal/sdk/utils"
 )
 
 // JournalEntryLineItemType - Debit entries are considered positive, and credit entries are considered negative.
@@ -67,6 +69,21 @@ type JournalEntryLineItem struct {
 	LineNumber optionalnullable.OptionalNullable[int64] `json:"line_number,omitempty"`
 	// Worktags of the line item. This is currently only supported in Workday.
 	Worktags []*LinkedWorktag `json:"worktags,omitempty"`
+	// The financial date of this specific line, when it differs from the journal entry's own posted_at date - for example when booking a historical or backdated transaction. Not populated by every connector: some post the entry date at the header level only, in which case this line-level date is legitimately absent rather than wrong.
+	Date optionalnullable.OptionalNullable[types.Date] `json:"date,omitempty"`
+	// A unique identifier for the source of this specific line, distinct from the journal entry's own source_id. Useful for reconciling an individual line back to an external system's own record when a single journal entry aggregates lines originating from more than one source.
+	SourceID optionalnullable.OptionalNullable[string] `json:"source_id,omitempty"`
+}
+
+func (j JournalEntryLineItem) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(j, "", false)
+}
+
+func (j *JournalEntryLineItem) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &j, "", false, []string{"type", "ledger_account"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *JournalEntryLineItem) GetID() *string {
@@ -202,6 +219,20 @@ func (o *JournalEntryLineItem) GetWorktags() []*LinkedWorktag {
 	return o.Worktags
 }
 
+func (o *JournalEntryLineItem) GetDate() optionalnullable.OptionalNullable[types.Date] {
+	if o == nil {
+		return nil
+	}
+	return o.Date
+}
+
+func (o *JournalEntryLineItem) GetSourceID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.SourceID
+}
+
 type JournalEntryLineItemInput struct {
 	// User defined description
 	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
@@ -237,6 +268,21 @@ type JournalEntryLineItemInput struct {
 	LineNumber optionalnullable.OptionalNullable[int64] `json:"line_number,omitempty"`
 	// Worktags of the line item. This is currently only supported in Workday.
 	Worktags []*LinkedWorktag `json:"worktags,omitempty"`
+	// The financial date of this specific line, when it differs from the journal entry's own posted_at date - for example when booking a historical or backdated transaction. Not populated by every connector: some post the entry date at the header level only, in which case this line-level date is legitimately absent rather than wrong.
+	Date optionalnullable.OptionalNullable[types.Date] `json:"date,omitempty"`
+	// A unique identifier for the source of this specific line, distinct from the journal entry's own source_id. Useful for reconciling an individual line back to an external system's own record when a single journal entry aggregates lines originating from more than one source.
+	SourceID optionalnullable.OptionalNullable[string] `json:"source_id,omitempty"`
+}
+
+func (j JournalEntryLineItemInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(j, "", false)
+}
+
+func (j *JournalEntryLineItemInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &j, "", false, []string{"type", "ledger_account"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *JournalEntryLineItemInput) GetDescription() optionalnullable.OptionalNullable[string] {
@@ -363,4 +409,18 @@ func (o *JournalEntryLineItemInput) GetWorktags() []*LinkedWorktag {
 		return nil
 	}
 	return o.Worktags
+}
+
+func (o *JournalEntryLineItemInput) GetDate() optionalnullable.OptionalNullable[types.Date] {
+	if o == nil {
+		return nil
+	}
+	return o.Date
+}
+
+func (o *JournalEntryLineItemInput) GetSourceID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.SourceID
 }

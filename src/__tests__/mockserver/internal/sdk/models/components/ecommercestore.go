@@ -17,6 +17,8 @@ type EcommerceStore struct {
 	StoreURL optionalnullable.OptionalNullable[string] `json:"store_url,omitempty"`
 	// The store's admin login URL
 	AdminURL optionalnullable.OptionalNullable[string] `json:"admin_url,omitempty"`
+	// Seller-side addresses exposed by the platform for this store. Currently holds the store's default shipping origin when the platform designates one. Empty when none is available.
+	Addresses []EcommerceAddress `json:"addresses,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
@@ -62,6 +64,13 @@ func (o *EcommerceStore) GetAdminURL() optionalnullable.OptionalNullable[string]
 		return nil
 	}
 	return o.AdminURL
+}
+
+func (o *EcommerceStore) GetAddresses() []EcommerceAddress {
+	if o == nil {
+		return nil
+	}
+	return o.Addresses
 }
 
 func (o *EcommerceStore) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {

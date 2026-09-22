@@ -38,7 +38,7 @@ func (e BillCreditNoteType) ToPointer() *BillCreditNoteType {
 
 type BillCreditNote struct {
 	// Unique identifier representing the entity
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// Bill credit note number.
 	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// The supplier this entity is linked to.
@@ -55,7 +55,7 @@ type BillCreditNote struct {
 	// Sub-total amount, normally before tax.
 	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Amount of transaction
-	TotalAmount float64 `json:"total_amount"`
+	TotalAmount *float64 `json:"total_amount,omitempty"`
 	// Total tax amount applied to this bill credit note.
 	TotalTax optionalnullable.OptionalNullable[float64] `json:"total_tax,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
@@ -105,15 +105,15 @@ func (b BillCreditNote) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BillCreditNote) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"id", "total_amount"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *BillCreditNote) GetID() string {
+func (o *BillCreditNote) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -181,9 +181,9 @@ func (o *BillCreditNote) GetSubTotal() optionalnullable.OptionalNullable[float64
 	return o.SubTotal
 }
 
-func (o *BillCreditNote) GetTotalAmount() float64 {
+func (o *BillCreditNote) GetTotalAmount() *float64 {
 	if o == nil {
-		return 0.0
+		return nil
 	}
 	return o.TotalAmount
 }
@@ -366,7 +366,7 @@ type BillCreditNoteInput struct {
 	// Sub-total amount, normally before tax.
 	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Amount of transaction
-	TotalAmount float64 `json:"total_amount"`
+	TotalAmount *float64 `json:"total_amount,omitempty"`
 	// Total tax amount applied to this bill credit note.
 	TotalTax optionalnullable.OptionalNullable[float64] `json:"total_tax,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
@@ -406,7 +406,7 @@ func (b BillCreditNoteInput) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BillCreditNoteInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"total_amount"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -475,9 +475,9 @@ func (o *BillCreditNoteInput) GetSubTotal() optionalnullable.OptionalNullable[fl
 	return o.SubTotal
 }
 
-func (o *BillCreditNoteInput) GetTotalAmount() float64 {
+func (o *BillCreditNoteInput) GetTotalAmount() *float64 {
 	if o == nil {
-		return 0.0
+		return nil
 	}
 	return o.TotalAmount
 }
