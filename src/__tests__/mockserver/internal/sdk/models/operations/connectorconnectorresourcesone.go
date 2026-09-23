@@ -26,7 +26,7 @@ type ConnectorConnectorResourcesOneRequest struct {
 	// ID of the resource you are acting upon.
 	ResourceID string `pathParam:"style=simple,explode=false,name=resource_id"`
 	// Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
-	UnifiedAPI *components.UnifiedAPIID `queryParam:"style=form,explode=true,name=unified_api"`
+	UnifiedAPI *components.UnifiedAPIParameter `queryParam:"style=form,explode=true,name=unified_api"`
 }
 
 func (o *ConnectorConnectorResourcesOneRequest) GetAppID() *string {
@@ -50,7 +50,7 @@ func (o *ConnectorConnectorResourcesOneRequest) GetResourceID() string {
 	return o.ResourceID
 }
 
-func (o *ConnectorConnectorResourcesOneRequest) GetUnifiedAPI() *components.UnifiedAPIID {
+func (o *ConnectorConnectorResourcesOneRequest) GetUnifiedAPI() *components.UnifiedAPIParameter {
 	if o == nil {
 		return nil
 	}
