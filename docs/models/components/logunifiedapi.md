@@ -1,0 +1,19 @@
+# LogUnifiedApi
+
+Which Unified Api request was made to.
+
+## Example Usage
+
+```typescript
+import { LogUnifiedApi } from "@apideck/unify/models/components";
+
+let value: LogUnifiedApi = "vault";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
+```
+
+## Values
+
+```typescript
+"crm" | "lead" | "proxy" | "vault" | "accounting" | "hris" | "ats" | "ecommerce" | "issue-tracking" | "pos" | "file-storage" | "sms" | Unrecognized<string>
+```

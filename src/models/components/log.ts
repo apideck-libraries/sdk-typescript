@@ -42,7 +42,7 @@ export type Service = {
 /**
  * Which Unified Api request was made to.
  */
-export const UnifiedApi = {
+export const LogUnifiedApi = {
   Crm: "crm",
   Lead: "lead",
   Proxy: "proxy",
@@ -59,7 +59,7 @@ export const UnifiedApi = {
 /**
  * Which Unified Api request was made to.
  */
-export type UnifiedApi = OpenEnum<typeof UnifiedApi>;
+export type LogUnifiedApi = OpenEnum<typeof LogUnifiedApi>;
 
 export type Log = {
   /**
@@ -145,7 +145,7 @@ export type Log = {
   /**
    * Which Unified Api request was made to.
    */
-  unifiedApi: UnifiedApi;
+  unifiedApi: LogUnifiedApi;
 };
 
 /** @internal */
@@ -186,11 +186,11 @@ export function serviceFromJSON(
 }
 
 /** @internal */
-export const UnifiedApi$inboundSchema: z.ZodType<
-  UnifiedApi,
+export const LogUnifiedApi$inboundSchema: z.ZodType<
+  LogUnifiedApi,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(UnifiedApi);
+> = openEnums.inboundSchema(LogUnifiedApi);
 
 /** @internal */
 export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z
@@ -215,7 +215,7 @@ export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z
     status_code: types.number(),
     success: types.boolean(),
     timestamp: types.string(),
-    unified_api: UnifiedApi$inboundSchema,
+    unified_api: LogUnifiedApi$inboundSchema,
   }).transform((v) => {
     return remap$(v, {
       "api_style": "apiStyle",
