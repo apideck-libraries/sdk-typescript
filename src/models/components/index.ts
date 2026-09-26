@@ -611,6 +611,7 @@ export * from "./timeoffrequestsfilter.js";
 export * from "./trackingcategory.js";
 export * from "./trackingitem.js";
 export * from "./unexpectederrorresponse.js";
+export * from "./unifiedapi.js";
 export * from "./unifiedapiid.js";
 export * from "./unifiedfile.js";
 export * from "./unifiedid.js";
