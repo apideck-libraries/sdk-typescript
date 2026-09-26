@@ -39,6 +39,8 @@ func (e JournalEntriesFilterScope) ToPointer() *JournalEntriesFilterScope {
 
 type JournalEntriesFilter struct {
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
+	// Journal entry number to search for
+	Number *string `queryParam:"name=number"`
 	// Return journal entries posted on or after this date (posting date, inclusive). Connectors without date-range support reject this filter with UnsupportedFiltersError.
 	StartDate *types.Date `queryParam:"name=start_date"`
 	// Return journal entries posted on or before this date (posting date, inclusive). Connectors without date-range support reject this filter with UnsupportedFiltersError.
@@ -66,6 +68,13 @@ func (o *JournalEntriesFilter) GetUpdatedSince() *time.Time {
 		return nil
 	}
 	return o.UpdatedSince
+}
+
+func (o *JournalEntriesFilter) GetNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Number
 }
 
 func (o *JournalEntriesFilter) GetStartDate() *types.Date {

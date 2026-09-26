@@ -1,19 +1,17 @@
 # UnifiedApi
 
-Which Unified Api request was made to.
+Name of Apideck Unified API
 
 ## Example Usage
 
 ```typescript
 import { UnifiedApi } from "@apideck/unify/models/components";
 
-let value: UnifiedApi = "vault";
-
-// Open enum: unrecognized values are captured as Unrecognized<string>
+let value: UnifiedApi = "crm";
 ```
 
 ## Values
 
 ```typescript
-"crm" | "lead" | "proxy" | "vault" | "accounting" | "hris" | "ats" | "ecommerce" | "issue-tracking" | "pos" | "file-storage" | "sms" | Unrecognized<string>
+"accounting" | "ats" | "calendar" | "crm" | "csp" | "customer-support" | "ecommerce" | "email" | "email-marketing" | "expense-management" | "file-storage" | "form" | "hris" | "lead" | "payroll" | "pos" | "procurement" | "project-management" | "script" | "sms" | "spreadsheet" | "subscription-analytics" | "team-messaging" | "issue-tracking" | "time-registration" | "transactional-email" | "vault" | "data-warehouse"
 ```
