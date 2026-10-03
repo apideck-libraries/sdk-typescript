@@ -38,6 +38,10 @@ export type JournalEntriesFilterScope = OpenEnum<
 export type JournalEntriesFilter = {
   updatedSince?: Date | undefined;
   /**
+   * Journal entry number to search for
+   */
+  number?: string | undefined;
+  /**
    * Return journal entries posted on or after this date (posting date, inclusive). Connectors without date-range support reject this filter with UnsupportedFiltersError.
    */
   startDate?: Date | undefined;
@@ -73,6 +77,7 @@ export const JournalEntriesFilterScope$outboundSchema: z.ZodType<
 /** @internal */
 export type JournalEntriesFilter$Outbound = {
   updated_since?: string | undefined;
+  number?: string | undefined;
   start_date?: string | undefined;
   end_date?: string | undefined;
   status?: string | undefined;
@@ -87,6 +92,7 @@ export const JournalEntriesFilter$outboundSchema: z.ZodType<
   JournalEntriesFilter
 > = z.object({
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  number: z.string().optional(),
   startDate: z.date().transform(v =>
     v.toISOString().slice(0, "YYYY-MM-DD".length)
   ).optional(),

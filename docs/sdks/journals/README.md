@@ -141,6 +141,13 @@ async function run() {
         displayId: "123456",
         accountNumber: "123465",
       },
+      clearingAccount: {
+        id: "123456",
+        type: "ledger_account",
+        code: "1100",
+        displayId: "123456",
+        accountNumber: "123465",
+      },
       blocked: false,
     },
   });
@@ -180,6 +187,13 @@ async function run() {
       currency: "USD",
       iban: "GB33BUKB20201555555555",
       defaultAccount: {
+        id: "123456",
+        type: "ledger_account",
+        code: "1100",
+        displayId: "123456",
+        accountNumber: "123465",
+      },
+      clearingAccount: {
         id: "123456",
         type: "ledger_account",
         code: "1100",
@@ -342,6 +356,7 @@ async function run() {
       currency: "USD",
       iban: "GB33BUKB20201555555555",
       defaultAccount: null,
+      clearingAccount: null,
       blocked: false,
     },
   });
@@ -382,6 +397,7 @@ async function run() {
       currency: "USD",
       iban: "GB33BUKB20201555555555",
       defaultAccount: null,
+      clearingAccount: null,
       blocked: false,
     },
   });

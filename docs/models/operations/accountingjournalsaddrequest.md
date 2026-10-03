@@ -23,6 +23,13 @@ let value: AccountingJournalsAddRequest = {
       displayId: "123456",
       accountNumber: "123465",
     },
+    clearingAccount: {
+      id: "123456",
+      type: "ledger_account",
+      code: "1100",
+      displayId: "123456",
+      accountNumber: "123465",
+    },
     blocked: false,
   },
 };

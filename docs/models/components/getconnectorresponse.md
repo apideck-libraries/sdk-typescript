@@ -108,6 +108,15 @@ let value: GetConnectorResponse = {
       subscriptionLevel: "integration",
       managedVia: "api",
     },
+    batchSupport: {
+      mode: "none",
+      resources: {
+        "key": {
+          mode: "native",
+          maxItems: 20,
+        },
+      },
+    },
     schemaSupport: {
       supported: true,
     },

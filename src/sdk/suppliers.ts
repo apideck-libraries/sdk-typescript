@@ -3,6 +3,7 @@
  */
 
 import { accountingSuppliersCreate } from "../funcs/accountingSuppliersCreate.js";
+import { accountingSuppliersCreateBatch } from "../funcs/accountingSuppliersCreateBatch.js";
 import { accountingSuppliersDelete } from "../funcs/accountingSuppliersDelete.js";
 import { accountingSuppliersGet } from "../funcs/accountingSuppliersGet.js";
 import { accountingSuppliersList } from "../funcs/accountingSuppliersList.js";
@@ -94,6 +95,23 @@ export class Suppliers extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.AccountingSuppliersDeleteResponse> {
     return unwrapAsync(accountingSuppliersDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Suppliers in batch
+   *
+   * @remarks
+   * Create multiple suppliers in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+   */
+  async createBatch(
+    request: operations.AccountingSuppliersBatchAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.AccountingSuppliersBatchAddResponse> {
+    return unwrapAsync(accountingSuppliersCreateBatch(
       this,
       request,
       options,

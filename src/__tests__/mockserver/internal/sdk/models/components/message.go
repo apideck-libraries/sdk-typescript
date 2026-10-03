@@ -86,21 +86,21 @@ func (o *Price) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	return o.Currency
 }
 
-// Error - The error returned if your message status is failed or undelivered.
-type Error struct {
+// MessageError - The error returned if your message status is failed or undelivered.
+type MessageError struct {
 	// The error_code provides more information about the failure. If the message was successful, this value is null
 	Code    *string `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
 }
 
-func (o *Error) GetCode() *string {
+func (o *MessageError) GetCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *Error) GetMessage() *string {
+func (o *MessageError) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
@@ -138,7 +138,7 @@ type Message struct {
 	// Price of the message.
 	Price *Price `json:"price,omitempty"`
 	// The error returned if your message status is failed or undelivered.
-	Error *Error `json:"error,omitempty"`
+	Error *MessageError `json:"error,omitempty"`
 	// The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
 	MessagingServiceID *string `json:"messaging_service_id,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
@@ -271,7 +271,7 @@ func (o *Message) GetPrice() *Price {
 	return o.Price
 }
 
-func (o *Message) GetError() *Error {
+func (o *Message) GetError() *MessageError {
 	if o == nil {
 		return nil
 	}

@@ -175,6 +175,7 @@ run();
 * [get](docs/sdks/billcreditnotes/README.md#get) - Get Bill Credit Note
 * [update](docs/sdks/billcreditnotes/README.md#update) - Update Bill Credit Note
 * [delete](docs/sdks/billcreditnotes/README.md#delete) - Delete Bill Credit Note
+* [createBatch](docs/sdks/billcreditnotes/README.md#createbatch) - Create Bill Credit Notes in batch
 
 ### [Accounting.BillPayments](docs/sdks/billpayments/README.md)
 
@@ -183,6 +184,7 @@ run();
 * [get](docs/sdks/billpayments/README.md#get) - Get Bill Payment
 * [update](docs/sdks/billpayments/README.md#update) - Update Bill Payment
 * [delete](docs/sdks/billpayments/README.md#delete) - Delete Bill Payment
+* [createBatch](docs/sdks/billpayments/README.md#createbatch) - Create Bill Payments in batch
 
 ### [Accounting.Bills](docs/sdks/bills/README.md)
 
@@ -191,6 +193,7 @@ run();
 * [get](docs/sdks/bills/README.md#get) - Get Bill
 * [update](docs/sdks/bills/README.md#update) - Update Bill
 * [delete](docs/sdks/bills/README.md#delete) - Delete Bill
+* [createBatch](docs/sdks/bills/README.md#createbatch) - Create Bills in batch
 
 ### [Accounting.Categories](docs/sdks/categories/README.md)
 
@@ -212,6 +215,7 @@ run();
 * [get](docs/sdks/creditnotes/README.md#get) - Get Credit Note
 * [update](docs/sdks/creditnotes/README.md#update) - Update Credit Note
 * [delete](docs/sdks/creditnotes/README.md#delete) - Delete Credit Note
+* [createBatch](docs/sdks/creditnotes/README.md#createbatch) - Create Credit Notes in batch
 
 ### [Accounting.Customers](docs/sdks/customers/README.md)
 
@@ -220,6 +224,7 @@ run();
 * [get](docs/sdks/customers/README.md#get) - Get Customer
 * [update](docs/sdks/customers/README.md#update) - Update Customer
 * [delete](docs/sdks/customers/README.md#delete) - Delete Customer
+* [createBatch](docs/sdks/customers/README.md#createbatch) - Create Customers in batch
 
 ### [Accounting.Departments](docs/sdks/departments/README.md)
 
@@ -286,6 +291,7 @@ run();
 * [get](docs/sdks/invoices/README.md#get) - Get Invoice
 * [update](docs/sdks/invoices/README.md#update) - Update Invoice
 * [delete](docs/sdks/invoices/README.md#delete) - Delete Invoice
+* [createBatch](docs/sdks/invoices/README.md#createbatch) - Create Invoices in batch
 
 ### [Accounting.JournalEntries](docs/sdks/journalentries/README.md)
 
@@ -294,6 +300,7 @@ run();
 * [get](docs/sdks/journalentries/README.md#get) - Get Journal Entry
 * [update](docs/sdks/journalentries/README.md#update) - Update Journal Entry
 * [delete](docs/sdks/journalentries/README.md#delete) - Delete Journal Entry
+* [createBatch](docs/sdks/journalentries/README.md#createbatch) - Create Journal Entries in batch
 
 ### [Accounting.Journals](docs/sdks/journals/README.md)
 
@@ -310,6 +317,7 @@ run();
 * [get](docs/sdks/ledgeraccounts/README.md#get) - Get Ledger Account
 * [update](docs/sdks/ledgeraccounts/README.md#update) - Update Ledger Account
 * [delete](docs/sdks/ledgeraccounts/README.md#delete) - Delete Ledger Account
+* [createBatch](docs/sdks/ledgeraccounts/README.md#createbatch) - Create Ledger Accounts in batch
 
 ### [Accounting.Locations](docs/sdks/locations/README.md)
 
@@ -334,6 +342,7 @@ run();
 * [get](docs/sdks/payments/README.md#get) - Get Payment
 * [update](docs/sdks/payments/README.md#update) - Update Payment
 * [delete](docs/sdks/payments/README.md#delete) - Delete Payment
+* [createBatch](docs/sdks/payments/README.md#createbatch) - Create Payments in batch
 
 ### [Accounting.ProfitAndLoss](docs/sdks/profitandloss/README.md)
 
@@ -394,6 +403,7 @@ run();
 * [get](docs/sdks/suppliers/README.md#get) - Get Supplier
 * [update](docs/sdks/suppliers/README.md#update) - Update Supplier
 * [delete](docs/sdks/suppliers/README.md#delete) - Delete Supplier
+* [createBatch](docs/sdks/suppliers/README.md#createbatch) - Create Suppliers in batch
 
 ### [Accounting.TaxRates](docs/sdks/taxrates/README.md)
 
@@ -410,6 +420,7 @@ run();
 * [get](docs/sdks/trackingcategories/README.md#get) - Get Tracking Category
 * [update](docs/sdks/trackingcategories/README.md#update) - Update Tracking Category
 * [delete](docs/sdks/trackingcategories/README.md#delete) - Delete Tracking Category
+* [createBatch](docs/sdks/trackingcategories/README.md#createbatch) - Create Tracking Categories in batch
 
 ### [Ats.Applicants](docs/sdks/applicants/README.md)
 
@@ -829,16 +840,19 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingBankFeedStatementsList`](docs/sdks/bankfeedstatements/README.md#list) - List Bank Feed Statements
 - [`accountingBankFeedStatementsUpdate`](docs/sdks/bankfeedstatements/README.md#update) - Update Bank Feed Statement
 - [`accountingBillCreditNotesCreate`](docs/sdks/billcreditnotes/README.md#create) - Create Bill Credit Note
+- [`accountingBillCreditNotesCreateBatch`](docs/sdks/billcreditnotes/README.md#createbatch) - Create Bill Credit Notes in batch
 - [`accountingBillCreditNotesDelete`](docs/sdks/billcreditnotes/README.md#delete) - Delete Bill Credit Note
 - [`accountingBillCreditNotesGet`](docs/sdks/billcreditnotes/README.md#get) - Get Bill Credit Note
 - [`accountingBillCreditNotesList`](docs/sdks/billcreditnotes/README.md#list) - List Bill Credit Notes
 - [`accountingBillCreditNotesUpdate`](docs/sdks/billcreditnotes/README.md#update) - Update Bill Credit Note
 - [`accountingBillPaymentsCreate`](docs/sdks/billpayments/README.md#create) - Create Bill Payment
+- [`accountingBillPaymentsCreateBatch`](docs/sdks/billpayments/README.md#createbatch) - Create Bill Payments in batch
 - [`accountingBillPaymentsDelete`](docs/sdks/billpayments/README.md#delete) - Delete Bill Payment
 - [`accountingBillPaymentsGet`](docs/sdks/billpayments/README.md#get) - Get Bill Payment
 - [`accountingBillPaymentsList`](docs/sdks/billpayments/README.md#list) - List Bill Payments
 - [`accountingBillPaymentsUpdate`](docs/sdks/billpayments/README.md#update) - Update Bill Payment
 - [`accountingBillsCreate`](docs/sdks/bills/README.md#create) - Create Bill
+- [`accountingBillsCreateBatch`](docs/sdks/bills/README.md#createbatch) - Create Bills in batch
 - [`accountingBillsDelete`](docs/sdks/bills/README.md#delete) - Delete Bill
 - [`accountingBillsGet`](docs/sdks/bills/README.md#get) - Get Bill
 - [`accountingBillsList`](docs/sdks/bills/README.md#list) - List Bills
@@ -848,11 +862,13 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingCompaniesList`](docs/sdks/companies/README.md#list) - List companies
 - [`accountingCompanyInfoGet`](docs/sdks/companyinfo/README.md#get) - Get company info
 - [`accountingCreditNotesCreate`](docs/sdks/creditnotes/README.md#create) - Create Credit Note
+- [`accountingCreditNotesCreateBatch`](docs/sdks/creditnotes/README.md#createbatch) - Create Credit Notes in batch
 - [`accountingCreditNotesDelete`](docs/sdks/creditnotes/README.md#delete) - Delete Credit Note
 - [`accountingCreditNotesGet`](docs/sdks/creditnotes/README.md#get) - Get Credit Note
 - [`accountingCreditNotesList`](docs/sdks/creditnotes/README.md#list) - List Credit Notes
 - [`accountingCreditNotesUpdate`](docs/sdks/creditnotes/README.md#update) - Update Credit Note
 - [`accountingCustomersCreate`](docs/sdks/customers/README.md#create) - Create Customer
+- [`accountingCustomersCreateBatch`](docs/sdks/customers/README.md#createbatch) - Create Customers in batch
 - [`accountingCustomersDelete`](docs/sdks/customers/README.md#delete) - Delete Customer
 - [`accountingCustomersGet`](docs/sdks/customers/README.md#get) - Get Customer
 - [`accountingCustomersList`](docs/sdks/customers/README.md#list) - List Customers
@@ -892,11 +908,13 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingInvoiceItemsList`](docs/sdks/invoiceitems/README.md#list) - List Invoice Items
 - [`accountingInvoiceItemsUpdate`](docs/sdks/invoiceitems/README.md#update) - Update Invoice Item
 - [`accountingInvoicesCreate`](docs/sdks/invoices/README.md#create) - Create Invoice
+- [`accountingInvoicesCreateBatch`](docs/sdks/invoices/README.md#createbatch) - Create Invoices in batch
 - [`accountingInvoicesDelete`](docs/sdks/invoices/README.md#delete) - Delete Invoice
 - [`accountingInvoicesGet`](docs/sdks/invoices/README.md#get) - Get Invoice
 - [`accountingInvoicesList`](docs/sdks/invoices/README.md#list) - List Invoices
 - [`accountingInvoicesUpdate`](docs/sdks/invoices/README.md#update) - Update Invoice
 - [`accountingJournalEntriesCreate`](docs/sdks/journalentries/README.md#create) - Create Journal Entry
+- [`accountingJournalEntriesCreateBatch`](docs/sdks/journalentries/README.md#createbatch) - Create Journal Entries in batch
 - [`accountingJournalEntriesDelete`](docs/sdks/journalentries/README.md#delete) - Delete Journal Entry
 - [`accountingJournalEntriesGet`](docs/sdks/journalentries/README.md#get) - Get Journal Entry
 - [`accountingJournalEntriesList`](docs/sdks/journalentries/README.md#list) - List Journal Entries
@@ -907,6 +925,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingJournalsList`](docs/sdks/journals/README.md#list) - List Journals
 - [`accountingJournalsUpdate`](docs/sdks/journals/README.md#update) - Update Journal
 - [`accountingLedgerAccountsCreate`](docs/sdks/ledgeraccounts/README.md#create) - Create Ledger Account
+- [`accountingLedgerAccountsCreateBatch`](docs/sdks/ledgeraccounts/README.md#createbatch) - Create Ledger Accounts in batch
 - [`accountingLedgerAccountsDelete`](docs/sdks/ledgeraccounts/README.md#delete) - Delete Ledger Account
 - [`accountingLedgerAccountsGet`](docs/sdks/ledgeraccounts/README.md#get) - Get Ledger Account
 - [`accountingLedgerAccountsList`](docs/sdks/ledgeraccounts/README.md#list) - List Ledger Accounts
@@ -922,6 +941,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingPaymentMethodsList`](docs/sdks/paymentmethods/README.md#list) - List Payment Methods
 - [`accountingPaymentMethodsUpdate`](docs/sdks/paymentmethods/README.md#update) - Update Payment Method
 - [`accountingPaymentsCreate`](docs/sdks/payments/README.md#create) - Create Payment
+- [`accountingPaymentsCreateBatch`](docs/sdks/payments/README.md#createbatch) - Create Payments in batch
 - [`accountingPaymentsDelete`](docs/sdks/payments/README.md#delete) - Delete Payment
 - [`accountingPaymentsGet`](docs/sdks/payments/README.md#get) - Get Payment
 - [`accountingPaymentsList`](docs/sdks/payments/README.md#list) - List Payments
@@ -958,6 +978,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingSubsidiariesList`](docs/sdks/subsidiaries/README.md#list) - List Subsidiaries
 - [`accountingSubsidiariesUpdate`](docs/sdks/subsidiaries/README.md#update) - Update Subsidiary
 - [`accountingSuppliersCreate`](docs/sdks/suppliers/README.md#create) - Create Supplier
+- [`accountingSuppliersCreateBatch`](docs/sdks/suppliers/README.md#createbatch) - Create Suppliers in batch
 - [`accountingSuppliersDelete`](docs/sdks/suppliers/README.md#delete) - Delete Supplier
 - [`accountingSuppliersGet`](docs/sdks/suppliers/README.md#get) - Get Supplier
 - [`accountingSuppliersList`](docs/sdks/suppliers/README.md#list) - List Suppliers
@@ -968,6 +989,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingTaxRatesList`](docs/sdks/taxrates/README.md#list) - List Tax Rates
 - [`accountingTaxRatesUpdate`](docs/sdks/taxrates/README.md#update) - Update Tax Rate
 - [`accountingTrackingCategoriesCreate`](docs/sdks/trackingcategories/README.md#create) - Create Tracking Category
+- [`accountingTrackingCategoriesCreateBatch`](docs/sdks/trackingcategories/README.md#createbatch) - Create Tracking Categories in batch
 - [`accountingTrackingCategoriesDelete`](docs/sdks/trackingcategories/README.md#delete) - Delete Tracking Category
 - [`accountingTrackingCategoriesGet`](docs/sdks/trackingcategories/README.md#get) - Get Tracking Category
 - [`accountingTrackingCategoriesList`](docs/sdks/trackingcategories/README.md#list) - List Tracking Categories
@@ -1451,8 +1473,8 @@ run();
 
 
 **Inherit from [`ApideckError`](./src/models/errors/apideckerror.ts)**:
-* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 363 methods.*
-* [`ConflictResponse`](./src/models/errors/conflictresponse.ts): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 363 methods.*
+* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 374 methods.*
+* [`ConflictResponse`](./src/models/errors/conflictresponse.ts): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 374 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>

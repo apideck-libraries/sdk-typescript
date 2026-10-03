@@ -3,6 +3,7 @@
  */
 
 import { accountingPaymentsCreate } from "../funcs/accountingPaymentsCreate.js";
+import { accountingPaymentsCreateBatch } from "../funcs/accountingPaymentsCreateBatch.js";
 import { accountingPaymentsDelete } from "../funcs/accountingPaymentsDelete.js";
 import { accountingPaymentsGet } from "../funcs/accountingPaymentsGet.js";
 import { accountingPaymentsList } from "../funcs/accountingPaymentsList.js";
@@ -94,6 +95,23 @@ export class Payments extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.AccountingPaymentsDeleteResponse> {
     return unwrapAsync(accountingPaymentsDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Payments in batch
+   *
+   * @remarks
+   * Create multiple payments in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+   */
+  async createBatch(
+    request: operations.AccountingPaymentsBatchAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.AccountingPaymentsBatchAddResponse> {
+    return unwrapAsync(accountingPaymentsCreateBatch(
       this,
       request,
       options,

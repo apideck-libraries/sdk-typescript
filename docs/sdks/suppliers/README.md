@@ -9,6 +9,7 @@
 * [get](#get) - Get Supplier
 * [update](#update) - Update Supplier
 * [delete](#delete) - Delete Supplier
+* [createBatch](#createbatch) - Create Suppliers in batch
 
 ## list
 
@@ -1066,6 +1067,406 @@ run();
 ### Response
 
 **Promise\<[operations.AccountingSuppliersDeleteResponse](../../models/operations/accountingsuppliersdeleteresponse.md)\>**
+
+### Errors
+
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| errors.BadRequestResponse      | 400                            | application/json               |
+| errors.UnauthorizedResponse    | 401                            | application/json               |
+| errors.PaymentRequiredResponse | 402                            | application/json               |
+| errors.NotFoundResponse        | 404                            | application/json               |
+| errors.UnprocessableResponse   | 422                            | application/json               |
+| errors.APIError                | 4XX, 5XX                       | \*/\*                          |
+
+## createBatch
+
+Create multiple suppliers in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="accounting.suppliersBatchAdd" method="post" path="/accounting/suppliers/batch" -->
+```typescript
+import { Apideck } from "@apideck/unify";
+
+const apideck = new Apideck({
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
+});
+
+async function run() {
+  const result = await apideck.accounting.suppliers.createBatch({
+    serviceId: "salesforce",
+    companyId: "12345",
+    batchSuppliersRequest: {
+      items: [
+        {
+          ref: "item-1",
+          data: {
+            displayId: "EMP00101",
+            displayName: "Windsurf Shop",
+            companyName: "SpaceX",
+            companyId: "12345",
+            subsidiary: {
+              displayId: "123456",
+              name: "Acme Inc.",
+            },
+            supplierCategory: "Insurance",
+            title: "CEO",
+            firstName: "Elon",
+            middleName: "D.",
+            lastName: "Musk",
+            suffix: "Jr.",
+            individual: true,
+            addresses: [
+              {
+                id: "123",
+                type: "primary",
+                string: "25 Spring Street, Blackburn, VIC 3130",
+                name: "HQ US",
+                line1: "Main street",
+                line2: "apt #",
+                line3: "Suite #",
+                line4: "delivery instructions",
+                line5: "Attention: Finance Dept",
+                streetNumber: "25",
+                city: "San Francisco",
+                state: "CA",
+                postalCode: "94104",
+                country: "US",
+                latitude: "40.759211",
+                longitude: "-73.984638",
+                county: "Santa Clara",
+                contactName: "Elon Musk",
+                salutation: "Mr",
+                phoneNumber: "111-111-1111",
+                fax: "122-111-1111",
+                email: "elon@musk.com",
+                website: "https://elonmusk.com",
+                notes: "Address notes or delivery instructions.",
+                rowVersion: "1-12345",
+              },
+            ],
+            phoneNumbers: [
+              {
+                id: "12345",
+                countryCode: "1",
+                areaCode: "323",
+                number: "111-111-1111",
+                extension: "105",
+                type: "primary",
+              },
+            ],
+            emails: [
+              {
+                id: "123",
+                email: "elon@musk.com",
+                type: "primary",
+              },
+            ],
+            websites: [
+              {
+                id: "12345",
+                url: "http://example.com",
+                type: "primary",
+              },
+            ],
+            bankAccounts: [
+              {
+                bankName: "Chase Bank",
+                accountNumber: "123465",
+                accountName: "Main Operating Account",
+                accountType: "credit_card",
+                iban: "GB33BUKB20201555555555",
+                bic: "CHASUS33",
+                routingNumber: "021000021",
+                bsbNumber: "062-001",
+                branchIdentifier: "001",
+                bankCode: "BNH",
+                currency: "USD",
+                country: "US",
+              },
+            ],
+            notes: "Some notes about this supplier",
+            taxRate: {
+              id: "123456",
+              code: "N-T",
+              rate: 10,
+            },
+            taxNumber: "US123945459",
+            taxable: true,
+            currency: "USD",
+            account: {
+              id: "123456",
+              name: "Bank account",
+              nominalCode: "N091",
+              code: "453",
+              parentId: "123456",
+              displayId: "123456",
+            },
+            status: "active",
+            paymentMethod: "cash",
+            terms: "Net 30 days",
+            termsId: "12345",
+            channel: "email",
+            issuedMethod: "Email",
+            issuedEmail: "john.doe@example.com",
+            customFields: [
+              {
+                id: "2389328923893298",
+                name: "employee_level",
+                refName: "Marketing",
+                description: "Employee Level",
+                value: "Uses Salesforce and Marketo",
+              },
+            ],
+            taxDetails: [
+              {
+                type: "GST on Purchases",
+                number: "123456",
+                isTransactionTax: true,
+                isPrimaryTax: true,
+              },
+            ],
+            taxStatusDetails: [
+              {
+                country: "US",
+                transactionTaxStatus: "taxable",
+              },
+            ],
+            rowVersion: "1-12345",
+            passThrough: [
+              {
+                serviceId: "<id>",
+                extendPaths: [
+                  {
+                    path: "$.nested.property",
+                    value: {
+                      "TaxClassificationRef": {
+                        "value": "EUC-99990201-V1-00020000",
+                      },
+                    },
+                  },
+                ],
+              },
+            ],
+            subsidiaryId: "12345",
+            integrationSystemId: "12345",
+          },
+        },
+      ],
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingSuppliersCreateBatch } from "@apideck/unify/funcs/accountingSuppliersCreateBatch.js";
+
+// Use `ApideckCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const apideck = new ApideckCore({
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
+});
+
+async function run() {
+  const res = await accountingSuppliersCreateBatch(apideck, {
+    serviceId: "salesforce",
+    companyId: "12345",
+    batchSuppliersRequest: {
+      items: [
+        {
+          ref: "item-1",
+          data: {
+            displayId: "EMP00101",
+            displayName: "Windsurf Shop",
+            companyName: "SpaceX",
+            companyId: "12345",
+            subsidiary: {
+              displayId: "123456",
+              name: "Acme Inc.",
+            },
+            supplierCategory: "Insurance",
+            title: "CEO",
+            firstName: "Elon",
+            middleName: "D.",
+            lastName: "Musk",
+            suffix: "Jr.",
+            individual: true,
+            addresses: [
+              {
+                id: "123",
+                type: "primary",
+                string: "25 Spring Street, Blackburn, VIC 3130",
+                name: "HQ US",
+                line1: "Main street",
+                line2: "apt #",
+                line3: "Suite #",
+                line4: "delivery instructions",
+                line5: "Attention: Finance Dept",
+                streetNumber: "25",
+                city: "San Francisco",
+                state: "CA",
+                postalCode: "94104",
+                country: "US",
+                latitude: "40.759211",
+                longitude: "-73.984638",
+                county: "Santa Clara",
+                contactName: "Elon Musk",
+                salutation: "Mr",
+                phoneNumber: "111-111-1111",
+                fax: "122-111-1111",
+                email: "elon@musk.com",
+                website: "https://elonmusk.com",
+                notes: "Address notes or delivery instructions.",
+                rowVersion: "1-12345",
+              },
+            ],
+            phoneNumbers: [
+              {
+                id: "12345",
+                countryCode: "1",
+                areaCode: "323",
+                number: "111-111-1111",
+                extension: "105",
+                type: "primary",
+              },
+            ],
+            emails: [
+              {
+                id: "123",
+                email: "elon@musk.com",
+                type: "primary",
+              },
+            ],
+            websites: [
+              {
+                id: "12345",
+                url: "http://example.com",
+                type: "primary",
+              },
+            ],
+            bankAccounts: [
+              {
+                bankName: "Chase Bank",
+                accountNumber: "123465",
+                accountName: "Main Operating Account",
+                accountType: "credit_card",
+                iban: "GB33BUKB20201555555555",
+                bic: "CHASUS33",
+                routingNumber: "021000021",
+                bsbNumber: "062-001",
+                branchIdentifier: "001",
+                bankCode: "BNH",
+                currency: "USD",
+                country: "US",
+              },
+            ],
+            notes: "Some notes about this supplier",
+            taxRate: {
+              id: "123456",
+              code: "N-T",
+              rate: 10,
+            },
+            taxNumber: "US123945459",
+            taxable: true,
+            currency: "USD",
+            account: {
+              id: "123456",
+              name: "Bank account",
+              nominalCode: "N091",
+              code: "453",
+              parentId: "123456",
+              displayId: "123456",
+            },
+            status: "active",
+            paymentMethod: "cash",
+            terms: "Net 30 days",
+            termsId: "12345",
+            channel: "email",
+            issuedMethod: "Email",
+            issuedEmail: "john.doe@example.com",
+            customFields: [
+              {
+                id: "2389328923893298",
+                name: "employee_level",
+                refName: "Marketing",
+                description: "Employee Level",
+                value: "Uses Salesforce and Marketo",
+              },
+            ],
+            taxDetails: [
+              {
+                type: "GST on Purchases",
+                number: "123456",
+                isTransactionTax: true,
+                isPrimaryTax: true,
+              },
+            ],
+            taxStatusDetails: [
+              {
+                country: "US",
+                transactionTaxStatus: "taxable",
+              },
+            ],
+            rowVersion: "1-12345",
+            passThrough: [
+              {
+                serviceId: "<id>",
+                extendPaths: [
+                  {
+                    path: "$.nested.property",
+                    value: {
+                      "TaxClassificationRef": {
+                        "value": "EUC-99990201-V1-00020000",
+                      },
+                    },
+                  },
+                ],
+              },
+            ],
+            subsidiaryId: "12345",
+            integrationSystemId: "12345",
+          },
+        },
+      ],
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("accountingSuppliersCreateBatch failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.AccountingSuppliersBatchAddRequest](../../models/operations/accountingsuppliersbatchaddrequest.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.AccountingSuppliersBatchAddResponse](../../models/operations/accountingsuppliersbatchaddresponse.md)\>**
 
 ### Errors
 
