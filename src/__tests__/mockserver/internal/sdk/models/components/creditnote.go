@@ -8,32 +8,32 @@ import (
 	"time"
 )
 
-// CreditNoteStatus - Status of credit notes
-type CreditNoteStatus string
+// CreditNoteCreditNoteStatus - Status of credit notes
+type CreditNoteCreditNoteStatus string
 
 const (
-	CreditNoteStatusDraft         CreditNoteStatus = "draft"
-	CreditNoteStatusAuthorised    CreditNoteStatus = "authorised"
-	CreditNoteStatusPosted        CreditNoteStatus = "posted"
-	CreditNoteStatusPartiallyPaid CreditNoteStatus = "partially_paid"
-	CreditNoteStatusPaid          CreditNoteStatus = "paid"
-	CreditNoteStatusVoided        CreditNoteStatus = "voided"
-	CreditNoteStatusDeleted       CreditNoteStatus = "deleted"
+	CreditNoteCreditNoteStatusDraft         CreditNoteCreditNoteStatus = "draft"
+	CreditNoteCreditNoteStatusAuthorised    CreditNoteCreditNoteStatus = "authorised"
+	CreditNoteCreditNoteStatusPosted        CreditNoteCreditNoteStatus = "posted"
+	CreditNoteCreditNoteStatusPartiallyPaid CreditNoteCreditNoteStatus = "partially_paid"
+	CreditNoteCreditNoteStatusPaid          CreditNoteCreditNoteStatus = "paid"
+	CreditNoteCreditNoteStatusVoided        CreditNoteCreditNoteStatus = "voided"
+	CreditNoteCreditNoteStatusDeleted       CreditNoteCreditNoteStatus = "deleted"
 )
 
-func (e CreditNoteStatus) ToPointer() *CreditNoteStatus {
+func (e CreditNoteCreditNoteStatus) ToPointer() *CreditNoteCreditNoteStatus {
 	return &e
 }
 
-// CreditNoteType - Whether this credit note reduces an amount owed by a customer (accounts receivable) or owed to a supplier (accounts payable). `accounts_payable_credit` support is connector-specific — most connectors only expose the accounts-receivable side. Check the connector's gotchas for known deviations.
-type CreditNoteType string
+// CreditNoteCreditNoteType - Whether this credit note reduces an amount owed by a customer (accounts receivable) or owed to a supplier (accounts payable). `accounts_payable_credit` support is connector-specific — most connectors only expose the accounts-receivable side. Check the connector's gotchas for known deviations.
+type CreditNoteCreditNoteType string
 
 const (
-	CreditNoteTypeAccountsReceivableCredit CreditNoteType = "accounts_receivable_credit"
-	CreditNoteTypeAccountsPayableCredit    CreditNoteType = "accounts_payable_credit"
+	CreditNoteCreditNoteTypeAccountsReceivableCredit CreditNoteCreditNoteType = "accounts_receivable_credit"
+	CreditNoteCreditNoteTypeAccountsPayableCredit    CreditNoteCreditNoteType = "accounts_payable_credit"
 )
 
-func (e CreditNoteType) ToPointer() *CreditNoteType {
+func (e CreditNoteCreditNoteType) ToPointer() *CreditNoteCreditNoteType {
 	return &e
 }
 
@@ -70,7 +70,7 @@ type CreditNote struct {
 	// Indicates the total credit amount still available to apply towards the payment.
 	RemainingCredit optionalnullable.OptionalNullable[float64] `json:"remaining_credit,omitempty"`
 	// Status of credit notes
-	Status *CreditNoteStatus `json:"status,omitempty"`
+	Status *CreditNoteCreditNoteStatus `json:"status,omitempty"`
 	// Optional reference message ie: Debit remittance detail.
 	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Date credit note issued - YYYY:MM::DDThh:mm:ss.sTZD
@@ -78,7 +78,7 @@ type CreditNote struct {
 	// Date credit note paid - YYYY:MM::DDThh:mm:ss.sTZD
 	DatePaid optionalnullable.OptionalNullable[time.Time] `json:"date_paid,omitempty"`
 	// Whether this credit note reduces an amount owed by a customer (accounts receivable) or owed to a supplier (accounts payable). `accounts_payable_credit` support is connector-specific — most connectors only expose the accounts-receivable side. Check the connector's gotchas for known deviations.
-	Type        *CreditNoteType                                        `json:"type,omitempty"`
+	Type        *CreditNoteCreditNoteType                              `json:"type,omitempty"`
 	Account     optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
 	LineItems   []InvoiceLineItem                                      `json:"line_items,omitempty"`
 	Allocations []Allocation                                           `json:"allocations,omitempty"`
@@ -232,7 +232,7 @@ func (o *CreditNote) GetRemainingCredit() optionalnullable.OptionalNullable[floa
 	return o.RemainingCredit
 }
 
-func (o *CreditNote) GetStatus() *CreditNoteStatus {
+func (o *CreditNote) GetStatus() *CreditNoteCreditNoteStatus {
 	if o == nil {
 		return nil
 	}
@@ -260,7 +260,7 @@ func (o *CreditNote) GetDatePaid() optionalnullable.OptionalNullable[time.Time] 
 	return o.DatePaid
 }
 
-func (o *CreditNote) GetType() *CreditNoteType {
+func (o *CreditNote) GetType() *CreditNoteCreditNoteType {
 	if o == nil {
 		return nil
 	}
@@ -417,7 +417,7 @@ type CreditNoteInput struct {
 	// Indicates the total credit amount still available to apply towards the payment.
 	RemainingCredit optionalnullable.OptionalNullable[float64] `json:"remaining_credit,omitempty"`
 	// Status of credit notes
-	Status *CreditNoteStatus `json:"status,omitempty"`
+	Status *CreditNoteCreditNoteStatus `json:"status,omitempty"`
 	// Optional reference message ie: Debit remittance detail.
 	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Date credit note issued - YYYY:MM::DDThh:mm:ss.sTZD
@@ -425,7 +425,7 @@ type CreditNoteInput struct {
 	// Date credit note paid - YYYY:MM::DDThh:mm:ss.sTZD
 	DatePaid optionalnullable.OptionalNullable[time.Time] `json:"date_paid,omitempty"`
 	// Whether this credit note reduces an amount owed by a customer (accounts receivable) or owed to a supplier (accounts payable). `accounts_payable_credit` support is connector-specific — most connectors only expose the accounts-receivable side. Check the connector's gotchas for known deviations.
-	Type        *CreditNoteType                                        `json:"type,omitempty"`
+	Type        *CreditNoteCreditNoteType                              `json:"type,omitempty"`
 	Account     optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
 	LineItems   []InvoiceLineItemInput                                 `json:"line_items,omitempty"`
 	Allocations []AllocationInput                                      `json:"allocations,omitempty"`
@@ -562,7 +562,7 @@ func (o *CreditNoteInput) GetRemainingCredit() optionalnullable.OptionalNullable
 	return o.RemainingCredit
 }
 
-func (o *CreditNoteInput) GetStatus() *CreditNoteStatus {
+func (o *CreditNoteInput) GetStatus() *CreditNoteCreditNoteStatus {
 	if o == nil {
 		return nil
 	}
@@ -590,7 +590,7 @@ func (o *CreditNoteInput) GetDatePaid() optionalnullable.OptionalNullable[time.T
 	return o.DatePaid
 }
 
-func (o *CreditNoteInput) GetType() *CreditNoteType {
+func (o *CreditNoteInput) GetType() *CreditNoteCreditNoteType {
 	if o == nil {
 		return nil
 	}

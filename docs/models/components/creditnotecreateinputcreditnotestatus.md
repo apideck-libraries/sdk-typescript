@@ -1,0 +1,19 @@
+# CreditNoteCreateInputCreditNoteStatus
+
+Status of credit notes
+
+## Example Usage
+
+```typescript
+import { CreditNoteCreateInputCreditNoteStatus } from "@apideck/unify/models/components";
+
+let value: CreditNoteCreateInputCreditNoteStatus = "authorised";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
+```
+
+## Values
+
+```typescript
+"draft" | "authorised" | "posted" | "partially_paid" | "paid" | "voided" | "deleted" | Unrecognized<string>
+```
