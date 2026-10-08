@@ -3,6 +3,7 @@
  */
 
 import { accountingInvoicesCreate } from "../funcs/accountingInvoicesCreate.js";
+import { accountingInvoicesCreateBatch } from "../funcs/accountingInvoicesCreateBatch.js";
 import { accountingInvoicesDelete } from "../funcs/accountingInvoicesDelete.js";
 import { accountingInvoicesGet } from "../funcs/accountingInvoicesGet.js";
 import { accountingInvoicesList } from "../funcs/accountingInvoicesList.js";
@@ -94,6 +95,23 @@ export class Invoices extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.AccountingInvoicesDeleteResponse> {
     return unwrapAsync(accountingInvoicesDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Invoices in batch
+   *
+   * @remarks
+   * Create multiple invoices in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+   */
+  async createBatch(
+    request: operations.AccountingInvoicesBatchAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.AccountingInvoicesBatchAddResponse> {
+    return unwrapAsync(accountingInvoicesCreateBatch(
       this,
       request,
       options,

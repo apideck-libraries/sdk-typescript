@@ -3,6 +3,7 @@
  */
 
 import { accountingBillCreditNotesCreate } from "../funcs/accountingBillCreditNotesCreate.js";
+import { accountingBillCreditNotesCreateBatch } from "../funcs/accountingBillCreditNotesCreateBatch.js";
 import { accountingBillCreditNotesDelete } from "../funcs/accountingBillCreditNotesDelete.js";
 import { accountingBillCreditNotesGet } from "../funcs/accountingBillCreditNotesGet.js";
 import { accountingBillCreditNotesList } from "../funcs/accountingBillCreditNotesList.js";
@@ -97,6 +98,23 @@ export class BillCreditNotes extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.AccountingBillCreditNotesDeleteResponse> {
     return unwrapAsync(accountingBillCreditNotesDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Bill Credit Notes in batch
+   *
+   * @remarks
+   * Create multiple bill credit notes in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+   */
+  async createBatch(
+    request: operations.AccountingBillCreditNotesBatchAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.AccountingBillCreditNotesBatchAddResponse> {
+    return unwrapAsync(accountingBillCreditNotesCreateBatch(
       this,
       request,
       options,

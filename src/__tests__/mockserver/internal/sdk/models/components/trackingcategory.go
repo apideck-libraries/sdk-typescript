@@ -8,15 +8,15 @@ import (
 	"time"
 )
 
-// TrackingCategoryStatus - Based on the status some functionality is enabled or disabled.
-type TrackingCategoryStatus string
+// TrackingCategoryTrackingCategoryStatus - Based on the status some functionality is enabled or disabled.
+type TrackingCategoryTrackingCategoryStatus string
 
 const (
-	TrackingCategoryStatusActive   TrackingCategoryStatus = "active"
-	TrackingCategoryStatusInactive TrackingCategoryStatus = "inactive"
+	TrackingCategoryTrackingCategoryStatusActive   TrackingCategoryTrackingCategoryStatus = "active"
+	TrackingCategoryTrackingCategoryStatusInactive TrackingCategoryTrackingCategoryStatus = "inactive"
 )
 
-func (e TrackingCategoryStatus) ToPointer() *TrackingCategoryStatus {
+func (e TrackingCategoryTrackingCategoryStatus) ToPointer() *TrackingCategoryTrackingCategoryStatus {
 	return &e
 }
 
@@ -44,7 +44,7 @@ type TrackingCategory struct {
 	// The code of the tracking category.
 	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// Based on the status some functionality is enabled or disabled.
-	Status *TrackingCategoryStatus `json:"status,omitempty"`
+	Status *TrackingCategoryTrackingCategoryStatus `json:"status,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -109,7 +109,7 @@ func (o *TrackingCategory) GetCode() optionalnullable.OptionalNullable[string] {
 	return o.Code
 }
 
-func (o *TrackingCategory) GetStatus() *TrackingCategoryStatus {
+func (o *TrackingCategory) GetStatus() *TrackingCategoryTrackingCategoryStatus {
 	if o == nil {
 		return nil
 	}
@@ -182,7 +182,7 @@ type TrackingCategoryInput struct {
 	// The code of the tracking category.
 	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// Based on the status some functionality is enabled or disabled.
-	Status *TrackingCategoryStatus `json:"status,omitempty"`
+	Status *TrackingCategoryTrackingCategoryStatus `json:"status,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -219,7 +219,7 @@ func (o *TrackingCategoryInput) GetCode() optionalnullable.OptionalNullable[stri
 	return o.Code
 }
 
-func (o *TrackingCategoryInput) GetStatus() *TrackingCategoryStatus {
+func (o *TrackingCategoryInput) GetStatus() *TrackingCategoryTrackingCategoryStatus {
 	if o == nil {
 		return nil
 	}

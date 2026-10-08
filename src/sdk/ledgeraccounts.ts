@@ -3,6 +3,7 @@
  */
 
 import { accountingLedgerAccountsCreate } from "../funcs/accountingLedgerAccountsCreate.js";
+import { accountingLedgerAccountsCreateBatch } from "../funcs/accountingLedgerAccountsCreateBatch.js";
 import { accountingLedgerAccountsDelete } from "../funcs/accountingLedgerAccountsDelete.js";
 import { accountingLedgerAccountsGet } from "../funcs/accountingLedgerAccountsGet.js";
 import { accountingLedgerAccountsList } from "../funcs/accountingLedgerAccountsList.js";
@@ -97,6 +98,23 @@ export class LedgerAccounts extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.AccountingLedgerAccountsDeleteResponse> {
     return unwrapAsync(accountingLedgerAccountsDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Ledger Accounts in batch
+   *
+   * @remarks
+   * Create multiple ledger accounts in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+   */
+  async createBatch(
+    request: operations.AccountingLedgerAccountsBatchAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.AccountingLedgerAccountsBatchAddResponse> {
+    return unwrapAsync(accountingLedgerAccountsCreateBatch(
       this,
       request,
       options,

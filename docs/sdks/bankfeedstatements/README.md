@@ -30,6 +30,9 @@ async function run() {
   const result = await apideck.accounting.bankFeedStatements.list({
     serviceId: "salesforce",
     companyId: "12345",
+    filter: {
+      bankFeedAccountId: "12345",
+    },
     passThrough: {
       "search": "San Francisco",
     },
@@ -64,6 +67,9 @@ async function run() {
   const res = await accountingBankFeedStatementsList(apideck, {
     serviceId: "salesforce",
     companyId: "12345",
+    filter: {
+      bankFeedAccountId: "12345",
+    },
     passThrough: {
       "search": "San Francisco",
     },

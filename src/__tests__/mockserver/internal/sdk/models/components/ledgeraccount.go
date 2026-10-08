@@ -59,16 +59,16 @@ func (e LedgerAccountType) ToPointer() *LedgerAccountType {
 	return &e
 }
 
-// AccountStatus - The status of the account.
-type AccountStatus string
+// LedgerAccountAccountStatus - The status of the account.
+type LedgerAccountAccountStatus string
 
 const (
-	AccountStatusActive   AccountStatus = "active"
-	AccountStatusInactive AccountStatus = "inactive"
-	AccountStatusArchived AccountStatus = "archived"
+	LedgerAccountAccountStatusActive   LedgerAccountAccountStatus = "active"
+	LedgerAccountAccountStatusInactive LedgerAccountAccountStatus = "inactive"
+	LedgerAccountAccountStatusArchived LedgerAccountAccountStatus = "archived"
 )
 
-func (e AccountStatus) ToPointer() *AccountStatus {
+func (e LedgerAccountAccountStatus) ToPointer() *LedgerAccountAccountStatus {
 	return &e
 }
 
@@ -92,7 +92,7 @@ func (o *LedgerAccountCategory) GetName() *string {
 	return o.Name
 }
 
-type ParentAccount struct {
+type LedgerAccountParentAccount struct {
 	// The ID of the parent account.
 	ID *string `json:"id,omitempty"`
 	// The name of the parent account.
@@ -101,21 +101,21 @@ type ParentAccount struct {
 	DisplayID *string `json:"display_id,omitempty"`
 }
 
-func (o *ParentAccount) GetID() *string {
+func (o *LedgerAccountParentAccount) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ParentAccount) GetName() *string {
+func (o *LedgerAccountParentAccount) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *ParentAccount) GetDisplayID() *string {
+func (o *LedgerAccountParentAccount) GetDisplayID() *string {
 	if o == nil {
 		return nil
 	}
@@ -191,13 +191,13 @@ type LedgerAccount struct {
 	// Whether the account is active or not.
 	Active optionalnullable.OptionalNullable[bool] `json:"active,omitempty"`
 	// The status of the account.
-	Status optionalnullable.OptionalNullable[AccountStatus] `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[LedgerAccountAccountStatus] `json:"status,omitempty"`
 	// Whether the account is a header or not.
 	Header      optionalnullable.OptionalNullable[bool] `json:"header,omitempty"`
 	BankAccount *BankAccount                            `json:"bank_account,omitempty"`
 	// The categories of the account.
-	Categories    []LedgerAccountCategory `json:"categories,omitempty"`
-	ParentAccount *ParentAccount          `json:"parent_account,omitempty"`
+	Categories    []LedgerAccountCategory     `json:"categories,omitempty"`
+	ParentAccount *LedgerAccountParentAccount `json:"parent_account,omitempty"`
 	// Whether the account is a sub account or not.
 	SubAccount optionalnullable.OptionalNullable[bool] `json:"sub_account,omitempty"`
 	// The sub accounts of the account.
@@ -353,7 +353,7 @@ func (o *LedgerAccount) GetActive() optionalnullable.OptionalNullable[bool] {
 	return o.Active
 }
 
-func (o *LedgerAccount) GetStatus() optionalnullable.OptionalNullable[AccountStatus] {
+func (o *LedgerAccount) GetStatus() optionalnullable.OptionalNullable[LedgerAccountAccountStatus] {
 	if o == nil {
 		return nil
 	}
@@ -381,7 +381,7 @@ func (o *LedgerAccount) GetCategories() []LedgerAccountCategory {
 	return o.Categories
 }
 
-func (o *LedgerAccount) GetParentAccount() *ParentAccount {
+func (o *LedgerAccount) GetParentAccount() *LedgerAccountParentAccount {
 	if o == nil {
 		return nil
 	}
@@ -506,11 +506,11 @@ type LedgerAccountInput struct {
 	// Whether the account is active or not.
 	Active optionalnullable.OptionalNullable[bool] `json:"active,omitempty"`
 	// The status of the account.
-	Status optionalnullable.OptionalNullable[AccountStatus] `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[LedgerAccountAccountStatus] `json:"status,omitempty"`
 	// Whether the account is a header or not.
 	Header        optionalnullable.OptionalNullable[bool] `json:"header,omitempty"`
 	BankAccount   *BankAccount                            `json:"bank_account,omitempty"`
-	ParentAccount *ParentAccount                          `json:"parent_account,omitempty"`
+	ParentAccount *LedgerAccountParentAccount             `json:"parent_account,omitempty"`
 	// Whether the account is a sub account or not.
 	SubAccount optionalnullable.OptionalNullable[bool] `json:"sub_account,omitempty"`
 	// Reconciliation Date means the last calendar day of each Reconciliation Period.
@@ -647,7 +647,7 @@ func (o *LedgerAccountInput) GetActive() optionalnullable.OptionalNullable[bool]
 	return o.Active
 }
 
-func (o *LedgerAccountInput) GetStatus() optionalnullable.OptionalNullable[AccountStatus] {
+func (o *LedgerAccountInput) GetStatus() optionalnullable.OptionalNullable[LedgerAccountAccountStatus] {
 	if o == nil {
 		return nil
 	}
@@ -668,7 +668,7 @@ func (o *LedgerAccountInput) GetBankAccount() *BankAccount {
 	return o.BankAccount
 }
 
-func (o *LedgerAccountInput) GetParentAccount() *ParentAccount {
+func (o *LedgerAccountInput) GetParentAccount() *LedgerAccountParentAccount {
 	if o == nil {
 		return nil
 	}

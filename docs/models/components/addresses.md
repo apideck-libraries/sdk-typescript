@@ -14,6 +14,7 @@ let value: Addresses = {
   state: "Ohio",
   postalCode: "12345",
   country: "US",
+  taxNumber: "BE0689615164",
 };
 ```
 
@@ -29,3 +30,4 @@ let value: Addresses = {
 | `state`                                                                              | *string*                                                                             | :heavy_minus_sign:                                                                   | State of the customer                                                                | Ohio                                                                                 |
 | `postalCode`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | Postal code of the customer                                                          | 12345                                                                                |
 | `country`                                                                            | *string*                                                                             | :heavy_minus_sign:                                                                   | Country of the customer                                                              | US                                                                                   |
+| `taxNumber`                                                                          | *string*                                                                             | :heavy_minus_sign:                                                                   | Tax or VAT identification number registered on this address                          | BE0689615164                                                                         |

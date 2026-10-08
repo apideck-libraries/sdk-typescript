@@ -76,7 +76,7 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 				},
 				Level:  optionalnullable.From(types.Float64(1)),
 				Active: optionalnullable.From(types.Bool(true)),
-				Status: optionalnullable.From(components.AccountStatusActive.ToPointer()),
+				Status: optionalnullable.From(components.LedgerAccountAccountStatusActive.ToPointer()),
 				Header: optionalnullable.From(types.Bool(true)),
 				BankAccount: &components.BankAccount{
 					BankName:         optionalnullable.From(types.String("Monzo")),
@@ -101,7 +101,7 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 						Name: types.String("Finance Charges Expense"),
 					},
 				},
-				ParentAccount: &components.ParentAccount{
+				ParentAccount: &components.LedgerAccountParentAccount{
 					ID:        types.String("12345"),
 					Name:      types.String("Bank Accounts"),
 					DisplayID: types.String("1-1100"),
@@ -185,7 +185,7 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 				},
 				Level:  optionalnullable.From(types.Float64(1)),
 				Active: optionalnullable.From(types.Bool(true)),
-				Status: optionalnullable.From(components.AccountStatusActive.ToPointer()),
+				Status: optionalnullable.From(components.LedgerAccountAccountStatusActive.ToPointer()),
 				Header: optionalnullable.From(types.Bool(true)),
 				BankAccount: &components.BankAccount{
 					BankName:         optionalnullable.From(types.String("Monzo")),
@@ -210,7 +210,7 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 						Name: types.String("Finance Charges Expense"),
 					},
 				},
-				ParentAccount: &components.ParentAccount{
+				ParentAccount: &components.LedgerAccountParentAccount{
 					ID:        types.String("12345"),
 					Name:      types.String("Bank Accounts"),
 					DisplayID: types.String("1-1100"),
@@ -314,7 +314,7 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 				},
 				Level:  optionalnullable.From(types.Float64(1)),
 				Active: optionalnullable.From(types.Bool(true)),
-				Status: optionalnullable.From(components.AccountStatusActive.ToPointer()),
+				Status: optionalnullable.From(components.LedgerAccountAccountStatusActive.ToPointer()),
 				Header: optionalnullable.From(types.Bool(true)),
 				BankAccount: &components.BankAccount{
 					BankName:         optionalnullable.From(types.String("Monzo")),
@@ -339,7 +339,7 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 						Name: types.String("Finance Charges Expense"),
 					},
 				},
-				ParentAccount: &components.ParentAccount{
+				ParentAccount: &components.LedgerAccountParentAccount{
 					ID:        types.String("12345"),
 					Name:      types.String("Bank Accounts"),
 					DisplayID: types.String("1-1100"),

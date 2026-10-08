@@ -82,7 +82,7 @@ export type Price = {
 /**
  * The error returned if your message status is failed or undelivered.
  */
-export type ErrorT = {
+export type MessageError = {
   /**
    * The error_code provides more information about the failure. If the message was successful, this value is null
    */
@@ -151,7 +151,7 @@ export type Message = {
   /**
    * The error returned if your message status is failed or undelivered.
    */
-  error?: ErrorT | undefined;
+  error?: MessageError | undefined;
   /**
    * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
    */
@@ -273,19 +273,22 @@ export function priceFromJSON(
 }
 
 /** @internal */
-export const ErrorT$inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> = z
-  .object({
-    code: types.optional(types.string()),
-    message: types.optional(types.string()),
-  });
+export const MessageError$inboundSchema: z.ZodType<
+  MessageError,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  code: types.optional(types.string()),
+  message: types.optional(types.string()),
+});
 
-export function errorFromJSON(
+export function messageErrorFromJSON(
   jsonString: string,
-): SafeParseResult<ErrorT, SDKValidationError> {
+): SafeParseResult<MessageError, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ErrorT$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ErrorT' from JSON`,
+    (x) => MessageError$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessageError' from JSON`,
   );
 }
 
@@ -307,7 +310,7 @@ export const Message$inboundSchema: z.ZodType<Message, z.ZodTypeDef, unknown> =
     webhook_url: types.optional(types.string()),
     reference: types.optional(types.string()),
     price: types.optional(z.lazy(() => Price$inboundSchema)),
-    error: types.optional(z.lazy(() => ErrorT$inboundSchema)),
+    error: types.optional(z.lazy(() => MessageError$inboundSchema)),
     messaging_service_id: types.optional(types.string()),
     custom_mappings: z.nullable(z.record(z.any())).optional(),
     updated_by: z.nullable(types.string()).optional(),

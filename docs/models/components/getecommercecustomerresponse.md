@@ -20,6 +20,7 @@ let value: GetEcommerceCustomerResponse = {
     lastName: "Doe",
     companyName: "Acme Inc.",
     status: "active",
+    taxNumber: "BE0689615164",
     currency: "USD",
     emails: [
       {
@@ -48,6 +49,7 @@ let value: GetEcommerceCustomerResponse = {
         state: "Ohio",
         postalCode: "12345",
         country: "US",
+        taxNumber: "BE0689615164",
       },
     ],
     orders: [
