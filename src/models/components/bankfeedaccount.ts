@@ -11,6 +11,18 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  Address,
+  Address$inboundSchema,
+  Address$Outbound,
+  Address$outboundSchema,
+} from "./address.js";
+import {
+  BankFeedAccountHolder,
+  BankFeedAccountHolder$inboundSchema,
+  BankFeedAccountHolder$Outbound,
+  BankFeedAccountHolder$outboundSchema,
+} from "./bankfeedaccountholder.js";
+import {
   Currency,
   Currency$inboundSchema,
   Currency$outboundSchema,
@@ -21,6 +33,18 @@ import {
   CustomField$Outbound,
   CustomField$outboundSchema,
 } from "./customfield.js";
+import {
+  Email,
+  Email$inboundSchema,
+  Email$Outbound,
+  Email$outboundSchema,
+} from "./email.js";
+import {
+  PhoneNumber,
+  PhoneNumber$inboundSchema,
+  PhoneNumber$Outbound,
+  PhoneNumber$outboundSchema,
+} from "./phonenumber.js";
 
 /**
  * Type of the bank account.
@@ -99,6 +123,22 @@ export type BankFeedAccount = {
    * Country code according to ISO 3166-1 alpha-2.
    */
   country?: string | null | undefined;
+  /**
+   * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at least one.
+   */
+  accountHolders?: Array<BankFeedAccountHolder> | undefined;
+  /**
+   * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+   */
+  emails?: Array<Email> | undefined;
+  /**
+   * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+   */
+  addresses?: Array<Address> | undefined;
+  /**
+   * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+   */
+  phoneNumbers?: Array<PhoneNumber> | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
@@ -171,6 +211,22 @@ export type BankFeedAccountInput = {
    * Country code according to ISO 3166-1 alpha-2.
    */
   country?: string | null | undefined;
+  /**
+   * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at least one.
+   */
+  accountHolders?: Array<BankFeedAccountHolder> | undefined;
+  /**
+   * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+   */
+  emails?: Array<Email> | undefined;
+  /**
+   * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+   */
+  addresses?: Array<Address> | undefined;
+  /**
+   * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+   */
+  phoneNumbers?: Array<PhoneNumber> | undefined;
   customFields?: Array<CustomField> | undefined;
 };
 
@@ -219,6 +275,10 @@ export const BankFeedAccount$inboundSchema: z.ZodType<
   currency: z.nullable(Currency$inboundSchema).optional(),
   feed_status: types.optional(FeedStatus$inboundSchema),
   country: z.nullable(types.string()).optional(),
+  account_holders: types.optional(z.array(BankFeedAccountHolder$inboundSchema)),
+  emails: types.optional(z.array(Email$inboundSchema)),
+  addresses: types.optional(z.array(Address$inboundSchema)),
+  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
   custom_fields: types.optional(z.array(CustomField$inboundSchema)),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
   created_at: z.nullable(types.date()).optional(),
@@ -236,6 +296,8 @@ export const BankFeedAccount$inboundSchema: z.ZodType<
     "target_account_number": "targetAccountNumber",
     "available_balance": "availableBalance",
     "feed_status": "feedStatus",
+    "account_holders": "accountHolders",
+    "phone_numbers": "phoneNumbers",
     "custom_fields": "customFields",
     "custom_mappings": "customMappings",
     "created_at": "createdAt",
@@ -269,6 +331,10 @@ export type BankFeedAccountInput$Outbound = {
   currency?: string | null | undefined;
   feed_status?: string | undefined;
   country?: string | null | undefined;
+  account_holders?: Array<BankFeedAccountHolder$Outbound> | undefined;
+  emails?: Array<Email$Outbound> | undefined;
+  addresses?: Array<Address$Outbound> | undefined;
+  phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
 };
 
@@ -290,6 +356,10 @@ export const BankFeedAccountInput$outboundSchema: z.ZodType<
   currency: z.nullable(Currency$outboundSchema).optional(),
   feedStatus: FeedStatus$outboundSchema.optional(),
   country: z.nullable(z.string()).optional(),
+  accountHolders: z.array(BankFeedAccountHolder$outboundSchema).optional(),
+  emails: z.array(Email$outboundSchema).optional(),
+  addresses: z.array(Address$outboundSchema).optional(),
+  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -302,6 +372,8 @@ export const BankFeedAccountInput$outboundSchema: z.ZodType<
     targetAccountNumber: "target_account_number",
     availableBalance: "available_balance",
     feedStatus: "feed_status",
+    accountHolders: "account_holders",
+    phoneNumbers: "phone_numbers",
     customFields: "custom_fields",
   });
 });

@@ -1,0 +1,19 @@
+# LedgerAccountCreateInputType
+
+The type of account.
+
+## Example Usage
+
+```typescript
+import { LedgerAccountCreateInputType } from "@apideck/unify/models/components";
+
+let value: LedgerAccountCreateInputType = "bank";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
+```
+
+## Values
+
+```typescript
+"accounts_payable" | "accounts_receivable" | "balancesheet" | "bank" | "costs_of_sales" | "credit_card" | "current_asset" | "current_liability" | "equity" | "expense" | "fixed_asset" | "non_current_asset" | "non_current_liability" | "other_asset" | "other_expense" | "other_income" | "other_liability" | "revenue" | "sales" | "other" | Unrecognized<string>
+```

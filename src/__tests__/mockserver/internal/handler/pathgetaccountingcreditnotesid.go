@@ -73,11 +73,11 @@ func testAccountingCreditNotesOneAccountingCreditNotesOne0(w http.ResponseWriter
 			TaxCode:         optionalnullable.From(types.String("1234")),
 			Balance:         optionalnullable.From(types.Float64(27500)),
 			RemainingCredit: optionalnullable.From(types.Float64(27500)),
-			Status:          components.CreditNoteStatusAuthorised.ToPointer(),
+			Status:          components.CreditNoteCreditNoteStatusAuthorised.ToPointer(),
 			Reference:       optionalnullable.From(types.String("123456")),
 			DateIssued:      types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
 			DatePaid:        optionalnullable.From(types.MustNewTimeFromString("2021-05-01T12:00:00.000Z")),
-			Type:            components.CreditNoteTypeAccountsReceivableCredit.ToPointer(),
+			Type:            components.CreditNoteCreditNoteTypeAccountsReceivableCredit.ToPointer(),
 			Account: optionalnullable.From(&components.LinkedLedgerAccount{
 				ID:          types.String("123456"),
 				Name:        optionalnullable.From(types.String("Bank account")),

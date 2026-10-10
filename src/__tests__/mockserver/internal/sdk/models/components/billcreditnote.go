@@ -8,31 +8,31 @@ import (
 	"time"
 )
 
-// BillCreditNoteStatus - Status of bill credit notes
-type BillCreditNoteStatus string
+// BillCreditNoteBillCreditNoteStatus - Status of bill credit notes
+type BillCreditNoteBillCreditNoteStatus string
 
 const (
-	BillCreditNoteStatusDraft         BillCreditNoteStatus = "draft"
-	BillCreditNoteStatusAuthorised    BillCreditNoteStatus = "authorised"
-	BillCreditNoteStatusPosted        BillCreditNoteStatus = "posted"
-	BillCreditNoteStatusPartiallyPaid BillCreditNoteStatus = "partially_paid"
-	BillCreditNoteStatusPaid          BillCreditNoteStatus = "paid"
-	BillCreditNoteStatusVoided        BillCreditNoteStatus = "voided"
-	BillCreditNoteStatusDeleted       BillCreditNoteStatus = "deleted"
+	BillCreditNoteBillCreditNoteStatusDraft         BillCreditNoteBillCreditNoteStatus = "draft"
+	BillCreditNoteBillCreditNoteStatusAuthorised    BillCreditNoteBillCreditNoteStatus = "authorised"
+	BillCreditNoteBillCreditNoteStatusPosted        BillCreditNoteBillCreditNoteStatus = "posted"
+	BillCreditNoteBillCreditNoteStatusPartiallyPaid BillCreditNoteBillCreditNoteStatus = "partially_paid"
+	BillCreditNoteBillCreditNoteStatusPaid          BillCreditNoteBillCreditNoteStatus = "paid"
+	BillCreditNoteBillCreditNoteStatusVoided        BillCreditNoteBillCreditNoteStatus = "voided"
+	BillCreditNoteBillCreditNoteStatusDeleted       BillCreditNoteBillCreditNoteStatus = "deleted"
 )
 
-func (e BillCreditNoteStatus) ToPointer() *BillCreditNoteStatus {
+func (e BillCreditNoteBillCreditNoteStatus) ToPointer() *BillCreditNoteBillCreditNoteStatus {
 	return &e
 }
 
-// BillCreditNoteType - The type of credit note. A bill credit note is always an accounts payable (supplier-side) credit.
-type BillCreditNoteType string
+// BillCreditNoteBillCreditNoteType - The type of credit note. A bill credit note is always an accounts payable (supplier-side) credit.
+type BillCreditNoteBillCreditNoteType string
 
 const (
-	BillCreditNoteTypeAccountsPayableCredit BillCreditNoteType = "accounts_payable_credit"
+	BillCreditNoteBillCreditNoteTypeAccountsPayableCredit BillCreditNoteBillCreditNoteType = "accounts_payable_credit"
 )
 
-func (e BillCreditNoteType) ToPointer() *BillCreditNoteType {
+func (e BillCreditNoteBillCreditNoteType) ToPointer() *BillCreditNoteBillCreditNoteType {
 	return &e
 }
 
@@ -65,7 +65,7 @@ type BillCreditNote struct {
 	// Indicates the total credit amount still available to apply towards the payment.
 	RemainingCredit optionalnullable.OptionalNullable[float64] `json:"remaining_credit,omitempty"`
 	// Status of bill credit notes
-	Status *BillCreditNoteStatus `json:"status,omitempty"`
+	Status *BillCreditNoteBillCreditNoteStatus `json:"status,omitempty"`
 	// Optional reference message ie: Debit remittance detail.
 	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Date bill credit note issued - YYYY:MM::DDThh:mm:ss.sTZD
@@ -73,7 +73,7 @@ type BillCreditNote struct {
 	// Date bill credit note paid - YYYY:MM::DDThh:mm:ss.sTZD
 	DatePaid optionalnullable.OptionalNullable[time.Time] `json:"date_paid,omitempty"`
 	// The type of credit note. A bill credit note is always an accounts payable (supplier-side) credit.
-	Type        *BillCreditNoteType                                    `json:"type,omitempty"`
+	Type        *BillCreditNoteBillCreditNoteType                      `json:"type,omitempty"`
 	Account     optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
 	LineItems   []BillCreditNoteLineItem                               `json:"line_items,omitempty"`
 	Allocations []Allocation                                           `json:"allocations,omitempty"`
@@ -216,7 +216,7 @@ func (o *BillCreditNote) GetRemainingCredit() optionalnullable.OptionalNullable[
 	return o.RemainingCredit
 }
 
-func (o *BillCreditNote) GetStatus() *BillCreditNoteStatus {
+func (o *BillCreditNote) GetStatus() *BillCreditNoteBillCreditNoteStatus {
 	if o == nil {
 		return nil
 	}
@@ -244,7 +244,7 @@ func (o *BillCreditNote) GetDatePaid() optionalnullable.OptionalNullable[time.Ti
 	return o.DatePaid
 }
 
-func (o *BillCreditNote) GetType() *BillCreditNoteType {
+func (o *BillCreditNote) GetType() *BillCreditNoteBillCreditNoteType {
 	if o == nil {
 		return nil
 	}
@@ -376,7 +376,7 @@ type BillCreditNoteInput struct {
 	// Indicates the total credit amount still available to apply towards the payment.
 	RemainingCredit optionalnullable.OptionalNullable[float64] `json:"remaining_credit,omitempty"`
 	// Status of bill credit notes
-	Status *BillCreditNoteStatus `json:"status,omitempty"`
+	Status *BillCreditNoteBillCreditNoteStatus `json:"status,omitempty"`
 	// Optional reference message ie: Debit remittance detail.
 	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Date bill credit note issued - YYYY:MM::DDThh:mm:ss.sTZD
@@ -384,7 +384,7 @@ type BillCreditNoteInput struct {
 	// Date bill credit note paid - YYYY:MM::DDThh:mm:ss.sTZD
 	DatePaid optionalnullable.OptionalNullable[time.Time] `json:"date_paid,omitempty"`
 	// The type of credit note. A bill credit note is always an accounts payable (supplier-side) credit.
-	Type        *BillCreditNoteType                                    `json:"type,omitempty"`
+	Type        *BillCreditNoteBillCreditNoteType                      `json:"type,omitempty"`
 	Account     optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
 	LineItems   []BillCreditNoteLineItemInput                          `json:"line_items,omitempty"`
 	Allocations []AllocationInput                                      `json:"allocations,omitempty"`
@@ -510,7 +510,7 @@ func (o *BillCreditNoteInput) GetRemainingCredit() optionalnullable.OptionalNull
 	return o.RemainingCredit
 }
 
-func (o *BillCreditNoteInput) GetStatus() *BillCreditNoteStatus {
+func (o *BillCreditNoteInput) GetStatus() *BillCreditNoteBillCreditNoteStatus {
 	if o == nil {
 		return nil
 	}
@@ -538,7 +538,7 @@ func (o *BillCreditNoteInput) GetDatePaid() optionalnullable.OptionalNullable[ti
 	return o.DatePaid
 }
 
-func (o *BillCreditNoteInput) GetType() *BillCreditNoteType {
+func (o *BillCreditNoteInput) GetType() *BillCreditNoteBillCreditNoteType {
 	if o == nil {
 		return nil
 	}

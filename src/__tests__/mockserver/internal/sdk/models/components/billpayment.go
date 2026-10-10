@@ -8,17 +8,17 @@ import (
 	"time"
 )
 
-// BillPaymentType - Type of payment
-type BillPaymentType string
+// BillPaymentBillPaymentType - Type of payment
+type BillPaymentBillPaymentType string
 
 const (
-	BillPaymentTypeAccountsPayableCredit      BillPaymentType = "accounts_payable_credit"
-	BillPaymentTypeAccountsPayableOverpayment BillPaymentType = "accounts_payable_overpayment"
-	BillPaymentTypeAccountsPayablePrepayment  BillPaymentType = "accounts_payable_prepayment"
-	BillPaymentTypeAccountsPayable            BillPaymentType = "accounts_payable"
+	BillPaymentBillPaymentTypeAccountsPayableCredit      BillPaymentBillPaymentType = "accounts_payable_credit"
+	BillPaymentBillPaymentTypeAccountsPayableOverpayment BillPaymentBillPaymentType = "accounts_payable_overpayment"
+	BillPaymentBillPaymentTypeAccountsPayablePrepayment  BillPaymentBillPaymentType = "accounts_payable_prepayment"
+	BillPaymentBillPaymentTypeAccountsPayable            BillPaymentBillPaymentType = "accounts_payable"
 )
 
-func (e BillPaymentType) ToPointer() *BillPaymentType {
+func (e BillPaymentBillPaymentType) ToPointer() *BillPaymentBillPaymentType {
 	return &e
 }
 
@@ -118,8 +118,8 @@ type BillPayment struct {
 	// Status of payment
 	Status *PaymentStatus `json:"status,omitempty"`
 	// Type of payment
-	Type        *BillPaymentType        `json:"type,omitempty"`
-	Allocations []BillPaymentAllocation `json:"allocations,omitempty"`
+	Type        *BillPaymentBillPaymentType `json:"type,omitempty"`
+	Allocations []BillPaymentAllocation     `json:"allocations,omitempty"`
 	// Note associated with the transaction
 	Note optionalnullable.OptionalNullable[string] `json:"note,omitempty"`
 	// Number associated with the transaction
@@ -268,7 +268,7 @@ func (o *BillPayment) GetStatus() *PaymentStatus {
 	return o.Status
 }
 
-func (o *BillPayment) GetType() *BillPaymentType {
+func (o *BillPayment) GetType() *BillPaymentBillPaymentType {
 	if o == nil {
 		return nil
 	}
@@ -433,7 +433,7 @@ type BillPaymentInput struct {
 	// Status of payment
 	Status *PaymentStatus `json:"status,omitempty"`
 	// Type of payment
-	Type        *BillPaymentType             `json:"type,omitempty"`
+	Type        *BillPaymentBillPaymentType  `json:"type,omitempty"`
 	Allocations []BillPaymentAllocationInput `json:"allocations,omitempty"`
 	// Note associated with the transaction
 	Note optionalnullable.OptionalNullable[string] `json:"note,omitempty"`
@@ -559,7 +559,7 @@ func (o *BillPaymentInput) GetStatus() *PaymentStatus {
 	return o.Status
 }
 
-func (o *BillPaymentInput) GetType() *BillPaymentType {
+func (o *BillPaymentInput) GetType() *BillPaymentBillPaymentType {
 	if o == nil {
 		return nil
 	}

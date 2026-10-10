@@ -42,6 +42,10 @@ export type AccountingInvoicesAddRequest = {
    * The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
    */
   companyId?: string | undefined;
+  /**
+   * A unique key you generate for one create, to make retrying it safe. If the request times out or fails with an uncertain outcome, resend it with the same key and the same body: the record is created at most once. Keys are 1-255 printable ASCII characters (a UUID is recommended) and are accepted bare or as a quoted string. A key is remembered for 24 hours from its first use, or for the connector's own deduplication window where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so retry within the window. Some connectors also replay an error to retries with the same key: if retries keep returning the same error, check whether the record exists before sending it again with a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is still running returns 409. A key is bound to its first request even if that request was rejected, so after fixing a rejected body, send it with a new key. Connectors that cannot honour the key on this operation reject the request with 400 instead of creating the record unprotected.
+   */
+  idempotencyKey?: string | undefined;
   invoice: components.InvoiceInput;
 };
 
@@ -64,6 +68,7 @@ export type AccountingInvoicesAddRequest$Outbound = {
   appId?: string | undefined;
   serviceId?: string | undefined;
   companyId?: string | undefined;
+  idempotencyKey?: string | undefined;
   Invoice: components.InvoiceInput$Outbound;
 };
 
@@ -78,6 +83,7 @@ export const AccountingInvoicesAddRequest$outboundSchema: z.ZodType<
   appId: z.string().optional(),
   serviceId: z.string().optional(),
   companyId: z.string().optional(),
+  idempotencyKey: z.string().optional(),
   invoice: components.InvoiceInput$outboundSchema,
 }).transform((v) => {
   return remap$(v, {

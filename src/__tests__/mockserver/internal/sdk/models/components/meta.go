@@ -37,8 +37,8 @@ func (o *Cursors) GetNext() optionalnullable.OptionalNullable[string] {
 	return o.Next
 }
 
-// Warning - Advisory warning emitted when an optional workflow step fails non-fatally. The overall request still succeeds (HTTP 200); inspect this to detect partial or degraded data.
-type Warning struct {
+// MetaWarning - Advisory warning emitted when an optional workflow step fails non-fatally. The overall request still succeeds (HTTP 200); inspect this to detect partial or degraded data.
+type MetaWarning struct {
 	// Discriminator for the warning kind.
 	Type *string `json:"type,omitempty"`
 	// HTTP status code returned by the failed downstream request, when available.
@@ -51,35 +51,35 @@ type Warning struct {
 	Message optionalnullable.OptionalNullable[string] `json:"message,omitempty"`
 }
 
-func (o *Warning) GetType() *string {
+func (o *MetaWarning) GetType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *Warning) GetStatusCode() optionalnullable.OptionalNullable[int64] {
+func (o *MetaWarning) GetStatusCode() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
 	return o.StatusCode
 }
 
-func (o *Warning) GetError() optionalnullable.OptionalNullable[string] {
+func (o *MetaWarning) GetError() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Error
 }
 
-func (o *Warning) GetOperation() optionalnullable.OptionalNullable[string] {
+func (o *MetaWarning) GetOperation() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Operation
 }
 
-func (o *Warning) GetMessage() optionalnullable.OptionalNullable[string] {
+func (o *MetaWarning) GetMessage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -95,7 +95,7 @@ type Meta struct {
 	// Number of records available in total for this resource
 	TotalCount *int64 `json:"total_count,omitempty"`
 	// Non-fatal warnings emitted when optional workflow steps failed. Present only when at least one step degraded; the response status remains 200.
-	Warnings optionalnullable.OptionalNullable[[]Warning] `json:"warnings,omitempty"`
+	Warnings optionalnullable.OptionalNullable[[]MetaWarning] `json:"warnings,omitempty"`
 }
 
 func (o *Meta) GetItemsOnPage() *int64 {
@@ -119,7 +119,7 @@ func (o *Meta) GetTotalCount() *int64 {
 	return o.TotalCount
 }
 
-func (o *Meta) GetWarnings() optionalnullable.OptionalNullable[[]Warning] {
+func (o *Meta) GetWarnings() optionalnullable.OptionalNullable[[]MetaWarning] {
 	if o == nil {
 		return nil
 	}

@@ -38,6 +38,7 @@ import { Projects } from "./projects.js";
 import { PurchaseOrders } from "./purchaseorders.js";
 import { Quotes } from "./quotes.js";
 import { Refunds } from "./refunds.js";
+import { SalesOrders } from "./salesorders.js";
 import { SalesReceipts } from "./salesreceipts.js";
 import { Subsidiaries } from "./subsidiaries.js";
 import { Suppliers } from "./suppliers.js";
@@ -225,6 +226,11 @@ export class Accounting extends ClientSDK {
   private _projects?: Projects;
   get projects(): Projects {
     return (this._projects ??= new Projects(this._options));
+  }
+
+  private _salesOrders?: SalesOrders;
+  get salesOrders(): SalesOrders {
+    return (this._salesOrders ??= new SalesOrders(this._options));
   }
 
   private _employees?: Employees;
