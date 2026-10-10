@@ -14,6 +14,18 @@ export type NotesFilter = {
    * Owner ID to filter on
    */
   ownerId?: string | undefined;
+  /**
+   * Unique identifier of the contact to filter notes on
+   */
+  contactId?: string | undefined;
+  /**
+   * Unique identifier of the company to filter notes on
+   */
+  companyId?: string | undefined;
+  /**
+   * Unique identifier of the opportunity to filter notes on
+   */
+  opportunityId?: string | undefined;
   updatedSince?: Date | undefined;
   createdSince?: Date | undefined;
 };
@@ -22,6 +34,9 @@ export type NotesFilter = {
 export type NotesFilter$Outbound = {
   title?: string | undefined;
   owner_id?: string | undefined;
+  contact_id?: string | undefined;
+  company_id?: string | undefined;
+  opportunity_id?: string | undefined;
   updated_since?: string | undefined;
   created_since?: string | undefined;
 };
@@ -34,11 +49,17 @@ export const NotesFilter$outboundSchema: z.ZodType<
 > = z.object({
   title: z.string().optional(),
   ownerId: z.string().optional(),
+  contactId: z.string().optional(),
+  companyId: z.string().optional(),
+  opportunityId: z.string().optional(),
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   createdSince: z.date().transform(v => v.toISOString()).optional(),
 }).transform((v) => {
   return remap$(v, {
     ownerId: "owner_id",
+    contactId: "contact_id",
+    companyId: "company_id",
+    opportunityId: "opportunity_id",
     updatedSince: "updated_since",
     createdSince: "created_since",
   });

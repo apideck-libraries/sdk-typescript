@@ -9,19 +9,19 @@ import (
 	"time"
 )
 
-// InvoiceType - Invoice type
-type InvoiceType string
+// InvoiceInvoiceType - Invoice type
+type InvoiceInvoiceType string
 
 const (
-	InvoiceTypeStandard InvoiceType = "standard"
-	InvoiceTypeCredit   InvoiceType = "credit"
-	InvoiceTypeService  InvoiceType = "service"
-	InvoiceTypeProduct  InvoiceType = "product"
-	InvoiceTypeSupplier InvoiceType = "supplier"
-	InvoiceTypeOther    InvoiceType = "other"
+	InvoiceInvoiceTypeStandard InvoiceInvoiceType = "standard"
+	InvoiceInvoiceTypeCredit   InvoiceInvoiceType = "credit"
+	InvoiceInvoiceTypeService  InvoiceInvoiceType = "service"
+	InvoiceInvoiceTypeProduct  InvoiceInvoiceType = "product"
+	InvoiceInvoiceTypeSupplier InvoiceInvoiceType = "supplier"
+	InvoiceInvoiceTypeOther    InvoiceInvoiceType = "other"
 )
 
-func (e InvoiceType) ToPointer() *InvoiceType {
+func (e InvoiceInvoiceType) ToPointer() *InvoiceInvoiceType {
 	return &e
 }
 
@@ -45,7 +45,7 @@ func (e InvoiceStatus) ToPointer() *InvoiceStatus {
 	return &e
 }
 
-type PaymentAllocation struct {
+type InvoicePaymentAllocation struct {
 	// ID of the payment
 	ID *string `json:"id,omitempty"`
 	// Amount of the payment allocated to the invoice
@@ -54,32 +54,32 @@ type PaymentAllocation struct {
 	Date optionalnullable.OptionalNullable[time.Time] `json:"date,omitempty"`
 }
 
-func (p PaymentAllocation) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(p, "", false)
+func (i InvoicePaymentAllocation) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
 }
 
-func (p *PaymentAllocation) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+func (i *InvoicePaymentAllocation) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PaymentAllocation) GetID() *string {
+func (o *InvoicePaymentAllocation) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *PaymentAllocation) GetAllocatedAmount() optionalnullable.OptionalNullable[float64] {
+func (o *InvoicePaymentAllocation) GetAllocatedAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.AllocatedAmount
 }
 
-func (o *PaymentAllocation) GetDate() optionalnullable.OptionalNullable[time.Time] {
+func (o *InvoicePaymentAllocation) GetDate() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -94,7 +94,7 @@ type Invoice struct {
 	// Id to be displayed.
 	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Invoice type
-	Type optionalnullable.OptionalNullable[InvoiceType] `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[InvoiceInvoiceType] `json:"type,omitempty"`
 	// Invoice number.
 	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// The customer this entity is linked to.
@@ -158,7 +158,7 @@ type Invoice struct {
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
 	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
 	// IDs of payments made on the invoice
-	PaymentAllocations optionalnullable.OptionalNullable[[]PaymentAllocation] `json:"payment_allocations,omitempty"`
+	PaymentAllocations optionalnullable.OptionalNullable[[]InvoicePaymentAllocation] `json:"payment_allocations,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// The channel through which the transaction is processed.
@@ -218,7 +218,7 @@ func (o *Invoice) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	return o.DisplayID
 }
 
-func (o *Invoice) GetType() optionalnullable.OptionalNullable[InvoiceType] {
+func (o *Invoice) GetType() optionalnullable.OptionalNullable[InvoiceInvoiceType] {
 	if o == nil {
 		return nil
 	}
@@ -456,7 +456,7 @@ func (o *Invoice) GetSourceDocumentURL() optionalnullable.OptionalNullable[strin
 	return o.SourceDocumentURL
 }
 
-func (o *Invoice) GetPaymentAllocations() optionalnullable.OptionalNullable[[]PaymentAllocation] {
+func (o *Invoice) GetPaymentAllocations() optionalnullable.OptionalNullable[[]InvoicePaymentAllocation] {
 	if o == nil {
 		return nil
 	}
@@ -565,7 +565,7 @@ type InvoiceInput struct {
 	// Id to be displayed.
 	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Invoice type
-	Type optionalnullable.OptionalNullable[InvoiceType] `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[InvoiceInvoiceType] `json:"type,omitempty"`
 	// Invoice number.
 	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// The customer this entity is linked to.
@@ -629,7 +629,7 @@ type InvoiceInput struct {
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
 	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
 	// IDs of payments made on the invoice
-	PaymentAllocations optionalnullable.OptionalNullable[[]PaymentAllocation] `json:"payment_allocations,omitempty"`
+	PaymentAllocations optionalnullable.OptionalNullable[[]InvoicePaymentAllocation] `json:"payment_allocations,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// The channel through which the transaction is processed.
@@ -665,7 +665,7 @@ func (o *InvoiceInput) GetDisplayID() optionalnullable.OptionalNullable[string] 
 	return o.DisplayID
 }
 
-func (o *InvoiceInput) GetType() optionalnullable.OptionalNullable[InvoiceType] {
+func (o *InvoiceInput) GetType() optionalnullable.OptionalNullable[InvoiceInvoiceType] {
 	if o == nil {
 		return nil
 	}
@@ -903,7 +903,7 @@ func (o *InvoiceInput) GetSourceDocumentURL() optionalnullable.OptionalNullable[
 	return o.SourceDocumentURL
 }
 
-func (o *InvoiceInput) GetPaymentAllocations() optionalnullable.OptionalNullable[[]PaymentAllocation] {
+func (o *InvoiceInput) GetPaymentAllocations() optionalnullable.OptionalNullable[[]InvoicePaymentAllocation] {
 	if o == nil {
 		return nil
 	}

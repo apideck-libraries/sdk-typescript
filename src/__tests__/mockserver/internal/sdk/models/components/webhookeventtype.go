@@ -147,6 +147,12 @@ const (
 	WebhookEventTypeAccountingTrackingCategoryCreated    WebhookEventType = "accounting.tracking_category.created"
 	WebhookEventTypeAccountingTrackingCategoryUpdated    WebhookEventType = "accounting.tracking_category.updated"
 	WebhookEventTypeAccountingTrackingCategoryDeleted    WebhookEventType = "accounting.tracking_category.deleted"
+	WebhookEventTypeAccountingSalesReceiptCreated        WebhookEventType = "accounting.sales_receipt.created"
+	WebhookEventTypeAccountingSalesReceiptUpdated        WebhookEventType = "accounting.sales_receipt.updated"
+	WebhookEventTypeAccountingSalesReceiptDeleted        WebhookEventType = "accounting.sales_receipt.deleted"
+	WebhookEventTypeAccountingRefundCreated              WebhookEventType = "accounting.refund.created"
+	WebhookEventTypeAccountingRefundUpdated              WebhookEventType = "accounting.refund.updated"
+	WebhookEventTypeAccountingRefundDeleted              WebhookEventType = "accounting.refund.deleted"
 )
 
 func (e WebhookEventType) ToPointer() *WebhookEventType {

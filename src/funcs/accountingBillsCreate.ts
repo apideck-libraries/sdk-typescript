@@ -116,6 +116,10 @@ async function $do(
       payload.consumerId ?? client._options.consumerId,
       { explode: false, charEncoding: "none" },
     ),
+    "idempotency-key": encodeSimple("idempotency-key", payload.idempotencyKey, {
+      explode: false,
+      charEncoding: "none",
+    }),
     "x-apideck-service-id": encodeSimple(
       "x-apideck-service-id",
       payload.serviceId,

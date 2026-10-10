@@ -46,6 +46,8 @@ type Journal struct {
 	Iban optionalnullable.OptionalNullable[string] `json:"iban,omitempty"`
 	// A flexible account reference that can represent a ledger account (GL account), a bank account, or an employee payable account, depending on the connector's requirements.
 	DefaultAccount optionalnullable.OptionalNullable[LinkedFinancialAccount] `json:"default_account,omitempty"`
+	// A flexible account reference that can represent a ledger account (GL account), a bank account, or an employee payable account, depending on the connector's requirements.
+	ClearingAccount optionalnullable.OptionalNullable[LinkedFinancialAccount] `json:"clearing_account,omitempty"`
 	// Whether the journal is blocked for posting.
 	Blocked optionalnullable.OptionalNullable[bool] `json:"blocked,omitempty"`
 	// The date and time when the object was created.
@@ -130,6 +132,13 @@ func (o *Journal) GetDefaultAccount() optionalnullable.OptionalNullable[LinkedFi
 	return o.DefaultAccount
 }
 
+func (o *Journal) GetClearingAccount() optionalnullable.OptionalNullable[LinkedFinancialAccount] {
+	if o == nil {
+		return nil
+	}
+	return o.ClearingAccount
+}
+
 func (o *Journal) GetBlocked() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
@@ -175,6 +184,8 @@ type JournalInput struct {
 	Iban optionalnullable.OptionalNullable[string] `json:"iban,omitempty"`
 	// A flexible account reference that can represent a ledger account (GL account), a bank account, or an employee payable account, depending on the connector's requirements.
 	DefaultAccount optionalnullable.OptionalNullable[LinkedFinancialAccountInput] `json:"default_account,omitempty"`
+	// A flexible account reference that can represent a ledger account (GL account), a bank account, or an employee payable account, depending on the connector's requirements.
+	ClearingAccount optionalnullable.OptionalNullable[LinkedFinancialAccountInput] `json:"clearing_account,omitempty"`
 	// Whether the journal is blocked for posting.
 	Blocked optionalnullable.OptionalNullable[bool] `json:"blocked,omitempty"`
 }
@@ -233,6 +244,13 @@ func (o *JournalInput) GetDefaultAccount() optionalnullable.OptionalNullable[Lin
 		return nil
 	}
 	return o.DefaultAccount
+}
+
+func (o *JournalInput) GetClearingAccount() optionalnullable.OptionalNullable[LinkedFinancialAccountInput] {
+	if o == nil {
+		return nil
+	}
+	return o.ClearingAccount
 }
 
 func (o *JournalInput) GetBlocked() optionalnullable.OptionalNullable[bool] {

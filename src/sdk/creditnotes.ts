@@ -3,6 +3,7 @@
  */
 
 import { accountingCreditNotesCreate } from "../funcs/accountingCreditNotesCreate.js";
+import { accountingCreditNotesCreateBatch } from "../funcs/accountingCreditNotesCreateBatch.js";
 import { accountingCreditNotesDelete } from "../funcs/accountingCreditNotesDelete.js";
 import { accountingCreditNotesGet } from "../funcs/accountingCreditNotesGet.js";
 import { accountingCreditNotesList } from "../funcs/accountingCreditNotesList.js";
@@ -97,6 +98,23 @@ export class CreditNotes extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.AccountingCreditNotesDeleteResponse> {
     return unwrapAsync(accountingCreditNotesDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Credit Notes in batch
+   *
+   * @remarks
+   * Create multiple credit notes in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+   */
+  async createBatch(
+    request: operations.AccountingCreditNotesBatchAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.AccountingCreditNotesBatchAddResponse> {
+    return unwrapAsync(accountingCreditNotesCreateBatch(
       this,
       request,
       options,

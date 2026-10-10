@@ -36,8 +36,10 @@ type AccountingBillsAddRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-	ServiceID *string              `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	Body      components.BillInput `request:"mediaType=application/json"`
+	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	// A unique key you generate for one create, to make retrying it safe. If the request times out or fails with an uncertain outcome, resend it with the same key and the same body: the record is created at most once. Keys are 1-255 printable ASCII characters (a UUID is recommended) and are accepted bare or as a quoted string. A key is remembered for 24 hours from its first use, or for the connector's own deduplication window where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so retry within the window. Some connectors also replay an error to retries with the same key: if retries keep returning the same error, check whether the record exists before sending it again with a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is still running returns 409. A key is bound to its first request even if that request was rejected, so after fixing a rejected body, send it with a new key. Connectors that cannot honour the key on this operation reject the request with 400 instead of creating the record unprotected.
+	IdempotencyKey *string              `header:"style=simple,explode=false,name=idempotency-key"`
+	Body           components.BillInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingBillsAddRequest) MarshalJSON() ([]byte, error) {
@@ -77,6 +79,13 @@ func (o *AccountingBillsAddRequest) GetServiceID() *string {
 		return nil
 	}
 	return o.ServiceID
+}
+
+func (o *AccountingBillsAddRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
 }
 
 func (o *AccountingBillsAddRequest) GetBody() components.BillInput {

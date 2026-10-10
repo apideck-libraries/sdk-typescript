@@ -3,6 +3,7 @@
  */
 
 import { accountingBillPaymentsCreate } from "../funcs/accountingBillPaymentsCreate.js";
+import { accountingBillPaymentsCreateBatch } from "../funcs/accountingBillPaymentsCreateBatch.js";
 import { accountingBillPaymentsDelete } from "../funcs/accountingBillPaymentsDelete.js";
 import { accountingBillPaymentsGet } from "../funcs/accountingBillPaymentsGet.js";
 import { accountingBillPaymentsList } from "../funcs/accountingBillPaymentsList.js";
@@ -97,6 +98,23 @@ export class BillPayments extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.AccountingBillPaymentsDeleteResponse> {
     return unwrapAsync(accountingBillPaymentsDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Bill Payments in batch
+   *
+   * @remarks
+   * Create multiple bill payments in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+   */
+  async createBatch(
+    request: operations.AccountingBillPaymentsBatchAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.AccountingBillPaymentsBatchAddResponse> {
+    return unwrapAsync(accountingBillPaymentsCreateBatch(
       this,
       request,
       options,

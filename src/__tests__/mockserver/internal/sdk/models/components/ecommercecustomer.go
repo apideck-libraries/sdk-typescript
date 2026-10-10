@@ -48,6 +48,8 @@ type EcommerceCustomerAddress struct {
 	PostalCode optionalnullable.OptionalNullable[string] `json:"postal_code,omitempty"`
 	// Country of the customer
 	Country optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
+	// Tax or VAT identification number registered on this address
+	TaxNumber optionalnullable.OptionalNullable[string] `json:"tax_number,omitempty"`
 }
 
 func (o *EcommerceCustomerAddress) GetType() *EcommerceCustomerType {
@@ -106,6 +108,13 @@ func (o *EcommerceCustomerAddress) GetCountry() optionalnullable.OptionalNullabl
 	return o.Country
 }
 
+func (o *EcommerceCustomerAddress) GetTaxNumber() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TaxNumber
+}
+
 type EcommerceCustomer struct {
 	// A unique identifier for an object.
 	ID string `json:"id"`
@@ -119,6 +128,8 @@ type EcommerceCustomer struct {
 	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// The current status of the customer
 	Status optionalnullable.OptionalNullable[EcommerceCustomerStatusCustomerStatus] `json:"status,omitempty"`
+	// Tax or VAT identification number of the customer
+	TaxNumber optionalnullable.OptionalNullable[string] `json:"tax_number,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// An array of email addresses for the customer.
@@ -187,6 +198,13 @@ func (o *EcommerceCustomer) GetStatus() optionalnullable.OptionalNullable[Ecomme
 		return nil
 	}
 	return o.Status
+}
+
+func (o *EcommerceCustomer) GetTaxNumber() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TaxNumber
 }
 
 func (o *EcommerceCustomer) GetCurrency() optionalnullable.OptionalNullable[Currency] {

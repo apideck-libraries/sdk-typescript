@@ -74,7 +74,7 @@ func testSmsMessagesAllSmsMessagesAll0(w http.ResponseWriter, req *http.Request)
 					TotalAmount: types.String("0.01"),
 					Currency:    optionalnullable.From(components.CurrencyUsd.ToPointer()),
 				},
-				Error: &components.Error{
+				Error: &components.MessageError{
 					Code:    types.String("X1"),
 					Message: types.String("Something went wrong"),
 				},
@@ -148,7 +148,7 @@ func testSmsMessagesAllSmsMessagesAll0(w http.ResponseWriter, req *http.Request)
 					TotalAmount: types.String("0.01"),
 					Currency:    optionalnullable.From(components.CurrencyUsd.ToPointer()),
 				},
-				Error: &components.Error{
+				Error: &components.MessageError{
 					Code:    types.String("X1"),
 					Message: types.String("Something went wrong"),
 				},
@@ -193,7 +193,7 @@ func testSmsMessagesAllSmsMessagesAll0(w http.ResponseWriter, req *http.Request)
 					TotalAmount: types.String("0.01"),
 					Currency:    optionalnullable.From(components.CurrencyUsd.ToPointer()),
 				},
-				Error: &components.Error{
+				Error: &components.MessageError{
 					Code:    types.String("X1"),
 					Message: types.String("Something went wrong"),
 				},
