@@ -81,6 +81,7 @@ type VaultConnectionsUpdateResponse struct {
 	UpdateConnectionResponse *components.UpdateConnectionResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *VaultConnectionsUpdateResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -102,4 +103,11 @@ func (o *VaultConnectionsUpdateResponse) GetUnexpectedErrorResponse() *component
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *VaultConnectionsUpdateResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

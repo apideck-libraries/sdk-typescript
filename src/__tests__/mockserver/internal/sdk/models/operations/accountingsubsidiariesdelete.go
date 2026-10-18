@@ -102,6 +102,7 @@ type AccountingSubsidiariesDeleteResponse struct {
 	DeleteSubsidiaryResponse *components.DeleteSubsidiaryResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *AccountingSubsidiariesDeleteResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -123,4 +124,11 @@ func (o *AccountingSubsidiariesDeleteResponse) GetUnexpectedErrorResponse() *com
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *AccountingSubsidiariesDeleteResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

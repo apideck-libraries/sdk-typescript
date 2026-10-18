@@ -112,6 +112,7 @@ type AccountingGoodsReceiptsOneResponse struct {
 	GetGoodsReceiptResponse *components.GetGoodsReceiptResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *AccountingGoodsReceiptsOneResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -133,4 +134,11 @@ func (o *AccountingGoodsReceiptsOneResponse) GetUnexpectedErrorResponse() *compo
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *AccountingGoodsReceiptsOneResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

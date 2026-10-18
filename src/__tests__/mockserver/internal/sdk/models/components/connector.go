@@ -235,6 +235,8 @@ type Connector struct {
 	SupportedEvents []ConnectorEvent `json:"supported_events,omitempty"`
 	// How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
 	WebhookSupport *WebhookSupport `json:"webhook_support,omitempty"`
+	// How this connector satisfies a batch write, per resource. Read this before calling a batch endpoint: support, execution mode and the per-request limit all vary by resource on the same connector, and the mode determines both latency and how many requests the call counts against your plan.
+	BatchSupport *BatchSupport `json:"batch_support,omitempty"`
 	// When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
 	SchemaSupport *SchemaSupport `json:"schema_support,omitempty"`
 	Docs          []ConnectorDoc `json:"docs,omitempty"`
@@ -423,6 +425,13 @@ func (o *Connector) GetWebhookSupport() *WebhookSupport {
 		return nil
 	}
 	return o.WebhookSupport
+}
+
+func (o *Connector) GetBatchSupport() *BatchSupport {
+	if o == nil {
+		return nil
+	}
+	return o.BatchSupport
 }
 
 func (o *Connector) GetSchemaSupport() *SchemaSupport {

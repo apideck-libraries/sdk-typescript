@@ -208,14 +208,18 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.ConnectorConnectorsAllResponse$inboundSchema, {
+      hdrs: true,
       key: "GetConnectorsResponse",
     }),
-    M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
-    M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
-    M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
+    M.jsonErr(400, errors.BadRequestResponse$inboundSchema, { hdrs: true }),
+    M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema, { hdrs: true }),
+    M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema, {
+      hdrs: true,
+    }),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json("default", operations.ConnectorConnectorsAllResponse$inboundSchema, {
+      hdrs: true,
       key: "UnexpectedErrorResponse",
     }),
   )(response, req, { extraFields: responseFields });

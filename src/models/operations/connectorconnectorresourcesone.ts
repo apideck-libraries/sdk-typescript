@@ -33,7 +33,7 @@ export type ConnectorConnectorResourcesOneRequest = {
   /**
    * Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
    */
-  unifiedApi?: components.UnifiedApiId | undefined;
+  unifiedApi?: components.UnifiedApi | undefined;
 };
 
 export type ConnectorConnectorResourcesOneResponse = {
@@ -67,7 +67,7 @@ export const ConnectorConnectorResourcesOneRequest$outboundSchema: z.ZodType<
   appId: z.string().optional(),
   id: z.string(),
   resourceId: z.string(),
-  unifiedApi: components.UnifiedApiId$outboundSchema.optional(),
+  unifiedApi: components.UnifiedApi$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     resourceId: "resource_id",

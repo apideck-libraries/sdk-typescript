@@ -105,7 +105,7 @@ func testAccountingBillPaymentsOneAccountingBillPaymentsOne0(w http.ResponseWrit
 			CompanyID:  optionalnullable.From(types.String("12345")),
 			Reconciled: optionalnullable.From(types.Bool(true)),
 			Status:     components.PaymentStatusAuthorised.ToPointer(),
-			Type:       components.BillPaymentTypeAccountsPayable.ToPointer(),
+			Type:       components.BillPaymentBillPaymentTypeAccountsPayable.ToPointer(),
 			Allocations: []components.BillPaymentAllocation{
 				components.BillPaymentAllocation{
 					ID:           optionalnullable.From(types.String("12345")),

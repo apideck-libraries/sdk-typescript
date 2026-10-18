@@ -76,6 +76,7 @@ type VaultConsumersAllResponse struct {
 	GetConsumersResponse *components.GetConsumersResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*VaultConsumersAllResponse, error)
 }
@@ -99,4 +100,11 @@ func (o *VaultConsumersAllResponse) GetUnexpectedErrorResponse() *components.Une
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *VaultConsumersAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

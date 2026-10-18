@@ -92,6 +92,7 @@ type CrmNotesAddResponse struct {
 	CreateNoteResponse *components.CreateNoteResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *CrmNotesAddResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -113,4 +114,11 @@ func (o *CrmNotesAddResponse) GetUnexpectedErrorResponse() *components.Unexpecte
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *CrmNotesAddResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

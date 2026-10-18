@@ -121,6 +121,7 @@ type FileStorageSharedLinksAllResponse struct {
 	GetSharedLinksResponse *components.GetSharedLinksResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*FileStorageSharedLinksAllResponse, error)
 }
@@ -144,4 +145,11 @@ func (o *FileStorageSharedLinksAllResponse) GetUnexpectedErrorResponse() *compon
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *FileStorageSharedLinksAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

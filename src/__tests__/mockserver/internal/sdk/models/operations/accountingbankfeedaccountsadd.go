@@ -92,6 +92,7 @@ type AccountingBankFeedAccountsAddResponse struct {
 	CreateBankFeedAccountResponse *components.CreateBankFeedAccountResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *AccountingBankFeedAccountsAddResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -113,4 +114,11 @@ func (o *AccountingBankFeedAccountsAddResponse) GetUnexpectedErrorResponse() *co
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *AccountingBankFeedAccountsAddResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

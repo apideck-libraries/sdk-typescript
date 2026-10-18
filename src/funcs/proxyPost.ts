@@ -222,27 +222,33 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.ProxyPostProxyResponse$inboundSchema, {
+      hdrs: true,
       key: "responseJson",
     }),
     M.stream(200, operations.ProxyPostProxyResponse$inboundSchema, {
+      hdrs: true,
       key: "responseBinary",
     }),
     M.stream(200, operations.ProxyPostProxyResponse$inboundSchema, {
       ctype: "application/pdf",
+      hdrs: true,
       key: "responsePdf",
     }),
     M.text(200, operations.ProxyPostProxyResponse$inboundSchema, {
       ctype: "application/xml",
+      hdrs: true,
       key: "responseXml",
     }),
     M.text(200, operations.ProxyPostProxyResponse$inboundSchema, {
       ctype: "text/csv",
+      hdrs: true,
       key: "responseCsv",
     }),
     M.text(200, operations.ProxyPostProxyResponse$inboundSchema, {
+      hdrs: true,
       key: "responseText",
     }),
-    M.jsonErr(401, errors.Unauthorized$inboundSchema),
+    M.jsonErr(401, errors.Unauthorized$inboundSchema, { hdrs: true }),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json("default", operations.ProxyPostProxyResponse$inboundSchema, {

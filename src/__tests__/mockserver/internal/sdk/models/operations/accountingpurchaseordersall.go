@@ -139,6 +139,7 @@ type AccountingPurchaseOrdersAllResponse struct {
 	GetPurchaseOrdersResponse *components.GetPurchaseOrdersResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*AccountingPurchaseOrdersAllResponse, error)
 }
@@ -162,4 +163,11 @@ func (o *AccountingPurchaseOrdersAllResponse) GetUnexpectedErrorResponse() *comp
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *AccountingPurchaseOrdersAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

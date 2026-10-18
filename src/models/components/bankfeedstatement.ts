@@ -67,7 +67,7 @@ export type Transactions = {
   /**
    * The ID of the source transaction.
    */
-  sourceTransactionId: string;
+  sourceTransactionId?: string | undefined;
   /**
    * The counterparty of the transaction.
    */
@@ -220,7 +220,7 @@ export const Transactions$inboundSchema: z.ZodType<
   description: types.optional(types.string()),
   amount: types.number(),
   credit_or_debit: CreditOrDebit$inboundSchema,
-  source_transaction_id: types.string(),
+  source_transaction_id: types.optional(types.string()),
   counterparty: types.optional(types.string()),
   reference: types.optional(types.string()),
   transaction_type: types.optional(
@@ -242,7 +242,7 @@ export type Transactions$Outbound = {
   description?: string | undefined;
   amount: number;
   credit_or_debit: string;
-  source_transaction_id: string;
+  source_transaction_id?: string | undefined;
   counterparty?: string | undefined;
   reference?: string | undefined;
   transaction_type?: string | undefined;
@@ -259,7 +259,7 @@ export const Transactions$outboundSchema: z.ZodType<
   description: z.string().optional(),
   amount: z.number(),
   creditOrDebit: CreditOrDebit$outboundSchema,
-  sourceTransactionId: z.string(),
+  sourceTransactionId: z.string().optional(),
   counterparty: z.string().optional(),
   reference: z.string().optional(),
   transactionType: BankFeedStatementTransactionType$outboundSchema.optional(),

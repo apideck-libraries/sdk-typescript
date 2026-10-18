@@ -53,6 +53,7 @@ type VaultConsumersUpdateResponse struct {
 	UpdateConsumerResponse *components.UpdateConsumerResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *VaultConsumersUpdateResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -74,4 +75,11 @@ func (o *VaultConsumersUpdateResponse) GetUnexpectedErrorResponse() *components.
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *VaultConsumersUpdateResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

@@ -67,6 +67,7 @@ type WebhookWebhooksAllResponse struct {
 	GetWebhooksResponse *components.GetWebhooksResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*WebhookWebhooksAllResponse, error)
 }
@@ -90,4 +91,11 @@ func (o *WebhookWebhooksAllResponse) GetUnexpectedErrorResponse() *components.Un
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *WebhookWebhooksAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

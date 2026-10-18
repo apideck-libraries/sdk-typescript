@@ -192,17 +192,20 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.ConnectorApiResourcesOneResponse$inboundSchema, {
+      hdrs: true,
       key: "GetApiResourceResponse",
     }),
-    M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
-    M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
-    M.jsonErr(404, errors.NotFoundResponse$inboundSchema),
+    M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema, { hdrs: true }),
+    M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema, {
+      hdrs: true,
+    }),
+    M.jsonErr(404, errors.NotFoundResponse$inboundSchema, { hdrs: true }),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json(
       "default",
       operations.ConnectorApiResourcesOneResponse$inboundSchema,
-      { key: "UnexpectedErrorResponse" },
+      { hdrs: true, key: "UnexpectedErrorResponse" },
     ),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {

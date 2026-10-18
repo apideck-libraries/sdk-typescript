@@ -139,6 +139,7 @@ type CrmActivitiesAllResponse struct {
 	GetActivitiesResponse *components.GetActivitiesResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*CrmActivitiesAllResponse, error)
 }
@@ -162,4 +163,11 @@ func (o *CrmActivitiesAllResponse) GetUnexpectedErrorResponse() *components.Unex
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *CrmActivitiesAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

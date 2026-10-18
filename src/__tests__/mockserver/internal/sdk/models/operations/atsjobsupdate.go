@@ -101,6 +101,7 @@ type AtsJobsUpdateResponse struct {
 	UpdateJobResponse *components.UpdateJobResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *AtsJobsUpdateResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -122,4 +123,11 @@ func (o *AtsJobsUpdateResponse) GetUnexpectedErrorResponse() *components.Unexpec
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *AtsJobsUpdateResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

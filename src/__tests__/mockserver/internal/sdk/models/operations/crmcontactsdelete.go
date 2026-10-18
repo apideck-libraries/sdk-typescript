@@ -93,6 +93,7 @@ type CrmContactsDeleteResponse struct {
 	DeleteContactResponse *components.DeleteContactResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *CrmContactsDeleteResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -114,4 +115,11 @@ func (o *CrmContactsDeleteResponse) GetUnexpectedErrorResponse() *components.Une
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *CrmContactsDeleteResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }
