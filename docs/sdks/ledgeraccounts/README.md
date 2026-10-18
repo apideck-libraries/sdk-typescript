@@ -9,6 +9,7 @@
 * [get](#get) - Get Ledger Account
 * [update](#update) - Update Ledger Account
 * [delete](#delete) - Delete Ledger Account
+* [createBatch](#createbatch) - Create Ledger Accounts in batch
 
 ## list
 
@@ -796,6 +797,242 @@ run();
 ### Response
 
 **Promise\<[operations.AccountingLedgerAccountsDeleteResponse](../../models/operations/accountingledgeraccountsdeleteresponse.md)\>**
+
+### Errors
+
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| errors.BadRequestResponse      | 400                            | application/json               |
+| errors.UnauthorizedResponse    | 401                            | application/json               |
+| errors.PaymentRequiredResponse | 402                            | application/json               |
+| errors.NotFoundResponse        | 404                            | application/json               |
+| errors.UnprocessableResponse   | 422                            | application/json               |
+| errors.APIError                | 4XX, 5XX                       | \*/\*                          |
+
+## createBatch
+
+Create multiple ledger accounts in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="accounting.ledgerAccountsBatchAdd" method="post" path="/accounting/ledger-accounts/batch" -->
+```typescript
+import { Apideck } from "@apideck/unify";
+
+const apideck = new Apideck({
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
+});
+
+async function run() {
+  const result = await apideck.accounting.ledgerAccounts.createBatch({
+    serviceId: "salesforce",
+    companyId: "12345",
+    batchLedgerAccountsRequest: {
+      items: [
+        {
+          ref: "item-1",
+          data: {
+            displayId: "1-12345",
+            code: "453",
+            classification: "asset",
+            type: "bank",
+            subType: "CHECKING_ACCOUNT",
+            name: "Bank account",
+            fullyQualifiedName: "Asset.Bank.Checking_Account",
+            description: "Main checking account",
+            openingBalance: 75000,
+            currentBalance: 20000,
+            currency: "USD",
+            taxType: "NONE",
+            taxRate: {
+              id: "123456",
+              code: "N-T",
+              rate: 10,
+            },
+            level: 1,
+            active: true,
+            status: "active",
+            header: true,
+            bankAccount: {
+              bankName: "Chase Bank",
+              accountNumber: "123465",
+              accountName: "Main Operating Account",
+              accountType: "credit_card",
+              iban: "GB33BUKB20201555555555",
+              bic: "CHASUS33",
+              routingNumber: "021000021",
+              bsbNumber: "062-001",
+              branchIdentifier: "001",
+              bankCode: "BNH",
+              currency: "USD",
+              country: "US",
+            },
+            parentAccount: {
+              id: "12345",
+              name: "Bank Accounts",
+              displayId: "1-1100",
+            },
+            subAccount: false,
+            lastReconciliationDate: new Date("2020-09-30"),
+            customFields: [
+              {
+                id: "2389328923893298",
+                name: "employee_level",
+                refName: "Marketing",
+                description: "Employee Level",
+                value: "Uses Salesforce and Marketo",
+              },
+            ],
+            rowVersion: "1-12345",
+            passThrough: [
+              {
+                serviceId: "<id>",
+                extendPaths: [
+                  {
+                    path: "$.nested.property",
+                    value: {
+                      "TaxClassificationRef": {
+                        "value": "EUC-99990201-V1-00020000",
+                      },
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingLedgerAccountsCreateBatch } from "@apideck/unify/funcs/accountingLedgerAccountsCreateBatch.js";
+
+// Use `ApideckCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const apideck = new ApideckCore({
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
+});
+
+async function run() {
+  const res = await accountingLedgerAccountsCreateBatch(apideck, {
+    serviceId: "salesforce",
+    companyId: "12345",
+    batchLedgerAccountsRequest: {
+      items: [
+        {
+          ref: "item-1",
+          data: {
+            displayId: "1-12345",
+            code: "453",
+            classification: "asset",
+            type: "bank",
+            subType: "CHECKING_ACCOUNT",
+            name: "Bank account",
+            fullyQualifiedName: "Asset.Bank.Checking_Account",
+            description: "Main checking account",
+            openingBalance: 75000,
+            currentBalance: 20000,
+            currency: "USD",
+            taxType: "NONE",
+            taxRate: {
+              id: "123456",
+              code: "N-T",
+              rate: 10,
+            },
+            level: 1,
+            active: true,
+            status: "active",
+            header: true,
+            bankAccount: {
+              bankName: "Chase Bank",
+              accountNumber: "123465",
+              accountName: "Main Operating Account",
+              accountType: "credit_card",
+              iban: "GB33BUKB20201555555555",
+              bic: "CHASUS33",
+              routingNumber: "021000021",
+              bsbNumber: "062-001",
+              branchIdentifier: "001",
+              bankCode: "BNH",
+              currency: "USD",
+              country: "US",
+            },
+            parentAccount: {
+              id: "12345",
+              name: "Bank Accounts",
+              displayId: "1-1100",
+            },
+            subAccount: false,
+            lastReconciliationDate: new Date("2020-09-30"),
+            customFields: [
+              {
+                id: "2389328923893298",
+                name: "employee_level",
+                refName: "Marketing",
+                description: "Employee Level",
+                value: "Uses Salesforce and Marketo",
+              },
+            ],
+            rowVersion: "1-12345",
+            passThrough: [
+              {
+                serviceId: "<id>",
+                extendPaths: [
+                  {
+                    path: "$.nested.property",
+                    value: {
+                      "TaxClassificationRef": {
+                        "value": "EUC-99990201-V1-00020000",
+                      },
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("accountingLedgerAccountsCreateBatch failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.AccountingLedgerAccountsBatchAddRequest](../../models/operations/accountingledgeraccountsbatchaddrequest.md)                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.AccountingLedgerAccountsBatchAddResponse](../../models/operations/accountingledgeraccountsbatchaddresponse.md)\>**
 
 ### Errors
 

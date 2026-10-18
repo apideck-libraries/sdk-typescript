@@ -121,6 +121,7 @@ type AtsJobsAllResponse struct {
 	GetJobsResponse *components.GetJobsResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*AtsJobsAllResponse, error)
 }
@@ -144,4 +145,11 @@ func (o *AtsJobsAllResponse) GetUnexpectedErrorResponse() *components.Unexpected
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *AtsJobsAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

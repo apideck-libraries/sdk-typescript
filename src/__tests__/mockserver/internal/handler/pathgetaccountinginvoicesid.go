@@ -56,7 +56,7 @@ func testAccountingInvoicesOneAccountingInvoicesOne0(w http.ResponseWriter, req 
 		Data: components.Invoice{
 			ID:           types.String("12345"),
 			DownstreamID: optionalnullable.From(types.String("12345")),
-			Type:         optionalnullable.From(components.InvoiceTypeService.ToPointer()),
+			Type:         optionalnullable.From(components.InvoiceInvoiceTypeService.ToPointer()),
 			Number:       optionalnullable.From(types.String("OIT00546")),
 			Customer: optionalnullable.From(&components.LinkedCustomer{
 				ID:          types.String("12345"),

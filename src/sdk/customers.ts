@@ -3,6 +3,7 @@
  */
 
 import { accountingCustomersCreate } from "../funcs/accountingCustomersCreate.js";
+import { accountingCustomersCreateBatch } from "../funcs/accountingCustomersCreateBatch.js";
 import { accountingCustomersDelete } from "../funcs/accountingCustomersDelete.js";
 import { accountingCustomersGet } from "../funcs/accountingCustomersGet.js";
 import { accountingCustomersList } from "../funcs/accountingCustomersList.js";
@@ -94,6 +95,23 @@ export class Customers extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.AccountingCustomersDeleteResponse> {
     return unwrapAsync(accountingCustomersDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Customers in batch
+   *
+   * @remarks
+   * Create multiple customers in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+   */
+  async createBatch(
+    request: operations.AccountingCustomersBatchAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.AccountingCustomersBatchAddResponse> {
+    return unwrapAsync(accountingCustomersCreateBatch(
       this,
       request,
       options,

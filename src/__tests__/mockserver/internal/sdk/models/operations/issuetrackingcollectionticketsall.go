@@ -148,6 +148,7 @@ type IssueTrackingCollectionTicketsAllResponse struct {
 	GetTicketsResponse *components.GetTicketsResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*IssueTrackingCollectionTicketsAllResponse, error)
 }
@@ -171,4 +172,11 @@ func (o *IssueTrackingCollectionTicketsAllResponse) GetUnexpectedErrorResponse()
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *IssueTrackingCollectionTicketsAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

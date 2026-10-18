@@ -130,6 +130,7 @@ type AccountingTrackingCategoriesAllResponse struct {
 	GetTrackingCategoriesResponse *components.GetTrackingCategoriesResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*AccountingTrackingCategoriesAllResponse, error)
 }
@@ -153,4 +154,11 @@ func (o *AccountingTrackingCategoriesAllResponse) GetUnexpectedErrorResponse() *
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *AccountingTrackingCategoriesAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

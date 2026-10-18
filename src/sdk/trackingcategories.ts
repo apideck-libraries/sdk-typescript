@@ -3,6 +3,7 @@
  */
 
 import { accountingTrackingCategoriesCreate } from "../funcs/accountingTrackingCategoriesCreate.js";
+import { accountingTrackingCategoriesCreateBatch } from "../funcs/accountingTrackingCategoriesCreateBatch.js";
 import { accountingTrackingCategoriesDelete } from "../funcs/accountingTrackingCategoriesDelete.js";
 import { accountingTrackingCategoriesGet } from "../funcs/accountingTrackingCategoriesGet.js";
 import { accountingTrackingCategoriesList } from "../funcs/accountingTrackingCategoriesList.js";
@@ -97,6 +98,23 @@ export class TrackingCategories extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.AccountingTrackingCategoriesDeleteResponse> {
     return unwrapAsync(accountingTrackingCategoriesDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Tracking Categories in batch
+   *
+   * @remarks
+   * Create multiple tracking categories in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+   */
+  async createBatch(
+    request: operations.AccountingTrackingCategoriesBatchAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.AccountingTrackingCategoriesBatchAddResponse> {
+    return unwrapAsync(accountingTrackingCategoriesCreateBatch(
       this,
       request,
       options,

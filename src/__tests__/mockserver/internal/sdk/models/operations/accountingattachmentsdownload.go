@@ -132,6 +132,7 @@ type AccountingAttachmentsDownloadResponse struct {
 	GetAttachmentDownloadResponse io.ReadCloser
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *AccountingAttachmentsDownloadResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -153,4 +154,11 @@ func (o *AccountingAttachmentsDownloadResponse) GetUnexpectedErrorResponse() *co
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *AccountingAttachmentsDownloadResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

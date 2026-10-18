@@ -26,7 +26,7 @@ type ConnectorConnectorResourcesOneRequest struct {
 	// ID of the resource you are acting upon.
 	ResourceID string `pathParam:"style=simple,explode=false,name=resource_id"`
 	// Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
-	UnifiedAPI *components.UnifiedAPIID `queryParam:"style=form,explode=true,name=unified_api"`
+	UnifiedAPI *components.UnifiedAPIParameter `queryParam:"style=form,explode=true,name=unified_api"`
 }
 
 func (o *ConnectorConnectorResourcesOneRequest) GetAppID() *string {
@@ -50,7 +50,7 @@ func (o *ConnectorConnectorResourcesOneRequest) GetResourceID() string {
 	return o.ResourceID
 }
 
-func (o *ConnectorConnectorResourcesOneRequest) GetUnifiedAPI() *components.UnifiedAPIID {
+func (o *ConnectorConnectorResourcesOneRequest) GetUnifiedAPI() *components.UnifiedAPIParameter {
 	if o == nil {
 		return nil
 	}
@@ -63,6 +63,7 @@ type ConnectorConnectorResourcesOneResponse struct {
 	GetConnectorResourceResponse *components.GetConnectorResourceResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *ConnectorConnectorResourcesOneResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -84,4 +85,11 @@ func (o *ConnectorConnectorResourcesOneResponse) GetUnexpectedErrorResponse() *c
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *ConnectorConnectorResourcesOneResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

@@ -58,8 +58,16 @@ type BankFeedAccount struct {
 	// Current status of the bank feed.
 	FeedStatus *FeedStatus `json:"feed_status,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
-	Country      optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
-	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	Country optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
+	// The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at least one.
+	AccountHolders []BankFeedAccountHolder `json:"account_holders,omitempty"`
+	// Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+	Emails []Email `json:"emails,omitempty"`
+	// Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+	Addresses []Address `json:"addresses,omitempty"`
+	// Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
@@ -174,6 +182,34 @@ func (o *BankFeedAccount) GetCountry() optionalnullable.OptionalNullable[string]
 	return o.Country
 }
 
+func (o *BankFeedAccount) GetAccountHolders() []BankFeedAccountHolder {
+	if o == nil {
+		return nil
+	}
+	return o.AccountHolders
+}
+
+func (o *BankFeedAccount) GetEmails() []Email {
+	if o == nil {
+		return nil
+	}
+	return o.Emails
+}
+
+func (o *BankFeedAccount) GetAddresses() []Address {
+	if o == nil {
+		return nil
+	}
+	return o.Addresses
+}
+
+func (o *BankFeedAccount) GetPhoneNumbers() []PhoneNumber {
+	if o == nil {
+		return nil
+	}
+	return o.PhoneNumbers
+}
+
 func (o *BankFeedAccount) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
@@ -240,8 +276,16 @@ type BankFeedAccountInput struct {
 	// Current status of the bank feed.
 	FeedStatus *FeedStatus `json:"feed_status,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
-	Country      optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
-	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	Country optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
+	// The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at least one.
+	AccountHolders []BankFeedAccountHolder `json:"account_holders,omitempty"`
+	// Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+	Emails []Email `json:"emails,omitempty"`
+	// Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+	Addresses []Address `json:"addresses,omitempty"`
+	// Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 }
 
 func (o *BankFeedAccountInput) GetBankAccountType() *BankAccountType {
@@ -326,6 +370,34 @@ func (o *BankFeedAccountInput) GetCountry() optionalnullable.OptionalNullable[st
 		return nil
 	}
 	return o.Country
+}
+
+func (o *BankFeedAccountInput) GetAccountHolders() []BankFeedAccountHolder {
+	if o == nil {
+		return nil
+	}
+	return o.AccountHolders
+}
+
+func (o *BankFeedAccountInput) GetEmails() []Email {
+	if o == nil {
+		return nil
+	}
+	return o.Emails
+}
+
+func (o *BankFeedAccountInput) GetAddresses() []Address {
+	if o == nil {
+		return nil
+	}
+	return o.Addresses
+}
+
+func (o *BankFeedAccountInput) GetPhoneNumbers() []PhoneNumber {
+	if o == nil {
+		return nil
+	}
+	return o.PhoneNumbers
 }
 
 func (o *BankFeedAccountInput) GetCustomFields() []CustomFieldUnion {

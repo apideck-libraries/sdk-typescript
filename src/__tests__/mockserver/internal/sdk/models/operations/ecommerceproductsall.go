@@ -130,6 +130,7 @@ type EcommerceProductsAllResponse struct {
 	GetProductsResponse *components.GetProductsResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*EcommerceProductsAllResponse, error)
 }
@@ -153,4 +154,11 @@ func (o *EcommerceProductsAllResponse) GetUnexpectedErrorResponse() *components.
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *EcommerceProductsAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

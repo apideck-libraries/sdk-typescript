@@ -50,25 +50,25 @@ func (o *LogService) GetName() string {
 	return o.Name
 }
 
-// UnifiedAPIEnum - Which Unified Api request was made to.
-type UnifiedAPIEnum string
+// LogUnifiedAPI - Which Unified Api request was made to.
+type LogUnifiedAPI string
 
 const (
-	UnifiedAPIEnumCrm           UnifiedAPIEnum = "crm"
-	UnifiedAPIEnumLead          UnifiedAPIEnum = "lead"
-	UnifiedAPIEnumProxy         UnifiedAPIEnum = "proxy"
-	UnifiedAPIEnumVault         UnifiedAPIEnum = "vault"
-	UnifiedAPIEnumAccounting    UnifiedAPIEnum = "accounting"
-	UnifiedAPIEnumHris          UnifiedAPIEnum = "hris"
-	UnifiedAPIEnumAts           UnifiedAPIEnum = "ats"
-	UnifiedAPIEnumEcommerce     UnifiedAPIEnum = "ecommerce"
-	UnifiedAPIEnumIssueTracking UnifiedAPIEnum = "issue-tracking"
-	UnifiedAPIEnumPos           UnifiedAPIEnum = "pos"
-	UnifiedAPIEnumFileStorage   UnifiedAPIEnum = "file-storage"
-	UnifiedAPIEnumSms           UnifiedAPIEnum = "sms"
+	LogUnifiedAPICrm           LogUnifiedAPI = "crm"
+	LogUnifiedAPILead          LogUnifiedAPI = "lead"
+	LogUnifiedAPIProxy         LogUnifiedAPI = "proxy"
+	LogUnifiedAPIVault         LogUnifiedAPI = "vault"
+	LogUnifiedAPIAccounting    LogUnifiedAPI = "accounting"
+	LogUnifiedAPIHris          LogUnifiedAPI = "hris"
+	LogUnifiedAPIAts           LogUnifiedAPI = "ats"
+	LogUnifiedAPIEcommerce     LogUnifiedAPI = "ecommerce"
+	LogUnifiedAPIIssueTracking LogUnifiedAPI = "issue-tracking"
+	LogUnifiedAPIPos           LogUnifiedAPI = "pos"
+	LogUnifiedAPIFileStorage   LogUnifiedAPI = "file-storage"
+	LogUnifiedAPISms           LogUnifiedAPI = "sms"
 )
 
-func (e UnifiedAPIEnum) ToPointer() *UnifiedAPIEnum {
+func (e LogUnifiedAPI) ToPointer() *LogUnifiedAPI {
 	return &e
 }
 
@@ -114,7 +114,7 @@ type Log struct {
 	// ISO Date and time when the request was made.
 	Timestamp string `json:"timestamp"`
 	// Which Unified Api request was made to.
-	UnifiedAPI UnifiedAPIEnum `json:"unified_api"`
+	UnifiedAPI LogUnifiedAPI `json:"unified_api"`
 }
 
 func (o *Log) GetAPIStyle() string {
@@ -257,9 +257,9 @@ func (o *Log) GetTimestamp() string {
 	return o.Timestamp
 }
 
-func (o *Log) GetUnifiedAPI() UnifiedAPIEnum {
+func (o *Log) GetUnifiedAPI() LogUnifiedAPI {
 	if o == nil {
-		return UnifiedAPIEnum("")
+		return LogUnifiedAPI("")
 	}
 	return o.UnifiedAPI
 }

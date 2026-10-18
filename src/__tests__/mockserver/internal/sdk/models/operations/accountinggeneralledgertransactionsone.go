@@ -112,6 +112,7 @@ type AccountingGeneralLedgerTransactionsOneResponse struct {
 	GetGeneralLedgerTransactionResponse *components.GetGeneralLedgerTransactionResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *AccountingGeneralLedgerTransactionsOneResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -133,4 +134,11 @@ func (o *AccountingGeneralLedgerTransactionsOneResponse) GetUnexpectedErrorRespo
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *AccountingGeneralLedgerTransactionsOneResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

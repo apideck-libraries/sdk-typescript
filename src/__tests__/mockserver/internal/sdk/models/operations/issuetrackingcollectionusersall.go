@@ -130,6 +130,7 @@ type IssueTrackingCollectionUsersAllResponse struct {
 	GetCollectionUsersResponse *components.GetCollectionUsersResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*IssueTrackingCollectionUsersAllResponse, error)
 }
@@ -153,4 +154,11 @@ func (o *IssueTrackingCollectionUsersAllResponse) GetUnexpectedErrorResponse() *
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *IssueTrackingCollectionUsersAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

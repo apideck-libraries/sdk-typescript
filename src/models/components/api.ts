@@ -28,7 +28,7 @@ export const ApiType = {
  */
 export type ApiType = OpenEnum<typeof ApiType>;
 
-export type Resources = {
+export type ApiResources = {
   /**
    * ID of the resource, typically a lowercased version of its name.
    */
@@ -87,7 +87,7 @@ export type Api = {
   /**
    * List of resources supported in this API.
    */
-  resources?: Array<Resources> | undefined;
+  resources?: Array<ApiResources> | undefined;
   /**
    * List of event types this API supports.
    */
@@ -99,8 +99,8 @@ export const ApiType$inboundSchema: z.ZodType<ApiType, z.ZodTypeDef, unknown> =
   openEnums.inboundSchema(ApiType);
 
 /** @internal */
-export const Resources$inboundSchema: z.ZodType<
-  Resources,
+export const ApiResources$inboundSchema: z.ZodType<
+  ApiResources,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -114,13 +114,13 @@ export const Resources$inboundSchema: z.ZodType<
   });
 });
 
-export function resourcesFromJSON(
+export function apiResourcesFromJSON(
   jsonString: string,
-): SafeParseResult<Resources, SDKValidationError> {
+): SafeParseResult<ApiResources, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Resources$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Resources' from JSON`,
+    (x) => ApiResources$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ApiResources' from JSON`,
   );
 }
 
@@ -136,7 +136,9 @@ export const Api$inboundSchema: z.ZodType<Api, z.ZodTypeDef, unknown> = z
     api_reference_url: types.optional(types.string()),
     postman_collection_id: z.nullable(types.string()).optional(),
     categories: types.optional(z.array(types.string())),
-    resources: types.optional(z.array(z.lazy(() => Resources$inboundSchema))),
+    resources: types.optional(
+      z.array(z.lazy(() => ApiResources$inboundSchema)),
+    ),
     events: types.optional(z.array(types.string())),
   }).transform((v) => {
     return remap$(v, {

@@ -67,6 +67,10 @@ export type Addresses = {
    * Country of the customer
    */
   country?: string | null | undefined;
+  /**
+   * Tax or VAT identification number registered on this address
+   */
+  taxNumber?: string | null | undefined;
 };
 
 export type EcommerceCustomer = {
@@ -94,6 +98,10 @@ export type EcommerceCustomer = {
    * The current status of the customer
    */
   status?: CustomerStatus | null | undefined;
+  /**
+   * Tax or VAT identification number of the customer
+   */
+  taxNumber?: string | null | undefined;
   /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
@@ -153,9 +161,11 @@ export const Addresses$inboundSchema: z.ZodType<
   state: z.nullable(types.string()).optional(),
   postal_code: z.nullable(types.string()).optional(),
   country: z.nullable(types.string()).optional(),
+  tax_number: z.nullable(types.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "postal_code": "postalCode",
+    "tax_number": "taxNumber",
   });
 });
 
@@ -181,6 +191,7 @@ export const EcommerceCustomer$inboundSchema: z.ZodType<
   last_name: z.nullable(types.string()).optional(),
   company_name: z.nullable(types.string()).optional(),
   status: z.nullable(CustomerStatus$inboundSchema).optional(),
+  tax_number: z.nullable(types.string()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
   emails: z.nullable(z.array(Email$inboundSchema)).optional(),
   phone_numbers: z.nullable(z.array(PhoneNumber$inboundSchema)).optional(),
@@ -194,6 +205,7 @@ export const EcommerceCustomer$inboundSchema: z.ZodType<
     "first_name": "firstName",
     "last_name": "lastName",
     "company_name": "companyName",
+    "tax_number": "taxNumber",
     "phone_numbers": "phoneNumbers",
     "custom_mappings": "customMappings",
     "created_at": "createdAt",

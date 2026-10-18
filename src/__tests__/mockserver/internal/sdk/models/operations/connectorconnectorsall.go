@@ -76,6 +76,7 @@ type ConnectorConnectorsAllResponse struct {
 	GetConnectorsResponse *components.GetConnectorsResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*ConnectorConnectorsAllResponse, error)
 }
@@ -99,4 +100,11 @@ func (o *ConnectorConnectorsAllResponse) GetUnexpectedErrorResponse() *component
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *ConnectorConnectorsAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

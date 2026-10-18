@@ -78,7 +78,7 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 				StatusCode: 200,
 				Success:    true,
 				Timestamp:  "2021-07-12T14:26:17.420Z",
-				UnifiedAPI: components.UnifiedAPIEnumVault,
+				UnifiedAPI: components.LogUnifiedAPIVault,
 			},
 			components.Log{
 				APIStyle:     "REST",
@@ -107,7 +107,7 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 				StatusCode: 200,
 				Success:    true,
 				Timestamp:  "2021-07-12T14:26:17.420Z",
-				UnifiedAPI: components.UnifiedAPIEnumVault,
+				UnifiedAPI: components.LogUnifiedAPIVault,
 			},
 			components.Log{
 				APIStyle:     "REST",
@@ -136,7 +136,7 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 				StatusCode: 200,
 				Success:    true,
 				Timestamp:  "2021-07-12T14:26:17.420Z",
-				UnifiedAPI: components.UnifiedAPIEnumVault,
+				UnifiedAPI: components.LogUnifiedAPIVault,
 			},
 		},
 		Meta: &components.Meta{
