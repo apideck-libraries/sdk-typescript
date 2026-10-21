@@ -107,6 +107,18 @@ let value: GetConnectorResponse = {
       mode: "native",
       subscriptionLevel: "integration",
       managedVia: "api",
+      sharedWith: [
+        "intuit-enterprise-suite",
+      ],
+    },
+    batchSupport: {
+      mode: "none",
+      resources: {
+        "key": {
+          mode: "native",
+          maxItems: 20,
+        },
+      },
     },
     schemaSupport: {
       supported: true,

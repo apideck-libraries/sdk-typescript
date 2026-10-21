@@ -44,6 +44,7 @@ type WebhookWebhooksAddResponse struct {
 	CreateWebhookResponse *components.CreateWebhookResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *WebhookWebhooksAddResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -65,4 +66,11 @@ func (o *WebhookWebhooksAddResponse) GetUnexpectedErrorResponse() *components.Un
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *WebhookWebhooksAddResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

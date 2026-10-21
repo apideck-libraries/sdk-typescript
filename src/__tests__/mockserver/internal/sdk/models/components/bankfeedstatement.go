@@ -47,7 +47,7 @@ type Transaction struct {
 	// Whether the amount is a credit or debit.
 	CreditOrDebit CreditOrDebit `json:"credit_or_debit"`
 	// The ID of the source transaction.
-	SourceTransactionID string `json:"source_transaction_id"`
+	SourceTransactionID *string `json:"source_transaction_id,omitempty"`
 	// The counterparty of the transaction.
 	Counterparty *string `json:"counterparty,omitempty"`
 	// The reference of the transaction.
@@ -63,7 +63,7 @@ func (t Transaction) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Transaction) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"posted_date", "amount", "credit_or_debit", "source_transaction_id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"posted_date", "amount", "credit_or_debit"}); err != nil {
 		return err
 	}
 	return nil
@@ -97,9 +97,9 @@ func (o *Transaction) GetCreditOrDebit() CreditOrDebit {
 	return o.CreditOrDebit
 }
 
-func (o *Transaction) GetSourceTransactionID() string {
+func (o *Transaction) GetSourceTransactionID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.SourceTransactionID
 }

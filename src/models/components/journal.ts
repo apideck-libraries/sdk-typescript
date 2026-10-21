@@ -80,6 +80,10 @@ export type Journal = {
    */
   defaultAccount?: LinkedFinancialAccount | null | undefined;
   /**
+   * A flexible account reference that can represent a ledger account (GL account), a bank account, or an employee payable account, depending on the connector's requirements.
+   */
+  clearingAccount?: LinkedFinancialAccount | null | undefined;
+  /**
    * Whether the journal is blocked for posting.
    */
   blocked?: boolean | null | undefined;
@@ -131,6 +135,10 @@ export type JournalInput = {
    */
   defaultAccount?: LinkedFinancialAccountInput | null | undefined;
   /**
+   * A flexible account reference that can represent a ledger account (GL account), a bank account, or an employee payable account, depending on the connector's requirements.
+   */
+  clearingAccount?: LinkedFinancialAccountInput | null | undefined;
+  /**
    * Whether the journal is blocked for posting.
    */
   blocked?: boolean | null | undefined;
@@ -162,6 +170,8 @@ export const Journal$inboundSchema: z.ZodType<Journal, z.ZodTypeDef, unknown> =
     iban: z.nullable(types.string()).optional(),
     default_account: z.nullable(LinkedFinancialAccount$inboundSchema)
       .optional(),
+    clearing_account: z.nullable(LinkedFinancialAccount$inboundSchema)
+      .optional(),
     blocked: z.nullable(types.boolean()).optional(),
     created_at: z.nullable(types.date()).optional(),
     updated_at: z.nullable(types.date()).optional(),
@@ -170,6 +180,7 @@ export const Journal$inboundSchema: z.ZodType<Journal, z.ZodTypeDef, unknown> =
     return remap$(v, {
       "allow_vat": "allowVat",
       "default_account": "defaultAccount",
+      "clearing_account": "clearingAccount",
       "created_at": "createdAt",
       "updated_at": "updatedAt",
       "custom_mappings": "customMappings",
@@ -196,6 +207,7 @@ export type JournalInput$Outbound = {
   currency?: string | null | undefined;
   iban?: string | null | undefined;
   default_account?: LinkedFinancialAccountInput$Outbound | null | undefined;
+  clearing_account?: LinkedFinancialAccountInput$Outbound | null | undefined;
   blocked?: boolean | null | undefined;
 };
 
@@ -214,11 +226,14 @@ export const JournalInput$outboundSchema: z.ZodType<
   iban: z.nullable(z.string()).optional(),
   defaultAccount: z.nullable(LinkedFinancialAccountInput$outboundSchema)
     .optional(),
+  clearingAccount: z.nullable(LinkedFinancialAccountInput$outboundSchema)
+    .optional(),
   blocked: z.nullable(z.boolean()).optional(),
 }).transform((v) => {
   return remap$(v, {
     allowVat: "allow_vat",
     defaultAccount: "default_account",
+    clearingAccount: "clearing_account",
   });
 });
 

@@ -38,6 +38,14 @@ export type JournalEntriesFilterScope = OpenEnum<
 export type JournalEntriesFilter = {
   updatedSince?: Date | undefined;
   /**
+   * Journal entry number to search for
+   */
+  number?: string | undefined;
+  /**
+   * Return only journal entries whose source_id equals the given value (the caller-supplied reference, where the connector stores one). Connectors without support reject this filter with UnsupportedFiltersError.
+   */
+  sourceId?: string | undefined;
+  /**
    * Return journal entries posted on or after this date (posting date, inclusive). Connectors without date-range support reject this filter with UnsupportedFiltersError.
    */
   startDate?: Date | undefined;
@@ -73,6 +81,8 @@ export const JournalEntriesFilterScope$outboundSchema: z.ZodType<
 /** @internal */
 export type JournalEntriesFilter$Outbound = {
   updated_since?: string | undefined;
+  number?: string | undefined;
+  source_id?: string | undefined;
   start_date?: string | undefined;
   end_date?: string | undefined;
   status?: string | undefined;
@@ -87,6 +97,8 @@ export const JournalEntriesFilter$outboundSchema: z.ZodType<
   JournalEntriesFilter
 > = z.object({
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  number: z.string().optional(),
+  sourceId: z.string().optional(),
   startDate: z.date().transform(v =>
     v.toISOString().slice(0, "YYYY-MM-DD".length)
   ).optional(),
@@ -99,6 +111,7 @@ export const JournalEntriesFilter$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",
+    sourceId: "source_id",
     startDate: "start_date",
     endDate: "end_date",
     subsidiaryId: "subsidiary_id",

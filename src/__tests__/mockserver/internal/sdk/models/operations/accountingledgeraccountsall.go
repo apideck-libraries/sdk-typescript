@@ -148,6 +148,7 @@ type AccountingLedgerAccountsAllResponse struct {
 	GetLedgerAccountsResponse *components.GetLedgerAccountsResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*AccountingLedgerAccountsAllResponse, error)
 }
@@ -171,4 +172,11 @@ func (o *AccountingLedgerAccountsAllResponse) GetUnexpectedErrorResponse() *comp
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *AccountingLedgerAccountsAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

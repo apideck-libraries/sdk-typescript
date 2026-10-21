@@ -103,6 +103,7 @@ type SmsMessagesOneResponse struct {
 	GetMessageResponse *components.GetMessageResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *SmsMessagesOneResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -124,4 +125,11 @@ func (o *SmsMessagesOneResponse) GetUnexpectedErrorResponse() *components.Unexpe
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *SmsMessagesOneResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

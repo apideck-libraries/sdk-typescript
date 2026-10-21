@@ -54,6 +54,7 @@ type ConnectorConnectorDocsOneResponse struct {
 	GetConnectorDocResponse *string
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *ConnectorConnectorDocsOneResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -75,4 +76,11 @@ func (o *ConnectorConnectorDocsOneResponse) GetUnexpectedErrorResponse() *compon
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *ConnectorConnectorDocsOneResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

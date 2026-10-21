@@ -121,6 +121,7 @@ type FileStorageDrivesAllResponse struct {
 	GetDrivesResponse *components.GetDrivesResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*FileStorageDrivesAllResponse, error)
 }
@@ -144,4 +145,11 @@ func (o *FileStorageDrivesAllResponse) GetUnexpectedErrorResponse() *components.
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *FileStorageDrivesAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

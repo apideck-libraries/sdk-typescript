@@ -115,6 +115,10 @@ export type WebhookSupport = {
    */
   managedVia?: ManagedVia | undefined;
   /**
+   * Service IDs of connectors that receive events from this connector's webhook URL when the URL's own connector has no connection for the event. Connectors listed here must use the same webhook event mapping.
+   */
+  sharedWith?: Array<string> | undefined;
+  /**
    * Virtual webhook config for the connector.
    */
   virtualWebhooks?: VirtualWebhooks | undefined;
@@ -217,11 +221,13 @@ export const WebhookSupport$inboundSchema: z.ZodType<
   mode: types.optional(Mode$inboundSchema),
   subscription_level: types.optional(SubscriptionLevel$inboundSchema),
   managed_via: types.optional(ManagedVia$inboundSchema),
+  shared_with: types.optional(z.array(types.string())),
   virtual_webhooks: types.optional(z.lazy(() => VirtualWebhooks$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "subscription_level": "subscriptionLevel",
     "managed_via": "managedVia",
+    "shared_with": "sharedWith",
     "virtual_webhooks": "virtualWebhooks",
   });
 });

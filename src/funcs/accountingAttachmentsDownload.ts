@@ -236,19 +236,21 @@ async function $do(
     M.stream(
       200,
       operations.AccountingAttachmentsDownloadResponse$inboundSchema,
-      { ctype: "*/*", key: "GetAttachmentDownloadResponse" },
+      { ctype: "*/*", hdrs: true, key: "GetAttachmentDownloadResponse" },
     ),
-    M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
-    M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
-    M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
-    M.jsonErr(404, errors.NotFoundResponse$inboundSchema),
-    M.jsonErr(422, errors.UnprocessableResponse$inboundSchema),
+    M.jsonErr(400, errors.BadRequestResponse$inboundSchema, { hdrs: true }),
+    M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema, { hdrs: true }),
+    M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema, {
+      hdrs: true,
+    }),
+    M.jsonErr(404, errors.NotFoundResponse$inboundSchema, { hdrs: true }),
+    M.jsonErr(422, errors.UnprocessableResponse$inboundSchema, { hdrs: true }),
     M.fail("4XX"),
     M.fail("5XX"),
     M.json(
       "default",
       operations.AccountingAttachmentsDownloadResponse$inboundSchema,
-      { key: "UnexpectedErrorResponse" },
+      { hdrs: true, key: "UnexpectedErrorResponse" },
     ),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {

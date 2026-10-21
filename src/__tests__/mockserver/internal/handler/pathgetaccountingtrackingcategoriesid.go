@@ -58,7 +58,7 @@ func testAccountingTrackingCategoriesOneAccountingTrackingCategoriesOne0(w http.
 			ParentID:   optionalnullable.From(types.String("12345")),
 			Name:       types.String("Department"),
 			Code:       optionalnullable.From(types.String("100")),
-			Status:     components.TrackingCategoryStatusActive.ToPointer(),
+			Status:     components.TrackingCategoryTrackingCategoryStatusActive.ToPointer(),
 			RowVersion: optionalnullable.From(types.String("1-12345")),
 			UpdatedBy:  optionalnullable.From(types.String("12345")),
 			CreatedBy:  optionalnullable.From(types.String("12345")),
