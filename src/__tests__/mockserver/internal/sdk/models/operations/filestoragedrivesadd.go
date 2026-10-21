@@ -92,6 +92,7 @@ type FileStorageDrivesAddResponse struct {
 	CreateDriveResponse *components.CreateDriveResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *FileStorageDrivesAddResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -113,4 +114,11 @@ func (o *FileStorageDrivesAddResponse) GetUnexpectedErrorResponse() *components.
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *FileStorageDrivesAddResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

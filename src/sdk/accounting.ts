@@ -23,6 +23,7 @@ import { Employees } from "./employees.js";
 import { ExpenseCategories } from "./expensecategories.js";
 import { ExpenseReports } from "./expensereports.js";
 import { Expenses } from "./expenses.js";
+import { FiscalPeriods } from "./fiscalperiods.js";
 import { GeneralLedgerTransactions } from "./generalledgertransactions.js";
 import { GoodsReceipts } from "./goodsreceipts.js";
 import { InvoiceItems } from "./invoiceitems.js";
@@ -38,11 +39,13 @@ import { Projects } from "./projects.js";
 import { PurchaseOrders } from "./purchaseorders.js";
 import { Quotes } from "./quotes.js";
 import { Refunds } from "./refunds.js";
+import { SalesOrders } from "./salesorders.js";
 import { SalesReceipts } from "./salesreceipts.js";
 import { Subsidiaries } from "./subsidiaries.js";
 import { Suppliers } from "./suppliers.js";
 import { TaxRates } from "./taxrates.js";
 import { TrackingCategories } from "./trackingcategories.js";
+import { TrialBalance } from "./trialbalance.js";
 
 export class Accounting extends ClientSDK {
   private _taxRates?: TaxRates;
@@ -177,6 +180,16 @@ export class Accounting extends ClientSDK {
     return (this._journals ??= new Journals(this._options));
   }
 
+  private _fiscalPeriods?: FiscalPeriods;
+  get fiscalPeriods(): FiscalPeriods {
+    return (this._fiscalPeriods ??= new FiscalPeriods(this._options));
+  }
+
+  private _trialBalance?: TrialBalance;
+  get trialBalance(): TrialBalance {
+    return (this._trialBalance ??= new TrialBalance(this._options));
+  }
+
   private _trackingCategories?: TrackingCategories;
   get trackingCategories(): TrackingCategories {
     return (this._trackingCategories ??= new TrackingCategories(this._options));
@@ -225,6 +238,11 @@ export class Accounting extends ClientSDK {
   private _projects?: Projects;
   get projects(): Projects {
     return (this._projects ??= new Projects(this._options));
+  }
+
+  private _salesOrders?: SalesOrders;
+  get salesOrders(): SalesOrders {
+    return (this._salesOrders ??= new SalesOrders(this._options));
   }
 
   private _employees?: Employees;

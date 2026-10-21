@@ -121,6 +121,7 @@ type AccountingPaymentMethodsAllResponse struct {
 	GetPaymentMethodsResponse *components.GetPaymentMethodsResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*AccountingPaymentMethodsAllResponse, error)
 }
@@ -144,4 +145,11 @@ func (o *AccountingPaymentMethodsAllResponse) GetUnexpectedErrorResponse() *comp
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *AccountingPaymentMethodsAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

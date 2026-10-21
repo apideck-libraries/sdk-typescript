@@ -103,6 +103,7 @@ type CrmActivitiesOneResponse struct {
 	GetActivityResponse *components.GetActivityResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *CrmActivitiesOneResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -124,4 +125,11 @@ func (o *CrmActivitiesOneResponse) GetUnexpectedErrorResponse() *components.Unex
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *CrmActivitiesOneResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

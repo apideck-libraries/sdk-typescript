@@ -10,6 +10,7 @@ import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { BatchSupport, BatchSupport$inboundSchema } from "./batchsupport.js";
 import { ConnectorDoc, ConnectorDoc$inboundSchema } from "./connectordoc.js";
 import {
   ConnectorEvent,
@@ -246,6 +247,10 @@ export type Connector = {
    */
   webhookSupport?: WebhookSupport | undefined;
   /**
+   * How this connector satisfies a batch write, per resource. Read this before calling a batch endpoint: support, execution mode and the per-request limit all vary by resource on the same connector, and the mode determines both latency and how many requests the call counts against your plan.
+   */
+  batchSupport?: BatchSupport | undefined;
+  /**
    * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
    */
   schemaSupport?: SchemaSupport | undefined;
@@ -420,6 +425,7 @@ export const Connector$inboundSchema: z.ZodType<
   configurable_resources: types.optional(z.array(types.string())),
   supported_events: types.optional(z.array(ConnectorEvent$inboundSchema)),
   webhook_support: types.optional(WebhookSupport$inboundSchema),
+  batch_support: types.optional(BatchSupport$inboundSchema),
   schema_support: types.optional(SchemaSupport$inboundSchema),
   docs: types.optional(z.array(ConnectorDoc$inboundSchema)),
   overview: types.optional(ConnectorOverview$inboundSchema),
@@ -447,6 +453,7 @@ export const Connector$inboundSchema: z.ZodType<
     "configurable_resources": "configurableResources",
     "supported_events": "supportedEvents",
     "webhook_support": "webhookSupport",
+    "batch_support": "batchSupport",
     "schema_support": "schemaSupport",
     "tls_support": "tlsSupport",
   });

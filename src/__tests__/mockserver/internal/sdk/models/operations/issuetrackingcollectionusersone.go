@@ -112,6 +112,7 @@ type IssueTrackingCollectionUsersOneResponse struct {
 	GetCollectionUserResponse *components.GetCollectionUserResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *IssueTrackingCollectionUsersOneResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -133,4 +134,11 @@ func (o *IssueTrackingCollectionUsersOneResponse) GetUnexpectedErrorResponse() *
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *IssueTrackingCollectionUsersOneResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

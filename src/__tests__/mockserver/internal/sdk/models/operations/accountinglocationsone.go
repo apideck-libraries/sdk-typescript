@@ -112,6 +112,7 @@ type AccountingLocationsOneResponse struct {
 	GetAccountingLocationResponse *components.GetAccountingLocationResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *AccountingLocationsOneResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -133,4 +134,11 @@ func (o *AccountingLocationsOneResponse) GetUnexpectedErrorResponse() *component
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *AccountingLocationsOneResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

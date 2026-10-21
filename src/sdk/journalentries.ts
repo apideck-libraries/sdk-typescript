@@ -3,6 +3,7 @@
  */
 
 import { accountingJournalEntriesCreate } from "../funcs/accountingJournalEntriesCreate.js";
+import { accountingJournalEntriesCreateBatch } from "../funcs/accountingJournalEntriesCreateBatch.js";
 import { accountingJournalEntriesDelete } from "../funcs/accountingJournalEntriesDelete.js";
 import { accountingJournalEntriesGet } from "../funcs/accountingJournalEntriesGet.js";
 import { accountingJournalEntriesList } from "../funcs/accountingJournalEntriesList.js";
@@ -97,6 +98,23 @@ export class JournalEntries extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.AccountingJournalEntriesDeleteResponse> {
     return unwrapAsync(accountingJournalEntriesDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Journal Entries in batch
+   *
+   * @remarks
+   * Create multiple journal entries in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+   */
+  async createBatch(
+    request: operations.AccountingJournalEntriesBatchAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.AccountingJournalEntriesBatchAddResponse> {
+    return unwrapAsync(accountingJournalEntriesCreateBatch(
       this,
       request,
       options,

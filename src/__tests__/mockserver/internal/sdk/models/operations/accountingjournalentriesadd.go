@@ -38,8 +38,10 @@ type AccountingJournalEntriesAddRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
-	CompanyID *string                      `header:"style=simple,explode=false,name=x-apideck-company-id"`
-	Body      components.JournalEntryInput `request:"mediaType=application/json"`
+	CompanyID *string `header:"style=simple,explode=false,name=x-apideck-company-id"`
+	// A unique key you generate for one create or update, to make retrying it safe. If the request times out or fails with an uncertain outcome, resend it with the same key and the same body: the record is created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is recommended) and are accepted bare or as a quoted string. A key is remembered for 24 hours from its first use, or for the connector's own deduplication window where that is shorter (Xero: 6 minutes; Sage Intacct REST: 1 hour); after that, the same key is treated as a new request, so retry within the window. Some connectors also replay an error to retries with the same key: if retries keep returning the same error, check whether the record exists before sending it again with a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is still running returns 409. A key is bound to its first request even if that request was rejected, so after fixing a rejected body, send it with a new key. Connectors that cannot honour the key on this operation reject the request with 400 instead of writing unprotected.
+	IdempotencyKey *string                      `header:"style=simple,explode=false,name=idempotency-key"`
+	Body           components.JournalEntryInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingJournalEntriesAddRequest) MarshalJSON() ([]byte, error) {
@@ -88,6 +90,13 @@ func (o *AccountingJournalEntriesAddRequest) GetCompanyID() *string {
 	return o.CompanyID
 }
 
+func (o *AccountingJournalEntriesAddRequest) GetIdempotencyKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IdempotencyKey
+}
+
 func (o *AccountingJournalEntriesAddRequest) GetBody() components.JournalEntryInput {
 	if o == nil {
 		return components.JournalEntryInput{}
@@ -101,6 +110,7 @@ type AccountingJournalEntriesAddResponse struct {
 	CreateJournalEntryResponse *components.CreateJournalEntryResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *AccountingJournalEntriesAddResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -122,4 +132,11 @@ func (o *AccountingJournalEntriesAddResponse) GetUnexpectedErrorResponse() *comp
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *AccountingJournalEntriesAddResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

@@ -2,16 +2,16 @@
 
 package components
 
-// PeriodType - The type of period to include in the resource: month, quarter, year.
-type PeriodType string
+// BalanceSheetFilterPeriodType - The type of period to include in the resource: month, quarter, year.
+type BalanceSheetFilterPeriodType string
 
 const (
-	PeriodTypeMonth   PeriodType = "month"
-	PeriodTypeQuarter PeriodType = "quarter"
-	PeriodTypeYear    PeriodType = "year"
+	BalanceSheetFilterPeriodTypeMonth   BalanceSheetFilterPeriodType = "month"
+	BalanceSheetFilterPeriodTypeQuarter BalanceSheetFilterPeriodType = "quarter"
+	BalanceSheetFilterPeriodTypeYear    BalanceSheetFilterPeriodType = "year"
 )
 
-func (e PeriodType) ToPointer() *PeriodType {
+func (e BalanceSheetFilterPeriodType) ToPointer() *BalanceSheetFilterPeriodType {
 	return &e
 }
 
@@ -37,7 +37,7 @@ type BalanceSheetFilter struct {
 	// The number of periods to include in the resource.
 	PeriodCount *int64 `queryParam:"name=period_count"`
 	// The type of period to include in the resource: month, quarter, year.
-	PeriodType *PeriodType `queryParam:"name=period_type"`
+	PeriodType *BalanceSheetFilterPeriodType `queryParam:"name=period_type"`
 	// The ID of the location to include in the resource.
 	LocationID *string `queryParam:"name=location_id"`
 	// The accounting method used for the report: cash or accrual.
@@ -65,7 +65,7 @@ func (o *BalanceSheetFilter) GetPeriodCount() *int64 {
 	return o.PeriodCount
 }
 
-func (o *BalanceSheetFilter) GetPeriodType() *PeriodType {
+func (o *BalanceSheetFilter) GetPeriodType() *BalanceSheetFilterPeriodType {
 	if o == nil {
 		return nil
 	}

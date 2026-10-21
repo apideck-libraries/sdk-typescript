@@ -93,6 +93,7 @@ type SmsMessagesDeleteResponse struct {
 	DeleteMessageResponse *components.DeleteMessageResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *SmsMessagesDeleteResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -114,4 +115,11 @@ func (o *SmsMessagesDeleteResponse) GetUnexpectedErrorResponse() *components.Une
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *SmsMessagesDeleteResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

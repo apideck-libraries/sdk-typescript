@@ -121,6 +121,7 @@ type CrmPipelinesAllResponse struct {
 	GetPipelinesResponse *components.GetPipelinesResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*CrmPipelinesAllResponse, error)
 }
@@ -144,4 +145,11 @@ func (o *CrmPipelinesAllResponse) GetUnexpectedErrorResponse() *components.Unexp
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *CrmPipelinesAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

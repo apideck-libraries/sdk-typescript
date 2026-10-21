@@ -130,6 +130,7 @@ type AccountingAttachmentsOneResponse struct {
 	GetAttachmentResponse *components.GetAttachmentResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *AccountingAttachmentsOneResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -151,4 +152,11 @@ func (o *AccountingAttachmentsOneResponse) GetUnexpectedErrorResponse() *compone
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *AccountingAttachmentsOneResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

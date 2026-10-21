@@ -112,6 +112,7 @@ type AccountingPaymentsOneResponse struct {
 	GetPaymentResponse *components.GetPaymentResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *AccountingPaymentsOneResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -133,4 +134,11 @@ func (o *AccountingPaymentsOneResponse) GetUnexpectedErrorResponse() *components
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *AccountingPaymentsOneResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

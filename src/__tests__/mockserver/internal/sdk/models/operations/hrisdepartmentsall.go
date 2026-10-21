@@ -121,6 +121,7 @@ type HrisDepartmentsAllResponse struct {
 	GetDepartmentsResponse *components.GetDepartmentsResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 
 	Next func() (*HrisDepartmentsAllResponse, error)
 }
@@ -144,4 +145,11 @@ func (o *HrisDepartmentsAllResponse) GetUnexpectedErrorResponse() *components.Un
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *HrisDepartmentsAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }

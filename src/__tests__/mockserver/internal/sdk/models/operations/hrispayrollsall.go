@@ -112,6 +112,7 @@ type HrisPayrollsAllResponse struct {
 	GetPayrollsResponse *components.GetPayrollsResponse
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
+	Headers                 map[string][]string
 }
 
 func (o *HrisPayrollsAllResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -133,4 +134,11 @@ func (o *HrisPayrollsAllResponse) GetUnexpectedErrorResponse() *components.Unexp
 		return nil
 	}
 	return o.UnexpectedErrorResponse
+}
+
+func (o *HrisPayrollsAllResponse) GetHeaders() map[string][]string {
+	if o == nil {
+		return map[string][]string{}
+	}
+	return o.Headers
 }
