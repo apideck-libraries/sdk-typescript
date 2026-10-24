@@ -26,6 +26,7 @@ let value: GetBankFeedAccountResponse = {
     availableBalance: 24500,
     currency: "USD",
     feedStatus: "pending",
+    status: "active",
     country: "US",
     accountHolders: [
       {
