@@ -93,6 +93,50 @@ export const LedgerAccountType = {
 export type LedgerAccountType = OpenEnum<typeof LedgerAccountType>;
 
 /**
+ * The depreciation method of the assets, normalised across accounting systems: declining-balance variants (for example 150% or 200%) are all `declining_balance`, and the accounting system's own value is in `downstream_depreciation_method`. Set only when every asset recorded in the account uses the same method.
+ */
+export const DepreciationMethod = {
+  Other: "other",
+  StraightLine: "straight_line",
+  DecliningBalance: "declining_balance",
+  None: "none",
+} as const;
+/**
+ * The depreciation method of the assets, normalised across accounting systems: declining-balance variants (for example 150% or 200%) are all `declining_balance`, and the accounting system's own value is in `downstream_depreciation_method`. Set only when every asset recorded in the account uses the same method.
+ */
+export type DepreciationMethod = OpenEnum<typeof DepreciationMethod>;
+
+/**
+ * For an account that holds the cost of fixed assets, the fixed-asset register's figures for the assets recorded in it. Null for other accounts, including accumulated-depreciation accounts, and when the accounting system does not provide them.
+ */
+export type FixedAsset = {
+  /**
+   * The total cost of the fixed assets recorded in the account.
+   */
+  cost?: number | null | undefined;
+  /**
+   * The depreciation accumulated so far on the fixed assets recorded in the account, as a positive amount.
+   */
+  accumulatedDepreciation?: number | null | undefined;
+  /**
+   * The date the assets were purchased - YYYY-MM-DD. Set only when every asset recorded in the account shares the same date.
+   */
+  acquisitionDate?: Date | null | undefined;
+  /**
+   * The depreciation method of the assets, normalised across accounting systems: declining-balance variants (for example 150% or 200%) are all `declining_balance`, and the accounting system's own value is in `downstream_depreciation_method`. Set only when every asset recorded in the account uses the same method.
+   */
+  depreciationMethod?: DepreciationMethod | null | undefined;
+  /**
+   * The depreciation method exactly as the accounting system names it, under the same condition as `depreciation_method`.
+   */
+  downstreamDepreciationMethod?: string | null | undefined;
+  /**
+   * The useful life of the assets, in months. Set only when every asset recorded in the account has the same useful life.
+   */
+  usefulLifeMonths?: number | null | undefined;
+};
+
+/**
  * The status of the account.
  */
 export const AccountStatus = {
@@ -197,6 +241,10 @@ export type LedgerAccount = {
    * The current balance of the account.
    */
   currentBalance?: number | null | undefined;
+  /**
+   * For an account that holds the cost of fixed assets, the fixed-asset register's figures for the assets recorded in it. Null for other accounts, including accumulated-depreciation accounts, and when the accounting system does not provide them.
+   */
+  fixedAsset?: FixedAsset | null | undefined;
   /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
@@ -393,6 +441,45 @@ export const LedgerAccountType$outboundSchema: z.ZodType<
 > = openEnums.outboundSchema(LedgerAccountType);
 
 /** @internal */
+export const DepreciationMethod$inboundSchema: z.ZodType<
+  DepreciationMethod,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(DepreciationMethod);
+
+/** @internal */
+export const FixedAsset$inboundSchema: z.ZodType<
+  FixedAsset,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  cost: z.nullable(types.number()).optional(),
+  accumulated_depreciation: z.nullable(types.number()).optional(),
+  acquisition_date: z.nullable(types.date()).optional(),
+  depreciation_method: z.nullable(DepreciationMethod$inboundSchema).optional(),
+  downstream_depreciation_method: z.nullable(types.string()).optional(),
+  useful_life_months: z.nullable(types.number()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "accumulated_depreciation": "accumulatedDepreciation",
+    "acquisition_date": "acquisitionDate",
+    "depreciation_method": "depreciationMethod",
+    "downstream_depreciation_method": "downstreamDepreciationMethod",
+    "useful_life_months": "usefulLifeMonths",
+  });
+});
+
+export function fixedAssetFromJSON(
+  jsonString: string,
+): SafeParseResult<FixedAsset, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FixedAsset$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FixedAsset' from JSON`,
+  );
+}
+
+/** @internal */
 export const AccountStatus$inboundSchema: z.ZodType<
   AccountStatus,
   z.ZodTypeDef,
@@ -556,6 +643,7 @@ export const LedgerAccount$inboundSchema: z.ZodType<
   description: z.nullable(types.string()).optional(),
   opening_balance: z.nullable(types.number()).optional(),
   current_balance: z.nullable(types.number()).optional(),
+  fixed_asset: z.nullable(z.lazy(() => FixedAsset$inboundSchema)).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
   tax_type: z.nullable(types.string()).optional(),
   tax_rate: types.optional(LinkedTaxRate$inboundSchema),
@@ -590,6 +678,7 @@ export const LedgerAccount$inboundSchema: z.ZodType<
     "fully_qualified_name": "fullyQualifiedName",
     "opening_balance": "openingBalance",
     "current_balance": "currentBalance",
+    "fixed_asset": "fixedAsset",
     "tax_type": "taxType",
     "tax_rate": "taxRate",
     "bank_account": "bankAccount",

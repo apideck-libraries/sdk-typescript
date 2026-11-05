@@ -93,7 +93,7 @@ func testAccountingExpenseReportsOneAccountingExpenseReportsOne0(w http.Response
 				ParentID:    optionalnullable.From(types.String("123456")),
 				DisplayID:   optionalnullable.From(types.String("123456")),
 			}),
-			AccountingPeriod: optionalnullable.From(&components.AccountingPeriod{
+			AccountingPeriod: optionalnullable.From(&components.ExpenseReportAccountingPeriod{
 				ID:   types.String("12345"),
 				Name: optionalnullable.From(types.String("Q1 2024")),
 			}),
@@ -177,7 +177,7 @@ func testAccountingExpenseReportsOneAccountingExpenseReportsOne0(w http.Response
 				},
 			})),
 			TaxInclusive: optionalnullable.From(types.Bool(true)),
-			ApprovedBy: optionalnullable.From(&components.ApprovedBy{
+			ApprovedBy: optionalnullable.From(&components.ExpenseReportApprovedBy{
 				ID:          types.String("12345"),
 				DisplayName: optionalnullable.From(types.String("Jane Smith")),
 			}),

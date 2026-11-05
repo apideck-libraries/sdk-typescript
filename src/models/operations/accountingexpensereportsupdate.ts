@@ -42,7 +42,7 @@ export type AccountingExpenseReportsUpdateRequest = {
    * Include raw response. Mostly used for debugging purposes
    */
   raw?: boolean | undefined;
-  expenseReport: components.ExpenseReportInput;
+  expenseReportUpdateInput: components.ExpenseReportUpdateInput;
 };
 
 export type AccountingExpenseReportsUpdateResponse = {
@@ -66,7 +66,7 @@ export type AccountingExpenseReportsUpdateRequest$Outbound = {
   appId?: string | undefined;
   serviceId?: string | undefined;
   raw: boolean;
-  ExpenseReport: components.ExpenseReportInput$Outbound;
+  ExpenseReportUpdateInput: components.ExpenseReportUpdateInput$Outbound;
 };
 
 /** @internal */
@@ -80,10 +80,10 @@ export const AccountingExpenseReportsUpdateRequest$outboundSchema: z.ZodType<
   appId: z.string().optional(),
   serviceId: z.string().optional(),
   raw: z.boolean().default(false),
-  expenseReport: components.ExpenseReportInput$outboundSchema,
+  expenseReportUpdateInput: components.ExpenseReportUpdateInput$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    expenseReport: "ExpenseReport",
+    expenseReportUpdateInput: "ExpenseReportUpdateInput",
   });
 });
 

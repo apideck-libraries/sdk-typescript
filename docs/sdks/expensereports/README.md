@@ -456,7 +456,7 @@ async function run() {
   const result = await apideck.accounting.expenseReports.update({
     id: "<id>",
     serviceId: "salesforce",
-    expenseReport: {
+    expenseReportUpdateInput: {
       displayId: "123456",
       number: "ER-001",
       title: "Q1 Business Travel",
@@ -561,7 +561,7 @@ async function run() {
   const res = await accountingExpenseReportsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    expenseReport: {
+    expenseReportUpdateInput: {
       displayId: "123456",
       number: "ER-001",
       title: "Q1 Business Travel",

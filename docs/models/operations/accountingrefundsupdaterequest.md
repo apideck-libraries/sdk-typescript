@@ -8,13 +8,9 @@ import { AccountingRefundsUpdateRequest } from "@apideck/unify/models/operations
 let value: AccountingRefundsUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
-  refund: {
+  refundUpdateInput: {
     number: "RF-00001",
-    customer: {
-      id: "12345",
-      displayName: "Windsurf Shop",
-      email: "boring@boring.com",
-    },
+    customer: null,
     companyId: "12345",
     currency: "USD",
     currencyRate: 0.69,
@@ -231,4 +227,4 @@ let value: AccountingRefundsUpdateRequest = {
 | `appId`                                                                                                                                       | *string*                                                                                                                                      | :heavy_minus_sign:                                                                                                                            | The ID of your Unify application                                                                                                              | dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX                                                                                                       |
 | `serviceId`                                                                                                                                   | *string*                                                                                                                                      | :heavy_minus_sign:                                                                                                                            | Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API. | salesforce                                                                                                                                    |
 | `raw`                                                                                                                                         | *boolean*                                                                                                                                     | :heavy_minus_sign:                                                                                                                            | Include raw response. Mostly used for debugging purposes                                                                                      |                                                                                                                                               |
-| `refund`                                                                                                                                      | [components.RefundInput](../../models/components/refundinput.md)                                                                              | :heavy_check_mark:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |
+| `refundUpdateInput`                                                                                                                           | [components.RefundUpdateInput](../../models/components/refundupdateinput.md)                                                                  | :heavy_check_mark:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |

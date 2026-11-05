@@ -180,6 +180,11 @@ let value: AccountingInvoicesAddRequest = {
     templateId: "123456",
     sourceDocumentUrl: "https://www.invoicesolution.com/invoice/123456",
     paymentAllocations: null,
+    quotes: [
+      {
+        id: "123456",
+      },
+    ],
     paymentMethod: "cash",
     channel: "email",
     language: "EN",

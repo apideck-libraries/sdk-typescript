@@ -42,7 +42,7 @@ export type AccountingCreditNotesUpdateRequest = {
    * Include raw response. Mostly used for debugging purposes
    */
   raw?: boolean | undefined;
-  creditNote: components.CreditNoteInput;
+  creditNoteUpdateInput: components.CreditNoteUpdateInput;
 };
 
 export type AccountingCreditNotesUpdateResponse = {
@@ -64,7 +64,7 @@ export type AccountingCreditNotesUpdateRequest$Outbound = {
   appId?: string | undefined;
   serviceId?: string | undefined;
   raw: boolean;
-  CreditNote: components.CreditNoteInput$Outbound;
+  CreditNoteUpdateInput: components.CreditNoteUpdateInput$Outbound;
 };
 
 /** @internal */
@@ -78,10 +78,10 @@ export const AccountingCreditNotesUpdateRequest$outboundSchema: z.ZodType<
   appId: z.string().optional(),
   serviceId: z.string().optional(),
   raw: z.boolean().default(false),
-  creditNote: components.CreditNoteInput$outboundSchema,
+  creditNoteUpdateInput: components.CreditNoteUpdateInput$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    creditNote: "CreditNote",
+    creditNoteUpdateInput: "CreditNoteUpdateInput",
   });
 });
 

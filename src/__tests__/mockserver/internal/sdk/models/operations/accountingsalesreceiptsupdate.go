@@ -40,8 +40,8 @@ type AccountingSalesReceiptsUpdateRequest struct {
 	// Include raw response. Mostly used for debugging purposes
 	Raw *bool `default:"false" queryParam:"style=form,explode=true,name=raw"`
 	// The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
-	CompanyID *string                      `header:"style=simple,explode=false,name=x-apideck-company-id"`
-	Body      components.SalesReceiptInput `request:"mediaType=application/json"`
+	CompanyID *string                            `header:"style=simple,explode=false,name=x-apideck-company-id"`
+	Body      components.SalesReceiptUpdateInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingSalesReceiptsUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -97,9 +97,9 @@ func (o *AccountingSalesReceiptsUpdateRequest) GetCompanyID() *string {
 	return o.CompanyID
 }
 
-func (o *AccountingSalesReceiptsUpdateRequest) GetBody() components.SalesReceiptInput {
+func (o *AccountingSalesReceiptsUpdateRequest) GetBody() components.SalesReceiptUpdateInput {
 	if o == nil {
-		return components.SalesReceiptInput{}
+		return components.SalesReceiptUpdateInput{}
 	}
 	return o.Body
 }

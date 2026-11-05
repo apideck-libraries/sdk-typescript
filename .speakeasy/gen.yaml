@@ -33,12 +33,12 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.53.0
+  version: 0.54.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
     devDependencies:
-      "@types/node": ^20.19.0
+      '@types/node': ^20.19.0
     peerDependencies: {}
   additionalPackageJSON: {}
   additionalScripts: {}

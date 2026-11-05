@@ -358,7 +358,7 @@ test("Projects Accounting Projects Update", async () => {
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     companyId: "12345",
-    project: {
+    projectUpdateInput: {
       name: "Website Redesign Project",
       displayId: "PROJ-001",
       referenceId: "WD-REF-2024-001",

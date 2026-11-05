@@ -159,6 +159,8 @@ type Invoice struct {
 	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
 	// IDs of payments made on the invoice
 	PaymentAllocations optionalnullable.OptionalNullable[[]InvoicePaymentAllocation] `json:"payment_allocations,omitempty"`
+	// A list of quotes linked to this record.
+	Quotes optionalnullable.OptionalNullable[[]LinkedQuotes] `json:"quotes,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// The channel through which the transaction is processed.
@@ -463,6 +465,13 @@ func (o *Invoice) GetPaymentAllocations() optionalnullable.OptionalNullable[[]In
 	return o.PaymentAllocations
 }
 
+func (o *Invoice) GetQuotes() optionalnullable.OptionalNullable[[]LinkedQuotes] {
+	if o == nil {
+		return nil
+	}
+	return o.Quotes
+}
+
 func (o *Invoice) GetPaymentMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
@@ -630,6 +639,8 @@ type InvoiceInput struct {
 	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
 	// IDs of payments made on the invoice
 	PaymentAllocations optionalnullable.OptionalNullable[[]InvoicePaymentAllocation] `json:"payment_allocations,omitempty"`
+	// A list of quotes linked to this record.
+	Quotes optionalnullable.OptionalNullable[[]LinkedQuotesInput] `json:"quotes,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// The channel through which the transaction is processed.
@@ -908,6 +919,13 @@ func (o *InvoiceInput) GetPaymentAllocations() optionalnullable.OptionalNullable
 		return nil
 	}
 	return o.PaymentAllocations
+}
+
+func (o *InvoiceInput) GetQuotes() optionalnullable.OptionalNullable[[]LinkedQuotesInput] {
+	if o == nil {
+		return nil
+	}
+	return o.Quotes
 }
 
 func (o *InvoiceInput) GetPaymentMethod() optionalnullable.OptionalNullable[string] {

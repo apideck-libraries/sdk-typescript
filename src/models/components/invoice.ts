@@ -61,6 +61,12 @@ import {
   LinkedLedgerAccount$Outbound,
   LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
+import { LinkedQuotes, LinkedQuotes$inboundSchema } from "./linkedquotes.js";
+import {
+  LinkedQuotesInput,
+  LinkedQuotesInput$Outbound,
+  LinkedQuotesInput$outboundSchema,
+} from "./linkedquotesinput.js";
 import {
   LinkedSubsidiary,
   LinkedSubsidiary$inboundSchema,
@@ -276,6 +282,10 @@ export type Invoice = {
    */
   paymentAllocations?: Array<PaymentAllocations> | null | undefined;
   /**
+   * A list of quotes linked to this record.
+   */
+  quotes?: Array<LinkedQuotes> | null | undefined;
+  /**
    * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
    */
   paymentMethod?: string | null | undefined;
@@ -458,6 +468,10 @@ export type InvoiceInput = {
    */
   paymentAllocations?: Array<PaymentAllocations> | null | undefined;
   /**
+   * A list of quotes linked to this record.
+   */
+  quotes?: Array<LinkedQuotesInput> | null | undefined;
+  /**
    * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
    */
   paymentMethod?: string | null | undefined;
@@ -612,6 +626,7 @@ export const Invoice$inboundSchema: z.ZodType<Invoice, z.ZodTypeDef, unknown> =
     payment_allocations: z.nullable(
       z.array(z.lazy(() => PaymentAllocations$inboundSchema)),
     ).optional(),
+    quotes: z.nullable(z.array(LinkedQuotes$inboundSchema)).optional(),
     payment_method: z.nullable(types.string()).optional(),
     channel: z.nullable(types.string()).optional(),
     language: z.nullable(types.string()).optional(),
@@ -723,6 +738,7 @@ export type InvoiceInput$Outbound = {
   template_id?: string | null | undefined;
   source_document_url?: string | null | undefined;
   payment_allocations?: Array<PaymentAllocations$Outbound> | null | undefined;
+  quotes?: Array<LinkedQuotesInput$Outbound> | null | undefined;
   payment_method?: string | null | undefined;
   channel?: string | null | undefined;
   language?: string | null | undefined;
@@ -785,6 +801,7 @@ export const InvoiceInput$outboundSchema: z.ZodType<
   paymentAllocations: z.nullable(
     z.array(z.lazy(() => PaymentAllocations$outboundSchema)),
   ).optional(),
+  quotes: z.nullable(z.array(LinkedQuotesInput$outboundSchema)).optional(),
   paymentMethod: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   language: z.nullable(z.string()).optional(),

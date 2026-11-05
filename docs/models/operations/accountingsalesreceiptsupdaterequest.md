@@ -9,9 +9,13 @@ let value: AccountingSalesReceiptsUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
   companyId: "12345",
-  salesReceipt: {
+  salesReceiptUpdateInput: {
     number: "SR-00001",
-    customer: null,
+    customer: {
+      id: "12345",
+      displayName: "Windsurf Shop",
+      email: "boring@boring.com",
+    },
     currency: "USD",
     currencyRate: 0.69,
     taxInclusive: true,
@@ -166,15 +170,7 @@ let value: AccountingSalesReceiptsUpdateRequest = {
       displayId: "123456",
       name: "Acme Inc.",
     },
-    trackingCategories: [
-      {
-        id: "123456",
-        code: "100",
-        name: "New York",
-        parentId: "123456",
-        parentName: "New York",
-      },
-    ],
+    trackingCategories: null,
     customFields: [
       {
         id: "2389328923893298",
@@ -214,4 +210,4 @@ let value: AccountingSalesReceiptsUpdateRequest = {
 | `serviceId`                                                                                                                                                  | *string*                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                           | Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.                | salesforce                                                                                                                                                   |
 | `raw`                                                                                                                                                        | *boolean*                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                           | Include raw response. Mostly used for debugging purposes                                                                                                     |                                                                                                                                                              |
 | `companyId`                                                                                                                                                  | *string*                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                           | The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings. | 12345                                                                                                                                                        |
-| `salesReceipt`                                                                                                                                               | [components.SalesReceiptInput](../../models/components/salesreceiptinput.md)                                                                                 | :heavy_check_mark:                                                                                                                                           | N/A                                                                                                                                                          |                                                                                                                                                              |
+| `salesReceiptUpdateInput`                                                                                                                                    | [components.SalesReceiptUpdateInput](../../models/components/salesreceiptupdateinput.md)                                                                     | :heavy_check_mark:                                                                                                                                           | N/A                                                                                                                                                          |                                                                                                                                                              |

@@ -488,7 +488,7 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
     companyId: "12345",
-    payment: {
+    paymentUpdateInput: {
       currency: "USD",
       currencyRate: 0.69,
       totalAmount: 49.99,
@@ -600,7 +600,7 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
     companyId: "12345",
-    payment: {
+    paymentUpdateInput: {
       currency: "USD",
       currencyRate: 0.69,
       totalAmount: 49.99,

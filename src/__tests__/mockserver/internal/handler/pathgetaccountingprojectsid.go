@@ -62,7 +62,7 @@ func testAccountingProjectsOneAccountingProjectsOne0(w http.ResponseWriter, req 
 			Description:          optionalnullable.From(types.String("Complete redesign of the company website including new branding and improved user experience")),
 			Status:               optionalnullable.From(components.ProjectProjectStatusActive.ToPointer()),
 			Active:               optionalnullable.From(types.Bool(true)),
-			ProjectType:          optionalnullable.From(components.ProjectTypeClientProject.ToPointer()),
+			ProjectType:          optionalnullable.From(components.ProjectProjectTypeClientProject.ToPointer()),
 			Priority:             optionalnullable.From(components.ProjectPriorityHigh.ToPointer()),
 			CompletionPercentage: optionalnullable.From(types.Float64(75.5)),
 			StartDate:            optionalnullable.From(types.MustNewDateFromString("2024-01-15")),
@@ -81,7 +81,7 @@ func testAccountingProjectsOneAccountingProjectsOne0(w http.ResponseWriter, req 
 			}),
 			CompanyID: optionalnullable.From(types.String("12345")),
 			OwnerID:   optionalnullable.From(types.String("12345")),
-			ParentProject: optionalnullable.From(&components.ParentProject{
+			ParentProject: optionalnullable.From(&components.ProjectParentProject{
 				ID:   types.String("PROJ-PARENT-001"),
 				Name: types.String("Company Website Overhaul"),
 			}),
@@ -92,9 +92,9 @@ func testAccountingProjectsOneAccountingProjectsOne0(w http.ResponseWriter, req 
 			BudgetHours:    optionalnullable.From(types.Float64(400)),
 			ActualHours:    optionalnullable.From(types.Float64(385.5)),
 			HourlyRate:     optionalnullable.From(types.Float64(125)),
-			BillingMethod:  optionalnullable.From(components.BillingMethodTimeAndMaterials.ToPointer()),
+			BillingMethod:  optionalnullable.From(components.ProjectBillingMethodTimeAndMaterials.ToPointer()),
 			IsBillable:     optionalnullable.From(types.Bool(true)),
-			Phase:          optionalnullable.From(components.ProjectPhaseExecution.ToPointer()),
+			Phase:          optionalnullable.From(components.ProjectProjectPhaseExecution.ToPointer()),
 			TaxRate: &components.LinkedTaxRate{
 				ID:   optionalnullable.From(types.String("123456")),
 				Code: optionalnullable.From(types.String("N-T")),
@@ -117,7 +117,7 @@ func testAccountingProjectsOneAccountingProjectsOne0(w http.ResponseWriter, req 
 			Notes:          optionalnullable.From(types.String("Client has requested modern design with mobile-first approach")),
 			ContractNumber: optionalnullable.From(types.String("CNT-2024-001")),
 			ProfitMargin:   optionalnullable.From(types.Float64(15.5)),
-			ScheduleStatus: optionalnullable.From(components.ScheduleStatusOnSchedule.ToPointer()),
+			ScheduleStatus: optionalnullable.From(components.ProjectScheduleStatusOnSchedule.ToPointer()),
 			Addresses: []components.Address{
 				components.Address{
 					ID:           optionalnullable.From(types.String("123")),

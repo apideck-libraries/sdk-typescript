@@ -560,7 +560,7 @@ async function run() {
   const result = await apideck.accounting.expenses.update({
     id: "<id>",
     serviceId: "salesforce",
-    expense: {
+    expenseUpdateInput: {
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
       accountId: "123456",
@@ -685,7 +685,7 @@ async function run() {
   const res = await accountingExpensesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    expense: {
+    expenseUpdateInput: {
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
       accountId: "123456",

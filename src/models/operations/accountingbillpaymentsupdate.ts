@@ -42,7 +42,7 @@ export type AccountingBillPaymentsUpdateRequest = {
    * Include raw response. Mostly used for debugging purposes
    */
   raw?: boolean | undefined;
-  billPayment: components.BillPaymentInput;
+  billPaymentUpdateInput: components.BillPaymentUpdateInput;
 };
 
 export type AccountingBillPaymentsUpdateResponse = {
@@ -64,7 +64,7 @@ export type AccountingBillPaymentsUpdateRequest$Outbound = {
   appId?: string | undefined;
   serviceId?: string | undefined;
   raw: boolean;
-  BillPayment: components.BillPaymentInput$Outbound;
+  BillPaymentUpdateInput: components.BillPaymentUpdateInput$Outbound;
 };
 
 /** @internal */
@@ -78,10 +78,10 @@ export const AccountingBillPaymentsUpdateRequest$outboundSchema: z.ZodType<
   appId: z.string().optional(),
   serviceId: z.string().optional(),
   raw: z.boolean().default(false),
-  billPayment: components.BillPaymentInput$outboundSchema,
+  billPaymentUpdateInput: components.BillPaymentUpdateInput$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    billPayment: "BillPayment",
+    billPaymentUpdateInput: "BillPaymentUpdateInput",
   });
 });
 

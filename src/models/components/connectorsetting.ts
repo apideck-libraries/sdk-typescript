@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
@@ -32,6 +33,22 @@ export type ConnectorSetting = {
   id?: string | undefined;
   label?: string | undefined;
   type?: ConnectorSettingType | undefined;
+  /**
+   * Whether a value is required for the connection to work. Required settings are always shown in Vault and cannot be hidden by an application.
+   */
+  required?: boolean | undefined;
+  /**
+   * Whether a value is required before the connection can be authorized. These settings are always shown in Vault and cannot be hidden by an application.
+   */
+  requiredForAuthorization?: boolean | undefined;
+  /**
+   * Whether the connector hides this setting from the Vault connection form for every application.
+   */
+  hidden?: boolean | undefined;
+  /**
+   * Help text shown under the setting in the Vault connection form. May contain `${integrationSettings.<key>}` placeholders that are filled in from the application's integration settings when the Vault form is built.
+   */
+  description?: string | undefined;
 };
 
 /** @internal */
@@ -50,6 +67,14 @@ export const ConnectorSetting$inboundSchema: z.ZodType<
   id: types.optional(types.string()),
   label: types.optional(types.string()),
   type: types.optional(ConnectorSettingType$inboundSchema),
+  required: types.optional(types.boolean()),
+  required_for_authorization: types.optional(types.boolean()),
+  hidden: types.optional(types.boolean()),
+  description: types.optional(types.string()),
+}).transform((v) => {
+  return remap$(v, {
+    "required_for_authorization": "requiredForAuthorization",
+  });
 });
 
 export function connectorSettingFromJSON(

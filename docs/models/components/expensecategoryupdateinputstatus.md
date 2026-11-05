@@ -1,0 +1,19 @@
+# ExpenseCategoryUpdateInputStatus
+
+The status of the expense category.
+
+## Example Usage
+
+```typescript
+import { ExpenseCategoryUpdateInputStatus } from "@apideck/unify/models/components";
+
+let value: ExpenseCategoryUpdateInputStatus = "active";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
+```
+
+## Values
+
+```typescript
+"active" | "inactive" | Unrecognized<string>
+```

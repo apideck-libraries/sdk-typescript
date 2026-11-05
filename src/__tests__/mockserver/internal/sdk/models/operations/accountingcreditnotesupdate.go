@@ -38,8 +38,8 @@ type AccountingCreditNotesUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw  *bool                      `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Body components.CreditNoteInput `request:"mediaType=application/json"`
+	Raw  *bool                            `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.CreditNoteUpdateInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingCreditNotesUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -88,9 +88,9 @@ func (o *AccountingCreditNotesUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AccountingCreditNotesUpdateRequest) GetBody() components.CreditNoteInput {
+func (o *AccountingCreditNotesUpdateRequest) GetBody() components.CreditNoteUpdateInput {
 	if o == nil {
-		return components.CreditNoteInput{}
+		return components.CreditNoteUpdateInput{}
 	}
 	return o.Body
 }

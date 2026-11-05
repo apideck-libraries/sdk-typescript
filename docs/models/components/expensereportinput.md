@@ -78,7 +78,10 @@ let value: ExpenseReportInput = {
         displayName: "Windsurf Shop",
         email: "boring@boring.com",
       },
-      department: null,
+      department: {
+        displayId: "123456",
+        name: "Acme Inc.",
+      },
       location: {
         id: "123456",
         displayId: "123456",
@@ -112,10 +115,7 @@ let value: ExpenseReportInput = {
     },
   ],
   taxInclusive: true,
-  approvedBy: {
-    id: "12345",
-    displayName: "Jane Smith",
-  },
+  approvedBy: null,
   customFields: [
     {
       id: "2389328923893298",

@@ -68,6 +68,10 @@ export type EmployeesFilter = {
    * Country to filter on
    */
   country?: string | undefined;
+  /**
+   * Return employees as of this date (YYYY-MM-DD). Set a future date to include future-dated hires. When omitted, employees are returned as of today.
+   */
+  asOfDate?: Date | undefined;
 };
 
 /** @internal */
@@ -90,6 +94,7 @@ export type EmployeesFilter$Outbound = {
   department_id?: string | undefined;
   city?: string | undefined;
   country?: string | undefined;
+  as_of_date?: string | undefined;
 };
 
 /** @internal */
@@ -109,6 +114,9 @@ export const EmployeesFilter$outboundSchema: z.ZodType<
   departmentId: z.string().optional(),
   city: z.string().optional(),
   country: z.string().optional(),
+  asOfDate: z.date().transform(v =>
+    v.toISOString().slice(0, "YYYY-MM-DD".length)
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     companyId: "company_id",
@@ -118,6 +126,7 @@ export const EmployeesFilter$outboundSchema: z.ZodType<
     employmentStatus: "employment_status",
     employeeNumber: "employee_number",
     departmentId: "department_id",
+    asOfDate: "as_of_date",
   });
 });
 

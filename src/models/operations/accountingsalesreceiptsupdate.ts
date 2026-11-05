@@ -46,7 +46,7 @@ export type AccountingSalesReceiptsUpdateRequest = {
    * The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
    */
   companyId?: string | undefined;
-  salesReceipt: components.SalesReceiptInput;
+  salesReceiptUpdateInput: components.SalesReceiptUpdateInput;
 };
 
 export type AccountingSalesReceiptsUpdateResponse = {
@@ -71,7 +71,7 @@ export type AccountingSalesReceiptsUpdateRequest$Outbound = {
   serviceId?: string | undefined;
   raw: boolean;
   companyId?: string | undefined;
-  SalesReceipt: components.SalesReceiptInput$Outbound;
+  SalesReceiptUpdateInput: components.SalesReceiptUpdateInput$Outbound;
 };
 
 /** @internal */
@@ -86,10 +86,10 @@ export const AccountingSalesReceiptsUpdateRequest$outboundSchema: z.ZodType<
   serviceId: z.string().optional(),
   raw: z.boolean().default(false),
   companyId: z.string().optional(),
-  salesReceipt: components.SalesReceiptInput$outboundSchema,
+  salesReceiptUpdateInput: components.SalesReceiptUpdateInput$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    salesReceipt: "SalesReceipt",
+    salesReceiptUpdateInput: "SalesReceiptUpdateInput",
   });
 });
 

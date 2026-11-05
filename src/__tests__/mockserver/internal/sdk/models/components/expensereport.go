@@ -48,44 +48,44 @@ func (e ExpenseReportStatus) ToPointer() *ExpenseReportStatus {
 	return &e
 }
 
-// AccountingPeriod - The accounting period the expense report is posted to.
-type AccountingPeriod struct {
+// ExpenseReportAccountingPeriod - The accounting period the expense report is posted to.
+type ExpenseReportAccountingPeriod struct {
 	// A unique identifier for the accounting period.
 	ID *string `json:"id,omitempty"`
 	// The name of the accounting period.
 	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 }
 
-func (o *AccountingPeriod) GetID() *string {
+func (o *ExpenseReportAccountingPeriod) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AccountingPeriod) GetName() optionalnullable.OptionalNullable[string] {
+func (o *ExpenseReportAccountingPeriod) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// ApprovedBy - The person who approved the expense report.
-type ApprovedBy struct {
+// ExpenseReportApprovedBy - The person who approved the expense report.
+type ExpenseReportApprovedBy struct {
 	// A unique identifier for the approver.
 	ID *string `json:"id,omitempty"`
 	// The display name of the approver.
 	DisplayName optionalnullable.OptionalNullable[string] `json:"display_name,omitempty"`
 }
 
-func (o *ApprovedBy) GetID() *string {
+func (o *ExpenseReportApprovedBy) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ApprovedBy) GetDisplayName() optionalnullable.OptionalNullable[string] {
+func (o *ExpenseReportApprovedBy) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -129,7 +129,7 @@ type ExpenseReport struct {
 	Location   optionalnullable.OptionalNullable[LinkedLocation]      `json:"location,omitempty"`
 	Account    optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
 	// The accounting period the expense report is posted to.
-	AccountingPeriod optionalnullable.OptionalNullable[AccountingPeriod] `json:"accounting_period,omitempty"`
+	AccountingPeriod optionalnullable.OptionalNullable[ExpenseReportAccountingPeriod] `json:"accounting_period,omitempty"`
 	// Expense line items linked to this expense report.
 	LineItems []ExpenseReportLineItem `json:"line_items"`
 	// Optional reference identifier for the transaction.
@@ -140,8 +140,8 @@ type ExpenseReport struct {
 	// Amounts are including tax
 	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// The person who approved the expense report.
-	ApprovedBy   optionalnullable.OptionalNullable[ApprovedBy] `json:"approved_by,omitempty"`
-	CustomFields []CustomFieldUnion                            `json:"custom_fields,omitempty"`
+	ApprovedBy   optionalnullable.OptionalNullable[ExpenseReportApprovedBy] `json:"approved_by,omitempty"`
+	CustomFields []CustomFieldUnion                                         `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -302,7 +302,7 @@ func (o *ExpenseReport) GetAccount() optionalnullable.OptionalNullable[LinkedLed
 	return o.Account
 }
 
-func (o *ExpenseReport) GetAccountingPeriod() optionalnullable.OptionalNullable[AccountingPeriod] {
+func (o *ExpenseReport) GetAccountingPeriod() optionalnullable.OptionalNullable[ExpenseReportAccountingPeriod] {
 	if o == nil {
 		return nil
 	}
@@ -344,7 +344,7 @@ func (o *ExpenseReport) GetTaxInclusive() optionalnullable.OptionalNullable[bool
 	return o.TaxInclusive
 }
 
-func (o *ExpenseReport) GetApprovedBy() optionalnullable.OptionalNullable[ApprovedBy] {
+func (o *ExpenseReport) GetApprovedBy() optionalnullable.OptionalNullable[ExpenseReportApprovedBy] {
 	if o == nil {
 		return nil
 	}
@@ -442,7 +442,7 @@ type ExpenseReportInput struct {
 	Location   optionalnullable.OptionalNullable[LinkedLocationInput]   `json:"location,omitempty"`
 	Account    optionalnullable.OptionalNullable[LinkedLedgerAccount]   `json:"account,omitempty"`
 	// The accounting period the expense report is posted to.
-	AccountingPeriod optionalnullable.OptionalNullable[AccountingPeriod] `json:"accounting_period,omitempty"`
+	AccountingPeriod optionalnullable.OptionalNullable[ExpenseReportAccountingPeriod] `json:"accounting_period,omitempty"`
 	// Expense line items linked to this expense report.
 	LineItems []ExpenseReportLineItemInput `json:"line_items"`
 	// Optional reference identifier for the transaction.
@@ -453,8 +453,8 @@ type ExpenseReportInput struct {
 	// Amounts are including tax
 	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// The person who approved the expense report.
-	ApprovedBy   optionalnullable.OptionalNullable[ApprovedBy] `json:"approved_by,omitempty"`
-	CustomFields []CustomFieldUnion                            `json:"custom_fields,omitempty"`
+	ApprovedBy   optionalnullable.OptionalNullable[ExpenseReportApprovedBy] `json:"approved_by,omitempty"`
+	CustomFields []CustomFieldUnion                                         `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -598,7 +598,7 @@ func (o *ExpenseReportInput) GetAccount() optionalnullable.OptionalNullable[Link
 	return o.Account
 }
 
-func (o *ExpenseReportInput) GetAccountingPeriod() optionalnullable.OptionalNullable[AccountingPeriod] {
+func (o *ExpenseReportInput) GetAccountingPeriod() optionalnullable.OptionalNullable[ExpenseReportAccountingPeriod] {
 	if o == nil {
 		return nil
 	}
@@ -640,7 +640,7 @@ func (o *ExpenseReportInput) GetTaxInclusive() optionalnullable.OptionalNullable
 	return o.TaxInclusive
 }
 
-func (o *ExpenseReportInput) GetApprovedBy() optionalnullable.OptionalNullable[ApprovedBy] {
+func (o *ExpenseReportInput) GetApprovedBy() optionalnullable.OptionalNullable[ExpenseReportApprovedBy] {
 	if o == nil {
 		return nil
 	}

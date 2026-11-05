@@ -70,6 +70,18 @@ export const FeedStatus = {
  */
 export type FeedStatus = OpenEnum<typeof FeedStatus>;
 
+/**
+ * Whether the data consumer may see this account. `revoked` hides it from the consumer without deleting it; `active` restores it. Unrelated to `feed_status`. Only connectors that list it support it; others ignore the field, so setting it there changes nothing.
+ */
+export const BankFeedAccountStatus = {
+  Active: "active",
+  Revoked: "revoked",
+} as const;
+/**
+ * Whether the data consumer may see this account. `revoked` hides it from the consumer without deleting it; `active` restores it. Unrelated to `feed_status`. Only connectors that list it support it; others ignore the field, so setting it there changes nothing.
+ */
+export type BankFeedAccountStatus = OpenEnum<typeof BankFeedAccountStatus>;
+
 export type BankFeedAccount = {
   /**
    * A unique identifier for an object.
@@ -119,6 +131,10 @@ export type BankFeedAccount = {
    * Current status of the bank feed.
    */
   feedStatus?: FeedStatus | undefined;
+  /**
+   * Whether the data consumer may see this account. `revoked` hides it from the consumer without deleting it; `active` restores it. Unrelated to `feed_status`. Only connectors that list it support it; others ignore the field, so setting it there changes nothing.
+   */
+  status?: BankFeedAccountStatus | undefined;
   /**
    * Country code according to ISO 3166-1 alpha-2.
    */
@@ -208,6 +224,10 @@ export type BankFeedAccountInput = {
    */
   feedStatus?: FeedStatus | undefined;
   /**
+   * Whether the data consumer may see this account. `revoked` hides it from the consumer without deleting it; `active` restores it. Unrelated to `feed_status`. Only connectors that list it support it; others ignore the field, so setting it there changes nothing.
+   */
+  status?: BankFeedAccountStatus | undefined;
+  /**
    * Country code according to ISO 3166-1 alpha-2.
    */
   country?: string | null | undefined;
@@ -257,6 +277,19 @@ export const FeedStatus$outboundSchema: z.ZodType<
 > = openEnums.outboundSchema(FeedStatus);
 
 /** @internal */
+export const BankFeedAccountStatus$inboundSchema: z.ZodType<
+  BankFeedAccountStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(BankFeedAccountStatus);
+/** @internal */
+export const BankFeedAccountStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  BankFeedAccountStatus
+> = openEnums.outboundSchema(BankFeedAccountStatus);
+
+/** @internal */
 export const BankFeedAccount$inboundSchema: z.ZodType<
   BankFeedAccount,
   z.ZodTypeDef,
@@ -274,6 +307,7 @@ export const BankFeedAccount$inboundSchema: z.ZodType<
   available_balance: z.nullable(types.number()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
   feed_status: types.optional(FeedStatus$inboundSchema),
+  status: types.optional(BankFeedAccountStatus$inboundSchema),
   country: z.nullable(types.string()).optional(),
   account_holders: types.optional(z.array(BankFeedAccountHolder$inboundSchema)),
   emails: types.optional(z.array(Email$inboundSchema)),
@@ -330,6 +364,7 @@ export type BankFeedAccountInput$Outbound = {
   available_balance?: number | null | undefined;
   currency?: string | null | undefined;
   feed_status?: string | undefined;
+  status?: string | undefined;
   country?: string | null | undefined;
   account_holders?: Array<BankFeedAccountHolder$Outbound> | undefined;
   emails?: Array<Email$Outbound> | undefined;
@@ -355,6 +390,7 @@ export const BankFeedAccountInput$outboundSchema: z.ZodType<
   availableBalance: z.nullable(z.number()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   feedStatus: FeedStatus$outboundSchema.optional(),
+  status: BankFeedAccountStatus$outboundSchema.optional(),
   country: z.nullable(z.string()).optional(),
   accountHolders: z.array(BankFeedAccountHolder$outboundSchema).optional(),
   emails: z.array(Email$outboundSchema).optional(),

@@ -22,15 +22,15 @@ func (e ExpensePaymentType) ToPointer() *ExpensePaymentType {
 	return &e
 }
 
-// ExpenseType - The type of expense.
-type ExpenseType string
+// ExpenseExpenseType - The type of expense.
+type ExpenseExpenseType string
 
 const (
-	ExpenseTypeExpense ExpenseType = "expense"
-	ExpenseTypeRefund  ExpenseType = "refund"
+	ExpenseExpenseTypeExpense ExpenseExpenseType = "expense"
+	ExpenseExpenseTypeRefund  ExpenseExpenseType = "refund"
 )
 
-func (e ExpenseType) ToPointer() *ExpenseType {
+func (e ExpenseExpenseType) ToPointer() *ExpenseExpenseType {
 	return &e
 }
 
@@ -81,7 +81,7 @@ type Expense struct {
 	// Currency Exchange Rate at the time entity was recorded/generated.
 	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// The type of expense.
-	Type optionalnullable.OptionalNullable[ExpenseType] `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[ExpenseExpenseType] `json:"type,omitempty"`
 	// The memo of the expense.
 	Memo    optionalnullable.OptionalNullable[string] `json:"memo,omitempty"`
 	TaxRate *LinkedTaxRate                            `json:"tax_rate,omitempty"`
@@ -236,7 +236,7 @@ func (o *Expense) GetCurrencyRate() optionalnullable.OptionalNullable[float64] {
 	return o.CurrencyRate
 }
 
-func (o *Expense) GetType() optionalnullable.OptionalNullable[ExpenseType] {
+func (o *Expense) GetType() optionalnullable.OptionalNullable[ExpenseExpenseType] {
 	if o == nil {
 		return nil
 	}
@@ -408,7 +408,7 @@ type ExpenseInput struct {
 	// Currency Exchange Rate at the time entity was recorded/generated.
 	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// The type of expense.
-	Type optionalnullable.OptionalNullable[ExpenseType] `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[ExpenseExpenseType] `json:"type,omitempty"`
 	// The memo of the expense.
 	Memo    optionalnullable.OptionalNullable[string] `json:"memo,omitempty"`
 	TaxRate *LinkedTaxRateInput                       `json:"tax_rate,omitempty"`
@@ -546,7 +546,7 @@ func (o *ExpenseInput) GetCurrencyRate() optionalnullable.OptionalNullable[float
 	return o.CurrencyRate
 }
 
-func (o *ExpenseInput) GetType() optionalnullable.OptionalNullable[ExpenseType] {
+func (o *ExpenseInput) GetType() optionalnullable.OptionalNullable[ExpenseExpenseType] {
 	if o == nil {
 		return nil
 	}

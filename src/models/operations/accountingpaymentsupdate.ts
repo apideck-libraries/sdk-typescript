@@ -46,7 +46,7 @@ export type AccountingPaymentsUpdateRequest = {
    * Include raw response. Mostly used for debugging purposes
    */
   raw?: boolean | undefined;
-  payment: components.PaymentInput;
+  paymentUpdateInput: components.PaymentUpdateInput;
 };
 
 export type AccountingPaymentsUpdateResponse = {
@@ -69,7 +69,7 @@ export type AccountingPaymentsUpdateRequest$Outbound = {
   serviceId?: string | undefined;
   companyId?: string | undefined;
   raw: boolean;
-  Payment: components.PaymentInput$Outbound;
+  PaymentUpdateInput: components.PaymentUpdateInput$Outbound;
 };
 
 /** @internal */
@@ -84,10 +84,10 @@ export const AccountingPaymentsUpdateRequest$outboundSchema: z.ZodType<
   serviceId: z.string().optional(),
   companyId: z.string().optional(),
   raw: z.boolean().default(false),
-  payment: components.PaymentInput$outboundSchema,
+  paymentUpdateInput: components.PaymentUpdateInput$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    payment: "Payment",
+    paymentUpdateInput: "PaymentUpdateInput",
   });
 });
 

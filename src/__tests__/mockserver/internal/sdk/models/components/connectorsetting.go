@@ -73,6 +73,14 @@ type ConnectorSetting struct {
 	ID    *string               `json:"id,omitempty"`
 	Label *string               `json:"label,omitempty"`
 	Type  *ConnectorSettingType `json:"type,omitempty"`
+	// Whether a value is required for the connection to work. Required settings are always shown in Vault and cannot be hidden by an application.
+	Required *bool `json:"required,omitempty"`
+	// Whether a value is required before the connection can be authorized. These settings are always shown in Vault and cannot be hidden by an application.
+	RequiredForAuthorization *bool `json:"required_for_authorization,omitempty"`
+	// Whether the connector hides this setting from the Vault connection form for every application.
+	Hidden *bool `json:"hidden,omitempty"`
+	// Help text shown under the setting in the Vault connection form. May contain `${integrationSettings.<key>}` placeholders that are filled in from the application's integration settings when the Vault form is built.
+	Description *string `json:"description,omitempty"`
 }
 
 func (o *ConnectorSetting) GetID() *string {
@@ -94,4 +102,32 @@ func (o *ConnectorSetting) GetType() *ConnectorSettingType {
 		return nil
 	}
 	return o.Type
+}
+
+func (o *ConnectorSetting) GetRequired() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Required
+}
+
+func (o *ConnectorSetting) GetRequiredForAuthorization() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.RequiredForAuthorization
+}
+
+func (o *ConnectorSetting) GetHidden() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Hidden
+}
+
+func (o *ConnectorSetting) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
 }
