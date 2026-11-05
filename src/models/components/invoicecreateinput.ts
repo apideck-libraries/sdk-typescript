@@ -43,6 +43,11 @@ import {
   LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
 import {
+  LinkedQuotesInput,
+  LinkedQuotesInput$Outbound,
+  LinkedQuotesInput$outboundSchema,
+} from "./linkedquotesinput.js";
+import {
   LinkedSubsidiaryInput,
   LinkedSubsidiaryInput$Outbound,
   LinkedSubsidiaryInput$outboundSchema,
@@ -253,6 +258,10 @@ export type InvoiceCreateInput = {
     | null
     | undefined;
   /**
+   * A list of quotes linked to this record.
+   */
+  quotes?: Array<LinkedQuotesInput> | null | undefined;
+  /**
    * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
    */
   paymentMethod?: string | null | undefined;
@@ -374,6 +383,7 @@ export type InvoiceCreateInput$Outbound = {
     | Array<InvoiceCreateInputPaymentAllocations$Outbound>
     | null
     | undefined;
+  quotes?: Array<LinkedQuotesInput$Outbound> | null | undefined;
   payment_method?: string | null | undefined;
   channel?: string | null | undefined;
   language?: string | null | undefined;
@@ -436,6 +446,7 @@ export const InvoiceCreateInput$outboundSchema: z.ZodType<
   paymentAllocations: z.nullable(
     z.array(z.lazy(() => InvoiceCreateInputPaymentAllocations$outboundSchema)),
   ).optional(),
+  quotes: z.nullable(z.array(LinkedQuotesInput$outboundSchema)).optional(),
   paymentMethod: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   language: z.nullable(z.string()).optional(),

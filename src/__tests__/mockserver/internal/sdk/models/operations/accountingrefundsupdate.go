@@ -38,8 +38,8 @@ type AccountingRefundsUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw  *bool                  `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Body components.RefundInput `request:"mediaType=application/json"`
+	Raw  *bool                        `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.RefundUpdateInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingRefundsUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -88,9 +88,9 @@ func (o *AccountingRefundsUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AccountingRefundsUpdateRequest) GetBody() components.RefundInput {
+func (o *AccountingRefundsUpdateRequest) GetBody() components.RefundUpdateInput {
 	if o == nil {
-		return components.RefundInput{}
+		return components.RefundUpdateInput{}
 	}
 	return o.Body
 }

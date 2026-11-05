@@ -38,8 +38,8 @@ type AccountingExpenseReportsUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw  *bool                         `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Body components.ExpenseReportInput `request:"mediaType=application/json"`
+	Raw  *bool                               `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.ExpenseReportUpdateInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingExpenseReportsUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -88,9 +88,9 @@ func (o *AccountingExpenseReportsUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AccountingExpenseReportsUpdateRequest) GetBody() components.ExpenseReportInput {
+func (o *AccountingExpenseReportsUpdateRequest) GetBody() components.ExpenseReportUpdateInput {
 	if o == nil {
-		return components.ExpenseReportInput{}
+		return components.ExpenseReportUpdateInput{}
 	}
 	return o.Body
 }

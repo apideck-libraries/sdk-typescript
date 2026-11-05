@@ -716,7 +716,7 @@ async function run() {
   const result = await apideck.accounting.refunds.update({
     id: "<id>",
     serviceId: "salesforce",
-    refund: {
+    refundUpdateInput: {
       number: "RF-00001",
       customer: {
         id: "12345",
@@ -952,7 +952,7 @@ async function run() {
   const res = await accountingRefundsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    refund: {
+    refundUpdateInput: {
       number: "RF-00001",
       customer: {
         id: "12345",

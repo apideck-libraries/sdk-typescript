@@ -8,7 +8,7 @@ import { AccountingExpenseCategoriesUpdateRequest } from "@apideck/unify/models/
 let value: AccountingExpenseCategoriesUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
-  expenseCategory: {
+  expenseCategoryUpdateInput: {
     displayId: "123456",
     name: "Travel",
     code: "TRAVEL-001",
@@ -23,14 +23,7 @@ let value: AccountingExpenseCategoriesUpdateRequest = {
       parentId: "123456",
       displayId: "123456",
     },
-    offsetAccount: {
-      id: "123456",
-      name: "Bank account",
-      nominalCode: "N091",
-      code: "453",
-      parentId: "123456",
-      displayId: "123456",
-    },
+    offsetAccount: null,
     taxRate: {
       id: "123456",
       code: "N-T",
@@ -67,4 +60,4 @@ let value: AccountingExpenseCategoriesUpdateRequest = {
 | `appId`                                                                                                                                       | *string*                                                                                                                                      | :heavy_minus_sign:                                                                                                                            | The ID of your Unify application                                                                                                              | dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX                                                                                                       |
 | `serviceId`                                                                                                                                   | *string*                                                                                                                                      | :heavy_minus_sign:                                                                                                                            | Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API. | salesforce                                                                                                                                    |
 | `raw`                                                                                                                                         | *boolean*                                                                                                                                     | :heavy_minus_sign:                                                                                                                            | Include raw response. Mostly used for debugging purposes                                                                                      |                                                                                                                                               |
-| `expenseCategory`                                                                                                                             | [components.ExpenseCategoryInput](../../models/components/expensecategoryinput.md)                                                            | :heavy_check_mark:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |
+| `expenseCategoryUpdateInput`                                                                                                                  | [components.ExpenseCategoryUpdateInput](../../models/components/expensecategoryupdateinput.md)                                                | :heavy_check_mark:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |

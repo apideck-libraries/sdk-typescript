@@ -668,7 +668,7 @@ test("Expenses Accounting Expenses Update", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    expense: {
+    expenseUpdateInput: {
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
       accountId: "123456",

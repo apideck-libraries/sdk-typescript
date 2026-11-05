@@ -8,7 +8,7 @@ import { AccountingExpenseReportsUpdateRequest } from "@apideck/unify/models/ope
 let value: AccountingExpenseReportsUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
-  expenseReport: {
+  expenseReportUpdateInput: {
     displayId: "123456",
     number: "ER-001",
     title: "Q1 Business Travel",
@@ -44,11 +44,65 @@ let value: AccountingExpenseReportsUpdateRequest = {
       parentId: "123456",
       displayId: "123456",
     },
-    accountingPeriod: {
-      id: "12345",
-      name: "Q1 2024",
-    },
-    lineItems: [],
+    accountingPeriod: null,
+    lineItems: [
+      {
+        lineNumber: 1,
+        expenseCategory: {
+          id: "12345",
+          downstreamId: "12345",
+          displayId: "Airfare",
+          name: "Airfare",
+        },
+        account: {
+          id: "123456",
+          name: "Bank account",
+          nominalCode: "N091",
+          code: "453",
+          parentId: "123456",
+          displayId: "123456",
+        },
+        description: "Flight to New York",
+        quantity: 1,
+        unitPrice: 27500.5,
+        amount: 275,
+        taxRate: {
+          id: "123456",
+          code: "N-T",
+          rate: 10,
+        },
+        taxAmount: 27.5,
+        totalAmount: 302.5,
+        transactionDate: new Date("2024-05-15"),
+        billable: true,
+        reimbursable: true,
+        customer: {
+          id: "12345",
+          displayName: "Windsurf Shop",
+          email: "boring@boring.com",
+        },
+        department: {
+          displayId: "123456",
+          name: "Acme Inc.",
+        },
+        location: {
+          id: "123456",
+          displayId: "123456",
+          name: "New York Office",
+        },
+        trackingCategories: [
+          {
+            id: "123456",
+            code: "100",
+            name: "New York",
+            parentId: "123456",
+            parentName: "New York",
+          },
+        ],
+        receiptUrl: "https://example.com/receipts/123.pdf",
+        currency: "USD",
+      },
+    ],
     reference: "INV-2024-001",
     subsidiary: {
       displayId: "123456",
@@ -106,4 +160,4 @@ let value: AccountingExpenseReportsUpdateRequest = {
 | `appId`                                                                                                                                       | *string*                                                                                                                                      | :heavy_minus_sign:                                                                                                                            | The ID of your Unify application                                                                                                              | dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX                                                                                                       |
 | `serviceId`                                                                                                                                   | *string*                                                                                                                                      | :heavy_minus_sign:                                                                                                                            | Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API. | salesforce                                                                                                                                    |
 | `raw`                                                                                                                                         | *boolean*                                                                                                                                     | :heavy_minus_sign:                                                                                                                            | Include raw response. Mostly used for debugging purposes                                                                                      |                                                                                                                                               |
-| `expenseReport`                                                                                                                               | [components.ExpenseReportInput](../../models/components/expensereportinput.md)                                                                | :heavy_check_mark:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |
+| `expenseReportUpdateInput`                                                                                                                    | [components.ExpenseReportUpdateInput](../../models/components/expensereportupdateinput.md)                                                    | :heavy_check_mark:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |

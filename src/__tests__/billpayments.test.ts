@@ -821,7 +821,7 @@ test("Billpayments Accounting Bill Payments Update", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    billPayment: {
+    billPaymentUpdateInput: {
       currency: "USD",
       currencyRate: 0.69,
       totalAmount: 49.99,

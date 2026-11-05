@@ -90,7 +90,7 @@ type FormField struct {
 	Disabled optionalnullable.OptionalNullable[bool] `json:"disabled,omitempty"`
 	// Indicates if the options for a form field failed to be fetched from the downstream service. Only applicable to fields with dynamic options. When true, a retry mechanism should be provided to the user.
 	OptionsFetchError optionalnullable.OptionalNullable[bool] `json:"options_fetch_error,omitempty"`
-	// Indicates if the form field is not displayed but the value that is being stored on the connection.
+	// Indicates the form field is not displayed in Vault. A field is hidden when the connector hides it, or when the application hides it in the dashboard (Fields visible in Vault). An application can hide only optional fields that aren't required for authorization. A hidden field's value is still stored on the connection and can still be set through the API.
 	Hidden optionalnullable.OptionalNullable[bool] `json:"hidden,omitempty"`
 	// When the setting is deprecated, it should be hidden from the user interface. The value will still be stored on the connection for the sake of backwards compatibility.
 	Deprecated optionalnullable.OptionalNullable[bool] `json:"deprecated,omitempty"`

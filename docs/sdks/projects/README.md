@@ -509,7 +509,7 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
     companyId: "12345",
-    project: {
+    projectUpdateInput: {
       name: "Website Redesign Project",
       displayId: "PROJ-001",
       referenceId: "WD-REF-2024-001",
@@ -631,7 +631,7 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
     companyId: "12345",
-    project: {
+    projectUpdateInput: {
       name: "Website Redesign Project",
       displayId: "PROJ-001",
       referenceId: "WD-REF-2024-001",

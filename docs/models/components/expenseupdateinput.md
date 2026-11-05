@@ -1,0 +1,170 @@
+# ExpenseUpdateInput
+
+The writable shape of Expense for a single-record update. Identical to the model with the read-only properties removed and no required properties, because PATCH is partial and the API already validates it that way.
+
+## Example Usage
+
+```typescript
+import { ExpenseUpdateInput } from "@apideck/unify/models/components";
+
+let value: ExpenseUpdateInput = {
+  displayId: "123456",
+  number: "OIT00546",
+  transactionDate: new Date("2021-05-01T12:00:00.000Z"),
+  account: {
+    id: "123456",
+    type: "ledger_account",
+    code: "1100",
+    displayId: "123456",
+    accountNumber: "123465",
+  },
+  supplier: null,
+  companyId: "12345",
+  location: {
+    id: "123456",
+    displayId: "123456",
+    name: "New York Office",
+  },
+  departmentId: "12345",
+  department: {
+    displayId: "123456",
+    name: "Acme Inc.",
+  },
+  paymentType: "cash",
+  currency: "USD",
+  currencyRate: 0.69,
+  type: "expense",
+  memo: "For travel expenses incurred on 2024-05-15",
+  taxRate: {
+    id: "123456",
+    code: "N-T",
+    rate: 10,
+  },
+  taxInclusive: true,
+  subTotal: 250,
+  totalTax: 25,
+  totalAmount: 275,
+  trackingCategories: [
+    {
+      id: "123456",
+      code: "100",
+      name: "New York",
+      parentId: "123456",
+      parentName: "New York",
+    },
+  ],
+  lineItems: [
+    {
+      trackingCategories: [
+        {
+          id: "123456",
+          code: "100",
+          name: "New York",
+          parentId: "123456",
+          parentName: "New York",
+        },
+      ],
+      account: {
+        id: "123456",
+        name: "Bank account",
+        nominalCode: "N091",
+        code: "453",
+        parentId: "123456",
+        displayId: "123456",
+      },
+      customer: {
+        id: "12345",
+        displayName: "Windsurf Shop",
+        email: "boring@boring.com",
+      },
+      departmentId: "12345",
+      department: {
+        displayId: "123456",
+        name: "Acme Inc.",
+      },
+      locationId: "12345",
+      location: null,
+      taxRate: {
+        id: "123456",
+        code: "N-T",
+        rate: 10,
+      },
+      description: "Travel US.",
+      type: "expense_account",
+      totalAmount: 275,
+      taxAmount: 27.5,
+      quantity: 1,
+      unitPrice: 27500.5,
+      item: {
+        id: "12344",
+        code: "120-C",
+        name: "Model Y",
+      },
+      lineNumber: 1,
+      rebilling: null,
+    },
+  ],
+  reference: "INV-2024-001",
+  sourceDocumentUrl: "https://www.invoicesolution.com/expense/123456",
+  customFields: [
+    {
+      id: "2389328923893298",
+      name: "employee_level",
+      refName: "Marketing",
+      description: "Employee Level",
+      value: "Uses Salesforce and Marketo",
+    },
+  ],
+  status: "draft",
+  rowVersion: "1-12345",
+  passThrough: [
+    {
+      serviceId: "<id>",
+      extendPaths: [
+        {
+          path: "$.nested.property",
+          value: {
+            "TaxClassificationRef": {
+              "value": "EUC-99990201-V1-00020000",
+            },
+          },
+        },
+      ],
+    },
+  ],
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                               | Type                                                                                                                                                                                | Required                                                                                                                                                                            | Description                                                                                                                                                                         | Example                                                                                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `displayId`                                                                                                                                                                         | *string*                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                  | Id to be displayed.                                                                                                                                                                 | 123456                                                                                                                                                                              |
+| `number`                                                                                                                                                                            | *string*                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                  | Number.                                                                                                                                                                             | OIT00546                                                                                                                                                                            |
+| `transactionDate`                                                                                                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                                                                                       | :heavy_minus_sign:                                                                                                                                                                  | The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD                                                                                                                             | 2021-05-01T12:00:00.000Z                                                                                                                                                            |
+| ~~`accountId`~~                                                                                                                                                                     | *string*                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                  | :warning: **DEPRECATED**: Deprecated. Use account instead..<br/><br/>The unique identifier for the ledger account that this expense should be credited to. Deprecated, use account instead. | 123456                                                                                                                                                                              |
+| `account`                                                                                                                                                                           | [components.LinkedFinancialAccountInput](../../models/components/linkedfinancialaccountinput.md)                                                                                    | :heavy_minus_sign:                                                                                                                                                                  | A flexible account reference that can represent a ledger account (GL account), a bank account, or an employee payable account, depending on the connector's requirements.           |                                                                                                                                                                                     |
+| ~~`supplierId`~~                                                                                                                                                                    | *string*                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                  | :warning: **DEPRECATED**: Deprecated. Use supplier instead..<br/><br/>The ID of the supplier this entity is linked to. Deprecated, use supplier instead.                            | 12345                                                                                                                                                                               |
+| `supplier`                                                                                                                                                                          | [components.LinkedSupplierInput](../../models/components/linkedsupplierinput.md)                                                                                                    | :heavy_minus_sign:                                                                                                                                                                  | The supplier this entity is linked to.                                                                                                                                              |                                                                                                                                                                                     |
+| `companyId`                                                                                                                                                                         | *string*                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                  | The company ID the transaction belongs to                                                                                                                                           | 12345                                                                                                                                                                               |
+| `location`                                                                                                                                                                          | [components.LinkedLocationInput](../../models/components/linkedlocationinput.md)                                                                                                    | :heavy_minus_sign:                                                                                                                                                                  | N/A                                                                                                                                                                                 |                                                                                                                                                                                     |
+| `departmentId`                                                                                                                                                                      | *string*                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                  | The ID of the department                                                                                                                                                            | 12345                                                                                                                                                                               |
+| `department`                                                                                                                                                                        | [components.LinkedDepartmentInput](../../models/components/linkeddepartmentinput.md)                                                                                                | :heavy_minus_sign:                                                                                                                                                                  | N/A                                                                                                                                                                                 |                                                                                                                                                                                     |
+| `paymentType`                                                                                                                                                                       | [components.ExpenseUpdateInputPaymentType](../../models/components/expenseupdateinputpaymenttype.md)                                                                                | :heavy_minus_sign:                                                                                                                                                                  | The type of payment for the expense.                                                                                                                                                | cash                                                                                                                                                                                |
+| `currency`                                                                                                                                                                          | [components.Currency](../../models/components/currency.md)                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                  | Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).                                                  | USD                                                                                                                                                                                 |
+| `currencyRate`                                                                                                                                                                      | *number*                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                  | Currency Exchange Rate at the time entity was recorded/generated.                                                                                                                   | 0.69                                                                                                                                                                                |
+| `type`                                                                                                                                                                              | [components.ExpenseUpdateInputExpenseType](../../models/components/expenseupdateinputexpensetype.md)                                                                                | :heavy_minus_sign:                                                                                                                                                                  | The type of expense.                                                                                                                                                                | expense                                                                                                                                                                             |
+| `memo`                                                                                                                                                                              | *string*                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                  | The memo of the expense.                                                                                                                                                            | For travel expenses incurred on 2024-05-15                                                                                                                                          |
+| `taxRate`                                                                                                                                                                           | [components.LinkedTaxRateInput](../../models/components/linkedtaxrateinput.md)                                                                                                      | :heavy_minus_sign:                                                                                                                                                                  | N/A                                                                                                                                                                                 |                                                                                                                                                                                     |
+| `taxInclusive`                                                                                                                                                                      | *boolean*                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                  | Amounts are including tax                                                                                                                                                           | true                                                                                                                                                                                |
+| `subTotal`                                                                                                                                                                          | *number*                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                  | Subtotal amount, normally before tax.                                                                                                                                               | 250                                                                                                                                                                                 |
+| `totalTax`                                                                                                                                                                          | *number*                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                  | Total tax amount applied to this transaction.                                                                                                                                       | 25                                                                                                                                                                                  |
+| `totalAmount`                                                                                                                                                                       | *number*                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                  | The total amount of the expense line item.                                                                                                                                          | 275                                                                                                                                                                                 |
+| `trackingCategories`                                                                                                                                                                | [components.LinkedTrackingCategory](../../models/components/linkedtrackingcategory.md)[]                                                                                            | :heavy_minus_sign:                                                                                                                                                                  | A list of linked tracking categories.                                                                                                                                               |                                                                                                                                                                                     |
+| `lineItems`                                                                                                                                                                         | [components.ExpenseLineItemInput](../../models/components/expenselineiteminput.md)[]                                                                                                | :heavy_minus_sign:                                                                                                                                                                  | Expense line items linked to this expense.                                                                                                                                          |                                                                                                                                                                                     |
+| `reference`                                                                                                                                                                         | *string*                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                  | Optional reference identifier for the transaction.                                                                                                                                  | INV-2024-001                                                                                                                                                                        |
+| `sourceDocumentUrl`                                                                                                                                                                 | *string*                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                  | URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.                                                                | https://www.invoicesolution.com/expense/123456                                                                                                                                      |
+| `customFields`                                                                                                                                                                      | *components.CustomField*[]                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                  | N/A                                                                                                                                                                                 |                                                                                                                                                                                     |
+| `status`                                                                                                                                                                            | [components.ExpenseUpdateInputStatus](../../models/components/expenseupdateinputstatus.md)                                                                                          | :heavy_minus_sign:                                                                                                                                                                  | Expense status                                                                                                                                                                      | draft                                                                                                                                                                               |
+| `rowVersion`                                                                                                                                                                        | *string*                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                  | A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.                                          | 1-12345                                                                                                                                                                             |
+| `passThrough`                                                                                                                                                                       | [components.PassThroughBody](../../models/components/passthroughbody.md)[]                                                                                                          | :heavy_minus_sign:                                                                                                                                                                  | The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.                             |                                                                                                                                                                                     |

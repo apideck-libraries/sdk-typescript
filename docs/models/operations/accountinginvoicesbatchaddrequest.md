@@ -189,6 +189,7 @@ let value: AccountingInvoicesBatchAddRequest = {
               date: new Date("2020-09-30T07:43:32.000Z"),
             },
           ],
+          quotes: null,
           paymentMethod: "cash",
           channel: "email",
           language: "EN",
@@ -207,7 +208,14 @@ let value: AccountingInvoicesBatchAddRequest = {
             currency: "USD",
             country: "US",
           },
-          ledgerAccount: null,
+          ledgerAccount: {
+            id: "123456",
+            name: "Bank account",
+            nominalCode: "N091",
+            code: "453",
+            parentId: "123456",
+            displayId: "123456",
+          },
           customFields: [
             {
               id: "2389328923893298",

@@ -42,7 +42,7 @@ export type AccountingRefundsUpdateRequest = {
    * Include raw response. Mostly used for debugging purposes
    */
   raw?: boolean | undefined;
-  refund: components.RefundInput;
+  refundUpdateInput: components.RefundUpdateInput;
 };
 
 export type AccountingRefundsUpdateResponse = {
@@ -64,7 +64,7 @@ export type AccountingRefundsUpdateRequest$Outbound = {
   appId?: string | undefined;
   serviceId?: string | undefined;
   raw: boolean;
-  Refund: components.RefundInput$Outbound;
+  RefundUpdateInput: components.RefundUpdateInput$Outbound;
 };
 
 /** @internal */
@@ -78,10 +78,10 @@ export const AccountingRefundsUpdateRequest$outboundSchema: z.ZodType<
   appId: z.string().optional(),
   serviceId: z.string().optional(),
   raw: z.boolean().default(false),
-  refund: components.RefundInput$outboundSchema,
+  refundUpdateInput: components.RefundUpdateInput$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    refund: "Refund",
+    refundUpdateInput: "RefundUpdateInput",
   });
 });
 

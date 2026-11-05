@@ -392,7 +392,7 @@ async function run() {
   const result = await apideck.accounting.expenseCategories.update({
     id: "<id>",
     serviceId: "salesforce",
-    expenseCategory: {
+    expenseCategoryUpdateInput: {
       displayId: "123456",
       name: "Travel",
       code: "TRAVEL-001",
@@ -466,7 +466,7 @@ async function run() {
   const res = await accountingExpenseCategoriesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    expenseCategory: {
+    expenseCategoryUpdateInput: {
       displayId: "123456",
       name: "Travel",
       code: "TRAVEL-001",

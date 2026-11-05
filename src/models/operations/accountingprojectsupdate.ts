@@ -46,7 +46,7 @@ export type AccountingProjectsUpdateRequest = {
    * Include raw response. Mostly used for debugging purposes
    */
   raw?: boolean | undefined;
-  project: components.ProjectInput;
+  projectUpdateInput: components.ProjectUpdateInput;
 };
 
 export type AccountingProjectsUpdateResponse = {
@@ -69,7 +69,7 @@ export type AccountingProjectsUpdateRequest$Outbound = {
   serviceId?: string | undefined;
   companyId?: string | undefined;
   raw: boolean;
-  Project: components.ProjectInput$Outbound;
+  ProjectUpdateInput: components.ProjectUpdateInput$Outbound;
 };
 
 /** @internal */
@@ -84,10 +84,10 @@ export const AccountingProjectsUpdateRequest$outboundSchema: z.ZodType<
   serviceId: z.string().optional(),
   companyId: z.string().optional(),
   raw: z.boolean().default(false),
-  project: components.ProjectInput$outboundSchema,
+  projectUpdateInput: components.ProjectUpdateInput$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    project: "Project",
+    projectUpdateInput: "ProjectUpdateInput",
   });
 });
 

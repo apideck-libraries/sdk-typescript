@@ -582,7 +582,7 @@ test("Refunds Accounting Refunds Update", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    refund: {
+    refundUpdateInput: {
       number: "RF-00001",
       customer: {
         id: "12345",

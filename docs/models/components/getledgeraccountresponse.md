@@ -25,6 +25,7 @@ let value: GetLedgerAccountResponse = {
     description: "Main checking account",
     openingBalance: 75000,
     currentBalance: 20000,
+    fixedAsset: null,
     currency: "USD",
     taxType: "NONE",
     taxRate: {

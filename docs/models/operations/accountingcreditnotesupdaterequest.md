@@ -8,7 +8,7 @@ import { AccountingCreditNotesUpdateRequest } from "@apideck/unify/models/operat
 let value: AccountingCreditNotesUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
-  creditNote: {
+  creditNoteUpdateInput: {
     number: "OIT00546",
     customer: {
       id: "12345",
@@ -180,15 +180,7 @@ let value: AccountingCreditNotesUpdateRequest = {
       notes: "Address notes or delivery instructions.",
       rowVersion: "1-12345",
     },
-    trackingCategories: [
-      {
-        id: "123456",
-        code: "100",
-        name: "New York",
-        parentId: "123456",
-        parentName: "New York",
-      },
-    ],
+    trackingCategories: null,
     customFields: [
       {
         id: "2389328923893298",
@@ -227,4 +219,4 @@ let value: AccountingCreditNotesUpdateRequest = {
 | `appId`                                                                                                                                       | *string*                                                                                                                                      | :heavy_minus_sign:                                                                                                                            | The ID of your Unify application                                                                                                              | dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX                                                                                                       |
 | `serviceId`                                                                                                                                   | *string*                                                                                                                                      | :heavy_minus_sign:                                                                                                                            | Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API. | salesforce                                                                                                                                    |
 | `raw`                                                                                                                                         | *boolean*                                                                                                                                     | :heavy_minus_sign:                                                                                                                            | Include raw response. Mostly used for debugging purposes                                                                                      |                                                                                                                                               |
-| `creditNote`                                                                                                                                  | [components.CreditNoteInput](../../models/components/creditnoteinput.md)                                                                      | :heavy_check_mark:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |
+| `creditNoteUpdateInput`                                                                                                                       | [components.CreditNoteUpdateInput](../../models/components/creditnoteupdateinput.md)                                                          | :heavy_check_mark:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |

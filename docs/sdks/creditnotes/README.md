@@ -681,7 +681,7 @@ async function run() {
   const result = await apideck.accounting.creditNotes.update({
     id: "<id>",
     serviceId: "salesforce",
-    creditNote: {
+    creditNoteUpdateInput: {
       number: "OIT00546",
       customer: {
         id: "12345",
@@ -903,7 +903,7 @@ async function run() {
   const res = await accountingCreditNotesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    creditNote: {
+    creditNoteUpdateInput: {
       number: "OIT00546",
       customer: {
         id: "12345",

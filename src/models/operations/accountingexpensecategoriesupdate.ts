@@ -42,7 +42,7 @@ export type AccountingExpenseCategoriesUpdateRequest = {
    * Include raw response. Mostly used for debugging purposes
    */
   raw?: boolean | undefined;
-  expenseCategory: components.ExpenseCategoryInput;
+  expenseCategoryUpdateInput: components.ExpenseCategoryUpdateInput;
 };
 
 export type AccountingExpenseCategoriesUpdateResponse = {
@@ -66,7 +66,7 @@ export type AccountingExpenseCategoriesUpdateRequest$Outbound = {
   appId?: string | undefined;
   serviceId?: string | undefined;
   raw: boolean;
-  ExpenseCategory: components.ExpenseCategoryInput$Outbound;
+  ExpenseCategoryUpdateInput: components.ExpenseCategoryUpdateInput$Outbound;
 };
 
 /** @internal */
@@ -80,10 +80,11 @@ export const AccountingExpenseCategoriesUpdateRequest$outboundSchema: z.ZodType<
   appId: z.string().optional(),
   serviceId: z.string().optional(),
   raw: z.boolean().default(false),
-  expenseCategory: components.ExpenseCategoryInput$outboundSchema,
+  expenseCategoryUpdateInput:
+    components.ExpenseCategoryUpdateInput$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    expenseCategory: "ExpenseCategory",
+    expenseCategoryUpdateInput: "ExpenseCategoryUpdateInput",
   });
 });
 

@@ -540,7 +540,7 @@ test("Expensereports Accounting Expense Reports Update", async () => {
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    expenseReport: {
+    expenseReportUpdateInput: {
       displayId: "123456",
       number: "ER-001",
       title: "Q1 Business Travel",

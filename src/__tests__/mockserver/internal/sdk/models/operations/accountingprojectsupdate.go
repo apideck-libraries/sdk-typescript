@@ -40,8 +40,8 @@ type AccountingProjectsUpdateRequest struct {
 	// The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
 	CompanyID *string `header:"style=simple,explode=false,name=x-apideck-company-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw  *bool                   `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Body components.ProjectInput `request:"mediaType=application/json"`
+	Raw  *bool                         `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.ProjectUpdateInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingProjectsUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -97,9 +97,9 @@ func (o *AccountingProjectsUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AccountingProjectsUpdateRequest) GetBody() components.ProjectInput {
+func (o *AccountingProjectsUpdateRequest) GetBody() components.ProjectUpdateInput {
 	if o == nil {
-		return components.ProjectInput{}
+		return components.ProjectUpdateInput{}
 	}
 	return o.Body
 }

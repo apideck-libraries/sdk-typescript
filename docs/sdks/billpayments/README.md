@@ -575,7 +575,7 @@ async function run() {
   const result = await apideck.accounting.billPayments.update({
     id: "<id>",
     serviceId: "salesforce",
-    billPayment: {
+    billPaymentUpdateInput: {
       currency: "USD",
       currencyRate: 0.69,
       totalAmount: 49.99,
@@ -713,7 +713,7 @@ async function run() {
   const res = await accountingBillPaymentsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    billPayment: {
+    billPaymentUpdateInput: {
       currency: "USD",
       currencyRate: 0.69,
       totalAmount: 49.99,

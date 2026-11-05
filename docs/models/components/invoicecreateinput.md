@@ -187,6 +187,7 @@ let value: InvoiceCreateInput = {
       date: new Date("2020-09-30T07:43:32.000Z"),
     },
   ],
+  quotes: null,
   paymentMethod: "cash",
   channel: "email",
   language: "EN",
@@ -205,7 +206,14 @@ let value: InvoiceCreateInput = {
     currency: "USD",
     country: "US",
   },
-  ledgerAccount: null,
+  ledgerAccount: {
+    id: "123456",
+    name: "Bank account",
+    nominalCode: "N091",
+    code: "453",
+    parentId: "123456",
+    displayId: "123456",
+  },
   customFields: [
     {
       id: "2389328923893298",
@@ -274,6 +282,7 @@ let value: InvoiceCreateInput = {
 | `templateId`                                                                                                                                                     | *string*                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                               | Optional invoice template                                                                                                                                        | 123456                                                                                                                                                           |
 | `sourceDocumentUrl`                                                                                                                                              | *string*                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                               | URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.                                             | https://www.invoicesolution.com/invoice/123456                                                                                                                   |
 | `paymentAllocations`                                                                                                                                             | [components.InvoiceCreateInputPaymentAllocations](../../models/components/invoicecreateinputpaymentallocations.md)[]                                             | :heavy_minus_sign:                                                                                                                                               | IDs of payments made on the invoice                                                                                                                              |                                                                                                                                                                  |
+| `quotes`                                                                                                                                                         | [components.LinkedQuotesInput](../../models/components/linkedquotesinput.md)[]                                                                                   | :heavy_minus_sign:                                                                                                                                               | A list of quotes linked to this record.                                                                                                                          |                                                                                                                                                                  |
 | `paymentMethod`                                                                                                                                                  | *string*                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                               | Payment method used for the transaction, such as cash, credit card, bank transfer, or check                                                                      | cash                                                                                                                                                             |
 | `channel`                                                                                                                                                        | *string*                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                               | The channel through which the transaction is processed.                                                                                                          | email                                                                                                                                                            |
 | `language`                                                                                                                                                       | *string*                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                               | language code according to ISO 639-1. For the United States - EN                                                                                                 | EN                                                                                                                                                               |

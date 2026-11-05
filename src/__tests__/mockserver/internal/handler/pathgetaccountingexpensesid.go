@@ -64,7 +64,7 @@ func testAccountingExpensesOneAccountingExpensesOne0(w http.ResponseWriter, req 
 			PaymentType:     optionalnullable.From(components.ExpensePaymentTypeCash.ToPointer()),
 			Currency:        optionalnullable.From(components.CurrencyUsd.ToPointer()),
 			CurrencyRate:    optionalnullable.From(types.Float64(0.69)),
-			Type:            optionalnullable.From(components.ExpenseTypeExpense.ToPointer()),
+			Type:            optionalnullable.From(components.ExpenseExpenseTypeExpense.ToPointer()),
 			Memo:            optionalnullable.From(types.String("For travel expenses incurred on 2024-05-15")),
 			TaxRate: &components.LinkedTaxRate{
 				ID:   optionalnullable.From(types.String("123456")),

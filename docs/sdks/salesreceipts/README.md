@@ -705,7 +705,7 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
     companyId: "12345",
-    salesReceipt: {
+    salesReceiptUpdateInput: {
       number: "SR-00001",
       customer: {
         id: "12345",
@@ -929,7 +929,7 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
     companyId: "12345",
-    salesReceipt: {
+    salesReceiptUpdateInput: {
       number: "SR-00001",
       customer: {
         id: "12345",

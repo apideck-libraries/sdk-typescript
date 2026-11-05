@@ -27,19 +27,19 @@ func (e ProjectProjectStatus) ToPointer() *ProjectProjectStatus {
 	return &e
 }
 
-// ProjectType - Type or category of the project
-type ProjectType string
+// ProjectProjectType - Type or category of the project
+type ProjectProjectType string
 
 const (
-	ProjectTypeClientProject       ProjectType = "client_project"
-	ProjectTypeInternalProject     ProjectType = "internal_project"
-	ProjectTypeMaintenance         ProjectType = "maintenance"
-	ProjectTypeResearchDevelopment ProjectType = "research_development"
-	ProjectTypeTraining            ProjectType = "training"
-	ProjectTypeOther               ProjectType = "other"
+	ProjectProjectTypeClientProject       ProjectProjectType = "client_project"
+	ProjectProjectTypeInternalProject     ProjectProjectType = "internal_project"
+	ProjectProjectTypeMaintenance         ProjectProjectType = "maintenance"
+	ProjectProjectTypeResearchDevelopment ProjectProjectType = "research_development"
+	ProjectProjectTypeTraining            ProjectProjectType = "training"
+	ProjectProjectTypeOther               ProjectProjectType = "other"
 )
 
-func (e ProjectType) ToPointer() *ProjectType {
+func (e ProjectProjectType) ToPointer() *ProjectProjectType {
 	return &e
 }
 
@@ -79,70 +79,70 @@ func (o *ProjectDepartment) GetName() *string {
 	return o.Name
 }
 
-// ParentProject - Parent project if this is a subproject
-type ParentProject struct {
+// ProjectParentProject - Parent project if this is a subproject
+type ProjectParentProject struct {
 	// Unique identifier for the parent project
 	ID *string `json:"id,omitempty"`
 	// Name of the parent project
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *ParentProject) GetID() *string {
+func (o *ProjectParentProject) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ParentProject) GetName() *string {
+func (o *ProjectParentProject) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-// BillingMethod - Method used for billing this project
-type BillingMethod string
+// ProjectBillingMethod - Method used for billing this project
+type ProjectBillingMethod string
 
 const (
-	BillingMethodFixedPrice       BillingMethod = "fixed_price"
-	BillingMethodTimeAndMaterials BillingMethod = "time_and_materials"
-	BillingMethodMilestoneBased   BillingMethod = "milestone_based"
-	BillingMethodRetainer         BillingMethod = "retainer"
-	BillingMethodNonBillable      BillingMethod = "non_billable"
+	ProjectBillingMethodFixedPrice       ProjectBillingMethod = "fixed_price"
+	ProjectBillingMethodTimeAndMaterials ProjectBillingMethod = "time_and_materials"
+	ProjectBillingMethodMilestoneBased   ProjectBillingMethod = "milestone_based"
+	ProjectBillingMethodRetainer         ProjectBillingMethod = "retainer"
+	ProjectBillingMethodNonBillable      ProjectBillingMethod = "non_billable"
 )
 
-func (e BillingMethod) ToPointer() *BillingMethod {
+func (e ProjectBillingMethod) ToPointer() *ProjectBillingMethod {
 	return &e
 }
 
-// ProjectPhase - Current phase of the project lifecycle
-type ProjectPhase string
+// ProjectProjectPhase - Current phase of the project lifecycle
+type ProjectProjectPhase string
 
 const (
-	ProjectPhaseInitiation ProjectPhase = "initiation"
-	ProjectPhasePlanning   ProjectPhase = "planning"
-	ProjectPhaseExecution  ProjectPhase = "execution"
-	ProjectPhaseMonitoring ProjectPhase = "monitoring"
-	ProjectPhaseClosure    ProjectPhase = "closure"
-	ProjectPhaseOther      ProjectPhase = "other"
+	ProjectProjectPhaseInitiation ProjectProjectPhase = "initiation"
+	ProjectProjectPhasePlanning   ProjectProjectPhase = "planning"
+	ProjectProjectPhaseExecution  ProjectProjectPhase = "execution"
+	ProjectProjectPhaseMonitoring ProjectProjectPhase = "monitoring"
+	ProjectProjectPhaseClosure    ProjectProjectPhase = "closure"
+	ProjectProjectPhaseOther      ProjectProjectPhase = "other"
 )
 
-func (e ProjectPhase) ToPointer() *ProjectPhase {
+func (e ProjectProjectPhase) ToPointer() *ProjectProjectPhase {
 	return &e
 }
 
-// ScheduleStatus - Current status of project schedule compared to plan
-type ScheduleStatus string
+// ProjectScheduleStatus - Current status of project schedule compared to plan
+type ProjectScheduleStatus string
 
 const (
-	ScheduleStatusAheadOfSchedule ScheduleStatus = "ahead_of_schedule"
-	ScheduleStatusOnSchedule      ScheduleStatus = "on_schedule"
-	ScheduleStatusBehindSchedule  ScheduleStatus = "behind_schedule"
-	ScheduleStatusCriticalDelay   ScheduleStatus = "critical_delay"
+	ProjectScheduleStatusAheadOfSchedule ProjectScheduleStatus = "ahead_of_schedule"
+	ProjectScheduleStatusOnSchedule      ProjectScheduleStatus = "on_schedule"
+	ProjectScheduleStatusBehindSchedule  ProjectScheduleStatus = "behind_schedule"
+	ProjectScheduleStatusCriticalDelay   ProjectScheduleStatus = "critical_delay"
 )
 
-func (e ScheduleStatus) ToPointer() *ScheduleStatus {
+func (e ProjectScheduleStatus) ToPointer() *ProjectScheduleStatus {
 	return &e
 }
 
@@ -164,7 +164,7 @@ type Project struct {
 	// Indicates whether the project is currently active or inactive
 	Active optionalnullable.OptionalNullable[bool] `json:"active,omitempty"`
 	// Type or category of the project
-	ProjectType optionalnullable.OptionalNullable[ProjectType] `json:"project_type,omitempty"`
+	ProjectType optionalnullable.OptionalNullable[ProjectProjectType] `json:"project_type,omitempty"`
 	// Priority level of the project
 	Priority optionalnullable.OptionalNullable[ProjectPriority] `json:"priority,omitempty"`
 	// Percentage of project completion (0-100)
@@ -184,7 +184,7 @@ type Project struct {
 	// ID of the user who owns/manages this project
 	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
 	// Parent project if this is a subproject
-	ParentProject optionalnullable.OptionalNullable[ParentProject] `json:"parent_project,omitempty"`
+	ParentProject optionalnullable.OptionalNullable[ProjectParentProject] `json:"parent_project,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Total budgeted amount for the project
@@ -200,12 +200,12 @@ type Project struct {
 	// Default hourly rate for project work
 	HourlyRate optionalnullable.OptionalNullable[float64] `json:"hourly_rate,omitempty"`
 	// Method used for billing this project
-	BillingMethod optionalnullable.OptionalNullable[BillingMethod] `json:"billing_method,omitempty"`
+	BillingMethod optionalnullable.OptionalNullable[ProjectBillingMethod] `json:"billing_method,omitempty"`
 	// Indicates if the project is billable to the customer
 	IsBillable optionalnullable.OptionalNullable[bool] `default:"true" json:"is_billable"`
 	// Current phase of the project lifecycle
-	Phase   optionalnullable.OptionalNullable[ProjectPhase] `json:"phase,omitempty"`
-	TaxRate *LinkedTaxRate                                  `json:"tax_rate,omitempty"`
+	Phase   optionalnullable.OptionalNullable[ProjectProjectPhase] `json:"phase,omitempty"`
+	TaxRate *LinkedTaxRate                                         `json:"tax_rate,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// Tags associated with the project
@@ -217,7 +217,7 @@ type Project struct {
 	// Expected profit margin percentage for the project
 	ProfitMargin optionalnullable.OptionalNullable[float64] `json:"profit_margin,omitempty"`
 	// Current status of project schedule compared to plan
-	ScheduleStatus optionalnullable.OptionalNullable[ScheduleStatus] `json:"schedule_status,omitempty"`
+	ScheduleStatus optionalnullable.OptionalNullable[ProjectScheduleStatus] `json:"schedule_status,omitempty"`
 	// An array of addresses associated with the project (billing, job site, etc.)
 	Addresses []Address `json:"addresses,omitempty"`
 	// Number of team members assigned to the project
@@ -302,7 +302,7 @@ func (o *Project) GetActive() optionalnullable.OptionalNullable[bool] {
 	return o.Active
 }
 
-func (o *Project) GetProjectType() optionalnullable.OptionalNullable[ProjectType] {
+func (o *Project) GetProjectType() optionalnullable.OptionalNullable[ProjectProjectType] {
 	if o == nil {
 		return nil
 	}
@@ -372,7 +372,7 @@ func (o *Project) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	return o.OwnerID
 }
 
-func (o *Project) GetParentProject() optionalnullable.OptionalNullable[ParentProject] {
+func (o *Project) GetParentProject() optionalnullable.OptionalNullable[ProjectParentProject] {
 	if o == nil {
 		return nil
 	}
@@ -428,7 +428,7 @@ func (o *Project) GetHourlyRate() optionalnullable.OptionalNullable[float64] {
 	return o.HourlyRate
 }
 
-func (o *Project) GetBillingMethod() optionalnullable.OptionalNullable[BillingMethod] {
+func (o *Project) GetBillingMethod() optionalnullable.OptionalNullable[ProjectBillingMethod] {
 	if o == nil {
 		return nil
 	}
@@ -442,7 +442,7 @@ func (o *Project) GetIsBillable() optionalnullable.OptionalNullable[bool] {
 	return o.IsBillable
 }
 
-func (o *Project) GetPhase() optionalnullable.OptionalNullable[ProjectPhase] {
+func (o *Project) GetPhase() optionalnullable.OptionalNullable[ProjectProjectPhase] {
 	if o == nil {
 		return nil
 	}
@@ -491,7 +491,7 @@ func (o *Project) GetProfitMargin() optionalnullable.OptionalNullable[float64] {
 	return o.ProfitMargin
 }
 
-func (o *Project) GetScheduleStatus() optionalnullable.OptionalNullable[ScheduleStatus] {
+func (o *Project) GetScheduleStatus() optionalnullable.OptionalNullable[ProjectScheduleStatus] {
 	if o == nil {
 		return nil
 	}
@@ -568,7 +568,7 @@ type ProjectInput struct {
 	// Indicates whether the project is currently active or inactive
 	Active optionalnullable.OptionalNullable[bool] `json:"active,omitempty"`
 	// Type or category of the project
-	ProjectType optionalnullable.OptionalNullable[ProjectType] `json:"project_type,omitempty"`
+	ProjectType optionalnullable.OptionalNullable[ProjectProjectType] `json:"project_type,omitempty"`
 	// Priority level of the project
 	Priority optionalnullable.OptionalNullable[ProjectPriority] `json:"priority,omitempty"`
 	// Percentage of project completion (0-100)
@@ -588,7 +588,7 @@ type ProjectInput struct {
 	// ID of the user who owns/manages this project
 	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
 	// Parent project if this is a subproject
-	ParentProject optionalnullable.OptionalNullable[ParentProject] `json:"parent_project,omitempty"`
+	ParentProject optionalnullable.OptionalNullable[ProjectParentProject] `json:"parent_project,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Total budgeted amount for the project
@@ -600,12 +600,12 @@ type ProjectInput struct {
 	// Default hourly rate for project work
 	HourlyRate optionalnullable.OptionalNullable[float64] `json:"hourly_rate,omitempty"`
 	// Method used for billing this project
-	BillingMethod optionalnullable.OptionalNullable[BillingMethod] `json:"billing_method,omitempty"`
+	BillingMethod optionalnullable.OptionalNullable[ProjectBillingMethod] `json:"billing_method,omitempty"`
 	// Indicates if the project is billable to the customer
 	IsBillable optionalnullable.OptionalNullable[bool] `default:"true" json:"is_billable"`
 	// Current phase of the project lifecycle
-	Phase   optionalnullable.OptionalNullable[ProjectPhase] `json:"phase,omitempty"`
-	TaxRate *LinkedTaxRateInput                             `json:"tax_rate,omitempty"`
+	Phase   optionalnullable.OptionalNullable[ProjectProjectPhase] `json:"phase,omitempty"`
+	TaxRate *LinkedTaxRateInput                                    `json:"tax_rate,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// Tags associated with the project
@@ -617,7 +617,7 @@ type ProjectInput struct {
 	// Expected profit margin percentage for the project
 	ProfitMargin optionalnullable.OptionalNullable[float64] `json:"profit_margin,omitempty"`
 	// Current status of project schedule compared to plan
-	ScheduleStatus optionalnullable.OptionalNullable[ScheduleStatus] `json:"schedule_status,omitempty"`
+	ScheduleStatus optionalnullable.OptionalNullable[ProjectScheduleStatus] `json:"schedule_status,omitempty"`
 	// An array of addresses associated with the project (billing, job site, etc.)
 	Addresses []Address `json:"addresses,omitempty"`
 	// Number of team members assigned to the project
@@ -680,7 +680,7 @@ func (o *ProjectInput) GetActive() optionalnullable.OptionalNullable[bool] {
 	return o.Active
 }
 
-func (o *ProjectInput) GetProjectType() optionalnullable.OptionalNullable[ProjectType] {
+func (o *ProjectInput) GetProjectType() optionalnullable.OptionalNullable[ProjectProjectType] {
 	if o == nil {
 		return nil
 	}
@@ -750,7 +750,7 @@ func (o *ProjectInput) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	return o.OwnerID
 }
 
-func (o *ProjectInput) GetParentProject() optionalnullable.OptionalNullable[ParentProject] {
+func (o *ProjectInput) GetParentProject() optionalnullable.OptionalNullable[ProjectParentProject] {
 	if o == nil {
 		return nil
 	}
@@ -792,7 +792,7 @@ func (o *ProjectInput) GetHourlyRate() optionalnullable.OptionalNullable[float64
 	return o.HourlyRate
 }
 
-func (o *ProjectInput) GetBillingMethod() optionalnullable.OptionalNullable[BillingMethod] {
+func (o *ProjectInput) GetBillingMethod() optionalnullable.OptionalNullable[ProjectBillingMethod] {
 	if o == nil {
 		return nil
 	}
@@ -806,7 +806,7 @@ func (o *ProjectInput) GetIsBillable() optionalnullable.OptionalNullable[bool] {
 	return o.IsBillable
 }
 
-func (o *ProjectInput) GetPhase() optionalnullable.OptionalNullable[ProjectPhase] {
+func (o *ProjectInput) GetPhase() optionalnullable.OptionalNullable[ProjectProjectPhase] {
 	if o == nil {
 		return nil
 	}
@@ -855,7 +855,7 @@ func (o *ProjectInput) GetProfitMargin() optionalnullable.OptionalNullable[float
 	return o.ProfitMargin
 }
 
-func (o *ProjectInput) GetScheduleStatus() optionalnullable.OptionalNullable[ScheduleStatus] {
+func (o *ProjectInput) GetScheduleStatus() optionalnullable.OptionalNullable[ProjectScheduleStatus] {
 	if o == nil {
 		return nil
 	}

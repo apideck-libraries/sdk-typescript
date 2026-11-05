@@ -2,6 +2,11 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/types"
+	"mockserver/internal/sdk/utils"
+)
+
 // EmployeesFilterEmploymentStatus - Employment status to filter on
 type EmployeesFilterEmploymentStatus string
 
@@ -39,6 +44,19 @@ type EmployeesFilter struct {
 	City *string `queryParam:"name=city"`
 	// Country to filter on
 	Country *string `queryParam:"name=country"`
+	// Return employees as of this date (YYYY-MM-DD). Set a future date to include future-dated hires. When omitted, employees are returned as of today.
+	AsOfDate *types.Date `queryParam:"name=as_of_date"`
+}
+
+func (e EmployeesFilter) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EmployeesFilter) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *EmployeesFilter) GetCompanyID() *string {
@@ -116,4 +134,11 @@ func (o *EmployeesFilter) GetCountry() *string {
 		return nil
 	}
 	return o.Country
+}
+
+func (o *EmployeesFilter) GetAsOfDate() *types.Date {
+	if o == nil {
+		return nil
+	}
+	return o.AsOfDate
 }
