@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 889f449266c935d9f1bce4dd4be9efff
-  docVersion: 10.78.0
+  docChecksum: 345337fa6d2a3c87fafec3ace26195dd
+  docVersion: 10.78.1
   speakeasyVersion: 1.806.0
   generationVersion: 2.956.1
-  releaseVersion: 0.54.0
-  configChecksum: 9278e3d57ba01589f5071858d822e07c
+  releaseVersion: 0.54.1
+  configChecksum: 4bae2a9aa3cca3de1e79875e9ff4be6b
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: b7369fac-c96e-4edb-9dc4-ca5843a8fa90
-  pristine_commit_hash: 191209670cec918a4f5e316751029f7c1a7d3b47
-  pristine_tree_hash: 57443f79355669092c632da49ea114bf74181d13
+  generation_id: f4ca3f58-545d-4307-9fb8-0da80a68e870
+  pristine_commit_hash: 56e4dc04d1afada44345c67056fce5ef5769780f
+  pristine_tree_hash: 9da3839e0689f5e20758c12c2467d497612ed3c2
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -9927,12 +9927,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:9e216c103a7b533350a3d7417cd587ba9941e670
-    pristine_git_object: 116677633d31158d0595df3709952d09648f7f9d
+    last_write_checksum: sha1:1652ea1e31be59065f248f12149e956706d8642b
+    pristine_git_object: 8ec91275b5b7b84d0626621a3c09b8132b663af7
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:fd2eb14446293e8dd9ad3f568aaac12c9c5f5551
-    pristine_git_object: 1a6bf3d6fefac13d9720a91aa722bd5d7e2c30b5
+    last_write_checksum: sha1:aac05f336bcf54f862804acd221a90e0fbaa10ab
+    pristine_git_object: 8694f79e33de5ce0bf1812f06af90c5f7bcca079
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -17911,8 +17911,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:bedc71f1b50f30a8117075a7a289df2fa60be16f
-    pristine_git_object: 659434d96e162aa6cc43b502e234ebab8df077b8
+    last_write_checksum: sha1:e5f8d30bb3d4d5e94d572f72b4e70b558c316051
+    pristine_git_object: 61a53a81946a83f8d50c2cf96a35b544e2f11367
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
@@ -41125,7 +41125,6 @@ generatedTests:
   ats.jobsAdd: "2026-03-11T13:14:11Z"
   ats.jobsUpdate: "2026-03-11T13:14:11Z"
   ats.jobsDelete: "2026-03-11T13:14:11Z"
-releaseNotes: "## Typescript SDK Changes:\n* `apideck.accounting.refunds.update()`:  `request` **Changed** (Breaking ⚠️)\n* `apideck.accounting.expenseReports.update()`:  `request` **Changed** (Breaking ⚠️)\n* `apideck.accounting.expenseCategories.update()`:  `request` **Changed** (Breaking ⚠️)\n* `apideck.accounting.projects.update()`:  `request` **Changed** (Breaking ⚠️)\n* `apideck.accounting.expenses.update()`:  `request` **Changed** (Breaking ⚠️)\n* `apideck.accounting.billPayments.update()`:  `request` **Changed** (Breaking ⚠️)\n* `apideck.accounting.salesReceipts.update()`:  `request` **Changed** (Breaking ⚠️)\n* `apideck.accounting.creditNotes.update()`:  `request` **Changed** (Breaking ⚠️)\n* `apideck.accounting.payments.update()`:  `request` **Changed** (Breaking ⚠️)\n* `apideck.accounting.ledgerAccounts.list()`:  `response.data[].fixedAsset` **Added**\n* `apideck.accounting.bankFeedAccounts.update()`: \n  *  `request.bankFeedAccount.status` **Added**\n* `apideck.accounting.invoices.list()`:  `response.data[].quotes` **Added**\n* `apideck.accounting.invoices.createBatch()`: \n  *  `request.batchInvoicesRequest.items[].data.quotes` **Added**\n* `apideck.accounting.bankFeedAccounts.list()`:  `response.data[].status` **Added**\n* `apideck.accounting.bankFeedAccounts.create()`: \n  *  `request.bankFeedAccount.status` **Added**\n* `apideck.accounting.bankFeedAccounts.get()`:  `response.data.status` **Added**\n* `apideck.accounting.ledgerAccounts.get()`:  `response.data.fixedAsset` **Added**\n* `apideck.accounting.invoices.update()`: \n  *  `request.invoice.quotes` **Added**\n* `apideck.accounting.invoices.get()`:  `response.data.quotes` **Added**\n* `apideck.accounting.invoices.create()`: \n  *  `request.invoice.quotes` **Added**\n* `apideck.hris.employees.list()`: \n  *  `request.filter` **Changed**\n* `apideck.connector.connectors.list()`:  `response.data[].settings[]` **Changed**\n* `apideck.connector.connectors.get()`:  `response.data.settings[]` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
