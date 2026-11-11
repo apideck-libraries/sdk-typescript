@@ -115,7 +115,7 @@ export type WebhookSupport = {
    */
   managedVia?: ManagedVia | undefined;
   /**
-   * Service IDs of connectors that receive events from this connector's webhook URL when the URL's own connector has no connection for the event. Connectors listed here must use the same webhook event mapping.
+   * Service IDs of connectors that receive events from this connector's webhook URL when the URL's own connector has no callable connection for the event. Connectors listed here must use the same webhook event mapping.
    */
   sharedWith?: Array<string> | undefined;
   /**
