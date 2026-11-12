@@ -49,6 +49,18 @@ export const ManagedVia = {
 export type ManagedVia = OpenEnum<typeof ManagedVia>;
 
 /**
+ * Where the vendor stores the webhook target URL. `app` means one URL per vendor developer app, which customers on Apideck's own credentials cannot configure. `tenant` means each customer's vendor account holds its own URL.
+ */
+export const TargetURLScope = {
+  App: "app",
+  Tenant: "tenant",
+} as const;
+/**
+ * Where the vendor stores the webhook target URL. `app` means one URL per vendor developer app, which customers on Apideck's own credentials cannot configure. `tenant` means each customer's vendor account holds its own URL.
+ */
+export type TargetURLScope = OpenEnum<typeof TargetURLScope>;
+
+/**
  * The window unit for the rate.
  */
 export const Unit = {
@@ -119,6 +131,14 @@ export type WebhookSupport = {
    */
   sharedWith?: Array<string> | undefined;
   /**
+   * Where the vendor stores the webhook target URL. `app` means one URL per vendor developer app, which customers on Apideck's own credentials cannot configure. `tenant` means each customer's vendor account holds its own URL.
+   */
+  targetUrlScope?: TargetURLScope | undefined;
+  /**
+   * Whether Unify accepts webhook URLs scoped to a vendor developer app for this connector, rather than to one Apideck application. Events delivered to such a URL reach every connection that the vendor app authorized.
+   */
+  vendorAppUrl?: boolean | undefined;
+  /**
    * Virtual webhook config for the connector.
    */
   virtualWebhooks?: VirtualWebhooks | undefined;
@@ -141,6 +161,13 @@ export const ManagedVia$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = openEnums.inboundSchema(ManagedVia);
+
+/** @internal */
+export const TargetURLScope$inboundSchema: z.ZodType<
+  TargetURLScope,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(TargetURLScope);
 
 /** @internal */
 export const Unit$inboundSchema: z.ZodType<Unit, z.ZodTypeDef, unknown> =
@@ -222,12 +249,16 @@ export const WebhookSupport$inboundSchema: z.ZodType<
   subscription_level: types.optional(SubscriptionLevel$inboundSchema),
   managed_via: types.optional(ManagedVia$inboundSchema),
   shared_with: types.optional(z.array(types.string())),
+  target_url_scope: types.optional(TargetURLScope$inboundSchema),
+  vendor_app_url: types.optional(types.boolean()),
   virtual_webhooks: types.optional(z.lazy(() => VirtualWebhooks$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "subscription_level": "subscriptionLevel",
     "managed_via": "managedVia",
     "shared_with": "sharedWith",
+    "target_url_scope": "targetUrlScope",
+    "vendor_app_url": "vendorAppUrl",
     "virtual_webhooks": "virtualWebhooks",
   });
 });
