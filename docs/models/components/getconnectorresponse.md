@@ -114,6 +114,8 @@ let value: GetConnectorResponse = {
       sharedWith: [
         "intuit-enterprise-suite",
       ],
+      targetUrlScope: "app",
+      vendorAppUrl: false,
     },
     batchSupport: {
       mode: "none",

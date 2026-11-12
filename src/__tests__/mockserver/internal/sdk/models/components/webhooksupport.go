@@ -39,6 +39,18 @@ func (e ManagedVia) ToPointer() *ManagedVia {
 	return &e
 }
 
+// TargetURLScope - Where the vendor stores the webhook target URL. `app` means one URL per vendor developer app, which customers on Apideck's own credentials cannot configure. `tenant` means each customer's vendor account holds its own URL.
+type TargetURLScope string
+
+const (
+	TargetURLScopeApp    TargetURLScope = "app"
+	TargetURLScopeTenant TargetURLScope = "tenant"
+)
+
+func (e TargetURLScope) ToPointer() *TargetURLScope {
+	return &e
+}
+
 // Unit - The window unit for the rate.
 type Unit string
 
@@ -127,6 +139,10 @@ type WebhookSupport struct {
 	ManagedVia *ManagedVia `json:"managed_via,omitempty"`
 	// Service IDs of connectors that receive events from this connector's webhook URL when the URL's own connector has no callable connection for the event. Connectors listed here must use the same webhook event mapping.
 	SharedWith []string `json:"shared_with,omitempty"`
+	// Where the vendor stores the webhook target URL. `app` means one URL per vendor developer app, which customers on Apideck's own credentials cannot configure. `tenant` means each customer's vendor account holds its own URL.
+	TargetURLScope *TargetURLScope `json:"target_url_scope,omitempty"`
+	// Whether Unify accepts webhook URLs scoped to a vendor developer app for this connector, rather than to one Apideck application. Events delivered to such a URL reach every connection that the vendor app authorized.
+	VendorAppURL *bool `json:"vendor_app_url,omitempty"`
 	// Virtual webhook config for the connector.
 	VirtualWebhooks *VirtualWebhooks `json:"virtual_webhooks,omitempty"`
 }
@@ -157,6 +173,20 @@ func (o *WebhookSupport) GetSharedWith() []string {
 		return nil
 	}
 	return o.SharedWith
+}
+
+func (o *WebhookSupport) GetTargetURLScope() *TargetURLScope {
+	if o == nil {
+		return nil
+	}
+	return o.TargetURLScope
+}
+
+func (o *WebhookSupport) GetVendorAppURL() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.VendorAppURL
 }
 
 func (o *WebhookSupport) GetVirtualWebhooks() *VirtualWebhooks {
