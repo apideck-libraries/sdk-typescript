@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 14d642b03fed76c2077449a8a6182f42
-  docVersion: 10.80.2
+  docChecksum: cb72289b3d41ec87a1d9d2b5bc383dc8
+  docVersion: 10.80.3
   speakeasyVersion: 1.808.1
   generationVersion: 2.960.8
-  releaseVersion: 0.56.0
-  configChecksum: eb23ab5991f96439dda53cfde9f2edbc
+  releaseVersion: 0.56.1
+  configChecksum: 231df39b69835269ba58f9b010767e06
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: 78cdacec-453b-422f-acf2-4e1578319d1a
-  pristine_commit_hash: 7950610346fc71a2296842c3cce2de9bd085ad22
-  pristine_tree_hash: d4e25f50cd1352567619e987c012bc3a7c2a4177
+  generation_id: e0a106b0-db2d-434d-99ae-22565c9fa6cf
+  pristine_commit_hash: fe60b95eb7d5b3fa9217cec2ec64160ab9c68f28
+  pristine_tree_hash: ae492c840420a3e4cdc7333db10f92eaa3912f05
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -9931,12 +9931,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:0e8f871bc2edd1ca14a617d73cca189c28ee44b5
-    pristine_git_object: 06957c9e134798fe00dac110c29bcf26b614af5b
+    last_write_checksum: sha1:9842611dd62ca628902062504374cf128a0cadbe
+    pristine_git_object: 385110304ab05ac287056678ef4e9a62c2957cbb
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:261a835e1f51d434f9156a77fc2c0d20bfebb247
-    pristine_git_object: 667c11ac0eecc7379d867e62eba62092b3f1afb8
+    last_write_checksum: sha1:88c45218eea48ebe6e43e58c308ce9db6fb55732
+    pristine_git_object: 64ace4af02fa783f3d9809e7dcadf9791cfc4f6e
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -17915,8 +17915,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:6d34441647b330632fb66c103df85b30edb5af39
-    pristine_git_object: a6891a10dceb7b755eb713088c4274860bae2e47
+    last_write_checksum: sha1:4580777a9343f7e26ac1f3b7640fa56f08e9795a
+    pristine_git_object: cb17c58adb3ee4a0ff574cfaf4b630508e9d9752
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
@@ -41129,10 +41129,6 @@ generatedTests:
   ats.jobsAdd: "2026-03-11T13:14:11Z"
   ats.jobsUpdate: "2026-03-11T13:14:11Z"
   ats.jobsDelete: "2026-03-11T13:14:11Z"
-releaseNotes: |
-  ## Typescript SDK Changes:
-  * `apideck.connector.connectors.list()`:  `response.data[].webhookSupport` **Changed**
-  * `apideck.connector.connectors.get()`:  `response.data.webhookSupport` **Changed**
 generatedFiles:
   - .gitattributes
   - .npmignore
