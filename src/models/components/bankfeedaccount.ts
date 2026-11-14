@@ -124,6 +124,10 @@ export type BankFeedAccount = {
    */
   availableBalance?: number | null | undefined;
   /**
+   * When `balance` was true, as an ISO 8601 date-time with a UTC offset. Connectors that record it stamp the time they received the balance when it is omitted.
+   */
+  balanceAsOf?: Date | null | undefined;
+  /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
   currency?: Currency | null | undefined;
@@ -140,19 +144,19 @@ export type BankFeedAccount = {
    */
   country?: string | null | undefined;
   /**
-   * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at least one.
+   * The people or businesses that hold the source bank account. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
    */
   accountHolders?: Array<BankFeedAccountHolder> | undefined;
   /**
-   * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+   * Email addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
    */
   emails?: Array<Email> | undefined;
   /**
-   * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+   * Addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
    */
   addresses?: Array<Address> | undefined;
   /**
-   * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+   * Phone numbers of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
    */
   phoneNumbers?: Array<PhoneNumber> | undefined;
   customFields?: Array<CustomField> | undefined;
@@ -216,6 +220,10 @@ export type BankFeedAccountInput = {
    */
   availableBalance?: number | null | undefined;
   /**
+   * When `balance` was true, as an ISO 8601 date-time with a UTC offset. Connectors that record it stamp the time they received the balance when it is omitted.
+   */
+  balanceAsOf?: Date | null | undefined;
+  /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
   currency?: Currency | null | undefined;
@@ -232,19 +240,19 @@ export type BankFeedAccountInput = {
    */
   country?: string | null | undefined;
   /**
-   * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at least one.
+   * The people or businesses that hold the source bank account. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
    */
   accountHolders?: Array<BankFeedAccountHolder> | undefined;
   /**
-   * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+   * Email addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
    */
   emails?: Array<Email> | undefined;
   /**
-   * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+   * Addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
    */
   addresses?: Array<Address> | undefined;
   /**
-   * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+   * Phone numbers of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
    */
   phoneNumbers?: Array<PhoneNumber> | undefined;
   customFields?: Array<CustomField> | undefined;
@@ -305,6 +313,7 @@ export const BankFeedAccount$inboundSchema: z.ZodType<
   target_account_number: types.optional(types.string()),
   balance: z.nullable(types.number()).optional(),
   available_balance: z.nullable(types.number()).optional(),
+  balance_as_of: z.nullable(types.date()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
   feed_status: types.optional(FeedStatus$inboundSchema),
   status: types.optional(BankFeedAccountStatus$inboundSchema),
@@ -329,6 +338,7 @@ export const BankFeedAccount$inboundSchema: z.ZodType<
     "target_account_name": "targetAccountName",
     "target_account_number": "targetAccountNumber",
     "available_balance": "availableBalance",
+    "balance_as_of": "balanceAsOf",
     "feed_status": "feedStatus",
     "account_holders": "accountHolders",
     "phone_numbers": "phoneNumbers",
@@ -362,6 +372,7 @@ export type BankFeedAccountInput$Outbound = {
   target_account_number?: string | undefined;
   balance?: number | null | undefined;
   available_balance?: number | null | undefined;
+  balance_as_of?: string | null | undefined;
   currency?: string | null | undefined;
   feed_status?: string | undefined;
   status?: string | undefined;
@@ -388,6 +399,7 @@ export const BankFeedAccountInput$outboundSchema: z.ZodType<
   targetAccountNumber: z.string().optional(),
   balance: z.nullable(z.number()).optional(),
   availableBalance: z.nullable(z.number()).optional(),
+  balanceAsOf: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   feedStatus: FeedStatus$outboundSchema.optional(),
   status: BankFeedAccountStatus$outboundSchema.optional(),
@@ -407,6 +419,7 @@ export const BankFeedAccountInput$outboundSchema: z.ZodType<
     targetAccountName: "target_account_name",
     targetAccountNumber: "target_account_number",
     availableBalance: "available_balance",
+    balanceAsOf: "balance_as_of",
     feedStatus: "feed_status",
     accountHolders: "account_holders",
     phoneNumbers: "phone_numbers",

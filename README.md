@@ -761,6 +761,7 @@ run();
 * [imports](docs/sdks/connections/README.md#imports) - Import connection
 * [migrate](docs/sdks/connections/README.md#migrate) - Migrate connection
 * [token](docs/sdks/connections/README.md#token) - Authorize Access Token
+* [confirm](docs/sdks/connections/README.md#confirm) - Confirm Connection
 
 ### [Vault.ConnectionSettings](docs/sdks/connectionsettings/README.md)
 
@@ -1188,6 +1189,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`vaultConnectionConsentsList`](docs/sdks/connectionconsents/README.md#list) - Get consent records
 - [`vaultConnectionConsentUpdate`](docs/sdks/connectionconsent/README.md#update) - Update consent state
 - [`vaultConnectionCustomMappingsList`](docs/sdks/connectioncustommappings/README.md#list) - List connection custom mappings
+- [`vaultConnectionsConfirm`](docs/sdks/connections/README.md#confirm) - Confirm Connection
 - [`vaultConnectionsDelete`](docs/sdks/connections/README.md#delete) - Deletes a connection
 - [`vaultConnectionSettingsList`](docs/sdks/connectionsettings/README.md#list) - Get resource settings
 - [`vaultConnectionSettingsUpdate`](docs/sdks/connectionsettings/README.md#update) - Update settings
@@ -1484,6 +1486,7 @@ run();
   * [`NotFoundResponse`](./src/models/errors/notfoundresponse.ts): The specified resource was not found. Status code `404`. *
   * [`BadRequestResponse`](./src/models/errors/badrequestresponse.ts): Bad Request. Status code `400`. *
   * [`UnprocessableResponse`](./src/models/errors/unprocessableresponse.ts): Unprocessable. Status code `422`. *
+  * [`MethodNotAllowedResponse`](./src/models/errors/methodnotallowedresponse.ts): The connector cannot serve this operation. No request was sent to the connector, and retrying will not help. The `Allow` header lists the methods the connector does serve on the same URL. Status code `405`. *
 
 <details><summary>Less common errors (8)</summary>
 
@@ -1498,8 +1501,8 @@ run();
 
 
 **Inherit from [`ApideckError`](./src/models/errors/apideckerror.ts)**:
-* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 382 methods.*
-* [`ConflictResponse`](./src/models/errors/conflictresponse.ts): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 382 methods.*
+* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 383 methods.*
+* [`ConflictResponse`](./src/models/errors/conflictresponse.ts): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 383 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
