@@ -50,6 +50,7 @@ export function smsMessagesList(
       | errors.UnauthorizedResponse
       | errors.PaymentRequiredResponse
       | errors.NotFoundResponse
+      | errors.MethodNotAllowedResponse
       | errors.UnprocessableResponse
       | ApideckError
       | ResponseValidationError
@@ -83,6 +84,7 @@ async function $do(
         | errors.UnauthorizedResponse
         | errors.PaymentRequiredResponse
         | errors.NotFoundResponse
+        | errors.MethodNotAllowedResponse
         | errors.UnprocessableResponse
         | ApideckError
         | ResponseValidationError
@@ -204,6 +206,7 @@ async function $do(
     | errors.UnauthorizedResponse
     | errors.PaymentRequiredResponse
     | errors.NotFoundResponse
+    | errors.MethodNotAllowedResponse
     | errors.UnprocessableResponse
     | ApideckError
     | ResponseValidationError
@@ -224,6 +227,9 @@ async function $do(
       hdrs: true,
     }),
     M.jsonErr(404, errors.NotFoundResponse$inboundSchema, { hdrs: true }),
+    M.jsonErr(405, errors.MethodNotAllowedResponse$inboundSchema, {
+      hdrs: true,
+    }),
     M.jsonErr(422, errors.UnprocessableResponse$inboundSchema, { hdrs: true }),
     M.fail("4XX"),
     M.fail("5XX"),
@@ -250,6 +256,7 @@ async function $do(
         | errors.UnauthorizedResponse
         | errors.PaymentRequiredResponse
         | errors.NotFoundResponse
+        | errors.MethodNotAllowedResponse
         | errors.UnprocessableResponse
         | ApideckError
         | ResponseValidationError

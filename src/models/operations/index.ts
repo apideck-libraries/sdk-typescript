@@ -358,6 +358,7 @@ export * from "./vaultconnectionconsentsall.js";
 export * from "./vaultconnectionconsentupdate.js";
 export * from "./vaultconnectioncustommappingsall.js";
 export * from "./vaultconnectionsall.js";
+export * from "./vaultconnectionsconfirm.js";
 export * from "./vaultconnectionsdelete.js";
 export * from "./vaultconnectionsettingsall.js";
 export * from "./vaultconnectionsettingsupdate.js";

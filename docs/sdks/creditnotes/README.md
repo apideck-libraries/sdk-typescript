@@ -112,14 +112,15 @@ run();
 
 ### Errors
 
-| Error Type                     | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| errors.BadRequestResponse      | 400                            | application/json               |
-| errors.UnauthorizedResponse    | 401                            | application/json               |
-| errors.PaymentRequiredResponse | 402                            | application/json               |
-| errors.NotFoundResponse        | 404                            | application/json               |
-| errors.UnprocessableResponse   | 422                            | application/json               |
-| errors.APIError                | 4XX, 5XX                       | \*/\*                          |
+| Error Type                      | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| errors.BadRequestResponse       | 400                             | application/json                |
+| errors.UnauthorizedResponse     | 401                             | application/json                |
+| errors.PaymentRequiredResponse  | 402                             | application/json                |
+| errors.NotFoundResponse         | 404                             | application/json                |
+| errors.MethodNotAllowedResponse | 405                             | application/json                |
+| errors.UnprocessableResponse    | 422                             | application/json                |
+| errors.APIError                 | 4XX, 5XX                        | \*/\*                           |
 
 ## create
 
@@ -564,14 +565,15 @@ run();
 
 ### Errors
 
-| Error Type                     | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| errors.BadRequestResponse      | 400                            | application/json               |
-| errors.UnauthorizedResponse    | 401                            | application/json               |
-| errors.PaymentRequiredResponse | 402                            | application/json               |
-| errors.NotFoundResponse        | 404                            | application/json               |
-| errors.UnprocessableResponse   | 422                            | application/json               |
-| errors.APIError                | 4XX, 5XX                       | \*/\*                          |
+| Error Type                      | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| errors.BadRequestResponse       | 400                             | application/json                |
+| errors.UnauthorizedResponse     | 401                             | application/json                |
+| errors.PaymentRequiredResponse  | 402                             | application/json                |
+| errors.NotFoundResponse         | 404                             | application/json                |
+| errors.MethodNotAllowedResponse | 405                             | application/json                |
+| errors.UnprocessableResponse    | 422                             | application/json                |
+| errors.APIError                 | 4XX, 5XX                        | \*/\*                           |
 
 ## get
 
@@ -652,14 +654,15 @@ run();
 
 ### Errors
 
-| Error Type                     | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| errors.BadRequestResponse      | 400                            | application/json               |
-| errors.UnauthorizedResponse    | 401                            | application/json               |
-| errors.PaymentRequiredResponse | 402                            | application/json               |
-| errors.NotFoundResponse        | 404                            | application/json               |
-| errors.UnprocessableResponse   | 422                            | application/json               |
-| errors.APIError                | 4XX, 5XX                       | \*/\*                          |
+| Error Type                      | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| errors.BadRequestResponse       | 400                             | application/json                |
+| errors.UnauthorizedResponse     | 401                             | application/json                |
+| errors.PaymentRequiredResponse  | 402                             | application/json                |
+| errors.NotFoundResponse         | 404                             | application/json                |
+| errors.MethodNotAllowedResponse | 405                             | application/json                |
+| errors.UnprocessableResponse    | 422                             | application/json                |
+| errors.APIError                 | 4XX, 5XX                        | \*/\*                           |
 
 ## update
 
@@ -1124,14 +1127,15 @@ run();
 
 ### Errors
 
-| Error Type                     | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| errors.BadRequestResponse      | 400                            | application/json               |
-| errors.UnauthorizedResponse    | 401                            | application/json               |
-| errors.PaymentRequiredResponse | 402                            | application/json               |
-| errors.NotFoundResponse        | 404                            | application/json               |
-| errors.UnprocessableResponse   | 422                            | application/json               |
-| errors.APIError                | 4XX, 5XX                       | \*/\*                          |
+| Error Type                      | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| errors.BadRequestResponse       | 400                             | application/json                |
+| errors.UnauthorizedResponse     | 401                             | application/json                |
+| errors.PaymentRequiredResponse  | 402                             | application/json                |
+| errors.NotFoundResponse         | 404                             | application/json                |
+| errors.MethodNotAllowedResponse | 405                             | application/json                |
+| errors.UnprocessableResponse    | 422                             | application/json                |
+| errors.APIError                 | 4XX, 5XX                        | \*/\*                           |
 
 ## delete
 
@@ -1208,14 +1212,15 @@ run();
 
 ### Errors
 
-| Error Type                     | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| errors.BadRequestResponse      | 400                            | application/json               |
-| errors.UnauthorizedResponse    | 401                            | application/json               |
-| errors.PaymentRequiredResponse | 402                            | application/json               |
-| errors.NotFoundResponse        | 404                            | application/json               |
-| errors.UnprocessableResponse   | 422                            | application/json               |
-| errors.APIError                | 4XX, 5XX                       | \*/\*                          |
+| Error Type                      | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| errors.BadRequestResponse       | 400                             | application/json                |
+| errors.UnauthorizedResponse     | 401                             | application/json                |
+| errors.PaymentRequiredResponse  | 402                             | application/json                |
+| errors.NotFoundResponse         | 404                             | application/json                |
+| errors.MethodNotAllowedResponse | 405                             | application/json                |
+| errors.UnprocessableResponse    | 422                             | application/json                |
+| errors.APIError                 | 4XX, 5XX                        | \*/\*                           |
 
 ## createBatch
 
@@ -1298,11 +1303,12 @@ run();
 
 ### Errors
 
-| Error Type                     | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| errors.BadRequestResponse      | 400                            | application/json               |
-| errors.UnauthorizedResponse    | 401                            | application/json               |
-| errors.PaymentRequiredResponse | 402                            | application/json               |
-| errors.NotFoundResponse        | 404                            | application/json               |
-| errors.UnprocessableResponse   | 422                            | application/json               |
-| errors.APIError                | 4XX, 5XX                       | \*/\*                          |
+| Error Type                      | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| errors.BadRequestResponse       | 400                             | application/json                |
+| errors.UnauthorizedResponse     | 401                             | application/json                |
+| errors.PaymentRequiredResponse  | 402                             | application/json                |
+| errors.NotFoundResponse         | 404                             | application/json                |
+| errors.MethodNotAllowedResponse | 405                             | application/json                |
+| errors.UnprocessableResponse    | 422                             | application/json                |
+| errors.APIError                 | 4XX, 5XX                        | \*/\*                           |
