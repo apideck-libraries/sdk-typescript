@@ -7,6 +7,7 @@ export * from "./apierror.js";
 export * from "./badrequestresponse.js";
 export * from "./conflictresponse.js";
 export * from "./httpclienterrors.js";
+export * from "./methodnotallowedresponse.js";
 export * from "./notfoundresponse.js";
 export * from "./paymentrequiredresponse.js";
 export * from "./responsevalidationerror.js";

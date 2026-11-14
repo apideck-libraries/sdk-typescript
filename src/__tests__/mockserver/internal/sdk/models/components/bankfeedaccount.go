@@ -65,6 +65,8 @@ type BankFeedAccount struct {
 	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
 	// The available balance of the source bank account (considering pending transactions and overdraft).
 	AvailableBalance optionalnullable.OptionalNullable[float64] `json:"available_balance,omitempty"`
+	// When `balance` was true, as an ISO 8601 date-time with a UTC offset. Connectors that record it stamp the time they received the balance when it is omitted.
+	BalanceAsOf optionalnullable.OptionalNullable[time.Time] `json:"balance_as_of,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Current status of the bank feed.
@@ -73,13 +75,13 @@ type BankFeedAccount struct {
 	Status *BankFeedAccountStatus `json:"status,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
 	Country optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
-	// The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at least one.
+	// The people or businesses that hold the source bank account. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
 	AccountHolders []BankFeedAccountHolder `json:"account_holders,omitempty"`
-	// Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+	// Email addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
 	Emails []Email `json:"emails,omitempty"`
-	// Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+	// Addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
 	Addresses []Address `json:"addresses,omitempty"`
-	// Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+	// Phone numbers of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
 	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
 	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
@@ -173,6 +175,13 @@ func (o *BankFeedAccount) GetAvailableBalance() optionalnullable.OptionalNullabl
 		return nil
 	}
 	return o.AvailableBalance
+}
+
+func (o *BankFeedAccount) GetBalanceAsOf() optionalnullable.OptionalNullable[time.Time] {
+	if o == nil {
+		return nil
+	}
+	return o.BalanceAsOf
 }
 
 func (o *BankFeedAccount) GetCurrency() optionalnullable.OptionalNullable[Currency] {
@@ -292,6 +301,8 @@ type BankFeedAccountInput struct {
 	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
 	// The available balance of the source bank account (considering pending transactions and overdraft).
 	AvailableBalance optionalnullable.OptionalNullable[float64] `json:"available_balance,omitempty"`
+	// When `balance` was true, as an ISO 8601 date-time with a UTC offset. Connectors that record it stamp the time they received the balance when it is omitted.
+	BalanceAsOf optionalnullable.OptionalNullable[time.Time] `json:"balance_as_of,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Current status of the bank feed.
@@ -300,15 +311,26 @@ type BankFeedAccountInput struct {
 	Status *BankFeedAccountStatus `json:"status,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
 	Country optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
-	// The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at least one.
+	// The people or businesses that hold the source bank account. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
 	AccountHolders []BankFeedAccountHolder `json:"account_holders,omitempty"`
-	// Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+	// Email addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
 	Emails []Email `json:"emails,omitempty"`
-	// Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+	// Addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
 	Addresses []Address `json:"addresses,omitempty"`
-	// Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+	// Phone numbers of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at least one.
 	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
 	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+}
+
+func (b BankFeedAccountInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BankFeedAccountInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BankFeedAccountInput) GetBankAccountType() *BankAccountType {
@@ -372,6 +394,13 @@ func (o *BankFeedAccountInput) GetAvailableBalance() optionalnullable.OptionalNu
 		return nil
 	}
 	return o.AvailableBalance
+}
+
+func (o *BankFeedAccountInput) GetBalanceAsOf() optionalnullable.OptionalNullable[time.Time] {
+	if o == nil {
+		return nil
+	}
+	return o.BalanceAsOf
 }
 
 func (o *BankFeedAccountInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {

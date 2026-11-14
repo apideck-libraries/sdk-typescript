@@ -1,0 +1,22 @@
+# MethodNotAllowedResponse
+
+The connector cannot serve this operation. No request was sent to the connector, and retrying will not help. The `Allow` header lists the methods the connector does serve on the same URL.
+
+## Example Usage
+
+```typescript
+import { MethodNotAllowedResponse } from "@apideck/unify/models/errors";
+
+// No examples available for this model
+```
+
+## Fields
+
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    | Example                                                                                        |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `statusCode`                                                                                   | *number*                                                                                       | :heavy_minus_sign:                                                                             | HTTP status code                                                                               | 405                                                                                            |
+| `error`                                                                                        | *string*                                                                                       | :heavy_minus_sign:                                                                             | Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)          | Method Not Allowed                                                                             |
+| `typeName`                                                                                     | *string*                                                                                       | :heavy_minus_sign:                                                                             | The type of error returned                                                                     | ConnectorOperationUnsupportedError                                                             |
+| `message`                                                                                      | *string*                                                                                       | :heavy_minus_sign:                                                                             | A human-readable message providing more details about the error.                               | Connector Operation Unsupported Error                                                          |
+| `detail`                                                                                       | [errors.MethodNotAllowedResponseDetail](../../models/errors/methodnotallowedresponsedetail.md) | :heavy_minus_sign:                                                                             | Which operation the connector does not support, and why.                                       |                                                                                                |
+| `ref`                                                                                          | *string*                                                                                       | :heavy_minus_sign:                                                                             | Link to documentation of error type                                                            | https://developers.apideck.com/errors#connectoroperationunsupportederror                       |

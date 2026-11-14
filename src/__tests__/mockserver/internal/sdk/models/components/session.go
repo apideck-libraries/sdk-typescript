@@ -214,7 +214,7 @@ func (o *Theme) GetTermsURL() *string {
 type Session struct {
 	// The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
 	ConsumerMetadata *ConsumerMetadata `json:"consumer_metadata,omitempty"`
-	// The URL to redirect the user to after the session has been configured.
+	// The URL to redirect the user to after the session has been configured. When your application's OAuth protection mode is `enforced`, this value must match one of the application's allowed redirect URLs or redirect URIs (the Hosted Vault callback page is always allowed, and the integration page when its query is empty or a single registered `redirectToAppUrl`); an unregistered value is rejected with a 400 `RequestValidationError` and no session is created.
 	RedirectURI *string `json:"redirect_uri,omitempty"`
 	// Settings to change the way the Vault is displayed.
 	Settings *Settings `json:"settings,omitempty"`

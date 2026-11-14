@@ -18,6 +18,7 @@ let value: AccountingBankFeedAccountsUpdateRequest = {
     targetAccountNumber: "NL91ABNA0417164300",
     balance: 25000,
     availableBalance: 24500,
+    balanceAsOf: new Date("2026-11-12T09:30:00Z"),
     currency: "USD",
     feedStatus: "pending",
     status: "active",

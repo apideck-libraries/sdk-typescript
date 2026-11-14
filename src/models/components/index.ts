@@ -103,6 +103,8 @@ export * from "./companiessort.js";
 export * from "./company1.js";
 export * from "./companyinfo.js";
 export * from "./compensation.js";
+export * from "./confirmconnection.js";
+export * from "./confirmconnectionresponse.js";
 export * from "./connection.js";
 export * from "./connectionhealth.js";
 export * from "./connectionimportdata.js";
