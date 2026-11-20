@@ -79,16 +79,23 @@ let value: Bill = {
         lineId: "123456",
         lineNumber: "1",
       },
-      trackingCategories: [
+      customFields: [
         {
-          id: "123456",
-          code: "100",
-          name: "New York",
-          parentId: "123456",
-          parentName: "New York",
+          id: "2389328923893298",
+          name: "employee_level",
+          refName: "Marketing",
+          description: "Employee Level",
+          value: "Uses Salesforce and Marketo",
         },
       ],
-      customer: null,
+      trackingCategories: null,
+      customer: {
+        id: "12345",
+        displayId: "CUST00101",
+        displayName: "Windsurf Shop",
+        companyName: "The boring company",
+        email: "boring@boring.com",
+      },
       rebilling: {
         rebillable: true,
         rebillStatus: "billed",
@@ -118,6 +125,7 @@ let value: Bill = {
   taxCode: "1234",
   notes: "Some notes about this bill.",
   status: "draft",
+  paymentHold: false,
   ledgerAccount: {
     id: "123456",
     name: "Bank account",
@@ -227,6 +235,7 @@ let value: Bill = {
 | `taxCode`                                                                                                                                                        | *string*                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                               | Applicable tax id/code override if tax is not supplied on a line item basis.                                                                                     | 1234                                                                                                                                                             |
 | `notes`                                                                                                                                                          | *string*                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                               | N/A                                                                                                                                                              | Some notes about this bill.                                                                                                                                      |
 | `status`                                                                                                                                                         | [components.BillStatus](../../models/components/billstatus.md)                                                                                                   | :heavy_minus_sign:                                                                                                                                               | Invoice status                                                                                                                                                   | draft                                                                                                                                                            |
+| `paymentHold`                                                                                                                                                    | *boolean*                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                               | Whether the bill is on payment hold. A bill on hold is not ready to pay, whatever its status. Not returned by connectors that do not report a payment hold.      | false                                                                                                                                                            |
 | `ledgerAccount`                                                                                                                                                  | [components.LinkedLedgerAccount](../../models/components/linkedledgeraccount.md)                                                                                 | :heavy_minus_sign:                                                                                                                                               | N/A                                                                                                                                                              |                                                                                                                                                                  |
 | `paymentMethod`                                                                                                                                                  | *string*                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                               | Payment method used for the transaction, such as cash, credit card, bank transfer, or check                                                                      | cash                                                                                                                                                             |
 | `channel`                                                                                                                                                        | *string*                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                               | The channel through which the transaction is processed.                                                                                                          | email                                                                                                                                                            |

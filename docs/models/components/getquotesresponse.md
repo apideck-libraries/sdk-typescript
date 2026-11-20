@@ -35,6 +35,7 @@ let value: GetQuotesResponse = {
       terms: "Valid for 30 days",
       termsId: "12345",
       reference: "INV-2024-001",
+      poNumber: "90000117",
       status: "draft",
       currency: "USD",
       currencyRate: 0.69,

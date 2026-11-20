@@ -219,6 +219,10 @@ export type Bill = {
    * Invoice status
    */
   status?: BillStatus | null | undefined;
+  /**
+   * Whether the bill is on payment hold. A bill on hold is not ready to pay, whatever its status. Not returned by connectors that do not report a payment hold.
+   */
+  paymentHold?: boolean | null | undefined;
   ledgerAccount?: LinkedLedgerAccount | null | undefined;
   /**
    * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
@@ -538,6 +542,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
     tax_code: z.nullable(types.string()).optional(),
     notes: z.nullable(types.string()).optional(),
     status: z.nullable(BillStatus$inboundSchema).optional(),
+    payment_hold: z.nullable(types.boolean()).optional(),
     ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
     payment_method: z.nullable(types.string()).optional(),
     channel: z.nullable(types.string()).optional(),
@@ -588,6 +593,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
       "sub_total": "subTotal",
       "total_tax": "totalTax",
       "tax_code": "taxCode",
+      "payment_hold": "paymentHold",
       "ledger_account": "ledgerAccount",
       "payment_method": "paymentMethod",
       "accounting_by_row": "accountingByRow",
