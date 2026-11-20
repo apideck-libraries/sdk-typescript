@@ -95,7 +95,9 @@ type Bill struct {
 	TaxCode optionalnullable.OptionalNullable[string] `json:"tax_code,omitempty"`
 	Notes   optionalnullable.OptionalNullable[string] `json:"notes,omitempty"`
 	// Invoice status
-	Status        optionalnullable.OptionalNullable[BillStatus]          `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[BillStatus] `json:"status,omitempty"`
+	// Whether the bill is on payment hold. A bill on hold is not ready to pay, whatever its status. Not returned by connectors that do not report a payment hold.
+	PaymentHold   optionalnullable.OptionalNullable[bool]                `json:"payment_hold,omitempty"`
 	LedgerAccount optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"ledger_account,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
@@ -349,6 +351,13 @@ func (o *Bill) GetStatus() optionalnullable.OptionalNullable[BillStatus] {
 		return nil
 	}
 	return o.Status
+}
+
+func (o *Bill) GetPaymentHold() optionalnullable.OptionalNullable[bool] {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentHold
 }
 
 func (o *Bill) GetLedgerAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {

@@ -119,16 +119,23 @@ let value: GetBillResponse = {
           lineId: "123456",
           lineNumber: "1",
         },
-        trackingCategories: [
+        customFields: [
           {
-            id: "123456",
-            code: "100",
-            name: "New York",
-            parentId: "123456",
-            parentName: "New York",
+            id: "2389328923893298",
+            name: "employee_level",
+            refName: "Marketing",
+            description: "Employee Level",
+            value: "Uses Salesforce and Marketo",
           },
         ],
-        customer: null,
+        trackingCategories: null,
+        customer: {
+          id: "12345",
+          displayId: "CUST00101",
+          displayName: "Windsurf Shop",
+          companyName: "The boring company",
+          email: "boring@boring.com",
+        },
         rebilling: {
           rebillable: true,
           rebillStatus: "billed",
@@ -158,6 +165,7 @@ let value: GetBillResponse = {
     taxCode: "1234",
     notes: "Some notes about this bill.",
     status: "draft",
+    paymentHold: false,
     ledgerAccount: {
       id: "123456",
       name: "Bank account",

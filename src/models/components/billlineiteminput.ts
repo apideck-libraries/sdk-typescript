@@ -4,6 +4,11 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import {
+  CustomField,
+  CustomField$Outbound,
+  CustomField$outboundSchema,
+} from "./customfield.js";
 import { LineItemType, LineItemType$outboundSchema } from "./lineitemtype.js";
 import {
   LinkedCustomerInput,
@@ -141,6 +146,7 @@ export type BillLineItemInput = {
   taxRate?: LinkedTaxRateInput | undefined;
   ledgerAccount?: LinkedLedgerAccount | null | undefined;
   purchaseOrder?: LinkedPurchaseOrder | null | undefined;
+  customFields?: Array<CustomField> | undefined;
   /**
    * A list of linked tracking categories.
    */
@@ -193,6 +199,7 @@ export type BillLineItemInput$Outbound = {
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
   purchase_order?: LinkedPurchaseOrder$Outbound | null | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
   tracking_categories?:
     | Array<LinkedTrackingCategory$Outbound | null>
     | null
@@ -237,6 +244,7 @@ export const BillLineItemInput$outboundSchema: z.ZodType<
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   purchaseOrder: z.nullable(LinkedPurchaseOrder$outboundSchema).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
@@ -267,6 +275,7 @@ export const BillLineItemInput$outboundSchema: z.ZodType<
     taxRate: "tax_rate",
     ledgerAccount: "ledger_account",
     purchaseOrder: "purchase_order",
+    customFields: "custom_fields",
     trackingCategories: "tracking_categories",
     rowVersion: "row_version",
   });
