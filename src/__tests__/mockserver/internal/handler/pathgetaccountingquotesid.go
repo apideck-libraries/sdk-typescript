@@ -74,6 +74,7 @@ func testAccountingQuotesOneAccountingQuotesOne0(w http.ResponseWriter, req *htt
 			Terms:              optionalnullable.From(types.String("Valid for 30 days")),
 			TermsID:            optionalnullable.From(types.String("12345")),
 			Reference:          optionalnullable.From(types.String("INV-2024-001")),
+			PoNumber:           optionalnullable.From(types.String("90000117")),
 			Status:             optionalnullable.From(components.QuoteStatusDraft.ToPointer()),
 			Currency:           optionalnullable.From(components.CurrencyUsd.ToPointer()),
 			CurrencyRate:       optionalnullable.From(types.Float64(0.69)),

@@ -56,6 +56,8 @@ type Quote struct {
 	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// Optional reference identifier for the transaction.
 	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
+	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the quote to the Purchase Order.
+	PoNumber optionalnullable.OptionalNullable[string] `json:"po_number,omitempty"`
 	// Quote status
 	Status optionalnullable.OptionalNullable[QuoteStatus] `json:"status,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -209,6 +211,13 @@ func (o *Quote) GetReference() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Reference
+}
+
+func (o *Quote) GetPoNumber() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.PoNumber
 }
 
 func (o *Quote) GetStatus() optionalnullable.OptionalNullable[QuoteStatus] {
@@ -402,6 +411,8 @@ type QuoteInput struct {
 	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// Optional reference identifier for the transaction.
 	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
+	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the quote to the Purchase Order.
+	PoNumber optionalnullable.OptionalNullable[string] `json:"po_number,omitempty"`
 	// Quote status
 	Status optionalnullable.OptionalNullable[QuoteStatus] `json:"status,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -526,6 +537,13 @@ func (o *QuoteInput) GetReference() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Reference
+}
+
+func (o *QuoteInput) GetPoNumber() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.PoNumber
 }
 
 func (o *QuoteInput) GetStatus() optionalnullable.OptionalNullable[QuoteStatus] {

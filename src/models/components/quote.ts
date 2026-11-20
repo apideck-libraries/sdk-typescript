@@ -132,6 +132,10 @@ export type Quote = {
    */
   reference?: string | null | undefined;
   /**
+   * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the quote to the Purchase Order.
+   */
+  poNumber?: string | null | undefined;
+  /**
    * Quote status
    */
   status?: QuoteStatus | null | undefined;
@@ -263,6 +267,10 @@ export type QuoteInput = {
    */
   reference?: string | null | undefined;
   /**
+   * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the quote to the Purchase Order.
+   */
+  poNumber?: string | null | undefined;
+  /**
    * Quote status
    */
   status?: QuoteStatus | null | undefined;
@@ -362,6 +370,7 @@ export const Quote$inboundSchema: z.ZodType<Quote, z.ZodTypeDef, unknown> = z
     terms: z.nullable(types.string()).optional(),
     terms_id: z.nullable(types.string()).optional(),
     reference: z.nullable(types.string()).optional(),
+    po_number: z.nullable(types.string()).optional(),
     status: z.nullable(QuoteStatus$inboundSchema).optional(),
     currency: z.nullable(Currency$inboundSchema).optional(),
     currency_rate: z.nullable(types.number()).optional(),
@@ -399,6 +408,7 @@ export const Quote$inboundSchema: z.ZodType<Quote, z.ZodTypeDef, unknown> = z
       "quote_date": "quoteDate",
       "expiry_date": "expiryDate",
       "terms_id": "termsId",
+      "po_number": "poNumber",
       "currency_rate": "currencyRate",
       "tax_inclusive": "taxInclusive",
       "sub_total": "subTotal",
@@ -446,6 +456,7 @@ export type QuoteInput$Outbound = {
   terms?: string | null | undefined;
   terms_id?: string | null | undefined;
   reference?: string | null | undefined;
+  po_number?: string | null | undefined;
   status?: string | null | undefined;
   currency?: string | null | undefined;
   currency_rate?: number | null | undefined;
@@ -492,6 +503,7 @@ export const QuoteInput$outboundSchema: z.ZodType<
   terms: z.nullable(z.string()).optional(),
   termsId: z.nullable(z.string()).optional(),
   reference: z.nullable(z.string()).optional(),
+  poNumber: z.nullable(z.string()).optional(),
   status: z.nullable(QuoteStatus$outboundSchema).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   currencyRate: z.nullable(z.number()).optional(),
@@ -523,6 +535,7 @@ export const QuoteInput$outboundSchema: z.ZodType<
     quoteDate: "quote_date",
     expiryDate: "expiry_date",
     termsId: "terms_id",
+    poNumber: "po_number",
     currencyRate: "currency_rate",
     taxInclusive: "tax_inclusive",
     subTotal: "sub_total",

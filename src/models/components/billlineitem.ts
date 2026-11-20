@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { CustomField, CustomField$inboundSchema } from "./customfield.js";
 import { LineItemType, LineItemType$inboundSchema } from "./lineitemtype.js";
 import {
   LinkedCustomer,
@@ -132,6 +133,7 @@ export type BillLineItem = {
   taxRate?: LinkedTaxRate | undefined;
   ledgerAccount?: LinkedLedgerAccount | null | undefined;
   purchaseOrder?: LinkedPurchaseOrder | null | undefined;
+  customFields?: Array<CustomField> | undefined;
   /**
    * A list of linked tracking categories.
    */
@@ -205,6 +207,7 @@ export const BillLineItem$inboundSchema: z.ZodType<
   tax_rate: types.optional(LinkedTaxRate$inboundSchema),
   ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
   purchase_order: z.nullable(LinkedPurchaseOrder$inboundSchema).optional(),
+  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
   tracking_categories: z.nullable(
     z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
@@ -241,6 +244,7 @@ export const BillLineItem$inboundSchema: z.ZodType<
     "tax_rate": "taxRate",
     "ledger_account": "ledgerAccount",
     "purchase_order": "purchaseOrder",
+    "custom_fields": "customFields",
     "tracking_categories": "trackingCategories",
     "row_version": "rowVersion",
     "updated_by": "updatedBy",

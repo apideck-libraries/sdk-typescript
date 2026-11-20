@@ -54,7 +54,24 @@ let value: BillLineItemInput = {
     lineId: "123456",
     lineNumber: "1",
   },
-  trackingCategories: null,
+  customFields: [
+    {
+      id: "2389328923893298",
+      name: "employee_level",
+      refName: "Marketing",
+      description: "Employee Level",
+      value: "Uses Salesforce and Marketo",
+    },
+  ],
+  trackingCategories: [
+    {
+      id: "123456",
+      code: "100",
+      name: "New York",
+      parentId: "123456",
+      parentName: "New York",
+    },
+  ],
   customer: {
     id: "12345",
     displayName: "Windsurf Shop",
@@ -108,6 +125,7 @@ let value: BillLineItemInput = {
 | `taxRate`                                                                                                                                  | [components.LinkedTaxRateInput](../../models/components/linkedtaxrateinput.md)                                                             | :heavy_minus_sign:                                                                                                                         | N/A                                                                                                                                        |                                                                                                                                            |
 | `ledgerAccount`                                                                                                                            | [components.LinkedLedgerAccount](../../models/components/linkedledgeraccount.md)                                                           | :heavy_minus_sign:                                                                                                                         | N/A                                                                                                                                        |                                                                                                                                            |
 | `purchaseOrder`                                                                                                                            | [components.LinkedPurchaseOrder](../../models/components/linkedpurchaseorder.md)                                                           | :heavy_minus_sign:                                                                                                                         | N/A                                                                                                                                        |                                                                                                                                            |
+| `customFields`                                                                                                                             | *components.CustomField*[]                                                                                                                 | :heavy_minus_sign:                                                                                                                         | N/A                                                                                                                                        |                                                                                                                                            |
 | `trackingCategories`                                                                                                                       | [components.LinkedTrackingCategory](../../models/components/linkedtrackingcategory.md)[]                                                   | :heavy_minus_sign:                                                                                                                         | A list of linked tracking categories.                                                                                                      |                                                                                                                                            |
 | `customer`                                                                                                                                 | [components.LinkedCustomerInput](../../models/components/linkedcustomerinput.md)                                                           | :heavy_minus_sign:                                                                                                                         | The customer this entity is linked to.                                                                                                     |                                                                                                                                            |
 | `rebilling`                                                                                                                                | [components.Rebilling](../../models/components/rebilling.md)                                                                               | :heavy_minus_sign:                                                                                                                         | Rebilling metadata for this line item.                                                                                                     |                                                                                                                                            |

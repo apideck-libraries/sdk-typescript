@@ -57,6 +57,7 @@ type BillLineItemInput struct {
 	TaxRate       *LinkedTaxRateInput                                    `json:"tax_rate,omitempty"`
 	LedgerAccount optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"ledger_account,omitempty"`
 	PurchaseOrder optionalnullable.OptionalNullable[LinkedPurchaseOrder] `json:"purchase_order,omitempty"`
+	CustomFields  []CustomFieldUnion                                     `json:"custom_fields,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// The customer this entity is linked to.
@@ -263,6 +264,13 @@ func (o *BillLineItemInput) GetPurchaseOrder() optionalnullable.OptionalNullable
 		return nil
 	}
 	return o.PurchaseOrder
+}
+
+func (o *BillLineItemInput) GetCustomFields() []CustomFieldUnion {
+	if o == nil {
+		return nil
+	}
+	return o.CustomFields
 }
 
 func (o *BillLineItemInput) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
