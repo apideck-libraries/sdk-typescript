@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -80,17 +81,19 @@ export const Metadata$inboundSchema: z.ZodType<
   Metadata,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    company_id: types.optional(types.string()),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
-).transform((v) => {
-  return remap$(v, {
-    "company_id": "companyId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      company_id: types.optional(types.string()),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
+    return remap$(v, {
+      "company_id": "companyId",
+    });
+  })
+);
 
 export function metadataFromJSON(
   jsonString: string,
@@ -107,39 +110,41 @@ export const ConsumerConnection$inboundSchema: z.ZodType<
   ConsumerConnection,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: types.optional(types.string()),
-  icon: types.optional(types.string()),
-  logo: types.optional(types.string()),
-  website: types.optional(types.string()),
-  tag_line: types.optional(types.string()),
-  service_id: types.optional(types.string()),
-  unified_api: types.optional(types.string()),
-  consumer_id: types.optional(types.string()),
-  auth_type: types.optional(AuthType$inboundSchema),
-  enabled: types.optional(types.boolean()),
-  settings: z.nullable(z.record(z.any())).optional(),
-  metadata: z.nullable(z.lazy(() => Metadata$inboundSchema)).optional(),
-  created_at: types.optional(types.string()),
-  updated_at: z.nullable(types.string()).optional(),
-  state: types.optional(ConnectionState$inboundSchema),
-  health: types.optional(ConnectionHealth$inboundSchema),
-  credentials_expire_at: z.nullable(types.string()).optional(),
-  last_refresh_failed_at: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "tag_line": "tagLine",
-    "service_id": "serviceId",
-    "unified_api": "unifiedApi",
-    "consumer_id": "consumerId",
-    "auth_type": "authType",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-    "credentials_expire_at": "credentialsExpireAt",
-    "last_refresh_failed_at": "lastRefreshFailedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    name: types.optional(types.string()),
+    icon: types.optional(types.string()),
+    logo: types.optional(types.string()),
+    website: types.optional(types.string()),
+    tag_line: types.optional(types.string()),
+    service_id: types.optional(types.string()),
+    unified_api: types.optional(types.string()),
+    consumer_id: types.optional(types.string()),
+    auth_type: types.optional(AuthType$inboundSchema),
+    enabled: types.optional(types.boolean()),
+    settings: z.nullable(z.record(z.any())).optional(),
+    metadata: z.nullable(z.lazy(() => Metadata$inboundSchema)).optional(),
+    created_at: types.optional(types.string()),
+    updated_at: z.nullable(types.string()).optional(),
+    state: types.optional(ConnectionState$inboundSchema),
+    health: types.optional(ConnectionHealth$inboundSchema),
+    credentials_expire_at: z.nullable(types.string()).optional(),
+    last_refresh_failed_at: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "tag_line": "tagLine",
+      "service_id": "serviceId",
+      "unified_api": "unifiedApi",
+      "consumer_id": "consumerId",
+      "auth_type": "authType",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+      "credentials_expire_at": "credentialsExpireAt",
+      "last_refresh_failed_at": "lastRefreshFailedAt",
+    });
+  })
+);
 
 export function consumerConnectionFromJSON(
   jsonString: string,

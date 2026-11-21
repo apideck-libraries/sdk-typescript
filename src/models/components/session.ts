@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -141,7 +142,7 @@ export const AllowActions$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   AllowActions
-> = openEnums.outboundSchema(AllowActions);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(AllowActions));
 
 /** @internal */
 export type Settings$Outbound = {
@@ -163,33 +164,35 @@ export const Settings$outboundSchema: z.ZodType<
   Settings$Outbound,
   z.ZodTypeDef,
   Settings
-> = z.object({
-  unifiedApis: z.array(UnifiedApiId$outboundSchema).optional(),
-  hideResourceSettings: z.boolean().default(false),
-  sandboxMode: z.boolean().default(false),
-  isolationMode: z.boolean().default(false),
-  sessionLength: z.string().default("1h"),
-  showLogs: z.boolean().default(true),
-  showSuggestions: z.boolean().default(false),
-  showSidebar: z.boolean().default(true),
-  autoRedirect: z.boolean().default(false),
-  hideGuides: z.boolean().default(false),
-  allowActions: z.array(AllowActions$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    unifiedApis: "unified_apis",
-    hideResourceSettings: "hide_resource_settings",
-    sandboxMode: "sandbox_mode",
-    isolationMode: "isolation_mode",
-    sessionLength: "session_length",
-    showLogs: "show_logs",
-    showSuggestions: "show_suggestions",
-    showSidebar: "show_sidebar",
-    autoRedirect: "auto_redirect",
-    hideGuides: "hide_guides",
-    allowActions: "allow_actions",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    unifiedApis: z.array(UnifiedApiId$outboundSchema).optional(),
+    hideResourceSettings: z.boolean().default(false),
+    sandboxMode: z.boolean().default(false),
+    isolationMode: z.boolean().default(false),
+    sessionLength: z.string().default("1h"),
+    showLogs: z.boolean().default(true),
+    showSuggestions: z.boolean().default(false),
+    showSidebar: z.boolean().default(true),
+    autoRedirect: z.boolean().default(false),
+    hideGuides: z.boolean().default(false),
+    allowActions: z.array(AllowActions$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      unifiedApis: "unified_apis",
+      hideResourceSettings: "hide_resource_settings",
+      sandboxMode: "sandbox_mode",
+      isolationMode: "isolation_mode",
+      sessionLength: "session_length",
+      showLogs: "show_logs",
+      showSuggestions: "show_suggestions",
+      showSidebar: "show_sidebar",
+      autoRedirect: "auto_redirect",
+      hideGuides: "hide_guides",
+      allowActions: "allow_actions",
+    });
+  })
+);
 
 export function settingsToJSON(settings: Settings): string {
   return JSON.stringify(Settings$outboundSchema.parse(settings));
@@ -212,25 +215,27 @@ export const Theme$outboundSchema: z.ZodType<
   Theme$Outbound,
   z.ZodTypeDef,
   Theme
-> = z.object({
-  favicon: z.string().optional(),
-  logo: z.string().optional(),
-  primaryColor: z.string().optional(),
-  sidepanelBackgroundColor: z.string().optional(),
-  sidepanelTextColor: z.string().optional(),
-  vaultName: z.string().optional(),
-  privacyUrl: z.string().optional(),
-  termsUrl: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    primaryColor: "primary_color",
-    sidepanelBackgroundColor: "sidepanel_background_color",
-    sidepanelTextColor: "sidepanel_text_color",
-    vaultName: "vault_name",
-    privacyUrl: "privacy_url",
-    termsUrl: "terms_url",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    favicon: z.string().optional(),
+    logo: z.string().optional(),
+    primaryColor: z.string().optional(),
+    sidepanelBackgroundColor: z.string().optional(),
+    sidepanelTextColor: z.string().optional(),
+    vaultName: z.string().optional(),
+    privacyUrl: z.string().optional(),
+    termsUrl: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      primaryColor: "primary_color",
+      sidepanelBackgroundColor: "sidepanel_background_color",
+      sidepanelTextColor: "sidepanel_text_color",
+      vaultName: "vault_name",
+      privacyUrl: "privacy_url",
+      termsUrl: "terms_url",
+    });
+  })
+);
 
 export function themeToJSON(theme: Theme): string {
   return JSON.stringify(Theme$outboundSchema.parse(theme));
@@ -250,19 +255,21 @@ export const Session$outboundSchema: z.ZodType<
   Session$Outbound,
   z.ZodTypeDef,
   Session
-> = z.object({
-  consumerMetadata: ConsumerMetadata$outboundSchema.optional(),
-  redirectUri: z.string().optional(),
-  settings: z.lazy(() => Settings$outboundSchema).optional(),
-  theme: z.lazy(() => Theme$outboundSchema).optional(),
-  customConsumerSettings: z.record(z.any()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    consumerMetadata: "consumer_metadata",
-    redirectUri: "redirect_uri",
-    customConsumerSettings: "custom_consumer_settings",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerMetadata: ConsumerMetadata$outboundSchema.optional(),
+    redirectUri: z.string().optional(),
+    settings: z.lazy(() => Settings$outboundSchema).optional(),
+    theme: z.lazy(() => Theme$outboundSchema).optional(),
+    customConsumerSettings: z.record(z.any()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      consumerMetadata: "consumer_metadata",
+      redirectUri: "redirect_uri",
+      customConsumerSettings: "custom_consumer_settings",
+    });
+  })
+);
 
 export function sessionToJSON(session: Session): string {
   return JSON.stringify(Session$outboundSchema.parse(session));

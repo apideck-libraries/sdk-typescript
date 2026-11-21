@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -38,7 +39,9 @@ export const ExpenseReportsFilterStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ExpenseReportsFilterStatus
-> = openEnums.outboundSchema(ExpenseReportsFilterStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ExpenseReportsFilterStatus)
+);
 
 /** @internal */
 export type ExpenseReportsFilter$Outbound = {
@@ -53,18 +56,20 @@ export const ExpenseReportsFilter$outboundSchema: z.ZodType<
   ExpenseReportsFilter$Outbound,
   z.ZodTypeDef,
   ExpenseReportsFilter
-> = z.object({
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-  status: ExpenseReportsFilterStatus$outboundSchema.optional(),
-  employeeId: z.string().optional(),
-  subsidiaryId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    updatedSince: "updated_since",
-    employeeId: "employee_id",
-    subsidiaryId: "subsidiary_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+    status: ExpenseReportsFilterStatus$outboundSchema.optional(),
+    employeeId: z.string().optional(),
+    subsidiaryId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      updatedSince: "updated_since",
+      employeeId: "employee_id",
+      subsidiaryId: "subsidiary_id",
+    });
+  })
+);
 
 export function expenseReportsFilterToJSON(
   expenseReportsFilter: ExpenseReportsFilter,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -49,7 +50,9 @@ export const ProfitAndLossFilterAccountingMethod$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ProfitAndLossFilterAccountingMethod
-> = openEnums.outboundSchema(ProfitAndLossFilterAccountingMethod);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ProfitAndLossFilterAccountingMethod)
+);
 
 /** @internal */
 export type ProfitAndLossFilter$Outbound = {
@@ -65,22 +68,24 @@ export const ProfitAndLossFilter$outboundSchema: z.ZodType<
   ProfitAndLossFilter$Outbound,
   z.ZodTypeDef,
   ProfitAndLossFilter
-> = z.object({
-  customerId: z.string().optional(),
-  startDate: z.string().optional(),
-  endDate: z.string().optional(),
-  locationId: z.string().optional(),
-  accountingMethod: ProfitAndLossFilterAccountingMethod$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    customerId: "customer_id",
-    startDate: "start_date",
-    endDate: "end_date",
-    locationId: "location_id",
-    accountingMethod: "accounting_method",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    customerId: z.string().optional(),
+    startDate: z.string().optional(),
+    endDate: z.string().optional(),
+    locationId: z.string().optional(),
+    accountingMethod: ProfitAndLossFilterAccountingMethod$outboundSchema
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      customerId: "customer_id",
+      startDate: "start_date",
+      endDate: "end_date",
+      locationId: "location_id",
+      accountingMethod: "accounting_method",
+    });
+  })
+);
 
 export function profitAndLossFilterToJSON(
   profitAndLossFilter: ProfitAndLossFilter,

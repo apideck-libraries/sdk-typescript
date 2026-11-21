@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -85,20 +85,26 @@ export const ApplicationStatus$inboundSchema: z.ZodType<
   ApplicationStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(ApplicationStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(ApplicationStatus)
+);
 /** @internal */
 export const ApplicationStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ApplicationStatus
-> = openEnums.outboundSchema(ApplicationStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ApplicationStatus)
+);
 
 /** @internal */
-export const Stage$inboundSchema: z.ZodType<Stage, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.nullable(types.string()).optional(),
-    name: z.nullable(types.string()).optional(),
-  });
+export const Stage$inboundSchema: z.ZodType<Stage, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      name: z.nullable(types.string()).optional(),
+    })
+  );
 /** @internal */
 export type Stage$Outbound = {
   id?: string | null | undefined;
@@ -110,10 +116,12 @@ export const Stage$outboundSchema: z.ZodType<
   Stage$Outbound,
   z.ZodTypeDef,
   Stage
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()).optional(),
+  })
+);
 
 export function stageToJSON(stage: Stage): string {
   return JSON.stringify(Stage$outboundSchema.parse(stage));
@@ -133,30 +141,32 @@ export const Application$inboundSchema: z.ZodType<
   Application,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  applicant_id: types.nullable(types.string()),
-  job_id: types.nullable(types.string()),
-  status: z.nullable(ApplicationStatus$inboundSchema).optional(),
-  stage: types.optional(z.lazy(() => Stage$inboundSchema)),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "applicant_id": "applicantId",
-    "job_id": "jobId",
-    "custom_mappings": "customMappings",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    applicant_id: types.nullable(types.string()),
+    job_id: types.nullable(types.string()),
+    status: z.nullable(ApplicationStatus$inboundSchema).optional(),
+    stage: types.optional(z.lazy(() => Stage$inboundSchema)),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "applicant_id": "applicantId",
+      "job_id": "jobId",
+      "custom_mappings": "customMappings",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function applicationFromJSON(
   jsonString: string,
@@ -182,19 +192,21 @@ export const ApplicationInput$outboundSchema: z.ZodType<
   ApplicationInput$Outbound,
   z.ZodTypeDef,
   ApplicationInput
-> = z.object({
-  applicantId: z.nullable(z.string()),
-  jobId: z.nullable(z.string()),
-  status: z.nullable(ApplicationStatus$outboundSchema).optional(),
-  stage: z.lazy(() => Stage$outboundSchema).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    applicantId: "applicant_id",
-    jobId: "job_id",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    applicantId: z.nullable(z.string()),
+    jobId: z.nullable(z.string()),
+    status: z.nullable(ApplicationStatus$outboundSchema).optional(),
+    stage: z.lazy(() => Stage$outboundSchema).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      applicantId: "applicant_id",
+      jobId: "job_id",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function applicationInputToJSON(
   applicationInput: ApplicationInput,

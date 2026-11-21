@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -186,17 +186,19 @@ export const BalanceSheetAssetsAccount$inboundSchema: z.ZodType<
   BalanceSheetAssetsAccount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  account_id: types.optional(types.string()),
-  code: types.optional(types.string()),
-  name: types.optional(types.string()),
-  value: types.optional(types.number()),
-  items: types.optional(z.any()),
-}).transform((v) => {
-  return remap$(v, {
-    "account_id": "accountId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    account_id: types.optional(types.string()),
+    code: types.optional(types.string()),
+    name: types.optional(types.string()),
+    value: types.optional(types.number()),
+    items: types.optional(z.any()),
+  }).transform((v) => {
+    return remap$(v, {
+      "account_id": "accountId",
+    });
+  })
+);
 
 export function balanceSheetAssetsAccountFromJSON(
   jsonString: string,
@@ -213,17 +215,19 @@ export const BalanceSheetLiabilitiesAccount$inboundSchema: z.ZodType<
   BalanceSheetLiabilitiesAccount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  account_id: types.optional(types.string()),
-  code: types.optional(types.string()),
-  name: types.optional(types.string()),
-  value: types.optional(types.number()),
-  items: types.optional(z.any()),
-}).transform((v) => {
-  return remap$(v, {
-    "account_id": "accountId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    account_id: types.optional(types.string()),
+    code: types.optional(types.string()),
+    name: types.optional(types.string()),
+    value: types.optional(types.number()),
+    items: types.optional(z.any()),
+  }).transform((v) => {
+    return remap$(v, {
+      "account_id": "accountId",
+    });
+  })
+);
 
 export function balanceSheetLiabilitiesAccountFromJSON(
   jsonString: string,
@@ -240,17 +244,19 @@ export const BalanceSheetEquityAccount$inboundSchema: z.ZodType<
   BalanceSheetEquityAccount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  account_id: types.optional(types.string()),
-  code: types.optional(types.string()),
-  name: types.optional(types.string()),
-  value: types.optional(types.number()),
-  items: types.optional(z.any()),
-}).transform((v) => {
-  return remap$(v, {
-    "account_id": "accountId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    account_id: types.optional(types.string()),
+    code: types.optional(types.string()),
+    name: types.optional(types.string()),
+    value: types.optional(types.number()),
+    items: types.optional(z.any()),
+  }).transform((v) => {
+    return remap$(v, {
+      "account_id": "accountId",
+    });
+  })
+);
 
 export function balanceSheetEquityAccountFromJSON(
   jsonString: string,
@@ -267,17 +273,19 @@ export const BalanceSheetUncategorizedItemsAccount$inboundSchema: z.ZodType<
   BalanceSheetUncategorizedItemsAccount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  account_id: types.optional(types.string()),
-  code: types.optional(types.string()),
-  name: types.optional(types.string()),
-  value: types.optional(types.number()),
-  items: types.optional(z.any()),
-}).transform((v) => {
-  return remap$(v, {
-    "account_id": "accountId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    account_id: types.optional(types.string()),
+    code: types.optional(types.string()),
+    name: types.optional(types.string()),
+    value: types.optional(types.number()),
+    items: types.optional(z.any()),
+  }).transform((v) => {
+    return remap$(v, {
+      "account_id": "accountId",
+    });
+  })
+);
 
 export function balanceSheetUncategorizedItemsAccountFromJSON(
   jsonString: string,
@@ -292,38 +300,40 @@ export function balanceSheetUncategorizedItemsAccountFromJSON(
 
 /** @internal */
 export const Reports$inboundSchema: z.ZodType<Reports, z.ZodTypeDef, unknown> =
-  z.object({
-    id: types.optional(types.string()),
-    report_name: types.optional(types.string()),
-    start_date: types.optional(types.string()),
-    end_date: types.string(),
-    currency: z.nullable(Currency$inboundSchema).optional(),
-    assets: z.lazy(() => BalanceSheetAssetsAccount$inboundSchema),
-    liabilities: z.lazy(() => BalanceSheetLiabilitiesAccount$inboundSchema),
-    equity: z.lazy(() => BalanceSheetEquityAccount$inboundSchema),
-    net_assets: types.optional(types.number()),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    updated_by: z.nullable(types.string()).optional(),
-    created_by: z.nullable(types.string()).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-    uncategorized_items: types.optional(
-      z.lazy(() => BalanceSheetUncategorizedItemsAccount$inboundSchema),
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      "report_name": "reportName",
-      "start_date": "startDate",
-      "end_date": "endDate",
-      "net_assets": "netAssets",
-      "custom_mappings": "customMappings",
-      "updated_by": "updatedBy",
-      "created_by": "createdBy",
-      "updated_at": "updatedAt",
-      "created_at": "createdAt",
-      "uncategorized_items": "uncategorizedItems",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.optional(types.string()),
+      report_name: types.optional(types.string()),
+      start_date: types.optional(types.string()),
+      end_date: types.string(),
+      currency: z.nullable(Currency$inboundSchema).optional(),
+      assets: z.lazy(() => BalanceSheetAssetsAccount$inboundSchema),
+      liabilities: z.lazy(() => BalanceSheetLiabilitiesAccount$inboundSchema),
+      equity: z.lazy(() => BalanceSheetEquityAccount$inboundSchema),
+      net_assets: types.optional(types.number()),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+      updated_by: z.nullable(types.string()).optional(),
+      created_by: z.nullable(types.string()).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+      uncategorized_items: types.optional(
+        z.lazy(() => BalanceSheetUncategorizedItemsAccount$inboundSchema),
+      ),
+    }).transform((v) => {
+      return remap$(v, {
+        "report_name": "reportName",
+        "start_date": "startDate",
+        "end_date": "endDate",
+        "net_assets": "netAssets",
+        "custom_mappings": "customMappings",
+        "updated_by": "updatedBy",
+        "created_by": "createdBy",
+        "updated_at": "updatedAt",
+        "created_at": "createdAt",
+        "uncategorized_items": "uncategorizedItems",
+      });
+    })
+  );
 
 export function reportsFromJSON(
   jsonString: string,
@@ -340,9 +350,11 @@ export const BalanceSheet$inboundSchema: z.ZodType<
   BalanceSheet,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  reports: z.array(z.lazy(() => Reports$inboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    reports: z.array(z.lazy(() => Reports$inboundSchema)),
+  })
+);
 
 export function balanceSheetFromJSON(
   jsonString: string,

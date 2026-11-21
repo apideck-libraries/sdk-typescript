@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -77,19 +77,21 @@ export const AccountingProjectsUpdateRequest$outboundSchema: z.ZodType<
   AccountingProjectsUpdateRequest$Outbound,
   z.ZodTypeDef,
   AccountingProjectsUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  raw: z.boolean().default(false),
-  projectUpdateInput: components.ProjectUpdateInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    projectUpdateInput: "ProjectUpdateInput",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    raw: z.boolean().default(false),
+    projectUpdateInput: components.ProjectUpdateInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      projectUpdateInput: "ProjectUpdateInput",
+    });
+  })
+);
 
 export function accountingProjectsUpdateRequestToJSON(
   accountingProjectsUpdateRequest: AccountingProjectsUpdateRequest,
@@ -106,21 +108,23 @@ export const AccountingProjectsUpdateResponse$inboundSchema: z.ZodType<
   AccountingProjectsUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateProjectResponse: types.optional(
-    components.UpdateProjectResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateProjectResponse": "updateProjectResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateProjectResponse: types.optional(
+      components.UpdateProjectResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateProjectResponse": "updateProjectResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingProjectsUpdateResponseFromJSON(
   jsonString: string,

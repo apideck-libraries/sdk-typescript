@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -19,11 +19,13 @@ export const RequestCountAllocation$inboundSchema: z.ZodType<
   RequestCountAllocation,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  unify: types.optional(types.number()),
-  proxy: types.optional(types.number()),
-  vault: types.optional(types.number()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    unify: types.optional(types.number()),
+    proxy: types.optional(types.number()),
+    vault: types.optional(types.number()),
+  })
+);
 
 export function requestCountAllocationFromJSON(
   jsonString: string,

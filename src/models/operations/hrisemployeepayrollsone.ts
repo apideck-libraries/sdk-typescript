@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -82,20 +82,22 @@ export const HrisEmployeePayrollsOneRequest$outboundSchema: z.ZodType<
   HrisEmployeePayrollsOneRequest$Outbound,
   z.ZodTypeDef,
   HrisEmployeePayrollsOneRequest
-> = z.object({
-  payrollId: z.string(),
-  employeeId: z.string(),
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    payrollId: "payroll_id",
-    employeeId: "employee_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    payrollId: z.string(),
+    employeeId: z.string(),
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    fields: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      payrollId: "payroll_id",
+      employeeId: "employee_id",
+    });
+  })
+);
 
 export function hrisEmployeePayrollsOneRequestToJSON(
   hrisEmployeePayrollsOneRequest: HrisEmployeePayrollsOneRequest,
@@ -112,21 +114,23 @@ export const HrisEmployeePayrollsOneResponse$inboundSchema: z.ZodType<
   HrisEmployeePayrollsOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetEmployeePayrollResponse: types.optional(
-    components.GetEmployeePayrollResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetEmployeePayrollResponse": "getEmployeePayrollResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetEmployeePayrollResponse: types.optional(
+      components.GetEmployeePayrollResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetEmployeePayrollResponse": "getEmployeePayrollResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function hrisEmployeePayrollsOneResponseFromJSON(
   jsonString: string,

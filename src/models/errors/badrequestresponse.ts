@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { smartUnion } from "../../types/smartUnion.js";
@@ -119,7 +119,9 @@ export class BadRequestResponse extends ApideckError {
 
 /** @internal */
 export const Detail$inboundSchema: z.ZodType<Detail, z.ZodTypeDef, unknown> =
-  smartUnion([types.string(), z.record(z.any())]);
+  /* @__PURE__ */ lazySchema$(() =>
+    smartUnion([types.string(), z.record(z.any())])
+  );
 
 export function detailFromJSON(
   jsonString: string,
@@ -136,11 +138,13 @@ export const DownstreamErrors$inboundSchema: z.ZodType<
   DownstreamErrors,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  message: types.optional(types.string()),
-  detail: types.optional(types.string()),
-  code: types.optional(types.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    message: types.optional(types.string()),
+    detail: types.optional(types.string()),
+    code: types.optional(types.string()),
+  })
+);
 
 export function downstreamErrorsFromJSON(
   jsonString: string,
@@ -157,30 +161,32 @@ export const BadRequestResponse$inboundSchema: z.ZodType<
   BadRequestResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  status_code: types.optional(types.number()),
-  error: types.optional(types.string()),
-  type_name: types.optional(types.string()),
-  message: types.optional(types.string()),
-  detail: types.optional(smartUnion([types.string(), z.record(z.any())])),
-  ref: types.optional(types.string()),
-  downstream_errors: types.optional(
-    z.array(z.lazy(() => DownstreamErrors$inboundSchema)),
-  ),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    const remapped = remap$(v, {
-      "status_code": "statusCode",
-      "type_name": "typeName",
-      "downstream_errors": "downstreamErrors",
-    });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status_code: types.optional(types.number()),
+    error: types.optional(types.string()),
+    type_name: types.optional(types.string()),
+    message: types.optional(types.string()),
+    detail: types.optional(smartUnion([types.string(), z.record(z.any())])),
+    ref: types.optional(types.string()),
+    downstream_errors: types.optional(
+      z.array(z.lazy(() => DownstreamErrors$inboundSchema)),
+    ),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      const remapped = remap$(v, {
+        "status_code": "statusCode",
+        "type_name": "typeName",
+        "downstream_errors": "downstreamErrors",
+      });
 
-    return new BadRequestResponse(remapped, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+      return new BadRequestResponse(remapped, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);

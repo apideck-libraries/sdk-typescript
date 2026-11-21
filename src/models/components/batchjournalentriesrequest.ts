@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   JournalEntryCreateInput,
   JournalEntryCreateInput$Outbound,
@@ -42,14 +43,16 @@ export const BatchJournalEntriesRequestItems$outboundSchema: z.ZodType<
   BatchJournalEntriesRequestItems$Outbound,
   z.ZodTypeDef,
   BatchJournalEntriesRequestItems
-> = z.object({
-  ref: z.string().optional(),
-  data: JournalEntryCreateInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    ref: "_ref",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    ref: z.string().optional(),
+    data: JournalEntryCreateInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      ref: "_ref",
+    });
+  })
+);
 
 export function batchJournalEntriesRequestItemsToJSON(
   batchJournalEntriesRequestItems: BatchJournalEntriesRequestItems,
@@ -71,9 +74,13 @@ export const BatchJournalEntriesRequest$outboundSchema: z.ZodType<
   BatchJournalEntriesRequest$Outbound,
   z.ZodTypeDef,
   BatchJournalEntriesRequest
-> = z.object({
-  items: z.array(z.lazy(() => BatchJournalEntriesRequestItems$outboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    items: z.array(
+      z.lazy(() => BatchJournalEntriesRequestItems$outboundSchema),
+    ),
+  })
+);
 
 export function batchJournalEntriesRequestToJSON(
   batchJournalEntriesRequest: BatchJournalEntriesRequest,

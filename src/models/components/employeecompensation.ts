@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -108,37 +108,39 @@ export const FlsaStatus$inboundSchema: z.ZodType<
   FlsaStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(FlsaStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(FlsaStatus));
 /** @internal */
 export const FlsaStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   FlsaStatus
-> = openEnums.outboundSchema(FlsaStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(FlsaStatus));
 
 /** @internal */
 export const EmployeeCompensation$inboundSchema: z.ZodType<
   EmployeeCompensation,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  job_id: z.nullable(types.string()).optional(),
-  rate: z.nullable(types.number()).optional(),
-  payment_unit: z.nullable(PaymentUnit$inboundSchema).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  flsa_status: z.nullable(FlsaStatus$inboundSchema).optional(),
-  effective_date: z.nullable(types.string()).optional(),
-  payment_frequency: z.nullable(PaymentFrequency$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "job_id": "jobId",
-    "payment_unit": "paymentUnit",
-    "flsa_status": "flsaStatus",
-    "effective_date": "effectiveDate",
-    "payment_frequency": "paymentFrequency",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    job_id: z.nullable(types.string()).optional(),
+    rate: z.nullable(types.number()).optional(),
+    payment_unit: z.nullable(PaymentUnit$inboundSchema).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    flsa_status: z.nullable(FlsaStatus$inboundSchema).optional(),
+    effective_date: z.nullable(types.string()).optional(),
+    payment_frequency: z.nullable(PaymentFrequency$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "job_id": "jobId",
+      "payment_unit": "paymentUnit",
+      "flsa_status": "flsaStatus",
+      "effective_date": "effectiveDate",
+      "payment_frequency": "paymentFrequency",
+    });
+  })
+);
 
 export function employeeCompensationFromJSON(
   jsonString: string,
@@ -165,21 +167,23 @@ export const EmployeeCompensationInput$outboundSchema: z.ZodType<
   EmployeeCompensationInput$Outbound,
   z.ZodTypeDef,
   EmployeeCompensationInput
-> = z.object({
-  rate: z.nullable(z.number()).optional(),
-  paymentUnit: z.nullable(PaymentUnit$outboundSchema).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  flsaStatus: z.nullable(FlsaStatus$outboundSchema).optional(),
-  effectiveDate: z.nullable(z.string()).optional(),
-  paymentFrequency: z.nullable(PaymentFrequency$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    paymentUnit: "payment_unit",
-    flsaStatus: "flsa_status",
-    effectiveDate: "effective_date",
-    paymentFrequency: "payment_frequency",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    rate: z.nullable(z.number()).optional(),
+    paymentUnit: z.nullable(PaymentUnit$outboundSchema).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    flsaStatus: z.nullable(FlsaStatus$outboundSchema).optional(),
+    effectiveDate: z.nullable(z.string()).optional(),
+    paymentFrequency: z.nullable(PaymentFrequency$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      paymentUnit: "payment_unit",
+      flsaStatus: "flsa_status",
+      effectiveDate: "effective_date",
+      paymentFrequency: "payment_frequency",
+    });
+  })
+);
 
 export function employeeCompensationInputToJSON(
   employeeCompensationInput: EmployeeCompensationInput,

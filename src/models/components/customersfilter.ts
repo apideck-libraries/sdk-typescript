@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -66,7 +67,9 @@ export const CustomersFilterStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   CustomersFilterStatus
-> = openEnums.outboundSchema(CustomersFilterStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(CustomersFilterStatus)
+);
 
 /** @internal */
 export type CustomersFilter$Outbound = {
@@ -87,28 +90,30 @@ export const CustomersFilter$outboundSchema: z.ZodType<
   CustomersFilter$Outbound,
   z.ZodTypeDef,
   CustomersFilter
-> = z.object({
-  ids: z.string().optional(),
-  companyName: z.string().optional(),
-  displayName: z.string().optional(),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  email: z.string().optional(),
-  status: z.nullable(CustomersFilterStatus$outboundSchema).optional(),
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-  supplierId: z.string().optional(),
-  subsidiaryId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    companyName: "company_name",
-    displayName: "display_name",
-    firstName: "first_name",
-    lastName: "last_name",
-    updatedSince: "updated_since",
-    supplierId: "supplier_id",
-    subsidiaryId: "subsidiary_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    ids: z.string().optional(),
+    companyName: z.string().optional(),
+    displayName: z.string().optional(),
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
+    email: z.string().optional(),
+    status: z.nullable(CustomersFilterStatus$outboundSchema).optional(),
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+    supplierId: z.string().optional(),
+    subsidiaryId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      companyName: "company_name",
+      displayName: "display_name",
+      firstName: "first_name",
+      lastName: "last_name",
+      updatedSince: "updated_since",
+      supplierId: "supplier_id",
+      subsidiaryId: "subsidiary_id",
+    });
+  })
+);
 
 export function customersFilterToJSON(
   customersFilter: CustomersFilter,

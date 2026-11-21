@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   CustomerCreateInput,
   CustomerCreateInput$Outbound,
@@ -42,14 +43,16 @@ export const BatchCustomersRequestItems$outboundSchema: z.ZodType<
   BatchCustomersRequestItems$Outbound,
   z.ZodTypeDef,
   BatchCustomersRequestItems
-> = z.object({
-  ref: z.string().optional(),
-  data: CustomerCreateInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    ref: "_ref",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    ref: z.string().optional(),
+    data: CustomerCreateInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      ref: "_ref",
+    });
+  })
+);
 
 export function batchCustomersRequestItemsToJSON(
   batchCustomersRequestItems: BatchCustomersRequestItems,
@@ -69,9 +72,11 @@ export const BatchCustomersRequest$outboundSchema: z.ZodType<
   BatchCustomersRequest$Outbound,
   z.ZodTypeDef,
   BatchCustomersRequest
-> = z.object({
-  items: z.array(z.lazy(() => BatchCustomersRequestItems$outboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    items: z.array(z.lazy(() => BatchCustomersRequestItems$outboundSchema)),
+  })
+);
 
 export function batchCustomersRequestToJSON(
   batchCustomersRequest: BatchCustomersRequest,

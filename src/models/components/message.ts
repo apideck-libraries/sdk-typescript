@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -227,40 +227,42 @@ export const MessageType$inboundSchema: z.ZodType<
   MessageType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(MessageType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(MessageType));
 /** @internal */
 export const MessageType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   MessageType
-> = openEnums.outboundSchema(MessageType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(MessageType));
 
 /** @internal */
 export const Direction$inboundSchema: z.ZodType<
   Direction,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(Direction);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Direction));
 
 /** @internal */
 export const MessageStatus$inboundSchema: z.ZodType<
   MessageStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(MessageStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(MessageStatus));
 
 /** @internal */
-export const Price$inboundSchema: z.ZodType<Price, z.ZodTypeDef, unknown> = z
-  .object({
-    per_unit: types.optional(types.string()),
-    total_amount: types.optional(types.string()),
-    currency: z.nullable(Currency$inboundSchema).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "per_unit": "perUnit",
-      "total_amount": "totalAmount",
-    });
-  });
+export const Price$inboundSchema: z.ZodType<Price, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      per_unit: types.optional(types.string()),
+      total_amount: types.optional(types.string()),
+      currency: z.nullable(Currency$inboundSchema).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "per_unit": "perUnit",
+        "total_amount": "totalAmount",
+      });
+    })
+  );
 
 export function priceFromJSON(
   jsonString: string,
@@ -277,10 +279,12 @@ export const MessageError$inboundSchema: z.ZodType<
   MessageError,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  code: types.optional(types.string()),
-  message: types.optional(types.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: types.optional(types.string()),
+    message: types.optional(types.string()),
+  })
+);
 
 export function messageErrorFromJSON(
   jsonString: string,
@@ -294,46 +298,48 @@ export function messageErrorFromJSON(
 
 /** @internal */
 export const Message$inboundSchema: z.ZodType<Message, z.ZodTypeDef, unknown> =
-  z.object({
-    id: types.optional(types.string()),
-    from: types.string(),
-    to: types.string(),
-    subject: types.optional(types.string()),
-    body: types.string(),
-    type: types.optional(MessageType$inboundSchema),
-    number_of_units: types.optional(types.number()),
-    number_of_media_files: types.optional(types.number()),
-    direction: types.optional(Direction$inboundSchema),
-    status: types.optional(MessageStatus$inboundSchema),
-    scheduled_at: types.optional(types.date()),
-    sent_at: types.optional(types.date()),
-    webhook_url: types.optional(types.string()),
-    reference: types.optional(types.string()),
-    price: types.optional(z.lazy(() => Price$inboundSchema)),
-    error: types.optional(z.lazy(() => MessageError$inboundSchema)),
-    messaging_service_id: types.optional(types.string()),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    updated_by: z.nullable(types.string()).optional(),
-    created_by: z.nullable(types.string()).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-  }).transform((v) => {
-    return remap$(v, {
-      "number_of_units": "numberOfUnits",
-      "number_of_media_files": "numberOfMediaFiles",
-      "scheduled_at": "scheduledAt",
-      "sent_at": "sentAt",
-      "webhook_url": "webhookUrl",
-      "messaging_service_id": "messagingServiceId",
-      "custom_mappings": "customMappings",
-      "updated_by": "updatedBy",
-      "created_by": "createdBy",
-      "updated_at": "updatedAt",
-      "created_at": "createdAt",
-      "pass_through": "passThrough",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.optional(types.string()),
+      from: types.string(),
+      to: types.string(),
+      subject: types.optional(types.string()),
+      body: types.string(),
+      type: types.optional(MessageType$inboundSchema),
+      number_of_units: types.optional(types.number()),
+      number_of_media_files: types.optional(types.number()),
+      direction: types.optional(Direction$inboundSchema),
+      status: types.optional(MessageStatus$inboundSchema),
+      scheduled_at: types.optional(types.date()),
+      sent_at: types.optional(types.date()),
+      webhook_url: types.optional(types.string()),
+      reference: types.optional(types.string()),
+      price: types.optional(z.lazy(() => Price$inboundSchema)),
+      error: types.optional(z.lazy(() => MessageError$inboundSchema)),
+      messaging_service_id: types.optional(types.string()),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+      updated_by: z.nullable(types.string()).optional(),
+      created_by: z.nullable(types.string()).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+      pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    }).transform((v) => {
+      return remap$(v, {
+        "number_of_units": "numberOfUnits",
+        "number_of_media_files": "numberOfMediaFiles",
+        "scheduled_at": "scheduledAt",
+        "sent_at": "sentAt",
+        "webhook_url": "webhookUrl",
+        "messaging_service_id": "messagingServiceId",
+        "custom_mappings": "customMappings",
+        "updated_by": "updatedBy",
+        "created_by": "createdBy",
+        "updated_at": "updatedAt",
+        "created_at": "createdAt",
+        "pass_through": "passThrough",
+      });
+    })
+  );
 
 export function messageFromJSON(
   jsonString: string,
@@ -364,25 +370,27 @@ export const MessageInput$outboundSchema: z.ZodType<
   MessageInput$Outbound,
   z.ZodTypeDef,
   MessageInput
-> = z.object({
-  from: z.string(),
-  to: z.string(),
-  subject: z.string().optional(),
-  body: z.string(),
-  type: MessageType$outboundSchema.optional(),
-  scheduledAt: z.date().transform(v => v.toISOString()).optional(),
-  webhookUrl: z.string().optional(),
-  reference: z.string().optional(),
-  messagingServiceId: z.string().optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    scheduledAt: "scheduled_at",
-    webhookUrl: "webhook_url",
-    messagingServiceId: "messaging_service_id",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    from: z.string(),
+    to: z.string(),
+    subject: z.string().optional(),
+    body: z.string(),
+    type: MessageType$outboundSchema.optional(),
+    scheduledAt: z.date().transform(v => v.toISOString()).optional(),
+    webhookUrl: z.string().optional(),
+    reference: z.string().optional(),
+    messagingServiceId: z.string().optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      scheduledAt: "scheduled_at",
+      webhookUrl: "webhook_url",
+      messagingServiceId: "messaging_service_id",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function messageInputToJSON(messageInput: MessageInput): string {
   return JSON.stringify(MessageInput$outboundSchema.parse(messageInput));

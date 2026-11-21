@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
@@ -44,5 +45,5 @@ export const UnifiedApi = {
 export type UnifiedApi = ClosedEnum<typeof UnifiedApi>;
 
 /** @internal */
-export const UnifiedApi$outboundSchema: z.ZodNativeEnum<typeof UnifiedApi> = z
-  .nativeEnum(UnifiedApi);
+export const UnifiedApi$outboundSchema: z.ZodNativeEnum<typeof UnifiedApi> =
+  /* @__PURE__ */ lazySchema$(() => z.nativeEnum(UnifiedApi));

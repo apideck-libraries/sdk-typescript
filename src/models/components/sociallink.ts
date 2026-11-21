@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -28,11 +28,13 @@ export const SocialLink$inboundSchema: z.ZodType<
   SocialLink,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  url: types.string(),
-  type: z.nullable(types.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    url: types.string(),
+    type: z.nullable(types.string()).optional(),
+  })
+);
 /** @internal */
 export type SocialLink$Outbound = {
   id?: string | null | undefined;
@@ -45,11 +47,13 @@ export const SocialLink$outboundSchema: z.ZodType<
   SocialLink$Outbound,
   z.ZodTypeDef,
   SocialLink
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  url: z.string(),
-  type: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    url: z.string(),
+    type: z.nullable(z.string()).optional(),
+  })
+);
 
 export function socialLinkToJSON(socialLink: SocialLink): string {
   return JSON.stringify(SocialLink$outboundSchema.parse(socialLink));

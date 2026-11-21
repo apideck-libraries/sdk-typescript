@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CompaniesFilter = {
   /**
@@ -26,16 +27,18 @@ export const CompaniesFilter$outboundSchema: z.ZodType<
   CompaniesFilter$Outbound,
   z.ZodTypeDef,
   CompaniesFilter
-> = z.object({
-  name: z.string().optional(),
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-  createdSince: z.date().transform(v => v.toISOString()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    updatedSince: "updated_since",
-    createdSince: "created_since",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string().optional(),
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+    createdSince: z.date().transform(v => v.toISOString()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      updatedSince: "updated_since",
+      createdSince: "created_since",
+    });
+  })
+);
 
 export function companiesFilterToJSON(
   companiesFilter: CompaniesFilter,

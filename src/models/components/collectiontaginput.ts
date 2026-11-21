@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CollectionTagInput = {
   /**
@@ -21,9 +22,11 @@ export const CollectionTagInput$outboundSchema: z.ZodType<
   CollectionTagInput$Outbound,
   z.ZodTypeDef,
   CollectionTagInput
-> = z.object({
-  id: z.nullable(z.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()),
+  })
+);
 
 export function collectionTagInputToJSON(
   collectionTagInput: CollectionTagInput,

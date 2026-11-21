@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -97,45 +97,47 @@ export const CategoryType$inboundSchema: z.ZodType<
   CategoryType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(CategoryType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(CategoryType));
 
 /** @internal */
 export const CategoryStatus$inboundSchema: z.ZodType<
   CategoryStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(CategoryStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(CategoryStatus));
 
 /** @internal */
 export const Category$inboundSchema: z.ZodType<
   Category,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: types.optional(types.string()),
-  display_id: z.nullable(types.string()).optional(),
-  type: types.optional(CategoryType$inboundSchema),
-  status: types.optional(CategoryStatus$inboundSchema),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "display_id": "displayId",
-    "custom_mappings": "customMappings",
-    "row_version": "rowVersion",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    name: types.optional(types.string()),
+    display_id: z.nullable(types.string()).optional(),
+    type: types.optional(CategoryType$inboundSchema),
+    status: types.optional(CategoryStatus$inboundSchema),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "display_id": "displayId",
+      "custom_mappings": "customMappings",
+      "row_version": "rowVersion",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function categoryFromJSON(
   jsonString: string,

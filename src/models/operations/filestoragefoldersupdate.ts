@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const FileStorageFoldersUpdateRequest$outboundSchema: z.ZodType<
   FileStorageFoldersUpdateRequest$Outbound,
   z.ZodTypeDef,
   FileStorageFoldersUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  updateFolderRequest: components.UpdateFolderRequest$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    updateFolderRequest: "UpdateFolderRequest",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    updateFolderRequest: components.UpdateFolderRequest$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      updateFolderRequest: "UpdateFolderRequest",
+    });
+  })
+);
 
 export function fileStorageFoldersUpdateRequestToJSON(
   fileStorageFoldersUpdateRequest: FileStorageFoldersUpdateRequest,
@@ -100,21 +102,23 @@ export const FileStorageFoldersUpdateResponse$inboundSchema: z.ZodType<
   FileStorageFoldersUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateFolderResponse: types.optional(
-    components.UpdateFolderResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateFolderResponse": "updateFolderResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateFolderResponse: types.optional(
+      components.UpdateFolderResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateFolderResponse": "updateFolderResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function fileStorageFoldersUpdateResponseFromJSON(
   jsonString: string,

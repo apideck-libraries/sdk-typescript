@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -219,40 +219,46 @@ export const TimeOffRequestStatusStatus$inboundSchema: z.ZodType<
   TimeOffRequestStatusStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(TimeOffRequestStatusStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(TimeOffRequestStatusStatus)
+);
 /** @internal */
 export const TimeOffRequestStatusStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   TimeOffRequestStatusStatus
-> = openEnums.outboundSchema(TimeOffRequestStatusStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(TimeOffRequestStatusStatus)
+);
 
 /** @internal */
 export const RequestType$inboundSchema: z.ZodType<
   RequestType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(RequestType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(RequestType));
 /** @internal */
 export const RequestType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   RequestType
-> = openEnums.outboundSchema(RequestType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(RequestType));
 
 /** @internal */
 export const Units$inboundSchema: z.ZodType<Units, z.ZodTypeDef, unknown> =
-  openEnums.inboundSchema(Units);
+  /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Units));
 /** @internal */
 export const Units$outboundSchema: z.ZodType<string, z.ZodTypeDef, Units> =
-  openEnums.outboundSchema(Units);
+  /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(Units));
 
 /** @internal */
-export const Notes$inboundSchema: z.ZodType<Notes, z.ZodTypeDef, unknown> = z
-  .object({
-    employee: z.nullable(types.string()).optional(),
-    manager: z.nullable(types.string()).optional(),
-  });
+export const Notes$inboundSchema: z.ZodType<Notes, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      employee: z.nullable(types.string()).optional(),
+      manager: z.nullable(types.string()).optional(),
+    })
+  );
 /** @internal */
 export type Notes$Outbound = {
   employee?: string | null | undefined;
@@ -264,10 +270,12 @@ export const Notes$outboundSchema: z.ZodType<
   Notes$Outbound,
   z.ZodTypeDef,
   Notes
-> = z.object({
-  employee: z.nullable(z.string()).optional(),
-  manager: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    employee: z.nullable(z.string()).optional(),
+    manager: z.nullable(z.string()).optional(),
+  })
+);
 
 export function notesToJSON(notes: Notes): string {
   return JSON.stringify(Notes$outboundSchema.parse(notes));
@@ -287,47 +295,49 @@ export const TimeOffRequest$inboundSchema: z.ZodType<
   TimeOffRequest,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  employee_id: z.nullable(types.string()).optional(),
-  policy_id: z.nullable(types.string()).optional(),
-  status: z.nullable(TimeOffRequestStatusStatus$inboundSchema).optional(),
-  description: z.nullable(types.string()).optional(),
-  start_date: z.nullable(types.string()).optional(),
-  end_date: z.nullable(types.string()).optional(),
-  request_date: z.nullable(types.string()).optional(),
-  request_type: z.nullable(RequestType$inboundSchema).optional(),
-  approval_date: z.nullable(types.string()).optional(),
-  units: z.nullable(Units$inboundSchema).optional(),
-  amount: z.nullable(types.number()).optional(),
-  day_part: z.nullable(types.string()).optional(),
-  notes: types.optional(z.lazy(() => Notes$inboundSchema)),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-  policy_type: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "employee_id": "employeeId",
-    "policy_id": "policyId",
-    "start_date": "startDate",
-    "end_date": "endDate",
-    "request_date": "requestDate",
-    "request_type": "requestType",
-    "approval_date": "approvalDate",
-    "day_part": "dayPart",
-    "custom_mappings": "customMappings",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "pass_through": "passThrough",
-    "policy_type": "policyType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    employee_id: z.nullable(types.string()).optional(),
+    policy_id: z.nullable(types.string()).optional(),
+    status: z.nullable(TimeOffRequestStatusStatus$inboundSchema).optional(),
+    description: z.nullable(types.string()).optional(),
+    start_date: z.nullable(types.string()).optional(),
+    end_date: z.nullable(types.string()).optional(),
+    request_date: z.nullable(types.string()).optional(),
+    request_type: z.nullable(RequestType$inboundSchema).optional(),
+    approval_date: z.nullable(types.string()).optional(),
+    units: z.nullable(Units$inboundSchema).optional(),
+    amount: z.nullable(types.number()).optional(),
+    day_part: z.nullable(types.string()).optional(),
+    notes: types.optional(z.lazy(() => Notes$inboundSchema)),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    policy_type: types.optional(types.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "employee_id": "employeeId",
+      "policy_id": "policyId",
+      "start_date": "startDate",
+      "end_date": "endDate",
+      "request_date": "requestDate",
+      "request_type": "requestType",
+      "approval_date": "approvalDate",
+      "day_part": "dayPart",
+      "custom_mappings": "customMappings",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "pass_through": "passThrough",
+      "policy_type": "policyType",
+    });
+  })
+);
 
 export function timeOffRequestFromJSON(
   jsonString: string,
@@ -363,36 +373,38 @@ export const TimeOffRequestInput$outboundSchema: z.ZodType<
   TimeOffRequestInput$Outbound,
   z.ZodTypeDef,
   TimeOffRequestInput
-> = z.object({
-  employeeId: z.nullable(z.string()).optional(),
-  policyId: z.nullable(z.string()).optional(),
-  status: z.nullable(TimeOffRequestStatusStatus$outboundSchema).optional(),
-  description: z.nullable(z.string()).optional(),
-  startDate: z.nullable(z.string()).optional(),
-  endDate: z.nullable(z.string()).optional(),
-  requestDate: z.nullable(z.string()).optional(),
-  requestType: z.nullable(RequestType$outboundSchema).optional(),
-  approvalDate: z.nullable(z.string()).optional(),
-  units: z.nullable(Units$outboundSchema).optional(),
-  amount: z.nullable(z.number()).optional(),
-  dayPart: z.nullable(z.string()).optional(),
-  notes: z.lazy(() => Notes$outboundSchema).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-  policyType: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    employeeId: "employee_id",
-    policyId: "policy_id",
-    startDate: "start_date",
-    endDate: "end_date",
-    requestDate: "request_date",
-    requestType: "request_type",
-    approvalDate: "approval_date",
-    dayPart: "day_part",
-    passThrough: "pass_through",
-    policyType: "policy_type",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    employeeId: z.nullable(z.string()).optional(),
+    policyId: z.nullable(z.string()).optional(),
+    status: z.nullable(TimeOffRequestStatusStatus$outboundSchema).optional(),
+    description: z.nullable(z.string()).optional(),
+    startDate: z.nullable(z.string()).optional(),
+    endDate: z.nullable(z.string()).optional(),
+    requestDate: z.nullable(z.string()).optional(),
+    requestType: z.nullable(RequestType$outboundSchema).optional(),
+    approvalDate: z.nullable(z.string()).optional(),
+    units: z.nullable(Units$outboundSchema).optional(),
+    amount: z.nullable(z.number()).optional(),
+    dayPart: z.nullable(z.string()).optional(),
+    notes: z.lazy(() => Notes$outboundSchema).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+    policyType: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      employeeId: "employee_id",
+      policyId: "policy_id",
+      startDate: "start_date",
+      endDate: "end_date",
+      requestDate: "request_date",
+      requestType: "request_type",
+      approvalDate: "approval_date",
+      dayPart: "day_part",
+      passThrough: "pass_through",
+      policyType: "policy_type",
+    });
+  })
+);
 
 export function timeOffRequestInputToJSON(
   timeOffRequestInput: TimeOffRequestInput,

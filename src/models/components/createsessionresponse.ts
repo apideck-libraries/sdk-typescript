@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -38,15 +38,17 @@ export const CreateSessionResponseData$inboundSchema: z.ZodType<
   CreateSessionResponseData,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  session_uri: types.string(),
-  session_token: types.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "session_uri": "sessionUri",
-    "session_token": "sessionToken",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    session_uri: types.string(),
+    session_token: types.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "session_uri": "sessionUri",
+      "session_token": "sessionToken",
+    });
+  })
+);
 
 export function createSessionResponseDataFromJSON(
   jsonString: string,
@@ -63,17 +65,19 @@ export const CreateSessionResponse$inboundSchema: z.ZodType<
   CreateSessionResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  status_code: types.number(),
-  status: types.string(),
-  data: z.lazy(() => CreateSessionResponseData$inboundSchema),
-  _raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "status_code": "statusCode",
-    "_raw": "raw",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status_code: types.number(),
+    status: types.string(),
+    data: z.lazy(() => CreateSessionResponseData$inboundSchema),
+    _raw: z.nullable(z.record(z.any())).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "status_code": "statusCode",
+      "_raw": "raw",
+    });
+  })
+);
 
 export function createSessionResponseFromJSON(
   jsonString: string,

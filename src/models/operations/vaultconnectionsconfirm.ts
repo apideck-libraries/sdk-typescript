@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -70,19 +70,21 @@ export const VaultConnectionsConfirmRequest$outboundSchema: z.ZodType<
   VaultConnectionsConfirmRequest$Outbound,
   z.ZodTypeDef,
   VaultConnectionsConfirmRequest
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string(),
-  unifiedApi: z.string(),
-  confirmConnection: components.ConfirmConnection$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    serviceId: "service_id",
-    unifiedApi: "unified_api",
-    confirmConnection: "ConfirmConnection",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string(),
+    unifiedApi: z.string(),
+    confirmConnection: components.ConfirmConnection$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      serviceId: "service_id",
+      unifiedApi: "unified_api",
+      confirmConnection: "ConfirmConnection",
+    });
+  })
+);
 
 export function vaultConnectionsConfirmRequestToJSON(
   vaultConnectionsConfirmRequest: VaultConnectionsConfirmRequest,
@@ -99,21 +101,23 @@ export const VaultConnectionsConfirmResponse$inboundSchema: z.ZodType<
   VaultConnectionsConfirmResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  ConfirmConnectionResponse: types.optional(
-    components.ConfirmConnectionResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "ConfirmConnectionResponse": "confirmConnectionResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    ConfirmConnectionResponse: types.optional(
+      components.ConfirmConnectionResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "ConfirmConnectionResponse": "confirmConnectionResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultConnectionsConfirmResponseFromJSON(
   jsonString: string,

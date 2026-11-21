@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -48,14 +48,16 @@ export const WebhookWebhooksAddRequest$outboundSchema: z.ZodType<
   WebhookWebhooksAddRequest$Outbound,
   z.ZodTypeDef,
   WebhookWebhooksAddRequest
-> = z.object({
-  appId: z.string().optional(),
-  createWebhookRequest: components.CreateWebhookRequest$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    createWebhookRequest: "CreateWebhookRequest",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    appId: z.string().optional(),
+    createWebhookRequest: components.CreateWebhookRequest$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      createWebhookRequest: "CreateWebhookRequest",
+    });
+  })
+);
 
 export function webhookWebhooksAddRequestToJSON(
   webhookWebhooksAddRequest: WebhookWebhooksAddRequest,
@@ -70,21 +72,23 @@ export const WebhookWebhooksAddResponse$inboundSchema: z.ZodType<
   WebhookWebhooksAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateWebhookResponse: types.optional(
-    components.CreateWebhookResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateWebhookResponse": "createWebhookResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateWebhookResponse: types.optional(
+      components.CreateWebhookResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateWebhookResponse": "createWebhookResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function webhookWebhooksAddResponseFromJSON(
   jsonString: string,

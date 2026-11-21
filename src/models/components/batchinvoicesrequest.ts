@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   InvoiceCreateInput,
   InvoiceCreateInput$Outbound,
@@ -42,14 +43,16 @@ export const BatchInvoicesRequestItems$outboundSchema: z.ZodType<
   BatchInvoicesRequestItems$Outbound,
   z.ZodTypeDef,
   BatchInvoicesRequestItems
-> = z.object({
-  ref: z.string().optional(),
-  data: InvoiceCreateInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    ref: "_ref",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    ref: z.string().optional(),
+    data: InvoiceCreateInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      ref: "_ref",
+    });
+  })
+);
 
 export function batchInvoicesRequestItemsToJSON(
   batchInvoicesRequestItems: BatchInvoicesRequestItems,
@@ -69,9 +72,11 @@ export const BatchInvoicesRequest$outboundSchema: z.ZodType<
   BatchInvoicesRequest$Outbound,
   z.ZodTypeDef,
   BatchInvoicesRequest
-> = z.object({
-  items: z.array(z.lazy(() => BatchInvoicesRequestItems$outboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    items: z.array(z.lazy(() => BatchInvoicesRequestItems$outboundSchema)),
+  })
+);
 
 export function batchInvoicesRequestToJSON(
   batchInvoicesRequest: BatchInvoicesRequest,

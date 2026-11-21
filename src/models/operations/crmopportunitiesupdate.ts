@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const CrmOpportunitiesUpdateRequest$outboundSchema: z.ZodType<
   CrmOpportunitiesUpdateRequest$Outbound,
   z.ZodTypeDef,
   CrmOpportunitiesUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  opportunity: components.OpportunityInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    opportunity: "Opportunity",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    opportunity: components.OpportunityInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      opportunity: "Opportunity",
+    });
+  })
+);
 
 export function crmOpportunitiesUpdateRequestToJSON(
   crmOpportunitiesUpdateRequest: CrmOpportunitiesUpdateRequest,
@@ -100,21 +102,23 @@ export const CrmOpportunitiesUpdateResponse$inboundSchema: z.ZodType<
   CrmOpportunitiesUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateOpportunityResponse: types.optional(
-    components.UpdateOpportunityResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateOpportunityResponse": "updateOpportunityResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateOpportunityResponse: types.optional(
+      components.UpdateOpportunityResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateOpportunityResponse": "updateOpportunityResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function crmOpportunitiesUpdateResponseFromJSON(
   jsonString: string,

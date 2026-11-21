@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as types from "../../types/primitives.js";
 import { ApideckError } from "./apideckerror.js";
 
@@ -87,26 +88,28 @@ export const PaymentRequiredResponse$inboundSchema: z.ZodType<
   PaymentRequiredResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  status_code: types.optional(types.number()),
-  error: types.optional(types.string()),
-  type_name: types.optional(types.string()),
-  message: types.optional(types.string()),
-  detail: types.optional(types.string()),
-  ref: types.optional(types.string()),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    const remapped = remap$(v, {
-      "status_code": "statusCode",
-      "type_name": "typeName",
-    });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status_code: types.optional(types.number()),
+    error: types.optional(types.string()),
+    type_name: types.optional(types.string()),
+    message: types.optional(types.string()),
+    detail: types.optional(types.string()),
+    ref: types.optional(types.string()),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      const remapped = remap$(v, {
+        "status_code": "statusCode",
+        "type_name": "typeName",
+      });
 
-    return new PaymentRequiredResponse(remapped, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+      return new PaymentRequiredResponse(remapped, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);

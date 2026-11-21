@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as discriminatedUnionTypes from "../../types/discriminatedUnion.js";
 import { discriminatedUnion } from "../../types/discriminatedUnion.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -31,10 +31,12 @@ export const FormFieldOption$inboundSchema: z.ZodType<
   FormFieldOption,
   z.ZodTypeDef,
   unknown
-> = discriminatedUnion("option_type", {
-  simple: SimpleFormFieldOption$inboundSchema,
-  group: FormFieldOptionGroup$inboundSchema,
-}, { outputPropertyName: "optionType" });
+> = /* @__PURE__ */ lazySchema$(() =>
+  discriminatedUnion("option_type", {
+    simple: SimpleFormFieldOption$inboundSchema,
+    group: FormFieldOptionGroup$inboundSchema,
+  }, { outputPropertyName: "optionType" })
+);
 /** @internal */
 export type FormFieldOption$Outbound =
   | SimpleFormFieldOption$Outbound
@@ -45,10 +47,12 @@ export const FormFieldOption$outboundSchema: z.ZodType<
   FormFieldOption$Outbound,
   z.ZodTypeDef,
   FormFieldOption
-> = z.union([
-  SimpleFormFieldOption$outboundSchema,
-  FormFieldOptionGroup$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.union([
+    SimpleFormFieldOption$outboundSchema,
+    FormFieldOptionGroup$outboundSchema,
+  ])
+);
 
 export function formFieldOptionToJSON(
   formFieldOption: FormFieldOption,

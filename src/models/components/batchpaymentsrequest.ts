@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PaymentCreateInput,
   PaymentCreateInput$Outbound,
@@ -42,14 +43,16 @@ export const BatchPaymentsRequestItems$outboundSchema: z.ZodType<
   BatchPaymentsRequestItems$Outbound,
   z.ZodTypeDef,
   BatchPaymentsRequestItems
-> = z.object({
-  ref: z.string().optional(),
-  data: PaymentCreateInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    ref: "_ref",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    ref: z.string().optional(),
+    data: PaymentCreateInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      ref: "_ref",
+    });
+  })
+);
 
 export function batchPaymentsRequestItemsToJSON(
   batchPaymentsRequestItems: BatchPaymentsRequestItems,
@@ -69,9 +72,11 @@ export const BatchPaymentsRequest$outboundSchema: z.ZodType<
   BatchPaymentsRequest$Outbound,
   z.ZodTypeDef,
   BatchPaymentsRequest
-> = z.object({
-  items: z.array(z.lazy(() => BatchPaymentsRequestItems$outboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    items: z.array(z.lazy(() => BatchPaymentsRequestItems$outboundSchema)),
+  })
+);
 
 export function batchPaymentsRequestToJSON(
   batchPaymentsRequest: BatchPaymentsRequest,

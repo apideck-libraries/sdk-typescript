@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -254,70 +254,77 @@ export const JournalEntryLineItemType$inboundSchema: z.ZodType<
   JournalEntryLineItemType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(JournalEntryLineItemType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(JournalEntryLineItemType)
+);
 /** @internal */
 export const JournalEntryLineItemType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   JournalEntryLineItemType
-> = openEnums.outboundSchema(JournalEntryLineItemType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(JournalEntryLineItemType)
+);
 
 /** @internal */
 export const TaxType$inboundSchema: z.ZodType<TaxType, z.ZodTypeDef, unknown> =
-  openEnums.inboundSchema(TaxType);
+  /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(TaxType));
 /** @internal */
 export const TaxType$outboundSchema: z.ZodType<string, z.ZodTypeDef, TaxType> =
-  openEnums.outboundSchema(TaxType);
+  /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(TaxType));
 
 /** @internal */
 export const JournalEntryLineItem$inboundSchema: z.ZodType<
   JournalEntryLineItem,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  description: z.nullable(types.string()).optional(),
-  tax_amount: z.nullable(types.number()).optional(),
-  sub_total: z.nullable(types.number()).optional(),
-  total_amount: z.nullable(types.number()).optional(),
-  base_currency_amount: z.nullable(types.number()).optional(),
-  type: types.nullable(JournalEntryLineItemType$inboundSchema),
-  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
-  tax_type: z.nullable(TaxType$inboundSchema).optional(),
-  tracking_category: z.nullable(DeprecatedLinkedTrackingCategory$inboundSchema)
-    .optional(),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  ledger_account: types.nullable(LinkedLedgerAccount$inboundSchema),
-  customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
-  supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
-  employee: z.nullable(LinkedEmployee$inboundSchema).optional(),
-  department_id: z.nullable(types.string()).optional(),
-  location_id: z.nullable(types.string()).optional(),
-  line_number: z.nullable(types.number()).optional(),
-  worktags: types.optional(
-    z.array(types.nullable(LinkedWorktag$inboundSchema)),
-  ),
-  date: z.nullable(types.date()).optional(),
-  source_id: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "tax_amount": "taxAmount",
-    "sub_total": "subTotal",
-    "total_amount": "totalAmount",
-    "base_currency_amount": "baseCurrencyAmount",
-    "tax_rate": "taxRate",
-    "tax_type": "taxType",
-    "tracking_category": "trackingCategory",
-    "tracking_categories": "trackingCategories",
-    "ledger_account": "ledgerAccount",
-    "department_id": "departmentId",
-    "location_id": "locationId",
-    "line_number": "lineNumber",
-    "source_id": "sourceId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    description: z.nullable(types.string()).optional(),
+    tax_amount: z.nullable(types.number()).optional(),
+    sub_total: z.nullable(types.number()).optional(),
+    total_amount: z.nullable(types.number()).optional(),
+    base_currency_amount: z.nullable(types.number()).optional(),
+    type: types.nullable(JournalEntryLineItemType$inboundSchema),
+    tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+    tax_type: z.nullable(TaxType$inboundSchema).optional(),
+    tracking_category: z.nullable(
+      DeprecatedLinkedTrackingCategory$inboundSchema,
+    ).optional(),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    ledger_account: types.nullable(LinkedLedgerAccount$inboundSchema),
+    customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
+    supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
+    employee: z.nullable(LinkedEmployee$inboundSchema).optional(),
+    department_id: z.nullable(types.string()).optional(),
+    location_id: z.nullable(types.string()).optional(),
+    line_number: z.nullable(types.number()).optional(),
+    worktags: types.optional(
+      z.array(types.nullable(LinkedWorktag$inboundSchema)),
+    ),
+    date: z.nullable(types.date()).optional(),
+    source_id: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "tax_amount": "taxAmount",
+      "sub_total": "subTotal",
+      "total_amount": "totalAmount",
+      "base_currency_amount": "baseCurrencyAmount",
+      "tax_rate": "taxRate",
+      "tax_type": "taxType",
+      "tracking_category": "trackingCategory",
+      "tracking_categories": "trackingCategories",
+      "ledger_account": "ledgerAccount",
+      "department_id": "departmentId",
+      "location_id": "locationId",
+      "line_number": "lineNumber",
+      "source_id": "sourceId",
+    });
+  })
+);
 
 export function journalEntryLineItemFromJSON(
   jsonString: string,
@@ -364,49 +371,52 @@ export const JournalEntryLineItemInput$outboundSchema: z.ZodType<
   JournalEntryLineItemInput$Outbound,
   z.ZodTypeDef,
   JournalEntryLineItemInput
-> = z.object({
-  description: z.nullable(z.string()).optional(),
-  taxAmount: z.nullable(z.number()).optional(),
-  subTotal: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()).optional(),
-  baseCurrencyAmount: z.nullable(z.number()).optional(),
-  type: z.nullable(JournalEntryLineItemType$outboundSchema),
-  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  taxType: z.nullable(TaxType$outboundSchema).optional(),
-  trackingCategory: z.nullable(DeprecatedLinkedTrackingCategory$outboundSchema)
-    .optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema),
-  customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
-  supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
-  employee: z.nullable(LinkedEmployee$outboundSchema).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  locationId: z.nullable(z.string()).optional(),
-  lineNumber: z.nullable(z.number().int()).optional(),
-  worktags: z.array(z.nullable(LinkedWorktag$outboundSchema)).optional(),
-  date: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  sourceId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    taxAmount: "tax_amount",
-    subTotal: "sub_total",
-    totalAmount: "total_amount",
-    baseCurrencyAmount: "base_currency_amount",
-    taxRate: "tax_rate",
-    taxType: "tax_type",
-    trackingCategory: "tracking_category",
-    trackingCategories: "tracking_categories",
-    ledgerAccount: "ledger_account",
-    departmentId: "department_id",
-    locationId: "location_id",
-    lineNumber: "line_number",
-    sourceId: "source_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    description: z.nullable(z.string()).optional(),
+    taxAmount: z.nullable(z.number()).optional(),
+    subTotal: z.nullable(z.number()).optional(),
+    totalAmount: z.nullable(z.number()).optional(),
+    baseCurrencyAmount: z.nullable(z.number()).optional(),
+    type: z.nullable(JournalEntryLineItemType$outboundSchema),
+    taxRate: LinkedTaxRateInput$outboundSchema.optional(),
+    taxType: z.nullable(TaxType$outboundSchema).optional(),
+    trackingCategory: z.nullable(
+      DeprecatedLinkedTrackingCategory$outboundSchema,
+    ).optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema),
+    customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
+    supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
+    employee: z.nullable(LinkedEmployee$outboundSchema).optional(),
+    departmentId: z.nullable(z.string()).optional(),
+    locationId: z.nullable(z.string()).optional(),
+    lineNumber: z.nullable(z.number().int()).optional(),
+    worktags: z.array(z.nullable(LinkedWorktag$outboundSchema)).optional(),
+    date: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    sourceId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      taxAmount: "tax_amount",
+      subTotal: "sub_total",
+      totalAmount: "total_amount",
+      baseCurrencyAmount: "base_currency_amount",
+      taxRate: "tax_rate",
+      taxType: "tax_type",
+      trackingCategory: "tracking_category",
+      trackingCategories: "tracking_categories",
+      ledgerAccount: "ledger_account",
+      departmentId: "department_id",
+      locationId: "location_id",
+      lineNumber: "line_number",
+      sourceId: "source_id",
+    });
+  })
+);
 
 export function journalEntryLineItemInputToJSON(
   journalEntryLineItemInput: JournalEntryLineItemInput,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -63,18 +63,20 @@ export const VaultConsumerRequestCountsAllRequest$outboundSchema: z.ZodType<
   VaultConsumerRequestCountsAllRequest$Outbound,
   z.ZodTypeDef,
   VaultConsumerRequestCountsAllRequest
-> = z.object({
-  appId: z.string().optional(),
-  consumerId: z.string(),
-  startDatetime: z.string(),
-  endDatetime: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    consumerId: "consumer_id",
-    startDatetime: "start_datetime",
-    endDatetime: "end_datetime",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    appId: z.string().optional(),
+    consumerId: z.string(),
+    startDatetime: z.string(),
+    endDatetime: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      consumerId: "consumer_id",
+      startDatetime: "start_datetime",
+      endDatetime: "end_datetime",
+    });
+  })
+);
 
 export function vaultConsumerRequestCountsAllRequestToJSON(
   vaultConsumerRequestCountsAllRequest: VaultConsumerRequestCountsAllRequest,
@@ -91,22 +93,24 @@ export const VaultConsumerRequestCountsAllResponse$inboundSchema: z.ZodType<
   VaultConsumerRequestCountsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  ConsumerRequestCountsInDateRangeResponse: types.optional(
-    components.ConsumerRequestCountsInDateRangeResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "ConsumerRequestCountsInDateRangeResponse":
-      "consumerRequestCountsInDateRangeResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    ConsumerRequestCountsInDateRangeResponse: types.optional(
+      components.ConsumerRequestCountsInDateRangeResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "ConsumerRequestCountsInDateRangeResponse":
+        "consumerRequestCountsInDateRangeResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultConsumerRequestCountsAllResponseFromJSON(
   jsonString: string,

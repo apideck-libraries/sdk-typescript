@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { smartUnion } from "../../types/smartUnion.js";
@@ -96,7 +96,9 @@ export const NotFoundResponseDetail$inboundSchema: z.ZodType<
   NotFoundResponseDetail,
   z.ZodTypeDef,
   unknown
-> = smartUnion([types.string(), z.record(z.any())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([types.string(), z.record(z.any())])
+);
 
 export function notFoundResponseDetailFromJSON(
   jsonString: string,
@@ -113,26 +115,28 @@ export const NotFoundResponse$inboundSchema: z.ZodType<
   NotFoundResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  status_code: types.optional(types.number()),
-  error: types.optional(types.string()),
-  type_name: types.optional(types.string()),
-  message: types.optional(types.string()),
-  detail: types.optional(smartUnion([types.string(), z.record(z.any())])),
-  ref: types.optional(types.string()),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    const remapped = remap$(v, {
-      "status_code": "statusCode",
-      "type_name": "typeName",
-    });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status_code: types.optional(types.number()),
+    error: types.optional(types.string()),
+    type_name: types.optional(types.string()),
+    message: types.optional(types.string()),
+    detail: types.optional(smartUnion([types.string(), z.record(z.any())])),
+    ref: types.optional(types.string()),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      const remapped = remap$(v, {
+        "status_code": "statusCode",
+        "type_name": "typeName",
+      });
 
-    return new NotFoundResponse(remapped, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+      return new NotFoundResponse(remapped, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);

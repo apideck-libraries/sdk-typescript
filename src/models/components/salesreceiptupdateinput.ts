@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   Address,
   Address$Outbound,
@@ -184,61 +185,63 @@ export const SalesReceiptUpdateInput$outboundSchema: z.ZodType<
   SalesReceiptUpdateInput$Outbound,
   z.ZodTypeDef,
   SalesReceiptUpdateInput
-> = z.object({
-  number: z.nullable(z.string()).optional(),
-  customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  taxInclusive: z.nullable(z.boolean()).optional(),
-  subTotal: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()).optional(),
-  totalTax: z.nullable(z.number()).optional(),
-  transactionDate: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  paymentMethod: z.nullable(z.string()).optional(),
-  paymentMethodReference: z.nullable(z.string()).optional(),
-  paymentMethodId: z.nullable(z.string()).optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  lineItems: z.array(InvoiceLineItemInput$outboundSchema).optional(),
-  taxCode: z.nullable(z.string()).optional(),
-  discountPercentage: z.nullable(z.number()).optional(),
-  discountAmount: z.nullable(z.number()).optional(),
-  note: z.nullable(z.string()).optional(),
-  customerMemo: z.nullable(z.string()).optional(),
-  reference: z.nullable(z.string()).optional(),
-  billingAddress: Address$outboundSchema.optional(),
-  shippingAddress: Address$outboundSchema.optional(),
-  department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    currencyRate: "currency_rate",
-    taxInclusive: "tax_inclusive",
-    subTotal: "sub_total",
-    totalAmount: "total_amount",
-    totalTax: "total_tax",
-    transactionDate: "transaction_date",
-    paymentMethod: "payment_method",
-    paymentMethodReference: "payment_method_reference",
-    paymentMethodId: "payment_method_id",
-    lineItems: "line_items",
-    taxCode: "tax_code",
-    discountPercentage: "discount_percentage",
-    discountAmount: "discount_amount",
-    customerMemo: "customer_memo",
-    billingAddress: "billing_address",
-    shippingAddress: "shipping_address",
-    trackingCategories: "tracking_categories",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    number: z.nullable(z.string()).optional(),
+    customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    currencyRate: z.nullable(z.number()).optional(),
+    taxInclusive: z.nullable(z.boolean()).optional(),
+    subTotal: z.nullable(z.number()).optional(),
+    totalAmount: z.nullable(z.number()).optional(),
+    totalTax: z.nullable(z.number()).optional(),
+    transactionDate: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    paymentMethod: z.nullable(z.string()).optional(),
+    paymentMethodReference: z.nullable(z.string()).optional(),
+    paymentMethodId: z.nullable(z.string()).optional(),
+    account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    lineItems: z.array(InvoiceLineItemInput$outboundSchema).optional(),
+    taxCode: z.nullable(z.string()).optional(),
+    discountPercentage: z.nullable(z.number()).optional(),
+    discountAmount: z.nullable(z.number()).optional(),
+    note: z.nullable(z.string()).optional(),
+    customerMemo: z.nullable(z.string()).optional(),
+    reference: z.nullable(z.string()).optional(),
+    billingAddress: Address$outboundSchema.optional(),
+    shippingAddress: Address$outboundSchema.optional(),
+    department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      currencyRate: "currency_rate",
+      taxInclusive: "tax_inclusive",
+      subTotal: "sub_total",
+      totalAmount: "total_amount",
+      totalTax: "total_tax",
+      transactionDate: "transaction_date",
+      paymentMethod: "payment_method",
+      paymentMethodReference: "payment_method_reference",
+      paymentMethodId: "payment_method_id",
+      lineItems: "line_items",
+      taxCode: "tax_code",
+      discountPercentage: "discount_percentage",
+      discountAmount: "discount_amount",
+      customerMemo: "customer_memo",
+      billingAddress: "billing_address",
+      shippingAddress: "shipping_address",
+      trackingCategories: "tracking_categories",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function salesReceiptUpdateInputToJSON(
   salesReceiptUpdateInput: SalesReceiptUpdateInput,

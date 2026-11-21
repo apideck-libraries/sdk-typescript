@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -48,14 +48,16 @@ export const VaultConsumersAddRequest$outboundSchema: z.ZodType<
   VaultConsumersAddRequest$Outbound,
   z.ZodTypeDef,
   VaultConsumersAddRequest
-> = z.object({
-  appId: z.string().optional(),
-  createConsumerRequest: components.CreateConsumerRequest$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    createConsumerRequest: "CreateConsumerRequest",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    appId: z.string().optional(),
+    createConsumerRequest: components.CreateConsumerRequest$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      createConsumerRequest: "CreateConsumerRequest",
+    });
+  })
+);
 
 export function vaultConsumersAddRequestToJSON(
   vaultConsumersAddRequest: VaultConsumersAddRequest,
@@ -70,21 +72,23 @@ export const VaultConsumersAddResponse$inboundSchema: z.ZodType<
   VaultConsumersAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateConsumerResponse: types.optional(
-    components.CreateConsumerResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateConsumerResponse": "createConsumerResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateConsumerResponse: types.optional(
+      components.CreateConsumerResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateConsumerResponse": "createConsumerResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultConsumersAddResponseFromJSON(
   jsonString: string,

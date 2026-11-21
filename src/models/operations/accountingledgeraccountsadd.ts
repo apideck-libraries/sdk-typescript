@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -74,18 +74,20 @@ export const AccountingLedgerAccountsAddRequest$outboundSchema: z.ZodType<
   AccountingLedgerAccountsAddRequest$Outbound,
   z.ZodTypeDef,
   AccountingLedgerAccountsAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  ledgerAccount: components.LedgerAccountInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    ledgerAccount: "LedgerAccount",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    ledgerAccount: components.LedgerAccountInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      ledgerAccount: "LedgerAccount",
+    });
+  })
+);
 
 export function accountingLedgerAccountsAddRequestToJSON(
   accountingLedgerAccountsAddRequest: AccountingLedgerAccountsAddRequest,
@@ -102,21 +104,23 @@ export const AccountingLedgerAccountsAddResponse$inboundSchema: z.ZodType<
   AccountingLedgerAccountsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateLedgerAccountResponse: types.optional(
-    components.CreateLedgerAccountResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateLedgerAccountResponse": "createLedgerAccountResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateLedgerAccountResponse: types.optional(
+      components.CreateLedgerAccountResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateLedgerAccountResponse": "createLedgerAccountResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingLedgerAccountsAddResponseFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -171,86 +171,94 @@ export const CompanyStatus$inboundSchema: z.ZodType<
   CompanyStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(CompanyStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(CompanyStatus));
 
 /** @internal */
 export const TheStartMonthOfFiscalYear$inboundSchema: z.ZodType<
   TheStartMonthOfFiscalYear,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(TheStartMonthOfFiscalYear);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(TheStartMonthOfFiscalYear)
+);
 
 /** @internal */
 export const TrackingCategoriesMode$inboundSchema: z.ZodType<
   TrackingCategoriesMode,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(TrackingCategoriesMode);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(TrackingCategoriesMode)
+);
 
 /** @internal */
 export const AccountingMethod$inboundSchema: z.ZodType<
   AccountingMethod,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(AccountingMethod);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(AccountingMethod)
+);
 
 /** @internal */
 export const CompanyInfo$inboundSchema: z.ZodType<
   CompanyInfo,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  company_name: z.nullable(types.string()).optional(),
-  status: types.optional(CompanyStatus$inboundSchema),
-  legal_name: types.optional(types.string()),
-  country: z.nullable(types.string()).optional(),
-  sales_tax_number: z.nullable(types.string()).optional(),
-  automated_sales_tax: types.optional(types.boolean()),
-  sales_tax_enabled: types.optional(types.boolean()),
-  default_sales_tax: types.optional(TaxRate$inboundSchema),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  language: z.nullable(types.string()).optional(),
-  fiscal_year_start_month: types.optional(
-    TheStartMonthOfFiscalYear$inboundSchema,
-  ),
-  company_start_date: types.optional(types.date()),
-  addresses: types.optional(z.array(Address$inboundSchema)),
-  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
-  emails: types.optional(z.array(Email$inboundSchema)),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  tracking_categories_enabled: types.optional(types.boolean()),
-  tracking_categories_mode: types.optional(
-    TrackingCategoriesMode$inboundSchema,
-  ),
-  accounting_method: z.nullable(AccountingMethod$inboundSchema).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "company_name": "companyName",
-    "legal_name": "legalName",
-    "sales_tax_number": "salesTaxNumber",
-    "automated_sales_tax": "automatedSalesTax",
-    "sales_tax_enabled": "salesTaxEnabled",
-    "default_sales_tax": "defaultSalesTax",
-    "fiscal_year_start_month": "fiscalYearStartMonth",
-    "company_start_date": "companyStartDate",
-    "phone_numbers": "phoneNumbers",
-    "custom_mappings": "customMappings",
-    "tracking_categories_enabled": "trackingCategoriesEnabled",
-    "tracking_categories_mode": "trackingCategoriesMode",
-    "accounting_method": "accountingMethod",
-    "row_version": "rowVersion",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    company_name: z.nullable(types.string()).optional(),
+    status: types.optional(CompanyStatus$inboundSchema),
+    legal_name: types.optional(types.string()),
+    country: z.nullable(types.string()).optional(),
+    sales_tax_number: z.nullable(types.string()).optional(),
+    automated_sales_tax: types.optional(types.boolean()),
+    sales_tax_enabled: types.optional(types.boolean()),
+    default_sales_tax: types.optional(TaxRate$inboundSchema),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    language: z.nullable(types.string()).optional(),
+    fiscal_year_start_month: types.optional(
+      TheStartMonthOfFiscalYear$inboundSchema,
+    ),
+    company_start_date: types.optional(types.date()),
+    addresses: types.optional(z.array(Address$inboundSchema)),
+    phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+    emails: types.optional(z.array(Email$inboundSchema)),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    tracking_categories_enabled: types.optional(types.boolean()),
+    tracking_categories_mode: types.optional(
+      TrackingCategoriesMode$inboundSchema,
+    ),
+    accounting_method: z.nullable(AccountingMethod$inboundSchema).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "company_name": "companyName",
+      "legal_name": "legalName",
+      "sales_tax_number": "salesTaxNumber",
+      "automated_sales_tax": "automatedSalesTax",
+      "sales_tax_enabled": "salesTaxEnabled",
+      "default_sales_tax": "defaultSalesTax",
+      "fiscal_year_start_month": "fiscalYearStartMonth",
+      "company_start_date": "companyStartDate",
+      "phone_numbers": "phoneNumbers",
+      "custom_mappings": "customMappings",
+      "tracking_categories_enabled": "trackingCategoriesEnabled",
+      "tracking_categories_mode": "trackingCategoriesMode",
+      "accounting_method": "accountingMethod",
+      "row_version": "rowVersion",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+    });
+  })
+);
 
 export function companyInfoFromJSON(
   jsonString: string,

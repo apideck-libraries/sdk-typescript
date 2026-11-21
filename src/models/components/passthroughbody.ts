@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -44,10 +44,12 @@ export const ExtendPaths$inboundSchema: z.ZodType<
   ExtendPaths,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  path: types.string(),
-  value: types.optional(z.any()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    path: types.string(),
+    value: types.optional(z.any()),
+  })
+);
 /** @internal */
 export type ExtendPaths$Outbound = {
   path: string;
@@ -59,10 +61,12 @@ export const ExtendPaths$outboundSchema: z.ZodType<
   ExtendPaths$Outbound,
   z.ZodTypeDef,
   ExtendPaths
-> = z.object({
-  path: z.string(),
-  value: z.any().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    path: z.string(),
+    value: z.any().optional(),
+  })
+);
 
 export function extendPathsToJSON(extendPaths: ExtendPaths): string {
   return JSON.stringify(ExtendPaths$outboundSchema.parse(extendPaths));
@@ -82,21 +86,23 @@ export const PassThroughBody$inboundSchema: z.ZodType<
   PassThroughBody,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  service_id: types.string(),
-  operation_id: types.optional(types.string()),
-  extend_object: types.optional(z.record(z.any())),
-  extend_paths: types.optional(
-    z.array(z.lazy(() => ExtendPaths$inboundSchema)),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "service_id": "serviceId",
-    "operation_id": "operationId",
-    "extend_object": "extendObject",
-    "extend_paths": "extendPaths",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    service_id: types.string(),
+    operation_id: types.optional(types.string()),
+    extend_object: types.optional(z.record(z.any())),
+    extend_paths: types.optional(
+      z.array(z.lazy(() => ExtendPaths$inboundSchema)),
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "service_id": "serviceId",
+      "operation_id": "operationId",
+      "extend_object": "extendObject",
+      "extend_paths": "extendPaths",
+    });
+  })
+);
 /** @internal */
 export type PassThroughBody$Outbound = {
   service_id: string;
@@ -110,19 +116,21 @@ export const PassThroughBody$outboundSchema: z.ZodType<
   PassThroughBody$Outbound,
   z.ZodTypeDef,
   PassThroughBody
-> = z.object({
-  serviceId: z.string(),
-  operationId: z.string().optional(),
-  extendObject: z.record(z.any()).optional(),
-  extendPaths: z.array(z.lazy(() => ExtendPaths$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    serviceId: "service_id",
-    operationId: "operation_id",
-    extendObject: "extend_object",
-    extendPaths: "extend_paths",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    serviceId: z.string(),
+    operationId: z.string().optional(),
+    extendObject: z.record(z.any()).optional(),
+    extendPaths: z.array(z.lazy(() => ExtendPaths$outboundSchema)).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      serviceId: "service_id",
+      operationId: "operation_id",
+      extendObject: "extend_object",
+      extendPaths: "extend_paths",
+    });
+  })
+);
 
 export function passThroughBodyToJSON(
   passThroughBody: PassThroughBody,

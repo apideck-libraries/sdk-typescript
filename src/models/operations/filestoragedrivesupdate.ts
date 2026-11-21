@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const FileStorageDrivesUpdateRequest$outboundSchema: z.ZodType<
   FileStorageDrivesUpdateRequest$Outbound,
   z.ZodTypeDef,
   FileStorageDrivesUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  drive: components.DriveInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    drive: "Drive",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    drive: components.DriveInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      drive: "Drive",
+    });
+  })
+);
 
 export function fileStorageDrivesUpdateRequestToJSON(
   fileStorageDrivesUpdateRequest: FileStorageDrivesUpdateRequest,
@@ -100,21 +102,23 @@ export const FileStorageDrivesUpdateResponse$inboundSchema: z.ZodType<
   FileStorageDrivesUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateDriveResponse: types.optional(
-    components.UpdateDriveResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateDriveResponse": "updateDriveResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateDriveResponse: types.optional(
+      components.UpdateDriveResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateDriveResponse": "updateDriveResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function fileStorageDrivesUpdateResponseFromJSON(
   jsonString: string,

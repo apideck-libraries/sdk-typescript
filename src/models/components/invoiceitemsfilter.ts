@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -61,14 +62,18 @@ export const InvoiceItemType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   InvoiceItemType
-> = openEnums.outboundSchema(InvoiceItemType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(InvoiceItemType)
+);
 
 /** @internal */
 export const TransactionType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   TransactionType
-> = openEnums.outboundSchema(TransactionType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(TransactionType)
+);
 
 /** @internal */
 export type InvoiceItemsFilter$Outbound = {
@@ -85,20 +90,22 @@ export const InvoiceItemsFilter$outboundSchema: z.ZodType<
   InvoiceItemsFilter$Outbound,
   z.ZodTypeDef,
   InvoiceItemsFilter
-> = z.object({
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-  ids: z.string().optional(),
-  name: z.string().optional(),
-  type: z.nullable(InvoiceItemType$outboundSchema).optional(),
-  transactionType: z.nullable(TransactionType$outboundSchema).optional(),
-  subsidiaryId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    updatedSince: "updated_since",
-    transactionType: "transaction_type",
-    subsidiaryId: "subsidiary_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+    ids: z.string().optional(),
+    name: z.string().optional(),
+    type: z.nullable(InvoiceItemType$outboundSchema).optional(),
+    transactionType: z.nullable(TransactionType$outboundSchema).optional(),
+    subsidiaryId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      updatedSince: "updated_since",
+      transactionType: "transaction_type",
+      subsidiaryId: "subsidiary_id",
+    });
+  })
+);
 
 export function invoiceItemsFilterToJSON(
   invoiceItemsFilter: InvoiceItemsFilter,

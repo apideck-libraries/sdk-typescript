@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -60,15 +60,17 @@ export const VaultSessionsCreateRequest$outboundSchema: z.ZodType<
   VaultSessionsCreateRequest$Outbound,
   z.ZodTypeDef,
   VaultSessionsCreateRequest
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  session: components.Session$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    session: "Session",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    session: components.Session$outboundSchema.optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      session: "Session",
+    });
+  })
+);
 
 export function vaultSessionsCreateRequestToJSON(
   vaultSessionsCreateRequest: VaultSessionsCreateRequest,
@@ -83,21 +85,23 @@ export const VaultSessionsCreateResponse$inboundSchema: z.ZodType<
   VaultSessionsCreateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateSessionResponse: types.optional(
-    components.CreateSessionResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateSessionResponse": "createSessionResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateSessionResponse: types.optional(
+      components.CreateSessionResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateSessionResponse": "createSessionResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultSessionsCreateResponseFromJSON(
   jsonString: string,

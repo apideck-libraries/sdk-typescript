@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -95,22 +95,24 @@ export const AccountingPurchaseOrdersAllRequest$outboundSchema: z.ZodType<
   AccountingPurchaseOrdersAllRequest$Outbound,
   z.ZodTypeDef,
   AccountingPurchaseOrdersAllRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  passThrough: z.record(z.any()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.PurchaseOrdersFilter$outboundSchema.optional(),
-  sort: components.PurchaseOrdersSort$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    cursor: z.nullable(z.string()).optional(),
+    passThrough: z.record(z.any()).optional(),
+    limit: z.number().int().default(20),
+    filter: components.PurchaseOrdersFilter$outboundSchema.optional(),
+    sort: components.PurchaseOrdersSort$outboundSchema.optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function accountingPurchaseOrdersAllRequestToJSON(
   accountingPurchaseOrdersAllRequest: AccountingPurchaseOrdersAllRequest,
@@ -127,21 +129,23 @@ export const AccountingPurchaseOrdersAllResponse$inboundSchema: z.ZodType<
   AccountingPurchaseOrdersAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetPurchaseOrdersResponse: types.optional(
-    components.GetPurchaseOrdersResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetPurchaseOrdersResponse": "getPurchaseOrdersResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetPurchaseOrdersResponse: types.optional(
+      components.GetPurchaseOrdersResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetPurchaseOrdersResponse": "getPurchaseOrdersResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingPurchaseOrdersAllResponseFromJSON(
   jsonString: string,

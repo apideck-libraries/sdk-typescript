@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -43,23 +43,27 @@ export const PaginationCoverageMode$inboundSchema: z.ZodType<
   PaginationCoverageMode,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(PaginationCoverageMode);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(PaginationCoverageMode)
+);
 
 /** @internal */
 export const PaginationCoverage$inboundSchema: z.ZodType<
   PaginationCoverage,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  mode: types.optional(PaginationCoverageMode$inboundSchema),
-  paging_support: types.optional(types.boolean()),
-  limit_support: types.optional(types.boolean()),
-}).transform((v) => {
-  return remap$(v, {
-    "paging_support": "pagingSupport",
-    "limit_support": "limitSupport",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    mode: types.optional(PaginationCoverageMode$inboundSchema),
+    paging_support: types.optional(types.boolean()),
+    limit_support: types.optional(types.boolean()),
+  }).transform((v) => {
+    return remap$(v, {
+      "paging_support": "pagingSupport",
+      "limit_support": "limitSupport",
+    });
+  })
+);
 
 export function paginationCoverageFromJSON(
   jsonString: string,

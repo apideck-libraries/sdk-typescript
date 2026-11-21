@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -97,22 +97,24 @@ export const AccountingDepartmentsAllRequest$outboundSchema: z.ZodType<
   AccountingDepartmentsAllRequest$Outbound,
   z.ZodTypeDef,
   AccountingDepartmentsAllRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  fields: z.nullable(z.string()).optional(),
-  filter: components.AccountingDepartmentsFilter$outboundSchema.optional(),
-  passThrough: z.record(z.any()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    fields: z.nullable(z.string()).optional(),
+    filter: components.AccountingDepartmentsFilter$outboundSchema.optional(),
+    passThrough: z.record(z.any()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function accountingDepartmentsAllRequestToJSON(
   accountingDepartmentsAllRequest: AccountingDepartmentsAllRequest,
@@ -129,21 +131,23 @@ export const AccountingDepartmentsAllResponse$inboundSchema: z.ZodType<
   AccountingDepartmentsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetAccountingDepartmentsResponse: types.optional(
-    components.GetAccountingDepartmentsResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetAccountingDepartmentsResponse": "getAccountingDepartmentsResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetAccountingDepartmentsResponse: types.optional(
+      components.GetAccountingDepartmentsResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetAccountingDepartmentsResponse": "getAccountingDepartmentsResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingDepartmentsAllResponseFromJSON(
   jsonString: string,

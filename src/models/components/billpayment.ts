@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -334,43 +334,51 @@ export const BillPaymentType$inboundSchema: z.ZodType<
   BillPaymentType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(BillPaymentType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(BillPaymentType));
 /** @internal */
 export const BillPaymentType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   BillPaymentType
-> = openEnums.outboundSchema(BillPaymentType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(BillPaymentType)
+);
 
 /** @internal */
 export const BillPaymentAllocationType$inboundSchema: z.ZodType<
   BillPaymentAllocationType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(BillPaymentAllocationType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(BillPaymentAllocationType)
+);
 /** @internal */
 export const BillPaymentAllocationType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   BillPaymentAllocationType
-> = openEnums.outboundSchema(BillPaymentAllocationType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(BillPaymentAllocationType)
+);
 
 /** @internal */
 export const Allocations$inboundSchema: z.ZodType<
   Allocations,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  type: types.optional(BillPaymentAllocationType$inboundSchema),
-  code: types.optional(types.string()),
-  amount: z.nullable(types.number()).optional(),
-  allocation_id: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "allocation_id": "allocationId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    type: types.optional(BillPaymentAllocationType$inboundSchema),
+    code: types.optional(types.string()),
+    amount: z.nullable(types.number()).optional(),
+    allocation_id: types.optional(types.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "allocation_id": "allocationId",
+    });
+  })
+);
 
 export function allocationsFromJSON(
   jsonString: string,
@@ -387,61 +395,65 @@ export const BillPayment$inboundSchema: z.ZodType<
   BillPayment,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  downstream_id: z.nullable(types.string()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  currency_rate: z.nullable(types.number()).optional(),
-  total_amount: types.nullable(types.number()),
-  reference: z.nullable(types.string()).optional(),
-  payment_method: z.nullable(types.string()).optional(),
-  payment_method_reference: z.nullable(types.string()).optional(),
-  payment_method_id: z.nullable(types.string()).optional(),
-  account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  transaction_date: types.nullable(types.date()),
-  supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
-  company_id: z.nullable(types.string()).optional(),
-  subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
-  reconciled: z.nullable(types.boolean()).optional(),
-  status: types.optional(PaymentStatus$inboundSchema),
-  type: types.optional(BillPaymentType$inboundSchema),
-  allocations: types.optional(z.array(z.lazy(() => Allocations$inboundSchema))),
-  note: z.nullable(types.string()).optional(),
-  number: z.nullable(types.string()).optional(),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  row_version: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "downstream_id": "downstreamId",
-    "currency_rate": "currencyRate",
-    "total_amount": "totalAmount",
-    "payment_method": "paymentMethod",
-    "payment_method_reference": "paymentMethodReference",
-    "payment_method_id": "paymentMethodId",
-    "transaction_date": "transactionDate",
-    "company_id": "companyId",
-    "tracking_categories": "trackingCategories",
-    "custom_fields": "customFields",
-    "row_version": "rowVersion",
-    "display_id": "displayId",
-    "custom_mappings": "customMappings",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.string(),
+    downstream_id: z.nullable(types.string()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    currency_rate: z.nullable(types.number()).optional(),
+    total_amount: types.nullable(types.number()),
+    reference: z.nullable(types.string()).optional(),
+    payment_method: z.nullable(types.string()).optional(),
+    payment_method_reference: z.nullable(types.string()).optional(),
+    payment_method_id: z.nullable(types.string()).optional(),
+    account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    transaction_date: types.nullable(types.date()),
+    supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
+    reconciled: z.nullable(types.boolean()).optional(),
+    status: types.optional(PaymentStatus$inboundSchema),
+    type: types.optional(BillPaymentType$inboundSchema),
+    allocations: types.optional(
+      z.array(z.lazy(() => Allocations$inboundSchema)),
+    ),
+    note: z.nullable(types.string()).optional(),
+    number: z.nullable(types.string()).optional(),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    row_version: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "downstream_id": "downstreamId",
+      "currency_rate": "currencyRate",
+      "total_amount": "totalAmount",
+      "payment_method": "paymentMethod",
+      "payment_method_reference": "paymentMethodReference",
+      "payment_method_id": "paymentMethodId",
+      "transaction_date": "transactionDate",
+      "company_id": "companyId",
+      "tracking_categories": "trackingCategories",
+      "custom_fields": "customFields",
+      "row_version": "rowVersion",
+      "display_id": "displayId",
+      "custom_mappings": "customMappings",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function billPaymentFromJSON(
   jsonString: string,
@@ -466,16 +478,18 @@ export const BillPaymentAllocations$outboundSchema: z.ZodType<
   BillPaymentAllocations$Outbound,
   z.ZodTypeDef,
   BillPaymentAllocations
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  type: BillPaymentAllocationType$outboundSchema.optional(),
-  amount: z.nullable(z.number()).optional(),
-  allocationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    allocationId: "allocation_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    type: BillPaymentAllocationType$outboundSchema.optional(),
+    amount: z.nullable(z.number()).optional(),
+    allocationId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      allocationId: "allocation_id",
+    });
+  })
+);
 
 export function billPaymentAllocationsToJSON(
   billPaymentAllocations: BillPaymentAllocations,
@@ -520,49 +534,51 @@ export const BillPaymentInput$outboundSchema: z.ZodType<
   BillPaymentInput$Outbound,
   z.ZodTypeDef,
   BillPaymentInput
-> = z.object({
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()),
-  reference: z.nullable(z.string()).optional(),
-  paymentMethod: z.nullable(z.string()).optional(),
-  paymentMethodReference: z.nullable(z.string()).optional(),
-  paymentMethodId: z.nullable(z.string()).optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  transactionDate: z.nullable(z.date().transform(v => v.toISOString())),
-  supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
-  reconciled: z.nullable(z.boolean()).optional(),
-  status: PaymentStatus$outboundSchema.optional(),
-  type: BillPaymentType$outboundSchema.optional(),
-  allocations: z.array(z.lazy(() => BillPaymentAllocations$outboundSchema))
-    .optional(),
-  note: z.nullable(z.string()).optional(),
-  number: z.nullable(z.string()).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  displayId: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    currencyRate: "currency_rate",
-    totalAmount: "total_amount",
-    paymentMethod: "payment_method",
-    paymentMethodReference: "payment_method_reference",
-    paymentMethodId: "payment_method_id",
-    transactionDate: "transaction_date",
-    companyId: "company_id",
-    trackingCategories: "tracking_categories",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    displayId: "display_id",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    currencyRate: z.nullable(z.number()).optional(),
+    totalAmount: z.nullable(z.number()),
+    reference: z.nullable(z.string()).optional(),
+    paymentMethod: z.nullable(z.string()).optional(),
+    paymentMethodReference: z.nullable(z.string()).optional(),
+    paymentMethodId: z.nullable(z.string()).optional(),
+    account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    transactionDate: z.nullable(z.date().transform(v => v.toISOString())),
+    supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
+    companyId: z.nullable(z.string()).optional(),
+    subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
+    reconciled: z.nullable(z.boolean()).optional(),
+    status: PaymentStatus$outboundSchema.optional(),
+    type: BillPaymentType$outboundSchema.optional(),
+    allocations: z.array(z.lazy(() => BillPaymentAllocations$outboundSchema))
+      .optional(),
+    note: z.nullable(z.string()).optional(),
+    number: z.nullable(z.string()).optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    displayId: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      currencyRate: "currency_rate",
+      totalAmount: "total_amount",
+      paymentMethod: "payment_method",
+      paymentMethodReference: "payment_method_reference",
+      paymentMethodId: "payment_method_id",
+      transactionDate: "transaction_date",
+      companyId: "company_id",
+      trackingCategories: "tracking_categories",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      displayId: "display_id",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function billPaymentInputToJSON(
   billPaymentInput: BillPaymentInput,

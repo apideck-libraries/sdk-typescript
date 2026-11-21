@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { smartUnion } from "../../types/smartUnion.js";
@@ -155,7 +155,7 @@ export const DetailRequest$inboundSchema: z.ZodType<
   DetailRequest,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function detailRequestFromJSON(
   jsonString: string,
@@ -172,7 +172,7 @@ export const DetailResponse$inboundSchema: z.ZodType<
   DetailResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function detailResponseFromJSON(
   jsonString: string,
@@ -189,21 +189,23 @@ export const DetailDebug$inboundSchema: z.ZodType<
   DetailDebug,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  request: types.optional(z.lazy(() => DetailRequest$inboundSchema)),
-  response: types.optional(z.lazy(() => DetailResponse$inboundSchema)),
-  message: types.optional(types.string()),
-  code: types.optional(types.string()),
-  credentials_expire_at_ms: types.optional(types.number()),
-  retry_after_ms: types.optional(types.number()),
-  cooldown_remaining_ms: types.optional(types.number()),
-}).transform((v) => {
-  return remap$(v, {
-    "credentials_expire_at_ms": "credentialsExpireAtMs",
-    "retry_after_ms": "retryAfterMs",
-    "cooldown_remaining_ms": "cooldownRemainingMs",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    request: types.optional(z.lazy(() => DetailRequest$inboundSchema)),
+    response: types.optional(z.lazy(() => DetailResponse$inboundSchema)),
+    message: types.optional(types.string()),
+    code: types.optional(types.string()),
+    credentials_expire_at_ms: types.optional(types.number()),
+    retry_after_ms: types.optional(types.number()),
+    cooldown_remaining_ms: types.optional(types.number()),
+  }).transform((v) => {
+    return remap$(v, {
+      "credentials_expire_at_ms": "credentialsExpireAtMs",
+      "retry_after_ms": "retryAfterMs",
+      "cooldown_remaining_ms": "cooldownRemainingMs",
+    });
+  })
+);
 
 export function detailDebugFromJSON(
   jsonString: string,
@@ -217,11 +219,13 @@ export function detailDebugFromJSON(
 
 /** @internal */
 export const Detail2$inboundSchema: z.ZodType<Detail2, z.ZodTypeDef, unknown> =
-  z.object({
-    type: types.optional(types.string()),
-    message: types.optional(types.string()),
-    debug: types.optional(z.lazy(() => DetailDebug$inboundSchema)),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      type: types.optional(types.string()),
+      message: types.optional(types.string()),
+      debug: types.optional(z.lazy(() => DetailDebug$inboundSchema)),
+    })
+  );
 
 export function detail2FromJSON(
   jsonString: string,
@@ -238,7 +242,9 @@ export const UnauthorizedDetail$inboundSchema: z.ZodType<
   UnauthorizedDetail,
   z.ZodTypeDef,
   unknown
-> = smartUnion([types.string(), z.lazy(() => Detail2$inboundSchema)]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([types.string(), z.lazy(() => Detail2$inboundSchema)])
+);
 
 export function unauthorizedDetailFromJSON(
   jsonString: string,
@@ -255,28 +261,30 @@ export const Unauthorized$inboundSchema: z.ZodType<
   Unauthorized,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  status_code: types.optional(types.number()),
-  error: types.optional(types.string()),
-  type_name: types.optional(types.string()),
-  message: types.optional(types.string()),
-  detail: types.optional(
-    smartUnion([types.string(), z.lazy(() => Detail2$inboundSchema)]),
-  ),
-  ref: types.optional(types.string()),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    const remapped = remap$(v, {
-      "status_code": "statusCode",
-      "type_name": "typeName",
-    });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status_code: types.optional(types.number()),
+    error: types.optional(types.string()),
+    type_name: types.optional(types.string()),
+    message: types.optional(types.string()),
+    detail: types.optional(
+      smartUnion([types.string(), z.lazy(() => Detail2$inboundSchema)]),
+    ),
+    ref: types.optional(types.string()),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      const remapped = remap$(v, {
+        "status_code": "statusCode",
+        "type_name": "typeName",
+      });
 
-    return new Unauthorized(remapped, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+      return new Unauthorized(remapped, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);

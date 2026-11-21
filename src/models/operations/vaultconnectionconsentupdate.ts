@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -70,19 +70,21 @@ export const VaultConnectionConsentUpdateRequest$outboundSchema: z.ZodType<
   VaultConnectionConsentUpdateRequest$Outbound,
   z.ZodTypeDef,
   VaultConnectionConsentUpdateRequest
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string(),
-  unifiedApi: z.string(),
-  updateConsentRequest: components.UpdateConsentRequest$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    serviceId: "service_id",
-    unifiedApi: "unified_api",
-    updateConsentRequest: "UpdateConsentRequest",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string(),
+    unifiedApi: z.string(),
+    updateConsentRequest: components.UpdateConsentRequest$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      serviceId: "service_id",
+      unifiedApi: "unified_api",
+      updateConsentRequest: "UpdateConsentRequest",
+    });
+  })
+);
 
 export function vaultConnectionConsentUpdateRequestToJSON(
   vaultConnectionConsentUpdateRequest: VaultConnectionConsentUpdateRequest,
@@ -99,21 +101,23 @@ export const VaultConnectionConsentUpdateResponse$inboundSchema: z.ZodType<
   VaultConnectionConsentUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateConsentResponse: types.optional(
-    components.UpdateConsentResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateConsentResponse": "updateConsentResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateConsentResponse: types.optional(
+      components.UpdateConsentResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateConsentResponse": "updateConsentResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultConnectionConsentUpdateResponseFromJSON(
   jsonString: string,

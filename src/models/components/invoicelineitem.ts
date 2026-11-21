@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -306,90 +306,96 @@ export const InvoiceLineItemType$inboundSchema: z.ZodType<
   InvoiceLineItemType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(InvoiceLineItemType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(InvoiceLineItemType)
+);
 /** @internal */
 export const InvoiceLineItemType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   InvoiceLineItemType
-> = openEnums.outboundSchema(InvoiceLineItemType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(InvoiceLineItemType)
+);
 
 /** @internal */
 export const InvoiceLineItem$inboundSchema: z.ZodType<
   InvoiceLineItem,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  row_id: types.optional(types.string()),
-  code: z.nullable(types.string()).optional(),
-  line_number: z.nullable(types.number()).optional(),
-  description: z.nullable(types.string()).optional(),
-  type: z.nullable(InvoiceLineItemType$inboundSchema).optional(),
-  tax_amount: z.nullable(types.number()).optional(),
-  total_amount: z.nullable(types.number()).optional(),
-  quantity: z.nullable(types.number()).optional(),
-  unit_price: z.nullable(types.number()).optional(),
-  unit_of_measure: z.nullable(types.string()).optional(),
-  discount_percentage: z.nullable(types.number()).optional(),
-  discount_amount: z.nullable(types.number()).optional(),
-  service_date: z.nullable(types.date()).optional(),
-  category_id: z.nullable(types.string()).optional(),
-  location_id: z.nullable(types.string()).optional(),
-  department_id: z.nullable(types.string()).optional(),
-  subsidiary_id: z.nullable(types.string()).optional(),
-  shipping_id: z.nullable(types.string()).optional(),
-  memo: z.nullable(types.string()).optional(),
-  prepaid: z.nullable(types.boolean()).optional(),
-  item: types.optional(LinkedInvoiceItem$inboundSchema),
-  taxable: z.nullable(types.boolean()).optional(),
-  tax_applicable_on: z.nullable(types.string()).optional(),
-  tax_recoverability: z.nullable(types.string()).optional(),
-  tax_method: z.nullable(types.string()).optional(),
-  worktags: types.optional(
-    z.array(types.nullable(LinkedWorktag$inboundSchema)),
-  ),
-  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "row_id": "rowId",
-    "line_number": "lineNumber",
-    "tax_amount": "taxAmount",
-    "total_amount": "totalAmount",
-    "unit_price": "unitPrice",
-    "unit_of_measure": "unitOfMeasure",
-    "discount_percentage": "discountPercentage",
-    "discount_amount": "discountAmount",
-    "service_date": "serviceDate",
-    "category_id": "categoryId",
-    "location_id": "locationId",
-    "department_id": "departmentId",
-    "subsidiary_id": "subsidiaryId",
-    "shipping_id": "shippingId",
-    "tax_applicable_on": "taxApplicableOn",
-    "tax_recoverability": "taxRecoverability",
-    "tax_method": "taxMethod",
-    "tax_rate": "taxRate",
-    "tracking_categories": "trackingCategories",
-    "ledger_account": "ledgerAccount",
-    "custom_fields": "customFields",
-    "row_version": "rowVersion",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    row_id: types.optional(types.string()),
+    code: z.nullable(types.string()).optional(),
+    line_number: z.nullable(types.number()).optional(),
+    description: z.nullable(types.string()).optional(),
+    type: z.nullable(InvoiceLineItemType$inboundSchema).optional(),
+    tax_amount: z.nullable(types.number()).optional(),
+    total_amount: z.nullable(types.number()).optional(),
+    quantity: z.nullable(types.number()).optional(),
+    unit_price: z.nullable(types.number()).optional(),
+    unit_of_measure: z.nullable(types.string()).optional(),
+    discount_percentage: z.nullable(types.number()).optional(),
+    discount_amount: z.nullable(types.number()).optional(),
+    service_date: z.nullable(types.date()).optional(),
+    category_id: z.nullable(types.string()).optional(),
+    location_id: z.nullable(types.string()).optional(),
+    department_id: z.nullable(types.string()).optional(),
+    subsidiary_id: z.nullable(types.string()).optional(),
+    shipping_id: z.nullable(types.string()).optional(),
+    memo: z.nullable(types.string()).optional(),
+    prepaid: z.nullable(types.boolean()).optional(),
+    item: types.optional(LinkedInvoiceItem$inboundSchema),
+    taxable: z.nullable(types.boolean()).optional(),
+    tax_applicable_on: z.nullable(types.string()).optional(),
+    tax_recoverability: z.nullable(types.string()).optional(),
+    tax_method: z.nullable(types.string()).optional(),
+    worktags: types.optional(
+      z.array(types.nullable(LinkedWorktag$inboundSchema)),
+    ),
+    tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "row_id": "rowId",
+      "line_number": "lineNumber",
+      "tax_amount": "taxAmount",
+      "total_amount": "totalAmount",
+      "unit_price": "unitPrice",
+      "unit_of_measure": "unitOfMeasure",
+      "discount_percentage": "discountPercentage",
+      "discount_amount": "discountAmount",
+      "service_date": "serviceDate",
+      "category_id": "categoryId",
+      "location_id": "locationId",
+      "department_id": "departmentId",
+      "subsidiary_id": "subsidiaryId",
+      "shipping_id": "shippingId",
+      "tax_applicable_on": "taxApplicableOn",
+      "tax_recoverability": "taxRecoverability",
+      "tax_method": "taxMethod",
+      "tax_rate": "taxRate",
+      "tracking_categories": "trackingCategories",
+      "ledger_account": "ledgerAccount",
+      "custom_fields": "customFields",
+      "row_version": "rowVersion",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function invoiceLineItemFromJSON(
   jsonString: string,
@@ -444,68 +450,70 @@ export const InvoiceLineItemInput$outboundSchema: z.ZodType<
   InvoiceLineItemInput$Outbound,
   z.ZodTypeDef,
   InvoiceLineItemInput
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  rowId: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  lineNumber: z.nullable(z.number().int()).optional(),
-  description: z.nullable(z.string()).optional(),
-  type: z.nullable(InvoiceLineItemType$outboundSchema).optional(),
-  taxAmount: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()).optional(),
-  quantity: z.nullable(z.number()).optional(),
-  unitPrice: z.nullable(z.number()).optional(),
-  unitOfMeasure: z.nullable(z.string()).optional(),
-  discountPercentage: z.nullable(z.number()).optional(),
-  discountAmount: z.nullable(z.number()).optional(),
-  serviceDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  categoryId: z.nullable(z.string()).optional(),
-  locationId: z.nullable(z.string()).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  subsidiaryId: z.nullable(z.string()).optional(),
-  shippingId: z.nullable(z.string()).optional(),
-  memo: z.nullable(z.string()).optional(),
-  prepaid: z.nullable(z.boolean()).optional(),
-  item: LinkedInvoiceItem$outboundSchema.optional(),
-  taxApplicableOn: z.nullable(z.string()).optional(),
-  taxRecoverability: z.nullable(z.string()).optional(),
-  taxMethod: z.nullable(z.string()).optional(),
-  worktags: z.array(z.nullable(LinkedWorktag$outboundSchema)).optional(),
-  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    rowId: "row_id",
-    lineNumber: "line_number",
-    taxAmount: "tax_amount",
-    totalAmount: "total_amount",
-    unitPrice: "unit_price",
-    unitOfMeasure: "unit_of_measure",
-    discountPercentage: "discount_percentage",
-    discountAmount: "discount_amount",
-    serviceDate: "service_date",
-    categoryId: "category_id",
-    locationId: "location_id",
-    departmentId: "department_id",
-    subsidiaryId: "subsidiary_id",
-    shippingId: "shipping_id",
-    taxApplicableOn: "tax_applicable_on",
-    taxRecoverability: "tax_recoverability",
-    taxMethod: "tax_method",
-    taxRate: "tax_rate",
-    trackingCategories: "tracking_categories",
-    ledgerAccount: "ledger_account",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    rowId: z.string().optional(),
+    code: z.nullable(z.string()).optional(),
+    lineNumber: z.nullable(z.number().int()).optional(),
+    description: z.nullable(z.string()).optional(),
+    type: z.nullable(InvoiceLineItemType$outboundSchema).optional(),
+    taxAmount: z.nullable(z.number()).optional(),
+    totalAmount: z.nullable(z.number()).optional(),
+    quantity: z.nullable(z.number()).optional(),
+    unitPrice: z.nullable(z.number()).optional(),
+    unitOfMeasure: z.nullable(z.string()).optional(),
+    discountPercentage: z.nullable(z.number()).optional(),
+    discountAmount: z.nullable(z.number()).optional(),
+    serviceDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    categoryId: z.nullable(z.string()).optional(),
+    locationId: z.nullable(z.string()).optional(),
+    departmentId: z.nullable(z.string()).optional(),
+    subsidiaryId: z.nullable(z.string()).optional(),
+    shippingId: z.nullable(z.string()).optional(),
+    memo: z.nullable(z.string()).optional(),
+    prepaid: z.nullable(z.boolean()).optional(),
+    item: LinkedInvoiceItem$outboundSchema.optional(),
+    taxApplicableOn: z.nullable(z.string()).optional(),
+    taxRecoverability: z.nullable(z.string()).optional(),
+    taxMethod: z.nullable(z.string()).optional(),
+    worktags: z.array(z.nullable(LinkedWorktag$outboundSchema)).optional(),
+    taxRate: LinkedTaxRateInput$outboundSchema.optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      rowId: "row_id",
+      lineNumber: "line_number",
+      taxAmount: "tax_amount",
+      totalAmount: "total_amount",
+      unitPrice: "unit_price",
+      unitOfMeasure: "unit_of_measure",
+      discountPercentage: "discount_percentage",
+      discountAmount: "discount_amount",
+      serviceDate: "service_date",
+      categoryId: "category_id",
+      locationId: "location_id",
+      departmentId: "department_id",
+      subsidiaryId: "subsidiary_id",
+      shippingId: "shipping_id",
+      taxApplicableOn: "tax_applicable_on",
+      taxRecoverability: "tax_recoverability",
+      taxMethod: "tax_method",
+      taxRate: "tax_rate",
+      trackingCategories: "tracking_categories",
+      ledgerAccount: "ledger_account",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+    });
+  })
+);
 
 export function invoiceLineItemInputToJSON(
   invoiceLineItemInput: InvoiceLineItemInput,

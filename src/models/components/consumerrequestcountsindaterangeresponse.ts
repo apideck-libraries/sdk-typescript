@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -47,23 +47,25 @@ export const ConsumerRequestCountsInDateRangeResponseData$inboundSchema:
     ConsumerRequestCountsInDateRangeResponseData,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    application_id: types.optional(types.string()),
-    consumer_id: types.optional(types.string()),
-    start_datetime: types.optional(types.string()),
-    end_datetime: types.optional(types.string()),
-    aggregated_request_count: types.optional(types.number()),
-    request_counts: types.optional(RequestCountAllocation$inboundSchema),
-  }).transform((v) => {
-    return remap$(v, {
-      "application_id": "applicationId",
-      "consumer_id": "consumerId",
-      "start_datetime": "startDatetime",
-      "end_datetime": "endDatetime",
-      "aggregated_request_count": "aggregatedRequestCount",
-      "request_counts": "requestCounts",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      application_id: types.optional(types.string()),
+      consumer_id: types.optional(types.string()),
+      start_datetime: types.optional(types.string()),
+      end_datetime: types.optional(types.string()),
+      aggregated_request_count: types.optional(types.number()),
+      request_counts: types.optional(RequestCountAllocation$inboundSchema),
+    }).transform((v) => {
+      return remap$(v, {
+        "application_id": "applicationId",
+        "consumer_id": "consumerId",
+        "start_datetime": "startDatetime",
+        "end_datetime": "endDatetime",
+        "aggregated_request_count": "aggregatedRequestCount",
+        "request_counts": "requestCounts",
+      });
+    })
+  );
 
 export function consumerRequestCountsInDateRangeResponseDataFromJSON(
   jsonString: string,
@@ -86,19 +88,21 @@ export const ConsumerRequestCountsInDateRangeResponse$inboundSchema: z.ZodType<
   ConsumerRequestCountsInDateRangeResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  status_code: types.number(),
-  status: types.string(),
-  data: z.lazy(() =>
-    ConsumerRequestCountsInDateRangeResponseData$inboundSchema
-  ),
-  _raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "status_code": "statusCode",
-    "_raw": "raw",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status_code: types.number(),
+    status: types.string(),
+    data: z.lazy(() =>
+      ConsumerRequestCountsInDateRangeResponseData$inboundSchema
+    ),
+    _raw: z.nullable(z.record(z.any())).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "status_code": "statusCode",
+      "_raw": "raw",
+    });
+  })
+);
 
 export function consumerRequestCountsInDateRangeResponseFromJSON(
   jsonString: string,

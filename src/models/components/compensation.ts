@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -44,20 +44,22 @@ export const Compensation$inboundSchema: z.ZodType<
   Compensation,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  employee_id: types.nullable(types.string()),
-  net_pay: z.nullable(types.number()).optional(),
-  gross_pay: z.nullable(types.number()).optional(),
-  taxes: z.nullable(z.array(Tax$inboundSchema)).optional(),
-  deductions: z.nullable(z.array(Deduction$inboundSchema)).optional(),
-  benefits: z.nullable(z.array(Benefit$inboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "employee_id": "employeeId",
-    "net_pay": "netPay",
-    "gross_pay": "grossPay",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    employee_id: types.nullable(types.string()),
+    net_pay: z.nullable(types.number()).optional(),
+    gross_pay: z.nullable(types.number()).optional(),
+    taxes: z.nullable(z.array(Tax$inboundSchema)).optional(),
+    deductions: z.nullable(z.array(Deduction$inboundSchema)).optional(),
+    benefits: z.nullable(z.array(Benefit$inboundSchema)).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "employee_id": "employeeId",
+      "net_pay": "netPay",
+      "gross_pay": "grossPay",
+    });
+  })
+);
 
 export function compensationFromJSON(
   jsonString: string,

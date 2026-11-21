@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -37,18 +37,20 @@ export const LinkedTrackingCategory$inboundSchema: z.ZodType<
   LinkedTrackingCategory,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  code: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  parent_id: types.optional(types.string()),
-  parent_name: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_id": "parentId",
-    "parent_name": "parentName",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    code: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    parent_id: types.optional(types.string()),
+    parent_name: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "parent_id": "parentId",
+      "parent_name": "parentName",
+    });
+  })
+);
 /** @internal */
 export type LinkedTrackingCategory$Outbound = {
   id?: string | undefined;
@@ -63,18 +65,20 @@ export const LinkedTrackingCategory$outboundSchema: z.ZodType<
   LinkedTrackingCategory$Outbound,
   z.ZodTypeDef,
   LinkedTrackingCategory
-> = z.object({
-  id: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  parentId: z.string().optional(),
-  parentName: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    parentName: "parent_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    code: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()).optional(),
+    parentId: z.string().optional(),
+    parentName: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      parentId: "parent_id",
+      parentName: "parent_name",
+    });
+  })
+);
 
 export function linkedTrackingCategoryToJSON(
   linkedTrackingCategory: LinkedTrackingCategory,

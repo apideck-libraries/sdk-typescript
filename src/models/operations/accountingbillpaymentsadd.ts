@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const AccountingBillPaymentsAddRequest$outboundSchema: z.ZodType<
   AccountingBillPaymentsAddRequest$Outbound,
   z.ZodTypeDef,
   AccountingBillPaymentsAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  billPayment: components.BillPaymentInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    billPayment: "BillPayment",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    billPayment: components.BillPaymentInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      billPayment: "BillPayment",
+    });
+  })
+);
 
 export function accountingBillPaymentsAddRequestToJSON(
   accountingBillPaymentsAddRequest: AccountingBillPaymentsAddRequest,
@@ -100,21 +102,23 @@ export const AccountingBillPaymentsAddResponse$inboundSchema: z.ZodType<
   AccountingBillPaymentsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateBillPaymentResponse: types.optional(
-    components.CreateBillPaymentResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateBillPaymentResponse": "createBillPaymentResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateBillPaymentResponse: types.optional(
+      components.CreateBillPaymentResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateBillPaymentResponse": "createBillPaymentResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingBillPaymentsAddResponseFromJSON(
   jsonString: string,

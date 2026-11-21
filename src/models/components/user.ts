@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -101,44 +101,46 @@ export type User = {
 };
 
 /** @internal */
-export const User$inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z
-  .object({
-    id: types.optional(types.string()),
-    parent_id: z.nullable(types.string()).optional(),
-    username: z.nullable(types.string()).optional(),
-    name: z.nullable(types.string()).optional(),
-    first_name: z.nullable(types.string()).optional(),
-    last_name: z.nullable(types.string()).optional(),
-    title: z.nullable(types.string()).optional(),
-    division: z.nullable(types.string()).optional(),
-    department: z.nullable(types.string()).optional(),
-    company_name: z.nullable(types.string()).optional(),
-    employee_number: z.nullable(types.string()).optional(),
-    description: z.nullable(types.string()).optional(),
-    image: z.nullable(types.string()).optional(),
-    language: z.nullable(types.string()).optional(),
-    status: z.nullable(types.string()).optional(),
-    addresses: types.optional(z.array(Address$inboundSchema)),
-    phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
-    emails: z.array(Email$inboundSchema),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    updated_at: z.nullable(types.string()).optional(),
-    created_at: z.nullable(types.string()).optional(),
-    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-  }).transform((v) => {
-    return remap$(v, {
-      "parent_id": "parentId",
-      "first_name": "firstName",
-      "last_name": "lastName",
-      "company_name": "companyName",
-      "employee_number": "employeeNumber",
-      "phone_numbers": "phoneNumbers",
-      "custom_mappings": "customMappings",
-      "updated_at": "updatedAt",
-      "created_at": "createdAt",
-      "pass_through": "passThrough",
-    });
-  });
+export const User$inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.optional(types.string()),
+      parent_id: z.nullable(types.string()).optional(),
+      username: z.nullable(types.string()).optional(),
+      name: z.nullable(types.string()).optional(),
+      first_name: z.nullable(types.string()).optional(),
+      last_name: z.nullable(types.string()).optional(),
+      title: z.nullable(types.string()).optional(),
+      division: z.nullable(types.string()).optional(),
+      department: z.nullable(types.string()).optional(),
+      company_name: z.nullable(types.string()).optional(),
+      employee_number: z.nullable(types.string()).optional(),
+      description: z.nullable(types.string()).optional(),
+      image: z.nullable(types.string()).optional(),
+      language: z.nullable(types.string()).optional(),
+      status: z.nullable(types.string()).optional(),
+      addresses: types.optional(z.array(Address$inboundSchema)),
+      phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+      emails: z.array(Email$inboundSchema),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+      updated_at: z.nullable(types.string()).optional(),
+      created_at: z.nullable(types.string()).optional(),
+      pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    }).transform((v) => {
+      return remap$(v, {
+        "parent_id": "parentId",
+        "first_name": "firstName",
+        "last_name": "lastName",
+        "company_name": "companyName",
+        "employee_number": "employeeNumber",
+        "phone_numbers": "phoneNumbers",
+        "custom_mappings": "customMappings",
+        "updated_at": "updatedAt",
+        "created_at": "createdAt",
+        "pass_through": "passThrough",
+      });
+    })
+  );
 
 export function userFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -88,26 +88,28 @@ export const FileStorageUploadSessionsUploadRequest$outboundSchema: z.ZodType<
   FileStorageUploadSessionsUploadRequest$Outbound,
   z.ZodTypeDef,
   FileStorageUploadSessionsUploadRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  partNumber: z.number(),
-  digest: z.string().optional(),
-  raw: z.boolean().default(false),
-  requestBody: z.union([
-    z.instanceof(ReadableStream<Uint8Array>),
-    z.instanceof(Blob),
-    z.instanceof(ArrayBuffer),
-    z.instanceof(Uint8Array),
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    partNumber: "part_number",
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    partNumber: z.number(),
+    digest: z.string().optional(),
+    raw: z.boolean().default(false),
+    requestBody: z.union([
+      z.instanceof(ReadableStream<Uint8Array>),
+      z.instanceof(Blob),
+      z.instanceof(ArrayBuffer),
+      z.instanceof(Uint8Array),
+    ]),
+  }).transform((v) => {
+    return remap$(v, {
+      partNumber: "part_number",
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function fileStorageUploadSessionsUploadRequestToJSON(
   fileStorageUploadSessionsUploadRequest:
@@ -125,21 +127,23 @@ export const FileStorageUploadSessionsUploadResponse$inboundSchema: z.ZodType<
   FileStorageUploadSessionsUploadResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateUploadSessionResponse: types.optional(
-    components.UpdateUploadSessionResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateUploadSessionResponse": "updateUploadSessionResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateUploadSessionResponse: types.optional(
+      components.UpdateUploadSessionResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateUploadSessionResponse": "updateUploadSessionResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function fileStorageUploadSessionsUploadResponseFromJSON(
   jsonString: string,

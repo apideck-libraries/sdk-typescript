@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type RefundsFilter = {
   updatedSince?: Date | undefined;
@@ -29,17 +30,19 @@ export const RefundsFilter$outboundSchema: z.ZodType<
   RefundsFilter$Outbound,
   z.ZodTypeDef,
   RefundsFilter
-> = z.object({
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-  customerId: z.string().optional(),
-  subsidiaryId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    updatedSince: "updated_since",
-    customerId: "customer_id",
-    subsidiaryId: "subsidiary_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+    customerId: z.string().optional(),
+    subsidiaryId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      updatedSince: "updated_since",
+      customerId: "customer_id",
+      subsidiaryId: "subsidiary_id",
+    });
+  })
+);
 
 export function refundsFilterToJSON(refundsFilter: RefundsFilter): string {
   return JSON.stringify(RefundsFilter$outboundSchema.parse(refundsFilter));

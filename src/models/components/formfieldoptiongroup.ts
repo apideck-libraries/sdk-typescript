@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -27,16 +27,18 @@ export const FormFieldOptionGroup$inboundSchema: z.ZodType<
   FormFieldOptionGroup,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  label: types.string(),
-  options: z.array(SimpleFormFieldOption$inboundSchema),
-  option_type: types.literal("group"),
-}).transform((v) => {
-  return remap$(v, {
-    "option_type": "optionType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    label: types.string(),
+    options: z.array(SimpleFormFieldOption$inboundSchema),
+    option_type: types.literal("group"),
+  }).transform((v) => {
+    return remap$(v, {
+      "option_type": "optionType",
+    });
+  })
+);
 /** @internal */
 export type FormFieldOptionGroup$Outbound = {
   id?: string | undefined;
@@ -50,16 +52,18 @@ export const FormFieldOptionGroup$outboundSchema: z.ZodType<
   FormFieldOptionGroup$Outbound,
   z.ZodTypeDef,
   FormFieldOptionGroup
-> = z.object({
-  id: z.string().optional(),
-  label: z.string(),
-  options: z.array(SimpleFormFieldOption$outboundSchema),
-  optionType: z.literal("group"),
-}).transform((v) => {
-  return remap$(v, {
-    optionType: "option_type",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    label: z.string(),
+    options: z.array(SimpleFormFieldOption$outboundSchema),
+    optionType: z.literal("group"),
+  }).transform((v) => {
+    return remap$(v, {
+      optionType: "option_type",
+    });
+  })
+);
 
 export function formFieldOptionGroupToJSON(
   formFieldOptionGroup: FormFieldOptionGroup,

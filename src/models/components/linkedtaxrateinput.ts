@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type LinkedTaxRateInput = {
   /**
@@ -31,11 +32,13 @@ export const LinkedTaxRateInput$outboundSchema: z.ZodType<
   LinkedTaxRateInput$Outbound,
   z.ZodTypeDef,
   LinkedTaxRateInput
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  code: z.nullable(z.string()).optional(),
-  rate: z.nullable(z.number()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    code: z.nullable(z.string()).optional(),
+    rate: z.nullable(z.number()).optional(),
+  })
+);
 
 export function linkedTaxRateInputToJSON(
   linkedTaxRateInput: LinkedTaxRateInput,

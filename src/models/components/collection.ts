@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -49,23 +49,25 @@ export const Collection$inboundSchema: z.ZodType<
   Collection,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  parent_id: z.nullable(types.string()).optional(),
-  type: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_id": "parentId",
-    "custom_mappings": "customMappings",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.string(),
+    parent_id: z.nullable(types.string()).optional(),
+    type: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "parent_id": "parentId",
+      "custom_mappings": "customMappings",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+    });
+  })
+);
 
 export function collectionFromJSON(
   jsonString: string,

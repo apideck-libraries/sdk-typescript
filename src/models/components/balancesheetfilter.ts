@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -68,14 +69,16 @@ export const PeriodType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   PeriodType
-> = openEnums.outboundSchema(PeriodType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(PeriodType));
 
 /** @internal */
 export const BalanceSheetFilterAccountingMethod$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   BalanceSheetFilterAccountingMethod
-> = openEnums.outboundSchema(BalanceSheetFilterAccountingMethod);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(BalanceSheetFilterAccountingMethod)
+);
 
 /** @internal */
 export type BalanceSheetFilter$Outbound = {
@@ -92,24 +95,26 @@ export const BalanceSheetFilter$outboundSchema: z.ZodType<
   BalanceSheetFilter$Outbound,
   z.ZodTypeDef,
   BalanceSheetFilter
-> = z.object({
-  startDate: z.string().optional(),
-  endDate: z.string().optional(),
-  periodCount: z.number().int().optional(),
-  periodType: PeriodType$outboundSchema.optional(),
-  locationId: z.string().optional(),
-  accountingMethod: BalanceSheetFilterAccountingMethod$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    startDate: "start_date",
-    endDate: "end_date",
-    periodCount: "period_count",
-    periodType: "period_type",
-    locationId: "location_id",
-    accountingMethod: "accounting_method",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    startDate: z.string().optional(),
+    endDate: z.string().optional(),
+    periodCount: z.number().int().optional(),
+    periodType: PeriodType$outboundSchema.optional(),
+    locationId: z.string().optional(),
+    accountingMethod: BalanceSheetFilterAccountingMethod$outboundSchema
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      startDate: "start_date",
+      endDate: "end_date",
+      periodCount: "period_count",
+      periodType: "period_type",
+      locationId: "location_id",
+      accountingMethod: "accounting_method",
+    });
+  })
+);
 
 export function balanceSheetFilterToJSON(
   balanceSheetFilter: BalanceSheetFilter,

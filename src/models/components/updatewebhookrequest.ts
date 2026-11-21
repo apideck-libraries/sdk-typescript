@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { Status, Status$outboundSchema } from "./status.js";
 import {
   WebhookEventType,
@@ -42,16 +43,18 @@ export const UpdateWebhookRequest$outboundSchema: z.ZodType<
   UpdateWebhookRequest$Outbound,
   z.ZodTypeDef,
   UpdateWebhookRequest
-> = z.object({
-  description: z.nullable(z.string()).optional(),
-  status: Status$outboundSchema.optional(),
-  deliveryUrl: z.string().optional(),
-  events: z.array(WebhookEventType$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    deliveryUrl: "delivery_url",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    description: z.nullable(z.string()).optional(),
+    status: Status$outboundSchema.optional(),
+    deliveryUrl: z.string().optional(),
+    events: z.array(WebhookEventType$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      deliveryUrl: "delivery_url",
+    });
+  })
+);
 
 export function updateWebhookRequestToJSON(
   updateWebhookRequest: UpdateWebhookRequest,

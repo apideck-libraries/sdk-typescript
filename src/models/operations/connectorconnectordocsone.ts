@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -56,15 +56,17 @@ export const ConnectorConnectorDocsOneRequest$outboundSchema: z.ZodType<
   ConnectorConnectorDocsOneRequest$Outbound,
   z.ZodTypeDef,
   ConnectorConnectorDocsOneRequest
-> = z.object({
-  appId: z.string().optional(),
-  id: z.string(),
-  docId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    docId: "doc_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    appId: z.string().optional(),
+    id: z.string(),
+    docId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      docId: "doc_id",
+    });
+  })
+);
 
 export function connectorConnectorDocsOneRequestToJSON(
   connectorConnectorDocsOneRequest: ConnectorConnectorDocsOneRequest,
@@ -81,19 +83,21 @@ export const ConnectorConnectorDocsOneResponse$inboundSchema: z.ZodType<
   ConnectorConnectorDocsOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetConnectorDocResponse: types.optional(types.string()),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetConnectorDocResponse": "getConnectorDocResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetConnectorDocResponse: types.optional(types.string()),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetConnectorDocResponse": "getConnectorDocResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function connectorConnectorDocsOneResponseFromJSON(
   jsonString: string,

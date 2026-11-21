@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type DriveGroupsFilter = {
   /**
@@ -22,13 +23,15 @@ export const DriveGroupsFilter$outboundSchema: z.ZodType<
   DriveGroupsFilter$Outbound,
   z.ZodTypeDef,
   DriveGroupsFilter
-> = z.object({
-  parentGroupId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentGroupId: "parent_group_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    parentGroupId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      parentGroupId: "parent_group_id",
+    });
+  })
+);
 
 export function driveGroupsFilterToJSON(
   driveGroupsFilter: DriveGroupsFilter,

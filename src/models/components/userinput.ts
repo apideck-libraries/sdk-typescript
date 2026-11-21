@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   Address,
   Address$Outbound,
@@ -121,37 +122,39 @@ export const UserInput$outboundSchema: z.ZodType<
   UserInput$Outbound,
   z.ZodTypeDef,
   UserInput
-> = z.object({
-  parentId: z.nullable(z.string()).optional(),
-  username: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  division: z.nullable(z.string()).optional(),
-  department: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  employeeNumber: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  image: z.nullable(z.string()).optional(),
-  language: z.nullable(z.string()).optional(),
-  status: z.nullable(z.string()).optional(),
-  password: z.nullable(z.string()).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    firstName: "first_name",
-    lastName: "last_name",
-    companyName: "company_name",
-    employeeNumber: "employee_number",
-    phoneNumbers: "phone_numbers",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    parentId: z.nullable(z.string()).optional(),
+    username: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()).optional(),
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    title: z.nullable(z.string()).optional(),
+    division: z.nullable(z.string()).optional(),
+    department: z.nullable(z.string()).optional(),
+    companyName: z.nullable(z.string()).optional(),
+    employeeNumber: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    image: z.nullable(z.string()).optional(),
+    language: z.nullable(z.string()).optional(),
+    status: z.nullable(z.string()).optional(),
+    password: z.nullable(z.string()).optional(),
+    addresses: z.array(Address$outboundSchema).optional(),
+    phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
+    emails: z.array(Email$outboundSchema),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      parentId: "parent_id",
+      firstName: "first_name",
+      lastName: "last_name",
+      companyName: "company_name",
+      employeeNumber: "employee_number",
+      phoneNumbers: "phone_numbers",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function userInputToJSON(userInput: UserInput): string {
   return JSON.stringify(UserInput$outboundSchema.parse(userInput));

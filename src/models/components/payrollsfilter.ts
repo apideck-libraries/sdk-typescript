@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type PayrollsFilter = {
   /**
@@ -27,15 +28,17 @@ export const PayrollsFilter$outboundSchema: z.ZodType<
   PayrollsFilter$Outbound,
   z.ZodTypeDef,
   PayrollsFilter
-> = z.object({
-  startDate: z.string().optional(),
-  endDate: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    startDate: "start_date",
-    endDate: "end_date",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    startDate: z.string().optional(),
+    endDate: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      startDate: "start_date",
+      endDate: "end_date",
+    });
+  })
+);
 
 export function payrollsFilterToJSON(payrollsFilter: PayrollsFilter): string {
   return JSON.stringify(PayrollsFilter$outboundSchema.parse(payrollsFilter));

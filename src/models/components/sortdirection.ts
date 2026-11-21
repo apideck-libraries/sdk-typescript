@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -23,4 +24,4 @@ export const SortDirection$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   SortDirection
-> = openEnums.outboundSchema(SortDirection);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(SortDirection));

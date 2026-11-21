@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -204,14 +205,18 @@ export const CreditNoteUpdateInputCreditNoteStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   CreditNoteUpdateInputCreditNoteStatus
-> = openEnums.outboundSchema(CreditNoteUpdateInputCreditNoteStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(CreditNoteUpdateInputCreditNoteStatus)
+);
 
 /** @internal */
 export const CreditNoteUpdateInputCreditNoteType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   CreditNoteUpdateInputCreditNoteType
-> = openEnums.outboundSchema(CreditNoteUpdateInputCreditNoteType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(CreditNoteUpdateInputCreditNoteType)
+);
 
 /** @internal */
 export type CreditNoteUpdateInput$Outbound = {
@@ -257,65 +262,67 @@ export const CreditNoteUpdateInput$outboundSchema: z.ZodType<
   CreditNoteUpdateInput$Outbound,
   z.ZodTypeDef,
   CreditNoteUpdateInput
-> = z.object({
-  number: z.nullable(z.string()).optional(),
-  customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
-  locationId: z.nullable(z.string()).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  taxInclusive: z.nullable(z.boolean()).optional(),
-  subTotal: z.nullable(z.number()).optional(),
-  totalAmount: z.number().optional(),
-  totalTax: z.nullable(z.number()).optional(),
-  taxCode: z.nullable(z.string()).optional(),
-  balance: z.nullable(z.number()).optional(),
-  remainingCredit: z.nullable(z.number()).optional(),
-  status: CreditNoteUpdateInputCreditNoteStatus$outboundSchema.optional(),
-  reference: z.nullable(z.string()).optional(),
-  dateIssued: z.date().transform(v => v.toISOString()).optional(),
-  datePaid: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  type: CreditNoteUpdateInputCreditNoteType$outboundSchema.optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  lineItems: z.array(InvoiceLineItemInput$outboundSchema).optional(),
-  allocations: z.array(AllocationInput$outboundSchema).optional(),
-  note: z.nullable(z.string()).optional(),
-  terms: z.nullable(z.string()).optional(),
-  termsId: z.nullable(z.string()).optional(),
-  billingAddress: Address$outboundSchema.optional(),
-  shippingAddress: Address$outboundSchema.optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    companyId: "company_id",
-    locationId: "location_id",
-    departmentId: "department_id",
-    currencyRate: "currency_rate",
-    taxInclusive: "tax_inclusive",
-    subTotal: "sub_total",
-    totalAmount: "total_amount",
-    totalTax: "total_tax",
-    taxCode: "tax_code",
-    remainingCredit: "remaining_credit",
-    dateIssued: "date_issued",
-    datePaid: "date_paid",
-    lineItems: "line_items",
-    termsId: "terms_id",
-    billingAddress: "billing_address",
-    shippingAddress: "shipping_address",
-    trackingCategories: "tracking_categories",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    number: z.nullable(z.string()).optional(),
+    customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
+    companyId: z.nullable(z.string()).optional(),
+    subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
+    locationId: z.nullable(z.string()).optional(),
+    departmentId: z.nullable(z.string()).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    currencyRate: z.nullable(z.number()).optional(),
+    taxInclusive: z.nullable(z.boolean()).optional(),
+    subTotal: z.nullable(z.number()).optional(),
+    totalAmount: z.number().optional(),
+    totalTax: z.nullable(z.number()).optional(),
+    taxCode: z.nullable(z.string()).optional(),
+    balance: z.nullable(z.number()).optional(),
+    remainingCredit: z.nullable(z.number()).optional(),
+    status: CreditNoteUpdateInputCreditNoteStatus$outboundSchema.optional(),
+    reference: z.nullable(z.string()).optional(),
+    dateIssued: z.date().transform(v => v.toISOString()).optional(),
+    datePaid: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+    type: CreditNoteUpdateInputCreditNoteType$outboundSchema.optional(),
+    account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    lineItems: z.array(InvoiceLineItemInput$outboundSchema).optional(),
+    allocations: z.array(AllocationInput$outboundSchema).optional(),
+    note: z.nullable(z.string()).optional(),
+    terms: z.nullable(z.string()).optional(),
+    termsId: z.nullable(z.string()).optional(),
+    billingAddress: Address$outboundSchema.optional(),
+    shippingAddress: Address$outboundSchema.optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      companyId: "company_id",
+      locationId: "location_id",
+      departmentId: "department_id",
+      currencyRate: "currency_rate",
+      taxInclusive: "tax_inclusive",
+      subTotal: "sub_total",
+      totalAmount: "total_amount",
+      totalTax: "total_tax",
+      taxCode: "tax_code",
+      remainingCredit: "remaining_credit",
+      dateIssued: "date_issued",
+      datePaid: "date_paid",
+      lineItems: "line_items",
+      termsId: "terms_id",
+      billingAddress: "billing_address",
+      shippingAddress: "shipping_address",
+      trackingCategories: "tracking_categories",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function creditNoteUpdateInputToJSON(
   creditNoteUpdateInput: CreditNoteUpdateInput,

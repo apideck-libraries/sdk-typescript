@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const AccountingSuppliersAddRequest$outboundSchema: z.ZodType<
   AccountingSuppliersAddRequest$Outbound,
   z.ZodTypeDef,
   AccountingSuppliersAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  supplier: components.SupplierInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    supplier: "Supplier",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    supplier: components.SupplierInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      supplier: "Supplier",
+    });
+  })
+);
 
 export function accountingSuppliersAddRequestToJSON(
   accountingSuppliersAddRequest: AccountingSuppliersAddRequest,
@@ -100,21 +102,23 @@ export const AccountingSuppliersAddResponse$inboundSchema: z.ZodType<
   AccountingSuppliersAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateSupplierResponse: types.optional(
-    components.CreateSupplierResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateSupplierResponse": "createSupplierResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateSupplierResponse: types.optional(
+      components.CreateSupplierResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateSupplierResponse": "createSupplierResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingSuppliersAddResponseFromJSON(
   jsonString: string,

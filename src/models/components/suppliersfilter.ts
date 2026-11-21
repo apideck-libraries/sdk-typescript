@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type SuppliersFilter = {
   /**
@@ -49,24 +50,26 @@ export const SuppliersFilter$outboundSchema: z.ZodType<
   SuppliersFilter$Outbound,
   z.ZodTypeDef,
   SuppliersFilter
-> = z.object({
-  companyName: z.string().optional(),
-  displayName: z.string().optional(),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  email: z.string().optional(),
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-  subsidiaryId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    companyName: "company_name",
-    displayName: "display_name",
-    firstName: "first_name",
-    lastName: "last_name",
-    updatedSince: "updated_since",
-    subsidiaryId: "subsidiary_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    companyName: z.string().optional(),
+    displayName: z.string().optional(),
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
+    email: z.string().optional(),
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+    subsidiaryId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      companyName: "company_name",
+      displayName: "display_name",
+      firstName: "first_name",
+      lastName: "last_name",
+      updatedSince: "updated_since",
+      subsidiaryId: "subsidiary_id",
+    });
+  })
+);
 
 export function suppliersFilterToJSON(
   suppliersFilter: SuppliersFilter,

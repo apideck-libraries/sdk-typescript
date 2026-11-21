@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type QuotesFilter = {
   updatedSince?: Date | undefined;
@@ -36,20 +37,22 @@ export const QuotesFilter$outboundSchema: z.ZodType<
   QuotesFilter$Outbound,
   z.ZodTypeDef,
   QuotesFilter
-> = z.object({
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-  createdSince: z.date().transform(v => v.toISOString()).optional(),
-  number: z.string().optional(),
-  customerId: z.string().optional(),
-  subsidiaryId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    updatedSince: "updated_since",
-    createdSince: "created_since",
-    customerId: "customer_id",
-    subsidiaryId: "subsidiary_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+    createdSince: z.date().transform(v => v.toISOString()).optional(),
+    number: z.string().optional(),
+    customerId: z.string().optional(),
+    subsidiaryId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      updatedSince: "updated_since",
+      createdSince: "created_since",
+      customerId: "customer_id",
+      subsidiaryId: "subsidiary_id",
+    });
+  })
+);
 
 export function quotesFilterToJSON(quotesFilter: QuotesFilter): string {
   return JSON.stringify(QuotesFilter$outboundSchema.parse(quotesFilter));

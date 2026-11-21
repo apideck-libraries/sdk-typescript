@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -69,18 +69,20 @@ export const AccountingPaymentMethodsAddRequest$outboundSchema: z.ZodType<
   AccountingPaymentMethodsAddRequest$Outbound,
   z.ZodTypeDef,
   AccountingPaymentMethodsAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  accountingPaymentMethod:
-    components.AccountingPaymentMethodInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    accountingPaymentMethod: "AccountingPaymentMethod",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    accountingPaymentMethod:
+      components.AccountingPaymentMethodInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      accountingPaymentMethod: "AccountingPaymentMethod",
+    });
+  })
+);
 
 export function accountingPaymentMethodsAddRequestToJSON(
   accountingPaymentMethodsAddRequest: AccountingPaymentMethodsAddRequest,
@@ -97,21 +99,23 @@ export const AccountingPaymentMethodsAddResponse$inboundSchema: z.ZodType<
   AccountingPaymentMethodsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreatePaymentMethodResponse: types.optional(
-    components.CreatePaymentMethodResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreatePaymentMethodResponse": "createPaymentMethodResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreatePaymentMethodResponse: types.optional(
+      components.CreatePaymentMethodResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreatePaymentMethodResponse": "createPaymentMethodResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingPaymentMethodsAddResponseFromJSON(
   jsonString: string,

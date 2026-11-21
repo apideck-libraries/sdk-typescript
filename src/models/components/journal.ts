@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -149,43 +149,45 @@ export const JournalType$inboundSchema: z.ZodType<
   JournalType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(JournalType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(JournalType));
 /** @internal */
 export const JournalType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   JournalType
-> = openEnums.outboundSchema(JournalType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(JournalType));
 
 /** @internal */
 export const Journal$inboundSchema: z.ZodType<Journal, z.ZodTypeDef, unknown> =
-  z.object({
-    id: types.optional(types.string()),
-    code: z.nullable(types.string()).optional(),
-    name: z.nullable(types.string()).optional(),
-    description: z.nullable(types.string()).optional(),
-    type: z.nullable(JournalType$inboundSchema).optional(),
-    allow_vat: z.nullable(types.boolean()).optional(),
-    currency: z.nullable(Currency$inboundSchema).optional(),
-    iban: z.nullable(types.string()).optional(),
-    default_account: z.nullable(LinkedFinancialAccount$inboundSchema)
-      .optional(),
-    clearing_account: z.nullable(LinkedFinancialAccount$inboundSchema)
-      .optional(),
-    blocked: z.nullable(types.boolean()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "allow_vat": "allowVat",
-      "default_account": "defaultAccount",
-      "clearing_account": "clearingAccount",
-      "created_at": "createdAt",
-      "updated_at": "updatedAt",
-      "custom_mappings": "customMappings",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.optional(types.string()),
+      code: z.nullable(types.string()).optional(),
+      name: z.nullable(types.string()).optional(),
+      description: z.nullable(types.string()).optional(),
+      type: z.nullable(JournalType$inboundSchema).optional(),
+      allow_vat: z.nullable(types.boolean()).optional(),
+      currency: z.nullable(Currency$inboundSchema).optional(),
+      iban: z.nullable(types.string()).optional(),
+      default_account: z.nullable(LinkedFinancialAccount$inboundSchema)
+        .optional(),
+      clearing_account: z.nullable(LinkedFinancialAccount$inboundSchema)
+        .optional(),
+      blocked: z.nullable(types.boolean()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "allow_vat": "allowVat",
+        "default_account": "defaultAccount",
+        "clearing_account": "clearingAccount",
+        "created_at": "createdAt",
+        "updated_at": "updatedAt",
+        "custom_mappings": "customMappings",
+      });
+    })
+  );
 
 export function journalFromJSON(
   jsonString: string,
@@ -216,26 +218,28 @@ export const JournalInput$outboundSchema: z.ZodType<
   JournalInput$Outbound,
   z.ZodTypeDef,
   JournalInput
-> = z.object({
-  code: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  type: z.nullable(JournalType$outboundSchema).optional(),
-  allowVat: z.nullable(z.boolean()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  iban: z.nullable(z.string()).optional(),
-  defaultAccount: z.nullable(LinkedFinancialAccountInput$outboundSchema)
-    .optional(),
-  clearingAccount: z.nullable(LinkedFinancialAccountInput$outboundSchema)
-    .optional(),
-  blocked: z.nullable(z.boolean()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    allowVat: "allow_vat",
-    defaultAccount: "default_account",
-    clearingAccount: "clearing_account",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    code: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    type: z.nullable(JournalType$outboundSchema).optional(),
+    allowVat: z.nullable(z.boolean()).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    iban: z.nullable(z.string()).optional(),
+    defaultAccount: z.nullable(LinkedFinancialAccountInput$outboundSchema)
+      .optional(),
+    clearingAccount: z.nullable(LinkedFinancialAccountInput$outboundSchema)
+      .optional(),
+    blocked: z.nullable(z.boolean()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      allowVat: "allow_vat",
+      defaultAccount: "default_account",
+      clearingAccount: "clearing_account",
+    });
+  })
+);
 
 export function journalInputToJSON(journalInput: JournalInput): string {
   return JSON.stringify(JournalInput$outboundSchema.parse(journalInput));

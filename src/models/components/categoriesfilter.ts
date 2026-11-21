@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -32,7 +33,9 @@ export const CategoriesFilterType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   CategoriesFilterType
-> = openEnums.outboundSchema(CategoriesFilterType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(CategoriesFilterType)
+);
 
 /** @internal */
 export type CategoriesFilter$Outbound = {
@@ -44,9 +47,11 @@ export const CategoriesFilter$outboundSchema: z.ZodType<
   CategoriesFilter$Outbound,
   z.ZodTypeDef,
   CategoriesFilter
-> = z.object({
-  type: CategoriesFilterType$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: CategoriesFilterType$outboundSchema.optional(),
+  })
+);
 
 export function categoriesFilterToJSON(
   categoriesFilter: CategoriesFilter,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -153,10 +153,12 @@ export const Operation$inboundSchema: z.ZodType<
   Operation,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  name: types.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.string(),
+    name: types.string(),
+  })
+);
 
 export function operationFromJSON(
   jsonString: string,
@@ -170,10 +172,12 @@ export function operationFromJSON(
 
 /** @internal */
 export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
-  z.object({
-    id: types.string(),
-    name: types.string(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.string(),
+      name: types.string(),
+    })
+  );
 
 export function serviceFromJSON(
   jsonString: string,
@@ -190,47 +194,49 @@ export const LogUnifiedApi$inboundSchema: z.ZodType<
   LogUnifiedApi,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(LogUnifiedApi);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(LogUnifiedApi));
 
 /** @internal */
-export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z
-  .object({
-    api_style: types.string(),
-    base_url: types.string(),
-    child_request: types.boolean(),
-    consumer_id: types.string(),
-    duration: types.number(),
-    error_message: z.nullable(types.string()).optional(),
-    execution: types.number(),
-    has_children: types.boolean(),
-    http_method: types.string(),
-    id: types.string(),
-    latency: types.number(),
-    operation: z.lazy(() => Operation$inboundSchema),
-    parent_id: types.nullable(types.string()),
-    path: types.string(),
-    sandbox: types.boolean(),
-    service: z.lazy(() => Service$inboundSchema),
-    source_ip: z.nullable(types.string()).optional(),
-    status_code: types.number(),
-    success: types.boolean(),
-    timestamp: types.string(),
-    unified_api: LogUnifiedApi$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "api_style": "apiStyle",
-      "base_url": "baseUrl",
-      "child_request": "childRequest",
-      "consumer_id": "consumerId",
-      "error_message": "errorMessage",
-      "has_children": "hasChildren",
-      "http_method": "httpMethod",
-      "parent_id": "parentId",
-      "source_ip": "sourceIp",
-      "status_code": "statusCode",
-      "unified_api": "unifiedApi",
-    });
-  });
+export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      api_style: types.string(),
+      base_url: types.string(),
+      child_request: types.boolean(),
+      consumer_id: types.string(),
+      duration: types.number(),
+      error_message: z.nullable(types.string()).optional(),
+      execution: types.number(),
+      has_children: types.boolean(),
+      http_method: types.string(),
+      id: types.string(),
+      latency: types.number(),
+      operation: z.lazy(() => Operation$inboundSchema),
+      parent_id: types.nullable(types.string()),
+      path: types.string(),
+      sandbox: types.boolean(),
+      service: z.lazy(() => Service$inboundSchema),
+      source_ip: z.nullable(types.string()).optional(),
+      status_code: types.number(),
+      success: types.boolean(),
+      timestamp: types.string(),
+      unified_api: LogUnifiedApi$inboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        "api_style": "apiStyle",
+        "base_url": "baseUrl",
+        "child_request": "childRequest",
+        "consumer_id": "consumerId",
+        "error_message": "errorMessage",
+        "has_children": "hasChildren",
+        "http_method": "httpMethod",
+        "parent_id": "parentId",
+        "source_ip": "sourceIp",
+        "status_code": "statusCode",
+        "unified_api": "unifiedApi",
+      });
+    })
+  );
 
 export function logFromJSON(
   jsonString: string,

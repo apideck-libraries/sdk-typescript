@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   SupplierCreateInput,
   SupplierCreateInput$Outbound,
@@ -42,14 +43,16 @@ export const BatchSuppliersRequestItems$outboundSchema: z.ZodType<
   BatchSuppliersRequestItems$Outbound,
   z.ZodTypeDef,
   BatchSuppliersRequestItems
-> = z.object({
-  ref: z.string().optional(),
-  data: SupplierCreateInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    ref: "_ref",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    ref: z.string().optional(),
+    data: SupplierCreateInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      ref: "_ref",
+    });
+  })
+);
 
 export function batchSuppliersRequestItemsToJSON(
   batchSuppliersRequestItems: BatchSuppliersRequestItems,
@@ -69,9 +72,11 @@ export const BatchSuppliersRequest$outboundSchema: z.ZodType<
   BatchSuppliersRequest$Outbound,
   z.ZodTypeDef,
   BatchSuppliersRequest
-> = z.object({
-  items: z.array(z.lazy(() => BatchSuppliersRequestItems$outboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    items: z.array(z.lazy(() => BatchSuppliersRequestItems$outboundSchema)),
+  })
+);
 
 export function batchSuppliersRequestToJSON(
   batchSuppliersRequest: BatchSuppliersRequest,

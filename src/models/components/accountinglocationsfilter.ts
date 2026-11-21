@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type AccountingLocationsFilter = {
   /**
@@ -21,9 +22,11 @@ export const AccountingLocationsFilter$outboundSchema: z.ZodType<
   AccountingLocationsFilter$Outbound,
   z.ZodTypeDef,
   AccountingLocationsFilter
-> = z.object({
-  subsidiary: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    subsidiary: z.string().optional(),
+  })
+);
 
 export function accountingLocationsFilterToJSON(
   accountingLocationsFilter: AccountingLocationsFilter,

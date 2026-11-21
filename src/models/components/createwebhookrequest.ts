@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { Status, Status$outboundSchema } from "./status.js";
 import { UnifiedApiId, UnifiedApiId$outboundSchema } from "./unifiedapiid.js";
 import {
@@ -48,18 +49,20 @@ export const CreateWebhookRequest$outboundSchema: z.ZodType<
   CreateWebhookRequest$Outbound,
   z.ZodTypeDef,
   CreateWebhookRequest
-> = z.object({
-  description: z.nullable(z.string()).optional(),
-  unifiedApi: UnifiedApiId$outboundSchema,
-  status: Status$outboundSchema,
-  deliveryUrl: z.string(),
-  events: z.array(WebhookEventType$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    unifiedApi: "unified_api",
-    deliveryUrl: "delivery_url",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    description: z.nullable(z.string()).optional(),
+    unifiedApi: UnifiedApiId$outboundSchema,
+    status: Status$outboundSchema,
+    deliveryUrl: z.string(),
+    events: z.array(WebhookEventType$outboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      unifiedApi: "unified_api",
+      deliveryUrl: "delivery_url",
+    });
+  })
+);
 
 export function createWebhookRequestToJSON(
   createWebhookRequest: CreateWebhookRequest,

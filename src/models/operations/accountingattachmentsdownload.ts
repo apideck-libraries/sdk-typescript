@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -90,22 +90,24 @@ export const AccountingAttachmentsDownloadRequest$outboundSchema: z.ZodType<
   AccountingAttachmentsDownloadRequest$Outbound,
   z.ZodTypeDef,
   AccountingAttachmentsDownloadRequest
-> = z.object({
-  referenceType: components.AttachmentReferenceType$outboundSchema,
-  referenceId: z.string(),
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  fields: z.nullable(z.string()).optional(),
-  followRedirects: z.boolean().default(true),
-}).transform((v) => {
-  return remap$(v, {
-    referenceType: "reference_type",
-    referenceId: "reference_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    referenceType: components.AttachmentReferenceType$outboundSchema,
+    referenceId: z.string(),
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    fields: z.nullable(z.string()).optional(),
+    followRedirects: z.boolean().default(true),
+  }).transform((v) => {
+    return remap$(v, {
+      referenceType: "reference_type",
+      referenceId: "reference_id",
+    });
+  })
+);
 
 export function accountingAttachmentsDownloadRequestToJSON(
   accountingAttachmentsDownloadRequest: AccountingAttachmentsDownloadRequest,
@@ -122,21 +124,23 @@ export const AccountingAttachmentsDownloadResponse$inboundSchema: z.ZodType<
   AccountingAttachmentsDownloadResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetAttachmentDownloadResponse: types.optional(
-    z.instanceof(ReadableStream<Uint8Array>),
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetAttachmentDownloadResponse": "getAttachmentDownloadResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetAttachmentDownloadResponse: types.optional(
+      z.instanceof(ReadableStream<Uint8Array>),
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetAttachmentDownloadResponse": "getAttachmentDownloadResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingAttachmentsDownloadResponseFromJSON(
   jsonString: string,

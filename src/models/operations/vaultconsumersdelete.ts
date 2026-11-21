@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -51,14 +51,16 @@ export const VaultConsumersDeleteRequest$outboundSchema: z.ZodType<
   VaultConsumersDeleteRequest$Outbound,
   z.ZodTypeDef,
   VaultConsumersDeleteRequest
-> = z.object({
-  appId: z.string().optional(),
-  consumerId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    consumerId: "consumer_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    appId: z.string().optional(),
+    consumerId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      consumerId: "consumer_id",
+    });
+  })
+);
 
 export function vaultConsumersDeleteRequestToJSON(
   vaultConsumersDeleteRequest: VaultConsumersDeleteRequest,
@@ -75,21 +77,23 @@ export const VaultConsumersDeleteResponse$inboundSchema: z.ZodType<
   VaultConsumersDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  DeleteConsumerResponse: types.optional(
-    components.DeleteConsumerResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "DeleteConsumerResponse": "deleteConsumerResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    DeleteConsumerResponse: types.optional(
+      components.DeleteConsumerResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "DeleteConsumerResponse": "deleteConsumerResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultConsumersDeleteResponseFromJSON(
   jsonString: string,

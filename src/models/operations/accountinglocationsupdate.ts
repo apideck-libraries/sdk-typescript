@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -79,19 +79,21 @@ export const AccountingLocationsUpdateRequest$outboundSchema: z.ZodType<
   AccountingLocationsUpdateRequest$Outbound,
   z.ZodTypeDef,
   AccountingLocationsUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  raw: z.boolean().default(false),
-  accountingLocation: components.AccountingLocationInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    accountingLocation: "AccountingLocation",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    raw: z.boolean().default(false),
+    accountingLocation: components.AccountingLocationInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      accountingLocation: "AccountingLocation",
+    });
+  })
+);
 
 export function accountingLocationsUpdateRequestToJSON(
   accountingLocationsUpdateRequest: AccountingLocationsUpdateRequest,
@@ -108,21 +110,23 @@ export const AccountingLocationsUpdateResponse$inboundSchema: z.ZodType<
   AccountingLocationsUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateAccountingLocationResponse: types.optional(
-    components.UpdateAccountingLocationResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateAccountingLocationResponse": "updateAccountingLocationResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateAccountingLocationResponse: types.optional(
+      components.UpdateAccountingLocationResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateAccountingLocationResponse": "updateAccountingLocationResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingLocationsUpdateResponseFromJSON(
   jsonString: string,

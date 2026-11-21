@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -86,28 +86,30 @@ export const AccountingAttachmentsUploadRequest$outboundSchema: z.ZodType<
   AccountingAttachmentsUploadRequest$Outbound,
   z.ZodTypeDef,
   AccountingAttachmentsUploadRequest
-> = z.object({
-  referenceType: components.AttachmentReferenceType$outboundSchema,
-  referenceId: z.string(),
-  raw: z.boolean().default(false),
-  xApideckMetadata: z.string().optional(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  requestBody: z.union([
-    z.instanceof(ReadableStream<Uint8Array>),
-    z.instanceof(Blob),
-    z.instanceof(ArrayBuffer),
-    z.instanceof(Uint8Array),
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    referenceType: "reference_type",
-    referenceId: "reference_id",
-    xApideckMetadata: "x-apideck-metadata",
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    referenceType: components.AttachmentReferenceType$outboundSchema,
+    referenceId: z.string(),
+    raw: z.boolean().default(false),
+    xApideckMetadata: z.string().optional(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    requestBody: z.union([
+      z.instanceof(ReadableStream<Uint8Array>),
+      z.instanceof(Blob),
+      z.instanceof(ArrayBuffer),
+      z.instanceof(Uint8Array),
+    ]),
+  }).transform((v) => {
+    return remap$(v, {
+      referenceType: "reference_type",
+      referenceId: "reference_id",
+      xApideckMetadata: "x-apideck-metadata",
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function accountingAttachmentsUploadRequestToJSON(
   accountingAttachmentsUploadRequest: AccountingAttachmentsUploadRequest,
@@ -124,21 +126,23 @@ export const AccountingAttachmentsUploadResponse$inboundSchema: z.ZodType<
   AccountingAttachmentsUploadResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateAttachmentResponse: types.optional(
-    components.CreateAttachmentResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateAttachmentResponse": "createAttachmentResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateAttachmentResponse: types.optional(
+      components.CreateAttachmentResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateAttachmentResponse": "createAttachmentResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingAttachmentsUploadResponseFromJSON(
   jsonString: string,
