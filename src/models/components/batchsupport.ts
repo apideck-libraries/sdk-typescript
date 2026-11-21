@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -69,28 +69,34 @@ export const BatchSupportMode$inboundSchema: z.ZodType<
   BatchSupportMode,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(BatchSupportMode);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(BatchSupportMode)
+);
 
 /** @internal */
 export const BatchSupportResourcesMode$inboundSchema: z.ZodType<
   BatchSupportResourcesMode,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(BatchSupportResourcesMode);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(BatchSupportResourcesMode)
+);
 
 /** @internal */
 export const Resources$inboundSchema: z.ZodType<
   Resources,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  mode: BatchSupportResourcesMode$inboundSchema,
-  max_items: types.optional(types.number()),
-}).transform((v) => {
-  return remap$(v, {
-    "max_items": "maxItems",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    mode: BatchSupportResourcesMode$inboundSchema,
+    max_items: types.optional(types.number()),
+  }).transform((v) => {
+    return remap$(v, {
+      "max_items": "maxItems",
+    });
+  })
+);
 
 export function resourcesFromJSON(
   jsonString: string,
@@ -107,10 +113,12 @@ export const BatchSupport$inboundSchema: z.ZodType<
   BatchSupport,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  mode: BatchSupportMode$inboundSchema,
-  resources: types.optional(z.record(z.lazy(() => Resources$inboundSchema))),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    mode: BatchSupportMode$inboundSchema,
+    resources: types.optional(z.record(z.lazy(() => Resources$inboundSchema))),
+  })
+);
 
 export function batchSupportFromJSON(
   jsonString: string,

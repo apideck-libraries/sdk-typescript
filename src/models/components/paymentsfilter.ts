@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -62,14 +63,18 @@ export const PaymentsFilterType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   PaymentsFilterType
-> = openEnums.outboundSchema(PaymentsFilterType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(PaymentsFilterType)
+);
 
 /** @internal */
 export const PaymentsFilterPaymentStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   PaymentsFilterPaymentStatus
-> = openEnums.outboundSchema(PaymentsFilterPaymentStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(PaymentsFilterPaymentStatus)
+);
 
 /** @internal */
 export type PaymentsFilter$Outbound = {
@@ -88,25 +93,27 @@ export const PaymentsFilter$outboundSchema: z.ZodType<
   PaymentsFilter$Outbound,
   z.ZodTypeDef,
   PaymentsFilter
-> = z.object({
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-  invoiceId: z.string().optional(),
-  billId: z.string().optional(),
-  supplierId: z.string().optional(),
-  customerId: z.string().optional(),
-  type: PaymentsFilterType$outboundSchema.optional(),
-  status: PaymentsFilterPaymentStatus$outboundSchema.optional(),
-  subsidiaryId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    updatedSince: "updated_since",
-    invoiceId: "invoice_id",
-    billId: "bill_id",
-    supplierId: "supplier_id",
-    customerId: "customer_id",
-    subsidiaryId: "subsidiary_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+    invoiceId: z.string().optional(),
+    billId: z.string().optional(),
+    supplierId: z.string().optional(),
+    customerId: z.string().optional(),
+    type: PaymentsFilterType$outboundSchema.optional(),
+    status: PaymentsFilterPaymentStatus$outboundSchema.optional(),
+    subsidiaryId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      updatedSince: "updated_since",
+      invoiceId: "invoice_id",
+      billId: "bill_id",
+      supplierId: "supplier_id",
+      customerId: "customer_id",
+      subsidiaryId: "subsidiary_id",
+    });
+  })
+);
 
 export function paymentsFilterToJSON(paymentsFilter: PaymentsFilter): string {
   return JSON.stringify(PaymentsFilter$outboundSchema.parse(paymentsFilter));

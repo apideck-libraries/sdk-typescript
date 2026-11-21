@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -85,44 +85,46 @@ export const AccountType$inboundSchema: z.ZodType<
   AccountType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(AccountType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(AccountType));
 /** @internal */
 export const AccountType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   AccountType
-> = openEnums.outboundSchema(AccountType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(AccountType));
 
 /** @internal */
 export const BankAccount$inboundSchema: z.ZodType<
   BankAccount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  bank_name: z.nullable(types.string()).optional(),
-  account_number: z.nullable(types.string()).optional(),
-  account_name: z.nullable(types.string()).optional(),
-  account_type: z.nullable(AccountType$inboundSchema).optional(),
-  iban: z.nullable(types.string()).optional(),
-  bic: z.nullable(types.string()).optional(),
-  routing_number: z.nullable(types.string()).optional(),
-  bsb_number: z.nullable(types.string()).optional(),
-  branch_identifier: z.nullable(types.string()).optional(),
-  bank_code: z.nullable(types.string()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  country: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "bank_name": "bankName",
-    "account_number": "accountNumber",
-    "account_name": "accountName",
-    "account_type": "accountType",
-    "routing_number": "routingNumber",
-    "bsb_number": "bsbNumber",
-    "branch_identifier": "branchIdentifier",
-    "bank_code": "bankCode",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    bank_name: z.nullable(types.string()).optional(),
+    account_number: z.nullable(types.string()).optional(),
+    account_name: z.nullable(types.string()).optional(),
+    account_type: z.nullable(AccountType$inboundSchema).optional(),
+    iban: z.nullable(types.string()).optional(),
+    bic: z.nullable(types.string()).optional(),
+    routing_number: z.nullable(types.string()).optional(),
+    bsb_number: z.nullable(types.string()).optional(),
+    branch_identifier: z.nullable(types.string()).optional(),
+    bank_code: z.nullable(types.string()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    country: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "bank_name": "bankName",
+      "account_number": "accountNumber",
+      "account_name": "accountName",
+      "account_type": "accountType",
+      "routing_number": "routingNumber",
+      "bsb_number": "bsbNumber",
+      "branch_identifier": "branchIdentifier",
+      "bank_code": "bankCode",
+    });
+  })
+);
 /** @internal */
 export type BankAccount$Outbound = {
   bank_name?: string | null | undefined;
@@ -144,31 +146,33 @@ export const BankAccount$outboundSchema: z.ZodType<
   BankAccount$Outbound,
   z.ZodTypeDef,
   BankAccount
-> = z.object({
-  bankName: z.nullable(z.string()).optional(),
-  accountNumber: z.nullable(z.string()).optional(),
-  accountName: z.nullable(z.string()).optional(),
-  accountType: z.nullable(AccountType$outboundSchema).optional(),
-  iban: z.nullable(z.string()).optional(),
-  bic: z.nullable(z.string()).optional(),
-  routingNumber: z.nullable(z.string()).optional(),
-  bsbNumber: z.nullable(z.string()).optional(),
-  branchIdentifier: z.nullable(z.string()).optional(),
-  bankCode: z.nullable(z.string()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  country: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    bankName: "bank_name",
-    accountNumber: "account_number",
-    accountName: "account_name",
-    accountType: "account_type",
-    routingNumber: "routing_number",
-    bsbNumber: "bsb_number",
-    branchIdentifier: "branch_identifier",
-    bankCode: "bank_code",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    bankName: z.nullable(z.string()).optional(),
+    accountNumber: z.nullable(z.string()).optional(),
+    accountName: z.nullable(z.string()).optional(),
+    accountType: z.nullable(AccountType$outboundSchema).optional(),
+    iban: z.nullable(z.string()).optional(),
+    bic: z.nullable(z.string()).optional(),
+    routingNumber: z.nullable(z.string()).optional(),
+    bsbNumber: z.nullable(z.string()).optional(),
+    branchIdentifier: z.nullable(z.string()).optional(),
+    bankCode: z.nullable(z.string()).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    country: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      bankName: "bank_name",
+      accountNumber: "account_number",
+      accountName: "account_name",
+      accountType: "account_type",
+      routingNumber: "routing_number",
+      bsbNumber: "bsb_number",
+      branchIdentifier: "branch_identifier",
+      bankCode: "bank_code",
+    });
+  })
+);
 
 export function bankAccountToJSON(bankAccount: BankAccount): string {
   return JSON.stringify(BankAccount$outboundSchema.parse(bankAccount));

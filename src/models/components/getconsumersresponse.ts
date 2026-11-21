@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -62,26 +62,28 @@ export type GetConsumersResponse = {
 };
 
 /** @internal */
-export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
-  .object({
-    consumer_id: types.optional(types.string()),
-    application_id: types.optional(types.string()),
-    metadata: types.optional(ConsumerMetadata$inboundSchema),
-    aggregated_request_count: types.optional(types.number()),
-    request_counts: types.optional(RequestCountAllocation$inboundSchema),
-    created: types.optional(types.string()),
-    modified: types.optional(types.string()),
-    request_count_updated: types.optional(types.string()),
-    services: types.optional(z.array(types.string())),
-  }).transform((v) => {
-    return remap$(v, {
-      "consumer_id": "consumerId",
-      "application_id": "applicationId",
-      "aggregated_request_count": "aggregatedRequestCount",
-      "request_counts": "requestCounts",
-      "request_count_updated": "requestCountUpdated",
-    });
-  });
+export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      consumer_id: types.optional(types.string()),
+      application_id: types.optional(types.string()),
+      metadata: types.optional(ConsumerMetadata$inboundSchema),
+      aggregated_request_count: types.optional(types.number()),
+      request_counts: types.optional(RequestCountAllocation$inboundSchema),
+      created: types.optional(types.string()),
+      modified: types.optional(types.string()),
+      request_count_updated: types.optional(types.string()),
+      services: types.optional(z.array(types.string())),
+    }).transform((v) => {
+      return remap$(v, {
+        "consumer_id": "consumerId",
+        "application_id": "applicationId",
+        "aggregated_request_count": "aggregatedRequestCount",
+        "request_counts": "requestCounts",
+        "request_count_updated": "requestCountUpdated",
+      });
+    })
+  );
 
 export function dataFromJSON(
   jsonString: string,
@@ -98,19 +100,21 @@ export const GetConsumersResponse$inboundSchema: z.ZodType<
   GetConsumersResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  status_code: types.number(),
-  status: types.string(),
-  data: z.array(z.lazy(() => Data$inboundSchema)),
-  meta: types.optional(Meta$inboundSchema),
-  links: types.optional(Links$inboundSchema),
-  _raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "status_code": "statusCode",
-    "_raw": "raw",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status_code: types.number(),
+    status: types.string(),
+    data: z.array(z.lazy(() => Data$inboundSchema)),
+    meta: types.optional(Meta$inboundSchema),
+    links: types.optional(Links$inboundSchema),
+    _raw: z.nullable(z.record(z.any())).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "status_code": "statusCode",
+      "_raw": "raw",
+    });
+  })
+);
 
 export function getConsumersResponseFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -75,20 +75,22 @@ export const VaultConnectionSettingsUpdateRequest$outboundSchema: z.ZodType<
   VaultConnectionSettingsUpdateRequest$Outbound,
   z.ZodTypeDef,
   VaultConnectionSettingsUpdateRequest
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string(),
-  unifiedApi: z.string(),
-  resource: z.string(),
-  connection: components.ConnectionInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    serviceId: "service_id",
-    unifiedApi: "unified_api",
-    connection: "Connection",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string(),
+    unifiedApi: z.string(),
+    resource: z.string(),
+    connection: components.ConnectionInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      serviceId: "service_id",
+      unifiedApi: "unified_api",
+      connection: "Connection",
+    });
+  })
+);
 
 export function vaultConnectionSettingsUpdateRequestToJSON(
   vaultConnectionSettingsUpdateRequest: VaultConnectionSettingsUpdateRequest,
@@ -105,21 +107,23 @@ export const VaultConnectionSettingsUpdateResponse$inboundSchema: z.ZodType<
   VaultConnectionSettingsUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateConnectionResponse: types.optional(
-    components.UpdateConnectionResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateConnectionResponse": "updateConnectionResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateConnectionResponse: types.optional(
+      components.UpdateConnectionResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateConnectionResponse": "updateConnectionResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultConnectionSettingsUpdateResponseFromJSON(
   jsonString: string,

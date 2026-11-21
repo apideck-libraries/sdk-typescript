@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -603,53 +603,59 @@ export const LeavingReason$inboundSchema: z.ZodType<
   LeavingReason,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(LeavingReason);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(LeavingReason));
 /** @internal */
 export const LeavingReason$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   LeavingReason
-> = openEnums.outboundSchema(LeavingReason);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(LeavingReason));
 
 /** @internal */
 export const EmploymentType$inboundSchema: z.ZodType<
   EmploymentType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(EmploymentType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(EmploymentType));
 /** @internal */
 export const EmploymentType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   EmploymentType
-> = openEnums.outboundSchema(EmploymentType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(EmploymentType));
 
 /** @internal */
 export const EmploymentSubType$inboundSchema: z.ZodType<
   EmploymentSubType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(EmploymentSubType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(EmploymentSubType)
+);
 /** @internal */
 export const EmploymentSubType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   EmploymentSubType
-> = openEnums.outboundSchema(EmploymentSubType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(EmploymentSubType)
+);
 
 /** @internal */
 export const EmploymentRole$inboundSchema: z.ZodType<
   EmploymentRole,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: z.nullable(EmploymentType$inboundSchema).optional(),
-  sub_type: z.nullable(EmploymentSubType$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "sub_type": "subType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.nullable(EmploymentType$inboundSchema).optional(),
+    sub_type: z.nullable(EmploymentSubType$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "sub_type": "subType",
+    });
+  })
+);
 /** @internal */
 export type EmploymentRole$Outbound = {
   type?: string | null | undefined;
@@ -661,14 +667,16 @@ export const EmploymentRole$outboundSchema: z.ZodType<
   EmploymentRole$Outbound,
   z.ZodTypeDef,
   EmploymentRole
-> = z.object({
-  type: z.nullable(EmploymentType$outboundSchema).optional(),
-  subType: z.nullable(EmploymentSubType$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    subType: "sub_type",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.nullable(EmploymentType$outboundSchema).optional(),
+    subType: z.nullable(EmploymentSubType$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      subType: "sub_type",
+    });
+  })
+);
 
 export function employmentRoleToJSON(employmentRole: EmploymentRole): string {
   return JSON.stringify(EmploymentRole$outboundSchema.parse(employmentRole));
@@ -685,20 +693,22 @@ export function employmentRoleFromJSON(
 
 /** @internal */
 export const Manager$inboundSchema: z.ZodType<Manager, z.ZodTypeDef, unknown> =
-  z.object({
-    id: z.nullable(types.string()).optional(),
-    name: z.nullable(types.string()).optional(),
-    first_name: z.nullable(types.string()).optional(),
-    last_name: z.nullable(types.string()).optional(),
-    email: z.nullable(types.string()).optional(),
-    employment_status: z.nullable(EmploymentStatus$inboundSchema).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "first_name": "firstName",
-      "last_name": "lastName",
-      "employment_status": "employmentStatus",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      name: z.nullable(types.string()).optional(),
+      first_name: z.nullable(types.string()).optional(),
+      last_name: z.nullable(types.string()).optional(),
+      email: z.nullable(types.string()).optional(),
+      employment_status: z.nullable(EmploymentStatus$inboundSchema).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "first_name": "firstName",
+        "last_name": "lastName",
+        "employment_status": "employmentStatus",
+      });
+    })
+  );
 /** @internal */
 export type Manager$Outbound = {
   id?: string | null | undefined;
@@ -714,20 +724,22 @@ export const Manager$outboundSchema: z.ZodType<
   Manager$Outbound,
   z.ZodTypeDef,
   Manager
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  email: z.nullable(z.string()).optional(),
-  employmentStatus: z.nullable(EmploymentStatus$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    employmentStatus: "employment_status",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()).optional(),
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    email: z.nullable(z.string()).optional(),
+    employmentStatus: z.nullable(EmploymentStatus$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      firstName: "first_name",
+      lastName: "last_name",
+      employmentStatus: "employment_status",
+    });
+  })
+);
 
 export function managerToJSON(manager: Manager): string {
   return JSON.stringify(Manager$outboundSchema.parse(manager));
@@ -747,15 +759,17 @@ export const ProbationPeriod$inboundSchema: z.ZodType<
   ProbationPeriod,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  start_date: z.nullable(types.date()).optional(),
-  end_date: z.nullable(types.date()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "start_date": "startDate",
-    "end_date": "endDate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    start_date: z.nullable(types.date()).optional(),
+    end_date: z.nullable(types.date()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "start_date": "startDate",
+      "end_date": "endDate",
+    });
+  })
+);
 /** @internal */
 export type ProbationPeriod$Outbound = {
   start_date?: string | null | undefined;
@@ -767,19 +781,21 @@ export const ProbationPeriod$outboundSchema: z.ZodType<
   ProbationPeriod$Outbound,
   z.ZodTypeDef,
   ProbationPeriod
-> = z.object({
-  startDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  endDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    startDate: "start_date",
-    endDate: "end_date",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    startDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    endDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      startDate: "start_date",
+      endDate: "end_date",
+    });
+  })
+);
 
 export function probationPeriodToJSON(
   probationPeriod: ProbationPeriod,
@@ -801,122 +817,126 @@ export const Employee$inboundSchema: z.ZodType<
   Employee,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  downstream_id: z.nullable(types.string()).optional(),
-  first_name: z.nullable(types.string()).optional(),
-  last_name: z.nullable(types.string()).optional(),
-  middle_name: z.nullable(types.string()).optional(),
-  display_name: z.nullable(types.string()).optional(),
-  preferred_name: z.nullable(types.string()).optional(),
-  initials: z.nullable(types.string()).optional(),
-  salutation: z.nullable(types.string()).optional(),
-  title: z.nullable(types.string()).optional(),
-  marital_status: z.nullable(types.string()).optional(),
-  partner: types.optional(Person$inboundSchema),
-  division: z.nullable(types.string()).optional(),
-  division_id: z.nullable(types.string()).optional(),
-  department: z.nullable(types.string()).optional(),
-  department_id: z.nullable(types.string()).optional(),
-  department_name: z.nullable(types.string()).optional(),
-  team: z.nullable(Team$inboundSchema).optional(),
-  company_id: z.nullable(types.string()).optional(),
-  company_name: z.nullable(types.string()).optional(),
-  employment_start_date: z.nullable(types.string()).optional(),
-  employment_end_date: z.nullable(types.string()).optional(),
-  leaving_reason: z.nullable(LeavingReason$inboundSchema).optional(),
-  employee_number: z.nullable(types.string()).optional(),
-  employment_status: z.nullable(EmploymentStatus$inboundSchema).optional(),
-  employment_role: types.optional(z.lazy(() => EmploymentRole$inboundSchema)),
-  ethnicity: z.nullable(types.string()).optional(),
-  manager: types.optional(z.lazy(() => Manager$inboundSchema)),
-  direct_reports: z.nullable(z.array(types.string())).optional(),
-  social_security_number: z.nullable(types.string()).optional(),
-  birthday: z.nullable(types.date()).optional(),
-  deceased_on: z.nullable(types.date()).optional(),
-  country_of_birth: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  gender: z.nullable(Gender$inboundSchema).optional(),
-  pronouns: z.nullable(types.string()).optional(),
-  preferred_language: z.nullable(types.string()).optional(),
-  languages: types.optional(z.array(types.nullable(types.string()))),
-  nationalities: types.optional(z.array(types.nullable(types.string()))),
-  photo_url: z.nullable(types.string()).optional(),
-  timezone: z.nullable(types.string()).optional(),
-  source: z.nullable(types.string()).optional(),
-  source_id: z.nullable(types.string()).optional(),
-  record_url: z.nullable(types.string()).optional(),
-  jobs: z.nullable(z.array(EmployeeJob$inboundSchema)).optional(),
-  compensations: z.nullable(z.array(EmployeeCompensation$inboundSchema))
-    .optional(),
-  works_remote: z.nullable(types.boolean()).optional(),
-  addresses: types.optional(z.array(Address$inboundSchema)),
-  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
-  emails: types.optional(z.array(Email$inboundSchema)),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  social_links: types.optional(z.array(SocialLink$inboundSchema)),
-  bank_accounts: types.optional(z.array(BankAccount2$inboundSchema)),
-  tax_code: z.nullable(types.string()).optional(),
-  tax_id: z.nullable(types.string()).optional(),
-  dietary_preference: z.nullable(types.string()).optional(),
-  food_allergies: z.nullable(z.array(types.string())).optional(),
-  probation_period: types.optional(z.lazy(() => ProbationPeriod$inboundSchema)),
-  tags: z.nullable(z.array(types.string())).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  deleted: z.nullable(types.boolean()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "downstream_id": "downstreamId",
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "middle_name": "middleName",
-    "display_name": "displayName",
-    "preferred_name": "preferredName",
-    "marital_status": "maritalStatus",
-    "division_id": "divisionId",
-    "department_id": "departmentId",
-    "department_name": "departmentName",
-    "company_id": "companyId",
-    "company_name": "companyName",
-    "employment_start_date": "employmentStartDate",
-    "employment_end_date": "employmentEndDate",
-    "leaving_reason": "leavingReason",
-    "employee_number": "employeeNumber",
-    "employment_status": "employmentStatus",
-    "employment_role": "employmentRole",
-    "direct_reports": "directReports",
-    "social_security_number": "socialSecurityNumber",
-    "deceased_on": "deceasedOn",
-    "country_of_birth": "countryOfBirth",
-    "preferred_language": "preferredLanguage",
-    "photo_url": "photoUrl",
-    "source_id": "sourceId",
-    "record_url": "recordUrl",
-    "works_remote": "worksRemote",
-    "phone_numbers": "phoneNumbers",
-    "custom_fields": "customFields",
-    "social_links": "socialLinks",
-    "bank_accounts": "bankAccounts",
-    "tax_code": "taxCode",
-    "tax_id": "taxId",
-    "dietary_preference": "dietaryPreference",
-    "food_allergies": "foodAllergies",
-    "probation_period": "probationPeriod",
-    "custom_mappings": "customMappings",
-    "row_version": "rowVersion",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    downstream_id: z.nullable(types.string()).optional(),
+    first_name: z.nullable(types.string()).optional(),
+    last_name: z.nullable(types.string()).optional(),
+    middle_name: z.nullable(types.string()).optional(),
+    display_name: z.nullable(types.string()).optional(),
+    preferred_name: z.nullable(types.string()).optional(),
+    initials: z.nullable(types.string()).optional(),
+    salutation: z.nullable(types.string()).optional(),
+    title: z.nullable(types.string()).optional(),
+    marital_status: z.nullable(types.string()).optional(),
+    partner: types.optional(Person$inboundSchema),
+    division: z.nullable(types.string()).optional(),
+    division_id: z.nullable(types.string()).optional(),
+    department: z.nullable(types.string()).optional(),
+    department_id: z.nullable(types.string()).optional(),
+    department_name: z.nullable(types.string()).optional(),
+    team: z.nullable(Team$inboundSchema).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    company_name: z.nullable(types.string()).optional(),
+    employment_start_date: z.nullable(types.string()).optional(),
+    employment_end_date: z.nullable(types.string()).optional(),
+    leaving_reason: z.nullable(LeavingReason$inboundSchema).optional(),
+    employee_number: z.nullable(types.string()).optional(),
+    employment_status: z.nullable(EmploymentStatus$inboundSchema).optional(),
+    employment_role: types.optional(z.lazy(() => EmploymentRole$inboundSchema)),
+    ethnicity: z.nullable(types.string()).optional(),
+    manager: types.optional(z.lazy(() => Manager$inboundSchema)),
+    direct_reports: z.nullable(z.array(types.string())).optional(),
+    social_security_number: z.nullable(types.string()).optional(),
+    birthday: z.nullable(types.date()).optional(),
+    deceased_on: z.nullable(types.date()).optional(),
+    country_of_birth: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    gender: z.nullable(Gender$inboundSchema).optional(),
+    pronouns: z.nullable(types.string()).optional(),
+    preferred_language: z.nullable(types.string()).optional(),
+    languages: types.optional(z.array(types.nullable(types.string()))),
+    nationalities: types.optional(z.array(types.nullable(types.string()))),
+    photo_url: z.nullable(types.string()).optional(),
+    timezone: z.nullable(types.string()).optional(),
+    source: z.nullable(types.string()).optional(),
+    source_id: z.nullable(types.string()).optional(),
+    record_url: z.nullable(types.string()).optional(),
+    jobs: z.nullable(z.array(EmployeeJob$inboundSchema)).optional(),
+    compensations: z.nullable(z.array(EmployeeCompensation$inboundSchema))
+      .optional(),
+    works_remote: z.nullable(types.boolean()).optional(),
+    addresses: types.optional(z.array(Address$inboundSchema)),
+    phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+    emails: types.optional(z.array(Email$inboundSchema)),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    social_links: types.optional(z.array(SocialLink$inboundSchema)),
+    bank_accounts: types.optional(z.array(BankAccount2$inboundSchema)),
+    tax_code: z.nullable(types.string()).optional(),
+    tax_id: z.nullable(types.string()).optional(),
+    dietary_preference: z.nullable(types.string()).optional(),
+    food_allergies: z.nullable(z.array(types.string())).optional(),
+    probation_period: types.optional(
+      z.lazy(() => ProbationPeriod$inboundSchema),
+    ),
+    tags: z.nullable(z.array(types.string())).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    deleted: z.nullable(types.boolean()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "downstream_id": "downstreamId",
+      "first_name": "firstName",
+      "last_name": "lastName",
+      "middle_name": "middleName",
+      "display_name": "displayName",
+      "preferred_name": "preferredName",
+      "marital_status": "maritalStatus",
+      "division_id": "divisionId",
+      "department_id": "departmentId",
+      "department_name": "departmentName",
+      "company_id": "companyId",
+      "company_name": "companyName",
+      "employment_start_date": "employmentStartDate",
+      "employment_end_date": "employmentEndDate",
+      "leaving_reason": "leavingReason",
+      "employee_number": "employeeNumber",
+      "employment_status": "employmentStatus",
+      "employment_role": "employmentRole",
+      "direct_reports": "directReports",
+      "social_security_number": "socialSecurityNumber",
+      "deceased_on": "deceasedOn",
+      "country_of_birth": "countryOfBirth",
+      "preferred_language": "preferredLanguage",
+      "photo_url": "photoUrl",
+      "source_id": "sourceId",
+      "record_url": "recordUrl",
+      "works_remote": "worksRemote",
+      "phone_numbers": "phoneNumbers",
+      "custom_fields": "customFields",
+      "social_links": "socialLinks",
+      "bank_accounts": "bankAccounts",
+      "tax_code": "taxCode",
+      "tax_id": "taxId",
+      "dietary_preference": "dietaryPreference",
+      "food_allergies": "foodAllergies",
+      "probation_period": "probationPeriod",
+      "custom_mappings": "customMappings",
+      "row_version": "rowVersion",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function employeeFromJSON(
   jsonString: string,
@@ -998,114 +1018,116 @@ export const EmployeeInput$outboundSchema: z.ZodType<
   EmployeeInput$Outbound,
   z.ZodTypeDef,
   EmployeeInput
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  middleName: z.nullable(z.string()).optional(),
-  displayName: z.nullable(z.string()).optional(),
-  preferredName: z.nullable(z.string()).optional(),
-  initials: z.nullable(z.string()).optional(),
-  salutation: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  maritalStatus: z.nullable(z.string()).optional(),
-  partner: PersonInput$outboundSchema.optional(),
-  division: z.nullable(z.string()).optional(),
-  divisionId: z.nullable(z.string()).optional(),
-  department: z.nullable(z.string()).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  departmentName: z.nullable(z.string()).optional(),
-  team: z.nullable(Team$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  employmentStartDate: z.nullable(z.string()).optional(),
-  employmentEndDate: z.nullable(z.string()).optional(),
-  leavingReason: z.nullable(LeavingReason$outboundSchema).optional(),
-  employeeNumber: z.nullable(z.string()).optional(),
-  employmentStatus: z.nullable(EmploymentStatus$outboundSchema).optional(),
-  employmentRole: z.lazy(() => EmploymentRole$outboundSchema).optional(),
-  ethnicity: z.nullable(z.string()).optional(),
-  manager: z.lazy(() => Manager$outboundSchema).optional(),
-  directReports: z.nullable(z.array(z.string())).optional(),
-  socialSecurityNumber: z.nullable(z.string()).optional(),
-  birthday: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  deceasedOn: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  countryOfBirth: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  gender: z.nullable(Gender$outboundSchema).optional(),
-  pronouns: z.nullable(z.string()).optional(),
-  preferredLanguage: z.nullable(z.string()).optional(),
-  languages: z.array(z.nullable(z.string())).optional(),
-  nationalities: z.array(z.nullable(z.string())).optional(),
-  photoUrl: z.nullable(z.string()).optional(),
-  timezone: z.nullable(z.string()).optional(),
-  source: z.nullable(z.string()).optional(),
-  sourceId: z.nullable(z.string()).optional(),
-  recordUrl: z.nullable(z.string()).optional(),
-  jobs: z.nullable(z.array(EmployeeJobInput$outboundSchema)).optional(),
-  compensations: z.nullable(z.array(EmployeeCompensationInput$outboundSchema))
-    .optional(),
-  worksRemote: z.nullable(z.boolean()).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  socialLinks: z.array(SocialLink$outboundSchema).optional(),
-  bankAccounts: z.array(BankAccount2$outboundSchema).optional(),
-  taxCode: z.nullable(z.string()).optional(),
-  taxId: z.nullable(z.string()).optional(),
-  dietaryPreference: z.nullable(z.string()).optional(),
-  foodAllergies: z.nullable(z.array(z.string())).optional(),
-  probationPeriod: z.lazy(() => ProbationPeriod$outboundSchema).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  deleted: z.nullable(z.boolean()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    middleName: "middle_name",
-    displayName: "display_name",
-    preferredName: "preferred_name",
-    maritalStatus: "marital_status",
-    divisionId: "division_id",
-    departmentId: "department_id",
-    departmentName: "department_name",
-    companyId: "company_id",
-    companyName: "company_name",
-    employmentStartDate: "employment_start_date",
-    employmentEndDate: "employment_end_date",
-    leavingReason: "leaving_reason",
-    employeeNumber: "employee_number",
-    employmentStatus: "employment_status",
-    employmentRole: "employment_role",
-    directReports: "direct_reports",
-    socialSecurityNumber: "social_security_number",
-    deceasedOn: "deceased_on",
-    countryOfBirth: "country_of_birth",
-    preferredLanguage: "preferred_language",
-    photoUrl: "photo_url",
-    sourceId: "source_id",
-    recordUrl: "record_url",
-    worksRemote: "works_remote",
-    phoneNumbers: "phone_numbers",
-    customFields: "custom_fields",
-    socialLinks: "social_links",
-    bankAccounts: "bank_accounts",
-    taxCode: "tax_code",
-    taxId: "tax_id",
-    dietaryPreference: "dietary_preference",
-    foodAllergies: "food_allergies",
-    probationPeriod: "probation_period",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    middleName: z.nullable(z.string()).optional(),
+    displayName: z.nullable(z.string()).optional(),
+    preferredName: z.nullable(z.string()).optional(),
+    initials: z.nullable(z.string()).optional(),
+    salutation: z.nullable(z.string()).optional(),
+    title: z.nullable(z.string()).optional(),
+    maritalStatus: z.nullable(z.string()).optional(),
+    partner: PersonInput$outboundSchema.optional(),
+    division: z.nullable(z.string()).optional(),
+    divisionId: z.nullable(z.string()).optional(),
+    department: z.nullable(z.string()).optional(),
+    departmentId: z.nullable(z.string()).optional(),
+    departmentName: z.nullable(z.string()).optional(),
+    team: z.nullable(Team$outboundSchema).optional(),
+    companyId: z.nullable(z.string()).optional(),
+    companyName: z.nullable(z.string()).optional(),
+    employmentStartDate: z.nullable(z.string()).optional(),
+    employmentEndDate: z.nullable(z.string()).optional(),
+    leavingReason: z.nullable(LeavingReason$outboundSchema).optional(),
+    employeeNumber: z.nullable(z.string()).optional(),
+    employmentStatus: z.nullable(EmploymentStatus$outboundSchema).optional(),
+    employmentRole: z.lazy(() => EmploymentRole$outboundSchema).optional(),
+    ethnicity: z.nullable(z.string()).optional(),
+    manager: z.lazy(() => Manager$outboundSchema).optional(),
+    directReports: z.nullable(z.array(z.string())).optional(),
+    socialSecurityNumber: z.nullable(z.string()).optional(),
+    birthday: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    deceasedOn: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    countryOfBirth: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    gender: z.nullable(Gender$outboundSchema).optional(),
+    pronouns: z.nullable(z.string()).optional(),
+    preferredLanguage: z.nullable(z.string()).optional(),
+    languages: z.array(z.nullable(z.string())).optional(),
+    nationalities: z.array(z.nullable(z.string())).optional(),
+    photoUrl: z.nullable(z.string()).optional(),
+    timezone: z.nullable(z.string()).optional(),
+    source: z.nullable(z.string()).optional(),
+    sourceId: z.nullable(z.string()).optional(),
+    recordUrl: z.nullable(z.string()).optional(),
+    jobs: z.nullable(z.array(EmployeeJobInput$outboundSchema)).optional(),
+    compensations: z.nullable(z.array(EmployeeCompensationInput$outboundSchema))
+      .optional(),
+    worksRemote: z.nullable(z.boolean()).optional(),
+    addresses: z.array(Address$outboundSchema).optional(),
+    phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
+    emails: z.array(Email$outboundSchema).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    socialLinks: z.array(SocialLink$outboundSchema).optional(),
+    bankAccounts: z.array(BankAccount2$outboundSchema).optional(),
+    taxCode: z.nullable(z.string()).optional(),
+    taxId: z.nullable(z.string()).optional(),
+    dietaryPreference: z.nullable(z.string()).optional(),
+    foodAllergies: z.nullable(z.array(z.string())).optional(),
+    probationPeriod: z.lazy(() => ProbationPeriod$outboundSchema).optional(),
+    tags: z.nullable(z.array(z.string())).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    deleted: z.nullable(z.boolean()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      firstName: "first_name",
+      lastName: "last_name",
+      middleName: "middle_name",
+      displayName: "display_name",
+      preferredName: "preferred_name",
+      maritalStatus: "marital_status",
+      divisionId: "division_id",
+      departmentId: "department_id",
+      departmentName: "department_name",
+      companyId: "company_id",
+      companyName: "company_name",
+      employmentStartDate: "employment_start_date",
+      employmentEndDate: "employment_end_date",
+      leavingReason: "leaving_reason",
+      employeeNumber: "employee_number",
+      employmentStatus: "employment_status",
+      employmentRole: "employment_role",
+      directReports: "direct_reports",
+      socialSecurityNumber: "social_security_number",
+      deceasedOn: "deceased_on",
+      countryOfBirth: "country_of_birth",
+      preferredLanguage: "preferred_language",
+      photoUrl: "photo_url",
+      sourceId: "source_id",
+      recordUrl: "record_url",
+      worksRemote: "works_remote",
+      phoneNumbers: "phone_numbers",
+      customFields: "custom_fields",
+      socialLinks: "social_links",
+      bankAccounts: "bank_accounts",
+      taxCode: "tax_code",
+      taxId: "tax_id",
+      dietaryPreference: "dietary_preference",
+      foodAllergies: "food_allergies",
+      probationPeriod: "probation_period",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function employeeInputToJSON(employeeInput: EmployeeInput): string {
   return JSON.stringify(EmployeeInput$outboundSchema.parse(employeeInput));

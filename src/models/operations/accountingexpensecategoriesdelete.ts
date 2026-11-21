@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,13 +72,15 @@ export const AccountingExpenseCategoriesDeleteRequest$outboundSchema: z.ZodType<
   AccountingExpenseCategoriesDeleteRequest$Outbound,
   z.ZodTypeDef,
   AccountingExpenseCategoriesDeleteRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+  })
+);
 
 export function accountingExpenseCategoriesDeleteRequestToJSON(
   accountingExpenseCategoriesDeleteRequest:
@@ -96,21 +98,23 @@ export const AccountingExpenseCategoriesDeleteResponse$inboundSchema: z.ZodType<
   AccountingExpenseCategoriesDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  DeleteExpenseCategoryResponse: types.optional(
-    components.DeleteExpenseCategoryResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "DeleteExpenseCategoryResponse": "deleteExpenseCategoryResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    DeleteExpenseCategoryResponse: types.optional(
+      components.DeleteExpenseCategoryResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "DeleteExpenseCategoryResponse": "deleteExpenseCategoryResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingExpenseCategoriesDeleteResponseFromJSON(
   jsonString: string,

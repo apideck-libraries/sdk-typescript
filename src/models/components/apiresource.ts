@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -57,14 +57,16 @@ export const LinkedResources$inboundSchema: z.ZodType<
   LinkedResources,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  unified_property: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "unified_property": "unifiedProperty",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    unified_property: types.optional(types.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "unified_property": "unifiedProperty",
+    });
+  })
+);
 
 export function linkedResourcesFromJSON(
   jsonString: string,
@@ -77,8 +79,8 @@ export function linkedResourcesFromJSON(
 }
 
 /** @internal */
-export const Schema$inboundSchema: z.ZodType<Schema, z.ZodTypeDef, unknown> = z
-  .object({});
+export const Schema$inboundSchema: z.ZodType<Schema, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function schemaFromJSON(
   jsonString: string,
@@ -95,19 +97,21 @@ export const ApiResource$inboundSchema: z.ZodType<
   ApiResource,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: types.optional(types.string()),
-  status: types.optional(ResourceStatus$inboundSchema),
-  linked_resources: types.optional(
-    z.array(z.lazy(() => LinkedResources$inboundSchema)),
-  ),
-  schema: types.optional(z.lazy(() => Schema$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "linked_resources": "linkedResources",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    name: types.optional(types.string()),
+    status: types.optional(ResourceStatus$inboundSchema),
+    linked_resources: types.optional(
+      z.array(z.lazy(() => LinkedResources$inboundSchema)),
+    ),
+    schema: types.optional(z.lazy(() => Schema$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "linked_resources": "linkedResources",
+    });
+  })
+);
 
 export function apiResourceFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -74,18 +74,20 @@ export const AccountingBankFeedStatementsAddRequest$outboundSchema: z.ZodType<
   AccountingBankFeedStatementsAddRequest$Outbound,
   z.ZodTypeDef,
   AccountingBankFeedStatementsAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  bankFeedStatement: components.BankFeedStatementInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    bankFeedStatement: "BankFeedStatement",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    bankFeedStatement: components.BankFeedStatementInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      bankFeedStatement: "BankFeedStatement",
+    });
+  })
+);
 
 export function accountingBankFeedStatementsAddRequestToJSON(
   accountingBankFeedStatementsAddRequest:
@@ -103,21 +105,23 @@ export const AccountingBankFeedStatementsAddResponse$inboundSchema: z.ZodType<
   AccountingBankFeedStatementsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateBankFeedStatementResponse: types.optional(
-    components.CreateBankFeedStatementResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateBankFeedStatementResponse": "createBankFeedStatementResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateBankFeedStatementResponse: types.optional(
+      components.CreateBankFeedStatementResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateBankFeedStatementResponse": "createBankFeedStatementResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingBankFeedStatementsAddResponseFromJSON(
   jsonString: string,

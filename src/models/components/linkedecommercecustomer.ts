@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -44,22 +44,24 @@ export const LinkedEcommerceCustomer$inboundSchema: z.ZodType<
   LinkedEcommerceCustomer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  first_name: z.nullable(types.string()).optional(),
-  last_name: z.nullable(types.string()).optional(),
-  company_name: z.nullable(types.string()).optional(),
-  phone_numbers: z.nullable(z.array(PhoneNumber$inboundSchema)).optional(),
-  emails: z.nullable(z.array(Email$inboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "company_name": "companyName",
-    "phone_numbers": "phoneNumbers",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    first_name: z.nullable(types.string()).optional(),
+    last_name: z.nullable(types.string()).optional(),
+    company_name: z.nullable(types.string()).optional(),
+    phone_numbers: z.nullable(z.array(PhoneNumber$inboundSchema)).optional(),
+    emails: z.nullable(z.array(Email$inboundSchema)).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "first_name": "firstName",
+      "last_name": "lastName",
+      "company_name": "companyName",
+      "phone_numbers": "phoneNumbers",
+    });
+  })
+);
 
 export function linkedEcommerceCustomerFromJSON(
   jsonString: string,

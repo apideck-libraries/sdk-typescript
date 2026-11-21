@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ConsumerMetadata,
   ConsumerMetadata$Outbound,
@@ -32,14 +33,16 @@ export const CreateConsumerRequest$outboundSchema: z.ZodType<
   CreateConsumerRequest$Outbound,
   z.ZodTypeDef,
   CreateConsumerRequest
-> = z.object({
-  consumerId: z.string(),
-  metadata: ConsumerMetadata$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    consumerId: "consumer_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string(),
+    metadata: ConsumerMetadata$outboundSchema.optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      consumerId: "consumer_id",
+    });
+  })
+);
 
 export function createConsumerRequestToJSON(
   createConsumerRequest: CreateConsumerRequest,

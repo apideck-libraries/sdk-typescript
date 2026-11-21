@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -118,55 +118,57 @@ export const BillCreditNoteLineItem$inboundSchema: z.ZodType<
   BillCreditNoteLineItem,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  row_id: z.nullable(types.string()).optional(),
-  code: z.nullable(types.string()).optional(),
-  line_number: z.nullable(types.number()).optional(),
-  description: z.nullable(types.string()).optional(),
-  type: z.nullable(LineItemType$inboundSchema).optional(),
-  tax_amount: z.nullable(types.number()).optional(),
-  total_amount: z.nullable(types.number()).optional(),
-  quantity: z.nullable(types.number()).optional(),
-  unit_price: z.nullable(types.number()).optional(),
-  unit_of_measure: z.nullable(types.string()).optional(),
-  discount_percentage: z.nullable(types.number()).optional(),
-  discount_amount: z.nullable(types.number()).optional(),
-  service_date: z.nullable(types.date()).optional(),
-  location: z.nullable(LinkedLocation$inboundSchema).optional(),
-  department: z.nullable(LinkedDepartment$inboundSchema).optional(),
-  item: types.optional(LinkedInvoiceItem$inboundSchema),
-  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
-  ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "row_id": "rowId",
-    "line_number": "lineNumber",
-    "tax_amount": "taxAmount",
-    "total_amount": "totalAmount",
-    "unit_price": "unitPrice",
-    "unit_of_measure": "unitOfMeasure",
-    "discount_percentage": "discountPercentage",
-    "discount_amount": "discountAmount",
-    "service_date": "serviceDate",
-    "tax_rate": "taxRate",
-    "ledger_account": "ledgerAccount",
-    "tracking_categories": "trackingCategories",
-    "row_version": "rowVersion",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    row_id: z.nullable(types.string()).optional(),
+    code: z.nullable(types.string()).optional(),
+    line_number: z.nullable(types.number()).optional(),
+    description: z.nullable(types.string()).optional(),
+    type: z.nullable(LineItemType$inboundSchema).optional(),
+    tax_amount: z.nullable(types.number()).optional(),
+    total_amount: z.nullable(types.number()).optional(),
+    quantity: z.nullable(types.number()).optional(),
+    unit_price: z.nullable(types.number()).optional(),
+    unit_of_measure: z.nullable(types.string()).optional(),
+    discount_percentage: z.nullable(types.number()).optional(),
+    discount_amount: z.nullable(types.number()).optional(),
+    service_date: z.nullable(types.date()).optional(),
+    location: z.nullable(LinkedLocation$inboundSchema).optional(),
+    department: z.nullable(LinkedDepartment$inboundSchema).optional(),
+    item: types.optional(LinkedInvoiceItem$inboundSchema),
+    tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+    ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "row_id": "rowId",
+      "line_number": "lineNumber",
+      "tax_amount": "taxAmount",
+      "total_amount": "totalAmount",
+      "unit_price": "unitPrice",
+      "unit_of_measure": "unitOfMeasure",
+      "discount_percentage": "discountPercentage",
+      "discount_amount": "discountAmount",
+      "service_date": "serviceDate",
+      "tax_rate": "taxRate",
+      "ledger_account": "ledgerAccount",
+      "tracking_categories": "trackingCategories",
+      "row_version": "rowVersion",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function billCreditNoteLineItemFromJSON(
   jsonString: string,

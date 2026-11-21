@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 /**
  * The customer this entity is linked to.
@@ -42,16 +43,18 @@ export const LinkedCustomerInput$outboundSchema: z.ZodType<
   LinkedCustomerInput$Outbound,
   z.ZodTypeDef,
   LinkedCustomerInput
-> = z.object({
-  id: z.string().optional(),
-  displayName: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  email: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    displayName: z.nullable(z.string()).optional(),
+    name: z.string().optional(),
+    email: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayName: "display_name",
+    });
+  })
+);
 
 export function linkedCustomerInputToJSON(
   linkedCustomerInput: LinkedCustomerInput,

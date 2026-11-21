@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CreateCallbackState = {
   /**
@@ -22,13 +23,15 @@ export const CreateCallbackState$outboundSchema: z.ZodType<
   CreateCallbackState$Outbound,
   z.ZodTypeDef,
   CreateCallbackState
-> = z.object({
-  redirectUri: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    redirectUri: "redirect_uri",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    redirectUri: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      redirectUri: "redirect_uri",
+    });
+  })
+);
 
 export function createCallbackStateToJSON(
   createCallbackState: CreateCallbackState,

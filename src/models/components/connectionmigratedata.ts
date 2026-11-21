@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ConnectionMigrateData = {
   /**
@@ -22,13 +23,15 @@ export const ConnectionMigrateData$outboundSchema: z.ZodType<
   ConnectionMigrateData$Outbound,
   z.ZodTypeDef,
   ConnectionMigrateData
-> = z.object({
-  targetServiceId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    targetServiceId: "target_service_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    targetServiceId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      targetServiceId: "target_service_id",
+    });
+  })
+);
 
 export function connectionMigrateDataToJSON(
   connectionMigrateData: ConnectionMigrateData,

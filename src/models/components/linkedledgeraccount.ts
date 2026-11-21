@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -41,20 +41,22 @@ export const LinkedLedgerAccount$inboundSchema: z.ZodType<
   LinkedLedgerAccount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: z.nullable(types.string()).optional(),
-  nominal_code: z.nullable(types.string()).optional(),
-  code: z.nullable(types.string()).optional(),
-  parent_id: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "nominal_code": "nominalCode",
-    "parent_id": "parentId",
-    "display_id": "displayId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    name: z.nullable(types.string()).optional(),
+    nominal_code: z.nullable(types.string()).optional(),
+    code: z.nullable(types.string()).optional(),
+    parent_id: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "nominal_code": "nominalCode",
+      "parent_id": "parentId",
+      "display_id": "displayId",
+    });
+  })
+);
 /** @internal */
 export type LinkedLedgerAccount$Outbound = {
   id?: string | undefined;
@@ -70,20 +72,22 @@ export const LinkedLedgerAccount$outboundSchema: z.ZodType<
   LinkedLedgerAccount$Outbound,
   z.ZodTypeDef,
   LinkedLedgerAccount
-> = z.object({
-  id: z.string().optional(),
-  name: z.nullable(z.string()).optional(),
-  nominalCode: z.nullable(z.string()).optional(),
-  code: z.nullable(z.string()).optional(),
-  parentId: z.nullable(z.string()).optional(),
-  displayId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nominalCode: "nominal_code",
-    parentId: "parent_id",
-    displayId: "display_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    name: z.nullable(z.string()).optional(),
+    nominalCode: z.nullable(z.string()).optional(),
+    code: z.nullable(z.string()).optional(),
+    parentId: z.nullable(z.string()).optional(),
+    displayId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      nominalCode: "nominal_code",
+      parentId: "parent_id",
+      displayId: "display_id",
+    });
+  })
+);
 
 export function linkedLedgerAccountToJSON(
   linkedLedgerAccount: LinkedLedgerAccount,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -25,14 +25,16 @@ export const LinkedTaxStatusDetail$inboundSchema: z.ZodType<
   LinkedTaxStatusDetail,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  country: types.optional(types.string()),
-  transaction_tax_status: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "transaction_tax_status": "transactionTaxStatus",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    country: types.optional(types.string()),
+    transaction_tax_status: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "transaction_tax_status": "transactionTaxStatus",
+    });
+  })
+);
 /** @internal */
 export type LinkedTaxStatusDetail$Outbound = {
   country?: string | undefined;
@@ -44,14 +46,16 @@ export const LinkedTaxStatusDetail$outboundSchema: z.ZodType<
   LinkedTaxStatusDetail$Outbound,
   z.ZodTypeDef,
   LinkedTaxStatusDetail
-> = z.object({
-  country: z.string().optional(),
-  transactionTaxStatus: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    transactionTaxStatus: "transaction_tax_status",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    country: z.string().optional(),
+    transactionTaxStatus: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      transactionTaxStatus: "transaction_tax_status",
+    });
+  })
+);
 
 export function linkedTaxStatusDetailToJSON(
   linkedTaxStatusDetail: LinkedTaxStatusDetail,

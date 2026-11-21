@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type FilesFilter = {
   /**
@@ -32,16 +33,18 @@ export const FilesFilter$outboundSchema: z.ZodType<
   FilesFilter$Outbound,
   z.ZodTypeDef,
   FilesFilter
-> = z.object({
-  driveId: z.string().optional(),
-  folderId: z.string().optional(),
-  shared: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    driveId: "drive_id",
-    folderId: "folder_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    driveId: z.string().optional(),
+    folderId: z.string().optional(),
+    shared: z.boolean().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      driveId: "drive_id",
+      folderId: "folder_id",
+    });
+  })
+);
 
 export function filesFilterToJSON(filesFilter: FilesFilter): string {
   return JSON.stringify(FilesFilter$outboundSchema.parse(filesFilter));

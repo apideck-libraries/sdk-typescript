@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const AccountingProjectsAddRequest$outboundSchema: z.ZodType<
   AccountingProjectsAddRequest$Outbound,
   z.ZodTypeDef,
   AccountingProjectsAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  project: components.ProjectInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    project: "Project",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    project: components.ProjectInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      project: "Project",
+    });
+  })
+);
 
 export function accountingProjectsAddRequestToJSON(
   accountingProjectsAddRequest: AccountingProjectsAddRequest,
@@ -100,21 +102,23 @@ export const AccountingProjectsAddResponse$inboundSchema: z.ZodType<
   AccountingProjectsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateProjectResponse: types.optional(
-    components.CreateProjectResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateProjectResponse": "createProjectResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateProjectResponse: types.optional(
+      components.CreateProjectResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateProjectResponse": "createProjectResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingProjectsAddResponseFromJSON(
   jsonString: string,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -186,7 +187,9 @@ export const CustomerCreateInputStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   CustomerCreateInputStatus
-> = openEnums.outboundSchema(CustomerCreateInputStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(CustomerCreateInputStatus)
+);
 
 /** @internal */
 export type CustomerCreateInput$Outbound = {
@@ -230,61 +233,63 @@ export const CustomerCreateInput$outboundSchema: z.ZodType<
   CustomerCreateInput$Outbound,
   z.ZodTypeDef,
   CustomerCreateInput
-> = z.object({
-  displayId: z.nullable(z.string()).optional(),
-  displayName: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
-  customerCategory: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  middleName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  suffix: z.nullable(z.string()).optional(),
-  individual: z.nullable(z.boolean()).optional(),
-  project: z.nullable(z.boolean()).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
-  websites: z.array(Website$outboundSchema).optional(),
-  bankAccounts: z.array(BankAccount$outboundSchema).optional(),
-  notes: z.nullable(z.string()).optional(),
-  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  taxNumber: z.nullable(z.string()).optional(),
-  taxable: z.nullable(z.boolean()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  parent: z.nullable(LinkedParentCustomer$outboundSchema).optional(),
-  status: z.nullable(CustomerCreateInputStatus$outboundSchema).optional(),
-  paymentMethod: z.nullable(z.string()).optional(),
-  terms: z.nullable(z.string()).optional(),
-  termsId: z.nullable(z.string()).optional(),
-  channel: z.nullable(z.string()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    displayName: "display_name",
-    companyName: "company_name",
-    companyId: "company_id",
-    customerCategory: "customer_category",
-    firstName: "first_name",
-    middleName: "middle_name",
-    lastName: "last_name",
-    phoneNumbers: "phone_numbers",
-    bankAccounts: "bank_accounts",
-    taxRate: "tax_rate",
-    taxNumber: "tax_number",
-    paymentMethod: "payment_method",
-    termsId: "terms_id",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayId: z.nullable(z.string()).optional(),
+    displayName: z.nullable(z.string()).optional(),
+    companyName: z.nullable(z.string()).optional(),
+    companyId: z.nullable(z.string()).optional(),
+    subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
+    customerCategory: z.nullable(z.string()).optional(),
+    title: z.nullable(z.string()).optional(),
+    firstName: z.nullable(z.string()).optional(),
+    middleName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    suffix: z.nullable(z.string()).optional(),
+    individual: z.nullable(z.boolean()).optional(),
+    project: z.nullable(z.boolean()).optional(),
+    addresses: z.array(Address$outboundSchema).optional(),
+    phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
+    emails: z.array(Email$outboundSchema).optional(),
+    websites: z.array(Website$outboundSchema).optional(),
+    bankAccounts: z.array(BankAccount$outboundSchema).optional(),
+    notes: z.nullable(z.string()).optional(),
+    taxRate: LinkedTaxRateInput$outboundSchema.optional(),
+    taxNumber: z.nullable(z.string()).optional(),
+    taxable: z.nullable(z.boolean()).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    parent: z.nullable(LinkedParentCustomer$outboundSchema).optional(),
+    status: z.nullable(CustomerCreateInputStatus$outboundSchema).optional(),
+    paymentMethod: z.nullable(z.string()).optional(),
+    terms: z.nullable(z.string()).optional(),
+    termsId: z.nullable(z.string()).optional(),
+    channel: z.nullable(z.string()).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+      displayName: "display_name",
+      companyName: "company_name",
+      companyId: "company_id",
+      customerCategory: "customer_category",
+      firstName: "first_name",
+      middleName: "middle_name",
+      lastName: "last_name",
+      phoneNumbers: "phone_numbers",
+      bankAccounts: "bank_accounts",
+      taxRate: "tax_rate",
+      taxNumber: "tax_number",
+      paymentMethod: "payment_method",
+      termsId: "terms_id",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function customerCreateInputToJSON(
   customerCreateInput: CustomerCreateInput,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -82,37 +82,39 @@ export const ConnectorResource$inboundSchema: z.ZodType<
   ConnectorResource,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: types.optional(types.string()),
-  downstream_id: types.optional(types.string()),
-  downstream_name: types.optional(types.string()),
-  status: types.optional(ResourceStatus$inboundSchema),
-  pagination_supported: types.optional(types.boolean()),
-  pagination: types.optional(PaginationCoverage$inboundSchema),
-  custom_fields_supported: types.optional(types.boolean()),
-  supported_operations: types.optional(z.array(types.string())),
-  downstream_unsupported_operations: types.optional(z.array(types.string())),
-  supported_filters: types.optional(z.array(types.string())),
-  supported_sort_by: types.optional(z.array(types.string())),
-  supported_fields: types.optional(z.array(SupportedProperty$inboundSchema)),
-  supported_list_fields: types.optional(
-    z.array(SupportedProperty$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "downstream_id": "downstreamId",
-    "downstream_name": "downstreamName",
-    "pagination_supported": "paginationSupported",
-    "custom_fields_supported": "customFieldsSupported",
-    "supported_operations": "supportedOperations",
-    "downstream_unsupported_operations": "downstreamUnsupportedOperations",
-    "supported_filters": "supportedFilters",
-    "supported_sort_by": "supportedSortBy",
-    "supported_fields": "supportedFields",
-    "supported_list_fields": "supportedListFields",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    name: types.optional(types.string()),
+    downstream_id: types.optional(types.string()),
+    downstream_name: types.optional(types.string()),
+    status: types.optional(ResourceStatus$inboundSchema),
+    pagination_supported: types.optional(types.boolean()),
+    pagination: types.optional(PaginationCoverage$inboundSchema),
+    custom_fields_supported: types.optional(types.boolean()),
+    supported_operations: types.optional(z.array(types.string())),
+    downstream_unsupported_operations: types.optional(z.array(types.string())),
+    supported_filters: types.optional(z.array(types.string())),
+    supported_sort_by: types.optional(z.array(types.string())),
+    supported_fields: types.optional(z.array(SupportedProperty$inboundSchema)),
+    supported_list_fields: types.optional(
+      z.array(SupportedProperty$inboundSchema),
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "downstream_id": "downstreamId",
+      "downstream_name": "downstreamName",
+      "pagination_supported": "paginationSupported",
+      "custom_fields_supported": "customFieldsSupported",
+      "supported_operations": "supportedOperations",
+      "downstream_unsupported_operations": "downstreamUnsupportedOperations",
+      "supported_filters": "supportedFilters",
+      "supported_sort_by": "supportedSortBy",
+      "supported_fields": "supportedFields",
+      "supported_list_fields": "supportedListFields",
+    });
+  })
+);
 
 export function connectorResourceFromJSON(
   jsonString: string,

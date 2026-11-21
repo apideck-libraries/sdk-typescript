@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type IssuesFilter = {
   /**
@@ -32,15 +33,17 @@ export const IssuesFilter$outboundSchema: z.ZodType<
   IssuesFilter$Outbound,
   z.ZodTypeDef,
   IssuesFilter
-> = z.object({
-  status: z.array(z.string()).optional(),
-  since: z.date().transform(v => v.toISOString()).optional(),
-  assigneeId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    assigneeId: "assignee_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status: z.array(z.string()).optional(),
+    since: z.date().transform(v => v.toISOString()).optional(),
+    assigneeId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      assigneeId: "assignee_id",
+    });
+  })
+);
 
 export function issuesFilterToJSON(issuesFilter: IssuesFilter): string {
   return JSON.stringify(IssuesFilter$outboundSchema.parse(issuesFilter));

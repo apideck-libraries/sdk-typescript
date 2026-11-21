@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -34,21 +34,23 @@ export const BalanceByPeriod$inboundSchema: z.ZodType<
   BalanceByPeriod,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  start_date: z.nullable(types.date()).optional(),
-  end_date: z.nullable(types.date()).optional(),
-  total_amount: types.optional(types.number()),
-  balances_by_transaction: types.optional(
-    z.array(BalanceByTransaction$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "start_date": "startDate",
-    "end_date": "endDate",
-    "total_amount": "totalAmount",
-    "balances_by_transaction": "balancesByTransaction",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    start_date: z.nullable(types.date()).optional(),
+    end_date: z.nullable(types.date()).optional(),
+    total_amount: types.optional(types.number()),
+    balances_by_transaction: types.optional(
+      z.array(BalanceByTransaction$inboundSchema),
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "start_date": "startDate",
+      "end_date": "endDate",
+      "total_amount": "totalAmount",
+      "balances_by_transaction": "balancesByTransaction",
+    });
+  })
+);
 
 export function balanceByPeriodFromJSON(
   jsonString: string,

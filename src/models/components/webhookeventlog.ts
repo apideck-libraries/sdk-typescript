@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -116,10 +116,12 @@ export const WebhookEventLogService$inboundSchema: z.ZodType<
   WebhookEventLogService,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  name: types.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.string(),
+    name: types.string(),
+  })
+);
 
 export function webhookEventLogServiceFromJSON(
   jsonString: string,
@@ -136,17 +138,19 @@ export const Attempts$inboundSchema: z.ZodType<
   Attempts,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  timestamp: types.optional(types.string()),
-  execution_attempt: types.optional(types.number()),
-  status_code: types.optional(types.number()),
-  success: types.optional(types.boolean()),
-}).transform((v) => {
-  return remap$(v, {
-    "execution_attempt": "executionAttempt",
-    "status_code": "statusCode",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    timestamp: types.optional(types.string()),
+    execution_attempt: types.optional(types.number()),
+    status_code: types.optional(types.number()),
+    success: types.optional(types.boolean()),
+  }).transform((v) => {
+    return remap$(v, {
+      "execution_attempt": "executionAttempt",
+      "status_code": "statusCode",
+    });
+  })
+);
 
 export function attemptsFromJSON(
   jsonString: string,
@@ -163,39 +167,41 @@ export const WebhookEventLog$inboundSchema: z.ZodType<
   WebhookEventLog,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  status_code: types.optional(types.number()),
-  success: types.optional(types.boolean()),
-  application_id: types.optional(types.string()),
-  consumer_id: types.optional(types.string()),
-  unified_api: types.optional(UnifiedApiId$inboundSchema),
-  service: types.optional(z.lazy(() => WebhookEventLogService$inboundSchema)),
-  endpoint: types.optional(types.string()),
-  event_type: types.optional(types.string()),
-  execution_attempt: types.optional(types.number()),
-  http_method: types.optional(types.string()),
-  timestamp: types.optional(types.string()),
-  entity_type: types.optional(types.string()),
-  request_body: types.optional(types.string()),
-  response_body: types.optional(types.string()),
-  retry_scheduled: types.optional(types.boolean()),
-  attempts: types.optional(z.array(z.lazy(() => Attempts$inboundSchema))),
-}).transform((v) => {
-  return remap$(v, {
-    "status_code": "statusCode",
-    "application_id": "applicationId",
-    "consumer_id": "consumerId",
-    "unified_api": "unifiedApi",
-    "event_type": "eventType",
-    "execution_attempt": "executionAttempt",
-    "http_method": "httpMethod",
-    "entity_type": "entityType",
-    "request_body": "requestBody",
-    "response_body": "responseBody",
-    "retry_scheduled": "retryScheduled",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    status_code: types.optional(types.number()),
+    success: types.optional(types.boolean()),
+    application_id: types.optional(types.string()),
+    consumer_id: types.optional(types.string()),
+    unified_api: types.optional(UnifiedApiId$inboundSchema),
+    service: types.optional(z.lazy(() => WebhookEventLogService$inboundSchema)),
+    endpoint: types.optional(types.string()),
+    event_type: types.optional(types.string()),
+    execution_attempt: types.optional(types.number()),
+    http_method: types.optional(types.string()),
+    timestamp: types.optional(types.string()),
+    entity_type: types.optional(types.string()),
+    request_body: types.optional(types.string()),
+    response_body: types.optional(types.string()),
+    retry_scheduled: types.optional(types.boolean()),
+    attempts: types.optional(z.array(z.lazy(() => Attempts$inboundSchema))),
+  }).transform((v) => {
+    return remap$(v, {
+      "status_code": "statusCode",
+      "application_id": "applicationId",
+      "consumer_id": "consumerId",
+      "unified_api": "unifiedApi",
+      "event_type": "eventType",
+      "execution_attempt": "executionAttempt",
+      "http_method": "httpMethod",
+      "entity_type": "entityType",
+      "request_body": "requestBody",
+      "response_body": "responseBody",
+      "retry_scheduled": "retryScheduled",
+    });
+  })
+);
 
 export function webhookEventLogFromJSON(
   jsonString: string,

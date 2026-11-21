@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -80,19 +80,21 @@ export const HrisTimeOffRequestsOneRequest$outboundSchema: z.ZodType<
   HrisTimeOffRequestsOneRequest$Outbound,
   z.ZodTypeDef,
   HrisTimeOffRequestsOneRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-  employeeId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    employeeId: "employee_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    fields: z.nullable(z.string()).optional(),
+    employeeId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      employeeId: "employee_id",
+    });
+  })
+);
 
 export function hrisTimeOffRequestsOneRequestToJSON(
   hrisTimeOffRequestsOneRequest: HrisTimeOffRequestsOneRequest,
@@ -109,21 +111,23 @@ export const HrisTimeOffRequestsOneResponse$inboundSchema: z.ZodType<
   HrisTimeOffRequestsOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetTimeOffRequestResponse: types.optional(
-    components.GetTimeOffRequestResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetTimeOffRequestResponse": "getTimeOffRequestResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetTimeOffRequestResponse: types.optional(
+      components.GetTimeOffRequestResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetTimeOffRequestResponse": "getTimeOffRequestResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function hrisTimeOffRequestsOneResponseFromJSON(
   jsonString: string,

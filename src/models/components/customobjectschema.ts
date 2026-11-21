@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -133,23 +133,29 @@ export const CustomObjectSchemaType$inboundSchema: z.ZodType<
   CustomObjectSchemaType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(CustomObjectSchemaType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(CustomObjectSchemaType)
+);
 /** @internal */
 export const CustomObjectSchemaType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   CustomObjectSchemaType
-> = openEnums.outboundSchema(CustomObjectSchemaType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(CustomObjectSchemaType)
+);
 
 /** @internal */
 export const CustomObjectSchemaOptions$inboundSchema: z.ZodType<
   CustomObjectSchemaOptions,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  value: types.optional(types.string()),
-  label: types.optional(types.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    value: types.optional(types.string()),
+    label: types.optional(types.string()),
+  })
+);
 /** @internal */
 export type CustomObjectSchemaOptions$Outbound = {
   value?: string | undefined;
@@ -161,10 +167,12 @@ export const CustomObjectSchemaOptions$outboundSchema: z.ZodType<
   CustomObjectSchemaOptions$Outbound,
   z.ZodTypeDef,
   CustomObjectSchemaOptions
-> = z.object({
-  value: z.string().optional(),
-  label: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    value: z.string().optional(),
+    label: z.string().optional(),
+  })
+);
 
 export function customObjectSchemaOptionsToJSON(
   customObjectSchemaOptions: CustomObjectSchemaOptions,
@@ -184,22 +192,24 @@ export function customObjectSchemaOptionsFromJSON(
 }
 
 /** @internal */
-export const Fields$inboundSchema: z.ZodType<Fields, z.ZodTypeDef, unknown> = z
-  .object({
-    id: types.optional(types.string()),
-    name: types.optional(types.string()),
-    description: z.nullable(types.string()).optional(),
-    type: types.optional(CustomObjectSchemaType$inboundSchema),
-    required: types.optional(types.boolean()),
-    options: z.nullable(
-      z.array(z.lazy(() => CustomObjectSchemaOptions$inboundSchema)),
-    ).optional(),
-    default_value: z.nullable(types.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "default_value": "defaultValue",
-    });
-  });
+export const Fields$inboundSchema: z.ZodType<Fields, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.optional(types.string()),
+      name: types.optional(types.string()),
+      description: z.nullable(types.string()).optional(),
+      type: types.optional(CustomObjectSchemaType$inboundSchema),
+      required: types.optional(types.boolean()),
+      options: z.nullable(
+        z.array(z.lazy(() => CustomObjectSchemaOptions$inboundSchema)),
+      ).optional(),
+      default_value: z.nullable(types.string()).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "default_value": "defaultValue",
+      });
+    })
+  );
 /** @internal */
 export type Fields$Outbound = {
   id?: string | undefined;
@@ -216,21 +226,23 @@ export const Fields$outboundSchema: z.ZodType<
   Fields$Outbound,
   z.ZodTypeDef,
   Fields
-> = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  description: z.nullable(z.string()).optional(),
-  type: CustomObjectSchemaType$outboundSchema.optional(),
-  required: z.boolean().optional(),
-  options: z.nullable(
-    z.array(z.lazy(() => CustomObjectSchemaOptions$outboundSchema)),
-  ).optional(),
-  defaultValue: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    defaultValue: "default_value",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    name: z.string().optional(),
+    description: z.nullable(z.string()).optional(),
+    type: CustomObjectSchemaType$outboundSchema.optional(),
+    required: z.boolean().optional(),
+    options: z.nullable(
+      z.array(z.lazy(() => CustomObjectSchemaOptions$outboundSchema)),
+    ).optional(),
+    defaultValue: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      defaultValue: "default_value",
+    });
+  })
+);
 
 export function fieldsToJSON(fields: Fields): string {
   return JSON.stringify(Fields$outboundSchema.parse(fields));
@@ -250,27 +262,29 @@ export const CustomObjectSchema$inboundSchema: z.ZodType<
   CustomObjectSchema,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  fields: types.optional(z.array(z.lazy(() => Fields$inboundSchema))),
-  visible: z.nullable(types.boolean()).optional(),
-  active: z.nullable(types.boolean()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.string()).optional(),
-  created_at: z.nullable(types.string()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "created_by": "createdBy",
-    "updated_by": "updatedBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    name: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    fields: types.optional(z.array(z.lazy(() => Fields$inboundSchema))),
+    visible: z.nullable(types.boolean()).optional(),
+    active: z.nullable(types.boolean()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.string()).optional(),
+    created_at: z.nullable(types.string()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "created_by": "createdBy",
+      "updated_by": "updatedBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function customObjectSchemaFromJSON(
   jsonString: string,
@@ -297,18 +311,20 @@ export const CustomObjectSchemaInput$outboundSchema: z.ZodType<
   CustomObjectSchemaInput$Outbound,
   z.ZodTypeDef,
   CustomObjectSchemaInput
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  fields: z.array(z.lazy(() => Fields$outboundSchema)).optional(),
-  visible: z.nullable(z.boolean()).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    fields: z.array(z.lazy(() => Fields$outboundSchema)).optional(),
+    visible: z.nullable(z.boolean()).optional(),
+    active: z.nullable(z.boolean()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function customObjectSchemaInputToJSON(
   customObjectSchemaInput: CustomObjectSchemaInput,

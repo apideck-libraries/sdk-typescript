@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -52,31 +52,33 @@ export const RebillStatus$inboundSchema: z.ZodType<
   RebillStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(RebillStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(RebillStatus));
 /** @internal */
 export const RebillStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   RebillStatus
-> = openEnums.outboundSchema(RebillStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(RebillStatus));
 
 /** @internal */
 export const Rebilling$inboundSchema: z.ZodType<
   Rebilling,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  rebillable: types.optional(types.boolean()),
-  rebill_status: z.nullable(RebillStatus$inboundSchema).optional(),
-  linked_transaction_id: z.nullable(types.string()).optional(),
-  linked_transaction_line_id: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "rebill_status": "rebillStatus",
-    "linked_transaction_id": "linkedTransactionId",
-    "linked_transaction_line_id": "linkedTransactionLineId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    rebillable: types.optional(types.boolean()),
+    rebill_status: z.nullable(RebillStatus$inboundSchema).optional(),
+    linked_transaction_id: z.nullable(types.string()).optional(),
+    linked_transaction_line_id: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "rebill_status": "rebillStatus",
+      "linked_transaction_id": "linkedTransactionId",
+      "linked_transaction_line_id": "linkedTransactionLineId",
+    });
+  })
+);
 /** @internal */
 export type Rebilling$Outbound = {
   rebillable?: boolean | undefined;
@@ -90,18 +92,20 @@ export const Rebilling$outboundSchema: z.ZodType<
   Rebilling$Outbound,
   z.ZodTypeDef,
   Rebilling
-> = z.object({
-  rebillable: z.boolean().optional(),
-  rebillStatus: z.nullable(RebillStatus$outboundSchema).optional(),
-  linkedTransactionId: z.nullable(z.string()).optional(),
-  linkedTransactionLineId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    rebillStatus: "rebill_status",
-    linkedTransactionId: "linked_transaction_id",
-    linkedTransactionLineId: "linked_transaction_line_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    rebillable: z.boolean().optional(),
+    rebillStatus: z.nullable(RebillStatus$outboundSchema).optional(),
+    linkedTransactionId: z.nullable(z.string()).optional(),
+    linkedTransactionLineId: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      rebillStatus: "rebill_status",
+      linkedTransactionId: "linked_transaction_id",
+      linkedTransactionLineId: "linked_transaction_line_id",
+    });
+  })
+);
 
 export function rebillingToJSON(rebilling: Rebilling): string {
   return JSON.stringify(Rebilling$outboundSchema.parse(rebilling));

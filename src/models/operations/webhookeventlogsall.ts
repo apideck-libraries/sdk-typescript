@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -63,12 +63,14 @@ export const WebhookEventLogsAllRequest$outboundSchema: z.ZodType<
   WebhookEventLogsAllRequest$Outbound,
   z.ZodTypeDef,
   WebhookEventLogsAllRequest
-> = z.object({
-  appId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.WebhookEventLogsFilter$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    appId: z.string().optional(),
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    filter: components.WebhookEventLogsFilter$outboundSchema.optional(),
+  })
+);
 
 export function webhookEventLogsAllRequestToJSON(
   webhookEventLogsAllRequest: WebhookEventLogsAllRequest,
@@ -83,21 +85,23 @@ export const WebhookEventLogsAllResponse$inboundSchema: z.ZodType<
   WebhookEventLogsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetWebhookEventLogsResponse: types.optional(
-    components.GetWebhookEventLogsResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetWebhookEventLogsResponse": "getWebhookEventLogsResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetWebhookEventLogsResponse: types.optional(
+      components.GetWebhookEventLogsResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetWebhookEventLogsResponse": "getWebhookEventLogsResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function webhookEventLogsAllResponseFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -127,47 +127,53 @@ export const ActivityAttendeeStatus$inboundSchema: z.ZodType<
   ActivityAttendeeStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(ActivityAttendeeStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(ActivityAttendeeStatus)
+);
 /** @internal */
 export const ActivityAttendeeStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ActivityAttendeeStatus
-> = openEnums.outboundSchema(ActivityAttendeeStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ActivityAttendeeStatus)
+);
 
 /** @internal */
 export const ActivityAttendee$inboundSchema: z.ZodType<
   ActivityAttendee,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  first_name: z.nullable(types.string()).optional(),
-  middle_name: z.nullable(types.string()).optional(),
-  last_name: z.nullable(types.string()).optional(),
-  prefix: z.nullable(types.string()).optional(),
-  suffix: z.nullable(types.string()).optional(),
-  email_address: z.nullable(types.string()).optional(),
-  is_organizer: z.nullable(types.boolean()).optional(),
-  status: z.nullable(ActivityAttendeeStatus$inboundSchema).optional(),
-  user_id: z.nullable(types.string()).optional(),
-  contact_id: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "middle_name": "middleName",
-    "last_name": "lastName",
-    "email_address": "emailAddress",
-    "is_organizer": "isOrganizer",
-    "user_id": "userId",
-    "contact_id": "contactId",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    first_name: z.nullable(types.string()).optional(),
+    middle_name: z.nullable(types.string()).optional(),
+    last_name: z.nullable(types.string()).optional(),
+    prefix: z.nullable(types.string()).optional(),
+    suffix: z.nullable(types.string()).optional(),
+    email_address: z.nullable(types.string()).optional(),
+    is_organizer: z.nullable(types.boolean()).optional(),
+    status: z.nullable(ActivityAttendeeStatus$inboundSchema).optional(),
+    user_id: z.nullable(types.string()).optional(),
+    contact_id: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "first_name": "firstName",
+      "middle_name": "middleName",
+      "last_name": "lastName",
+      "email_address": "emailAddress",
+      "is_organizer": "isOrganizer",
+      "user_id": "userId",
+      "contact_id": "contactId",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+    });
+  })
+);
 
 export function activityAttendeeFromJSON(
   jsonString: string,
@@ -197,25 +203,27 @@ export const ActivityAttendeeInput$outboundSchema: z.ZodType<
   ActivityAttendeeInput$Outbound,
   z.ZodTypeDef,
   ActivityAttendeeInput
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  middleName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  prefix: z.nullable(z.string()).optional(),
-  suffix: z.nullable(z.string()).optional(),
-  emailAddress: z.nullable(z.string()).optional(),
-  isOrganizer: z.nullable(z.boolean()).optional(),
-  status: z.nullable(ActivityAttendeeStatus$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    middleName: "middle_name",
-    lastName: "last_name",
-    emailAddress: "email_address",
-    isOrganizer: "is_organizer",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(z.string()).optional(),
+    firstName: z.nullable(z.string()).optional(),
+    middleName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    prefix: z.nullable(z.string()).optional(),
+    suffix: z.nullable(z.string()).optional(),
+    emailAddress: z.nullable(z.string()).optional(),
+    isOrganizer: z.nullable(z.boolean()).optional(),
+    status: z.nullable(ActivityAttendeeStatus$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      firstName: "first_name",
+      middleName: "middle_name",
+      lastName: "last_name",
+      emailAddress: "email_address",
+      isOrganizer: "is_organizer",
+    });
+  })
+);
 
 export function activityAttendeeInputToJSON(
   activityAttendeeInput: ActivityAttendeeInput,

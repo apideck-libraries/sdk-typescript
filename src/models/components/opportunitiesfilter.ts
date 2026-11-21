@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type OpportunitiesFilter = {
   /**
@@ -57,25 +58,27 @@ export const OpportunitiesFilter$outboundSchema: z.ZodType<
   OpportunitiesFilter$Outbound,
   z.ZodTypeDef,
   OpportunitiesFilter
-> = z.object({
-  title: z.string().optional(),
-  status: z.string().optional(),
-  statusId: z.string().optional(),
-  monetaryAmount: z.number().optional(),
-  winProbability: z.number().optional(),
-  companyId: z.string().optional(),
-  ownerId: z.string().optional(),
-  primaryContactId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusId: "status_id",
-    monetaryAmount: "monetary_amount",
-    winProbability: "win_probability",
-    companyId: "company_id",
-    ownerId: "owner_id",
-    primaryContactId: "primary_contact_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    title: z.string().optional(),
+    status: z.string().optional(),
+    statusId: z.string().optional(),
+    monetaryAmount: z.number().optional(),
+    winProbability: z.number().optional(),
+    companyId: z.string().optional(),
+    ownerId: z.string().optional(),
+    primaryContactId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      statusId: "status_id",
+      monetaryAmount: "monetary_amount",
+      winProbability: "win_probability",
+      companyId: "company_id",
+      ownerId: "owner_id",
+      primaryContactId: "primary_contact_id",
+    });
+  })
+);
 
 export function opportunitiesFilterToJSON(
   opportunitiesFilter: OpportunitiesFilter,

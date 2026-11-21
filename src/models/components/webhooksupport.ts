@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -146,43 +146,47 @@ export type WebhookSupport = {
 
 /** @internal */
 export const Mode$inboundSchema: z.ZodType<Mode, z.ZodTypeDef, unknown> =
-  openEnums.inboundSchema(Mode);
+  /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Mode));
 
 /** @internal */
 export const SubscriptionLevel$inboundSchema: z.ZodType<
   SubscriptionLevel,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(SubscriptionLevel);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(SubscriptionLevel)
+);
 
 /** @internal */
 export const ManagedVia$inboundSchema: z.ZodType<
   ManagedVia,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(ManagedVia);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(ManagedVia));
 
 /** @internal */
 export const TargetURLScope$inboundSchema: z.ZodType<
   TargetURLScope,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(TargetURLScope);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(TargetURLScope));
 
 /** @internal */
 export const Unit$inboundSchema: z.ZodType<Unit, z.ZodTypeDef, unknown> =
-  openEnums.inboundSchema(Unit);
+  /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Unit));
 
 /** @internal */
 export const RequestRate$inboundSchema: z.ZodType<
   RequestRate,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  rate: types.number(),
-  size: types.number(),
-  unit: Unit$inboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    rate: types.number(),
+    size: types.number(),
+    unit: Unit$inboundSchema,
+  })
+);
 
 export function requestRateFromJSON(
   jsonString: string,
@@ -199,9 +203,11 @@ export const WebhookSupportResources$inboundSchema: z.ZodType<
   WebhookSupportResources,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  events: types.optional(z.array(types.string())),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    events: types.optional(z.array(types.string())),
+  })
+);
 
 export function webhookSupportResourcesFromJSON(
   jsonString: string,
@@ -218,16 +224,18 @@ export const VirtualWebhooks$inboundSchema: z.ZodType<
   VirtualWebhooks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  request_rate: z.lazy(() => RequestRate$inboundSchema),
-  resources: types.optional(
-    z.record(z.lazy(() => WebhookSupportResources$inboundSchema)),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "request_rate": "requestRate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    request_rate: z.lazy(() => RequestRate$inboundSchema),
+    resources: types.optional(
+      z.record(z.lazy(() => WebhookSupportResources$inboundSchema)),
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "request_rate": "requestRate",
+    });
+  })
+);
 
 export function virtualWebhooksFromJSON(
   jsonString: string,
@@ -244,24 +252,28 @@ export const WebhookSupport$inboundSchema: z.ZodType<
   WebhookSupport,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  mode: types.optional(Mode$inboundSchema),
-  subscription_level: types.optional(SubscriptionLevel$inboundSchema),
-  managed_via: types.optional(ManagedVia$inboundSchema),
-  shared_with: types.optional(z.array(types.string())),
-  target_url_scope: types.optional(TargetURLScope$inboundSchema),
-  vendor_app_url: types.optional(types.boolean()),
-  virtual_webhooks: types.optional(z.lazy(() => VirtualWebhooks$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "subscription_level": "subscriptionLevel",
-    "managed_via": "managedVia",
-    "shared_with": "sharedWith",
-    "target_url_scope": "targetUrlScope",
-    "vendor_app_url": "vendorAppUrl",
-    "virtual_webhooks": "virtualWebhooks",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    mode: types.optional(Mode$inboundSchema),
+    subscription_level: types.optional(SubscriptionLevel$inboundSchema),
+    managed_via: types.optional(ManagedVia$inboundSchema),
+    shared_with: types.optional(z.array(types.string())),
+    target_url_scope: types.optional(TargetURLScope$inboundSchema),
+    vendor_app_url: types.optional(types.boolean()),
+    virtual_webhooks: types.optional(
+      z.lazy(() => VirtualWebhooks$inboundSchema),
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "subscription_level": "subscriptionLevel",
+      "managed_via": "managedVia",
+      "shared_with": "sharedWith",
+      "target_url_scope": "targetUrlScope",
+      "vendor_app_url": "vendorAppUrl",
+      "virtual_webhooks": "virtualWebhooks",
+    });
+  })
+);
 
 export function webhookSupportFromJSON(
   jsonString: string,

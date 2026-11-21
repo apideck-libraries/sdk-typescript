@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,21 @@ export const AccountingBillPaymentsBatchAddRequest$outboundSchema: z.ZodType<
   AccountingBillPaymentsBatchAddRequest$Outbound,
   z.ZodTypeDef,
   AccountingBillPaymentsBatchAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  batchBillPaymentsRequest: components.BatchBillPaymentsRequest$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    batchBillPaymentsRequest: "BatchBillPaymentsRequest",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    batchBillPaymentsRequest:
+      components.BatchBillPaymentsRequest$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      batchBillPaymentsRequest: "BatchBillPaymentsRequest",
+    });
+  })
+);
 
 export function accountingBillPaymentsBatchAddRequestToJSON(
   accountingBillPaymentsBatchAddRequest: AccountingBillPaymentsBatchAddRequest,
@@ -100,21 +103,23 @@ export const AccountingBillPaymentsBatchAddResponse$inboundSchema: z.ZodType<
   AccountingBillPaymentsBatchAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  BatchBillPaymentsResponse: types.optional(
-    components.BatchBillPaymentsResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "BatchBillPaymentsResponse": "batchBillPaymentsResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    BatchBillPaymentsResponse: types.optional(
+      components.BatchBillPaymentsResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "BatchBillPaymentsResponse": "batchBillPaymentsResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingBillPaymentsBatchAddResponseFromJSON(
   jsonString: string,

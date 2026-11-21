@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -61,24 +61,26 @@ export const Audience$inboundSchema: z.ZodType<
   Audience,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(Audience);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Audience));
 
 /** @internal */
 export const Format$inboundSchema: z.ZodType<Format, z.ZodTypeDef, unknown> =
-  openEnums.inboundSchema(Format);
+  /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Format));
 
 /** @internal */
 export const ConnectorDoc$inboundSchema: z.ZodType<
   ConnectorDoc,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: types.optional(types.string()),
-  audience: types.optional(Audience$inboundSchema),
-  format: types.optional(Format$inboundSchema),
-  url: types.optional(types.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    name: types.optional(types.string()),
+    audience: types.optional(Audience$inboundSchema),
+    format: types.optional(Format$inboundSchema),
+    url: types.optional(types.string()),
+  })
+);
 
 export function connectorDocFromJSON(
   jsonString: string,

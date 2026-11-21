@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type Credentials = {
   /**
@@ -49,19 +50,21 @@ export const Credentials$outboundSchema: z.ZodType<
   Credentials$Outbound,
   z.ZodTypeDef,
   Credentials
-> = z.object({
-  refreshToken: z.nullable(z.string()).optional(),
-  accessToken: z.string().optional(),
-  issuedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  expiresIn: z.nullable(z.number().int()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    refreshToken: "refresh_token",
-    accessToken: "access_token",
-    issuedAt: "issued_at",
-    expiresIn: "expires_in",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    refreshToken: z.nullable(z.string()).optional(),
+    accessToken: z.string().optional(),
+    issuedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+    expiresIn: z.nullable(z.number().int()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      refreshToken: "refresh_token",
+      accessToken: "access_token",
+      issuedAt: "issued_at",
+      expiresIn: "expires_in",
+    });
+  })
+);
 
 export function credentialsToJSON(credentials: Credentials): string {
   return JSON.stringify(Credentials$outboundSchema.parse(credentials));
@@ -79,11 +82,13 @@ export const ConnectionImportData$outboundSchema: z.ZodType<
   ConnectionImportData$Outbound,
   z.ZodTypeDef,
   ConnectionImportData
-> = z.object({
-  credentials: z.lazy(() => Credentials$outboundSchema).optional(),
-  settings: z.nullable(z.record(z.any())).optional(),
-  metadata: z.nullable(z.record(z.any())).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    credentials: z.lazy(() => Credentials$outboundSchema).optional(),
+    settings: z.nullable(z.record(z.any())).optional(),
+    metadata: z.nullable(z.record(z.any())).optional(),
+  })
+);
 
 export function connectionImportDataToJSON(
   connectionImportData: ConnectionImportData,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -74,19 +74,21 @@ export const CrmCustomObjectsAddRequest$outboundSchema: z.ZodType<
   CrmCustomObjectsAddRequest$Outbound,
   z.ZodTypeDef,
   CrmCustomObjectsAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  objectId: z.string(),
-  customObject: components.CustomObjectInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    objectId: "object_id",
-    customObject: "CustomObject",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    objectId: z.string(),
+    customObject: components.CustomObjectInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      objectId: "object_id",
+      customObject: "CustomObject",
+    });
+  })
+);
 
 export function crmCustomObjectsAddRequestToJSON(
   crmCustomObjectsAddRequest: CrmCustomObjectsAddRequest,
@@ -101,21 +103,23 @@ export const CrmCustomObjectsAddResponse$inboundSchema: z.ZodType<
   CrmCustomObjectsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateCustomObjectResponse: types.optional(
-    components.CreateCustomObjectResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateCustomObjectResponse": "createCustomObjectResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateCustomObjectResponse: types.optional(
+      components.CreateCustomObjectResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateCustomObjectResponse": "createCustomObjectResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function crmCustomObjectsAddResponseFromJSON(
   jsonString: string,

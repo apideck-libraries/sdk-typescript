@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -373,108 +373,114 @@ export const ExpensePaymentType$inboundSchema: z.ZodType<
   ExpensePaymentType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(ExpensePaymentType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(ExpensePaymentType)
+);
 /** @internal */
 export const ExpensePaymentType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ExpensePaymentType
-> = openEnums.outboundSchema(ExpensePaymentType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ExpensePaymentType)
+);
 
 /** @internal */
 export const ExpenseType$inboundSchema: z.ZodType<
   ExpenseType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(ExpenseType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(ExpenseType));
 /** @internal */
 export const ExpenseType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ExpenseType
-> = openEnums.outboundSchema(ExpenseType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(ExpenseType));
 
 /** @internal */
 export const ExpenseStatus$inboundSchema: z.ZodType<
   ExpenseStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(ExpenseStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(ExpenseStatus));
 /** @internal */
 export const ExpenseStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ExpenseStatus
-> = openEnums.outboundSchema(ExpenseStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(ExpenseStatus));
 
 /** @internal */
 export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
-  z.object({
-    id: types.optional(types.string()),
-    display_id: z.nullable(types.string()).optional(),
-    number: z.nullable(types.string()).optional(),
-    transaction_date: types.nullable(types.date()),
-    account_id: types.optional(types.string()),
-    account: z.nullable(LinkedFinancialAccount$inboundSchema).optional(),
-    supplier_id: types.optional(types.string()),
-    supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
-    company_id: z.nullable(types.string()).optional(),
-    location: z.nullable(LinkedLocation$inboundSchema).optional(),
-    department_id: z.nullable(types.string()).optional(),
-    department: z.nullable(LinkedDepartment$inboundSchema).optional(),
-    payment_type: z.nullable(ExpensePaymentType$inboundSchema).optional(),
-    currency: z.nullable(Currency$inboundSchema).optional(),
-    currency_rate: z.nullable(types.number()).optional(),
-    type: z.nullable(ExpenseType$inboundSchema).optional(),
-    memo: z.nullable(types.string()).optional(),
-    tax_rate: types.optional(LinkedTaxRate$inboundSchema),
-    tax_inclusive: z.nullable(types.boolean()).optional(),
-    sub_total: z.nullable(types.number()).optional(),
-    total_tax: z.nullable(types.number()).optional(),
-    total_amount: z.nullable(types.number()).optional(),
-    tracking_categories: z.nullable(
-      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-    ).optional(),
-    line_items: z.array(ExpenseLineItem$inboundSchema),
-    reference: z.nullable(types.string()).optional(),
-    source_document_url: z.nullable(types.string()).optional(),
-    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    status: z.nullable(ExpenseStatus$inboundSchema).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-    row_version: z.nullable(types.string()).optional(),
-    updated_by: z.nullable(types.string()).optional(),
-    created_by: z.nullable(types.string()).optional(),
-    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-  }).transform((v) => {
-    return remap$(v, {
-      "display_id": "displayId",
-      "transaction_date": "transactionDate",
-      "account_id": "accountId",
-      "supplier_id": "supplierId",
-      "company_id": "companyId",
-      "department_id": "departmentId",
-      "payment_type": "paymentType",
-      "currency_rate": "currencyRate",
-      "tax_rate": "taxRate",
-      "tax_inclusive": "taxInclusive",
-      "sub_total": "subTotal",
-      "total_tax": "totalTax",
-      "total_amount": "totalAmount",
-      "tracking_categories": "trackingCategories",
-      "line_items": "lineItems",
-      "source_document_url": "sourceDocumentUrl",
-      "custom_fields": "customFields",
-      "custom_mappings": "customMappings",
-      "updated_at": "updatedAt",
-      "created_at": "createdAt",
-      "row_version": "rowVersion",
-      "updated_by": "updatedBy",
-      "created_by": "createdBy",
-      "pass_through": "passThrough",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.optional(types.string()),
+      display_id: z.nullable(types.string()).optional(),
+      number: z.nullable(types.string()).optional(),
+      transaction_date: types.nullable(types.date()),
+      account_id: types.optional(types.string()),
+      account: z.nullable(LinkedFinancialAccount$inboundSchema).optional(),
+      supplier_id: types.optional(types.string()),
+      supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
+      company_id: z.nullable(types.string()).optional(),
+      location: z.nullable(LinkedLocation$inboundSchema).optional(),
+      department_id: z.nullable(types.string()).optional(),
+      department: z.nullable(LinkedDepartment$inboundSchema).optional(),
+      payment_type: z.nullable(ExpensePaymentType$inboundSchema).optional(),
+      currency: z.nullable(Currency$inboundSchema).optional(),
+      currency_rate: z.nullable(types.number()).optional(),
+      type: z.nullable(ExpenseType$inboundSchema).optional(),
+      memo: z.nullable(types.string()).optional(),
+      tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+      tax_inclusive: z.nullable(types.boolean()).optional(),
+      sub_total: z.nullable(types.number()).optional(),
+      total_tax: z.nullable(types.number()).optional(),
+      total_amount: z.nullable(types.number()).optional(),
+      tracking_categories: z.nullable(
+        z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+      ).optional(),
+      line_items: z.array(ExpenseLineItem$inboundSchema),
+      reference: z.nullable(types.string()).optional(),
+      source_document_url: z.nullable(types.string()).optional(),
+      custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+      status: z.nullable(ExpenseStatus$inboundSchema).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+      row_version: z.nullable(types.string()).optional(),
+      updated_by: z.nullable(types.string()).optional(),
+      created_by: z.nullable(types.string()).optional(),
+      pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    }).transform((v) => {
+      return remap$(v, {
+        "display_id": "displayId",
+        "transaction_date": "transactionDate",
+        "account_id": "accountId",
+        "supplier_id": "supplierId",
+        "company_id": "companyId",
+        "department_id": "departmentId",
+        "payment_type": "paymentType",
+        "currency_rate": "currencyRate",
+        "tax_rate": "taxRate",
+        "tax_inclusive": "taxInclusive",
+        "sub_total": "subTotal",
+        "total_tax": "totalTax",
+        "total_amount": "totalAmount",
+        "tracking_categories": "trackingCategories",
+        "line_items": "lineItems",
+        "source_document_url": "sourceDocumentUrl",
+        "custom_fields": "customFields",
+        "custom_mappings": "customMappings",
+        "updated_at": "updatedAt",
+        "created_at": "createdAt",
+        "row_version": "rowVersion",
+        "updated_by": "updatedBy",
+        "created_by": "createdBy",
+        "pass_through": "passThrough",
+      });
+    })
+  );
 
 export function expenseFromJSON(
   jsonString: string,
@@ -527,61 +533,63 @@ export const ExpenseInput$outboundSchema: z.ZodType<
   ExpenseInput$Outbound,
   z.ZodTypeDef,
   ExpenseInput
-> = z.object({
-  displayId: z.nullable(z.string()).optional(),
-  number: z.nullable(z.string()).optional(),
-  transactionDate: z.nullable(z.date().transform(v => v.toISOString())),
-  accountId: z.string().optional(),
-  account: z.nullable(LinkedFinancialAccountInput$outboundSchema).optional(),
-  supplierId: z.string().optional(),
-  supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  location: z.nullable(LinkedLocationInput$outboundSchema).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
-  paymentType: z.nullable(ExpensePaymentType$outboundSchema).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  type: z.nullable(ExpenseType$outboundSchema).optional(),
-  memo: z.nullable(z.string()).optional(),
-  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  taxInclusive: z.nullable(z.boolean()).optional(),
-  subTotal: z.nullable(z.number()).optional(),
-  totalTax: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  lineItems: z.array(ExpenseLineItemInput$outboundSchema),
-  reference: z.nullable(z.string()).optional(),
-  sourceDocumentUrl: z.nullable(z.string()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  status: z.nullable(ExpenseStatus$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    transactionDate: "transaction_date",
-    accountId: "account_id",
-    supplierId: "supplier_id",
-    companyId: "company_id",
-    departmentId: "department_id",
-    paymentType: "payment_type",
-    currencyRate: "currency_rate",
-    taxRate: "tax_rate",
-    taxInclusive: "tax_inclusive",
-    subTotal: "sub_total",
-    totalTax: "total_tax",
-    totalAmount: "total_amount",
-    trackingCategories: "tracking_categories",
-    lineItems: "line_items",
-    sourceDocumentUrl: "source_document_url",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayId: z.nullable(z.string()).optional(),
+    number: z.nullable(z.string()).optional(),
+    transactionDate: z.nullable(z.date().transform(v => v.toISOString())),
+    accountId: z.string().optional(),
+    account: z.nullable(LinkedFinancialAccountInput$outboundSchema).optional(),
+    supplierId: z.string().optional(),
+    supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
+    companyId: z.nullable(z.string()).optional(),
+    location: z.nullable(LinkedLocationInput$outboundSchema).optional(),
+    departmentId: z.nullable(z.string()).optional(),
+    department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
+    paymentType: z.nullable(ExpensePaymentType$outboundSchema).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    currencyRate: z.nullable(z.number()).optional(),
+    type: z.nullable(ExpenseType$outboundSchema).optional(),
+    memo: z.nullable(z.string()).optional(),
+    taxRate: LinkedTaxRateInput$outboundSchema.optional(),
+    taxInclusive: z.nullable(z.boolean()).optional(),
+    subTotal: z.nullable(z.number()).optional(),
+    totalTax: z.nullable(z.number()).optional(),
+    totalAmount: z.nullable(z.number()).optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    lineItems: z.array(ExpenseLineItemInput$outboundSchema),
+    reference: z.nullable(z.string()).optional(),
+    sourceDocumentUrl: z.nullable(z.string()).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    status: z.nullable(ExpenseStatus$outboundSchema).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+      transactionDate: "transaction_date",
+      accountId: "account_id",
+      supplierId: "supplier_id",
+      companyId: "company_id",
+      departmentId: "department_id",
+      paymentType: "payment_type",
+      currencyRate: "currency_rate",
+      taxRate: "tax_rate",
+      taxInclusive: "tax_inclusive",
+      subTotal: "sub_total",
+      totalTax: "total_tax",
+      totalAmount: "total_amount",
+      trackingCategories: "tracking_categories",
+      lineItems: "line_items",
+      sourceDocumentUrl: "source_document_url",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function expenseInputToJSON(expenseInput: ExpenseInput): string {
   return JSON.stringify(ExpenseInput$outboundSchema.parse(expenseInput));

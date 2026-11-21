@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Currency, Currency$outboundSchema } from "./currency.js";
@@ -226,14 +227,16 @@ export const ExpenseReportUpdateInputEmployee$outboundSchema: z.ZodType<
   ExpenseReportUpdateInputEmployee$Outbound,
   z.ZodTypeDef,
   ExpenseReportUpdateInputEmployee
-> = z.object({
-  id: z.string().optional(),
-  displayName: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    displayName: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayName: "display_name",
+    });
+  })
+);
 
 export function expenseReportUpdateInputEmployeeToJSON(
   expenseReportUpdateInputEmployee: ExpenseReportUpdateInputEmployee,
@@ -250,7 +253,9 @@ export const ExpenseReportUpdateInputStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ExpenseReportUpdateInputStatus
-> = openEnums.outboundSchema(ExpenseReportUpdateInputStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ExpenseReportUpdateInputStatus)
+);
 
 /** @internal */
 export type ExpenseReportUpdateInputAccountingPeriod$Outbound = {
@@ -263,10 +268,12 @@ export const ExpenseReportUpdateInputAccountingPeriod$outboundSchema: z.ZodType<
   ExpenseReportUpdateInputAccountingPeriod$Outbound,
   z.ZodTypeDef,
   ExpenseReportUpdateInputAccountingPeriod
-> = z.object({
-  id: z.string().optional(),
-  name: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    name: z.nullable(z.string()).optional(),
+  })
+);
 
 export function expenseReportUpdateInputAccountingPeriodToJSON(
   expenseReportUpdateInputAccountingPeriod:
@@ -290,14 +297,16 @@ export const ExpenseReportUpdateInputApprovedBy$outboundSchema: z.ZodType<
   ExpenseReportUpdateInputApprovedBy$Outbound,
   z.ZodTypeDef,
   ExpenseReportUpdateInputApprovedBy
-> = z.object({
-  id: z.string().optional(),
-  displayName: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    displayName: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayName: "display_name",
+    });
+  })
+);
 
 export function expenseReportUpdateInputApprovedByToJSON(
   expenseReportUpdateInputApprovedBy: ExpenseReportUpdateInputApprovedBy,
@@ -352,68 +361,71 @@ export const ExpenseReportUpdateInput$outboundSchema: z.ZodType<
   ExpenseReportUpdateInput$Outbound,
   z.ZodTypeDef,
   ExpenseReportUpdateInput
-> = z.object({
-  displayId: z.nullable(z.string()).optional(),
-  number: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  employee: z.lazy(() => ExpenseReportUpdateInputEmployee$outboundSchema)
-    .optional(),
-  status: z.nullable(ExpenseReportUpdateInputStatus$outboundSchema).optional(),
-  transactionDate: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  postingDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  dueDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  subTotal: z.nullable(z.number()).optional(),
-  totalTax: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()).optional(),
-  reimbursableAmount: z.nullable(z.number()).optional(),
-  memo: z.nullable(z.string()).optional(),
-  department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
-  location: z.nullable(LinkedLocationInput$outboundSchema).optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  accountingPeriod: z.nullable(
-    z.lazy(() => ExpenseReportUpdateInputAccountingPeriod$outboundSchema),
-  ).optional(),
-  lineItems: z.array(ExpenseReportLineItemInput$outboundSchema).optional(),
-  reference: z.nullable(z.string()).optional(),
-  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  taxInclusive: z.nullable(z.boolean()).optional(),
-  approvedBy: z.nullable(
-    z.lazy(() => ExpenseReportUpdateInputApprovedBy$outboundSchema),
-  ).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    transactionDate: "transaction_date",
-    postingDate: "posting_date",
-    dueDate: "due_date",
-    currencyRate: "currency_rate",
-    subTotal: "sub_total",
-    totalTax: "total_tax",
-    totalAmount: "total_amount",
-    reimbursableAmount: "reimbursable_amount",
-    accountingPeriod: "accounting_period",
-    lineItems: "line_items",
-    trackingCategories: "tracking_categories",
-    taxInclusive: "tax_inclusive",
-    approvedBy: "approved_by",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayId: z.nullable(z.string()).optional(),
+    number: z.nullable(z.string()).optional(),
+    title: z.nullable(z.string()).optional(),
+    employee: z.lazy(() => ExpenseReportUpdateInputEmployee$outboundSchema)
+      .optional(),
+    status: z.nullable(ExpenseReportUpdateInputStatus$outboundSchema)
+      .optional(),
+    transactionDate: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    postingDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    dueDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    currencyRate: z.nullable(z.number()).optional(),
+    subTotal: z.nullable(z.number()).optional(),
+    totalTax: z.nullable(z.number()).optional(),
+    totalAmount: z.nullable(z.number()).optional(),
+    reimbursableAmount: z.nullable(z.number()).optional(),
+    memo: z.nullable(z.string()).optional(),
+    department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
+    location: z.nullable(LinkedLocationInput$outboundSchema).optional(),
+    account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    accountingPeriod: z.nullable(
+      z.lazy(() => ExpenseReportUpdateInputAccountingPeriod$outboundSchema),
+    ).optional(),
+    lineItems: z.array(ExpenseReportLineItemInput$outboundSchema).optional(),
+    reference: z.nullable(z.string()).optional(),
+    subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    taxInclusive: z.nullable(z.boolean()).optional(),
+    approvedBy: z.nullable(
+      z.lazy(() => ExpenseReportUpdateInputApprovedBy$outboundSchema),
+    ).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+      transactionDate: "transaction_date",
+      postingDate: "posting_date",
+      dueDate: "due_date",
+      currencyRate: "currency_rate",
+      subTotal: "sub_total",
+      totalTax: "total_tax",
+      totalAmount: "total_amount",
+      reimbursableAmount: "reimbursable_amount",
+      accountingPeriod: "accounting_period",
+      lineItems: "line_items",
+      trackingCategories: "tracking_categories",
+      taxInclusive: "tax_inclusive",
+      approvedBy: "approved_by",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function expenseReportUpdateInputToJSON(
   expenseReportUpdateInput: ExpenseReportUpdateInput,

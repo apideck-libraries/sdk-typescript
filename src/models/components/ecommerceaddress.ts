@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -48,20 +48,22 @@ export const EcommerceAddress$inboundSchema: z.ZodType<
   EcommerceAddress,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  line1: z.nullable(types.string()).optional(),
-  line2: z.nullable(types.string()).optional(),
-  company_name: z.nullable(types.string()).optional(),
-  city: z.nullable(types.string()).optional(),
-  state: z.nullable(types.string()).optional(),
-  postal_code: z.nullable(types.string()).optional(),
-  country: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "company_name": "companyName",
-    "postal_code": "postalCode",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    line1: z.nullable(types.string()).optional(),
+    line2: z.nullable(types.string()).optional(),
+    company_name: z.nullable(types.string()).optional(),
+    city: z.nullable(types.string()).optional(),
+    state: z.nullable(types.string()).optional(),
+    postal_code: z.nullable(types.string()).optional(),
+    country: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "company_name": "companyName",
+      "postal_code": "postalCode",
+    });
+  })
+);
 
 export function ecommerceAddressFromJSON(
   jsonString: string,

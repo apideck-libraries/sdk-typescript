@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -56,26 +56,30 @@ export const ConnectorSettingType$inboundSchema: z.ZodType<
   ConnectorSettingType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(ConnectorSettingType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(ConnectorSettingType)
+);
 
 /** @internal */
 export const ConnectorSetting$inboundSchema: z.ZodType<
   ConnectorSetting,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  label: types.optional(types.string()),
-  type: types.optional(ConnectorSettingType$inboundSchema),
-  required: types.optional(types.boolean()),
-  required_for_authorization: types.optional(types.boolean()),
-  hidden: types.optional(types.boolean()),
-  description: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "required_for_authorization": "requiredForAuthorization",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    label: types.optional(types.string()),
+    type: types.optional(ConnectorSettingType$inboundSchema),
+    required: types.optional(types.boolean()),
+    required_for_authorization: types.optional(types.boolean()),
+    hidden: types.optional(types.boolean()),
+    description: types.optional(types.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "required_for_authorization": "requiredForAuthorization",
+    });
+  })
+);
 
 export function connectorSettingFromJSON(
   jsonString: string,

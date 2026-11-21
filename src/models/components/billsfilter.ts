@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -57,7 +58,9 @@ export const BillsFilterStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   BillsFilterStatus
-> = openEnums.outboundSchema(BillsFilterStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(BillsFilterStatus)
+);
 
 /** @internal */
 export type BillsFilter$Outbound = {
@@ -76,29 +79,31 @@ export const BillsFilter$outboundSchema: z.ZodType<
   BillsFilter$Outbound,
   z.ZodTypeDef,
   BillsFilter
-> = z.object({
-  idSince: z.string().optional(),
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-  billNumber: z.string().optional(),
-  reference: z.string().optional(),
-  billedSince: z.date().transform(v =>
-    v.toISOString().slice(0, "YYYY-MM-DD".length)
-  ).optional(),
-  dueSince: z.date().transform(v =>
-    v.toISOString().slice(0, "YYYY-MM-DD".length)
-  ).optional(),
-  status: BillsFilterStatus$outboundSchema.optional(),
-  subsidiaryId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idSince: "id_since",
-    updatedSince: "updated_since",
-    billNumber: "bill_number",
-    billedSince: "billed_since",
-    dueSince: "due_since",
-    subsidiaryId: "subsidiary_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    idSince: z.string().optional(),
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+    billNumber: z.string().optional(),
+    reference: z.string().optional(),
+    billedSince: z.date().transform(v =>
+      v.toISOString().slice(0, "YYYY-MM-DD".length)
+    ).optional(),
+    dueSince: z.date().transform(v =>
+      v.toISOString().slice(0, "YYYY-MM-DD".length)
+    ).optional(),
+    status: BillsFilterStatus$outboundSchema.optional(),
+    subsidiaryId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idSince: "id_since",
+      updatedSince: "updated_since",
+      billNumber: "bill_number",
+      billedSince: "billed_since",
+      dueSince: "due_since",
+      subsidiaryId: "subsidiary_id",
+    });
+  })
+);
 
 export function billsFilterToJSON(billsFilter: BillsFilter): string {
   return JSON.stringify(BillsFilter$outboundSchema.parse(billsFilter));

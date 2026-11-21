@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -32,16 +32,18 @@ export const LinkedEmployee$inboundSchema: z.ZodType<
   LinkedEmployee,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  display_id: z.nullable(types.string()).optional(),
-  display_name: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_id": "displayId",
-    "display_name": "displayName",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    display_id: z.nullable(types.string()).optional(),
+    display_name: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "display_id": "displayId",
+      "display_name": "displayName",
+    });
+  })
+);
 /** @internal */
 export type LinkedEmployee$Outbound = {
   id?: string | undefined;
@@ -54,16 +56,18 @@ export const LinkedEmployee$outboundSchema: z.ZodType<
   LinkedEmployee$Outbound,
   z.ZodTypeDef,
   LinkedEmployee
-> = z.object({
-  id: z.string().optional(),
-  displayId: z.nullable(z.string()).optional(),
-  displayName: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    displayName: "display_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    displayId: z.nullable(z.string()).optional(),
+    displayName: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+      displayName: "display_name",
+    });
+  })
+);
 
 export function linkedEmployeeToJSON(linkedEmployee: LinkedEmployee): string {
   return JSON.stringify(LinkedEmployee$outboundSchema.parse(linkedEmployee));

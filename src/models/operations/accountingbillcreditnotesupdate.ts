@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -74,18 +74,20 @@ export const AccountingBillCreditNotesUpdateRequest$outboundSchema: z.ZodType<
   AccountingBillCreditNotesUpdateRequest$Outbound,
   z.ZodTypeDef,
   AccountingBillCreditNotesUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  billCreditNote: components.BillCreditNoteInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    billCreditNote: "BillCreditNote",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    billCreditNote: components.BillCreditNoteInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      billCreditNote: "BillCreditNote",
+    });
+  })
+);
 
 export function accountingBillCreditNotesUpdateRequestToJSON(
   accountingBillCreditNotesUpdateRequest:
@@ -103,21 +105,23 @@ export const AccountingBillCreditNotesUpdateResponse$inboundSchema: z.ZodType<
   AccountingBillCreditNotesUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateBillCreditNoteResponse: types.optional(
-    components.UpdateBillCreditNoteResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateBillCreditNoteResponse": "updateBillCreditNoteResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateBillCreditNoteResponse: types.optional(
+      components.UpdateBillCreditNoteResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateBillCreditNoteResponse": "updateBillCreditNoteResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingBillCreditNotesUpdateResponseFromJSON(
   jsonString: string,

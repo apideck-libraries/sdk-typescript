@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -40,13 +40,15 @@ export const DeleteConsumerResponseData$inboundSchema: z.ZodType<
   DeleteConsumerResponseData,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  consumer_id: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "consumer_id": "consumerId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumer_id: types.optional(types.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "consumer_id": "consumerId",
+    });
+  })
+);
 
 export function deleteConsumerResponseDataFromJSON(
   jsonString: string,
@@ -63,17 +65,19 @@ export const DeleteConsumerResponse$inboundSchema: z.ZodType<
   DeleteConsumerResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  status_code: types.number(),
-  status: types.string(),
-  data: z.lazy(() => DeleteConsumerResponseData$inboundSchema),
-  _raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "status_code": "statusCode",
-    "_raw": "raw",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status_code: types.number(),
+    status: types.string(),
+    data: z.lazy(() => DeleteConsumerResponseData$inboundSchema),
+    _raw: z.nullable(z.record(z.any())).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "status_code": "statusCode",
+      "_raw": "raw",
+    });
+  })
+);
 
 export function deleteConsumerResponseFromJSON(
   jsonString: string,

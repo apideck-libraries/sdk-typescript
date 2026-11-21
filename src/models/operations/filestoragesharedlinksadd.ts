@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -67,17 +67,19 @@ export const FileStorageSharedLinksAddRequest$outboundSchema: z.ZodType<
   FileStorageSharedLinksAddRequest$Outbound,
   z.ZodTypeDef,
   FileStorageSharedLinksAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  sharedLink: components.SharedLinkInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    sharedLink: "SharedLink",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    sharedLink: components.SharedLinkInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      sharedLink: "SharedLink",
+    });
+  })
+);
 
 export function fileStorageSharedLinksAddRequestToJSON(
   fileStorageSharedLinksAddRequest: FileStorageSharedLinksAddRequest,
@@ -94,21 +96,23 @@ export const FileStorageSharedLinksAddResponse$inboundSchema: z.ZodType<
   FileStorageSharedLinksAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateSharedLinkResponse: types.optional(
-    components.CreateSharedLinkResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateSharedLinkResponse": "createSharedLinkResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateSharedLinkResponse: types.optional(
+      components.CreateSharedLinkResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateSharedLinkResponse": "createSharedLinkResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function fileStorageSharedLinksAddResponseFromJSON(
   jsonString: string,

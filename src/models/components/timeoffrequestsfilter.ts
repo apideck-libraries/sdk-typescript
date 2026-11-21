@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -55,7 +56,9 @@ export const TimeOffRequestStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   TimeOffRequestStatus
-> = openEnums.outboundSchema(TimeOffRequestStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(TimeOffRequestStatus)
+);
 
 /** @internal */
 export type TimeOffRequestsFilter$Outbound = {
@@ -72,23 +75,25 @@ export const TimeOffRequestsFilter$outboundSchema: z.ZodType<
   TimeOffRequestsFilter$Outbound,
   z.ZodTypeDef,
   TimeOffRequestsFilter
-> = z.object({
-  startDate: z.string().optional(),
-  endDate: z.string().optional(),
-  updatedSince: z.string().optional(),
-  employeeId: z.string().optional(),
-  timeOffRequestStatus: TimeOffRequestStatus$outboundSchema.optional(),
-  companyId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    startDate: "start_date",
-    endDate: "end_date",
-    updatedSince: "updated_since",
-    employeeId: "employee_id",
-    timeOffRequestStatus: "time_off_request_status",
-    companyId: "company_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    startDate: z.string().optional(),
+    endDate: z.string().optional(),
+    updatedSince: z.string().optional(),
+    employeeId: z.string().optional(),
+    timeOffRequestStatus: TimeOffRequestStatus$outboundSchema.optional(),
+    companyId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      startDate: "start_date",
+      endDate: "end_date",
+      updatedSince: "updated_since",
+      employeeId: "employee_id",
+      timeOffRequestStatus: "time_off_request_status",
+      companyId: "company_id",
+    });
+  })
+);
 
 export function timeOffRequestsFilterToJSON(
   timeOffRequestsFilter: TimeOffRequestsFilter,

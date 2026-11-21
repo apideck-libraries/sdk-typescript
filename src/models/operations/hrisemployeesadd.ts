@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -67,17 +67,19 @@ export const HrisEmployeesAddRequest$outboundSchema: z.ZodType<
   HrisEmployeesAddRequest$Outbound,
   z.ZodTypeDef,
   HrisEmployeesAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  employee: components.EmployeeInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    employee: "Employee",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    employee: components.EmployeeInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      employee: "Employee",
+    });
+  })
+);
 
 export function hrisEmployeesAddRequestToJSON(
   hrisEmployeesAddRequest: HrisEmployeesAddRequest,
@@ -92,21 +94,23 @@ export const HrisEmployeesAddResponse$inboundSchema: z.ZodType<
   HrisEmployeesAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateEmployeeResponse: types.optional(
-    components.CreateEmployeeResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateEmployeeResponse": "createEmployeeResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateEmployeeResponse: types.optional(
+      components.CreateEmployeeResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateEmployeeResponse": "createEmployeeResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function hrisEmployeesAddResponseFromJSON(
   jsonString: string,

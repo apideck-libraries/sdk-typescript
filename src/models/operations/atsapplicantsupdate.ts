@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const AtsApplicantsUpdateRequest$outboundSchema: z.ZodType<
   AtsApplicantsUpdateRequest$Outbound,
   z.ZodTypeDef,
   AtsApplicantsUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  applicant: components.ApplicantInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    applicant: "Applicant",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    applicant: components.ApplicantInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      applicant: "Applicant",
+    });
+  })
+);
 
 export function atsApplicantsUpdateRequestToJSON(
   atsApplicantsUpdateRequest: AtsApplicantsUpdateRequest,
@@ -98,21 +100,23 @@ export const AtsApplicantsUpdateResponse$inboundSchema: z.ZodType<
   AtsApplicantsUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateApplicantResponse: types.optional(
-    components.UpdateApplicantResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateApplicantResponse": "updateApplicantResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateApplicantResponse: types.optional(
+      components.UpdateApplicantResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateApplicantResponse": "updateApplicantResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function atsApplicantsUpdateResponseFromJSON(
   jsonString: string,

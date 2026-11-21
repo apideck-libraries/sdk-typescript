@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Currency, Currency$outboundSchema } from "./currency.js";
@@ -157,7 +158,9 @@ export const JournalEntryCreateInputStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   JournalEntryCreateInputStatus
-> = openEnums.outboundSchema(JournalEntryCreateInputStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(JournalEntryCreateInputStatus)
+);
 
 /** @internal */
 export type JournalEntryCreateInput$Outbound = {
@@ -194,52 +197,55 @@ export const JournalEntryCreateInput$outboundSchema: z.ZodType<
   JournalEntryCreateInput$Outbound,
   z.ZodTypeDef,
   JournalEntryCreateInput
-> = z.object({
-  displayId: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
-  lineItems: z.array(JournalEntryLineItemInput$outboundSchema).optional(),
-  status: z.nullable(JournalEntryCreateInputStatus$outboundSchema).optional(),
-  memo: z.nullable(z.string()).optional(),
-  postedAt: z.date().transform(v => v.toISOString()).optional(),
-  journalSymbol: z.nullable(z.string()).optional(),
-  taxType: z.nullable(z.string()).optional(),
-  taxCode: z.nullable(z.string()).optional(),
-  number: z.nullable(z.string()).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  accountingPeriod: z.nullable(z.string()).optional(),
-  taxInclusive: z.nullable(z.boolean()).optional(),
-  attachments: z.array(z.nullable(LinkedAttachment$outboundSchema)).optional(),
-  sourceType: z.nullable(z.string()).optional(),
-  sourceId: z.nullable(z.string()).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    currencyRate: "currency_rate",
-    companyId: "company_id",
-    lineItems: "line_items",
-    postedAt: "posted_at",
-    journalSymbol: "journal_symbol",
-    taxType: "tax_type",
-    taxCode: "tax_code",
-    trackingCategories: "tracking_categories",
-    accountingPeriod: "accounting_period",
-    taxInclusive: "tax_inclusive",
-    sourceType: "source_type",
-    sourceId: "source_id",
-    rowVersion: "row_version",
-    customFields: "custom_fields",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayId: z.nullable(z.string()).optional(),
+    title: z.nullable(z.string()).optional(),
+    currencyRate: z.nullable(z.number()).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    companyId: z.nullable(z.string()).optional(),
+    subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
+    lineItems: z.array(JournalEntryLineItemInput$outboundSchema).optional(),
+    status: z.nullable(JournalEntryCreateInputStatus$outboundSchema).optional(),
+    memo: z.nullable(z.string()).optional(),
+    postedAt: z.date().transform(v => v.toISOString()).optional(),
+    journalSymbol: z.nullable(z.string()).optional(),
+    taxType: z.nullable(z.string()).optional(),
+    taxCode: z.nullable(z.string()).optional(),
+    number: z.nullable(z.string()).optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    accountingPeriod: z.nullable(z.string()).optional(),
+    taxInclusive: z.nullable(z.boolean()).optional(),
+    attachments: z.array(z.nullable(LinkedAttachment$outboundSchema))
+      .optional(),
+    sourceType: z.nullable(z.string()).optional(),
+    sourceId: z.nullable(z.string()).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+      currencyRate: "currency_rate",
+      companyId: "company_id",
+      lineItems: "line_items",
+      postedAt: "posted_at",
+      journalSymbol: "journal_symbol",
+      taxType: "tax_type",
+      taxCode: "tax_code",
+      trackingCategories: "tracking_categories",
+      accountingPeriod: "accounting_period",
+      taxInclusive: "tax_inclusive",
+      sourceType: "source_type",
+      sourceId: "source_id",
+      rowVersion: "row_version",
+      customFields: "custom_fields",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function journalEntryCreateInputToJSON(
   journalEntryCreateInput: JournalEntryCreateInput,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -134,48 +134,50 @@ export type Address = {
 
 /** @internal */
 export const Type$inboundSchema: z.ZodType<Type, z.ZodTypeDef, unknown> =
-  openEnums.inboundSchema(Type);
+  /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Type));
 /** @internal */
 export const Type$outboundSchema: z.ZodType<string, z.ZodTypeDef, Type> =
-  openEnums.outboundSchema(Type);
+  /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(Type));
 
 /** @internal */
 export const Address$inboundSchema: z.ZodType<Address, z.ZodTypeDef, unknown> =
-  z.object({
-    id: z.nullable(types.string()).optional(),
-    type: z.nullable(Type$inboundSchema).optional(),
-    string: z.nullable(types.string()).optional(),
-    name: z.nullable(types.string()).optional(),
-    line1: z.nullable(types.string()).optional(),
-    line2: z.nullable(types.string()).optional(),
-    line3: z.nullable(types.string()).optional(),
-    line4: z.nullable(types.string()).optional(),
-    line5: z.nullable(types.string()).optional(),
-    street_number: z.nullable(types.string()).optional(),
-    city: z.nullable(types.string()).optional(),
-    state: z.nullable(types.string()).optional(),
-    postal_code: z.nullable(types.string()).optional(),
-    country: z.nullable(types.string()).optional(),
-    latitude: z.nullable(types.string()).optional(),
-    longitude: z.nullable(types.string()).optional(),
-    county: z.nullable(types.string()).optional(),
-    contact_name: z.nullable(types.string()).optional(),
-    salutation: z.nullable(types.string()).optional(),
-    phone_number: z.nullable(types.string()).optional(),
-    fax: z.nullable(types.string()).optional(),
-    email: z.nullable(types.string()).optional(),
-    website: z.nullable(types.string()).optional(),
-    notes: z.nullable(types.string()).optional(),
-    row_version: z.nullable(types.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "street_number": "streetNumber",
-      "postal_code": "postalCode",
-      "contact_name": "contactName",
-      "phone_number": "phoneNumber",
-      "row_version": "rowVersion",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      type: z.nullable(Type$inboundSchema).optional(),
+      string: z.nullable(types.string()).optional(),
+      name: z.nullable(types.string()).optional(),
+      line1: z.nullable(types.string()).optional(),
+      line2: z.nullable(types.string()).optional(),
+      line3: z.nullable(types.string()).optional(),
+      line4: z.nullable(types.string()).optional(),
+      line5: z.nullable(types.string()).optional(),
+      street_number: z.nullable(types.string()).optional(),
+      city: z.nullable(types.string()).optional(),
+      state: z.nullable(types.string()).optional(),
+      postal_code: z.nullable(types.string()).optional(),
+      country: z.nullable(types.string()).optional(),
+      latitude: z.nullable(types.string()).optional(),
+      longitude: z.nullable(types.string()).optional(),
+      county: z.nullable(types.string()).optional(),
+      contact_name: z.nullable(types.string()).optional(),
+      salutation: z.nullable(types.string()).optional(),
+      phone_number: z.nullable(types.string()).optional(),
+      fax: z.nullable(types.string()).optional(),
+      email: z.nullable(types.string()).optional(),
+      website: z.nullable(types.string()).optional(),
+      notes: z.nullable(types.string()).optional(),
+      row_version: z.nullable(types.string()).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "street_number": "streetNumber",
+        "postal_code": "postalCode",
+        "contact_name": "contactName",
+        "phone_number": "phoneNumber",
+        "row_version": "rowVersion",
+      });
+    })
+  );
 /** @internal */
 export type Address$Outbound = {
   id?: string | null | undefined;
@@ -210,41 +212,43 @@ export const Address$outboundSchema: z.ZodType<
   Address$Outbound,
   z.ZodTypeDef,
   Address
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  type: z.nullable(Type$outboundSchema).optional(),
-  string: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  line1: z.nullable(z.string()).optional(),
-  line2: z.nullable(z.string()).optional(),
-  line3: z.nullable(z.string()).optional(),
-  line4: z.nullable(z.string()).optional(),
-  line5: z.nullable(z.string()).optional(),
-  streetNumber: z.nullable(z.string()).optional(),
-  city: z.nullable(z.string()).optional(),
-  state: z.nullable(z.string()).optional(),
-  postalCode: z.nullable(z.string()).optional(),
-  country: z.nullable(z.string()).optional(),
-  latitude: z.nullable(z.string()).optional(),
-  longitude: z.nullable(z.string()).optional(),
-  county: z.nullable(z.string()).optional(),
-  contactName: z.nullable(z.string()).optional(),
-  salutation: z.nullable(z.string()).optional(),
-  phoneNumber: z.nullable(z.string()).optional(),
-  fax: z.nullable(z.string()).optional(),
-  email: z.nullable(z.string()).optional(),
-  website: z.nullable(z.string()).optional(),
-  notes: z.nullable(z.string()).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    streetNumber: "street_number",
-    postalCode: "postal_code",
-    contactName: "contact_name",
-    phoneNumber: "phone_number",
-    rowVersion: "row_version",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    type: z.nullable(Type$outboundSchema).optional(),
+    string: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()).optional(),
+    line1: z.nullable(z.string()).optional(),
+    line2: z.nullable(z.string()).optional(),
+    line3: z.nullable(z.string()).optional(),
+    line4: z.nullable(z.string()).optional(),
+    line5: z.nullable(z.string()).optional(),
+    streetNumber: z.nullable(z.string()).optional(),
+    city: z.nullable(z.string()).optional(),
+    state: z.nullable(z.string()).optional(),
+    postalCode: z.nullable(z.string()).optional(),
+    country: z.nullable(z.string()).optional(),
+    latitude: z.nullable(z.string()).optional(),
+    longitude: z.nullable(z.string()).optional(),
+    county: z.nullable(z.string()).optional(),
+    contactName: z.nullable(z.string()).optional(),
+    salutation: z.nullable(z.string()).optional(),
+    phoneNumber: z.nullable(z.string()).optional(),
+    fax: z.nullable(z.string()).optional(),
+    email: z.nullable(z.string()).optional(),
+    website: z.nullable(z.string()).optional(),
+    notes: z.nullable(z.string()).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      streetNumber: "street_number",
+      postalCode: "postal_code",
+      contactName: "contact_name",
+      phoneNumber: "phone_number",
+      rowVersion: "row_version",
+    });
+  })
+);
 
 export function addressToJSON(address: Address): string {
   return JSON.stringify(Address$outboundSchema.parse(address));

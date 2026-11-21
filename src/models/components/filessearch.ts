@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PassThroughBody,
   PassThroughBody$Outbound,
@@ -37,16 +38,18 @@ export const FilesSearch$outboundSchema: z.ZodType<
   FilesSearch$Outbound,
   z.ZodTypeDef,
   FilesSearch
-> = z.object({
-  query: z.string(),
-  driveId: z.string().optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    driveId: "drive_id",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    query: z.string(),
+    driveId: z.string().optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      driveId: "drive_id",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function filesSearchToJSON(filesSearch: FilesSearch): string {
   return JSON.stringify(FilesSearch$outboundSchema.parse(filesSearch));

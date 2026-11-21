@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -76,19 +76,21 @@ export const AccountingTrackingCategoriesBatchAddRequest$outboundSchema:
     AccountingTrackingCategoriesBatchAddRequest$Outbound,
     z.ZodTypeDef,
     AccountingTrackingCategoriesBatchAddRequest
-  > = z.object({
-    raw: z.boolean().default(false),
-    consumerId: z.string().optional(),
-    appId: z.string().optional(),
-    serviceId: z.string().optional(),
-    companyId: z.string().optional(),
-    batchTrackingCategoriesRequest:
-      components.BatchTrackingCategoriesRequest$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      batchTrackingCategoriesRequest: "BatchTrackingCategoriesRequest",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      raw: z.boolean().default(false),
+      consumerId: z.string().optional(),
+      appId: z.string().optional(),
+      serviceId: z.string().optional(),
+      companyId: z.string().optional(),
+      batchTrackingCategoriesRequest:
+        components.BatchTrackingCategoriesRequest$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        batchTrackingCategoriesRequest: "BatchTrackingCategoriesRequest",
+      });
+    })
+  );
 
 export function accountingTrackingCategoriesBatchAddRequestToJSON(
   accountingTrackingCategoriesBatchAddRequest:
@@ -107,21 +109,23 @@ export const AccountingTrackingCategoriesBatchAddResponse$inboundSchema:
     AccountingTrackingCategoriesBatchAddResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    HttpMeta: components.HTTPMetadata$inboundSchema,
-    BatchTrackingCategoriesResponse: types.optional(
-      components.BatchTrackingCategoriesResponse$inboundSchema,
-    ),
-    UnexpectedErrorResponse: types.optional(
-      components.UnexpectedErrorResponse$inboundSchema,
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      "HttpMeta": "httpMeta",
-      "BatchTrackingCategoriesResponse": "batchTrackingCategoriesResponse",
-      "UnexpectedErrorResponse": "unexpectedErrorResponse",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      HttpMeta: components.HTTPMetadata$inboundSchema,
+      BatchTrackingCategoriesResponse: types.optional(
+        components.BatchTrackingCategoriesResponse$inboundSchema,
+      ),
+      UnexpectedErrorResponse: types.optional(
+        components.UnexpectedErrorResponse$inboundSchema,
+      ),
+    }).transform((v) => {
+      return remap$(v, {
+        "HttpMeta": "httpMeta",
+        "BatchTrackingCategoriesResponse": "batchTrackingCategoriesResponse",
+        "UnexpectedErrorResponse": "unexpectedErrorResponse",
+      });
+    })
+  );
 
 export function accountingTrackingCategoriesBatchAddResponseFromJSON(
   jsonString: string,

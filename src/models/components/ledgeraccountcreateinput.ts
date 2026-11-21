@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -221,21 +222,27 @@ export const LedgerAccountCreateInputClassification$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   LedgerAccountCreateInputClassification
-> = openEnums.outboundSchema(LedgerAccountCreateInputClassification);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(LedgerAccountCreateInputClassification)
+);
 
 /** @internal */
 export const LedgerAccountCreateInputType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   LedgerAccountCreateInputType
-> = openEnums.outboundSchema(LedgerAccountCreateInputType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(LedgerAccountCreateInputType)
+);
 
 /** @internal */
 export const LedgerAccountCreateInputAccountStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   LedgerAccountCreateInputAccountStatus
-> = openEnums.outboundSchema(LedgerAccountCreateInputAccountStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(LedgerAccountCreateInputAccountStatus)
+);
 
 /** @internal */
 export type LedgerAccountCreateInputParentAccount$Outbound = {
@@ -249,15 +256,17 @@ export const LedgerAccountCreateInputParentAccount$outboundSchema: z.ZodType<
   LedgerAccountCreateInputParentAccount$Outbound,
   z.ZodTypeDef,
   LedgerAccountCreateInputParentAccount
-> = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  displayId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    name: z.string().optional(),
+    displayId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+    });
+  })
+);
 
 export function ledgerAccountCreateInputParentAccountToJSON(
   ledgerAccountCreateInputParentAccount: LedgerAccountCreateInputParentAccount,
@@ -279,9 +288,11 @@ export const LedgerAccountCreateInputSubsidiaries$outboundSchema: z.ZodType<
   LedgerAccountCreateInputSubsidiaries$Outbound,
   z.ZodTypeDef,
   LedgerAccountCreateInputSubsidiaries
-> = z.object({
-  id: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+  })
+);
 
 export function ledgerAccountCreateInputSubsidiariesToJSON(
   ledgerAccountCreateInputSubsidiaries: LedgerAccountCreateInputSubsidiaries,
@@ -330,61 +341,63 @@ export const LedgerAccountCreateInput$outboundSchema: z.ZodType<
   LedgerAccountCreateInput$Outbound,
   z.ZodTypeDef,
   LedgerAccountCreateInput
-> = z.object({
-  displayId: z.string().optional(),
-  nominalCode: z.nullable(z.string()).optional(),
-  code: z.nullable(z.string()).optional(),
-  classification: z.nullable(
-    LedgerAccountCreateInputClassification$outboundSchema,
-  ).optional(),
-  type: LedgerAccountCreateInputType$outboundSchema.optional(),
-  subType: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  fullyQualifiedName: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  openingBalance: z.nullable(z.number()).optional(),
-  currentBalance: z.nullable(z.number()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  taxType: z.nullable(z.string()).optional(),
-  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  level: z.nullable(z.number()).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  status: z.nullable(LedgerAccountCreateInputAccountStatus$outboundSchema)
-    .optional(),
-  header: z.nullable(z.boolean()).optional(),
-  bankAccount: BankAccount$outboundSchema.optional(),
-  parentAccount: z.lazy(() =>
-    LedgerAccountCreateInputParentAccount$outboundSchema
-  ).optional(),
-  subAccount: z.nullable(z.boolean()).optional(),
-  lastReconciliationDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  subsidiaries: z.array(
-    z.lazy(() => LedgerAccountCreateInputSubsidiaries$outboundSchema),
-  ).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    nominalCode: "nominal_code",
-    subType: "sub_type",
-    fullyQualifiedName: "fully_qualified_name",
-    openingBalance: "opening_balance",
-    currentBalance: "current_balance",
-    taxType: "tax_type",
-    taxRate: "tax_rate",
-    bankAccount: "bank_account",
-    parentAccount: "parent_account",
-    subAccount: "sub_account",
-    lastReconciliationDate: "last_reconciliation_date",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayId: z.string().optional(),
+    nominalCode: z.nullable(z.string()).optional(),
+    code: z.nullable(z.string()).optional(),
+    classification: z.nullable(
+      LedgerAccountCreateInputClassification$outboundSchema,
+    ).optional(),
+    type: LedgerAccountCreateInputType$outboundSchema.optional(),
+    subType: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()).optional(),
+    fullyQualifiedName: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    openingBalance: z.nullable(z.number()).optional(),
+    currentBalance: z.nullable(z.number()).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    taxType: z.nullable(z.string()).optional(),
+    taxRate: LinkedTaxRateInput$outboundSchema.optional(),
+    level: z.nullable(z.number()).optional(),
+    active: z.nullable(z.boolean()).optional(),
+    status: z.nullable(LedgerAccountCreateInputAccountStatus$outboundSchema)
+      .optional(),
+    header: z.nullable(z.boolean()).optional(),
+    bankAccount: BankAccount$outboundSchema.optional(),
+    parentAccount: z.lazy(() =>
+      LedgerAccountCreateInputParentAccount$outboundSchema
+    ).optional(),
+    subAccount: z.nullable(z.boolean()).optional(),
+    lastReconciliationDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    subsidiaries: z.array(
+      z.lazy(() => LedgerAccountCreateInputSubsidiaries$outboundSchema),
+    ).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+      nominalCode: "nominal_code",
+      subType: "sub_type",
+      fullyQualifiedName: "fully_qualified_name",
+      openingBalance: "opening_balance",
+      currentBalance: "current_balance",
+      taxType: "tax_type",
+      taxRate: "tax_rate",
+      bankAccount: "bank_account",
+      parentAccount: "parent_account",
+      subAccount: "sub_account",
+      lastReconciliationDate: "last_reconciliation_date",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function ledgerAccountCreateInputToJSON(
   ledgerAccountCreateInput: LedgerAccountCreateInput,

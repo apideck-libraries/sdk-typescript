@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -24,10 +24,12 @@ export const LinkedWorktag$inboundSchema: z.ZodType<
   LinkedWorktag,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  value: z.nullable(types.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    value: z.nullable(types.string()).optional(),
+  })
+);
 /** @internal */
 export type LinkedWorktag$Outbound = {
   id?: string | undefined;
@@ -39,10 +41,12 @@ export const LinkedWorktag$outboundSchema: z.ZodType<
   LinkedWorktag$Outbound,
   z.ZodTypeDef,
   LinkedWorktag
-> = z.object({
-  id: z.string().optional(),
-  value: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    value: z.nullable(z.string()).optional(),
+  })
+);
 
 export function linkedWorktagToJSON(linkedWorktag: LinkedWorktag): string {
   return JSON.stringify(LinkedWorktag$outboundSchema.parse(linkedWorktag));

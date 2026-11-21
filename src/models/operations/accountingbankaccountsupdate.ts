@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const AccountingBankAccountsUpdateRequest$outboundSchema: z.ZodType<
   AccountingBankAccountsUpdateRequest$Outbound,
   z.ZodTypeDef,
   AccountingBankAccountsUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  accountingBankAccount: components.AccountingBankAccountInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    accountingBankAccount: "AccountingBankAccount",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    accountingBankAccount: components.AccountingBankAccountInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      accountingBankAccount: "AccountingBankAccount",
+    });
+  })
+);
 
 export function accountingBankAccountsUpdateRequestToJSON(
   accountingBankAccountsUpdateRequest: AccountingBankAccountsUpdateRequest,
@@ -100,21 +102,23 @@ export const AccountingBankAccountsUpdateResponse$inboundSchema: z.ZodType<
   AccountingBankAccountsUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateBankAccountResponse: types.optional(
-    components.UpdateBankAccountResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateBankAccountResponse": "updateBankAccountResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateBankAccountResponse: types.optional(
+      components.UpdateBankAccountResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateBankAccountResponse": "updateBankAccountResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingBankAccountsUpdateResponseFromJSON(
   jsonString: string,

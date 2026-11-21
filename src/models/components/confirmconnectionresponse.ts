@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -33,9 +33,11 @@ export const ConfirmConnectionResponseData$inboundSchema: z.ZodType<
   ConfirmConnectionResponseData,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  confirmed: types.boolean(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    confirmed: types.boolean(),
+  })
+);
 
 export function confirmConnectionResponseDataFromJSON(
   jsonString: string,
@@ -52,15 +54,17 @@ export const ConfirmConnectionResponse$inboundSchema: z.ZodType<
   ConfirmConnectionResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  status_code: types.number(),
-  status: types.string(),
-  data: z.lazy(() => ConfirmConnectionResponseData$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "status_code": "statusCode",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status_code: types.number(),
+    status: types.string(),
+    data: z.lazy(() => ConfirmConnectionResponseData$inboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      "status_code": "statusCode",
+    });
+  })
+);
 
 export function confirmConnectionResponseFromJSON(
   jsonString: string,

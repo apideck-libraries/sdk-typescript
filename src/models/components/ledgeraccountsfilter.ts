@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -66,14 +67,16 @@ export const Classification$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   Classification
-> = openEnums.outboundSchema(Classification);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(Classification));
 
 /** @internal */
 export const LedgerAccountsFilterStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   LedgerAccountsFilterStatus
-> = openEnums.outboundSchema(LedgerAccountsFilterStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(LedgerAccountsFilterStatus)
+);
 
 /** @internal */
 export type LedgerAccountsFilter$Outbound = {
@@ -89,18 +92,20 @@ export const LedgerAccountsFilter$outboundSchema: z.ZodType<
   LedgerAccountsFilter$Outbound,
   z.ZodTypeDef,
   LedgerAccountsFilter
-> = z.object({
-  name: z.string().optional(),
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-  classification: Classification$outboundSchema.optional(),
-  status: LedgerAccountsFilterStatus$outboundSchema.optional(),
-  subsidiaryId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    updatedSince: "updated_since",
-    subsidiaryId: "subsidiary_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string().optional(),
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+    classification: Classification$outboundSchema.optional(),
+    status: LedgerAccountsFilterStatus$outboundSchema.optional(),
+    subsidiaryId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      updatedSince: "updated_since",
+      subsidiaryId: "subsidiary_id",
+    });
+  })
+);
 
 export function ledgerAccountsFilterToJSON(
   ledgerAccountsFilter: LedgerAccountsFilter,

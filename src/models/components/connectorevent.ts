@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -51,27 +51,29 @@ export const EventSource$inboundSchema: z.ZodType<
   EventSource,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(EventSource);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(EventSource));
 
 /** @internal */
 export const ConnectorEvent$inboundSchema: z.ZodType<
   ConnectorEvent,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  event_type: types.optional(types.string()),
-  event_source: types.optional(EventSource$inboundSchema),
-  downstream_event_type: types.optional(types.string()),
-  resources: types.optional(z.array(types.string())),
-  entity_type: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "event_type": "eventType",
-    "event_source": "eventSource",
-    "downstream_event_type": "downstreamEventType",
-    "entity_type": "entityType",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    event_type: types.optional(types.string()),
+    event_source: types.optional(EventSource$inboundSchema),
+    downstream_event_type: types.optional(types.string()),
+    resources: types.optional(z.array(types.string())),
+    entity_type: types.optional(types.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "event_type": "eventType",
+      "event_source": "eventSource",
+      "downstream_event_type": "downstreamEventType",
+      "entity_type": "entityType",
+    });
+  })
+);
 
 export function connectorEventFromJSON(
   jsonString: string,

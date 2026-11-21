@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const CrmPipelinesUpdateRequest$outboundSchema: z.ZodType<
   CrmPipelinesUpdateRequest$Outbound,
   z.ZodTypeDef,
   CrmPipelinesUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  pipeline: components.PipelineInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    pipeline: "Pipeline",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    pipeline: components.PipelineInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      pipeline: "Pipeline",
+    });
+  })
+);
 
 export function crmPipelinesUpdateRequestToJSON(
   crmPipelinesUpdateRequest: CrmPipelinesUpdateRequest,
@@ -98,21 +100,23 @@ export const CrmPipelinesUpdateResponse$inboundSchema: z.ZodType<
   CrmPipelinesUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdatePipelineResponse: types.optional(
-    components.UpdatePipelineResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdatePipelineResponse": "updatePipelineResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdatePipelineResponse: types.optional(
+      components.UpdatePipelineResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdatePipelineResponse": "updatePipelineResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function crmPipelinesUpdateResponseFromJSON(
   jsonString: string,

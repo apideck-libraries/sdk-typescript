@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -158,56 +158,62 @@ export const ExpenseCategoryStatus$inboundSchema: z.ZodType<
   ExpenseCategoryStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(ExpenseCategoryStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(ExpenseCategoryStatus)
+);
 /** @internal */
 export const ExpenseCategoryStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ExpenseCategoryStatus
-> = openEnums.outboundSchema(ExpenseCategoryStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ExpenseCategoryStatus)
+);
 
 /** @internal */
 export const ExpenseCategory$inboundSchema: z.ZodType<
   ExpenseCategory,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  display_id: z.nullable(types.string()).optional(),
-  name: types.string(),
-  code: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  status: z.nullable(ExpenseCategoryStatus$inboundSchema).optional(),
-  account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  offset_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
-  rate_required: z.nullable(types.boolean()).optional(),
-  default_rate: z.nullable(types.number()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  downstream_id: z.nullable(types.string()).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "display_id": "displayId",
-    "offset_account": "offsetAccount",
-    "tax_rate": "taxRate",
-    "rate_required": "rateRequired",
-    "default_rate": "defaultRate",
-    "custom_mappings": "customMappings",
-    "downstream_id": "downstreamId",
-    "row_version": "rowVersion",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    display_id: z.nullable(types.string()).optional(),
+    name: types.string(),
+    code: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    status: z.nullable(ExpenseCategoryStatus$inboundSchema).optional(),
+    account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    offset_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+    rate_required: z.nullable(types.boolean()).optional(),
+    default_rate: z.nullable(types.number()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    downstream_id: z.nullable(types.string()).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "display_id": "displayId",
+      "offset_account": "offsetAccount",
+      "tax_rate": "taxRate",
+      "rate_required": "rateRequired",
+      "default_rate": "defaultRate",
+      "custom_mappings": "customMappings",
+      "downstream_id": "downstreamId",
+      "row_version": "rowVersion",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function expenseCategoryFromJSON(
   jsonString: string,
@@ -240,30 +246,32 @@ export const ExpenseCategoryInput$outboundSchema: z.ZodType<
   ExpenseCategoryInput$Outbound,
   z.ZodTypeDef,
   ExpenseCategoryInput
-> = z.object({
-  displayId: z.nullable(z.string()).optional(),
-  name: z.string(),
-  code: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  status: z.nullable(ExpenseCategoryStatus$outboundSchema).optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  offsetAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  rateRequired: z.nullable(z.boolean()).optional(),
-  defaultRate: z.nullable(z.number()).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    offsetAccount: "offset_account",
-    taxRate: "tax_rate",
-    rateRequired: "rate_required",
-    defaultRate: "default_rate",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayId: z.nullable(z.string()).optional(),
+    name: z.string(),
+    code: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    status: z.nullable(ExpenseCategoryStatus$outboundSchema).optional(),
+    account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    offsetAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    taxRate: LinkedTaxRateInput$outboundSchema.optional(),
+    rateRequired: z.nullable(z.boolean()).optional(),
+    defaultRate: z.nullable(z.number()).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+      offsetAccount: "offset_account",
+      taxRate: "tax_rate",
+      rateRequired: "rate_required",
+      defaultRate: "default_rate",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function expenseCategoryInputToJSON(
   expenseCategoryInput: ExpenseCategoryInput,

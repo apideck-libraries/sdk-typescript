@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const AccountingSubsidiariesAddRequest$outboundSchema: z.ZodType<
   AccountingSubsidiariesAddRequest$Outbound,
   z.ZodTypeDef,
   AccountingSubsidiariesAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  subsidiary: components.SubsidiaryInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    subsidiary: "Subsidiary",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    subsidiary: components.SubsidiaryInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      subsidiary: "Subsidiary",
+    });
+  })
+);
 
 export function accountingSubsidiariesAddRequestToJSON(
   accountingSubsidiariesAddRequest: AccountingSubsidiariesAddRequest,
@@ -100,21 +102,23 @@ export const AccountingSubsidiariesAddResponse$inboundSchema: z.ZodType<
   AccountingSubsidiariesAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateSubsidiaryResponse: types.optional(
-    components.CreateSubsidiaryResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateSubsidiaryResponse": "createSubsidiaryResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateSubsidiaryResponse: types.optional(
+      components.CreateSubsidiaryResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateSubsidiaryResponse": "createSubsidiaryResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingSubsidiariesAddResponseFromJSON(
   jsonString: string,

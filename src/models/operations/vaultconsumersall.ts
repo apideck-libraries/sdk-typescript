@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -61,12 +61,14 @@ export const VaultConsumersAllRequest$outboundSchema: z.ZodType<
   VaultConsumersAllRequest$Outbound,
   z.ZodTypeDef,
   VaultConsumersAllRequest
-> = z.object({
-  appId: z.string().optional(),
-  filter: components.ConsumersFilter$outboundSchema.optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    appId: z.string().optional(),
+    filter: components.ConsumersFilter$outboundSchema.optional(),
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+  })
+);
 
 export function vaultConsumersAllRequestToJSON(
   vaultConsumersAllRequest: VaultConsumersAllRequest,
@@ -81,21 +83,23 @@ export const VaultConsumersAllResponse$inboundSchema: z.ZodType<
   VaultConsumersAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetConsumersResponse: types.optional(
-    components.GetConsumersResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetConsumersResponse": "getConsumersResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetConsumersResponse: types.optional(
+      components.GetConsumersResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetConsumersResponse": "getConsumersResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultConsumersAllResponseFromJSON(
   jsonString: string,

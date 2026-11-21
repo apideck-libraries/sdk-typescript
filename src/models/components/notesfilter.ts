@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type NotesFilter = {
   /**
@@ -46,24 +47,26 @@ export const NotesFilter$outboundSchema: z.ZodType<
   NotesFilter$Outbound,
   z.ZodTypeDef,
   NotesFilter
-> = z.object({
-  title: z.string().optional(),
-  ownerId: z.string().optional(),
-  contactId: z.string().optional(),
-  companyId: z.string().optional(),
-  opportunityId: z.string().optional(),
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-  createdSince: z.date().transform(v => v.toISOString()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    ownerId: "owner_id",
-    contactId: "contact_id",
-    companyId: "company_id",
-    opportunityId: "opportunity_id",
-    updatedSince: "updated_since",
-    createdSince: "created_since",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    title: z.string().optional(),
+    ownerId: z.string().optional(),
+    contactId: z.string().optional(),
+    companyId: z.string().optional(),
+    opportunityId: z.string().optional(),
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+    createdSince: z.date().transform(v => v.toISOString()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      ownerId: "owner_id",
+      contactId: "contact_id",
+      companyId: "company_id",
+      opportunityId: "opportunity_id",
+      updatedSince: "updated_since",
+      createdSince: "created_since",
+    });
+  })
+);
 
 export function notesFilterToJSON(notesFilter: NotesFilter): string {
   return JSON.stringify(NotesFilter$outboundSchema.parse(notesFilter));

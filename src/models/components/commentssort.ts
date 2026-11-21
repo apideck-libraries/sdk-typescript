@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -38,7 +39,7 @@ export const CommentsSortBy$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   CommentsSortBy
-> = openEnums.outboundSchema(CommentsSortBy);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(CommentsSortBy));
 
 /** @internal */
 export type CommentsSort$Outbound = {
@@ -51,10 +52,12 @@ export const CommentsSort$outboundSchema: z.ZodType<
   CommentsSort$Outbound,
   z.ZodTypeDef,
   CommentsSort
-> = z.object({
-  by: CommentsSortBy$outboundSchema.optional(),
-  direction: SortDirection$outboundSchema.default("asc"),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    by: CommentsSortBy$outboundSchema.optional(),
+    direction: SortDirection$outboundSchema.default("asc"),
+  })
+);
 
 export function commentsSortToJSON(commentsSort: CommentsSort): string {
   return JSON.stringify(CommentsSort$outboundSchema.parse(commentsSort));

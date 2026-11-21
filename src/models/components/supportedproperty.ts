@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -25,17 +25,19 @@ export const SupportedProperty$inboundSchema: z.ZodType<
   SupportedProperty,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  unified_property: types.optional(types.string()),
-  child_properties: types.optional(
-    z.array(z.lazy(() => SupportedProperty$inboundSchema)),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "unified_property": "unifiedProperty",
-    "child_properties": "childProperties",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    unified_property: types.optional(types.string()),
+    child_properties: types.optional(
+      z.array(z.lazy(() => SupportedProperty$inboundSchema)),
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "unified_property": "unifiedProperty",
+      "child_properties": "childProperties",
+    });
+  })
+);
 
 export function supportedPropertyFromJSON(
   jsonString: string,

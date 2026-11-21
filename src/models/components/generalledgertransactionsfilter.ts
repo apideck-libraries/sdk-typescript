@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -46,7 +47,7 @@ export const SourceType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   SourceType
-> = openEnums.outboundSchema(SourceType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(SourceType));
 
 /** @internal */
 export type GeneralLedgerTransactionsFilter$Outbound = {
@@ -60,17 +61,19 @@ export const GeneralLedgerTransactionsFilter$outboundSchema: z.ZodType<
   GeneralLedgerTransactionsFilter$Outbound,
   z.ZodTypeDef,
   GeneralLedgerTransactionsFilter
-> = z.object({
-  sourceType: SourceType$outboundSchema.optional(),
-  sourceId: z.string().optional(),
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    sourceType: "source_type",
-    sourceId: "source_id",
-    updatedSince: "updated_since",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    sourceType: SourceType$outboundSchema.optional(),
+    sourceId: z.string().optional(),
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      sourceType: "source_type",
+      sourceId: "source_id",
+      updatedSince: "updated_since",
+    });
+  })
+);
 
 export function generalLedgerTransactionsFilterToJSON(
   generalLedgerTransactionsFilter: GeneralLedgerTransactionsFilter,

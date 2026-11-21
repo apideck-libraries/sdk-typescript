@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -69,14 +70,18 @@ export const JournalEntriesFilterStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   JournalEntriesFilterStatus
-> = openEnums.outboundSchema(JournalEntriesFilterStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(JournalEntriesFilterStatus)
+);
 
 /** @internal */
 export const JournalEntriesFilterScope$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   JournalEntriesFilterScope
-> = openEnums.outboundSchema(JournalEntriesFilterScope);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(JournalEntriesFilterScope)
+);
 
 /** @internal */
 export type JournalEntriesFilter$Outbound = {
@@ -95,28 +100,30 @@ export const JournalEntriesFilter$outboundSchema: z.ZodType<
   JournalEntriesFilter$Outbound,
   z.ZodTypeDef,
   JournalEntriesFilter
-> = z.object({
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-  number: z.string().optional(),
-  sourceId: z.string().optional(),
-  startDate: z.date().transform(v =>
-    v.toISOString().slice(0, "YYYY-MM-DD".length)
-  ).optional(),
-  endDate: z.date().transform(v =>
-    v.toISOString().slice(0, "YYYY-MM-DD".length)
-  ).optional(),
-  status: JournalEntriesFilterStatus$outboundSchema.optional(),
-  scope: JournalEntriesFilterScope$outboundSchema.optional(),
-  subsidiaryId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    updatedSince: "updated_since",
-    sourceId: "source_id",
-    startDate: "start_date",
-    endDate: "end_date",
-    subsidiaryId: "subsidiary_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+    number: z.string().optional(),
+    sourceId: z.string().optional(),
+    startDate: z.date().transform(v =>
+      v.toISOString().slice(0, "YYYY-MM-DD".length)
+    ).optional(),
+    endDate: z.date().transform(v =>
+      v.toISOString().slice(0, "YYYY-MM-DD".length)
+    ).optional(),
+    status: JournalEntriesFilterStatus$outboundSchema.optional(),
+    scope: JournalEntriesFilterScope$outboundSchema.optional(),
+    subsidiaryId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      updatedSince: "updated_since",
+      sourceId: "source_id",
+      startDate: "start_date",
+      endDate: "end_date",
+      subsidiaryId: "subsidiary_id",
+    });
+  })
+);
 
 export function journalEntriesFilterToJSON(
   journalEntriesFilter: JournalEntriesFilter,

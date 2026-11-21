@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -78,22 +78,24 @@ export const IssueTrackingCollectionTicketCommentsAddRequest$outboundSchema:
     IssueTrackingCollectionTicketCommentsAddRequest$Outbound,
     z.ZodTypeDef,
     IssueTrackingCollectionTicketCommentsAddRequest
-  > = z.object({
-    raw: z.boolean().default(false),
-    consumerId: z.string().optional(),
-    appId: z.string().optional(),
-    serviceId: z.string().optional(),
-    collectionId: z.string(),
-    ticketId: z.string(),
-    collectionTicketComment:
-      components.CollectionTicketCommentInput$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      collectionId: "collection_id",
-      ticketId: "ticket_id",
-      collectionTicketComment: "CollectionTicketComment",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      raw: z.boolean().default(false),
+      consumerId: z.string().optional(),
+      appId: z.string().optional(),
+      serviceId: z.string().optional(),
+      collectionId: z.string(),
+      ticketId: z.string(),
+      collectionTicketComment:
+        components.CollectionTicketCommentInput$outboundSchema,
+    }).transform((v) => {
+      return remap$(v, {
+        collectionId: "collection_id",
+        ticketId: "ticket_id",
+        collectionTicketComment: "CollectionTicketComment",
+      });
+    })
+  );
 
 export function issueTrackingCollectionTicketCommentsAddRequestToJSON(
   issueTrackingCollectionTicketCommentsAddRequest:
@@ -112,21 +114,23 @@ export const IssueTrackingCollectionTicketCommentsAddResponse$inboundSchema:
     IssueTrackingCollectionTicketCommentsAddResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    HttpMeta: components.HTTPMetadata$inboundSchema,
-    CreateCommentResponse: types.optional(
-      components.CreateCommentResponse$inboundSchema,
-    ),
-    UnexpectedErrorResponse: types.optional(
-      components.UnexpectedErrorResponse$inboundSchema,
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      "HttpMeta": "httpMeta",
-      "CreateCommentResponse": "createCommentResponse",
-      "UnexpectedErrorResponse": "unexpectedErrorResponse",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      HttpMeta: components.HTTPMetadata$inboundSchema,
+      CreateCommentResponse: types.optional(
+        components.CreateCommentResponse$inboundSchema,
+      ),
+      UnexpectedErrorResponse: types.optional(
+        components.UnexpectedErrorResponse$inboundSchema,
+      ),
+    }).transform((v) => {
+      return remap$(v, {
+        "HttpMeta": "httpMeta",
+        "CreateCommentResponse": "createCommentResponse",
+        "UnexpectedErrorResponse": "unexpectedErrorResponse",
+      });
+    })
+  );
 
 export function issueTrackingCollectionTicketCommentsAddResponseFromJSON(
   jsonString: string,

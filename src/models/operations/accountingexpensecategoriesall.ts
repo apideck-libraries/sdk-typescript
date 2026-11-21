@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -92,21 +92,23 @@ export const AccountingExpenseCategoriesAllRequest$outboundSchema: z.ZodType<
   AccountingExpenseCategoriesAllRequest$Outbound,
   z.ZodTypeDef,
   AccountingExpenseCategoriesAllRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  fields: z.nullable(z.string()).optional(),
-  filter: components.ExpenseCategoriesFilter$outboundSchema.optional(),
-  passThrough: z.record(z.any()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    fields: z.nullable(z.string()).optional(),
+    filter: components.ExpenseCategoriesFilter$outboundSchema.optional(),
+    passThrough: z.record(z.any()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function accountingExpenseCategoriesAllRequestToJSON(
   accountingExpenseCategoriesAllRequest: AccountingExpenseCategoriesAllRequest,
@@ -123,21 +125,23 @@ export const AccountingExpenseCategoriesAllResponse$inboundSchema: z.ZodType<
   AccountingExpenseCategoriesAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetExpenseCategoriesResponse: types.optional(
-    components.GetExpenseCategoriesResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetExpenseCategoriesResponse": "getExpenseCategoriesResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetExpenseCategoriesResponse: types.optional(
+      components.GetExpenseCategoriesResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetExpenseCategoriesResponse": "getExpenseCategoriesResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingExpenseCategoriesAllResponseFromJSON(
   jsonString: string,

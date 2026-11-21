@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const FileStorageFilesUpdateRequest$outboundSchema: z.ZodType<
   FileStorageFilesUpdateRequest$Outbound,
   z.ZodTypeDef,
   FileStorageFilesUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  updateFileRequest: components.UpdateFileRequest$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    updateFileRequest: "UpdateFileRequest",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    updateFileRequest: components.UpdateFileRequest$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      updateFileRequest: "UpdateFileRequest",
+    });
+  })
+);
 
 export function fileStorageFilesUpdateRequestToJSON(
   fileStorageFilesUpdateRequest: FileStorageFilesUpdateRequest,
@@ -100,21 +102,23 @@ export const FileStorageFilesUpdateResponse$inboundSchema: z.ZodType<
   FileStorageFilesUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateFileResponse: types.optional(
-    components.UpdateFileResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateFileResponse": "updateFileResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateFileResponse: types.optional(
+      components.UpdateFileResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateFileResponse": "updateFileResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function fileStorageFilesUpdateResponseFromJSON(
   jsonString: string,

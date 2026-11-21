@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -324,10 +324,12 @@ export const CompanyRowType$inboundSchema: z.ZodType<
   CompanyRowType,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+  })
+);
 /** @internal */
 export type CompanyRowType$Outbound = {
   id?: string | null | undefined;
@@ -339,10 +341,12 @@ export const CompanyRowType$outboundSchema: z.ZodType<
   CompanyRowType$Outbound,
   z.ZodTypeDef,
   CompanyRowType
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()).optional(),
+  })
+);
 
 export function companyRowTypeToJSON(companyRowType: CompanyRowType): string {
   return JSON.stringify(CompanyRowType$outboundSchema.parse(companyRowType));
@@ -362,78 +366,80 @@ export const Company1$inboundSchema: z.ZodType<
   Company1,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: types.nullable(types.string()),
-  interaction_count: z.nullable(types.number()).optional(),
-  owner_id: z.nullable(types.string()).optional(),
-  image: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  vat_number: z.nullable(types.string()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  status: z.nullable(types.string()).optional(),
-  fax: z.nullable(types.string()).optional(),
-  annual_revenue: z.nullable(types.string()).optional(),
-  number_of_employees: z.nullable(types.string()).optional(),
-  industry: z.nullable(types.string()).optional(),
-  ownership: z.nullable(types.string()).optional(),
-  sales_tax_number: z.nullable(types.string()).optional(),
-  payee_number: z.nullable(types.string()).optional(),
-  abn_or_tfn: z.nullable(types.string()).optional(),
-  abn_branch: z.nullable(types.string()).optional(),
-  acn: z.nullable(types.string()).optional(),
-  first_name: z.nullable(types.string()).optional(),
-  last_name: z.nullable(types.string()).optional(),
-  parent_id: z.nullable(types.string()).optional(),
-  bank_accounts: types.optional(z.array(BankAccount1$inboundSchema)),
-  websites: types.optional(z.array(Website$inboundSchema)),
-  addresses: types.optional(z.array(Address$inboundSchema)),
-  social_links: types.optional(z.array(SocialLink$inboundSchema)),
-  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
-  emails: types.optional(z.array(Email$inboundSchema)),
-  row_type: types.optional(z.lazy(() => CompanyRowType$inboundSchema)),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  tags: z.nullable(z.array(types.string())).optional(),
-  read_only: z.nullable(types.boolean()).optional(),
-  last_activity_at: z.nullable(types.date()).optional(),
-  deleted: types.optional(types.boolean()),
-  salutation: z.nullable(types.string()).optional(),
-  birthday: z.nullable(types.date()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "interaction_count": "interactionCount",
-    "owner_id": "ownerId",
-    "vat_number": "vatNumber",
-    "annual_revenue": "annualRevenue",
-    "number_of_employees": "numberOfEmployees",
-    "sales_tax_number": "salesTaxNumber",
-    "payee_number": "payeeNumber",
-    "abn_or_tfn": "abnOrTfn",
-    "abn_branch": "abnBranch",
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "parent_id": "parentId",
-    "bank_accounts": "bankAccounts",
-    "social_links": "socialLinks",
-    "phone_numbers": "phoneNumbers",
-    "row_type": "rowType",
-    "custom_fields": "customFields",
-    "read_only": "readOnly",
-    "last_activity_at": "lastActivityAt",
-    "custom_mappings": "customMappings",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    name: types.nullable(types.string()),
+    interaction_count: z.nullable(types.number()).optional(),
+    owner_id: z.nullable(types.string()).optional(),
+    image: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    vat_number: z.nullable(types.string()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    status: z.nullable(types.string()).optional(),
+    fax: z.nullable(types.string()).optional(),
+    annual_revenue: z.nullable(types.string()).optional(),
+    number_of_employees: z.nullable(types.string()).optional(),
+    industry: z.nullable(types.string()).optional(),
+    ownership: z.nullable(types.string()).optional(),
+    sales_tax_number: z.nullable(types.string()).optional(),
+    payee_number: z.nullable(types.string()).optional(),
+    abn_or_tfn: z.nullable(types.string()).optional(),
+    abn_branch: z.nullable(types.string()).optional(),
+    acn: z.nullable(types.string()).optional(),
+    first_name: z.nullable(types.string()).optional(),
+    last_name: z.nullable(types.string()).optional(),
+    parent_id: z.nullable(types.string()).optional(),
+    bank_accounts: types.optional(z.array(BankAccount1$inboundSchema)),
+    websites: types.optional(z.array(Website$inboundSchema)),
+    addresses: types.optional(z.array(Address$inboundSchema)),
+    social_links: types.optional(z.array(SocialLink$inboundSchema)),
+    phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+    emails: types.optional(z.array(Email$inboundSchema)),
+    row_type: types.optional(z.lazy(() => CompanyRowType$inboundSchema)),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    tags: z.nullable(z.array(types.string())).optional(),
+    read_only: z.nullable(types.boolean()).optional(),
+    last_activity_at: z.nullable(types.date()).optional(),
+    deleted: types.optional(types.boolean()),
+    salutation: z.nullable(types.string()).optional(),
+    birthday: z.nullable(types.date()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "interaction_count": "interactionCount",
+      "owner_id": "ownerId",
+      "vat_number": "vatNumber",
+      "annual_revenue": "annualRevenue",
+      "number_of_employees": "numberOfEmployees",
+      "sales_tax_number": "salesTaxNumber",
+      "payee_number": "payeeNumber",
+      "abn_or_tfn": "abnOrTfn",
+      "abn_branch": "abnBranch",
+      "first_name": "firstName",
+      "last_name": "lastName",
+      "parent_id": "parentId",
+      "bank_accounts": "bankAccounts",
+      "social_links": "socialLinks",
+      "phone_numbers": "phoneNumbers",
+      "row_type": "rowType",
+      "custom_fields": "customFields",
+      "read_only": "readOnly",
+      "last_activity_at": "lastActivityAt",
+      "custom_mappings": "customMappings",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function company1FromJSON(
   jsonString: string,
@@ -487,64 +493,66 @@ export const Company1Input$outboundSchema: z.ZodType<
   Company1Input$Outbound,
   z.ZodTypeDef,
   Company1Input
-> = z.object({
-  name: z.nullable(z.string()),
-  ownerId: z.nullable(z.string()).optional(),
-  image: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  vatNumber: z.nullable(z.string()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  status: z.nullable(z.string()).optional(),
-  fax: z.nullable(z.string()).optional(),
-  annualRevenue: z.nullable(z.string()).optional(),
-  numberOfEmployees: z.nullable(z.string()).optional(),
-  industry: z.nullable(z.string()).optional(),
-  ownership: z.nullable(z.string()).optional(),
-  salesTaxNumber: z.nullable(z.string()).optional(),
-  payeeNumber: z.nullable(z.string()).optional(),
-  abnOrTfn: z.nullable(z.string()).optional(),
-  abnBranch: z.nullable(z.string()).optional(),
-  acn: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  parentId: z.nullable(z.string()).optional(),
-  bankAccounts: z.array(BankAccount1$outboundSchema).optional(),
-  websites: z.array(Website$outboundSchema).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  socialLinks: z.array(SocialLink$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
-  rowType: z.lazy(() => CompanyRowType$outboundSchema).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  readOnly: z.nullable(z.boolean()).optional(),
-  salutation: z.nullable(z.string()).optional(),
-  birthday: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    ownerId: "owner_id",
-    vatNumber: "vat_number",
-    annualRevenue: "annual_revenue",
-    numberOfEmployees: "number_of_employees",
-    salesTaxNumber: "sales_tax_number",
-    payeeNumber: "payee_number",
-    abnOrTfn: "abn_or_tfn",
-    abnBranch: "abn_branch",
-    firstName: "first_name",
-    lastName: "last_name",
-    parentId: "parent_id",
-    bankAccounts: "bank_accounts",
-    socialLinks: "social_links",
-    phoneNumbers: "phone_numbers",
-    rowType: "row_type",
-    customFields: "custom_fields",
-    readOnly: "read_only",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(z.string()),
+    ownerId: z.nullable(z.string()).optional(),
+    image: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    vatNumber: z.nullable(z.string()).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    status: z.nullable(z.string()).optional(),
+    fax: z.nullable(z.string()).optional(),
+    annualRevenue: z.nullable(z.string()).optional(),
+    numberOfEmployees: z.nullable(z.string()).optional(),
+    industry: z.nullable(z.string()).optional(),
+    ownership: z.nullable(z.string()).optional(),
+    salesTaxNumber: z.nullable(z.string()).optional(),
+    payeeNumber: z.nullable(z.string()).optional(),
+    abnOrTfn: z.nullable(z.string()).optional(),
+    abnBranch: z.nullable(z.string()).optional(),
+    acn: z.nullable(z.string()).optional(),
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    parentId: z.nullable(z.string()).optional(),
+    bankAccounts: z.array(BankAccount1$outboundSchema).optional(),
+    websites: z.array(Website$outboundSchema).optional(),
+    addresses: z.array(Address$outboundSchema).optional(),
+    socialLinks: z.array(SocialLink$outboundSchema).optional(),
+    phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
+    emails: z.array(Email$outboundSchema).optional(),
+    rowType: z.lazy(() => CompanyRowType$outboundSchema).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    tags: z.nullable(z.array(z.string())).optional(),
+    readOnly: z.nullable(z.boolean()).optional(),
+    salutation: z.nullable(z.string()).optional(),
+    birthday: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      ownerId: "owner_id",
+      vatNumber: "vat_number",
+      annualRevenue: "annual_revenue",
+      numberOfEmployees: "number_of_employees",
+      salesTaxNumber: "sales_tax_number",
+      payeeNumber: "payee_number",
+      abnOrTfn: "abn_or_tfn",
+      abnBranch: "abn_branch",
+      firstName: "first_name",
+      lastName: "last_name",
+      parentId: "parent_id",
+      bankAccounts: "bank_accounts",
+      socialLinks: "social_links",
+      phoneNumbers: "phone_numbers",
+      rowType: "row_type",
+      customFields: "custom_fields",
+      readOnly: "read_only",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function company1InputToJSON(company1Input: Company1Input): string {
   return JSON.stringify(Company1Input$outboundSchema.parse(company1Input));

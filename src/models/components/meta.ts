@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -77,11 +77,13 @@ export type Meta = {
 
 /** @internal */
 export const Cursors$inboundSchema: z.ZodType<Cursors, z.ZodTypeDef, unknown> =
-  z.object({
-    previous: z.nullable(types.string()).optional(),
-    current: z.nullable(types.string()).optional(),
-    next: z.nullable(types.string()).optional(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      previous: z.nullable(types.string()).optional(),
+      current: z.nullable(types.string()).optional(),
+      next: z.nullable(types.string()).optional(),
+    })
+  );
 
 export function cursorsFromJSON(
   jsonString: string,
@@ -98,17 +100,19 @@ export const Warnings$inboundSchema: z.ZodType<
   Warnings,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: types.optional(types.string()),
-  status_code: z.nullable(types.number()).optional(),
-  error: z.nullable(types.string()).optional(),
-  operation: z.nullable(types.string()).optional(),
-  message: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "status_code": "statusCode",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: types.optional(types.string()),
+    status_code: z.nullable(types.number()).optional(),
+    error: z.nullable(types.string()).optional(),
+    operation: z.nullable(types.string()).optional(),
+    message: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "status_code": "statusCode",
+    });
+  })
+);
 
 export function warningsFromJSON(
   jsonString: string,
@@ -121,19 +125,21 @@ export function warningsFromJSON(
 }
 
 /** @internal */
-export const Meta$inboundSchema: z.ZodType<Meta, z.ZodTypeDef, unknown> = z
-  .object({
-    items_on_page: types.optional(types.number()),
-    cursors: types.optional(z.lazy(() => Cursors$inboundSchema)),
-    total_count: types.optional(types.number()),
-    warnings: z.nullable(z.array(z.lazy(() => Warnings$inboundSchema)))
-      .optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "items_on_page": "itemsOnPage",
-      "total_count": "totalCount",
-    });
-  });
+export const Meta$inboundSchema: z.ZodType<Meta, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      items_on_page: types.optional(types.number()),
+      cursors: types.optional(z.lazy(() => Cursors$inboundSchema)),
+      total_count: types.optional(types.number()),
+      warnings: z.nullable(z.array(z.lazy(() => Warnings$inboundSchema)))
+        .optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "items_on_page": "itemsOnPage",
+        "total_count": "totalCount",
+      });
+    })
+  );
 
 export function metaFromJSON(
   jsonString: string,

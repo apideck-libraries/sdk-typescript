@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -289,80 +289,86 @@ export const JournalEntryStatus$inboundSchema: z.ZodType<
   JournalEntryStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(JournalEntryStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(JournalEntryStatus)
+);
 /** @internal */
 export const JournalEntryStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   JournalEntryStatus
-> = openEnums.outboundSchema(JournalEntryStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(JournalEntryStatus)
+);
 
 /** @internal */
 export const JournalEntry$inboundSchema: z.ZodType<
   JournalEntry,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  downstream_id: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-  title: z.nullable(types.string()).optional(),
-  currency_rate: z.nullable(types.number()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  company_id: z.nullable(types.string()).optional(),
-  subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
-  line_items: types.optional(z.array(JournalEntryLineItem$inboundSchema)),
-  status: z.nullable(JournalEntryStatus$inboundSchema).optional(),
-  memo: z.nullable(types.string()).optional(),
-  posted_at: types.optional(types.date()),
-  journal_symbol: z.nullable(types.string()).optional(),
-  tax_type: z.nullable(types.string()).optional(),
-  tax_code: z.nullable(types.string()).optional(),
-  number: z.nullable(types.string()).optional(),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  accounting_period: z.nullable(types.string()).optional(),
-  tax_inclusive: z.nullable(types.boolean()).optional(),
-  attachments: types.optional(
-    z.array(types.nullable(LinkedAttachment$inboundSchema)),
-  ),
-  source_type: z.nullable(types.string()).optional(),
-  source_id: z.nullable(types.string()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "downstream_id": "downstreamId",
-    "display_id": "displayId",
-    "currency_rate": "currencyRate",
-    "company_id": "companyId",
-    "line_items": "lineItems",
-    "posted_at": "postedAt",
-    "journal_symbol": "journalSymbol",
-    "tax_type": "taxType",
-    "tax_code": "taxCode",
-    "tracking_categories": "trackingCategories",
-    "accounting_period": "accountingPeriod",
-    "tax_inclusive": "taxInclusive",
-    "source_type": "sourceType",
-    "source_id": "sourceId",
-    "custom_mappings": "customMappings",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "row_version": "rowVersion",
-    "custom_fields": "customFields",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    downstream_id: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    title: z.nullable(types.string()).optional(),
+    currency_rate: z.nullable(types.number()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
+    line_items: types.optional(z.array(JournalEntryLineItem$inboundSchema)),
+    status: z.nullable(JournalEntryStatus$inboundSchema).optional(),
+    memo: z.nullable(types.string()).optional(),
+    posted_at: types.optional(types.date()),
+    journal_symbol: z.nullable(types.string()).optional(),
+    tax_type: z.nullable(types.string()).optional(),
+    tax_code: z.nullable(types.string()).optional(),
+    number: z.nullable(types.string()).optional(),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    accounting_period: z.nullable(types.string()).optional(),
+    tax_inclusive: z.nullable(types.boolean()).optional(),
+    attachments: types.optional(
+      z.array(types.nullable(LinkedAttachment$inboundSchema)),
+    ),
+    source_type: z.nullable(types.string()).optional(),
+    source_id: z.nullable(types.string()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "downstream_id": "downstreamId",
+      "display_id": "displayId",
+      "currency_rate": "currencyRate",
+      "company_id": "companyId",
+      "line_items": "lineItems",
+      "posted_at": "postedAt",
+      "journal_symbol": "journalSymbol",
+      "tax_type": "taxType",
+      "tax_code": "taxCode",
+      "tracking_categories": "trackingCategories",
+      "accounting_period": "accountingPeriod",
+      "tax_inclusive": "taxInclusive",
+      "source_type": "sourceType",
+      "source_id": "sourceId",
+      "custom_mappings": "customMappings",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "row_version": "rowVersion",
+      "custom_fields": "customFields",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function journalEntryFromJSON(
   jsonString: string,
@@ -409,52 +415,55 @@ export const JournalEntryInput$outboundSchema: z.ZodType<
   JournalEntryInput$Outbound,
   z.ZodTypeDef,
   JournalEntryInput
-> = z.object({
-  displayId: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
-  lineItems: z.array(JournalEntryLineItemInput$outboundSchema).optional(),
-  status: z.nullable(JournalEntryStatus$outboundSchema).optional(),
-  memo: z.nullable(z.string()).optional(),
-  postedAt: z.date().transform(v => v.toISOString()).optional(),
-  journalSymbol: z.nullable(z.string()).optional(),
-  taxType: z.nullable(z.string()).optional(),
-  taxCode: z.nullable(z.string()).optional(),
-  number: z.nullable(z.string()).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  accountingPeriod: z.nullable(z.string()).optional(),
-  taxInclusive: z.nullable(z.boolean()).optional(),
-  attachments: z.array(z.nullable(LinkedAttachment$outboundSchema)).optional(),
-  sourceType: z.nullable(z.string()).optional(),
-  sourceId: z.nullable(z.string()).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    currencyRate: "currency_rate",
-    companyId: "company_id",
-    lineItems: "line_items",
-    postedAt: "posted_at",
-    journalSymbol: "journal_symbol",
-    taxType: "tax_type",
-    taxCode: "tax_code",
-    trackingCategories: "tracking_categories",
-    accountingPeriod: "accounting_period",
-    taxInclusive: "tax_inclusive",
-    sourceType: "source_type",
-    sourceId: "source_id",
-    rowVersion: "row_version",
-    customFields: "custom_fields",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayId: z.nullable(z.string()).optional(),
+    title: z.nullable(z.string()).optional(),
+    currencyRate: z.nullable(z.number()).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    companyId: z.nullable(z.string()).optional(),
+    subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
+    lineItems: z.array(JournalEntryLineItemInput$outboundSchema).optional(),
+    status: z.nullable(JournalEntryStatus$outboundSchema).optional(),
+    memo: z.nullable(z.string()).optional(),
+    postedAt: z.date().transform(v => v.toISOString()).optional(),
+    journalSymbol: z.nullable(z.string()).optional(),
+    taxType: z.nullable(z.string()).optional(),
+    taxCode: z.nullable(z.string()).optional(),
+    number: z.nullable(z.string()).optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    accountingPeriod: z.nullable(z.string()).optional(),
+    taxInclusive: z.nullable(z.boolean()).optional(),
+    attachments: z.array(z.nullable(LinkedAttachment$outboundSchema))
+      .optional(),
+    sourceType: z.nullable(z.string()).optional(),
+    sourceId: z.nullable(z.string()).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+      currencyRate: "currency_rate",
+      companyId: "company_id",
+      lineItems: "line_items",
+      postedAt: "posted_at",
+      journalSymbol: "journal_symbol",
+      taxType: "tax_type",
+      taxCode: "tax_code",
+      trackingCategories: "tracking_categories",
+      accountingPeriod: "accounting_period",
+      taxInclusive: "tax_inclusive",
+      sourceType: "source_type",
+      sourceId: "source_id",
+      rowVersion: "row_version",
+      customFields: "custom_fields",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function journalEntryInputToJSON(
   journalEntryInput: JournalEntryInput,

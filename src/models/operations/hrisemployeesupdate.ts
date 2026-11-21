@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const HrisEmployeesUpdateRequest$outboundSchema: z.ZodType<
   HrisEmployeesUpdateRequest$Outbound,
   z.ZodTypeDef,
   HrisEmployeesUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  employee: components.EmployeeInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    employee: "Employee",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    employee: components.EmployeeInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      employee: "Employee",
+    });
+  })
+);
 
 export function hrisEmployeesUpdateRequestToJSON(
   hrisEmployeesUpdateRequest: HrisEmployeesUpdateRequest,
@@ -98,21 +100,23 @@ export const HrisEmployeesUpdateResponse$inboundSchema: z.ZodType<
   HrisEmployeesUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateEmployeeResponse: types.optional(
-    components.UpdateEmployeeResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateEmployeeResponse": "updateEmployeeResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateEmployeeResponse: types.optional(
+      components.UpdateEmployeeResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateEmployeeResponse": "updateEmployeeResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function hrisEmployeesUpdateResponseFromJSON(
   jsonString: string,

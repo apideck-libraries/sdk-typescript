@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -38,21 +38,23 @@ export const UploadSession$inboundSchema: z.ZodType<
   UploadSession,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  success: types.optional(types.boolean()),
-  part_size: types.optional(types.number()),
-  parallel_upload_supported: types.optional(types.boolean()),
-  uploaded_byte_range: types.optional(types.string()),
-  expires_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "part_size": "partSize",
-    "parallel_upload_supported": "parallelUploadSupported",
-    "uploaded_byte_range": "uploadedByteRange",
-    "expires_at": "expiresAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    success: types.optional(types.boolean()),
+    part_size: types.optional(types.number()),
+    parallel_upload_supported: types.optional(types.boolean()),
+    uploaded_byte_range: types.optional(types.string()),
+    expires_at: z.nullable(types.date()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "part_size": "partSize",
+      "parallel_upload_supported": "parallelUploadSupported",
+      "uploaded_byte_range": "uploadedByteRange",
+      "expires_at": "expiresAt",
+    });
+  })
+);
 
 export function uploadSessionFromJSON(
   jsonString: string,

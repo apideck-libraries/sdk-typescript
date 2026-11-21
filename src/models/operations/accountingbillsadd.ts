@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const AccountingBillsAddRequest$outboundSchema: z.ZodType<
   AccountingBillsAddRequest$Outbound,
   z.ZodTypeDef,
   AccountingBillsAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  idempotencyKey: z.string().optional(),
-  bill: components.BillInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    bill: "Bill",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    idempotencyKey: z.string().optional(),
+    bill: components.BillInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      bill: "Bill",
+    });
+  })
+);
 
 export function accountingBillsAddRequestToJSON(
   accountingBillsAddRequest: AccountingBillsAddRequest,
@@ -98,21 +100,23 @@ export const AccountingBillsAddResponse$inboundSchema: z.ZodType<
   AccountingBillsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateBillResponse: types.optional(
-    components.CreateBillResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateBillResponse": "createBillResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateBillResponse: types.optional(
+      components.CreateBillResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateBillResponse": "createBillResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingBillsAddResponseFromJSON(
   jsonString: string,

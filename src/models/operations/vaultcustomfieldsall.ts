@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -75,20 +75,22 @@ export const VaultCustomFieldsAllRequest$outboundSchema: z.ZodType<
   VaultCustomFieldsAllRequest$Outbound,
   z.ZodTypeDef,
   VaultCustomFieldsAllRequest
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  unifiedApi: z.string(),
-  serviceId: z.string(),
-  resource: z.string(),
-  resourceId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    unifiedApi: "unified_api",
-    serviceId: "service_id",
-    resourceId: "resource_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    unifiedApi: z.string(),
+    serviceId: z.string(),
+    resource: z.string(),
+    resourceId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      unifiedApi: "unified_api",
+      serviceId: "service_id",
+      resourceId: "resource_id",
+    });
+  })
+);
 
 export function vaultCustomFieldsAllRequestToJSON(
   vaultCustomFieldsAllRequest: VaultCustomFieldsAllRequest,
@@ -105,21 +107,23 @@ export const VaultCustomFieldsAllResponse$inboundSchema: z.ZodType<
   VaultCustomFieldsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetCustomFieldsResponse: types.optional(
-    components.GetCustomFieldsResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetCustomFieldsResponse": "getCustomFieldsResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetCustomFieldsResponse: types.optional(
+      components.GetCustomFieldsResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetCustomFieldsResponse": "getCustomFieldsResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultCustomFieldsAllResponseFromJSON(
   jsonString: string,

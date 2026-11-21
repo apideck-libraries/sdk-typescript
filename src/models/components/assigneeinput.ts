@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type AssigneeInput = {
   /**
@@ -21,9 +22,11 @@ export const AssigneeInput$outboundSchema: z.ZodType<
   AssigneeInput$Outbound,
   z.ZodTypeDef,
   AssigneeInput
-> = z.object({
-  id: z.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+  })
+);
 
 export function assigneeInputToJSON(assigneeInput: AssigneeInput): string {
   return JSON.stringify(AssigneeInput$outboundSchema.parse(assigneeInput));
