@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type EcommerceCustomersFilter = {
   /**
@@ -42,20 +43,22 @@ export const EcommerceCustomersFilter$outboundSchema: z.ZodType<
   EcommerceCustomersFilter$Outbound,
   z.ZodTypeDef,
   EcommerceCustomersFilter
-> = z.object({
-  email: z.string().optional(),
-  phoneNumber: z.string().optional(),
-  customerIds: z.string().optional(),
-  updatedSince: z.string().optional(),
-  createdSince: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    phoneNumber: "phone_number",
-    customerIds: "customer_ids",
-    updatedSince: "updated_since",
-    createdSince: "created_since",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    email: z.string().optional(),
+    phoneNumber: z.string().optional(),
+    customerIds: z.string().optional(),
+    updatedSince: z.string().optional(),
+    createdSince: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      phoneNumber: "phone_number",
+      customerIds: "customer_ids",
+      updatedSince: "updated_since",
+      createdSince: "created_since",
+    });
+  })
+);
 
 export function ecommerceCustomersFilterToJSON(
   ecommerceCustomersFilter: EcommerceCustomersFilter,

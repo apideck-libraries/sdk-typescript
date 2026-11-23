@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -130,57 +130,67 @@ export const AccountingPaymentMethodType$inboundSchema: z.ZodType<
   AccountingPaymentMethodType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(AccountingPaymentMethodType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(AccountingPaymentMethodType)
+);
 /** @internal */
 export const AccountingPaymentMethodType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   AccountingPaymentMethodType
-> = openEnums.outboundSchema(AccountingPaymentMethodType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(AccountingPaymentMethodType)
+);
 
 /** @internal */
 export const AccountingPaymentMethodStatus$inboundSchema: z.ZodType<
   AccountingPaymentMethodStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(AccountingPaymentMethodStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(AccountingPaymentMethodStatus)
+);
 /** @internal */
 export const AccountingPaymentMethodStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   AccountingPaymentMethodStatus
-> = openEnums.outboundSchema(AccountingPaymentMethodStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(AccountingPaymentMethodStatus)
+);
 
 /** @internal */
 export const AccountingPaymentMethod$inboundSchema: z.ZodType<
   AccountingPaymentMethod,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: types.optional(types.string()),
-  type: z.nullable(AccountingPaymentMethodType$inboundSchema).optional(),
-  status: z.nullable(AccountingPaymentMethodStatus$inboundSchema).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  downstream_id: z.nullable(types.string()).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "custom_mappings": "customMappings",
-    "downstream_id": "downstreamId",
-    "row_version": "rowVersion",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    name: types.optional(types.string()),
+    type: z.nullable(AccountingPaymentMethodType$inboundSchema).optional(),
+    status: z.nullable(AccountingPaymentMethodStatus$inboundSchema).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    downstream_id: z.nullable(types.string()).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "custom_mappings": "customMappings",
+      "downstream_id": "downstreamId",
+      "row_version": "rowVersion",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function accountingPaymentMethodFromJSON(
   jsonString: string,
@@ -206,18 +216,20 @@ export const AccountingPaymentMethodInput$outboundSchema: z.ZodType<
   AccountingPaymentMethodInput$Outbound,
   z.ZodTypeDef,
   AccountingPaymentMethodInput
-> = z.object({
-  name: z.string().optional(),
-  type: z.nullable(AccountingPaymentMethodType$outboundSchema).optional(),
-  status: z.nullable(AccountingPaymentMethodStatus$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string().optional(),
+    type: z.nullable(AccountingPaymentMethodType$outboundSchema).optional(),
+    status: z.nullable(AccountingPaymentMethodStatus$outboundSchema).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function accountingPaymentMethodInputToJSON(
   accountingPaymentMethodInput: AccountingPaymentMethodInput,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Currency, Currency$outboundSchema } from "./currency.js";
@@ -217,21 +218,27 @@ export const ExpenseUpdateInputPaymentType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ExpenseUpdateInputPaymentType
-> = openEnums.outboundSchema(ExpenseUpdateInputPaymentType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ExpenseUpdateInputPaymentType)
+);
 
 /** @internal */
 export const ExpenseUpdateInputExpenseType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ExpenseUpdateInputExpenseType
-> = openEnums.outboundSchema(ExpenseUpdateInputExpenseType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ExpenseUpdateInputExpenseType)
+);
 
 /** @internal */
 export const ExpenseUpdateInputStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ExpenseUpdateInputStatus
-> = openEnums.outboundSchema(ExpenseUpdateInputStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ExpenseUpdateInputStatus)
+);
 
 /** @internal */
 export type ExpenseUpdateInput$Outbound = {
@@ -274,63 +281,65 @@ export const ExpenseUpdateInput$outboundSchema: z.ZodType<
   ExpenseUpdateInput$Outbound,
   z.ZodTypeDef,
   ExpenseUpdateInput
-> = z.object({
-  displayId: z.nullable(z.string()).optional(),
-  number: z.nullable(z.string()).optional(),
-  transactionDate: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  accountId: z.string().optional(),
-  account: z.nullable(LinkedFinancialAccountInput$outboundSchema).optional(),
-  supplierId: z.string().optional(),
-  supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  location: z.nullable(LinkedLocationInput$outboundSchema).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
-  paymentType: z.nullable(ExpenseUpdateInputPaymentType$outboundSchema)
-    .optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  type: z.nullable(ExpenseUpdateInputExpenseType$outboundSchema).optional(),
-  memo: z.nullable(z.string()).optional(),
-  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  taxInclusive: z.nullable(z.boolean()).optional(),
-  subTotal: z.nullable(z.number()).optional(),
-  totalTax: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  lineItems: z.array(ExpenseLineItemInput$outboundSchema).optional(),
-  reference: z.nullable(z.string()).optional(),
-  sourceDocumentUrl: z.nullable(z.string()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  status: z.nullable(ExpenseUpdateInputStatus$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    transactionDate: "transaction_date",
-    accountId: "account_id",
-    supplierId: "supplier_id",
-    companyId: "company_id",
-    departmentId: "department_id",
-    paymentType: "payment_type",
-    currencyRate: "currency_rate",
-    taxRate: "tax_rate",
-    taxInclusive: "tax_inclusive",
-    subTotal: "sub_total",
-    totalTax: "total_tax",
-    totalAmount: "total_amount",
-    trackingCategories: "tracking_categories",
-    lineItems: "line_items",
-    sourceDocumentUrl: "source_document_url",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayId: z.nullable(z.string()).optional(),
+    number: z.nullable(z.string()).optional(),
+    transactionDate: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    accountId: z.string().optional(),
+    account: z.nullable(LinkedFinancialAccountInput$outboundSchema).optional(),
+    supplierId: z.string().optional(),
+    supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
+    companyId: z.nullable(z.string()).optional(),
+    location: z.nullable(LinkedLocationInput$outboundSchema).optional(),
+    departmentId: z.nullable(z.string()).optional(),
+    department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
+    paymentType: z.nullable(ExpenseUpdateInputPaymentType$outboundSchema)
+      .optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    currencyRate: z.nullable(z.number()).optional(),
+    type: z.nullable(ExpenseUpdateInputExpenseType$outboundSchema).optional(),
+    memo: z.nullable(z.string()).optional(),
+    taxRate: LinkedTaxRateInput$outboundSchema.optional(),
+    taxInclusive: z.nullable(z.boolean()).optional(),
+    subTotal: z.nullable(z.number()).optional(),
+    totalTax: z.nullable(z.number()).optional(),
+    totalAmount: z.nullable(z.number()).optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    lineItems: z.array(ExpenseLineItemInput$outboundSchema).optional(),
+    reference: z.nullable(z.string()).optional(),
+    sourceDocumentUrl: z.nullable(z.string()).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    status: z.nullable(ExpenseUpdateInputStatus$outboundSchema).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+      transactionDate: "transaction_date",
+      accountId: "account_id",
+      supplierId: "supplier_id",
+      companyId: "company_id",
+      departmentId: "department_id",
+      paymentType: "payment_type",
+      currencyRate: "currency_rate",
+      taxRate: "tax_rate",
+      taxInclusive: "tax_inclusive",
+      subTotal: "sub_total",
+      totalTax: "total_tax",
+      totalAmount: "total_amount",
+      trackingCategories: "tracking_categories",
+      lineItems: "line_items",
+      sourceDocumentUrl: "source_document_url",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function expenseUpdateInputToJSON(
   expenseUpdateInput: ExpenseUpdateInput,

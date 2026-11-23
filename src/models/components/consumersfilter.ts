@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ConsumersFilter = {
   /**
@@ -27,14 +28,16 @@ export const ConsumersFilter$outboundSchema: z.ZodType<
   ConsumersFilter$Outbound,
   z.ZodTypeDef,
   ConsumersFilter
-> = z.object({
-  consumerId: z.nullable(z.string()).optional(),
-  search: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    consumerId: "consumer_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.nullable(z.string()).optional(),
+    search: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      consumerId: "consumer_id",
+    });
+  })
+);
 
 export function consumersFilterToJSON(
   consumersFilter: ConsumersFilter,

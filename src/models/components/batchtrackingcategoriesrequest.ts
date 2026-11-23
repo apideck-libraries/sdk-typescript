@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   TrackingCategoryCreateInput,
   TrackingCategoryCreateInput$Outbound,
@@ -42,14 +43,16 @@ export const Items$outboundSchema: z.ZodType<
   Items$Outbound,
   z.ZodTypeDef,
   Items
-> = z.object({
-  ref: z.string().optional(),
-  data: TrackingCategoryCreateInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    ref: "_ref",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    ref: z.string().optional(),
+    data: TrackingCategoryCreateInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      ref: "_ref",
+    });
+  })
+);
 
 export function itemsToJSON(items: Items): string {
   return JSON.stringify(Items$outboundSchema.parse(items));
@@ -65,9 +68,11 @@ export const BatchTrackingCategoriesRequest$outboundSchema: z.ZodType<
   BatchTrackingCategoriesRequest$Outbound,
   z.ZodTypeDef,
   BatchTrackingCategoriesRequest
-> = z.object({
-  items: z.array(z.lazy(() => Items$outboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    items: z.array(z.lazy(() => Items$outboundSchema)),
+  })
+);
 
 export function batchTrackingCategoriesRequestToJSON(
   batchTrackingCategoriesRequest: BatchTrackingCategoriesRequest,

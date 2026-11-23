@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type InvoicesFilter = {
   /**
@@ -51,25 +52,27 @@ export const InvoicesFilter$outboundSchema: z.ZodType<
   InvoicesFilter$Outbound,
   z.ZodTypeDef,
   InvoicesFilter
-> = z.object({
-  ids: z.string().optional(),
-  idSince: z.string().optional(),
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-  createdSince: z.date().transform(v => v.toISOString()).optional(),
-  number: z.string().optional(),
-  supplierId: z.string().optional(),
-  subsidiaryId: z.string().optional(),
-  customerId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    idSince: "id_since",
-    updatedSince: "updated_since",
-    createdSince: "created_since",
-    supplierId: "supplier_id",
-    subsidiaryId: "subsidiary_id",
-    customerId: "customer_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    ids: z.string().optional(),
+    idSince: z.string().optional(),
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+    createdSince: z.date().transform(v => v.toISOString()).optional(),
+    number: z.string().optional(),
+    supplierId: z.string().optional(),
+    subsidiaryId: z.string().optional(),
+    customerId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      idSince: "id_since",
+      updatedSince: "updated_since",
+      createdSince: "created_since",
+      supplierId: "supplier_id",
+      subsidiaryId: "subsidiary_id",
+      customerId: "customer_id",
+    });
+  })
+);
 
 export function invoicesFilterToJSON(invoicesFilter: InvoicesFilter): string {
   return JSON.stringify(InvoicesFilter$outboundSchema.parse(invoicesFilter));

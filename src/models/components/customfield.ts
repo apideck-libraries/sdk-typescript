@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { smartUnion } from "../../types/smartUnion.js";
@@ -93,12 +93,14 @@ export const CustomFieldValue25$inboundSchema: z.ZodType<
   CustomFieldValue25,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  types.string(),
-  types.number(),
-  types.boolean(),
-  z.record(z.any()),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    types.string(),
+    types.number(),
+    types.boolean(),
+    z.record(z.any()),
+  ])
+);
 /** @internal */
 export type CustomFieldValue25$Outbound = string | number | boolean | {
   [k: string]: any;
@@ -109,7 +111,9 @@ export const CustomFieldValue25$outboundSchema: z.ZodType<
   CustomFieldValue25$Outbound,
   z.ZodTypeDef,
   CustomFieldValue25
-> = smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())])
+);
 
 export function customFieldValue25ToJSON(
   customFieldValue25: CustomFieldValue25,
@@ -133,22 +137,24 @@ export const CustomFieldValue$inboundSchema: z.ZodType<
   CustomFieldValue,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  types.string(),
-  types.number(),
-  types.boolean(),
-  z.record(z.any()),
-  z.array(
-    types.nullable(
-      smartUnion([
-        types.string(),
-        types.number(),
-        types.boolean(),
-        z.record(z.any()),
-      ]),
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    types.string(),
+    types.number(),
+    types.boolean(),
+    z.record(z.any()),
+    z.array(
+      types.nullable(
+        smartUnion([
+          types.string(),
+          types.number(),
+          types.boolean(),
+          z.record(z.any()),
+        ]),
+      ),
     ),
-  ),
-]);
+  ])
+);
 /** @internal */
 export type CustomFieldValue$Outbound = string | number | boolean | {
   [k: string]: any;
@@ -159,17 +165,19 @@ export const CustomFieldValue$outboundSchema: z.ZodType<
   CustomFieldValue$Outbound,
   z.ZodTypeDef,
   CustomFieldValue
-> = smartUnion([
-  z.string(),
-  z.number(),
-  z.boolean(),
-  z.record(z.any()),
-  z.array(
-    z.nullable(
-      smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    z.string(),
+    z.number(),
+    z.boolean(),
+    z.record(z.any()),
+    z.array(
+      z.nullable(
+        smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+      ),
     ),
-  ),
-]);
+  ])
+);
 
 export function customFieldValueToJSON(
   customFieldValue: CustomFieldValue,
@@ -193,34 +201,36 @@ export const CustomField2$inboundSchema: z.ZodType<
   CustomField2,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  name: types.nullable(types.string()),
-  ref_name: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  value: z.nullable(
-    smartUnion([
-      types.string(),
-      types.number(),
-      types.boolean(),
-      z.record(z.any()),
-      z.array(
-        types.nullable(
-          smartUnion([
-            types.string(),
-            types.number(),
-            types.boolean(),
-            z.record(z.any()),
-          ]),
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    name: types.nullable(types.string()),
+    ref_name: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    value: z.nullable(
+      smartUnion([
+        types.string(),
+        types.number(),
+        types.boolean(),
+        z.record(z.any()),
+        z.array(
+          types.nullable(
+            smartUnion([
+              types.string(),
+              types.number(),
+              types.boolean(),
+              z.record(z.any()),
+            ]),
+          ),
         ),
-      ),
-    ]),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "ref_name": "refName",
-  });
-});
+      ]),
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "ref_name": "refName",
+    });
+  })
+);
 /** @internal */
 export type CustomField2$Outbound = {
   id?: string | null | undefined;
@@ -242,29 +252,36 @@ export const CustomField2$outboundSchema: z.ZodType<
   CustomField2$Outbound,
   z.ZodTypeDef,
   CustomField2
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()),
-  refName: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  value: z.nullable(
-    smartUnion([
-      z.string(),
-      z.number(),
-      z.boolean(),
-      z.record(z.any()),
-      z.array(
-        z.nullable(
-          smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()),
+    refName: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    value: z.nullable(
+      smartUnion([
+        z.string(),
+        z.number(),
+        z.boolean(),
+        z.record(z.any()),
+        z.array(
+          z.nullable(
+            smartUnion([
+              z.string(),
+              z.number(),
+              z.boolean(),
+              z.record(z.any()),
+            ]),
+          ),
         ),
-      ),
-    ]),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    refName: "ref_name",
-  });
-});
+      ]),
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      refName: "ref_name",
+    });
+  })
+);
 
 export function customField2ToJSON(customField2: CustomField2): string {
   return JSON.stringify(CustomField2$outboundSchema.parse(customField2));
@@ -284,12 +301,14 @@ export const CustomFieldValue5$inboundSchema: z.ZodType<
   CustomFieldValue5,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  types.string(),
-  types.number(),
-  types.boolean(),
-  z.record(z.any()),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    types.string(),
+    types.number(),
+    types.boolean(),
+    z.record(z.any()),
+  ])
+);
 /** @internal */
 export type CustomFieldValue5$Outbound = string | number | boolean | {
   [k: string]: any;
@@ -300,7 +319,9 @@ export const CustomFieldValue5$outboundSchema: z.ZodType<
   CustomFieldValue5$Outbound,
   z.ZodTypeDef,
   CustomFieldValue5
-> = smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())])
+);
 
 export function customFieldValue5ToJSON(
   customFieldValue5: CustomFieldValue5,
@@ -324,22 +345,24 @@ export const CustomField1Value$inboundSchema: z.ZodType<
   CustomField1Value,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  types.string(),
-  types.number(),
-  types.boolean(),
-  z.record(z.any()),
-  z.array(
-    types.nullable(
-      smartUnion([
-        types.string(),
-        types.number(),
-        types.boolean(),
-        z.record(z.any()),
-      ]),
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    types.string(),
+    types.number(),
+    types.boolean(),
+    z.record(z.any()),
+    z.array(
+      types.nullable(
+        smartUnion([
+          types.string(),
+          types.number(),
+          types.boolean(),
+          z.record(z.any()),
+        ]),
+      ),
     ),
-  ),
-]);
+  ])
+);
 /** @internal */
 export type CustomField1Value$Outbound = string | number | boolean | {
   [k: string]: any;
@@ -350,17 +373,19 @@ export const CustomField1Value$outboundSchema: z.ZodType<
   CustomField1Value$Outbound,
   z.ZodTypeDef,
   CustomField1Value
-> = smartUnion([
-  z.string(),
-  z.number(),
-  z.boolean(),
-  z.record(z.any()),
-  z.array(
-    z.nullable(
-      smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    z.string(),
+    z.number(),
+    z.boolean(),
+    z.record(z.any()),
+    z.array(
+      z.nullable(
+        smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+      ),
     ),
-  ),
-]);
+  ])
+);
 
 export function customField1ValueToJSON(
   customField1Value: CustomField1Value,
@@ -384,34 +409,36 @@ export const CustomField1$inboundSchema: z.ZodType<
   CustomField1,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.nullable(types.string()),
-  name: z.nullable(types.string()).optional(),
-  ref_name: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  value: z.nullable(
-    smartUnion([
-      types.string(),
-      types.number(),
-      types.boolean(),
-      z.record(z.any()),
-      z.array(
-        types.nullable(
-          smartUnion([
-            types.string(),
-            types.number(),
-            types.boolean(),
-            z.record(z.any()),
-          ]),
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.nullable(types.string()),
+    name: z.nullable(types.string()).optional(),
+    ref_name: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    value: z.nullable(
+      smartUnion([
+        types.string(),
+        types.number(),
+        types.boolean(),
+        z.record(z.any()),
+        z.array(
+          types.nullable(
+            smartUnion([
+              types.string(),
+              types.number(),
+              types.boolean(),
+              z.record(z.any()),
+            ]),
+          ),
         ),
-      ),
-    ]),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "ref_name": "refName",
-  });
-});
+      ]),
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "ref_name": "refName",
+    });
+  })
+);
 /** @internal */
 export type CustomField1$Outbound = {
   id: string | null;
@@ -433,29 +460,36 @@ export const CustomField1$outboundSchema: z.ZodType<
   CustomField1$Outbound,
   z.ZodTypeDef,
   CustomField1
-> = z.object({
-  id: z.nullable(z.string()),
-  name: z.nullable(z.string()).optional(),
-  refName: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  value: z.nullable(
-    smartUnion([
-      z.string(),
-      z.number(),
-      z.boolean(),
-      z.record(z.any()),
-      z.array(
-        z.nullable(
-          smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()),
+    name: z.nullable(z.string()).optional(),
+    refName: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    value: z.nullable(
+      smartUnion([
+        z.string(),
+        z.number(),
+        z.boolean(),
+        z.record(z.any()),
+        z.array(
+          z.nullable(
+            smartUnion([
+              z.string(),
+              z.number(),
+              z.boolean(),
+              z.record(z.any()),
+            ]),
+          ),
         ),
-      ),
-    ]),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    refName: "ref_name",
-  });
-});
+      ]),
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      refName: "ref_name",
+    });
+  })
+);
 
 export function customField1ToJSON(customField1: CustomField1): string {
   return JSON.stringify(CustomField1$outboundSchema.parse(customField1));
@@ -475,10 +509,12 @@ export const CustomField$inboundSchema: z.ZodType<
   CustomField,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  z.lazy(() => CustomField1$inboundSchema),
-  z.lazy(() => CustomField2$inboundSchema),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    z.lazy(() => CustomField1$inboundSchema),
+    z.lazy(() => CustomField2$inboundSchema),
+  ])
+);
 /** @internal */
 export type CustomField$Outbound =
   | CustomField1$Outbound
@@ -489,10 +525,12 @@ export const CustomField$outboundSchema: z.ZodType<
   CustomField$Outbound,
   z.ZodTypeDef,
   CustomField
-> = smartUnion([
-  z.lazy(() => CustomField1$outboundSchema),
-  z.lazy(() => CustomField2$outboundSchema),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    z.lazy(() => CustomField1$outboundSchema),
+    z.lazy(() => CustomField2$outboundSchema),
+  ])
+);
 
 export function customFieldToJSON(customField: CustomField): string {
   return JSON.stringify(CustomField$outboundSchema.parse(customField));

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type Security = {
   apiKey?: string | undefined;
@@ -18,9 +19,11 @@ export const Security$outboundSchema: z.ZodType<
   Security$Outbound,
   z.ZodTypeDef,
   Security
-> = z.object({
-  apiKey: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    apiKey: z.string().optional(),
+  })
+);
 
 export function securityToJSON(security: Security): string {
   return JSON.stringify(Security$outboundSchema.parse(security));

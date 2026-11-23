@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -74,18 +74,20 @@ export const AccountingEmployeesUpdateRequest$outboundSchema: z.ZodType<
   AccountingEmployeesUpdateRequest$Outbound,
   z.ZodTypeDef,
   AccountingEmployeesUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  accountingEmployee: components.AccountingEmployeeInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    accountingEmployee: "AccountingEmployee",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    accountingEmployee: components.AccountingEmployeeInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      accountingEmployee: "AccountingEmployee",
+    });
+  })
+);
 
 export function accountingEmployeesUpdateRequestToJSON(
   accountingEmployeesUpdateRequest: AccountingEmployeesUpdateRequest,
@@ -102,21 +104,23 @@ export const AccountingEmployeesUpdateResponse$inboundSchema: z.ZodType<
   AccountingEmployeesUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateAccountingEmployeeResponse: types.optional(
-    components.UpdateAccountingEmployeeResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateAccountingEmployeeResponse": "updateAccountingEmployeeResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateAccountingEmployeeResponse: types.optional(
+      components.UpdateAccountingEmployeeResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateAccountingEmployeeResponse": "updateAccountingEmployeeResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingEmployeesUpdateResponseFromJSON(
   jsonString: string,

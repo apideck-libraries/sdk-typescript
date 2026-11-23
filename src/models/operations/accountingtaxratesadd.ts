@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const AccountingTaxRatesAddRequest$outboundSchema: z.ZodType<
   AccountingTaxRatesAddRequest$Outbound,
   z.ZodTypeDef,
   AccountingTaxRatesAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  taxRate: components.TaxRateInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    taxRate: "TaxRate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    taxRate: components.TaxRateInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      taxRate: "TaxRate",
+    });
+  })
+);
 
 export function accountingTaxRatesAddRequestToJSON(
   accountingTaxRatesAddRequest: AccountingTaxRatesAddRequest,
@@ -100,21 +102,23 @@ export const AccountingTaxRatesAddResponse$inboundSchema: z.ZodType<
   AccountingTaxRatesAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateTaxRateResponse: types.optional(
-    components.CreateTaxRateResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateTaxRateResponse": "createTaxRateResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateTaxRateResponse: types.optional(
+      components.CreateTaxRateResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateTaxRateResponse": "createTaxRateResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingTaxRatesAddResponseFromJSON(
   jsonString: string,

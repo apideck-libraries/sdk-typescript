@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -76,7 +76,7 @@ export const FileStorageUploadSessionsFinishRequestBody$outboundSchema:
     FileStorageUploadSessionsFinishRequestBody$Outbound,
     z.ZodTypeDef,
     FileStorageUploadSessionsFinishRequestBody
-  > = z.object({});
+  > = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function fileStorageUploadSessionsFinishRequestBodyToJSON(
   fileStorageUploadSessionsFinishRequestBody:
@@ -105,21 +105,23 @@ export const FileStorageUploadSessionsFinishRequest$outboundSchema: z.ZodType<
   FileStorageUploadSessionsFinishRequest$Outbound,
   z.ZodTypeDef,
   FileStorageUploadSessionsFinishRequest
-> = z.object({
-  id: z.string(),
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  digest: z.string().optional(),
-  requestBody: z.lazy(() =>
-    FileStorageUploadSessionsFinishRequestBody$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    digest: z.string().optional(),
+    requestBody: z.lazy(() =>
+      FileStorageUploadSessionsFinishRequestBody$outboundSchema
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function fileStorageUploadSessionsFinishRequestToJSON(
   fileStorageUploadSessionsFinishRequest:
@@ -137,19 +139,21 @@ export const FileStorageUploadSessionsFinishResponse$inboundSchema: z.ZodType<
   FileStorageUploadSessionsFinishResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetFileResponse: types.optional(components.GetFileResponse$inboundSchema),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetFileResponse": "getFileResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetFileResponse: types.optional(components.GetFileResponse$inboundSchema),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetFileResponse": "getFileResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function fileStorageUploadSessionsFinishResponseFromJSON(
   jsonString: string,

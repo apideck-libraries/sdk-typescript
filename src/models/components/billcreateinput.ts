@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -270,14 +271,18 @@ export const BillCreateInputStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   BillCreateInputStatus
-> = openEnums.outboundSchema(BillCreateInputStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(BillCreateInputStatus)
+);
 
 /** @internal */
 export const BillCreateInputAmortizationType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   BillCreateInputAmortizationType
-> = openEnums.outboundSchema(BillCreateInputAmortizationType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(BillCreateInputAmortizationType)
+);
 
 /** @internal */
 export type BillCreateInput$Outbound = {
@@ -340,101 +345,104 @@ export const BillCreateInput$outboundSchema: z.ZodType<
   BillCreateInput$Outbound,
   z.ZodTypeDef,
   BillCreateInput
-> = z.object({
-  displayId: z.nullable(z.string()).optional(),
-  billNumber: z.nullable(z.string()).optional(),
-  supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
-  locationId: z.nullable(z.string()).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  taxInclusive: z.nullable(z.boolean()).optional(),
-  billDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  dueDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  paidDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  poNumber: z.nullable(z.string()).optional(),
-  reference: z.nullable(z.string()).optional(),
-  lineItems: z.array(BillLineItemInput$outboundSchema).optional(),
-  terms: z.nullable(z.string()).optional(),
-  termsId: z.nullable(z.string()).optional(),
-  balance: z.nullable(z.number()).optional(),
-  deposit: z.nullable(z.number()).optional(),
-  subTotal: z.nullable(z.number()).optional(),
-  totalTax: z.nullable(z.number()).optional(),
-  total: z.nullable(z.number()).optional(),
-  taxCode: z.nullable(z.string()).optional(),
-  notes: z.nullable(z.string()).optional(),
-  status: z.nullable(BillCreateInputStatus$outboundSchema).optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  paymentMethod: z.nullable(z.string()).optional(),
-  channel: z.nullable(z.string()).optional(),
-  language: z.nullable(z.string()).optional(),
-  accountingByRow: z.nullable(z.boolean()).optional(),
-  bankAccount: BankAccount$outboundSchema.optional(),
-  discountPercentage: z.nullable(z.number()).optional(),
-  templateId: z.nullable(z.string()).optional(),
-  approvedBy: z.nullable(z.string()).optional(),
-  amortizationType: z.nullable(BillCreateInputAmortizationType$outboundSchema)
-    .optional(),
-  taxMethod: z.nullable(z.string()).optional(),
-  documentReceived: z.nullable(z.boolean()).optional(),
-  sourceDocumentUrl: z.nullable(z.string()).optional(),
-  paymentAllocations: z.nullable(
-    z.array(z.nullable(LinkedPaymentAllocations$outboundSchema)),
-  ).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-  accountingPeriod: z.nullable(z.string()).optional(),
-  attachments: z.array(z.nullable(LinkedAttachment$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    billNumber: "bill_number",
-    companyId: "company_id",
-    locationId: "location_id",
-    departmentId: "department_id",
-    currencyRate: "currency_rate",
-    taxInclusive: "tax_inclusive",
-    billDate: "bill_date",
-    dueDate: "due_date",
-    paidDate: "paid_date",
-    poNumber: "po_number",
-    lineItems: "line_items",
-    termsId: "terms_id",
-    subTotal: "sub_total",
-    totalTax: "total_tax",
-    taxCode: "tax_code",
-    ledgerAccount: "ledger_account",
-    paymentMethod: "payment_method",
-    accountingByRow: "accounting_by_row",
-    bankAccount: "bank_account",
-    discountPercentage: "discount_percentage",
-    templateId: "template_id",
-    approvedBy: "approved_by",
-    amortizationType: "amortization_type",
-    taxMethod: "tax_method",
-    documentReceived: "document_received",
-    sourceDocumentUrl: "source_document_url",
-    paymentAllocations: "payment_allocations",
-    trackingCategories: "tracking_categories",
-    rowVersion: "row_version",
-    customFields: "custom_fields",
-    passThrough: "pass_through",
-    accountingPeriod: "accounting_period",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayId: z.nullable(z.string()).optional(),
+    billNumber: z.nullable(z.string()).optional(),
+    supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
+    companyId: z.nullable(z.string()).optional(),
+    subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
+    locationId: z.nullable(z.string()).optional(),
+    departmentId: z.nullable(z.string()).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    currencyRate: z.nullable(z.number()).optional(),
+    taxInclusive: z.nullable(z.boolean()).optional(),
+    billDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    dueDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    paidDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    poNumber: z.nullable(z.string()).optional(),
+    reference: z.nullable(z.string()).optional(),
+    lineItems: z.array(BillLineItemInput$outboundSchema).optional(),
+    terms: z.nullable(z.string()).optional(),
+    termsId: z.nullable(z.string()).optional(),
+    balance: z.nullable(z.number()).optional(),
+    deposit: z.nullable(z.number()).optional(),
+    subTotal: z.nullable(z.number()).optional(),
+    totalTax: z.nullable(z.number()).optional(),
+    total: z.nullable(z.number()).optional(),
+    taxCode: z.nullable(z.string()).optional(),
+    notes: z.nullable(z.string()).optional(),
+    status: z.nullable(BillCreateInputStatus$outboundSchema).optional(),
+    ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    paymentMethod: z.nullable(z.string()).optional(),
+    channel: z.nullable(z.string()).optional(),
+    language: z.nullable(z.string()).optional(),
+    accountingByRow: z.nullable(z.boolean()).optional(),
+    bankAccount: BankAccount$outboundSchema.optional(),
+    discountPercentage: z.nullable(z.number()).optional(),
+    templateId: z.nullable(z.string()).optional(),
+    approvedBy: z.nullable(z.string()).optional(),
+    amortizationType: z.nullable(BillCreateInputAmortizationType$outboundSchema)
+      .optional(),
+    taxMethod: z.nullable(z.string()).optional(),
+    documentReceived: z.nullable(z.boolean()).optional(),
+    sourceDocumentUrl: z.nullable(z.string()).optional(),
+    paymentAllocations: z.nullable(
+      z.array(z.nullable(LinkedPaymentAllocations$outboundSchema)),
+    ).optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+    accountingPeriod: z.nullable(z.string()).optional(),
+    attachments: z.array(z.nullable(LinkedAttachment$outboundSchema))
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+      billNumber: "bill_number",
+      companyId: "company_id",
+      locationId: "location_id",
+      departmentId: "department_id",
+      currencyRate: "currency_rate",
+      taxInclusive: "tax_inclusive",
+      billDate: "bill_date",
+      dueDate: "due_date",
+      paidDate: "paid_date",
+      poNumber: "po_number",
+      lineItems: "line_items",
+      termsId: "terms_id",
+      subTotal: "sub_total",
+      totalTax: "total_tax",
+      taxCode: "tax_code",
+      ledgerAccount: "ledger_account",
+      paymentMethod: "payment_method",
+      accountingByRow: "accounting_by_row",
+      bankAccount: "bank_account",
+      discountPercentage: "discount_percentage",
+      templateId: "template_id",
+      approvedBy: "approved_by",
+      amortizationType: "amortization_type",
+      taxMethod: "tax_method",
+      documentReceived: "document_received",
+      sourceDocumentUrl: "source_document_url",
+      paymentAllocations: "payment_allocations",
+      trackingCategories: "tracking_categories",
+      rowVersion: "row_version",
+      customFields: "custom_fields",
+      passThrough: "pass_through",
+      accountingPeriod: "accounting_period",
+    });
+  })
+);
 
 export function billCreateInputToJSON(
   billCreateInput: BillCreateInput,

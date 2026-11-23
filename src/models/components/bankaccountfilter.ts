@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -38,7 +39,9 @@ export const BankAccountFilterAccountType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   BankAccountFilterAccountType
-> = openEnums.outboundSchema(BankAccountFilterAccountType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(BankAccountFilterAccountType)
+);
 
 /** @internal */
 export type BankAccountFilter$Outbound = {
@@ -50,13 +53,15 @@ export const BankAccountFilter$outboundSchema: z.ZodType<
   BankAccountFilter$Outbound,
   z.ZodTypeDef,
   BankAccountFilter
-> = z.object({
-  accountType: BankAccountFilterAccountType$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    accountType: "account_type",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    accountType: BankAccountFilterAccountType$outboundSchema.optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      accountType: "account_type",
+    });
+  })
+);
 
 export function bankAccountFilterToJSON(
   bankAccountFilter: BankAccountFilter,

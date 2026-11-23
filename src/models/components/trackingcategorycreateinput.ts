@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -77,8 +78,8 @@ export const TrackingCategoryCreateInputTrackingCategoryStatus$outboundSchema:
     string,
     z.ZodTypeDef,
     TrackingCategoryCreateInputTrackingCategoryStatus
-  > = openEnums.outboundSchema(
-    TrackingCategoryCreateInputTrackingCategoryStatus,
+  > = /* @__PURE__ */ lazySchema$(() =>
+    openEnums.outboundSchema(TrackingCategoryCreateInputTrackingCategoryStatus)
   );
 
 /** @internal */
@@ -91,9 +92,11 @@ export const TrackingCategoryCreateInputSubsidiaries$outboundSchema: z.ZodType<
   TrackingCategoryCreateInputSubsidiaries$Outbound,
   z.ZodTypeDef,
   TrackingCategoryCreateInputSubsidiaries
-> = z.object({
-  id: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+  })
+);
 
 export function trackingCategoryCreateInputSubsidiariesToJSON(
   trackingCategoryCreateInputSubsidiaries:
@@ -125,26 +128,28 @@ export const TrackingCategoryCreateInput$outboundSchema: z.ZodType<
   TrackingCategoryCreateInput$Outbound,
   z.ZodTypeDef,
   TrackingCategoryCreateInput
-> = z.object({
-  parentId: z.nullable(z.string()).optional(),
-  parentName: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  status: TrackingCategoryCreateInputTrackingCategoryStatus$outboundSchema
-    .optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-  subsidiaries: z.array(
-    z.lazy(() => TrackingCategoryCreateInputSubsidiaries$outboundSchema),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    parentName: "parent_name",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    parentId: z.nullable(z.string()).optional(),
+    parentName: z.nullable(z.string()).optional(),
+    name: z.string().optional(),
+    code: z.nullable(z.string()).optional(),
+    status: TrackingCategoryCreateInputTrackingCategoryStatus$outboundSchema
+      .optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+    subsidiaries: z.array(
+      z.lazy(() => TrackingCategoryCreateInputSubsidiaries$outboundSchema),
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      parentId: "parent_id",
+      parentName: "parent_name",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function trackingCategoryCreateInputToJSON(
   trackingCategoryCreateInput: TrackingCategoryCreateInput,

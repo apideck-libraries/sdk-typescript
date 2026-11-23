@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -69,17 +69,19 @@ export const AccountingExpenseReportsAddRequest$outboundSchema: z.ZodType<
   AccountingExpenseReportsAddRequest$Outbound,
   z.ZodTypeDef,
   AccountingExpenseReportsAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  expenseReport: components.ExpenseReportInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    expenseReport: "ExpenseReport",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    expenseReport: components.ExpenseReportInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      expenseReport: "ExpenseReport",
+    });
+  })
+);
 
 export function accountingExpenseReportsAddRequestToJSON(
   accountingExpenseReportsAddRequest: AccountingExpenseReportsAddRequest,
@@ -96,21 +98,23 @@ export const AccountingExpenseReportsAddResponse$inboundSchema: z.ZodType<
   AccountingExpenseReportsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateExpenseReportResponse: types.optional(
-    components.CreateExpenseReportResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateExpenseReportResponse": "createExpenseReportResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateExpenseReportResponse: types.optional(
+      components.CreateExpenseReportResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateExpenseReportResponse": "createExpenseReportResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingExpenseReportsAddResponseFromJSON(
   jsonString: string,

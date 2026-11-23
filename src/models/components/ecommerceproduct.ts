@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -206,21 +206,23 @@ export const ProductStatus$inboundSchema: z.ZodType<
   ProductStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(ProductStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(ProductStatus));
 
 /** @internal */
 export const TaxStatus$inboundSchema: z.ZodType<
   TaxStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(TaxStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(TaxStatus));
 
 /** @internal */
-export const Images$inboundSchema: z.ZodType<Images, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.nullable(types.string()).optional(),
-    url: z.nullable(types.string()).optional(),
-  });
+export const Images$inboundSchema: z.ZodType<Images, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      url: z.nullable(types.string()).optional(),
+    })
+  );
 
 export function imagesFromJSON(
   jsonString: string,
@@ -237,11 +239,13 @@ export const EcommerceProductOptions$inboundSchema: z.ZodType<
   EcommerceProductOptions,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  values: types.optional(z.array(types.nullable(types.string()))),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    values: types.optional(z.array(types.nullable(types.string()))),
+  })
+);
 
 export function ecommerceProductOptionsFromJSON(
   jsonString: string,
@@ -258,11 +262,13 @@ export const EcommerceProductVariantsOptions$inboundSchema: z.ZodType<
   EcommerceProductVariantsOptions,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  value: z.nullable(types.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    value: z.nullable(types.string()).optional(),
+  })
+);
 
 export function ecommerceProductVariantsOptionsFromJSON(
   jsonString: string,
@@ -279,10 +285,12 @@ export const EcommerceProductImages$inboundSchema: z.ZodType<
   EcommerceProductImages,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  url: z.nullable(types.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    url: z.nullable(types.string()).optional(),
+  })
+);
 
 export function ecommerceProductImagesFromJSON(
   jsonString: string,
@@ -299,26 +307,28 @@ export const Variants$inboundSchema: z.ZodType<
   Variants,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  price: z.nullable(types.string()).optional(),
-  sku: z.nullable(types.string()).optional(),
-  inventory_quantity: z.nullable(types.string()).optional(),
-  weight: z.nullable(types.string()).optional(),
-  weight_unit: z.nullable(types.string()).optional(),
-  options: types.optional(
-    z.array(z.lazy(() => EcommerceProductVariantsOptions$inboundSchema)),
-  ),
-  images: types.optional(
-    z.array(z.lazy(() => EcommerceProductImages$inboundSchema)),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "inventory_quantity": "inventoryQuantity",
-    "weight_unit": "weightUnit",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    price: z.nullable(types.string()).optional(),
+    sku: z.nullable(types.string()).optional(),
+    inventory_quantity: z.nullable(types.string()).optional(),
+    weight: z.nullable(types.string()).optional(),
+    weight_unit: z.nullable(types.string()).optional(),
+    options: types.optional(
+      z.array(z.lazy(() => EcommerceProductVariantsOptions$inboundSchema)),
+    ),
+    images: types.optional(
+      z.array(z.lazy(() => EcommerceProductImages$inboundSchema)),
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "inventory_quantity": "inventoryQuantity",
+      "weight_unit": "weightUnit",
+    });
+  })
+);
 
 export function variantsFromJSON(
   jsonString: string,
@@ -335,10 +345,12 @@ export const EcommerceProductCategories$inboundSchema: z.ZodType<
   EcommerceProductCategories,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+  })
+);
 
 export function ecommerceProductCategoriesFromJSON(
   jsonString: string,
@@ -355,39 +367,41 @@ export const EcommerceProduct$inboundSchema: z.ZodType<
   EcommerceProduct,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  name: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  status: z.nullable(ProductStatus$inboundSchema).optional(),
-  tax_status: z.nullable(TaxStatus$inboundSchema).optional(),
-  price: z.nullable(types.string()).optional(),
-  sku: z.nullable(types.string()).optional(),
-  inventory_quantity: z.nullable(types.string()).optional(),
-  images: z.nullable(z.array(z.lazy(() => Images$inboundSchema))).optional(),
-  weight: z.nullable(types.string()).optional(),
-  weight_unit: z.nullable(types.string()).optional(),
-  options: types.optional(
-    z.array(z.lazy(() => EcommerceProductOptions$inboundSchema)),
-  ),
-  variants: types.optional(z.array(z.lazy(() => Variants$inboundSchema))),
-  tags: types.optional(z.array(types.nullable(types.string()))),
-  categories: types.optional(
-    z.array(z.lazy(() => EcommerceProductCategories$inboundSchema)),
-  ),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "tax_status": "taxStatus",
-    "inventory_quantity": "inventoryQuantity",
-    "weight_unit": "weightUnit",
-    "custom_mappings": "customMappings",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.string(),
+    name: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    status: z.nullable(ProductStatus$inboundSchema).optional(),
+    tax_status: z.nullable(TaxStatus$inboundSchema).optional(),
+    price: z.nullable(types.string()).optional(),
+    sku: z.nullable(types.string()).optional(),
+    inventory_quantity: z.nullable(types.string()).optional(),
+    images: z.nullable(z.array(z.lazy(() => Images$inboundSchema))).optional(),
+    weight: z.nullable(types.string()).optional(),
+    weight_unit: z.nullable(types.string()).optional(),
+    options: types.optional(
+      z.array(z.lazy(() => EcommerceProductOptions$inboundSchema)),
+    ),
+    variants: types.optional(z.array(z.lazy(() => Variants$inboundSchema))),
+    tags: types.optional(z.array(types.nullable(types.string()))),
+    categories: types.optional(
+      z.array(z.lazy(() => EcommerceProductCategories$inboundSchema)),
+    ),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "tax_status": "taxStatus",
+      "inventory_quantity": "inventoryQuantity",
+      "weight_unit": "weightUnit",
+      "custom_mappings": "customMappings",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function ecommerceProductFromJSON(
   jsonString: string,

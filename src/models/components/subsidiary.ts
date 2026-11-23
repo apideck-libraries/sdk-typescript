@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -137,50 +137,56 @@ export const SubsidiaryStatus$inboundSchema: z.ZodType<
   SubsidiaryStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(SubsidiaryStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(SubsidiaryStatus)
+);
 /** @internal */
 export const SubsidiaryStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   SubsidiaryStatus
-> = openEnums.outboundSchema(SubsidiaryStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(SubsidiaryStatus)
+);
 
 /** @internal */
 export const Subsidiary$inboundSchema: z.ZodType<
   Subsidiary,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  parent_id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-  downstream_id: z.nullable(types.string()).optional(),
-  status: types.optional(SubsidiaryStatus$inboundSchema),
-  address: types.optional(Address$inboundSchema),
-  currencies: z.nullable(z.array(types.nullable(Currency$inboundSchema)))
-    .optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_id": "parentId",
-    "display_id": "displayId",
-    "downstream_id": "downstreamId",
-    "custom_mappings": "customMappings",
-    "row_version": "rowVersion",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    parent_id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    downstream_id: z.nullable(types.string()).optional(),
+    status: types.optional(SubsidiaryStatus$inboundSchema),
+    address: types.optional(Address$inboundSchema),
+    currencies: z.nullable(z.array(types.nullable(Currency$inboundSchema)))
+      .optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "parent_id": "parentId",
+      "display_id": "displayId",
+      "downstream_id": "downstreamId",
+      "custom_mappings": "customMappings",
+      "row_version": "rowVersion",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function subsidiaryFromJSON(
   jsonString: string,
@@ -209,24 +215,26 @@ export const SubsidiaryInput$outboundSchema: z.ZodType<
   SubsidiaryInput$Outbound,
   z.ZodTypeDef,
   SubsidiaryInput
-> = z.object({
-  parentId: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  displayId: z.nullable(z.string()).optional(),
-  status: SubsidiaryStatus$outboundSchema.optional(),
-  address: Address$outboundSchema.optional(),
-  currencies: z.nullable(z.array(z.nullable(Currency$outboundSchema)))
-    .optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    displayId: "display_id",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    parentId: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()).optional(),
+    displayId: z.nullable(z.string()).optional(),
+    status: SubsidiaryStatus$outboundSchema.optional(),
+    address: Address$outboundSchema.optional(),
+    currencies: z.nullable(z.array(z.nullable(Currency$outboundSchema)))
+      .optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      parentId: "parent_id",
+      displayId: "display_id",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function subsidiaryInputToJSON(
   subsidiaryInput: SubsidiaryInput,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PassThroughBody,
   PassThroughBody$Outbound,
@@ -36,16 +37,18 @@ export const DepartmentInput$outboundSchema: z.ZodType<
   DepartmentInput$Outbound,
   z.ZodTypeDef,
   DepartmentInput
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  code: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(z.string()).optional(),
+    code: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function departmentInputToJSON(
   departmentInput: DepartmentInput,

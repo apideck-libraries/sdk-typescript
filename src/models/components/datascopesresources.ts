@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -45,23 +45,29 @@ export const DataScopesResources2$inboundSchema: z.ZodType<
   DataScopesResources2,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(DataScopesResources2);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(DataScopesResources2)
+);
 /** @internal */
 export const DataScopesResources2$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   DataScopesResources2
-> = openEnums.outboundSchema(DataScopesResources2);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(DataScopesResources2)
+);
 
 /** @internal */
 export const DataScopesResources1$inboundSchema: z.ZodType<
   DataScopesResources1,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  read: types.optional(types.boolean()),
-  write: types.optional(types.boolean()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    read: types.optional(types.boolean()),
+    write: types.optional(types.boolean()),
+  })
+);
 /** @internal */
 export type DataScopesResources1$Outbound = {
   read?: boolean | undefined;
@@ -73,10 +79,12 @@ export const DataScopesResources1$outboundSchema: z.ZodType<
   DataScopesResources1$Outbound,
   z.ZodTypeDef,
   DataScopesResources1
-> = z.object({
-  read: z.boolean().optional(),
-  write: z.boolean().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    read: z.boolean().optional(),
+    write: z.boolean().optional(),
+  })
+);
 
 export function dataScopesResources1ToJSON(
   dataScopesResources1: DataScopesResources1,
@@ -100,10 +108,12 @@ export const DataScopesResources$inboundSchema: z.ZodType<
   DataScopesResources,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  z.record(z.record(z.lazy(() => DataScopesResources1$inboundSchema))),
-  DataScopesResources2$inboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    z.record(z.record(z.lazy(() => DataScopesResources1$inboundSchema))),
+    DataScopesResources2$inboundSchema,
+  ])
+);
 /** @internal */
 export type DataScopesResources$Outbound = {
   [k: string]: { [k: string]: DataScopesResources1$Outbound };
@@ -114,10 +124,12 @@ export const DataScopesResources$outboundSchema: z.ZodType<
   DataScopesResources$Outbound,
   z.ZodTypeDef,
   DataScopesResources
-> = smartUnion([
-  z.record(z.record(z.lazy(() => DataScopesResources1$outboundSchema))),
-  DataScopesResources2$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    z.record(z.record(z.lazy(() => DataScopesResources1$outboundSchema))),
+    DataScopesResources2$outboundSchema,
+  ])
+);
 
 export function dataScopesResourcesToJSON(
   dataScopesResources: DataScopesResources,

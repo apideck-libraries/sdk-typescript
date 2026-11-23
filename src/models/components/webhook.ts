@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -76,31 +76,33 @@ export const DisabledReason$inboundSchema: z.ZodType<
   DisabledReason,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(DisabledReason);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(DisabledReason));
 
 /** @internal */
 export const Webhook$inboundSchema: z.ZodType<Webhook, z.ZodTypeDef, unknown> =
-  z.object({
-    id: types.optional(types.string()),
-    description: z.nullable(types.string()).optional(),
-    unified_api: UnifiedApiId$inboundSchema,
-    status: Status$inboundSchema,
-    disabled_reason: types.optional(DisabledReason$inboundSchema),
-    delivery_url: types.string(),
-    execute_base_url: types.string(),
-    events: z.array(WebhookEventType$inboundSchema),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "unified_api": "unifiedApi",
-      "disabled_reason": "disabledReason",
-      "delivery_url": "deliveryUrl",
-      "execute_base_url": "executeBaseUrl",
-      "updated_at": "updatedAt",
-      "created_at": "createdAt",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.optional(types.string()),
+      description: z.nullable(types.string()).optional(),
+      unified_api: UnifiedApiId$inboundSchema,
+      status: Status$inboundSchema,
+      disabled_reason: types.optional(DisabledReason$inboundSchema),
+      delivery_url: types.string(),
+      execute_base_url: types.string(),
+      events: z.array(WebhookEventType$inboundSchema),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "unified_api": "unifiedApi",
+        "disabled_reason": "disabledReason",
+        "delivery_url": "deliveryUrl",
+        "execute_base_url": "executeBaseUrl",
+        "updated_at": "updatedAt",
+        "created_at": "createdAt",
+      });
+    })
+  );
 
 export function webhookFromJSON(
   jsonString: string,

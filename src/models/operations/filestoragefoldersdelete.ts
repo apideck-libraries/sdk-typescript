@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -70,13 +70,15 @@ export const FileStorageFoldersDeleteRequest$outboundSchema: z.ZodType<
   FileStorageFoldersDeleteRequest$Outbound,
   z.ZodTypeDef,
   FileStorageFoldersDeleteRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+  })
+);
 
 export function fileStorageFoldersDeleteRequestToJSON(
   fileStorageFoldersDeleteRequest: FileStorageFoldersDeleteRequest,
@@ -93,21 +95,23 @@ export const FileStorageFoldersDeleteResponse$inboundSchema: z.ZodType<
   FileStorageFoldersDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  DeleteFolderResponse: types.optional(
-    components.DeleteFolderResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "DeleteFolderResponse": "deleteFolderResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    DeleteFolderResponse: types.optional(
+      components.DeleteFolderResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "DeleteFolderResponse": "deleteFolderResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function fileStorageFoldersDeleteResponseFromJSON(
   jsonString: string,

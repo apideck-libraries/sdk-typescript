@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -100,24 +100,26 @@ export const IssueTrackingCollectionTicketsAllRequest$outboundSchema: z.ZodType<
   IssueTrackingCollectionTicketsAllRequest$Outbound,
   z.ZodTypeDef,
   IssueTrackingCollectionTicketsAllRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  collectionId: z.string(),
-  sort: components.TicketsSort$outboundSchema.optional(),
-  filter: components.IssuesFilter$outboundSchema.optional(),
-  passThrough: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    collectionId: "collection_id",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    collectionId: z.string(),
+    sort: components.TicketsSort$outboundSchema.optional(),
+    filter: components.IssuesFilter$outboundSchema.optional(),
+    passThrough: z.record(z.any()).optional(),
+    fields: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      collectionId: "collection_id",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function issueTrackingCollectionTicketsAllRequestToJSON(
   issueTrackingCollectionTicketsAllRequest:
@@ -135,21 +137,23 @@ export const IssueTrackingCollectionTicketsAllResponse$inboundSchema: z.ZodType<
   IssueTrackingCollectionTicketsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetTicketsResponse: types.optional(
-    components.GetTicketsResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetTicketsResponse": "getTicketsResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetTicketsResponse: types.optional(
+      components.GetTicketsResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetTicketsResponse": "getTicketsResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function issueTrackingCollectionTicketsAllResponseFromJSON(
   jsonString: string,

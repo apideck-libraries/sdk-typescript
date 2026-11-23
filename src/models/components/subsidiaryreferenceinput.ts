@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type SubsidiaryReferenceInput = {
   /**
@@ -21,9 +22,11 @@ export const SubsidiaryReferenceInput$outboundSchema: z.ZodType<
   SubsidiaryReferenceInput$Outbound,
   z.ZodTypeDef,
   SubsidiaryReferenceInput
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(z.string()).optional(),
+  })
+);
 
 export function subsidiaryReferenceInputToJSON(
   subsidiaryReferenceInput: SubsidiaryReferenceInput,

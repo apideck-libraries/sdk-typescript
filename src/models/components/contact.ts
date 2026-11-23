@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -343,97 +343,99 @@ export const ContactType$inboundSchema: z.ZodType<
   ContactType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(ContactType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(ContactType));
 /** @internal */
 export const ContactType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ContactType
-> = openEnums.outboundSchema(ContactType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(ContactType));
 
 /** @internal */
 export const ContactGender$inboundSchema: z.ZodType<
   ContactGender,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(ContactGender);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(ContactGender));
 /** @internal */
 export const ContactGender$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ContactGender
-> = openEnums.outboundSchema(ContactGender);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(ContactGender));
 
 /** @internal */
 export const Contact$inboundSchema: z.ZodType<Contact, z.ZodTypeDef, unknown> =
-  z.object({
-    id: types.optional(types.string()),
-    name: z.nullable(types.string()).optional(),
-    owner_id: z.nullable(types.string()).optional(),
-    type: z.nullable(ContactType$inboundSchema).optional(),
-    company_id: z.nullable(types.string()).optional(),
-    company_name: z.nullable(types.string()).optional(),
-    lead_id: z.nullable(types.string()).optional(),
-    first_name: z.nullable(types.string()).optional(),
-    middle_name: z.nullable(types.string()).optional(),
-    last_name: z.nullable(types.string()).optional(),
-    prefix: z.nullable(types.string()).optional(),
-    suffix: z.nullable(types.string()).optional(),
-    title: z.nullable(types.string()).optional(),
-    department: z.nullable(types.string()).optional(),
-    language: z.nullable(types.string()).optional(),
-    gender: z.nullable(ContactGender$inboundSchema).optional(),
-    birthday: z.nullable(types.string()).optional(),
-    image: z.nullable(types.string()).optional(),
-    photo_url: z.nullable(types.string()).optional(),
-    lead_source: z.nullable(types.string()).optional(),
-    fax: z.nullable(types.string()).optional(),
-    description: z.nullable(types.string()).optional(),
-    current_balance: z.nullable(types.number()).optional(),
-    status: z.nullable(types.string()).optional(),
-    active: z.nullable(types.boolean()).optional(),
-    websites: types.optional(z.array(Website$inboundSchema)),
-    addresses: types.optional(z.array(Address$inboundSchema)),
-    social_links: types.optional(z.array(SocialLink$inboundSchema)),
-    phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
-    emails: types.optional(z.array(Email$inboundSchema)),
-    email_domain: z.nullable(types.string()).optional(),
-    custom_fields: z.nullable(z.array(CustomField$inboundSchema)).optional(),
-    tags: z.nullable(z.array(types.string())).optional(),
-    first_call_at: z.nullable(types.date()).optional(),
-    first_email_at: z.nullable(types.date()).optional(),
-    last_activity_at: z.nullable(types.date()).optional(),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-    opportunity_ids: types.optional(z.array(types.string())),
-    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-  }).transform((v) => {
-    return remap$(v, {
-      "owner_id": "ownerId",
-      "company_id": "companyId",
-      "company_name": "companyName",
-      "lead_id": "leadId",
-      "first_name": "firstName",
-      "middle_name": "middleName",
-      "last_name": "lastName",
-      "photo_url": "photoUrl",
-      "lead_source": "leadSource",
-      "current_balance": "currentBalance",
-      "social_links": "socialLinks",
-      "phone_numbers": "phoneNumbers",
-      "email_domain": "emailDomain",
-      "custom_fields": "customFields",
-      "first_call_at": "firstCallAt",
-      "first_email_at": "firstEmailAt",
-      "last_activity_at": "lastActivityAt",
-      "custom_mappings": "customMappings",
-      "updated_at": "updatedAt",
-      "created_at": "createdAt",
-      "opportunity_ids": "opportunityIds",
-      "pass_through": "passThrough",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.optional(types.string()),
+      name: z.nullable(types.string()).optional(),
+      owner_id: z.nullable(types.string()).optional(),
+      type: z.nullable(ContactType$inboundSchema).optional(),
+      company_id: z.nullable(types.string()).optional(),
+      company_name: z.nullable(types.string()).optional(),
+      lead_id: z.nullable(types.string()).optional(),
+      first_name: z.nullable(types.string()).optional(),
+      middle_name: z.nullable(types.string()).optional(),
+      last_name: z.nullable(types.string()).optional(),
+      prefix: z.nullable(types.string()).optional(),
+      suffix: z.nullable(types.string()).optional(),
+      title: z.nullable(types.string()).optional(),
+      department: z.nullable(types.string()).optional(),
+      language: z.nullable(types.string()).optional(),
+      gender: z.nullable(ContactGender$inboundSchema).optional(),
+      birthday: z.nullable(types.string()).optional(),
+      image: z.nullable(types.string()).optional(),
+      photo_url: z.nullable(types.string()).optional(),
+      lead_source: z.nullable(types.string()).optional(),
+      fax: z.nullable(types.string()).optional(),
+      description: z.nullable(types.string()).optional(),
+      current_balance: z.nullable(types.number()).optional(),
+      status: z.nullable(types.string()).optional(),
+      active: z.nullable(types.boolean()).optional(),
+      websites: types.optional(z.array(Website$inboundSchema)),
+      addresses: types.optional(z.array(Address$inboundSchema)),
+      social_links: types.optional(z.array(SocialLink$inboundSchema)),
+      phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+      emails: types.optional(z.array(Email$inboundSchema)),
+      email_domain: z.nullable(types.string()).optional(),
+      custom_fields: z.nullable(z.array(CustomField$inboundSchema)).optional(),
+      tags: z.nullable(z.array(types.string())).optional(),
+      first_call_at: z.nullable(types.date()).optional(),
+      first_email_at: z.nullable(types.date()).optional(),
+      last_activity_at: z.nullable(types.date()).optional(),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+      opportunity_ids: types.optional(z.array(types.string())),
+      pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    }).transform((v) => {
+      return remap$(v, {
+        "owner_id": "ownerId",
+        "company_id": "companyId",
+        "company_name": "companyName",
+        "lead_id": "leadId",
+        "first_name": "firstName",
+        "middle_name": "middleName",
+        "last_name": "lastName",
+        "photo_url": "photoUrl",
+        "lead_source": "leadSource",
+        "current_balance": "currentBalance",
+        "social_links": "socialLinks",
+        "phone_numbers": "phoneNumbers",
+        "email_domain": "emailDomain",
+        "custom_fields": "customFields",
+        "first_call_at": "firstCallAt",
+        "first_email_at": "firstEmailAt",
+        "last_activity_at": "lastActivityAt",
+        "custom_mappings": "customMappings",
+        "updated_at": "updatedAt",
+        "created_at": "createdAt",
+        "opportunity_ids": "opportunityIds",
+        "pass_through": "passThrough",
+      });
+    })
+  );
 
 export function contactFromJSON(
   jsonString: string,
@@ -488,61 +490,63 @@ export const ContactInput$outboundSchema: z.ZodType<
   ContactInput$Outbound,
   z.ZodTypeDef,
   ContactInput
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  ownerId: z.nullable(z.string()).optional(),
-  type: z.nullable(ContactType$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  leadId: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  middleName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  prefix: z.nullable(z.string()).optional(),
-  suffix: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  department: z.nullable(z.string()).optional(),
-  language: z.nullable(z.string()).optional(),
-  gender: z.nullable(ContactGender$outboundSchema).optional(),
-  birthday: z.nullable(z.string()).optional(),
-  image: z.nullable(z.string()).optional(),
-  photoUrl: z.nullable(z.string()).optional(),
-  leadSource: z.nullable(z.string()).optional(),
-  fax: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  currentBalance: z.nullable(z.number()).optional(),
-  status: z.nullable(z.string()).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  websites: z.array(Website$outboundSchema).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  socialLinks: z.array(SocialLink$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
-  emailDomain: z.nullable(z.string()).optional(),
-  customFields: z.nullable(z.array(CustomField$outboundSchema)).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  opportunityIds: z.array(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    ownerId: "owner_id",
-    companyId: "company_id",
-    companyName: "company_name",
-    leadId: "lead_id",
-    firstName: "first_name",
-    middleName: "middle_name",
-    lastName: "last_name",
-    photoUrl: "photo_url",
-    leadSource: "lead_source",
-    currentBalance: "current_balance",
-    socialLinks: "social_links",
-    phoneNumbers: "phone_numbers",
-    emailDomain: "email_domain",
-    customFields: "custom_fields",
-    opportunityIds: "opportunity_ids",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(z.string()).optional(),
+    ownerId: z.nullable(z.string()).optional(),
+    type: z.nullable(ContactType$outboundSchema).optional(),
+    companyId: z.nullable(z.string()).optional(),
+    companyName: z.nullable(z.string()).optional(),
+    leadId: z.nullable(z.string()).optional(),
+    firstName: z.nullable(z.string()).optional(),
+    middleName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    prefix: z.nullable(z.string()).optional(),
+    suffix: z.nullable(z.string()).optional(),
+    title: z.nullable(z.string()).optional(),
+    department: z.nullable(z.string()).optional(),
+    language: z.nullable(z.string()).optional(),
+    gender: z.nullable(ContactGender$outboundSchema).optional(),
+    birthday: z.nullable(z.string()).optional(),
+    image: z.nullable(z.string()).optional(),
+    photoUrl: z.nullable(z.string()).optional(),
+    leadSource: z.nullable(z.string()).optional(),
+    fax: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    currentBalance: z.nullable(z.number()).optional(),
+    status: z.nullable(z.string()).optional(),
+    active: z.nullable(z.boolean()).optional(),
+    websites: z.array(Website$outboundSchema).optional(),
+    addresses: z.array(Address$outboundSchema).optional(),
+    socialLinks: z.array(SocialLink$outboundSchema).optional(),
+    phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
+    emails: z.array(Email$outboundSchema).optional(),
+    emailDomain: z.nullable(z.string()).optional(),
+    customFields: z.nullable(z.array(CustomField$outboundSchema)).optional(),
+    tags: z.nullable(z.array(z.string())).optional(),
+    opportunityIds: z.array(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      ownerId: "owner_id",
+      companyId: "company_id",
+      companyName: "company_name",
+      leadId: "lead_id",
+      firstName: "first_name",
+      middleName: "middle_name",
+      lastName: "last_name",
+      photoUrl: "photo_url",
+      leadSource: "lead_source",
+      currentBalance: "current_balance",
+      socialLinks: "social_links",
+      phoneNumbers: "phone_numbers",
+      emailDomain: "email_domain",
+      customFields: "custom_fields",
+      opportunityIds: "opportunity_ids",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function contactInputToJSON(contactInput: ContactInput): string {
   return JSON.stringify(ContactInput$outboundSchema.parse(contactInput));

@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -27,12 +27,14 @@ export type Links = {
 };
 
 /** @internal */
-export const Links$inboundSchema: z.ZodType<Links, z.ZodTypeDef, unknown> = z
-  .object({
-    previous: z.nullable(types.string()).optional(),
-    current: types.optional(types.string()),
-    next: z.nullable(types.string()).optional(),
-  });
+export const Links$inboundSchema: z.ZodType<Links, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      previous: z.nullable(types.string()).optional(),
+      current: types.optional(types.string()),
+      next: z.nullable(types.string()).optional(),
+    })
+  );
 
 export function linksFromJSON(
   jsonString: string,

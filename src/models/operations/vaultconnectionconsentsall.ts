@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -65,17 +65,19 @@ export const VaultConnectionConsentsAllRequest$outboundSchema: z.ZodType<
   VaultConnectionConsentsAllRequest$Outbound,
   z.ZodTypeDef,
   VaultConnectionConsentsAllRequest
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string(),
-  unifiedApi: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    serviceId: "service_id",
-    unifiedApi: "unified_api",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string(),
+    unifiedApi: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      serviceId: "service_id",
+      unifiedApi: "unified_api",
+    });
+  })
+);
 
 export function vaultConnectionConsentsAllRequestToJSON(
   vaultConnectionConsentsAllRequest: VaultConnectionConsentsAllRequest,
@@ -92,21 +94,23 @@ export const VaultConnectionConsentsAllResponse$inboundSchema: z.ZodType<
   VaultConnectionConsentsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetConsentRecordsResponse: types.optional(
-    components.GetConsentRecordsResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetConsentRecordsResponse": "getConsentRecordsResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetConsentRecordsResponse: types.optional(
+      components.GetConsentRecordsResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetConsentRecordsResponse": "getConsentRecordsResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultConnectionConsentsAllResponseFromJSON(
   jsonString: string,

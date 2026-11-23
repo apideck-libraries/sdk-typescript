@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   Address,
   Address$Outbound,
@@ -155,51 +156,53 @@ export const LeadInput$outboundSchema: z.ZodType<
   LeadInput$Outbound,
   z.ZodTypeDef,
   LeadInput
-> = z.object({
-  name: z.string(),
-  companyName: z.nullable(z.string()).optional(),
-  ownerId: z.nullable(z.string()).optional(),
-  ownerName: z.nullable(z.string()).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  contactId: z.nullable(z.string()).optional(),
-  leadId: z.nullable(z.string()).optional(),
-  leadSource: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  prefix: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  language: z.nullable(z.string()).optional(),
-  status: z.nullable(z.string()).optional(),
-  monetaryAmount: z.nullable(z.number()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  fax: z.nullable(z.string()).optional(),
-  websites: z.array(Website$outboundSchema).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  socialLinks: z.array(SocialLink$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
-  customFields: z.nullable(z.array(CustomField$outboundSchema)).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    companyName: "company_name",
-    ownerId: "owner_id",
-    ownerName: "owner_name",
-    companyId: "company_id",
-    contactId: "contact_id",
-    leadId: "lead_id",
-    leadSource: "lead_source",
-    firstName: "first_name",
-    lastName: "last_name",
-    monetaryAmount: "monetary_amount",
-    socialLinks: "social_links",
-    phoneNumbers: "phone_numbers",
-    customFields: "custom_fields",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    companyName: z.nullable(z.string()).optional(),
+    ownerId: z.nullable(z.string()).optional(),
+    ownerName: z.nullable(z.string()).optional(),
+    companyId: z.nullable(z.string()).optional(),
+    contactId: z.nullable(z.string()).optional(),
+    leadId: z.nullable(z.string()).optional(),
+    leadSource: z.nullable(z.string()).optional(),
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    prefix: z.nullable(z.string()).optional(),
+    title: z.nullable(z.string()).optional(),
+    language: z.nullable(z.string()).optional(),
+    status: z.nullable(z.string()).optional(),
+    monetaryAmount: z.nullable(z.number()).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    fax: z.nullable(z.string()).optional(),
+    websites: z.array(Website$outboundSchema).optional(),
+    addresses: z.array(Address$outboundSchema).optional(),
+    socialLinks: z.array(SocialLink$outboundSchema).optional(),
+    phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
+    emails: z.array(Email$outboundSchema).optional(),
+    customFields: z.nullable(z.array(CustomField$outboundSchema)).optional(),
+    tags: z.nullable(z.array(z.string())).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      companyName: "company_name",
+      ownerId: "owner_id",
+      ownerName: "owner_name",
+      companyId: "company_id",
+      contactId: "contact_id",
+      leadId: "lead_id",
+      leadSource: "lead_source",
+      firstName: "first_name",
+      lastName: "last_name",
+      monetaryAmount: "monetary_amount",
+      socialLinks: "social_links",
+      phoneNumbers: "phone_numbers",
+      customFields: "custom_fields",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function leadInputToJSON(leadInput: LeadInput): string {
   return JSON.stringify(LeadInput$outboundSchema.parse(leadInput));

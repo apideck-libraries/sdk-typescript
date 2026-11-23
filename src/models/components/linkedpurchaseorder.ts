@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -29,16 +29,18 @@ export const LinkedPurchaseOrder$inboundSchema: z.ZodType<
   LinkedPurchaseOrder,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  line_id: z.nullable(types.string()).optional(),
-  line_number: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "line_id": "lineId",
-    "line_number": "lineNumber",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    line_id: z.nullable(types.string()).optional(),
+    line_number: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "line_id": "lineId",
+      "line_number": "lineNumber",
+    });
+  })
+);
 /** @internal */
 export type LinkedPurchaseOrder$Outbound = {
   id?: string | undefined;
@@ -51,16 +53,18 @@ export const LinkedPurchaseOrder$outboundSchema: z.ZodType<
   LinkedPurchaseOrder$Outbound,
   z.ZodTypeDef,
   LinkedPurchaseOrder
-> = z.object({
-  id: z.string().optional(),
-  lineId: z.nullable(z.string()).optional(),
-  lineNumber: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    lineId: "line_id",
-    lineNumber: "line_number",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    lineId: z.nullable(z.string()).optional(),
+    lineNumber: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      lineId: "line_id",
+      lineNumber: "line_number",
+    });
+  })
+);
 
 export function linkedPurchaseOrderToJSON(
   linkedPurchaseOrder: LinkedPurchaseOrder,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -99,27 +99,29 @@ export const LineType$inboundSchema: z.ZodType<
   LineType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(LineType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(LineType));
 
 /** @internal */
 export const Accounts$inboundSchema: z.ZodType<
   Accounts,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  line_type: types.optional(LineType$inboundSchema),
-  account_id: z.nullable(types.string()).optional(),
-  code: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  debit: types.number(),
-  credit: types.number(),
-  balance: z.nullable(types.number()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "line_type": "lineType",
-    "account_id": "accountId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    line_type: types.optional(LineType$inboundSchema),
+    account_id: z.nullable(types.string()).optional(),
+    code: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    debit: types.number(),
+    credit: types.number(),
+    balance: z.nullable(types.number()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "line_type": "lineType",
+      "account_id": "accountId",
+    });
+  })
+);
 
 export function accountsFromJSON(
   jsonString: string,
@@ -136,25 +138,27 @@ export const TrialBalance$inboundSchema: z.ZodType<
   TrialBalance,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  report_name: z.nullable(types.string()).optional(),
-  start_date: z.nullable(types.string()).optional(),
-  end_date: types.string(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  accounts: z.array(z.lazy(() => Accounts$inboundSchema)),
-  total_debit: z.nullable(types.number()).optional(),
-  total_credit: z.nullable(types.number()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "report_name": "reportName",
-    "start_date": "startDate",
-    "end_date": "endDate",
-    "total_debit": "totalDebit",
-    "total_credit": "totalCredit",
-    "custom_mappings": "customMappings",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    report_name: z.nullable(types.string()).optional(),
+    start_date: z.nullable(types.string()).optional(),
+    end_date: types.string(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    accounts: z.array(z.lazy(() => Accounts$inboundSchema)),
+    total_debit: z.nullable(types.number()).optional(),
+    total_credit: z.nullable(types.number()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "report_name": "reportName",
+      "start_date": "startDate",
+      "end_date": "endDate",
+      "total_debit": "totalDebit",
+      "total_credit": "totalCredit",
+      "custom_mappings": "customMappings",
+    });
+  })
+);
 
 export function trialBalanceFromJSON(
   jsonString: string,

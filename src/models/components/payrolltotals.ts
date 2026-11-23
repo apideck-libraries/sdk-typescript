@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -56,29 +56,31 @@ export const PayrollTotals$inboundSchema: z.ZodType<
   PayrollTotals,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  company_debit: z.nullable(types.number()).optional(),
-  tax_debit: z.nullable(types.number()).optional(),
-  check_amount: z.nullable(types.number()).optional(),
-  net_pay: z.nullable(types.number()).optional(),
-  gross_pay: z.nullable(types.number()).optional(),
-  employer_taxes: z.nullable(types.number()).optional(),
-  employee_taxes: z.nullable(types.number()).optional(),
-  employer_benefit_contributions: z.nullable(types.number()).optional(),
-  employee_benefit_deductions: z.nullable(types.number()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "company_debit": "companyDebit",
-    "tax_debit": "taxDebit",
-    "check_amount": "checkAmount",
-    "net_pay": "netPay",
-    "gross_pay": "grossPay",
-    "employer_taxes": "employerTaxes",
-    "employee_taxes": "employeeTaxes",
-    "employer_benefit_contributions": "employerBenefitContributions",
-    "employee_benefit_deductions": "employeeBenefitDeductions",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    company_debit: z.nullable(types.number()).optional(),
+    tax_debit: z.nullable(types.number()).optional(),
+    check_amount: z.nullable(types.number()).optional(),
+    net_pay: z.nullable(types.number()).optional(),
+    gross_pay: z.nullable(types.number()).optional(),
+    employer_taxes: z.nullable(types.number()).optional(),
+    employee_taxes: z.nullable(types.number()).optional(),
+    employer_benefit_contributions: z.nullable(types.number()).optional(),
+    employee_benefit_deductions: z.nullable(types.number()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "company_debit": "companyDebit",
+      "tax_debit": "taxDebit",
+      "check_amount": "checkAmount",
+      "net_pay": "netPay",
+      "gross_pay": "grossPay",
+      "employer_taxes": "employerTaxes",
+      "employee_taxes": "employeeTaxes",
+      "employer_benefit_contributions": "employerBenefitContributions",
+      "employee_benefit_deductions": "employeeBenefitDeductions",
+    });
+  })
+);
 
 export function payrollTotalsFromJSON(
   jsonString: string,

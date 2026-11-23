@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   DataScopesResources,
   DataScopesResources$Outbound,
@@ -31,10 +32,12 @@ export const DataScopesInput$outboundSchema: z.ZodType<
   DataScopesInput$Outbound,
   z.ZodTypeDef,
   DataScopesInput
-> = z.object({
-  enabled: z.boolean().optional(),
-  resources: DataScopesResources$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    enabled: z.boolean().optional(),
+    resources: DataScopesResources$outboundSchema.optional(),
+  })
+);
 
 export function dataScopesInputToJSON(
   dataScopesInput: DataScopesInput,

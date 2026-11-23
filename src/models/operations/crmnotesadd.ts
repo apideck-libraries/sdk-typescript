@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -67,17 +67,19 @@ export const CrmNotesAddRequest$outboundSchema: z.ZodType<
   CrmNotesAddRequest$Outbound,
   z.ZodTypeDef,
   CrmNotesAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  note: components.NoteInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    note: "Note",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    note: components.NoteInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      note: "Note",
+    });
+  })
+);
 
 export function crmNotesAddRequestToJSON(
   crmNotesAddRequest: CrmNotesAddRequest,
@@ -92,21 +94,23 @@ export const CrmNotesAddResponse$inboundSchema: z.ZodType<
   CrmNotesAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateNoteResponse: types.optional(
-    components.CreateNoteResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateNoteResponse": "createNoteResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateNoteResponse: types.optional(
+      components.CreateNoteResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateNoteResponse": "createNoteResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function crmNotesAddResponseFromJSON(
   jsonString: string,

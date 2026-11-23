@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -145,11 +145,13 @@ export const BatchItemResultStatus$inboundSchema: z.ZodType<
   BatchItemResultStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(BatchItemResultStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(BatchItemResultStatus)
+);
 
 /** @internal */
 export const Detail2$inboundSchema: z.ZodType<Detail2, z.ZodTypeDef, unknown> =
-  z.object({});
+  /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function detail2FromJSON(
   jsonString: string,
@@ -166,7 +168,9 @@ export const BatchItemResultDetail$inboundSchema: z.ZodType<
   BatchItemResultDetail,
   z.ZodTypeDef,
   unknown
-> = smartUnion([types.string(), z.lazy(() => Detail2$inboundSchema)]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([types.string(), z.lazy(() => Detail2$inboundSchema)])
+);
 
 export function batchItemResultDetailFromJSON(
   jsonString: string,
@@ -179,22 +183,24 @@ export function batchItemResultDetailFromJSON(
 }
 
 /** @internal */
-export const ErrorT$inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> = z
-  .object({
-    status_code: types.optional(types.number()),
-    error: types.optional(types.string()),
-    type_name: types.optional(types.string()),
-    message: types.optional(types.string()),
-    detail: types.optional(
-      smartUnion([types.string(), z.lazy(() => Detail2$inboundSchema)]),
-    ),
-    ref: types.optional(types.string()),
-  }).transform((v) => {
-    return remap$(v, {
-      "status_code": "statusCode",
-      "type_name": "typeName",
-    });
-  });
+export const ErrorT$inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      status_code: types.optional(types.number()),
+      error: types.optional(types.string()),
+      type_name: types.optional(types.string()),
+      message: types.optional(types.string()),
+      detail: types.optional(
+        smartUnion([types.string(), z.lazy(() => Detail2$inboundSchema)]),
+      ),
+      ref: types.optional(types.string()),
+    }).transform((v) => {
+      return remap$(v, {
+        "status_code": "statusCode",
+        "type_name": "typeName",
+      });
+    })
+  );
 
 export function errorFromJSON(
   jsonString: string,
@@ -211,17 +217,19 @@ export const BatchItemResultWarnings$inboundSchema: z.ZodType<
   BatchItemResultWarnings,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: types.optional(types.string()),
-  operation: types.optional(types.string()),
-  message: types.optional(types.string()),
-  status_code: types.optional(types.number()),
-  error: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "status_code": "statusCode",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: types.optional(types.string()),
+    operation: types.optional(types.string()),
+    message: types.optional(types.string()),
+    status_code: types.optional(types.number()),
+    error: types.optional(types.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "status_code": "statusCode",
+    });
+  })
+);
 
 export function batchItemResultWarningsFromJSON(
   jsonString: string,
@@ -238,21 +246,23 @@ export const BatchItemResult$inboundSchema: z.ZodType<
   BatchItemResult,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  _ref: types.optional(types.string()),
-  id: types.optional(types.string()),
-  downstream_id: z.nullable(types.string()).optional(),
-  status: BatchItemResultStatus$inboundSchema,
-  error: types.optional(z.lazy(() => ErrorT$inboundSchema)),
-  warnings: types.optional(
-    z.array(z.lazy(() => BatchItemResultWarnings$inboundSchema)),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "_ref": "ref",
-    "downstream_id": "downstreamId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    _ref: types.optional(types.string()),
+    id: types.optional(types.string()),
+    downstream_id: z.nullable(types.string()).optional(),
+    status: BatchItemResultStatus$inboundSchema,
+    error: types.optional(z.lazy(() => ErrorT$inboundSchema)),
+    warnings: types.optional(
+      z.array(z.lazy(() => BatchItemResultWarnings$inboundSchema)),
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "_ref": "ref",
+      "downstream_id": "downstreamId",
+    });
+  })
+);
 
 export function batchItemResultFromJSON(
   jsonString: string,

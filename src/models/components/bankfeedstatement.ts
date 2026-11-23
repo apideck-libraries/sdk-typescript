@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -189,53 +189,61 @@ export const StatementStatus$inboundSchema: z.ZodType<
   StatementStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(StatementStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(StatementStatus));
 /** @internal */
 export const StatementStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   StatementStatus
-> = openEnums.outboundSchema(StatementStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(StatementStatus)
+);
 
 /** @internal */
 export const BankFeedStatementTransactionType$inboundSchema: z.ZodType<
   BankFeedStatementTransactionType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(BankFeedStatementTransactionType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(BankFeedStatementTransactionType)
+);
 /** @internal */
 export const BankFeedStatementTransactionType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   BankFeedStatementTransactionType
-> = openEnums.outboundSchema(BankFeedStatementTransactionType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(BankFeedStatementTransactionType)
+);
 
 /** @internal */
 export const Transactions$inboundSchema: z.ZodType<
   Transactions,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  posted_date: types.date(),
-  description: types.optional(types.string()),
-  amount: types.number(),
-  credit_or_debit: CreditOrDebit$inboundSchema,
-  source_transaction_id: types.optional(types.string()),
-  counterparty: types.optional(types.string()),
-  reference: types.optional(types.string()),
-  transaction_type: types.optional(
-    BankFeedStatementTransactionType$inboundSchema,
-  ),
-  merchant_category_code: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "posted_date": "postedDate",
-    "credit_or_debit": "creditOrDebit",
-    "source_transaction_id": "sourceTransactionId",
-    "transaction_type": "transactionType",
-    "merchant_category_code": "merchantCategoryCode",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    posted_date: types.date(),
+    description: types.optional(types.string()),
+    amount: types.number(),
+    credit_or_debit: CreditOrDebit$inboundSchema,
+    source_transaction_id: types.optional(types.string()),
+    counterparty: types.optional(types.string()),
+    reference: types.optional(types.string()),
+    transaction_type: types.optional(
+      BankFeedStatementTransactionType$inboundSchema,
+    ),
+    merchant_category_code: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "posted_date": "postedDate",
+      "credit_or_debit": "creditOrDebit",
+      "source_transaction_id": "sourceTransactionId",
+      "transaction_type": "transactionType",
+      "merchant_category_code": "merchantCategoryCode",
+    });
+  })
+);
 /** @internal */
 export type Transactions$Outbound = {
   posted_date: string;
@@ -254,25 +262,27 @@ export const Transactions$outboundSchema: z.ZodType<
   Transactions$Outbound,
   z.ZodTypeDef,
   Transactions
-> = z.object({
-  postedDate: z.date().transform(v => v.toISOString()),
-  description: z.string().optional(),
-  amount: z.number(),
-  creditOrDebit: CreditOrDebit$outboundSchema,
-  sourceTransactionId: z.string().optional(),
-  counterparty: z.string().optional(),
-  reference: z.string().optional(),
-  transactionType: BankFeedStatementTransactionType$outboundSchema.optional(),
-  merchantCategoryCode: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    postedDate: "posted_date",
-    creditOrDebit: "credit_or_debit",
-    sourceTransactionId: "source_transaction_id",
-    transactionType: "transaction_type",
-    merchantCategoryCode: "merchant_category_code",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    postedDate: z.date().transform(v => v.toISOString()),
+    description: z.string().optional(),
+    amount: z.number(),
+    creditOrDebit: CreditOrDebit$outboundSchema,
+    sourceTransactionId: z.string().optional(),
+    counterparty: z.string().optional(),
+    reference: z.string().optional(),
+    transactionType: BankFeedStatementTransactionType$outboundSchema.optional(),
+    merchantCategoryCode: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      postedDate: "posted_date",
+      creditOrDebit: "credit_or_debit",
+      sourceTransactionId: "source_transaction_id",
+      transactionType: "transaction_type",
+      merchantCategoryCode: "merchant_category_code",
+    });
+  })
+);
 
 export function transactionsToJSON(transactions: Transactions): string {
   return JSON.stringify(Transactions$outboundSchema.parse(transactions));
@@ -292,38 +302,40 @@ export const BankFeedStatement$inboundSchema: z.ZodType<
   BankFeedStatement,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  bank_feed_account_id: types.optional(types.string()),
-  status: types.optional(StatementStatus$inboundSchema),
-  start_date: types.optional(types.date()),
-  end_date: types.optional(types.date()),
-  start_balance: types.optional(types.number()),
-  start_balance_credit_or_debit: types.optional(CreditOrDebit$inboundSchema),
-  end_balance: types.optional(types.number()),
-  end_balance_credit_or_debit: types.optional(CreditOrDebit$inboundSchema),
-  transactions: types.optional(
-    z.array(z.lazy(() => Transactions$inboundSchema)),
-  ),
-  created_at: z.nullable(types.date()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "bank_feed_account_id": "bankFeedAccountId",
-    "start_date": "startDate",
-    "end_date": "endDate",
-    "start_balance": "startBalance",
-    "start_balance_credit_or_debit": "startBalanceCreditOrDebit",
-    "end_balance": "endBalance",
-    "end_balance_credit_or_debit": "endBalanceCreditOrDebit",
-    "created_at": "createdAt",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "updated_by": "updatedBy",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.string(),
+    bank_feed_account_id: types.optional(types.string()),
+    status: types.optional(StatementStatus$inboundSchema),
+    start_date: types.optional(types.date()),
+    end_date: types.optional(types.date()),
+    start_balance: types.optional(types.number()),
+    start_balance_credit_or_debit: types.optional(CreditOrDebit$inboundSchema),
+    end_balance: types.optional(types.number()),
+    end_balance_credit_or_debit: types.optional(CreditOrDebit$inboundSchema),
+    transactions: types.optional(
+      z.array(z.lazy(() => Transactions$inboundSchema)),
+    ),
+    created_at: z.nullable(types.date()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "bank_feed_account_id": "bankFeedAccountId",
+      "start_date": "startDate",
+      "end_date": "endDate",
+      "start_balance": "startBalance",
+      "start_balance_credit_or_debit": "startBalanceCreditOrDebit",
+      "end_balance": "endBalance",
+      "end_balance_credit_or_debit": "endBalanceCreditOrDebit",
+      "created_at": "createdAt",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "updated_by": "updatedBy",
+    });
+  })
+);
 
 export function bankFeedStatementFromJSON(
   jsonString: string,
@@ -353,27 +365,29 @@ export const BankFeedStatementInput$outboundSchema: z.ZodType<
   BankFeedStatementInput$Outbound,
   z.ZodTypeDef,
   BankFeedStatementInput
-> = z.object({
-  bankFeedAccountId: z.string().optional(),
-  status: StatementStatus$outboundSchema.optional(),
-  startDate: z.date().transform(v => v.toISOString()).optional(),
-  endDate: z.date().transform(v => v.toISOString()).optional(),
-  startBalance: z.number().optional(),
-  startBalanceCreditOrDebit: CreditOrDebit$outboundSchema.optional(),
-  endBalance: z.number().optional(),
-  endBalanceCreditOrDebit: CreditOrDebit$outboundSchema.optional(),
-  transactions: z.array(z.lazy(() => Transactions$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    bankFeedAccountId: "bank_feed_account_id",
-    startDate: "start_date",
-    endDate: "end_date",
-    startBalance: "start_balance",
-    startBalanceCreditOrDebit: "start_balance_credit_or_debit",
-    endBalance: "end_balance",
-    endBalanceCreditOrDebit: "end_balance_credit_or_debit",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    bankFeedAccountId: z.string().optional(),
+    status: StatementStatus$outboundSchema.optional(),
+    startDate: z.date().transform(v => v.toISOString()).optional(),
+    endDate: z.date().transform(v => v.toISOString()).optional(),
+    startBalance: z.number().optional(),
+    startBalanceCreditOrDebit: CreditOrDebit$outboundSchema.optional(),
+    endBalance: z.number().optional(),
+    endBalanceCreditOrDebit: CreditOrDebit$outboundSchema.optional(),
+    transactions: z.array(z.lazy(() => Transactions$outboundSchema)).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      bankFeedAccountId: "bank_feed_account_id",
+      startDate: "start_date",
+      endDate: "end_date",
+      startBalance: "start_balance",
+      startBalanceCreditOrDebit: "start_balance_credit_or_debit",
+      endBalance: "end_balance",
+      endBalanceCreditOrDebit: "end_balance_credit_or_debit",
+    });
+  })
+);
 
 export function bankFeedStatementInputToJSON(
   bankFeedStatementInput: BankFeedStatementInput,

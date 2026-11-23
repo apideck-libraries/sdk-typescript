@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -77,14 +77,16 @@ export const AccountingPurchaseOrdersDeleteRequest$outboundSchema: z.ZodType<
   AccountingPurchaseOrdersDeleteRequest$Outbound,
   z.ZodTypeDef,
   AccountingPurchaseOrdersDeleteRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    raw: z.boolean().default(false),
+  })
+);
 
 export function accountingPurchaseOrdersDeleteRequestToJSON(
   accountingPurchaseOrdersDeleteRequest: AccountingPurchaseOrdersDeleteRequest,
@@ -101,21 +103,23 @@ export const AccountingPurchaseOrdersDeleteResponse$inboundSchema: z.ZodType<
   AccountingPurchaseOrdersDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  DeletePurchaseOrderResponse: types.optional(
-    components.DeletePurchaseOrderResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "DeletePurchaseOrderResponse": "deletePurchaseOrderResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    DeletePurchaseOrderResponse: types.optional(
+      components.DeletePurchaseOrderResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "DeletePurchaseOrderResponse": "deletePurchaseOrderResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingPurchaseOrdersDeleteResponseFromJSON(
   jsonString: string,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   BillCreditNoteCreateInput,
   BillCreditNoteCreateInput$Outbound,
@@ -42,14 +43,16 @@ export const BatchBillCreditNotesRequestItems$outboundSchema: z.ZodType<
   BatchBillCreditNotesRequestItems$Outbound,
   z.ZodTypeDef,
   BatchBillCreditNotesRequestItems
-> = z.object({
-  ref: z.string().optional(),
-  data: BillCreditNoteCreateInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    ref: "_ref",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    ref: z.string().optional(),
+    data: BillCreditNoteCreateInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      ref: "_ref",
+    });
+  })
+);
 
 export function batchBillCreditNotesRequestItemsToJSON(
   batchBillCreditNotesRequestItems: BatchBillCreditNotesRequestItems,
@@ -71,9 +74,13 @@ export const BatchBillCreditNotesRequest$outboundSchema: z.ZodType<
   BatchBillCreditNotesRequest$Outbound,
   z.ZodTypeDef,
   BatchBillCreditNotesRequest
-> = z.object({
-  items: z.array(z.lazy(() => BatchBillCreditNotesRequestItems$outboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    items: z.array(
+      z.lazy(() => BatchBillCreditNotesRequestItems$outboundSchema),
+    ),
+  })
+);
 
 export function batchBillCreditNotesRequestToJSON(
   batchBillCreditNotesRequest: BatchBillCreditNotesRequest,

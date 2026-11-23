@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,13 +72,15 @@ export const FileStorageUploadSessionsDeleteRequest$outboundSchema: z.ZodType<
   FileStorageUploadSessionsDeleteRequest$Outbound,
   z.ZodTypeDef,
   FileStorageUploadSessionsDeleteRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+  })
+);
 
 export function fileStorageUploadSessionsDeleteRequestToJSON(
   fileStorageUploadSessionsDeleteRequest:
@@ -96,21 +98,23 @@ export const FileStorageUploadSessionsDeleteResponse$inboundSchema: z.ZodType<
   FileStorageUploadSessionsDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  DeleteUploadSessionResponse: types.optional(
-    components.DeleteUploadSessionResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "DeleteUploadSessionResponse": "deleteUploadSessionResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    DeleteUploadSessionResponse: types.optional(
+      components.DeleteUploadSessionResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "DeleteUploadSessionResponse": "deleteUploadSessionResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function fileStorageUploadSessionsDeleteResponseFromJSON(
   jsonString: string,

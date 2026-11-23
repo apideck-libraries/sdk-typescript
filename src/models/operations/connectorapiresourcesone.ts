@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -56,15 +56,17 @@ export const ConnectorApiResourcesOneRequest$outboundSchema: z.ZodType<
   ConnectorApiResourcesOneRequest$Outbound,
   z.ZodTypeDef,
   ConnectorApiResourcesOneRequest
-> = z.object({
-  appId: z.string().optional(),
-  id: z.string(),
-  resourceId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    resourceId: "resource_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    appId: z.string().optional(),
+    id: z.string(),
+    resourceId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      resourceId: "resource_id",
+    });
+  })
+);
 
 export function connectorApiResourcesOneRequestToJSON(
   connectorApiResourcesOneRequest: ConnectorApiResourcesOneRequest,
@@ -81,21 +83,23 @@ export const ConnectorApiResourcesOneResponse$inboundSchema: z.ZodType<
   ConnectorApiResourcesOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetApiResourceResponse: types.optional(
-    components.GetApiResourceResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetApiResourceResponse": "getApiResourceResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetApiResourceResponse: types.optional(
+      components.GetApiResourceResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetApiResourceResponse": "getApiResourceResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function connectorApiResourcesOneResponseFromJSON(
   jsonString: string,

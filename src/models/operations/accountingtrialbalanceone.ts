@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -80,19 +80,21 @@ export const AccountingTrialBalanceOneRequest$outboundSchema: z.ZodType<
   AccountingTrialBalanceOneRequest$Outbound,
   z.ZodTypeDef,
   AccountingTrialBalanceOneRequest
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  passThrough: z.record(z.any()).optional(),
-  filter: components.TrialBalanceFilter$outboundSchema.optional(),
-  raw: z.boolean().default(false),
-}).transform((v) => {
-  return remap$(v, {
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    passThrough: z.record(z.any()).optional(),
+    filter: components.TrialBalanceFilter$outboundSchema.optional(),
+    raw: z.boolean().default(false),
+  }).transform((v) => {
+    return remap$(v, {
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function accountingTrialBalanceOneRequestToJSON(
   accountingTrialBalanceOneRequest: AccountingTrialBalanceOneRequest,
@@ -109,21 +111,23 @@ export const AccountingTrialBalanceOneResponse$inboundSchema: z.ZodType<
   AccountingTrialBalanceOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetTrialBalanceResponse: types.optional(
-    components.GetTrialBalanceResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetTrialBalanceResponse": "getTrialBalanceResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetTrialBalanceResponse: types.optional(
+      components.GetTrialBalanceResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetTrialBalanceResponse": "getTrialBalanceResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingTrialBalanceOneResponseFromJSON(
   jsonString: string,

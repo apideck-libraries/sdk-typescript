@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ConfirmConnection = {
   /**
@@ -22,13 +23,15 @@ export const ConfirmConnection$outboundSchema: z.ZodType<
   ConfirmConnection$Outbound,
   z.ZodTypeDef,
   ConfirmConnection
-> = z.object({
-  confirmToken: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    confirmToken: "confirm_token",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    confirmToken: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      confirmToken: "confirm_token",
+    });
+  })
+);
 
 export function confirmConnectionToJSON(
   confirmConnection: ConfirmConnection,

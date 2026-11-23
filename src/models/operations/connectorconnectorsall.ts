@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -61,12 +61,14 @@ export const ConnectorConnectorsAllRequest$outboundSchema: z.ZodType<
   ConnectorConnectorsAllRequest$Outbound,
   z.ZodTypeDef,
   ConnectorConnectorsAllRequest
-> = z.object({
-  appId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.ConnectorsFilter$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    appId: z.string().optional(),
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    filter: components.ConnectorsFilter$outboundSchema.optional(),
+  })
+);
 
 export function connectorConnectorsAllRequestToJSON(
   connectorConnectorsAllRequest: ConnectorConnectorsAllRequest,
@@ -83,21 +85,23 @@ export const ConnectorConnectorsAllResponse$inboundSchema: z.ZodType<
   ConnectorConnectorsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetConnectorsResponse: types.optional(
-    components.GetConnectorsResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetConnectorsResponse": "getConnectorsResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetConnectorsResponse: types.optional(
+      components.GetConnectorsResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetConnectorsResponse": "getConnectorsResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function connectorConnectorsAllResponseFromJSON(
   jsonString: string,

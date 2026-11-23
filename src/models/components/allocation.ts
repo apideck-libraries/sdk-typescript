@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -74,30 +74,32 @@ export const AllocationType$inboundSchema: z.ZodType<
   AllocationType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(AllocationType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(AllocationType));
 /** @internal */
 export const AllocationType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   AllocationType
-> = openEnums.outboundSchema(AllocationType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(AllocationType));
 
 /** @internal */
 export const Allocation$inboundSchema: z.ZodType<
   Allocation,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  type: types.optional(AllocationType$inboundSchema),
-  code: types.optional(types.string()),
-  amount: z.nullable(types.number()).optional(),
-  allocation_id: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "allocation_id": "allocationId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    type: types.optional(AllocationType$inboundSchema),
+    code: types.optional(types.string()),
+    amount: z.nullable(types.number()).optional(),
+    allocation_id: types.optional(types.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "allocation_id": "allocationId",
+    });
+  })
+);
 
 export function allocationFromJSON(
   jsonString: string,
@@ -122,16 +124,18 @@ export const AllocationInput$outboundSchema: z.ZodType<
   AllocationInput$Outbound,
   z.ZodTypeDef,
   AllocationInput
-> = z.object({
-  id: z.string().optional(),
-  type: AllocationType$outboundSchema.optional(),
-  amount: z.nullable(z.number()).optional(),
-  allocationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    allocationId: "allocation_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    type: AllocationType$outboundSchema.optional(),
+    amount: z.nullable(z.number()).optional(),
+    allocationId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      allocationId: "allocation_id",
+    });
+  })
+);
 
 export function allocationInputToJSON(
   allocationInput: AllocationInput,

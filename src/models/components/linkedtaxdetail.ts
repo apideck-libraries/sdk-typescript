@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -33,17 +33,19 @@ export const LinkedTaxDetail$inboundSchema: z.ZodType<
   LinkedTaxDetail,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: types.optional(types.string()),
-  number: z.nullable(types.string()).optional(),
-  is_transaction_tax: types.optional(types.boolean()),
-  is_primary_tax: types.optional(types.boolean()),
-}).transform((v) => {
-  return remap$(v, {
-    "is_transaction_tax": "isTransactionTax",
-    "is_primary_tax": "isPrimaryTax",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: types.optional(types.string()),
+    number: z.nullable(types.string()).optional(),
+    is_transaction_tax: types.optional(types.boolean()),
+    is_primary_tax: types.optional(types.boolean()),
+  }).transform((v) => {
+    return remap$(v, {
+      "is_transaction_tax": "isTransactionTax",
+      "is_primary_tax": "isPrimaryTax",
+    });
+  })
+);
 /** @internal */
 export type LinkedTaxDetail$Outbound = {
   type?: string | undefined;
@@ -57,17 +59,19 @@ export const LinkedTaxDetail$outboundSchema: z.ZodType<
   LinkedTaxDetail$Outbound,
   z.ZodTypeDef,
   LinkedTaxDetail
-> = z.object({
-  type: z.string().optional(),
-  number: z.nullable(z.string()).optional(),
-  isTransactionTax: z.boolean().optional(),
-  isPrimaryTax: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    isTransactionTax: "is_transaction_tax",
-    isPrimaryTax: "is_primary_tax",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.string().optional(),
+    number: z.nullable(z.string()).optional(),
+    isTransactionTax: z.boolean().optional(),
+    isPrimaryTax: z.boolean().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      isTransactionTax: "is_transaction_tax",
+      isPrimaryTax: "is_primary_tax",
+    });
+  })
+);
 
 export function linkedTaxDetailToJSON(
   linkedTaxDetail: LinkedTaxDetail,

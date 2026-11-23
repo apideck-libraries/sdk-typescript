@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -103,24 +103,26 @@ export const AccountingGeneralLedgerTransactionsAllRequest$outboundSchema:
     AccountingGeneralLedgerTransactionsAllRequest$Outbound,
     z.ZodTypeDef,
     AccountingGeneralLedgerTransactionsAllRequest
-  > = z.object({
-    raw: z.boolean().default(false),
-    consumerId: z.string().optional(),
-    appId: z.string().optional(),
-    serviceId: z.string().optional(),
-    companyId: z.string().optional(),
-    cursor: z.nullable(z.string()).optional(),
-    limit: z.number().int().default(20),
-    filter: components.GeneralLedgerTransactionsFilter$outboundSchema
-      .optional(),
-    sort: components.GeneralLedgerTransactionsSort$outboundSchema.optional(),
-    passThrough: z.record(z.any()).optional(),
-    fields: z.nullable(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      passThrough: "pass_through",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      raw: z.boolean().default(false),
+      consumerId: z.string().optional(),
+      appId: z.string().optional(),
+      serviceId: z.string().optional(),
+      companyId: z.string().optional(),
+      cursor: z.nullable(z.string()).optional(),
+      limit: z.number().int().default(20),
+      filter: components.GeneralLedgerTransactionsFilter$outboundSchema
+        .optional(),
+      sort: components.GeneralLedgerTransactionsSort$outboundSchema.optional(),
+      passThrough: z.record(z.any()).optional(),
+      fields: z.nullable(z.string()).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        passThrough: "pass_through",
+      });
+    })
+  );
 
 export function accountingGeneralLedgerTransactionsAllRequestToJSON(
   accountingGeneralLedgerTransactionsAllRequest:
@@ -139,22 +141,24 @@ export const AccountingGeneralLedgerTransactionsAllResponse$inboundSchema:
     AccountingGeneralLedgerTransactionsAllResponse,
     z.ZodTypeDef,
     unknown
-  > = z.object({
-    HttpMeta: components.HTTPMetadata$inboundSchema,
-    GetGeneralLedgerTransactionsResponse: types.optional(
-      components.GetGeneralLedgerTransactionsResponse$inboundSchema,
-    ),
-    UnexpectedErrorResponse: types.optional(
-      components.UnexpectedErrorResponse$inboundSchema,
-    ),
-  }).transform((v) => {
-    return remap$(v, {
-      "HttpMeta": "httpMeta",
-      "GetGeneralLedgerTransactionsResponse":
-        "getGeneralLedgerTransactionsResponse",
-      "UnexpectedErrorResponse": "unexpectedErrorResponse",
-    });
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      HttpMeta: components.HTTPMetadata$inboundSchema,
+      GetGeneralLedgerTransactionsResponse: types.optional(
+        components.GetGeneralLedgerTransactionsResponse$inboundSchema,
+      ),
+      UnexpectedErrorResponse: types.optional(
+        components.UnexpectedErrorResponse$inboundSchema,
+      ),
+    }).transform((v) => {
+      return remap$(v, {
+        "HttpMeta": "httpMeta",
+        "GetGeneralLedgerTransactionsResponse":
+          "getGeneralLedgerTransactionsResponse",
+        "UnexpectedErrorResponse": "unexpectedErrorResponse",
+      });
+    })
+  );
 
 export function accountingGeneralLedgerTransactionsAllResponseFromJSON(
   jsonString: string,

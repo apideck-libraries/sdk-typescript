@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -138,36 +138,40 @@ export const CustomerStatus$inboundSchema: z.ZodType<
   CustomerStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(CustomerStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(CustomerStatus));
 
 /** @internal */
 export const EcommerceCustomerType$inboundSchema: z.ZodType<
   EcommerceCustomerType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(EcommerceCustomerType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(EcommerceCustomerType)
+);
 
 /** @internal */
 export const Addresses$inboundSchema: z.ZodType<
   Addresses,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: types.optional(EcommerceCustomerType$inboundSchema),
-  id: z.nullable(types.string()).optional(),
-  line1: z.nullable(types.string()).optional(),
-  line2: z.nullable(types.string()).optional(),
-  city: z.nullable(types.string()).optional(),
-  state: z.nullable(types.string()).optional(),
-  postal_code: z.nullable(types.string()).optional(),
-  country: z.nullable(types.string()).optional(),
-  tax_number: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "postal_code": "postalCode",
-    "tax_number": "taxNumber",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: types.optional(EcommerceCustomerType$inboundSchema),
+    id: z.nullable(types.string()).optional(),
+    line1: z.nullable(types.string()).optional(),
+    line2: z.nullable(types.string()).optional(),
+    city: z.nullable(types.string()).optional(),
+    state: z.nullable(types.string()).optional(),
+    postal_code: z.nullable(types.string()).optional(),
+    country: z.nullable(types.string()).optional(),
+    tax_number: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "postal_code": "postalCode",
+      "tax_number": "taxNumber",
+    });
+  })
+);
 
 export function addressesFromJSON(
   jsonString: string,
@@ -184,34 +188,36 @@ export const EcommerceCustomer$inboundSchema: z.ZodType<
   EcommerceCustomer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  name: z.nullable(types.string()).optional(),
-  first_name: z.nullable(types.string()).optional(),
-  last_name: z.nullable(types.string()).optional(),
-  company_name: z.nullable(types.string()).optional(),
-  status: z.nullable(CustomerStatus$inboundSchema).optional(),
-  tax_number: z.nullable(types.string()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  emails: z.nullable(z.array(Email$inboundSchema)).optional(),
-  phone_numbers: z.nullable(z.array(PhoneNumber$inboundSchema)).optional(),
-  addresses: types.optional(z.array(z.lazy(() => Addresses$inboundSchema))),
-  orders: types.optional(z.array(LinkedEcommerceOrder$inboundSchema)),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "company_name": "companyName",
-    "tax_number": "taxNumber",
-    "phone_numbers": "phoneNumbers",
-    "custom_mappings": "customMappings",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.string(),
+    name: z.nullable(types.string()).optional(),
+    first_name: z.nullable(types.string()).optional(),
+    last_name: z.nullable(types.string()).optional(),
+    company_name: z.nullable(types.string()).optional(),
+    status: z.nullable(CustomerStatus$inboundSchema).optional(),
+    tax_number: z.nullable(types.string()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    emails: z.nullable(z.array(Email$inboundSchema)).optional(),
+    phone_numbers: z.nullable(z.array(PhoneNumber$inboundSchema)).optional(),
+    addresses: types.optional(z.array(z.lazy(() => Addresses$inboundSchema))),
+    orders: types.optional(z.array(LinkedEcommerceOrder$inboundSchema)),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "first_name": "firstName",
+      "last_name": "lastName",
+      "company_name": "companyName",
+      "tax_number": "taxNumber",
+      "phone_numbers": "phoneNumbers",
+      "custom_mappings": "customMappings",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function ecommerceCustomerFromJSON(
   jsonString: string,

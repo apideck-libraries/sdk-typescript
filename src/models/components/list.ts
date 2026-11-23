@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -119,56 +119,58 @@ export const ListType$inboundSchema: z.ZodType<
   ListType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(ListType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(ListType));
 
 /** @internal */
 export const ListVisibility$inboundSchema: z.ZodType<
   ListVisibility,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(ListVisibility);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(ListVisibility));
 
 /** @internal */
-export const List$inboundSchema: z.ZodType<List, z.ZodTypeDef, unknown> = z
-  .object({
-    id: types.string(),
-    name: types.string(),
-    description: z.nullable(types.string()).optional(),
-    type: z.nullable(ListType$inboundSchema).optional(),
-    visibility: z.nullable(ListVisibility$inboundSchema).optional(),
-    owner_id: z.nullable(types.string()).optional(),
-    filter_criteria: z.nullable(z.record(z.any())).optional(),
-    record_count: z.nullable(types.number()).optional(),
-    folder_id: z.nullable(types.string()).optional(),
-    object_type: z.nullable(types.string()).optional(),
-    is_dynamic: z.nullable(types.boolean()).optional(),
-    is_favorite: z.nullable(types.boolean()).optional(),
-    is_default: z.nullable(types.boolean()).optional(),
-    is_system: z.nullable(types.boolean()).optional(),
-    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-    tags: z.nullable(z.array(types.string())).optional(),
-    updated_by: z.nullable(types.string()).optional(),
-    created_by: z.nullable(types.string()).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "owner_id": "ownerId",
-      "filter_criteria": "filterCriteria",
-      "record_count": "recordCount",
-      "folder_id": "folderId",
-      "object_type": "objectType",
-      "is_dynamic": "isDynamic",
-      "is_favorite": "isFavorite",
-      "is_default": "isDefault",
-      "is_system": "isSystem",
-      "custom_fields": "customFields",
-      "updated_by": "updatedBy",
-      "created_by": "createdBy",
-      "updated_at": "updatedAt",
-      "created_at": "createdAt",
-    });
-  });
+export const List$inboundSchema: z.ZodType<List, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.string(),
+      name: types.string(),
+      description: z.nullable(types.string()).optional(),
+      type: z.nullable(ListType$inboundSchema).optional(),
+      visibility: z.nullable(ListVisibility$inboundSchema).optional(),
+      owner_id: z.nullable(types.string()).optional(),
+      filter_criteria: z.nullable(z.record(z.any())).optional(),
+      record_count: z.nullable(types.number()).optional(),
+      folder_id: z.nullable(types.string()).optional(),
+      object_type: z.nullable(types.string()).optional(),
+      is_dynamic: z.nullable(types.boolean()).optional(),
+      is_favorite: z.nullable(types.boolean()).optional(),
+      is_default: z.nullable(types.boolean()).optional(),
+      is_system: z.nullable(types.boolean()).optional(),
+      custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+      tags: z.nullable(z.array(types.string())).optional(),
+      updated_by: z.nullable(types.string()).optional(),
+      created_by: z.nullable(types.string()).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "owner_id": "ownerId",
+        "filter_criteria": "filterCriteria",
+        "record_count": "recordCount",
+        "folder_id": "folderId",
+        "object_type": "objectType",
+        "is_dynamic": "isDynamic",
+        "is_favorite": "isFavorite",
+        "is_default": "isDefault",
+        "is_system": "isSystem",
+        "custom_fields": "customFields",
+        "updated_by": "updatedBy",
+        "created_by": "createdBy",
+        "updated_at": "updatedAt",
+        "created_at": "createdAt",
+      });
+    })
+  );
 
 export function listFromJSON(
   jsonString: string,

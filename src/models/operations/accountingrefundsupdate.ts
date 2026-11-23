@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const AccountingRefundsUpdateRequest$outboundSchema: z.ZodType<
   AccountingRefundsUpdateRequest$Outbound,
   z.ZodTypeDef,
   AccountingRefundsUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  refundUpdateInput: components.RefundUpdateInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    refundUpdateInput: "RefundUpdateInput",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    refundUpdateInput: components.RefundUpdateInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      refundUpdateInput: "RefundUpdateInput",
+    });
+  })
+);
 
 export function accountingRefundsUpdateRequestToJSON(
   accountingRefundsUpdateRequest: AccountingRefundsUpdateRequest,
@@ -100,21 +102,23 @@ export const AccountingRefundsUpdateResponse$inboundSchema: z.ZodType<
   AccountingRefundsUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateRefundResponse: types.optional(
-    components.UpdateRefundResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateRefundResponse": "updateRefundResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateRefundResponse: types.optional(
+      components.UpdateRefundResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateRefundResponse": "updateRefundResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingRefundsUpdateResponseFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -75,18 +75,20 @@ export const CrmCustomObjectsOneRequest$outboundSchema: z.ZodType<
   CrmCustomObjectsOneRequest$Outbound,
   z.ZodTypeDef,
   CrmCustomObjectsOneRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  objectId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    objectId: "object_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    objectId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      objectId: "object_id",
+    });
+  })
+);
 
 export function crmCustomObjectsOneRequestToJSON(
   crmCustomObjectsOneRequest: CrmCustomObjectsOneRequest,
@@ -101,21 +103,23 @@ export const CrmCustomObjectsOneResponse$inboundSchema: z.ZodType<
   CrmCustomObjectsOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetCustomObjectResponse: types.optional(
-    components.GetCustomObjectResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetCustomObjectResponse": "getCustomObjectResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetCustomObjectResponse: types.optional(
+      components.GetCustomObjectResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetCustomObjectResponse": "getCustomObjectResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function crmCustomObjectsOneResponseFromJSON(
   jsonString: string,

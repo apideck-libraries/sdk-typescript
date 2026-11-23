@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { Currency, Currency$outboundSchema } from "./currency.js";
 import {
   PassThroughBody,
@@ -87,18 +88,20 @@ export const PipelineStages$outboundSchema: z.ZodType<
   PipelineStages$Outbound,
   z.ZodTypeDef,
   PipelineStages
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  value: z.nullable(z.string()).optional(),
-  winProbability: z.nullable(z.number().int()).optional(),
-  displayOrder: z.nullable(z.number().int()).optional(),
-  archived: z.nullable(z.boolean()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    winProbability: "win_probability",
-    displayOrder: "display_order",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(z.string()).optional(),
+    value: z.nullable(z.string()).optional(),
+    winProbability: z.nullable(z.number().int()).optional(),
+    displayOrder: z.nullable(z.number().int()).optional(),
+    archived: z.nullable(z.boolean()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      winProbability: "win_probability",
+      displayOrder: "display_order",
+    });
+  })
+);
 
 export function pipelineStagesToJSON(pipelineStages: PipelineStages): string {
   return JSON.stringify(PipelineStages$outboundSchema.parse(pipelineStages));
@@ -122,23 +125,25 @@ export const PipelineInput$outboundSchema: z.ZodType<
   PipelineInput$Outbound,
   z.ZodTypeDef,
   PipelineInput
-> = z.object({
-  id: z.string().optional(),
-  name: z.string(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  archived: z.boolean().optional(),
-  active: z.boolean().optional(),
-  displayOrder: z.nullable(z.number().int()).optional(),
-  winProbabilityEnabled: z.boolean().optional(),
-  stages: z.array(z.lazy(() => PipelineStages$outboundSchema)).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayOrder: "display_order",
-    winProbabilityEnabled: "win_probability_enabled",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    name: z.string(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    archived: z.boolean().optional(),
+    active: z.boolean().optional(),
+    displayOrder: z.nullable(z.number().int()).optional(),
+    winProbabilityEnabled: z.boolean().optional(),
+    stages: z.array(z.lazy(() => PipelineStages$outboundSchema)).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayOrder: "display_order",
+      winProbabilityEnabled: "win_probability_enabled",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function pipelineInputToJSON(pipelineInput: PipelineInput): string {
   return JSON.stringify(PipelineInput$outboundSchema.parse(pipelineInput));

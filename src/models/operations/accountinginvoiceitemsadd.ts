@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const AccountingInvoiceItemsAddRequest$outboundSchema: z.ZodType<
   AccountingInvoiceItemsAddRequest$Outbound,
   z.ZodTypeDef,
   AccountingInvoiceItemsAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  invoiceItem: components.InvoiceItemInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    invoiceItem: "InvoiceItem",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    invoiceItem: components.InvoiceItemInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      invoiceItem: "InvoiceItem",
+    });
+  })
+);
 
 export function accountingInvoiceItemsAddRequestToJSON(
   accountingInvoiceItemsAddRequest: AccountingInvoiceItemsAddRequest,
@@ -100,21 +102,23 @@ export const AccountingInvoiceItemsAddResponse$inboundSchema: z.ZodType<
   AccountingInvoiceItemsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateInvoiceItemResponse: types.optional(
-    components.CreateInvoiceItemResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateInvoiceItemResponse": "createInvoiceItemResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateInvoiceItemResponse: types.optional(
+      components.CreateInvoiceItemResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateInvoiceItemResponse": "createInvoiceItemResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingInvoiceItemsAddResponseFromJSON(
   jsonString: string,

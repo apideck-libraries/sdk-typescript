@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const CrmContactsUpdateRequest$outboundSchema: z.ZodType<
   CrmContactsUpdateRequest$Outbound,
   z.ZodTypeDef,
   CrmContactsUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  contact: components.ContactInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    contact: "Contact",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    contact: components.ContactInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      contact: "Contact",
+    });
+  })
+);
 
 export function crmContactsUpdateRequestToJSON(
   crmContactsUpdateRequest: CrmContactsUpdateRequest,
@@ -98,21 +100,23 @@ export const CrmContactsUpdateResponse$inboundSchema: z.ZodType<
   CrmContactsUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateContactResponse: types.optional(
-    components.UpdateContactResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateContactResponse": "updateContactResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateContactResponse: types.optional(
+      components.UpdateContactResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateContactResponse": "updateContactResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function crmContactsUpdateResponseFromJSON(
   jsonString: string,

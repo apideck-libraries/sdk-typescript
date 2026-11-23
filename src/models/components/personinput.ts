@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { Gender, Gender$outboundSchema } from "./gender.js";
 
 export type PersonInput = {
@@ -53,26 +54,28 @@ export const PersonInput$outboundSchema: z.ZodType<
   PersonInput$Outbound,
   z.ZodTypeDef,
   PersonInput
-> = z.object({
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  middleName: z.nullable(z.string()).optional(),
-  gender: z.nullable(Gender$outboundSchema).optional(),
-  initials: z.nullable(z.string()).optional(),
-  birthday: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  deceasedOn: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    middleName: "middle_name",
-    deceasedOn: "deceased_on",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    firstName: z.nullable(z.string()).optional(),
+    lastName: z.nullable(z.string()).optional(),
+    middleName: z.nullable(z.string()).optional(),
+    gender: z.nullable(Gender$outboundSchema).optional(),
+    initials: z.nullable(z.string()).optional(),
+    birthday: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    deceasedOn: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      firstName: "first_name",
+      lastName: "last_name",
+      middleName: "middle_name",
+      deceasedOn: "deceased_on",
+    });
+  })
+);
 
 export function personInputToJSON(personInput: PersonInput): string {
   return JSON.stringify(PersonInput$outboundSchema.parse(personInput));

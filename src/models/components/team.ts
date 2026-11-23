@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -23,11 +23,13 @@ export type Team = {
 };
 
 /** @internal */
-export const Team$inboundSchema: z.ZodType<Team, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.nullable(types.string()).optional(),
-    name: z.nullable(types.string()).optional(),
-  });
+export const Team$inboundSchema: z.ZodType<Team, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      name: z.nullable(types.string()).optional(),
+    })
+  );
 /** @internal */
 export type Team$Outbound = {
   id?: string | null | undefined;
@@ -36,10 +38,12 @@ export type Team$Outbound = {
 
 /** @internal */
 export const Team$outboundSchema: z.ZodType<Team$Outbound, z.ZodTypeDef, Team> =
-  z.object({
-    id: z.nullable(z.string()).optional(),
-    name: z.nullable(z.string()).optional(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.nullable(z.string()).optional(),
+      name: z.nullable(z.string()).optional(),
+    })
+  );
 
 export function teamToJSON(team: Team): string {
   return JSON.stringify(Team$outboundSchema.parse(team));

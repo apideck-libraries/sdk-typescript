@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -59,27 +59,29 @@ export const EmployeePayroll$inboundSchema: z.ZodType<
   EmployeePayroll,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.nullable(types.string()),
-  employee_id: z.nullable(types.string()).optional(),
-  company_id: z.nullable(types.string()).optional(),
-  processed: types.nullable(types.boolean()),
-  processed_date: z.nullable(types.string()).optional(),
-  check_date: types.nullable(types.string()),
-  start_date: types.nullable(types.string()),
-  end_date: types.nullable(types.string()),
-  totals: types.optional(PayrollTotals$inboundSchema),
-  compensations: types.optional(z.array(Compensation$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "employee_id": "employeeId",
-    "company_id": "companyId",
-    "processed_date": "processedDate",
-    "check_date": "checkDate",
-    "start_date": "startDate",
-    "end_date": "endDate",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.nullable(types.string()),
+    employee_id: z.nullable(types.string()).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    processed: types.nullable(types.boolean()),
+    processed_date: z.nullable(types.string()).optional(),
+    check_date: types.nullable(types.string()),
+    start_date: types.nullable(types.string()),
+    end_date: types.nullable(types.string()),
+    totals: types.optional(PayrollTotals$inboundSchema),
+    compensations: types.optional(z.array(Compensation$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "employee_id": "employeeId",
+      "company_id": "companyId",
+      "processed_date": "processedDate",
+      "check_date": "checkDate",
+      "start_date": "startDate",
+      "end_date": "endDate",
+    });
+  })
+);
 
 export function employeePayrollFromJSON(
   jsonString: string,

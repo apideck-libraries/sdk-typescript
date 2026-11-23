@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -37,7 +38,9 @@ export const TrialBalanceFilterAccountingMethod$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   TrialBalanceFilterAccountingMethod
-> = openEnums.outboundSchema(TrialBalanceFilterAccountingMethod);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(TrialBalanceFilterAccountingMethod)
+);
 
 /** @internal */
 export type TrialBalanceFilter$Outbound = {
@@ -50,16 +53,18 @@ export const TrialBalanceFilter$outboundSchema: z.ZodType<
   TrialBalanceFilter$Outbound,
   z.ZodTypeDef,
   TrialBalanceFilter
-> = z.object({
-  endDate: z.string().optional(),
-  accountingMethod: TrialBalanceFilterAccountingMethod$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    endDate: "end_date",
-    accountingMethod: "accounting_method",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    endDate: z.string().optional(),
+    accountingMethod: TrialBalanceFilterAccountingMethod$outboundSchema
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      endDate: "end_date",
+      accountingMethod: "accounting_method",
+    });
+  })
+);
 
 export function trialBalanceFilterToJSON(
   trialBalanceFilter: TrialBalanceFilter,

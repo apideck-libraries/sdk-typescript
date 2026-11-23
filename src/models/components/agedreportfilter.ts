@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type AgedReportFilter = {
   /**
@@ -42,21 +43,23 @@ export const AgedReportFilter$outboundSchema: z.ZodType<
   AgedReportFilter$Outbound,
   z.ZodTypeDef,
   AgedReportFilter
-> = z.object({
-  customerId: z.string().optional(),
-  supplierId: z.string().optional(),
-  reportAsOfDate: z.string().optional(),
-  periodCount: z.number().int().optional(),
-  periodLength: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    customerId: "customer_id",
-    supplierId: "supplier_id",
-    reportAsOfDate: "report_as_of_date",
-    periodCount: "period_count",
-    periodLength: "period_length",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    customerId: z.string().optional(),
+    supplierId: z.string().optional(),
+    reportAsOfDate: z.string().optional(),
+    periodCount: z.number().int().optional(),
+    periodLength: z.number().int().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      customerId: "customer_id",
+      supplierId: "supplier_id",
+      reportAsOfDate: "report_as_of_date",
+      periodCount: "period_count",
+      periodLength: "period_length",
+    });
+  })
+);
 
 export function agedReportFilterToJSON(
   agedReportFilter: AgedReportFilter,

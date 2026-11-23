@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -98,47 +98,53 @@ export const FiscalPeriodStatus$inboundSchema: z.ZodType<
   FiscalPeriodStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(FiscalPeriodStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(FiscalPeriodStatus)
+);
 
 /** @internal */
 export const FiscalPeriodPeriodType$inboundSchema: z.ZodType<
   FiscalPeriodPeriodType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(FiscalPeriodPeriodType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(FiscalPeriodPeriodType)
+);
 
 /** @internal */
 export const FiscalPeriod$inboundSchema: z.ZodType<
   FiscalPeriod,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: z.nullable(types.string()).optional(),
-  fiscal_year: z.nullable(types.string()).optional(),
-  period_number: z.nullable(types.number()).optional(),
-  start_date: z.nullable(types.date()).optional(),
-  end_date: z.nullable(types.date()).optional(),
-  status: z.nullable(FiscalPeriodStatus$inboundSchema).optional(),
-  locked_through: z.nullable(types.date()).optional(),
-  type: z.nullable(FiscalPeriodPeriodType$inboundSchema).optional(),
-  is_adjustment: z.nullable(types.boolean()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "fiscal_year": "fiscalYear",
-    "period_number": "periodNumber",
-    "start_date": "startDate",
-    "end_date": "endDate",
-    "locked_through": "lockedThrough",
-    "is_adjustment": "isAdjustment",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-    "custom_mappings": "customMappings",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    name: z.nullable(types.string()).optional(),
+    fiscal_year: z.nullable(types.string()).optional(),
+    period_number: z.nullable(types.number()).optional(),
+    start_date: z.nullable(types.date()).optional(),
+    end_date: z.nullable(types.date()).optional(),
+    status: z.nullable(FiscalPeriodStatus$inboundSchema).optional(),
+    locked_through: z.nullable(types.date()).optional(),
+    type: z.nullable(FiscalPeriodPeriodType$inboundSchema).optional(),
+    is_adjustment: z.nullable(types.boolean()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "fiscal_year": "fiscalYear",
+      "period_number": "periodNumber",
+      "start_date": "startDate",
+      "end_date": "endDate",
+      "locked_through": "lockedThrough",
+      "is_adjustment": "isAdjustment",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+      "custom_mappings": "customMappings",
+    });
+  })
+);
 
 export function fiscalPeriodFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -31,16 +31,18 @@ export const OutstandingBalanceByCurrency$inboundSchema: z.ZodType<
   OutstandingBalanceByCurrency,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  total_amount: types.optional(types.number()),
-  balances_by_period: types.optional(z.array(BalanceByPeriod$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "total_amount": "totalAmount",
-    "balances_by_period": "balancesByPeriod",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    total_amount: types.optional(types.number()),
+    balances_by_period: types.optional(z.array(BalanceByPeriod$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "total_amount": "totalAmount",
+      "balances_by_period": "balancesByPeriod",
+    });
+  })
+);
 
 export function outstandingBalanceByCurrencyFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -91,36 +91,38 @@ export type SharedLinkInput = {
 
 /** @internal */
 export const Scope$inboundSchema: z.ZodType<Scope, z.ZodTypeDef, unknown> =
-  openEnums.inboundSchema(Scope);
+  /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Scope));
 /** @internal */
 export const Scope$outboundSchema: z.ZodType<string, z.ZodTypeDef, Scope> =
-  openEnums.outboundSchema(Scope);
+  /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(Scope));
 
 /** @internal */
 export const SharedLink$inboundSchema: z.ZodType<
   SharedLink,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  url: z.nullable(types.string()).optional(),
-  download_url: z.nullable(types.string()).optional(),
-  target: types.optional(SharedLinkTarget$inboundSchema),
-  scope: z.nullable(Scope$inboundSchema).optional(),
-  password_protected: z.nullable(types.boolean()).optional(),
-  expires_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "download_url": "downloadUrl",
-    "password_protected": "passwordProtected",
-    "expires_at": "expiresAt",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    url: z.nullable(types.string()).optional(),
+    download_url: z.nullable(types.string()).optional(),
+    target: types.optional(SharedLinkTarget$inboundSchema),
+    scope: z.nullable(Scope$inboundSchema).optional(),
+    password_protected: z.nullable(types.boolean()).optional(),
+    expires_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "download_url": "downloadUrl",
+      "password_protected": "passwordProtected",
+      "expires_at": "expiresAt",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function sharedLinkFromJSON(
   jsonString: string,
@@ -146,19 +148,21 @@ export const SharedLinkInput$outboundSchema: z.ZodType<
   SharedLinkInput$Outbound,
   z.ZodTypeDef,
   SharedLinkInput
-> = z.object({
-  downloadUrl: z.nullable(z.string()).optional(),
-  targetId: z.nullable(z.string()),
-  scope: z.nullable(Scope$outboundSchema).optional(),
-  password: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downloadUrl: "download_url",
-    targetId: "target_id",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    downloadUrl: z.nullable(z.string()).optional(),
+    targetId: z.nullable(z.string()),
+    scope: z.nullable(Scope$outboundSchema).optional(),
+    password: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      downloadUrl: "download_url",
+      targetId: "target_id",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function sharedLinkInputToJSON(
   sharedLinkInput: SharedLinkInput,

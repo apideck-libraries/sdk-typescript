@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   LedgerAccountCreateInput,
   LedgerAccountCreateInput$Outbound,
@@ -42,14 +43,16 @@ export const BatchLedgerAccountsRequestItems$outboundSchema: z.ZodType<
   BatchLedgerAccountsRequestItems$Outbound,
   z.ZodTypeDef,
   BatchLedgerAccountsRequestItems
-> = z.object({
-  ref: z.string().optional(),
-  data: LedgerAccountCreateInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    ref: "_ref",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    ref: z.string().optional(),
+    data: LedgerAccountCreateInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      ref: "_ref",
+    });
+  })
+);
 
 export function batchLedgerAccountsRequestItemsToJSON(
   batchLedgerAccountsRequestItems: BatchLedgerAccountsRequestItems,
@@ -71,9 +74,13 @@ export const BatchLedgerAccountsRequest$outboundSchema: z.ZodType<
   BatchLedgerAccountsRequest$Outbound,
   z.ZodTypeDef,
   BatchLedgerAccountsRequest
-> = z.object({
-  items: z.array(z.lazy(() => BatchLedgerAccountsRequestItems$outboundSchema)),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    items: z.array(
+      z.lazy(() => BatchLedgerAccountsRequestItems$outboundSchema),
+    ),
+  })
+);
 
 export function batchLedgerAccountsRequestToJSON(
   batchLedgerAccountsRequest: BatchLedgerAccountsRequest,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -96,37 +96,39 @@ export const FormFieldType$inboundSchema: z.ZodType<
   FormFieldType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(FormFieldType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(FormFieldType));
 
 /** @internal */
 export const FormField$inboundSchema: z.ZodType<
   FormField,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  label: types.optional(types.string()),
-  placeholder: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  type: types.optional(FormFieldType$inboundSchema),
-  required: types.optional(types.boolean()),
-  custom_field: types.optional(types.boolean()),
-  allow_custom_values: types.boolean().default(false),
-  disabled: z.nullable(types.boolean()).optional(),
-  options_fetch_error: z.nullable(types.boolean()).optional(),
-  hidden: z.nullable(types.boolean()).optional(),
-  deprecated: z.nullable(types.boolean()).optional(),
-  sensitive: z.nullable(types.boolean()).optional(),
-  prefix: z.nullable(types.string()).optional(),
-  suffix: z.nullable(types.string()).optional(),
-  options: types.optional(z.array(FormFieldOption$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "custom_field": "customField",
-    "allow_custom_values": "allowCustomValues",
-    "options_fetch_error": "optionsFetchError",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    label: types.optional(types.string()),
+    placeholder: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    type: types.optional(FormFieldType$inboundSchema),
+    required: types.optional(types.boolean()),
+    custom_field: types.optional(types.boolean()),
+    allow_custom_values: types.boolean().default(false),
+    disabled: z.nullable(types.boolean()).optional(),
+    options_fetch_error: z.nullable(types.boolean()).optional(),
+    hidden: z.nullable(types.boolean()).optional(),
+    deprecated: z.nullable(types.boolean()).optional(),
+    sensitive: z.nullable(types.boolean()).optional(),
+    prefix: z.nullable(types.string()).optional(),
+    suffix: z.nullable(types.string()).optional(),
+    options: types.optional(z.array(FormFieldOption$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "custom_field": "customField",
+      "allow_custom_values": "allowCustomValues",
+      "options_fetch_error": "optionsFetchError",
+    });
+  })
+);
 
 export function formFieldFromJSON(
   jsonString: string,

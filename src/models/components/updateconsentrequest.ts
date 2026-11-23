@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { smartUnion } from "../../types/smartUnion.js";
@@ -43,7 +44,7 @@ export type UpdateConsentRequest = {
 
 /** @internal */
 export const Two$outboundSchema: z.ZodType<string, z.ZodTypeDef, Two> =
-  openEnums.outboundSchema(Two);
+  /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(Two));
 
 /** @internal */
 export type One$Outbound = {
@@ -52,11 +53,13 @@ export type One$Outbound = {
 };
 
 /** @internal */
-export const One$outboundSchema: z.ZodType<One$Outbound, z.ZodTypeDef, One> = z
-  .object({
-    read: z.boolean().optional(),
-    write: z.boolean().optional(),
-  });
+export const One$outboundSchema: z.ZodType<One$Outbound, z.ZodTypeDef, One> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      read: z.boolean().optional(),
+      write: z.boolean().optional(),
+    })
+  );
 
 export function oneToJSON(one: One): string {
   return JSON.stringify(One$outboundSchema.parse(one));
@@ -72,10 +75,12 @@ export const UpdateConsentRequestResources$outboundSchema: z.ZodType<
   UpdateConsentRequestResources$Outbound,
   z.ZodTypeDef,
   UpdateConsentRequestResources
-> = smartUnion([
-  z.record(z.record(z.lazy(() => One$outboundSchema))),
-  Two$outboundSchema,
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    z.record(z.record(z.lazy(() => One$outboundSchema))),
+    Two$outboundSchema,
+  ])
+);
 
 export function updateConsentRequestResourcesToJSON(
   updateConsentRequestResources: UpdateConsentRequestResources,
@@ -98,13 +103,15 @@ export const UpdateConsentRequest$outboundSchema: z.ZodType<
   UpdateConsentRequest$Outbound,
   z.ZodTypeDef,
   UpdateConsentRequest
-> = z.object({
-  resources: smartUnion([
-    z.record(z.record(z.lazy(() => One$outboundSchema))),
-    Two$outboundSchema,
-  ]),
-  granted: z.boolean(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    resources: smartUnion([
+      z.record(z.record(z.lazy(() => One$outboundSchema))),
+      Two$outboundSchema,
+    ]),
+    granted: z.boolean(),
+  })
+);
 
 export function updateConsentRequestToJSON(
   updateConsentRequest: UpdateConsentRequest,

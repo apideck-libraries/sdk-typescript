@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -77,19 +77,21 @@ export const AccountingInvoicesUpdateRequest$outboundSchema: z.ZodType<
   AccountingInvoicesUpdateRequest$Outbound,
   z.ZodTypeDef,
   AccountingInvoicesUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  idempotencyKey: z.string().optional(),
-  invoice: components.InvoiceInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    invoice: "Invoice",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    idempotencyKey: z.string().optional(),
+    invoice: components.InvoiceInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      invoice: "Invoice",
+    });
+  })
+);
 
 export function accountingInvoicesUpdateRequestToJSON(
   accountingInvoicesUpdateRequest: AccountingInvoicesUpdateRequest,
@@ -106,21 +108,23 @@ export const AccountingInvoicesUpdateResponse$inboundSchema: z.ZodType<
   AccountingInvoicesUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateInvoiceResponse: types.optional(
-    components.UpdateInvoiceResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateInvoiceResponse": "updateInvoiceResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateInvoiceResponse: types.optional(
+      components.UpdateInvoiceResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateInvoiceResponse": "updateInvoiceResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingInvoicesUpdateResponseFromJSON(
   jsonString: string,

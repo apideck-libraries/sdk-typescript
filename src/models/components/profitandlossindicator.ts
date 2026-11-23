@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -20,9 +20,11 @@ export const ProfitAndLossIndicator$inboundSchema: z.ZodType<
   ProfitAndLossIndicator,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  total: z.nullable(types.number()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    total: z.nullable(types.number()).optional(),
+  })
+);
 
 export function profitAndLossIndicatorFromJSON(
   jsonString: string,

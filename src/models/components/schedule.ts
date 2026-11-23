@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -55,25 +55,27 @@ export const OddWeeks$inboundSchema: z.ZodType<
   OddWeeks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  hours_monday: types.optional(types.number()),
-  hours_tuesday: types.optional(types.number()),
-  hours_wednesday: types.optional(types.number()),
-  hours_thursday: types.optional(types.number()),
-  hours_friday: types.optional(types.number()),
-  hours_saturday: types.optional(types.number()),
-  hours_sunday: types.optional(types.number()),
-}).transform((v) => {
-  return remap$(v, {
-    "hours_monday": "hoursMonday",
-    "hours_tuesday": "hoursTuesday",
-    "hours_wednesday": "hoursWednesday",
-    "hours_thursday": "hoursThursday",
-    "hours_friday": "hoursFriday",
-    "hours_saturday": "hoursSaturday",
-    "hours_sunday": "hoursSunday",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    hours_monday: types.optional(types.number()),
+    hours_tuesday: types.optional(types.number()),
+    hours_wednesday: types.optional(types.number()),
+    hours_thursday: types.optional(types.number()),
+    hours_friday: types.optional(types.number()),
+    hours_saturday: types.optional(types.number()),
+    hours_sunday: types.optional(types.number()),
+  }).transform((v) => {
+    return remap$(v, {
+      "hours_monday": "hoursMonday",
+      "hours_tuesday": "hoursTuesday",
+      "hours_wednesday": "hoursWednesday",
+      "hours_thursday": "hoursThursday",
+      "hours_friday": "hoursFriday",
+      "hours_saturday": "hoursSaturday",
+      "hours_sunday": "hoursSunday",
+    });
+  })
+);
 
 export function oddWeeksFromJSON(
   jsonString: string,
@@ -90,25 +92,27 @@ export const EvenWeeks$inboundSchema: z.ZodType<
   EvenWeeks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  hours_monday: types.optional(types.number()),
-  hours_tuesday: types.optional(types.number()),
-  hours_wednesday: types.optional(types.number()),
-  hours_thursday: types.optional(types.number()),
-  hours_friday: types.optional(types.number()),
-  hours_saturday: types.optional(types.number()),
-  hours_sunday: types.optional(types.number()),
-}).transform((v) => {
-  return remap$(v, {
-    "hours_monday": "hoursMonday",
-    "hours_tuesday": "hoursTuesday",
-    "hours_wednesday": "hoursWednesday",
-    "hours_thursday": "hoursThursday",
-    "hours_friday": "hoursFriday",
-    "hours_saturday": "hoursSaturday",
-    "hours_sunday": "hoursSunday",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    hours_monday: types.optional(types.number()),
+    hours_tuesday: types.optional(types.number()),
+    hours_wednesday: types.optional(types.number()),
+    hours_thursday: types.optional(types.number()),
+    hours_friday: types.optional(types.number()),
+    hours_saturday: types.optional(types.number()),
+    hours_sunday: types.optional(types.number()),
+  }).transform((v) => {
+    return remap$(v, {
+      "hours_monday": "hoursMonday",
+      "hours_tuesday": "hoursTuesday",
+      "hours_wednesday": "hoursWednesday",
+      "hours_thursday": "hoursThursday",
+      "hours_friday": "hoursFriday",
+      "hours_saturday": "hoursSaturday",
+      "hours_sunday": "hoursSunday",
+    });
+  })
+);
 
 export function evenWeeksFromJSON(
   jsonString: string,
@@ -125,15 +129,17 @@ export const WorkPattern$inboundSchema: z.ZodType<
   WorkPattern,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  odd_weeks: types.optional(z.lazy(() => OddWeeks$inboundSchema)),
-  even_weeks: types.optional(z.lazy(() => EvenWeeks$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "odd_weeks": "oddWeeks",
-    "even_weeks": "evenWeeks",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    odd_weeks: types.optional(z.lazy(() => OddWeeks$inboundSchema)),
+    even_weeks: types.optional(z.lazy(() => EvenWeeks$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "odd_weeks": "oddWeeks",
+      "even_weeks": "evenWeeks",
+    });
+  })
+);
 
 export function workPatternFromJSON(
   jsonString: string,
@@ -150,18 +156,20 @@ export const Schedule$inboundSchema: z.ZodType<
   Schedule,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  start_date: types.string(),
-  end_date: types.string(),
-  work_pattern: z.lazy(() => WorkPattern$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "start_date": "startDate",
-    "end_date": "endDate",
-    "work_pattern": "workPattern",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.string(),
+    start_date: types.string(),
+    end_date: types.string(),
+    work_pattern: z.lazy(() => WorkPattern$inboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      "start_date": "startDate",
+      "end_date": "endDate",
+      "work_pattern": "workPattern",
+    });
+  })
+);
 
 export function scheduleFromJSON(
   jsonString: string,

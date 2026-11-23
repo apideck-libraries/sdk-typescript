@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { Currency, Currency$outboundSchema } from "./currency.js";
 import {
   LinkedCustomerInput,
@@ -133,43 +134,45 @@ export const ExpenseReportLineItemInput$outboundSchema: z.ZodType<
   ExpenseReportLineItemInput$Outbound,
   z.ZodTypeDef,
   ExpenseReportLineItemInput
-> = z.object({
-  lineNumber: z.nullable(z.number().int()).optional(),
-  expenseCategory: LinkedExpenseCategory$outboundSchema.optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  description: z.nullable(z.string()).optional(),
-  quantity: z.nullable(z.number()).optional(),
-  unitPrice: z.nullable(z.number()).optional(),
-  amount: z.number(),
-  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  taxAmount: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()).optional(),
-  transactionDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  billable: z.nullable(z.boolean()).optional(),
-  reimbursable: z.nullable(z.boolean()).optional(),
-  customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
-  department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
-  location: z.nullable(LinkedLocationInput$outboundSchema).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  receiptUrl: z.nullable(z.string()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    lineNumber: "line_number",
-    expenseCategory: "expense_category",
-    unitPrice: "unit_price",
-    taxRate: "tax_rate",
-    taxAmount: "tax_amount",
-    totalAmount: "total_amount",
-    transactionDate: "transaction_date",
-    trackingCategories: "tracking_categories",
-    receiptUrl: "receipt_url",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    lineNumber: z.nullable(z.number().int()).optional(),
+    expenseCategory: LinkedExpenseCategory$outboundSchema.optional(),
+    account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    description: z.nullable(z.string()).optional(),
+    quantity: z.nullable(z.number()).optional(),
+    unitPrice: z.nullable(z.number()).optional(),
+    amount: z.number(),
+    taxRate: LinkedTaxRateInput$outboundSchema.optional(),
+    taxAmount: z.nullable(z.number()).optional(),
+    totalAmount: z.nullable(z.number()).optional(),
+    transactionDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    billable: z.nullable(z.boolean()).optional(),
+    reimbursable: z.nullable(z.boolean()).optional(),
+    customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
+    department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
+    location: z.nullable(LinkedLocationInput$outboundSchema).optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    receiptUrl: z.nullable(z.string()).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      lineNumber: "line_number",
+      expenseCategory: "expense_category",
+      unitPrice: "unit_price",
+      taxRate: "tax_rate",
+      taxAmount: "tax_amount",
+      totalAmount: "total_amount",
+      transactionDate: "transaction_date",
+      trackingCategories: "tracking_categories",
+      receiptUrl: "receipt_url",
+    });
+  })
+);
 
 export function expenseReportLineItemInputToJSON(
   expenseReportLineItemInput: ExpenseReportLineItemInput,

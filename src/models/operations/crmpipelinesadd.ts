@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -67,17 +67,19 @@ export const CrmPipelinesAddRequest$outboundSchema: z.ZodType<
   CrmPipelinesAddRequest$Outbound,
   z.ZodTypeDef,
   CrmPipelinesAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  pipeline: components.PipelineInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    pipeline: "Pipeline",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    pipeline: components.PipelineInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      pipeline: "Pipeline",
+    });
+  })
+);
 
 export function crmPipelinesAddRequestToJSON(
   crmPipelinesAddRequest: CrmPipelinesAddRequest,
@@ -92,21 +94,23 @@ export const CrmPipelinesAddResponse$inboundSchema: z.ZodType<
   CrmPipelinesAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreatePipelineResponse: types.optional(
-    components.CreatePipelineResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreatePipelineResponse": "createPipelineResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreatePipelineResponse: types.optional(
+      components.CreatePipelineResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreatePipelineResponse": "createPipelineResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function crmPipelinesAddResponseFromJSON(
   jsonString: string,

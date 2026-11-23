@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ConsumerMetadata,
   ConsumerMetadata$Outbound,
@@ -26,9 +27,11 @@ export const UpdateConsumerRequest$outboundSchema: z.ZodType<
   UpdateConsumerRequest$Outbound,
   z.ZodTypeDef,
   UpdateConsumerRequest
-> = z.object({
-  metadata: ConsumerMetadata$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    metadata: ConsumerMetadata$outboundSchema.optional(),
+  })
+);
 
 export function updateConsumerRequestToJSON(
   updateConsumerRequest: UpdateConsumerRequest,

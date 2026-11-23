@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -143,52 +143,54 @@ export const LocationStatus$inboundSchema: z.ZodType<
   LocationStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(LocationStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(LocationStatus));
 /** @internal */
 export const LocationStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   LocationStatus
-> = openEnums.outboundSchema(LocationStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(LocationStatus));
 
 /** @internal */
 export const AccountingLocation$inboundSchema: z.ZodType<
   AccountingLocation,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  parent_id: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-  downstream_id: z.nullable(types.string()).optional(),
-  company_name: z.nullable(types.string()).optional(),
-  display_name: z.nullable(types.string()).optional(),
-  status: types.optional(LocationStatus$inboundSchema),
-  addresses: types.optional(z.array(Address$inboundSchema)),
-  subsidiaries: types.optional(z.array(SubsidiaryReference$inboundSchema)),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_id": "parentId",
-    "display_id": "displayId",
-    "downstream_id": "downstreamId",
-    "company_name": "companyName",
-    "display_name": "displayName",
-    "custom_mappings": "customMappings",
-    "row_version": "rowVersion",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    parent_id: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    downstream_id: z.nullable(types.string()).optional(),
+    company_name: z.nullable(types.string()).optional(),
+    display_name: z.nullable(types.string()).optional(),
+    status: types.optional(LocationStatus$inboundSchema),
+    addresses: types.optional(z.array(Address$inboundSchema)),
+    subsidiaries: types.optional(z.array(SubsidiaryReference$inboundSchema)),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "parent_id": "parentId",
+      "display_id": "displayId",
+      "downstream_id": "downstreamId",
+      "company_name": "companyName",
+      "display_name": "displayName",
+      "custom_mappings": "customMappings",
+      "row_version": "rowVersion",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function accountingLocationFromJSON(
   jsonString: string,
@@ -218,26 +220,28 @@ export const AccountingLocationInput$outboundSchema: z.ZodType<
   AccountingLocationInput$Outbound,
   z.ZodTypeDef,
   AccountingLocationInput
-> = z.object({
-  parentId: z.nullable(z.string()).optional(),
-  displayId: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  displayName: z.nullable(z.string()).optional(),
-  status: LocationStatus$outboundSchema.optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  subsidiaries: z.array(SubsidiaryReferenceInput$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    displayId: "display_id",
-    companyName: "company_name",
-    displayName: "display_name",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    parentId: z.nullable(z.string()).optional(),
+    displayId: z.nullable(z.string()).optional(),
+    companyName: z.nullable(z.string()).optional(),
+    displayName: z.nullable(z.string()).optional(),
+    status: LocationStatus$outboundSchema.optional(),
+    addresses: z.array(Address$outboundSchema).optional(),
+    subsidiaries: z.array(SubsidiaryReferenceInput$outboundSchema).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      parentId: "parent_id",
+      displayId: "display_id",
+      companyName: "company_name",
+      displayName: "display_name",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function accountingLocationInputToJSON(
   accountingLocationInput: AccountingLocationInput,

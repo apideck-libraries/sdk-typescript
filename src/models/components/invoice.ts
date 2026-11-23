@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -505,41 +505,43 @@ export const InvoiceType$inboundSchema: z.ZodType<
   InvoiceType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(InvoiceType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(InvoiceType));
 /** @internal */
 export const InvoiceType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   InvoiceType
-> = openEnums.outboundSchema(InvoiceType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(InvoiceType));
 
 /** @internal */
 export const InvoiceStatus$inboundSchema: z.ZodType<
   InvoiceStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(InvoiceStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(InvoiceStatus));
 /** @internal */
 export const InvoiceStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   InvoiceStatus
-> = openEnums.outboundSchema(InvoiceStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(InvoiceStatus));
 
 /** @internal */
 export const PaymentAllocations$inboundSchema: z.ZodType<
   PaymentAllocations,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  allocated_amount: z.nullable(types.number()).optional(),
-  date: z.nullable(types.date()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "allocated_amount": "allocatedAmount",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    allocated_amount: z.nullable(types.number()).optional(),
+    date: z.nullable(types.date()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "allocated_amount": "allocatedAmount",
+    });
+  })
+);
 /** @internal */
 export type PaymentAllocations$Outbound = {
   id?: string | undefined;
@@ -552,15 +554,17 @@ export const PaymentAllocations$outboundSchema: z.ZodType<
   PaymentAllocations$Outbound,
   z.ZodTypeDef,
   PaymentAllocations
-> = z.object({
-  id: z.string().optional(),
-  allocatedAmount: z.nullable(z.number()).optional(),
-  date: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    allocatedAmount: "allocated_amount",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    allocatedAmount: z.nullable(z.number()).optional(),
+    date: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      allocatedAmount: "allocated_amount",
+    });
+  })
+);
 
 export function paymentAllocationsToJSON(
   paymentAllocations: PaymentAllocations,
@@ -581,108 +585,110 @@ export function paymentAllocationsFromJSON(
 
 /** @internal */
 export const Invoice$inboundSchema: z.ZodType<Invoice, z.ZodTypeDef, unknown> =
-  z.object({
-    id: types.optional(types.string()),
-    downstream_id: z.nullable(types.string()).optional(),
-    display_id: z.nullable(types.string()).optional(),
-    type: z.nullable(InvoiceType$inboundSchema).optional(),
-    number: z.nullable(types.string()).optional(),
-    customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
-    company_id: z.nullable(types.string()).optional(),
-    subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
-    location_id: z.nullable(types.string()).optional(),
-    department_id: z.nullable(types.string()).optional(),
-    invoice_date: z.nullable(types.date()).optional(),
-    due_date: z.nullable(types.date()).optional(),
-    terms: z.nullable(types.string()).optional(),
-    terms_id: z.nullable(types.string()).optional(),
-    po_number: z.nullable(types.string()).optional(),
-    reference: z.nullable(types.string()).optional(),
-    status: z.nullable(InvoiceStatus$inboundSchema).optional(),
-    invoice_sent: types.optional(types.boolean()),
-    currency: z.nullable(Currency$inboundSchema).optional(),
-    currency_rate: z.nullable(types.number()).optional(),
-    tax_inclusive: z.nullable(types.boolean()).optional(),
-    sub_total: z.nullable(types.number()).optional(),
-    total_tax: z.nullable(types.number()).optional(),
-    tax_code: z.nullable(types.string()).optional(),
-    discount_percentage: z.nullable(types.number()).optional(),
-    discount_amount: z.nullable(types.number()).optional(),
-    total: z.nullable(types.number()).optional(),
-    balance: z.nullable(types.number()).optional(),
-    deposit: z.nullable(types.number()).optional(),
-    customer_memo: z.nullable(types.string()).optional(),
-    tracking_category: z.nullable(
-      DeprecatedLinkedTrackingCategory$inboundSchema,
-    ).optional(),
-    tracking_categories: z.nullable(
-      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-    ).optional(),
-    line_items: types.optional(z.array(InvoiceLineItem$inboundSchema)),
-    billing_address: types.optional(Address$inboundSchema),
-    shipping_address: types.optional(Address$inboundSchema),
-    template_id: z.nullable(types.string()).optional(),
-    source_document_url: z.nullable(types.string()).optional(),
-    payment_allocations: z.nullable(
-      z.array(z.lazy(() => PaymentAllocations$inboundSchema)),
-    ).optional(),
-    quotes: z.nullable(z.array(LinkedQuotes$inboundSchema)).optional(),
-    payment_method: z.nullable(types.string()).optional(),
-    channel: z.nullable(types.string()).optional(),
-    language: z.nullable(types.string()).optional(),
-    accounting_by_row: z.nullable(types.boolean()).optional(),
-    bank_account: types.optional(BankAccount$inboundSchema),
-    ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-    row_version: z.nullable(types.string()).optional(),
-    updated_by: z.nullable(types.string()).optional(),
-    created_by: z.nullable(types.string()).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-  }).transform((v) => {
-    return remap$(v, {
-      "downstream_id": "downstreamId",
-      "display_id": "displayId",
-      "company_id": "companyId",
-      "location_id": "locationId",
-      "department_id": "departmentId",
-      "invoice_date": "invoiceDate",
-      "due_date": "dueDate",
-      "terms_id": "termsId",
-      "po_number": "poNumber",
-      "invoice_sent": "invoiceSent",
-      "currency_rate": "currencyRate",
-      "tax_inclusive": "taxInclusive",
-      "sub_total": "subTotal",
-      "total_tax": "totalTax",
-      "tax_code": "taxCode",
-      "discount_percentage": "discountPercentage",
-      "discount_amount": "discountAmount",
-      "customer_memo": "customerMemo",
-      "tracking_category": "trackingCategory",
-      "tracking_categories": "trackingCategories",
-      "line_items": "lineItems",
-      "billing_address": "billingAddress",
-      "shipping_address": "shippingAddress",
-      "template_id": "templateId",
-      "source_document_url": "sourceDocumentUrl",
-      "payment_allocations": "paymentAllocations",
-      "payment_method": "paymentMethod",
-      "accounting_by_row": "accountingByRow",
-      "bank_account": "bankAccount",
-      "ledger_account": "ledgerAccount",
-      "custom_mappings": "customMappings",
-      "custom_fields": "customFields",
-      "row_version": "rowVersion",
-      "updated_by": "updatedBy",
-      "created_by": "createdBy",
-      "updated_at": "updatedAt",
-      "created_at": "createdAt",
-      "pass_through": "passThrough",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.optional(types.string()),
+      downstream_id: z.nullable(types.string()).optional(),
+      display_id: z.nullable(types.string()).optional(),
+      type: z.nullable(InvoiceType$inboundSchema).optional(),
+      number: z.nullable(types.string()).optional(),
+      customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
+      company_id: z.nullable(types.string()).optional(),
+      subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
+      location_id: z.nullable(types.string()).optional(),
+      department_id: z.nullable(types.string()).optional(),
+      invoice_date: z.nullable(types.date()).optional(),
+      due_date: z.nullable(types.date()).optional(),
+      terms: z.nullable(types.string()).optional(),
+      terms_id: z.nullable(types.string()).optional(),
+      po_number: z.nullable(types.string()).optional(),
+      reference: z.nullable(types.string()).optional(),
+      status: z.nullable(InvoiceStatus$inboundSchema).optional(),
+      invoice_sent: types.optional(types.boolean()),
+      currency: z.nullable(Currency$inboundSchema).optional(),
+      currency_rate: z.nullable(types.number()).optional(),
+      tax_inclusive: z.nullable(types.boolean()).optional(),
+      sub_total: z.nullable(types.number()).optional(),
+      total_tax: z.nullable(types.number()).optional(),
+      tax_code: z.nullable(types.string()).optional(),
+      discount_percentage: z.nullable(types.number()).optional(),
+      discount_amount: z.nullable(types.number()).optional(),
+      total: z.nullable(types.number()).optional(),
+      balance: z.nullable(types.number()).optional(),
+      deposit: z.nullable(types.number()).optional(),
+      customer_memo: z.nullable(types.string()).optional(),
+      tracking_category: z.nullable(
+        DeprecatedLinkedTrackingCategory$inboundSchema,
+      ).optional(),
+      tracking_categories: z.nullable(
+        z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+      ).optional(),
+      line_items: types.optional(z.array(InvoiceLineItem$inboundSchema)),
+      billing_address: types.optional(Address$inboundSchema),
+      shipping_address: types.optional(Address$inboundSchema),
+      template_id: z.nullable(types.string()).optional(),
+      source_document_url: z.nullable(types.string()).optional(),
+      payment_allocations: z.nullable(
+        z.array(z.lazy(() => PaymentAllocations$inboundSchema)),
+      ).optional(),
+      quotes: z.nullable(z.array(LinkedQuotes$inboundSchema)).optional(),
+      payment_method: z.nullable(types.string()).optional(),
+      channel: z.nullable(types.string()).optional(),
+      language: z.nullable(types.string()).optional(),
+      accounting_by_row: z.nullable(types.boolean()).optional(),
+      bank_account: types.optional(BankAccount$inboundSchema),
+      ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+      custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+      row_version: z.nullable(types.string()).optional(),
+      updated_by: z.nullable(types.string()).optional(),
+      created_by: z.nullable(types.string()).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+      pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    }).transform((v) => {
+      return remap$(v, {
+        "downstream_id": "downstreamId",
+        "display_id": "displayId",
+        "company_id": "companyId",
+        "location_id": "locationId",
+        "department_id": "departmentId",
+        "invoice_date": "invoiceDate",
+        "due_date": "dueDate",
+        "terms_id": "termsId",
+        "po_number": "poNumber",
+        "invoice_sent": "invoiceSent",
+        "currency_rate": "currencyRate",
+        "tax_inclusive": "taxInclusive",
+        "sub_total": "subTotal",
+        "total_tax": "totalTax",
+        "tax_code": "taxCode",
+        "discount_percentage": "discountPercentage",
+        "discount_amount": "discountAmount",
+        "customer_memo": "customerMemo",
+        "tracking_category": "trackingCategory",
+        "tracking_categories": "trackingCategories",
+        "line_items": "lineItems",
+        "billing_address": "billingAddress",
+        "shipping_address": "shippingAddress",
+        "template_id": "templateId",
+        "source_document_url": "sourceDocumentUrl",
+        "payment_allocations": "paymentAllocations",
+        "payment_method": "paymentMethod",
+        "accounting_by_row": "accountingByRow",
+        "bank_account": "bankAccount",
+        "ledger_account": "ledgerAccount",
+        "custom_mappings": "customMappings",
+        "custom_fields": "customFields",
+        "row_version": "rowVersion",
+        "updated_by": "updatedBy",
+        "created_by": "createdBy",
+        "updated_at": "updatedAt",
+        "created_at": "createdAt",
+        "pass_through": "passThrough",
+      });
+    })
+  );
 
 export function invoiceFromJSON(
   jsonString: string,
@@ -755,98 +761,101 @@ export const InvoiceInput$outboundSchema: z.ZodType<
   InvoiceInput$Outbound,
   z.ZodTypeDef,
   InvoiceInput
-> = z.object({
-  displayId: z.nullable(z.string()).optional(),
-  type: z.nullable(InvoiceType$outboundSchema).optional(),
-  number: z.nullable(z.string()).optional(),
-  customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
-  locationId: z.nullable(z.string()).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  invoiceDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  dueDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  terms: z.nullable(z.string()).optional(),
-  termsId: z.nullable(z.string()).optional(),
-  poNumber: z.nullable(z.string()).optional(),
-  reference: z.nullable(z.string()).optional(),
-  status: z.nullable(InvoiceStatus$outboundSchema).optional(),
-  invoiceSent: z.boolean().optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  taxInclusive: z.nullable(z.boolean()).optional(),
-  subTotal: z.nullable(z.number()).optional(),
-  totalTax: z.nullable(z.number()).optional(),
-  taxCode: z.nullable(z.string()).optional(),
-  discountPercentage: z.nullable(z.number()).optional(),
-  discountAmount: z.nullable(z.number()).optional(),
-  total: z.nullable(z.number()).optional(),
-  balance: z.nullable(z.number()).optional(),
-  deposit: z.nullable(z.number()).optional(),
-  customerMemo: z.nullable(z.string()).optional(),
-  trackingCategory: z.nullable(DeprecatedLinkedTrackingCategory$outboundSchema)
-    .optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  lineItems: z.array(InvoiceLineItemInput$outboundSchema).optional(),
-  billingAddress: Address$outboundSchema.optional(),
-  shippingAddress: Address$outboundSchema.optional(),
-  templateId: z.nullable(z.string()).optional(),
-  sourceDocumentUrl: z.nullable(z.string()).optional(),
-  paymentAllocations: z.nullable(
-    z.array(z.lazy(() => PaymentAllocations$outboundSchema)),
-  ).optional(),
-  quotes: z.nullable(z.array(LinkedQuotesInput$outboundSchema)).optional(),
-  paymentMethod: z.nullable(z.string()).optional(),
-  channel: z.nullable(z.string()).optional(),
-  language: z.nullable(z.string()).optional(),
-  accountingByRow: z.nullable(z.boolean()).optional(),
-  bankAccount: BankAccount$outboundSchema.optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    companyId: "company_id",
-    locationId: "location_id",
-    departmentId: "department_id",
-    invoiceDate: "invoice_date",
-    dueDate: "due_date",
-    termsId: "terms_id",
-    poNumber: "po_number",
-    invoiceSent: "invoice_sent",
-    currencyRate: "currency_rate",
-    taxInclusive: "tax_inclusive",
-    subTotal: "sub_total",
-    totalTax: "total_tax",
-    taxCode: "tax_code",
-    discountPercentage: "discount_percentage",
-    discountAmount: "discount_amount",
-    customerMemo: "customer_memo",
-    trackingCategory: "tracking_category",
-    trackingCategories: "tracking_categories",
-    lineItems: "line_items",
-    billingAddress: "billing_address",
-    shippingAddress: "shipping_address",
-    templateId: "template_id",
-    sourceDocumentUrl: "source_document_url",
-    paymentAllocations: "payment_allocations",
-    paymentMethod: "payment_method",
-    accountingByRow: "accounting_by_row",
-    bankAccount: "bank_account",
-    ledgerAccount: "ledger_account",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayId: z.nullable(z.string()).optional(),
+    type: z.nullable(InvoiceType$outboundSchema).optional(),
+    number: z.nullable(z.string()).optional(),
+    customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
+    companyId: z.nullable(z.string()).optional(),
+    subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
+    locationId: z.nullable(z.string()).optional(),
+    departmentId: z.nullable(z.string()).optional(),
+    invoiceDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    dueDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    terms: z.nullable(z.string()).optional(),
+    termsId: z.nullable(z.string()).optional(),
+    poNumber: z.nullable(z.string()).optional(),
+    reference: z.nullable(z.string()).optional(),
+    status: z.nullable(InvoiceStatus$outboundSchema).optional(),
+    invoiceSent: z.boolean().optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    currencyRate: z.nullable(z.number()).optional(),
+    taxInclusive: z.nullable(z.boolean()).optional(),
+    subTotal: z.nullable(z.number()).optional(),
+    totalTax: z.nullable(z.number()).optional(),
+    taxCode: z.nullable(z.string()).optional(),
+    discountPercentage: z.nullable(z.number()).optional(),
+    discountAmount: z.nullable(z.number()).optional(),
+    total: z.nullable(z.number()).optional(),
+    balance: z.nullable(z.number()).optional(),
+    deposit: z.nullable(z.number()).optional(),
+    customerMemo: z.nullable(z.string()).optional(),
+    trackingCategory: z.nullable(
+      DeprecatedLinkedTrackingCategory$outboundSchema,
+    ).optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    lineItems: z.array(InvoiceLineItemInput$outboundSchema).optional(),
+    billingAddress: Address$outboundSchema.optional(),
+    shippingAddress: Address$outboundSchema.optional(),
+    templateId: z.nullable(z.string()).optional(),
+    sourceDocumentUrl: z.nullable(z.string()).optional(),
+    paymentAllocations: z.nullable(
+      z.array(z.lazy(() => PaymentAllocations$outboundSchema)),
+    ).optional(),
+    quotes: z.nullable(z.array(LinkedQuotesInput$outboundSchema)).optional(),
+    paymentMethod: z.nullable(z.string()).optional(),
+    channel: z.nullable(z.string()).optional(),
+    language: z.nullable(z.string()).optional(),
+    accountingByRow: z.nullable(z.boolean()).optional(),
+    bankAccount: BankAccount$outboundSchema.optional(),
+    ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+      companyId: "company_id",
+      locationId: "location_id",
+      departmentId: "department_id",
+      invoiceDate: "invoice_date",
+      dueDate: "due_date",
+      termsId: "terms_id",
+      poNumber: "po_number",
+      invoiceSent: "invoice_sent",
+      currencyRate: "currency_rate",
+      taxInclusive: "tax_inclusive",
+      subTotal: "sub_total",
+      totalTax: "total_tax",
+      taxCode: "tax_code",
+      discountPercentage: "discount_percentage",
+      discountAmount: "discount_amount",
+      customerMemo: "customer_memo",
+      trackingCategory: "tracking_category",
+      trackingCategories: "tracking_categories",
+      lineItems: "line_items",
+      billingAddress: "billing_address",
+      shippingAddress: "shipping_address",
+      templateId: "template_id",
+      sourceDocumentUrl: "source_document_url",
+      paymentAllocations: "payment_allocations",
+      paymentMethod: "payment_method",
+      accountingByRow: "accounting_by_row",
+      bankAccount: "bank_account",
+      ledgerAccount: "ledger_account",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function invoiceInputToJSON(invoiceInput: InvoiceInput): string {
   return JSON.stringify(InvoiceInput$outboundSchema.parse(invoiceInput));

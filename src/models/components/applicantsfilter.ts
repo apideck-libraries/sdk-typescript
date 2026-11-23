@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ApplicantsFilter = {
   /**
@@ -22,13 +23,15 @@ export const ApplicantsFilter$outboundSchema: z.ZodType<
   ApplicantsFilter$Outbound,
   z.ZodTypeDef,
   ApplicantsFilter
-> = z.object({
-  jobId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    jobId: "job_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    jobId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      jobId: "job_id",
+    });
+  })
+);
 
 export function applicantsFilterToJSON(
   applicantsFilter: ApplicantsFilter,

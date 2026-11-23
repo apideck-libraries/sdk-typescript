@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -33,15 +33,17 @@ export const DataScopes$inboundSchema: z.ZodType<
   DataScopes,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  enabled: types.optional(types.boolean()),
-  updated_at: types.optional(types.string()),
-  resources: types.optional(DataScopesResources$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    enabled: types.optional(types.boolean()),
+    updated_at: types.optional(types.string()),
+    resources: types.optional(DataScopesResources$inboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function dataScopesFromJSON(
   jsonString: string,

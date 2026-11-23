@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,18 +72,20 @@ export const FileStorageFoldersAddRequest$outboundSchema: z.ZodType<
   FileStorageFoldersAddRequest$Outbound,
   z.ZodTypeDef,
   FileStorageFoldersAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  fields: z.nullable(z.string()).optional(),
-  createFolderRequest: components.CreateFolderRequest$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    createFolderRequest: "CreateFolderRequest",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    fields: z.nullable(z.string()).optional(),
+    createFolderRequest: components.CreateFolderRequest$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      createFolderRequest: "CreateFolderRequest",
+    });
+  })
+);
 
 export function fileStorageFoldersAddRequestToJSON(
   fileStorageFoldersAddRequest: FileStorageFoldersAddRequest,
@@ -100,21 +102,23 @@ export const FileStorageFoldersAddResponse$inboundSchema: z.ZodType<
   FileStorageFoldersAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateFolderResponse: types.optional(
-    components.CreateFolderResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateFolderResponse": "createFolderResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateFolderResponse: types.optional(
+      components.CreateFolderResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateFolderResponse": "createFolderResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function fileStorageFoldersAddResponseFromJSON(
   jsonString: string,

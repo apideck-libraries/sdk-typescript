@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PassThroughBody,
   PassThroughBody$Outbound,
@@ -47,19 +48,21 @@ export const CreateUploadSessionRequest$outboundSchema: z.ZodType<
   CreateUploadSessionRequest$Outbound,
   z.ZodTypeDef,
   CreateUploadSessionRequest
-> = z.object({
-  name: z.string(),
-  parentFolderId: z.string(),
-  driveId: z.string().optional(),
-  size: z.nullable(z.number().int()),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentFolderId: "parent_folder_id",
-    driveId: "drive_id",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    parentFolderId: z.string(),
+    driveId: z.string().optional(),
+    size: z.nullable(z.number().int()),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      parentFolderId: "parent_folder_id",
+      driveId: "drive_id",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function createUploadSessionRequestToJSON(
   createUploadSessionRequest: CreateUploadSessionRequest,

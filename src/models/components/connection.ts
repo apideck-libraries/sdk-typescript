@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
@@ -315,24 +316,28 @@ export const ConnectionStatus$inboundSchema: z.ZodType<
   ConnectionStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(ConnectionStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(ConnectionStatus)
+);
 
 /** @internal */
 export const ConnectionMetadata$inboundSchema: z.ZodType<
   ConnectionMetadata,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    company_id: types.optional(types.string()),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
-).transform((v) => {
-  return remap$(v, {
-    "company_id": "companyId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      company_id: types.optional(types.string()),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
+    return remap$(v, {
+      "company_id": "companyId",
+    });
+  })
+);
 
 export function connectionMetadataFromJSON(
   jsonString: string,
@@ -346,11 +351,13 @@ export function connectionMetadataFromJSON(
 
 /** @internal */
 export const Target$inboundSchema: z.ZodType<Target, z.ZodTypeDef, unknown> =
-  openEnums.inboundSchema(Target);
+  /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Target));
 
 /** @internal */
 export const Value5$inboundSchema: z.ZodType<Value5, z.ZodTypeDef, unknown> =
-  smartUnion([types.string(), types.number(), types.number()]);
+  /* @__PURE__ */ lazySchema$(() =>
+    smartUnion([types.string(), types.number(), types.number()])
+  );
 /** @internal */
 export type Value5$Outbound = string | number | number;
 
@@ -359,7 +366,9 @@ export const Value5$outboundSchema: z.ZodType<
   Value5$Outbound,
   z.ZodTypeDef,
   Value5
-> = smartUnion([z.string(), z.number().int(), z.number()]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([z.string(), z.number().int(), z.number()])
+);
 
 export function value5ToJSON(value5: Value5): string {
   return JSON.stringify(Value5$outboundSchema.parse(value5));
@@ -379,13 +388,15 @@ export const ConnectionValue$inboundSchema: z.ZodType<
   ConnectionValue,
   z.ZodTypeDef,
   unknown
-> = smartUnion([
-  types.string(),
-  types.number(),
-  types.number(),
-  types.boolean(),
-  z.array(smartUnion([types.string(), types.number(), types.number()])),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    types.string(),
+    types.number(),
+    types.number(),
+    types.boolean(),
+    z.array(smartUnion([types.string(), types.number(), types.number()])),
+  ])
+);
 /** @internal */
 export type ConnectionValue$Outbound =
   | string
@@ -399,13 +410,15 @@ export const ConnectionValue$outboundSchema: z.ZodType<
   ConnectionValue$Outbound,
   z.ZodTypeDef,
   ConnectionValue
-> = smartUnion([
-  z.string(),
-  z.number().int(),
-  z.number(),
-  z.boolean(),
-  z.array(smartUnion([z.string(), z.number().int(), z.number()])),
-]);
+> = /* @__PURE__ */ lazySchema$(() =>
+  smartUnion([
+    z.string(),
+    z.number().int(),
+    z.number(),
+    z.boolean(),
+    z.array(smartUnion([z.string(), z.number().int(), z.number()])),
+  ])
+);
 
 export function connectionValueToJSON(
   connectionValue: ConnectionValue,
@@ -427,20 +440,22 @@ export const Defaults$inboundSchema: z.ZodType<
   Defaults,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  target: types.optional(Target$inboundSchema),
-  id: types.optional(types.string()),
-  options: types.optional(z.array(FormFieldOption$inboundSchema)),
-  value: types.optional(
-    smartUnion([
-      types.string(),
-      types.number(),
-      types.number(),
-      types.boolean(),
-      z.array(smartUnion([types.string(), types.number(), types.number()])),
-    ]),
-  ),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    target: types.optional(Target$inboundSchema),
+    id: types.optional(types.string()),
+    options: types.optional(z.array(FormFieldOption$inboundSchema)),
+    value: types.optional(
+      smartUnion([
+        types.string(),
+        types.number(),
+        types.number(),
+        types.boolean(),
+        z.array(smartUnion([types.string(), types.number(), types.number()])),
+      ]),
+    ),
+  })
+);
 
 export function defaultsFromJSON(
   jsonString: string,
@@ -457,10 +472,12 @@ export const Configuration$inboundSchema: z.ZodType<
   Configuration,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  resource: types.optional(types.string()),
-  defaults: types.optional(z.array(z.lazy(() => Defaults$inboundSchema))),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    resource: types.optional(types.string()),
+    defaults: types.optional(z.array(z.lazy(() => Defaults$inboundSchema))),
+  })
+);
 
 export function configurationFromJSON(
   jsonString: string,
@@ -474,85 +491,89 @@ export function configurationFromJSON(
 
 /** @internal */
 export const Health$inboundSchema: z.ZodType<Health, z.ZodTypeDef, unknown> =
-  openEnums.inboundSchema(Health);
+  /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Health));
 
 /** @internal */
 export const Connection$inboundSchema: z.ZodType<
   Connection,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  service_id: types.optional(types.string()),
-  name: types.optional(types.string()),
-  tag_line: types.optional(types.string()),
-  unified_api: types.optional(types.string()),
-  state: types.optional(ConnectionState$inboundSchema),
-  integration_state: types.optional(IntegrationState$inboundSchema),
-  auth_type: types.optional(AuthType$inboundSchema),
-  oauth_grant_type: types.optional(OAuthGrantType$inboundSchema),
-  status: types.optional(ConnectionStatus$inboundSchema),
-  enabled: types.optional(types.boolean()),
-  website: types.optional(types.string()),
-  icon: types.optional(types.string()),
-  logo: types.optional(types.string()),
-  authorize_url: z.nullable(types.string()).optional(),
-  revoke_url: z.nullable(types.string()).optional(),
-  settings: z.nullable(z.record(z.any())).optional(),
-  metadata: z.nullable(z.lazy(() => ConnectionMetadata$inboundSchema))
-    .optional(),
-  form_fields: types.optional(z.array(FormField$inboundSchema)),
-  configuration: types.optional(
-    z.array(z.lazy(() => Configuration$inboundSchema)),
-  ),
-  configurable_resources: types.optional(z.array(types.string())),
-  resource_schema_support: types.optional(z.array(types.string())),
-  resource_settings_support: types.optional(z.array(types.string())),
-  validation_support: types.optional(types.boolean()),
-  schema_support: types.optional(types.boolean()),
-  settings_required_for_authorization: types.optional(z.array(types.string())),
-  subscriptions: types.optional(z.array(WebhookSubscription$inboundSchema)),
-  has_guide: types.optional(types.boolean()),
-  custom_mappings: types.optional(z.array(CustomMapping$inboundSchema)),
-  consent_state: types.optional(ConsentState$inboundSchema),
-  consents: types.optional(z.array(ConsentRecord$inboundSchema)),
-  latest_consent: types.optional(ConsentRecord$inboundSchema),
-  application_data_scopes: types.optional(DataScopes$inboundSchema),
-  health: types.optional(Health$inboundSchema),
-  credentials_expire_at: types.optional(types.number()),
-  last_refresh_failed_at: types.optional(types.number()),
-  last_downstream_error_at: types.optional(types.number()),
-  created_at: types.optional(types.number()),
-  updated_at: z.nullable(types.number()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "service_id": "serviceId",
-    "tag_line": "tagLine",
-    "unified_api": "unifiedApi",
-    "integration_state": "integrationState",
-    "auth_type": "authType",
-    "oauth_grant_type": "oauthGrantType",
-    "authorize_url": "authorizeUrl",
-    "revoke_url": "revokeUrl",
-    "form_fields": "formFields",
-    "configurable_resources": "configurableResources",
-    "resource_schema_support": "resourceSchemaSupport",
-    "resource_settings_support": "resourceSettingsSupport",
-    "validation_support": "validationSupport",
-    "schema_support": "schemaSupport",
-    "settings_required_for_authorization": "settingsRequiredForAuthorization",
-    "has_guide": "hasGuide",
-    "custom_mappings": "customMappings",
-    "consent_state": "consentState",
-    "latest_consent": "latestConsent",
-    "application_data_scopes": "applicationDataScopes",
-    "credentials_expire_at": "credentialsExpireAt",
-    "last_refresh_failed_at": "lastRefreshFailedAt",
-    "last_downstream_error_at": "lastDownstreamErrorAt",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    service_id: types.optional(types.string()),
+    name: types.optional(types.string()),
+    tag_line: types.optional(types.string()),
+    unified_api: types.optional(types.string()),
+    state: types.optional(ConnectionState$inboundSchema),
+    integration_state: types.optional(IntegrationState$inboundSchema),
+    auth_type: types.optional(AuthType$inboundSchema),
+    oauth_grant_type: types.optional(OAuthGrantType$inboundSchema),
+    status: types.optional(ConnectionStatus$inboundSchema),
+    enabled: types.optional(types.boolean()),
+    website: types.optional(types.string()),
+    icon: types.optional(types.string()),
+    logo: types.optional(types.string()),
+    authorize_url: z.nullable(types.string()).optional(),
+    revoke_url: z.nullable(types.string()).optional(),
+    settings: z.nullable(z.record(z.any())).optional(),
+    metadata: z.nullable(z.lazy(() => ConnectionMetadata$inboundSchema))
+      .optional(),
+    form_fields: types.optional(z.array(FormField$inboundSchema)),
+    configuration: types.optional(
+      z.array(z.lazy(() => Configuration$inboundSchema)),
+    ),
+    configurable_resources: types.optional(z.array(types.string())),
+    resource_schema_support: types.optional(z.array(types.string())),
+    resource_settings_support: types.optional(z.array(types.string())),
+    validation_support: types.optional(types.boolean()),
+    schema_support: types.optional(types.boolean()),
+    settings_required_for_authorization: types.optional(
+      z.array(types.string()),
+    ),
+    subscriptions: types.optional(z.array(WebhookSubscription$inboundSchema)),
+    has_guide: types.optional(types.boolean()),
+    custom_mappings: types.optional(z.array(CustomMapping$inboundSchema)),
+    consent_state: types.optional(ConsentState$inboundSchema),
+    consents: types.optional(z.array(ConsentRecord$inboundSchema)),
+    latest_consent: types.optional(ConsentRecord$inboundSchema),
+    application_data_scopes: types.optional(DataScopes$inboundSchema),
+    health: types.optional(Health$inboundSchema),
+    credentials_expire_at: types.optional(types.number()),
+    last_refresh_failed_at: types.optional(types.number()),
+    last_downstream_error_at: types.optional(types.number()),
+    created_at: types.optional(types.number()),
+    updated_at: z.nullable(types.number()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "service_id": "serviceId",
+      "tag_line": "tagLine",
+      "unified_api": "unifiedApi",
+      "integration_state": "integrationState",
+      "auth_type": "authType",
+      "oauth_grant_type": "oauthGrantType",
+      "authorize_url": "authorizeUrl",
+      "revoke_url": "revokeUrl",
+      "form_fields": "formFields",
+      "configurable_resources": "configurableResources",
+      "resource_schema_support": "resourceSchemaSupport",
+      "resource_settings_support": "resourceSettingsSupport",
+      "validation_support": "validationSupport",
+      "schema_support": "schemaSupport",
+      "settings_required_for_authorization": "settingsRequiredForAuthorization",
+      "has_guide": "hasGuide",
+      "custom_mappings": "customMappings",
+      "consent_state": "consentState",
+      "latest_consent": "latestConsent",
+      "application_data_scopes": "applicationDataScopes",
+      "credentials_expire_at": "credentialsExpireAt",
+      "last_refresh_failed_at": "lastRefreshFailedAt",
+      "last_downstream_error_at": "lastDownstreamErrorAt",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function connectionFromJSON(
   jsonString: string,
@@ -574,16 +595,18 @@ export const ConnectionMetadataInput$outboundSchema: z.ZodType<
   ConnectionMetadataInput$Outbound,
   z.ZodTypeDef,
   ConnectionMetadataInput
-> = z.object({
-  additionalProperties: z.record(z.any()).optional(),
-}).transform((v) => {
-  return {
-    ...v.additionalProperties,
-    ...remap$(v, {
-      additionalProperties: null,
-    }),
-  };
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    additionalProperties: z.record(z.any()).optional(),
+  }).transform((v) => {
+    return {
+      ...v.additionalProperties,
+      ...remap$(v, {
+        additionalProperties: null,
+      }),
+    };
+  })
+);
 
 export function connectionMetadataInputToJSON(
   connectionMetadataInput: ConnectionMetadataInput,
@@ -611,17 +634,19 @@ export const ConnectionDefaults$outboundSchema: z.ZodType<
   ConnectionDefaults$Outbound,
   z.ZodTypeDef,
   ConnectionDefaults
-> = z.object({
-  id: z.string().optional(),
-  options: z.array(FormFieldOption$outboundSchema).optional(),
-  value: smartUnion([
-    z.string(),
-    z.number().int(),
-    z.number(),
-    z.boolean(),
-    z.array(smartUnion([z.string(), z.number().int(), z.number()])),
-  ]).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    options: z.array(FormFieldOption$outboundSchema).optional(),
+    value: smartUnion([
+      z.string(),
+      z.number().int(),
+      z.number(),
+      z.boolean(),
+      z.array(smartUnion([z.string(), z.number().int(), z.number()])),
+    ]).optional(),
+  })
+);
 
 export function connectionDefaultsToJSON(
   connectionDefaults: ConnectionDefaults,
@@ -642,10 +667,13 @@ export const ConnectionConfiguration$outboundSchema: z.ZodType<
   ConnectionConfiguration$Outbound,
   z.ZodTypeDef,
   ConnectionConfiguration
-> = z.object({
-  resource: z.string().optional(),
-  defaults: z.array(z.lazy(() => ConnectionDefaults$outboundSchema)).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    resource: z.string().optional(),
+    defaults: z.array(z.lazy(() => ConnectionDefaults$outboundSchema))
+      .optional(),
+  })
+);
 
 export function connectionConfigurationToJSON(
   connectionConfiguration: ConnectionConfiguration,
@@ -672,25 +700,27 @@ export const ConnectionInput$outboundSchema: z.ZodType<
   ConnectionInput$Outbound,
   z.ZodTypeDef,
   ConnectionInput
-> = z.object({
-  enabled: z.boolean().optional(),
-  settings: z.nullable(z.record(z.any())).optional(),
-  metadata: z.nullable(z.lazy(() => ConnectionMetadataInput$outboundSchema))
-    .optional(),
-  configuration: z.array(z.lazy(() => ConnectionConfiguration$outboundSchema))
-    .optional(),
-  customMappings: z.array(CustomMappingInput$outboundSchema).optional(),
-  consentState: ConsentState$outboundSchema.optional(),
-  latestConsent: ConsentRecordInput$outboundSchema.optional(),
-  applicationDataScopes: DataScopesInput$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    customMappings: "custom_mappings",
-    consentState: "consent_state",
-    latestConsent: "latest_consent",
-    applicationDataScopes: "application_data_scopes",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    enabled: z.boolean().optional(),
+    settings: z.nullable(z.record(z.any())).optional(),
+    metadata: z.nullable(z.lazy(() => ConnectionMetadataInput$outboundSchema))
+      .optional(),
+    configuration: z.array(z.lazy(() => ConnectionConfiguration$outboundSchema))
+      .optional(),
+    customMappings: z.array(CustomMappingInput$outboundSchema).optional(),
+    consentState: ConsentState$outboundSchema.optional(),
+    latestConsent: ConsentRecordInput$outboundSchema.optional(),
+    applicationDataScopes: DataScopesInput$outboundSchema.optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      customMappings: "custom_mappings",
+      consentState: "consent_state",
+      latestConsent: "latest_consent",
+      applicationDataScopes: "application_data_scopes",
+    });
+  })
+);
 
 export function connectionInputToJSON(
   connectionInput: ConnectionInput,

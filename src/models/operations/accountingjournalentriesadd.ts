@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -79,19 +79,21 @@ export const AccountingJournalEntriesAddRequest$outboundSchema: z.ZodType<
   AccountingJournalEntriesAddRequest$Outbound,
   z.ZodTypeDef,
   AccountingJournalEntriesAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  idempotencyKey: z.string().optional(),
-  journalEntry: components.JournalEntryInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    journalEntry: "JournalEntry",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    idempotencyKey: z.string().optional(),
+    journalEntry: components.JournalEntryInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      journalEntry: "JournalEntry",
+    });
+  })
+);
 
 export function accountingJournalEntriesAddRequestToJSON(
   accountingJournalEntriesAddRequest: AccountingJournalEntriesAddRequest,
@@ -108,21 +110,23 @@ export const AccountingJournalEntriesAddResponse$inboundSchema: z.ZodType<
   AccountingJournalEntriesAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateJournalEntryResponse: types.optional(
-    components.CreateJournalEntryResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateJournalEntryResponse": "createJournalEntryResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateJournalEntryResponse: types.optional(
+      components.CreateJournalEntryResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateJournalEntryResponse": "createJournalEntryResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingJournalEntriesAddResponseFromJSON(
   jsonString: string,

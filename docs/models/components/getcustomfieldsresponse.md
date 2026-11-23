@@ -16,6 +16,7 @@ let value: GetCustomFieldsResponse = {
       name: "SSN",
       description: "Employee Level",
       value: "495172776",
+      type: "select",
     },
   ],
 };

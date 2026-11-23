@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -150,68 +150,72 @@ export const GoodsReceiptStatus$inboundSchema: z.ZodType<
   GoodsReceiptStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(GoodsReceiptStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(GoodsReceiptStatus)
+);
 
 /** @internal */
 export const GoodsReceipt$inboundSchema: z.ZodType<
   GoodsReceipt,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  downstream_id: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-  receipt_number: z.nullable(types.string()).optional(),
-  reference: z.nullable(types.string()).optional(),
-  purchase_order_id: z.nullable(types.string()).optional(),
-  po_number: z.nullable(types.string()).optional(),
-  supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
-  company_id: z.nullable(types.string()).optional(),
-  subsidiary_id: z.nullable(types.string()).optional(),
-  location_id: z.nullable(types.string()).optional(),
-  department_id: z.nullable(types.string()).optional(),
-  status: z.nullable(GoodsReceiptStatus$inboundSchema).optional(),
-  received_date: z.nullable(types.date()).optional(),
-  posted_date: z.nullable(types.date()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  currency_rate: z.nullable(types.number()).optional(),
-  line_items: types.optional(z.array(GoodsReceiptLineItem$inboundSchema)),
-  notes: z.nullable(types.string()).optional(),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "downstream_id": "downstreamId",
-    "display_id": "displayId",
-    "receipt_number": "receiptNumber",
-    "purchase_order_id": "purchaseOrderId",
-    "po_number": "poNumber",
-    "company_id": "companyId",
-    "subsidiary_id": "subsidiaryId",
-    "location_id": "locationId",
-    "department_id": "departmentId",
-    "received_date": "receivedDate",
-    "posted_date": "postedDate",
-    "currency_rate": "currencyRate",
-    "line_items": "lineItems",
-    "tracking_categories": "trackingCategories",
-    "custom_mappings": "customMappings",
-    "custom_fields": "customFields",
-    "row_version": "rowVersion",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.string(),
+    downstream_id: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    receipt_number: z.nullable(types.string()).optional(),
+    reference: z.nullable(types.string()).optional(),
+    purchase_order_id: z.nullable(types.string()).optional(),
+    po_number: z.nullable(types.string()).optional(),
+    supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    subsidiary_id: z.nullable(types.string()).optional(),
+    location_id: z.nullable(types.string()).optional(),
+    department_id: z.nullable(types.string()).optional(),
+    status: z.nullable(GoodsReceiptStatus$inboundSchema).optional(),
+    received_date: z.nullable(types.date()).optional(),
+    posted_date: z.nullable(types.date()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    currency_rate: z.nullable(types.number()).optional(),
+    line_items: types.optional(z.array(GoodsReceiptLineItem$inboundSchema)),
+    notes: z.nullable(types.string()).optional(),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "downstream_id": "downstreamId",
+      "display_id": "displayId",
+      "receipt_number": "receiptNumber",
+      "purchase_order_id": "purchaseOrderId",
+      "po_number": "poNumber",
+      "company_id": "companyId",
+      "subsidiary_id": "subsidiaryId",
+      "location_id": "locationId",
+      "department_id": "departmentId",
+      "received_date": "receivedDate",
+      "posted_date": "postedDate",
+      "currency_rate": "currencyRate",
+      "line_items": "lineItems",
+      "tracking_categories": "trackingCategories",
+      "custom_mappings": "customMappings",
+      "custom_fields": "customFields",
+      "row_version": "rowVersion",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+    });
+  })
+);
 
 export function goodsReceiptFromJSON(
   jsonString: string,

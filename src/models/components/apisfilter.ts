@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { ApiStatus, ApiStatus$outboundSchema } from "./apistatus.js";
 
 export type ApisFilter = {
@@ -22,9 +23,11 @@ export const ApisFilter$outboundSchema: z.ZodType<
   ApisFilter$Outbound,
   z.ZodTypeDef,
   ApisFilter
-> = z.object({
-  status: ApiStatus$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status: ApiStatus$outboundSchema.optional(),
+  })
+);
 
 export function apisFilterToJSON(apisFilter: ApisFilter): string {
   return JSON.stringify(ApisFilter$outboundSchema.parse(apisFilter));

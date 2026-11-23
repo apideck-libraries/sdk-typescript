@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -169,66 +169,68 @@ export type Payment = {
 
 /** @internal */
 export const Payment$inboundSchema: z.ZodType<Payment, z.ZodTypeDef, unknown> =
-  z.object({
-    id: types.string(),
-    downstream_id: z.nullable(types.string()).optional(),
-    currency: z.nullable(Currency$inboundSchema).optional(),
-    currency_rate: z.nullable(types.number()).optional(),
-    total_amount: types.nullable(types.number()),
-    reference: z.nullable(types.string()).optional(),
-    payment_method: z.nullable(types.string()).optional(),
-    payment_method_reference: z.nullable(types.string()).optional(),
-    payment_method_id: z.nullable(types.string()).optional(),
-    accounts_receivable_account_type: z.nullable(types.string()).optional(),
-    accounts_receivable_account_id: z.nullable(types.string()).optional(),
-    account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-    transaction_date: types.nullable(types.date()),
-    customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
-    supplier: z.nullable(DeprecatedLinkedSupplier$inboundSchema).optional(),
-    company_id: z.nullable(types.string()).optional(),
-    subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
-    reconciled: z.nullable(types.boolean()).optional(),
-    status: types.optional(PaymentStatus$inboundSchema),
-    type: types.optional(PaymentType$inboundSchema),
-    allocations: types.optional(z.array(Allocation$inboundSchema)),
-    note: z.nullable(types.string()).optional(),
-    number: z.nullable(types.string()).optional(),
-    tracking_categories: z.nullable(
-      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-    ).optional(),
-    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-    row_version: z.nullable(types.string()).optional(),
-    display_id: z.nullable(types.string()).optional(),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    updated_by: z.nullable(types.string()).optional(),
-    created_by: z.nullable(types.string()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-  }).transform((v) => {
-    return remap$(v, {
-      "downstream_id": "downstreamId",
-      "currency_rate": "currencyRate",
-      "total_amount": "totalAmount",
-      "payment_method": "paymentMethod",
-      "payment_method_reference": "paymentMethodReference",
-      "payment_method_id": "paymentMethodId",
-      "accounts_receivable_account_type": "accountsReceivableAccountType",
-      "accounts_receivable_account_id": "accountsReceivableAccountId",
-      "transaction_date": "transactionDate",
-      "company_id": "companyId",
-      "tracking_categories": "trackingCategories",
-      "custom_fields": "customFields",
-      "row_version": "rowVersion",
-      "display_id": "displayId",
-      "custom_mappings": "customMappings",
-      "updated_by": "updatedBy",
-      "created_by": "createdBy",
-      "created_at": "createdAt",
-      "updated_at": "updatedAt",
-      "pass_through": "passThrough",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.string(),
+      downstream_id: z.nullable(types.string()).optional(),
+      currency: z.nullable(Currency$inboundSchema).optional(),
+      currency_rate: z.nullable(types.number()).optional(),
+      total_amount: types.nullable(types.number()),
+      reference: z.nullable(types.string()).optional(),
+      payment_method: z.nullable(types.string()).optional(),
+      payment_method_reference: z.nullable(types.string()).optional(),
+      payment_method_id: z.nullable(types.string()).optional(),
+      accounts_receivable_account_type: z.nullable(types.string()).optional(),
+      accounts_receivable_account_id: z.nullable(types.string()).optional(),
+      account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+      transaction_date: types.nullable(types.date()),
+      customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
+      supplier: z.nullable(DeprecatedLinkedSupplier$inboundSchema).optional(),
+      company_id: z.nullable(types.string()).optional(),
+      subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
+      reconciled: z.nullable(types.boolean()).optional(),
+      status: types.optional(PaymentStatus$inboundSchema),
+      type: types.optional(PaymentType$inboundSchema),
+      allocations: types.optional(z.array(Allocation$inboundSchema)),
+      note: z.nullable(types.string()).optional(),
+      number: z.nullable(types.string()).optional(),
+      tracking_categories: z.nullable(
+        z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+      ).optional(),
+      custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+      row_version: z.nullable(types.string()).optional(),
+      display_id: z.nullable(types.string()).optional(),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+      updated_by: z.nullable(types.string()).optional(),
+      created_by: z.nullable(types.string()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+      pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    }).transform((v) => {
+      return remap$(v, {
+        "downstream_id": "downstreamId",
+        "currency_rate": "currencyRate",
+        "total_amount": "totalAmount",
+        "payment_method": "paymentMethod",
+        "payment_method_reference": "paymentMethodReference",
+        "payment_method_id": "paymentMethodId",
+        "accounts_receivable_account_type": "accountsReceivableAccountType",
+        "accounts_receivable_account_id": "accountsReceivableAccountId",
+        "transaction_date": "transactionDate",
+        "company_id": "companyId",
+        "tracking_categories": "trackingCategories",
+        "custom_fields": "customFields",
+        "row_version": "rowVersion",
+        "display_id": "displayId",
+        "custom_mappings": "customMappings",
+        "updated_by": "updatedBy",
+        "created_by": "createdBy",
+        "created_at": "createdAt",
+        "updated_at": "updatedAt",
+        "pass_through": "passThrough",
+      });
+    })
+  );
 
 export function paymentFromJSON(
   jsonString: string,

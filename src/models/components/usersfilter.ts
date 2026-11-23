@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type UsersFilter = {
   /**
@@ -26,10 +27,12 @@ export const UsersFilter$outboundSchema: z.ZodType<
   UsersFilter$Outbound,
   z.ZodTypeDef,
   UsersFilter
-> = z.object({
-  email: z.string().optional(),
-  name: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    email: z.string().optional(),
+    name: z.string().optional(),
+  })
+);
 
 export function usersFilterToJSON(usersFilter: UsersFilter): string {
   return JSON.stringify(UsersFilter$outboundSchema.parse(usersFilter));

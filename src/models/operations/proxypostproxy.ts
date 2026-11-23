@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -121,7 +121,7 @@ export const Three$outboundSchema: z.ZodType<
   Three$Outbound,
   z.ZodTypeDef,
   Three
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function threeToJSON(three: Three): string {
   return JSON.stringify(Three$outboundSchema.parse(three));
@@ -131,8 +131,8 @@ export function threeToJSON(three: Three): string {
 export type One$Outbound = {};
 
 /** @internal */
-export const One$outboundSchema: z.ZodType<One$Outbound, z.ZodTypeDef, One> = z
-  .object({});
+export const One$outboundSchema: z.ZodType<One$Outbound, z.ZodTypeDef, One> =
+  /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function oneToJSON(one: One): string {
   return JSON.stringify(One$outboundSchema.parse(one));
@@ -161,26 +161,28 @@ export const ProxyPostProxyRequest$outboundSchema: z.ZodType<
   ProxyPostProxyRequest$Outbound,
   z.ZodTypeDef,
   ProxyPostProxyRequest
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string(),
-  unifiedApi: z.string().optional(),
-  downstreamUrl: z.string(),
-  downstreamAuthorization: z.string().optional(),
-  timeout: z.number().int().default(28000),
-  followRedirects: z.boolean().default(true),
-  requestBody: z.union([
-    z.instanceof(ReadableStream<Uint8Array>),
-    z.instanceof(Blob),
-    z.instanceof(ArrayBuffer),
-    z.instanceof(Uint8Array),
-  ]).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string(),
+    unifiedApi: z.string().optional(),
+    downstreamUrl: z.string(),
+    downstreamAuthorization: z.string().optional(),
+    timeout: z.number().int().default(28000),
+    followRedirects: z.boolean().default(true),
+    requestBody: z.union([
+      z.instanceof(ReadableStream<Uint8Array>),
+      z.instanceof(Blob),
+      z.instanceof(ArrayBuffer),
+      z.instanceof(Uint8Array),
+    ]).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function proxyPostProxyRequestToJSON(
   proxyPostProxyRequest: ProxyPostProxyRequest,
@@ -195,23 +197,25 @@ export const ProxyPostProxyResponse$inboundSchema: z.ZodType<
   ProxyPostProxyResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  responseJson: types.optional(z.record(z.any())),
-  responseBinary: types.optional(z.instanceof(ReadableStream<Uint8Array>)),
-  responsePdf: types.optional(z.instanceof(ReadableStream<Uint8Array>)),
-  responseXml: types.optional(types.string()),
-  responseCsv: types.optional(types.string()),
-  responseText: types.optional(types.string()),
-  errorJson: types.optional(z.record(z.any())),
-  errorXml: types.optional(types.string()),
-  errorHtml: types.optional(types.string()),
-  errorText: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    responseJson: types.optional(z.record(z.any())),
+    responseBinary: types.optional(z.instanceof(ReadableStream<Uint8Array>)),
+    responsePdf: types.optional(z.instanceof(ReadableStream<Uint8Array>)),
+    responseXml: types.optional(types.string()),
+    responseCsv: types.optional(types.string()),
+    responseText: types.optional(types.string()),
+    errorJson: types.optional(z.record(z.any())),
+    errorXml: types.optional(types.string()),
+    errorHtml: types.optional(types.string()),
+    errorText: types.optional(types.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+    });
+  })
+);
 
 export function proxyPostProxyResponseFromJSON(
   jsonString: string,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -79,7 +80,9 @@ export const EmployeesFilterEmploymentStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   EmployeesFilterEmploymentStatus
-> = openEnums.outboundSchema(EmployeesFilterEmploymentStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(EmployeesFilterEmploymentStatus)
+);
 
 /** @internal */
 export type EmployeesFilter$Outbound = {
@@ -102,33 +105,35 @@ export const EmployeesFilter$outboundSchema: z.ZodType<
   EmployeesFilter$Outbound,
   z.ZodTypeDef,
   EmployeesFilter
-> = z.object({
-  companyId: z.string().optional(),
-  email: z.string().optional(),
-  firstName: z.string().optional(),
-  title: z.string().optional(),
-  lastName: z.string().optional(),
-  managerId: z.string().optional(),
-  employmentStatus: EmployeesFilterEmploymentStatus$outboundSchema.optional(),
-  employeeNumber: z.string().optional(),
-  departmentId: z.string().optional(),
-  city: z.string().optional(),
-  country: z.string().optional(),
-  asOfDate: z.date().transform(v =>
-    v.toISOString().slice(0, "YYYY-MM-DD".length)
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    companyId: "company_id",
-    firstName: "first_name",
-    lastName: "last_name",
-    managerId: "manager_id",
-    employmentStatus: "employment_status",
-    employeeNumber: "employee_number",
-    departmentId: "department_id",
-    asOfDate: "as_of_date",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    companyId: z.string().optional(),
+    email: z.string().optional(),
+    firstName: z.string().optional(),
+    title: z.string().optional(),
+    lastName: z.string().optional(),
+    managerId: z.string().optional(),
+    employmentStatus: EmployeesFilterEmploymentStatus$outboundSchema.optional(),
+    employeeNumber: z.string().optional(),
+    departmentId: z.string().optional(),
+    city: z.string().optional(),
+    country: z.string().optional(),
+    asOfDate: z.date().transform(v =>
+      v.toISOString().slice(0, "YYYY-MM-DD".length)
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      companyId: "company_id",
+      firstName: "first_name",
+      lastName: "last_name",
+      managerId: "manager_id",
+      employmentStatus: "employment_status",
+      employeeNumber: "employee_number",
+      departmentId: "department_id",
+      asOfDate: "as_of_date",
+    });
+  })
+);
 
 export function employeesFilterToJSON(
   employeesFilter: EmployeesFilter,

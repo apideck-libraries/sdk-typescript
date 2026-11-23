@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { LineItemType, LineItemType$outboundSchema } from "./lineitemtype.js";
 import {
   LinkedCustomerInput,
@@ -139,42 +140,44 @@ export const ExpenseLineItemInput$outboundSchema: z.ZodType<
   ExpenseLineItemInput$Outbound,
   z.ZodTypeDef,
   ExpenseLineItemInput
-> = z.object({
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  accountId: z.string().optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  customerId: z.string().optional(),
-  customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
-  locationId: z.nullable(z.string()).optional(),
-  location: z.nullable(LinkedLocationInput$outboundSchema).optional(),
-  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  description: z.nullable(z.string()).optional(),
-  type: z.nullable(LineItemType$outboundSchema).optional(),
-  totalAmount: z.nullable(z.number()),
-  taxAmount: z.nullable(z.number()).optional(),
-  quantity: z.nullable(z.number()).optional(),
-  unitPrice: z.nullable(z.number()).optional(),
-  item: LinkedInvoiceItem$outboundSchema.optional(),
-  lineNumber: z.nullable(z.number().int()).optional(),
-  rebilling: z.nullable(Rebilling$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    trackingCategories: "tracking_categories",
-    accountId: "account_id",
-    customerId: "customer_id",
-    departmentId: "department_id",
-    locationId: "location_id",
-    taxRate: "tax_rate",
-    totalAmount: "total_amount",
-    taxAmount: "tax_amount",
-    unitPrice: "unit_price",
-    lineNumber: "line_number",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    accountId: z.string().optional(),
+    account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    customerId: z.string().optional(),
+    customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
+    departmentId: z.nullable(z.string()).optional(),
+    department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
+    locationId: z.nullable(z.string()).optional(),
+    location: z.nullable(LinkedLocationInput$outboundSchema).optional(),
+    taxRate: LinkedTaxRateInput$outboundSchema.optional(),
+    description: z.nullable(z.string()).optional(),
+    type: z.nullable(LineItemType$outboundSchema).optional(),
+    totalAmount: z.nullable(z.number()),
+    taxAmount: z.nullable(z.number()).optional(),
+    quantity: z.nullable(z.number()).optional(),
+    unitPrice: z.nullable(z.number()).optional(),
+    item: LinkedInvoiceItem$outboundSchema.optional(),
+    lineNumber: z.nullable(z.number().int()).optional(),
+    rebilling: z.nullable(Rebilling$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      trackingCategories: "tracking_categories",
+      accountId: "account_id",
+      customerId: "customer_id",
+      departmentId: "department_id",
+      locationId: "location_id",
+      taxRate: "tax_rate",
+      totalAmount: "total_amount",
+      taxAmount: "tax_amount",
+      unitPrice: "unit_price",
+      lineNumber: "line_number",
+    });
+  })
+);
 
 export function expenseLineItemInputToJSON(
   expenseLineItemInput: ExpenseLineItemInput,

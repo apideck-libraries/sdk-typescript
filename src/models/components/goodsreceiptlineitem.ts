@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -90,46 +90,48 @@ export const GoodsReceiptLineItem$inboundSchema: z.ZodType<
   GoodsReceiptLineItem,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  line_number: z.nullable(types.number()).optional(),
-  purchase_order: z.nullable(LinkedPurchaseOrder$inboundSchema).optional(),
-  item: types.optional(LinkedInvoiceItem$inboundSchema),
-  description: z.nullable(types.string()).optional(),
-  quantity_received: z.nullable(types.number()).optional(),
-  quantity_ordered: z.nullable(types.number()).optional(),
-  unit_of_measure: z.nullable(types.string()).optional(),
-  unit_price: z.nullable(types.number()).optional(),
-  total_amount: z.nullable(types.number()).optional(),
-  location_id: z.nullable(types.string()).optional(),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "line_number": "lineNumber",
-    "purchase_order": "purchaseOrder",
-    "quantity_received": "quantityReceived",
-    "quantity_ordered": "quantityOrdered",
-    "unit_of_measure": "unitOfMeasure",
-    "unit_price": "unitPrice",
-    "total_amount": "totalAmount",
-    "location_id": "locationId",
-    "tracking_categories": "trackingCategories",
-    "custom_fields": "customFields",
-    "row_version": "rowVersion",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    line_number: z.nullable(types.number()).optional(),
+    purchase_order: z.nullable(LinkedPurchaseOrder$inboundSchema).optional(),
+    item: types.optional(LinkedInvoiceItem$inboundSchema),
+    description: z.nullable(types.string()).optional(),
+    quantity_received: z.nullable(types.number()).optional(),
+    quantity_ordered: z.nullable(types.number()).optional(),
+    unit_of_measure: z.nullable(types.string()).optional(),
+    unit_price: z.nullable(types.number()).optional(),
+    total_amount: z.nullable(types.number()).optional(),
+    location_id: z.nullable(types.string()).optional(),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "line_number": "lineNumber",
+      "purchase_order": "purchaseOrder",
+      "quantity_received": "quantityReceived",
+      "quantity_ordered": "quantityOrdered",
+      "unit_of_measure": "unitOfMeasure",
+      "unit_price": "unitPrice",
+      "total_amount": "totalAmount",
+      "location_id": "locationId",
+      "tracking_categories": "trackingCategories",
+      "custom_fields": "customFields",
+      "row_version": "rowVersion",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+    });
+  })
+);
 
 export function goodsReceiptLineItemFromJSON(
   jsonString: string,
