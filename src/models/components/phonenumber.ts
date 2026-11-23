@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -65,32 +65,36 @@ export const PhoneNumberType$inboundSchema: z.ZodType<
   PhoneNumberType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(PhoneNumberType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(PhoneNumberType));
 /** @internal */
 export const PhoneNumberType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   PhoneNumberType
-> = openEnums.outboundSchema(PhoneNumberType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(PhoneNumberType)
+);
 
 /** @internal */
 export const PhoneNumber$inboundSchema: z.ZodType<
   PhoneNumber,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  country_code: z.nullable(types.string()).optional(),
-  area_code: z.nullable(types.string()).optional(),
-  number: types.string(),
-  extension: z.nullable(types.string()).optional(),
-  type: z.nullable(PhoneNumberType$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "country_code": "countryCode",
-    "area_code": "areaCode",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    country_code: z.nullable(types.string()).optional(),
+    area_code: z.nullable(types.string()).optional(),
+    number: types.string(),
+    extension: z.nullable(types.string()).optional(),
+    type: z.nullable(PhoneNumberType$inboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "country_code": "countryCode",
+      "area_code": "areaCode",
+    });
+  })
+);
 /** @internal */
 export type PhoneNumber$Outbound = {
   id?: string | null | undefined;
@@ -106,19 +110,21 @@ export const PhoneNumber$outboundSchema: z.ZodType<
   PhoneNumber$Outbound,
   z.ZodTypeDef,
   PhoneNumber
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  countryCode: z.nullable(z.string()).optional(),
-  areaCode: z.nullable(z.string()).optional(),
-  number: z.string(),
-  extension: z.nullable(z.string()).optional(),
-  type: z.nullable(PhoneNumberType$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    countryCode: "country_code",
-    areaCode: "area_code",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    countryCode: z.nullable(z.string()).optional(),
+    areaCode: z.nullable(z.string()).optional(),
+    number: z.string(),
+    extension: z.nullable(z.string()).optional(),
+    type: z.nullable(PhoneNumberType$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      countryCode: "country_code",
+      areaCode: "area_code",
+    });
+  })
+);
 
 export function phoneNumberToJSON(phoneNumber: PhoneNumber): string {
   return JSON.stringify(PhoneNumber$outboundSchema.parse(phoneNumber));

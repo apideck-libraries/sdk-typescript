@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -29,15 +29,17 @@ export const LinkedPaymentAllocations$inboundSchema: z.ZodType<
   LinkedPaymentAllocations,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  allocated_amount: z.nullable(types.number()).optional(),
-  date: z.nullable(types.date()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "allocated_amount": "allocatedAmount",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    allocated_amount: z.nullable(types.number()).optional(),
+    date: z.nullable(types.date()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "allocated_amount": "allocatedAmount",
+    });
+  })
+);
 /** @internal */
 export type LinkedPaymentAllocations$Outbound = {
   id?: string | undefined;
@@ -50,15 +52,17 @@ export const LinkedPaymentAllocations$outboundSchema: z.ZodType<
   LinkedPaymentAllocations$Outbound,
   z.ZodTypeDef,
   LinkedPaymentAllocations
-> = z.object({
-  id: z.string().optional(),
-  allocatedAmount: z.nullable(z.number()).optional(),
-  date: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    allocatedAmount: "allocated_amount",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    allocatedAmount: z.nullable(z.number()).optional(),
+    date: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      allocatedAmount: "allocated_amount",
+    });
+  })
+);
 
 export function linkedPaymentAllocationsToJSON(
   linkedPaymentAllocations: LinkedPaymentAllocations,

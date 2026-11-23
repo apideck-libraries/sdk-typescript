@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -51,10 +51,12 @@ export const WebhookWebhooksOneRequest$outboundSchema: z.ZodType<
   WebhookWebhooksOneRequest$Outbound,
   z.ZodTypeDef,
   WebhookWebhooksOneRequest
-> = z.object({
-  id: z.string(),
-  appId: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    appId: z.string().optional(),
+  })
+);
 
 export function webhookWebhooksOneRequestToJSON(
   webhookWebhooksOneRequest: WebhookWebhooksOneRequest,
@@ -69,21 +71,23 @@ export const WebhookWebhooksOneResponse$inboundSchema: z.ZodType<
   WebhookWebhooksOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetWebhookResponse: types.optional(
-    components.GetWebhookResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetWebhookResponse": "getWebhookResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetWebhookResponse: types.optional(
+      components.GetWebhookResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetWebhookResponse": "getWebhookResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function webhookWebhooksOneResponseFromJSON(
   jsonString: string,

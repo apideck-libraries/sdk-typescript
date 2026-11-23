@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
   collectExtraKeys as collectExtraKeys$,
+  lazySchema as lazySchema$,
   safeParse,
 } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -115,11 +116,13 @@ export class MethodNotAllowedResponse extends ApideckError {
 }
 
 /** @internal */
-export const Error2$inboundSchema: z.ZodType<Error2, z.ZodTypeDef, unknown> = z
-  .object({
-    reason: types.optional(types.string()),
-    error: types.optional(types.string()),
-  });
+export const Error2$inboundSchema: z.ZodType<Error2, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      reason: types.optional(types.string()),
+      error: types.optional(types.string()),
+    })
+  );
 
 export function error2FromJSON(
   jsonString: string,
@@ -133,7 +136,9 @@ export function error2FromJSON(
 
 /** @internal */
 export const ErrorT$inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> =
-  smartUnion([types.string(), z.lazy(() => Error2$inboundSchema)]);
+  /* @__PURE__ */ lazySchema$(() =>
+    smartUnion([types.string(), z.lazy(() => Error2$inboundSchema)])
+  );
 
 export function errorFromJSON(
   jsonString: string,
@@ -150,15 +155,17 @@ export const MethodNotAllowedResponseDetail$inboundSchema: z.ZodType<
   MethodNotAllowedResponseDetail,
   z.ZodTypeDef,
   unknown
-> = collectExtraKeys$(
-  z.object({
-    context: types.optional(types.string()),
-    error: types.optional(
-      smartUnion([types.string(), z.lazy(() => Error2$inboundSchema)]),
-    ),
-  }).catchall(z.any()),
-  "additionalProperties",
-  true,
+> = /* @__PURE__ */ lazySchema$(() =>
+  collectExtraKeys$(
+    z.object({
+      context: types.optional(types.string()),
+      error: types.optional(
+        smartUnion([types.string(), z.lazy(() => Error2$inboundSchema)]),
+      ),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  )
 );
 
 export function methodNotAllowedResponseDetailFromJSON(
@@ -176,28 +183,30 @@ export const MethodNotAllowedResponse$inboundSchema: z.ZodType<
   MethodNotAllowedResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  status_code: types.optional(types.number()),
-  error: types.optional(types.string()),
-  type_name: types.optional(types.string()),
-  message: types.optional(types.string()),
-  detail: types.optional(
-    z.lazy(() => MethodNotAllowedResponseDetail$inboundSchema),
-  ),
-  ref: types.optional(types.string()),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    const remapped = remap$(v, {
-      "status_code": "statusCode",
-      "type_name": "typeName",
-    });
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status_code: types.optional(types.number()),
+    error: types.optional(types.string()),
+    type_name: types.optional(types.string()),
+    message: types.optional(types.string()),
+    detail: types.optional(
+      z.lazy(() => MethodNotAllowedResponseDetail$inboundSchema),
+    ),
+    ref: types.optional(types.string()),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
+  })
+    .transform((v) => {
+      const remapped = remap$(v, {
+        "status_code": "statusCode",
+        "type_name": "typeName",
+      });
 
-    return new MethodNotAllowedResponse(remapped, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+      return new MethodNotAllowedResponse(remapped, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
+    })
+);

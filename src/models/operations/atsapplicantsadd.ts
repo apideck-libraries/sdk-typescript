@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -67,17 +67,19 @@ export const AtsApplicantsAddRequest$outboundSchema: z.ZodType<
   AtsApplicantsAddRequest$Outbound,
   z.ZodTypeDef,
   AtsApplicantsAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  applicant: components.ApplicantInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    applicant: "Applicant",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    applicant: components.ApplicantInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      applicant: "Applicant",
+    });
+  })
+);
 
 export function atsApplicantsAddRequestToJSON(
   atsApplicantsAddRequest: AtsApplicantsAddRequest,
@@ -92,21 +94,23 @@ export const AtsApplicantsAddResponse$inboundSchema: z.ZodType<
   AtsApplicantsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateApplicantResponse: types.optional(
-    components.CreateApplicantResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateApplicantResponse": "createApplicantResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateApplicantResponse: types.optional(
+      components.CreateApplicantResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateApplicantResponse": "createApplicantResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function atsApplicantsAddResponseFromJSON(
   jsonString: string,

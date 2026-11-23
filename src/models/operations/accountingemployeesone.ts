@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -77,14 +77,16 @@ export const AccountingEmployeesOneRequest$outboundSchema: z.ZodType<
   AccountingEmployeesOneRequest$Outbound,
   z.ZodTypeDef,
   AccountingEmployeesOneRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    fields: z.nullable(z.string()).optional(),
+  })
+);
 
 export function accountingEmployeesOneRequestToJSON(
   accountingEmployeesOneRequest: AccountingEmployeesOneRequest,
@@ -101,21 +103,23 @@ export const AccountingEmployeesOneResponse$inboundSchema: z.ZodType<
   AccountingEmployeesOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetAccountingEmployeeResponse: types.optional(
-    components.GetAccountingEmployeeResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetAccountingEmployeeResponse": "getAccountingEmployeeResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetAccountingEmployeeResponse: types.optional(
+      components.GetAccountingEmployeeResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetAccountingEmployeeResponse": "getAccountingEmployeeResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingEmployeesOneResponseFromJSON(
   jsonString: string,

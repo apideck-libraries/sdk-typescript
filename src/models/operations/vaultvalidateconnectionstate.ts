@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -65,7 +65,7 @@ export const VaultValidateConnectionStateRequestBody$outboundSchema: z.ZodType<
   VaultValidateConnectionStateRequestBody$Outbound,
   z.ZodTypeDef,
   VaultValidateConnectionStateRequestBody
-> = z.object({});
+> = /* @__PURE__ */ lazySchema$(() => z.object({}));
 
 export function vaultValidateConnectionStateRequestBodyToJSON(
   vaultValidateConnectionStateRequestBody:
@@ -92,21 +92,23 @@ export const VaultValidateConnectionStateRequest$outboundSchema: z.ZodType<
   VaultValidateConnectionStateRequest$Outbound,
   z.ZodTypeDef,
   VaultValidateConnectionStateRequest
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string(),
-  unifiedApi: z.string(),
-  requestBody: z.lazy(() =>
-    VaultValidateConnectionStateRequestBody$outboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    serviceId: "service_id",
-    unifiedApi: "unified_api",
-    requestBody: "RequestBody",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string(),
+    unifiedApi: z.string(),
+    requestBody: z.lazy(() =>
+      VaultValidateConnectionStateRequestBody$outboundSchema
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      serviceId: "service_id",
+      unifiedApi: "unified_api",
+      requestBody: "RequestBody",
+    });
+  })
+);
 
 export function vaultValidateConnectionStateRequestToJSON(
   vaultValidateConnectionStateRequest: VaultValidateConnectionStateRequest,
@@ -123,21 +125,23 @@ export const VaultValidateConnectionStateResponse$inboundSchema: z.ZodType<
   VaultValidateConnectionStateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  ValidateConnectionStateResponse: types.optional(
-    components.ValidateConnectionStateResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "ValidateConnectionStateResponse": "validateConnectionStateResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    ValidateConnectionStateResponse: types.optional(
+      components.ValidateConnectionStateResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "ValidateConnectionStateResponse": "validateConnectionStateResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultValidateConnectionStateResponseFromJSON(
   jsonString: string,

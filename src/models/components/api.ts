@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -96,23 +96,25 @@ export type Api = {
 
 /** @internal */
 export const ApiType$inboundSchema: z.ZodType<ApiType, z.ZodTypeDef, unknown> =
-  openEnums.inboundSchema(ApiType);
+  /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(ApiType));
 
 /** @internal */
 export const ApiResources$inboundSchema: z.ZodType<
   ApiResources,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: types.optional(types.string()),
-  status: types.optional(ResourceStatus$inboundSchema),
-  excluded_from_coverage: types.optional(types.boolean()),
-}).transform((v) => {
-  return remap$(v, {
-    "excluded_from_coverage": "excludedFromCoverage",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    name: types.optional(types.string()),
+    status: types.optional(ResourceStatus$inboundSchema),
+    excluded_from_coverage: types.optional(types.boolean()),
+  }).transform((v) => {
+    return remap$(v, {
+      "excluded_from_coverage": "excludedFromCoverage",
+    });
+  })
+);
 
 export function apiResourcesFromJSON(
   jsonString: string,
@@ -125,28 +127,30 @@ export function apiResourcesFromJSON(
 }
 
 /** @internal */
-export const Api$inboundSchema: z.ZodType<Api, z.ZodTypeDef, unknown> = z
-  .object({
-    id: types.optional(types.string()),
-    type: types.optional(ApiType$inboundSchema),
-    name: types.optional(types.string()),
-    description: z.nullable(types.string()).optional(),
-    status: types.optional(ApiStatus$inboundSchema),
-    spec_url: types.optional(types.string()),
-    api_reference_url: types.optional(types.string()),
-    postman_collection_id: z.nullable(types.string()).optional(),
-    categories: types.optional(z.array(types.string())),
-    resources: types.optional(
-      z.array(z.lazy(() => ApiResources$inboundSchema)),
-    ),
-    events: types.optional(z.array(types.string())),
-  }).transform((v) => {
-    return remap$(v, {
-      "spec_url": "specUrl",
-      "api_reference_url": "apiReferenceUrl",
-      "postman_collection_id": "postmanCollectionId",
-    });
-  });
+export const Api$inboundSchema: z.ZodType<Api, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.optional(types.string()),
+      type: types.optional(ApiType$inboundSchema),
+      name: types.optional(types.string()),
+      description: z.nullable(types.string()).optional(),
+      status: types.optional(ApiStatus$inboundSchema),
+      spec_url: types.optional(types.string()),
+      api_reference_url: types.optional(types.string()),
+      postman_collection_id: z.nullable(types.string()).optional(),
+      categories: types.optional(z.array(types.string())),
+      resources: types.optional(
+        z.array(z.lazy(() => ApiResources$inboundSchema)),
+      ),
+      events: types.optional(z.array(types.string())),
+    }).transform((v) => {
+      return remap$(v, {
+        "spec_url": "specUrl",
+        "api_reference_url": "apiReferenceUrl",
+        "postman_collection_id": "postmanCollectionId",
+      });
+    })
+  );
 
 export function apiFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,19 +72,21 @@ export const IssueTrackingCollectionTicketsAddRequest$outboundSchema: z.ZodType<
   IssueTrackingCollectionTicketsAddRequest$Outbound,
   z.ZodTypeDef,
   IssueTrackingCollectionTicketsAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  collectionId: z.string(),
-  ticket: components.TicketInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    collectionId: "collection_id",
-    ticket: "Ticket",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    collectionId: z.string(),
+    ticket: components.TicketInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      collectionId: "collection_id",
+      ticket: "Ticket",
+    });
+  })
+);
 
 export function issueTrackingCollectionTicketsAddRequestToJSON(
   issueTrackingCollectionTicketsAddRequest:
@@ -102,21 +104,23 @@ export const IssueTrackingCollectionTicketsAddResponse$inboundSchema: z.ZodType<
   IssueTrackingCollectionTicketsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateTicketResponse: types.optional(
-    components.CreateTicketResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateTicketResponse": "createTicketResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateTicketResponse: types.optional(
+      components.CreateTicketResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateTicketResponse": "createTicketResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function issueTrackingCollectionTicketsAddResponseFromJSON(
   jsonString: string,

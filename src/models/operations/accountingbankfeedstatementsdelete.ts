@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -73,13 +73,15 @@ export const AccountingBankFeedStatementsDeleteRequest$outboundSchema:
     AccountingBankFeedStatementsDeleteRequest$Outbound,
     z.ZodTypeDef,
     AccountingBankFeedStatementsDeleteRequest
-  > = z.object({
-    id: z.string(),
-    consumerId: z.string().optional(),
-    appId: z.string().optional(),
-    serviceId: z.string().optional(),
-    raw: z.boolean().default(false),
-  });
+  > = /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.string(),
+      consumerId: z.string().optional(),
+      appId: z.string().optional(),
+      serviceId: z.string().optional(),
+      raw: z.boolean().default(false),
+    })
+  );
 
 export function accountingBankFeedStatementsDeleteRequestToJSON(
   accountingBankFeedStatementsDeleteRequest:
@@ -95,21 +97,23 @@ export function accountingBankFeedStatementsDeleteRequestToJSON(
 /** @internal */
 export const AccountingBankFeedStatementsDeleteResponse$inboundSchema:
   z.ZodType<AccountingBankFeedStatementsDeleteResponse, z.ZodTypeDef, unknown> =
-    z.object({
-      HttpMeta: components.HTTPMetadata$inboundSchema,
-      DeleteBankFeedStatementResponse: types.optional(
-        components.DeleteBankFeedStatementResponse$inboundSchema,
-      ),
-      UnexpectedErrorResponse: types.optional(
-        components.UnexpectedErrorResponse$inboundSchema,
-      ),
-    }).transform((v) => {
-      return remap$(v, {
-        "HttpMeta": "httpMeta",
-        "DeleteBankFeedStatementResponse": "deleteBankFeedStatementResponse",
-        "UnexpectedErrorResponse": "unexpectedErrorResponse",
-      });
-    });
+    /* @__PURE__ */ lazySchema$(() =>
+      z.object({
+        HttpMeta: components.HTTPMetadata$inboundSchema,
+        DeleteBankFeedStatementResponse: types.optional(
+          components.DeleteBankFeedStatementResponse$inboundSchema,
+        ),
+        UnexpectedErrorResponse: types.optional(
+          components.UnexpectedErrorResponse$inboundSchema,
+        ),
+      }).transform((v) => {
+        return remap$(v, {
+          "HttpMeta": "httpMeta",
+          "DeleteBankFeedStatementResponse": "deleteBankFeedStatementResponse",
+          "UnexpectedErrorResponse": "unexpectedErrorResponse",
+        });
+      })
+    );
 
 export function accountingBankFeedStatementsDeleteResponseFromJSON(
   jsonString: string,

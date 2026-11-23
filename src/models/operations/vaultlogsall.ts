@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -70,13 +70,15 @@ export const VaultLogsAllRequest$outboundSchema: z.ZodType<
   VaultLogsAllRequest$Outbound,
   z.ZodTypeDef,
   VaultLogsAllRequest
-> = z.object({
-  appId: z.string().optional(),
-  consumerId: z.string().optional(),
-  filter: components.LogsFilter$outboundSchema.optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    appId: z.string().optional(),
+    consumerId: z.string().optional(),
+    filter: components.LogsFilter$outboundSchema.optional(),
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+  })
+);
 
 export function vaultLogsAllRequestToJSON(
   vaultLogsAllRequest: VaultLogsAllRequest,
@@ -91,19 +93,21 @@ export const VaultLogsAllResponse$inboundSchema: z.ZodType<
   VaultLogsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetLogsResponse: types.optional(components.GetLogsResponse$inboundSchema),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetLogsResponse": "getLogsResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetLogsResponse: types.optional(components.GetLogsResponse$inboundSchema),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetLogsResponse": "getLogsResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultLogsAllResponseFromJSON(
   jsonString: string,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type BankFeedStatementsFilter = {
   /**
@@ -22,13 +23,15 @@ export const BankFeedStatementsFilter$outboundSchema: z.ZodType<
   BankFeedStatementsFilter$Outbound,
   z.ZodTypeDef,
   BankFeedStatementsFilter
-> = z.object({
-  bankFeedAccountId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    bankFeedAccountId: "bank_feed_account_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    bankFeedAccountId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      bankFeedAccountId: "bank_feed_account_id",
+    });
+  })
+);
 
 export function bankFeedStatementsFilterToJSON(
   bankFeedStatementsFilter: BankFeedStatementsFilter,

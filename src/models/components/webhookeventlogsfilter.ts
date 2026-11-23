@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type WebhookEventLogsFilterService = {
   id?: string | undefined;
@@ -55,9 +56,11 @@ export const WebhookEventLogsFilterService$outboundSchema: z.ZodType<
   WebhookEventLogsFilterService$Outbound,
   z.ZodTypeDef,
   WebhookEventLogsFilterService
-> = z.object({
-  id: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+  })
+);
 
 export function webhookEventLogsFilterServiceToJSON(
   webhookEventLogsFilterService: WebhookEventLogsFilterService,
@@ -90,35 +93,37 @@ export const WebhookEventLogsFilter$outboundSchema: z.ZodType<
   WebhookEventLogsFilter$Outbound,
   z.ZodTypeDef,
   WebhookEventLogsFilter
-> = z.object({
-  excludeApis: z.nullable(z.string()).optional(),
-  service: z.nullable(
-    z.lazy(() => WebhookEventLogsFilterService$outboundSchema),
-  ).optional(),
-  consumerId: z.nullable(z.string()).optional(),
-  entityType: z.nullable(z.string()).optional(),
-  eventType: z.nullable(z.string()).optional(),
-  startDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  endDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  success: z.nullable(z.boolean()).optional(),
-  statusCode: z.nullable(z.number()).optional(),
-  statusCodes: z.nullable(z.array(z.number())).optional(),
-  eventId: z.nullable(z.string()).optional(),
-  executionAttempt: z.nullable(z.number()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    excludeApis: "exclude_apis",
-    consumerId: "consumer_id",
-    entityType: "entity_type",
-    eventType: "event_type",
-    startDate: "start_date",
-    endDate: "end_date",
-    statusCode: "status_code",
-    statusCodes: "status_codes",
-    eventId: "event_id",
-    executionAttempt: "execution_attempt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    excludeApis: z.nullable(z.string()).optional(),
+    service: z.nullable(
+      z.lazy(() => WebhookEventLogsFilterService$outboundSchema),
+    ).optional(),
+    consumerId: z.nullable(z.string()).optional(),
+    entityType: z.nullable(z.string()).optional(),
+    eventType: z.nullable(z.string()).optional(),
+    startDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+    endDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+    success: z.nullable(z.boolean()).optional(),
+    statusCode: z.nullable(z.number()).optional(),
+    statusCodes: z.nullable(z.array(z.number())).optional(),
+    eventId: z.nullable(z.string()).optional(),
+    executionAttempt: z.nullable(z.number()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      excludeApis: "exclude_apis",
+      consumerId: "consumer_id",
+      entityType: "entity_type",
+      eventType: "event_type",
+      startDate: "start_date",
+      endDate: "end_date",
+      statusCode: "status_code",
+      statusCodes: "status_codes",
+      eventId: "event_id",
+      executionAttempt: "execution_attempt",
+    });
+  })
+);
 
 export function webhookEventLogsFilterToJSON(
   webhookEventLogsFilter: WebhookEventLogsFilter,

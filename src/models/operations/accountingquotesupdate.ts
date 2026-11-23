@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -77,19 +77,21 @@ export const AccountingQuotesUpdateRequest$outboundSchema: z.ZodType<
   AccountingQuotesUpdateRequest$Outbound,
   z.ZodTypeDef,
   AccountingQuotesUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  raw: z.boolean().default(false),
-  quote: components.QuoteInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    quote: "Quote",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    raw: z.boolean().default(false),
+    quote: components.QuoteInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      quote: "Quote",
+    });
+  })
+);
 
 export function accountingQuotesUpdateRequestToJSON(
   accountingQuotesUpdateRequest: AccountingQuotesUpdateRequest,
@@ -106,21 +108,23 @@ export const AccountingQuotesUpdateResponse$inboundSchema: z.ZodType<
   AccountingQuotesUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateQuoteResponse: types.optional(
-    components.UpdateQuoteResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateQuoteResponse": "updateQuoteResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateQuoteResponse: types.optional(
+      components.UpdateQuoteResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateQuoteResponse": "updateQuoteResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingQuotesUpdateResponseFromJSON(
   jsonString: string,

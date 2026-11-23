@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   Address,
   Address$Outbound,
@@ -37,15 +38,17 @@ export const LinkedSupplierInput$outboundSchema: z.ZodType<
   LinkedSupplierInput$Outbound,
   z.ZodTypeDef,
   LinkedSupplierInput
-> = z.object({
-  id: z.string().optional(),
-  displayName: z.nullable(z.string()).optional(),
-  address: Address$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayName: "display_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    displayName: z.nullable(z.string()).optional(),
+    address: Address$outboundSchema.optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayName: "display_name",
+    });
+  })
+);
 
 export function linkedSupplierInputToJSON(
   linkedSupplierInput: LinkedSupplierInput,

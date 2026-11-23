@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -53,16 +53,18 @@ export const VaultConsumersUpdateRequest$outboundSchema: z.ZodType<
   VaultConsumersUpdateRequest$Outbound,
   z.ZodTypeDef,
   VaultConsumersUpdateRequest
-> = z.object({
-  appId: z.string().optional(),
-  consumerId: z.string(),
-  updateConsumerRequest: components.UpdateConsumerRequest$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    consumerId: "consumer_id",
-    updateConsumerRequest: "UpdateConsumerRequest",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    appId: z.string().optional(),
+    consumerId: z.string(),
+    updateConsumerRequest: components.UpdateConsumerRequest$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      consumerId: "consumer_id",
+      updateConsumerRequest: "UpdateConsumerRequest",
+    });
+  })
+);
 
 export function vaultConsumersUpdateRequestToJSON(
   vaultConsumersUpdateRequest: VaultConsumersUpdateRequest,
@@ -79,21 +81,23 @@ export const VaultConsumersUpdateResponse$inboundSchema: z.ZodType<
   VaultConsumersUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdateConsumerResponse: types.optional(
-    components.UpdateConsumerResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdateConsumerResponse": "updateConsumerResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateConsumerResponse: types.optional(
+      components.UpdateConsumerResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateConsumerResponse": "updateConsumerResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultConsumersUpdateResponseFromJSON(
   jsonString: string,

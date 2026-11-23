@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -23,7 +24,7 @@ export type Gender = OpenEnum<typeof Gender>;
 
 /** @internal */
 export const Gender$inboundSchema: z.ZodType<Gender, z.ZodTypeDef, unknown> =
-  openEnums.inboundSchema(Gender);
+  /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Gender));
 /** @internal */
 export const Gender$outboundSchema: z.ZodType<string, z.ZodTypeDef, Gender> =
-  openEnums.outboundSchema(Gender);
+  /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(Gender));

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -74,18 +74,20 @@ export const AccountingPurchaseOrdersAddRequest$outboundSchema: z.ZodType<
   AccountingPurchaseOrdersAddRequest$Outbound,
   z.ZodTypeDef,
   AccountingPurchaseOrdersAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  purchaseOrder: components.PurchaseOrderInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    purchaseOrder: "PurchaseOrder",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    purchaseOrder: components.PurchaseOrderInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      purchaseOrder: "PurchaseOrder",
+    });
+  })
+);
 
 export function accountingPurchaseOrdersAddRequestToJSON(
   accountingPurchaseOrdersAddRequest: AccountingPurchaseOrdersAddRequest,
@@ -102,21 +104,23 @@ export const AccountingPurchaseOrdersAddResponse$inboundSchema: z.ZodType<
   AccountingPurchaseOrdersAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreatePurchaseOrderResponse: types.optional(
-    components.CreatePurchaseOrderResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreatePurchaseOrderResponse": "createPurchaseOrderResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreatePurchaseOrderResponse: types.optional(
+      components.CreatePurchaseOrderResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreatePurchaseOrderResponse": "createPurchaseOrderResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingPurchaseOrdersAddResponseFromJSON(
   jsonString: string,

@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type LinkedLocationInput = {
   /**
@@ -32,15 +33,17 @@ export const LinkedLocationInput$outboundSchema: z.ZodType<
   LinkedLocationInput$Outbound,
   z.ZodTypeDef,
   LinkedLocationInput
-> = z.object({
-  id: z.string().optional(),
-  displayId: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    displayId: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+    });
+  })
+);
 
 export function linkedLocationInputToJSON(
   linkedLocationInput: LinkedLocationInput,

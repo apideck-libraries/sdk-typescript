@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -90,22 +90,24 @@ export const AccountingAttachmentsOneRequest$outboundSchema: z.ZodType<
   AccountingAttachmentsOneRequest$Outbound,
   z.ZodTypeDef,
   AccountingAttachmentsOneRequest
-> = z.object({
-  referenceType: components.AttachmentReferenceType$outboundSchema,
-  referenceId: z.string(),
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    referenceType: "reference_type",
-    referenceId: "reference_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    referenceType: components.AttachmentReferenceType$outboundSchema,
+    referenceId: z.string(),
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    raw: z.boolean().default(false),
+    fields: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      referenceType: "reference_type",
+      referenceId: "reference_id",
+    });
+  })
+);
 
 export function accountingAttachmentsOneRequestToJSON(
   accountingAttachmentsOneRequest: AccountingAttachmentsOneRequest,
@@ -122,21 +124,23 @@ export const AccountingAttachmentsOneResponse$inboundSchema: z.ZodType<
   AccountingAttachmentsOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetAttachmentResponse: types.optional(
-    components.GetAttachmentResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetAttachmentResponse": "getAttachmentResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetAttachmentResponse: types.optional(
+      components.GetAttachmentResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetAttachmentResponse": "getAttachmentResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingAttachmentsOneResponseFromJSON(
   jsonString: string,

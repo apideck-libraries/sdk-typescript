@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   AllocationInput,
   AllocationInput$Outbound,
@@ -193,53 +194,56 @@ export const PaymentCreateInput$outboundSchema: z.ZodType<
   PaymentCreateInput$Outbound,
   z.ZodTypeDef,
   PaymentCreateInput
-> = z.object({
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()),
-  reference: z.nullable(z.string()).optional(),
-  paymentMethod: z.nullable(z.string()).optional(),
-  paymentMethodReference: z.nullable(z.string()).optional(),
-  paymentMethodId: z.nullable(z.string()).optional(),
-  accountsReceivableAccountType: z.nullable(z.string()).optional(),
-  accountsReceivableAccountId: z.nullable(z.string()).optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  transactionDate: z.nullable(z.date().transform(v => v.toISOString())),
-  customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
-  supplier: z.nullable(DeprecatedLinkedSupplierInput$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
-  reconciled: z.nullable(z.boolean()).optional(),
-  status: PaymentStatus$outboundSchema.optional(),
-  type: PaymentType$outboundSchema.optional(),
-  allocations: z.array(AllocationInput$outboundSchema).optional(),
-  note: z.nullable(z.string()).optional(),
-  number: z.nullable(z.string()).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  displayId: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    currencyRate: "currency_rate",
-    totalAmount: "total_amount",
-    paymentMethod: "payment_method",
-    paymentMethodReference: "payment_method_reference",
-    paymentMethodId: "payment_method_id",
-    accountsReceivableAccountType: "accounts_receivable_account_type",
-    accountsReceivableAccountId: "accounts_receivable_account_id",
-    transactionDate: "transaction_date",
-    companyId: "company_id",
-    trackingCategories: "tracking_categories",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    displayId: "display_id",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    currencyRate: z.nullable(z.number()).optional(),
+    totalAmount: z.nullable(z.number()),
+    reference: z.nullable(z.string()).optional(),
+    paymentMethod: z.nullable(z.string()).optional(),
+    paymentMethodReference: z.nullable(z.string()).optional(),
+    paymentMethodId: z.nullable(z.string()).optional(),
+    accountsReceivableAccountType: z.nullable(z.string()).optional(),
+    accountsReceivableAccountId: z.nullable(z.string()).optional(),
+    account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    transactionDate: z.nullable(z.date().transform(v => v.toISOString())),
+    customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
+    supplier: z.nullable(DeprecatedLinkedSupplierInput$outboundSchema)
+      .optional(),
+    companyId: z.nullable(z.string()).optional(),
+    subsidiary: z.nullable(LinkedSubsidiaryInput$outboundSchema).optional(),
+    reconciled: z.nullable(z.boolean()).optional(),
+    status: PaymentStatus$outboundSchema.optional(),
+    type: PaymentType$outboundSchema.optional(),
+    allocations: z.array(AllocationInput$outboundSchema).optional(),
+    note: z.nullable(z.string()).optional(),
+    number: z.nullable(z.string()).optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    displayId: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      currencyRate: "currency_rate",
+      totalAmount: "total_amount",
+      paymentMethod: "payment_method",
+      paymentMethodReference: "payment_method_reference",
+      paymentMethodId: "payment_method_id",
+      accountsReceivableAccountType: "accounts_receivable_account_type",
+      accountsReceivableAccountId: "accounts_receivable_account_id",
+      transactionDate: "transaction_date",
+      companyId: "company_id",
+      trackingCategories: "tracking_categories",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      displayId: "display_id",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function paymentCreateInputToJSON(
   paymentCreateInput: PaymentCreateInput,

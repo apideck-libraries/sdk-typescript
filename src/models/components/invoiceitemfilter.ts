@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -52,14 +53,18 @@ export const InvoiceItemFilterInvoiceItemType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   InvoiceItemFilterInvoiceItemType
-> = openEnums.outboundSchema(InvoiceItemFilterInvoiceItemType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(InvoiceItemFilterInvoiceItemType)
+);
 
 /** @internal */
 export const InvoiceItemFilterTransactionType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   InvoiceItemFilterTransactionType
-> = openEnums.outboundSchema(InvoiceItemFilterTransactionType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(InvoiceItemFilterTransactionType)
+);
 
 /** @internal */
 export type InvoiceItemFilter$Outbound = {
@@ -72,15 +77,18 @@ export const InvoiceItemFilter$outboundSchema: z.ZodType<
   InvoiceItemFilter$Outbound,
   z.ZodTypeDef,
   InvoiceItemFilter
-> = z.object({
-  type: z.nullable(InvoiceItemFilterInvoiceItemType$outboundSchema).optional(),
-  transactionType: z.nullable(InvoiceItemFilterTransactionType$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    transactionType: "transaction_type",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: z.nullable(InvoiceItemFilterInvoiceItemType$outboundSchema)
+      .optional(),
+    transactionType: z.nullable(InvoiceItemFilterTransactionType$outboundSchema)
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      transactionType: "transaction_type",
+    });
+  })
+);
 
 export function invoiceItemFilterToJSON(
   invoiceItemFilter: InvoiceItemFilter,

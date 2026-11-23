@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -48,26 +48,28 @@ export const Consumer$inboundSchema: z.ZodType<
   Consumer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  consumer_id: types.string(),
-  application_id: types.optional(types.string()),
-  metadata: types.optional(ConsumerMetadata$inboundSchema),
-  connections: types.optional(z.array(ConsumerConnection$inboundSchema)),
-  services: types.optional(z.array(types.string())),
-  aggregated_request_count: types.optional(types.number()),
-  request_counts: types.optional(RequestCountAllocation$inboundSchema),
-  created: types.optional(types.string()),
-  modified: types.optional(types.string()),
-  request_count_updated: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "consumer_id": "consumerId",
-    "application_id": "applicationId",
-    "aggregated_request_count": "aggregatedRequestCount",
-    "request_counts": "requestCounts",
-    "request_count_updated": "requestCountUpdated",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumer_id: types.string(),
+    application_id: types.optional(types.string()),
+    metadata: types.optional(ConsumerMetadata$inboundSchema),
+    connections: types.optional(z.array(ConsumerConnection$inboundSchema)),
+    services: types.optional(z.array(types.string())),
+    aggregated_request_count: types.optional(types.number()),
+    request_counts: types.optional(RequestCountAllocation$inboundSchema),
+    created: types.optional(types.string()),
+    modified: types.optional(types.string()),
+    request_count_updated: types.optional(types.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "consumer_id": "consumerId",
+      "application_id": "applicationId",
+      "aggregated_request_count": "aggregatedRequestCount",
+      "request_counts": "requestCounts",
+      "request_count_updated": "requestCountUpdated",
+    });
+  })
+);
 
 export function consumerFromJSON(
   jsonString: string,

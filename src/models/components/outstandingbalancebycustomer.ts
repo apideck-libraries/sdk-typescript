@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -32,19 +32,21 @@ export const OutstandingBalanceByCustomer$inboundSchema: z.ZodType<
   OutstandingBalanceByCustomer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  customer_id: types.optional(types.string()),
-  customer_name: types.optional(types.string()),
-  outstanding_balances_by_currency: types.optional(
-    z.array(OutstandingBalanceByCurrency$inboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "customer_id": "customerId",
-    "customer_name": "customerName",
-    "outstanding_balances_by_currency": "outstandingBalancesByCurrency",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    customer_id: types.optional(types.string()),
+    customer_name: types.optional(types.string()),
+    outstanding_balances_by_currency: types.optional(
+      z.array(OutstandingBalanceByCurrency$inboundSchema),
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "customer_id": "customerId",
+      "customer_name": "customerName",
+      "outstanding_balances_by_currency": "outstandingBalancesByCurrency",
+    });
+  })
+);
 
 export function outstandingBalanceByCustomerFromJSON(
   jsonString: string,

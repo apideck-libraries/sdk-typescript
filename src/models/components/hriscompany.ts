@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -132,54 +132,60 @@ export const HrisCompanyStatus$inboundSchema: z.ZodType<
   HrisCompanyStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(HrisCompanyStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(HrisCompanyStatus)
+);
 /** @internal */
 export const HrisCompanyStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   HrisCompanyStatus
-> = openEnums.outboundSchema(HrisCompanyStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(HrisCompanyStatus)
+);
 
 /** @internal */
 export const HrisCompany$inboundSchema: z.ZodType<
   HrisCompany,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  legal_name: types.nullable(types.string()),
-  display_name: z.nullable(types.string()).optional(),
-  subdomain: z.nullable(types.string()).optional(),
-  status: types.optional(HrisCompanyStatus$inboundSchema),
-  company_number: z.nullable(types.string()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  addresses: types.optional(z.array(Address$inboundSchema)),
-  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
-  emails: types.optional(z.array(Email$inboundSchema)),
-  websites: types.optional(z.array(Website$inboundSchema)),
-  debtor_id: z.nullable(types.string()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  deleted: types.optional(types.boolean()),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "legal_name": "legalName",
-    "display_name": "displayName",
-    "company_number": "companyNumber",
-    "phone_numbers": "phoneNumbers",
-    "debtor_id": "debtorId",
-    "custom_mappings": "customMappings",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    legal_name: types.nullable(types.string()),
+    display_name: z.nullable(types.string()).optional(),
+    subdomain: z.nullable(types.string()).optional(),
+    status: types.optional(HrisCompanyStatus$inboundSchema),
+    company_number: z.nullable(types.string()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    addresses: types.optional(z.array(Address$inboundSchema)),
+    phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+    emails: types.optional(z.array(Email$inboundSchema)),
+    websites: types.optional(z.array(Website$inboundSchema)),
+    debtor_id: z.nullable(types.string()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    deleted: types.optional(types.boolean()),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "legal_name": "legalName",
+      "display_name": "displayName",
+      "company_number": "companyNumber",
+      "phone_numbers": "phoneNumbers",
+      "debtor_id": "debtorId",
+      "custom_mappings": "customMappings",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function hrisCompanyFromJSON(
   jsonString: string,
@@ -212,29 +218,31 @@ export const HrisCompanyInput$outboundSchema: z.ZodType<
   HrisCompanyInput$Outbound,
   z.ZodTypeDef,
   HrisCompanyInput
-> = z.object({
-  legalName: z.nullable(z.string()),
-  displayName: z.nullable(z.string()).optional(),
-  subdomain: z.nullable(z.string()).optional(),
-  status: HrisCompanyStatus$outboundSchema.optional(),
-  companyNumber: z.nullable(z.string()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
-  websites: z.array(Website$outboundSchema).optional(),
-  debtorId: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    legalName: "legal_name",
-    displayName: "display_name",
-    companyNumber: "company_number",
-    phoneNumbers: "phone_numbers",
-    debtorId: "debtor_id",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    legalName: z.nullable(z.string()),
+    displayName: z.nullable(z.string()).optional(),
+    subdomain: z.nullable(z.string()).optional(),
+    status: HrisCompanyStatus$outboundSchema.optional(),
+    companyNumber: z.nullable(z.string()).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    addresses: z.array(Address$outboundSchema).optional(),
+    phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
+    emails: z.array(Email$outboundSchema).optional(),
+    websites: z.array(Website$outboundSchema).optional(),
+    debtorId: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      legalName: "legal_name",
+      displayName: "display_name",
+      companyNumber: "company_number",
+      phoneNumbers: "phone_numbers",
+      debtorId: "debtor_id",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function hrisCompanyInputToJSON(
   hrisCompanyInput: HrisCompanyInput,

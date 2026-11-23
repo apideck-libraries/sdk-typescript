@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -80,15 +80,17 @@ export const AccountingSalesReceiptsOneRequest$outboundSchema: z.ZodType<
   AccountingSalesReceiptsOneRequest$Outbound,
   z.ZodTypeDef,
   AccountingSalesReceiptsOneRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    raw: z.boolean().default(false),
+    fields: z.nullable(z.string()).optional(),
+  })
+);
 
 export function accountingSalesReceiptsOneRequestToJSON(
   accountingSalesReceiptsOneRequest: AccountingSalesReceiptsOneRequest,
@@ -105,21 +107,23 @@ export const AccountingSalesReceiptsOneResponse$inboundSchema: z.ZodType<
   AccountingSalesReceiptsOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetSalesReceiptResponse: types.optional(
-    components.GetSalesReceiptResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetSalesReceiptResponse": "getSalesReceiptResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetSalesReceiptResponse: types.optional(
+      components.GetSalesReceiptResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetSalesReceiptResponse": "getSalesReceiptResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingSalesReceiptsOneResponseFromJSON(
   jsonString: string,

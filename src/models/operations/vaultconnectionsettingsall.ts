@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -70,18 +70,20 @@ export const VaultConnectionSettingsAllRequest$outboundSchema: z.ZodType<
   VaultConnectionSettingsAllRequest$Outbound,
   z.ZodTypeDef,
   VaultConnectionSettingsAllRequest
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  unifiedApi: z.string(),
-  serviceId: z.string(),
-  resource: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    unifiedApi: "unified_api",
-    serviceId: "service_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    unifiedApi: z.string(),
+    serviceId: z.string(),
+    resource: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      unifiedApi: "unified_api",
+      serviceId: "service_id",
+    });
+  })
+);
 
 export function vaultConnectionSettingsAllRequestToJSON(
   vaultConnectionSettingsAllRequest: VaultConnectionSettingsAllRequest,
@@ -98,21 +100,23 @@ export const VaultConnectionSettingsAllResponse$inboundSchema: z.ZodType<
   VaultConnectionSettingsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetConnectionResponse: types.optional(
-    components.GetConnectionResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetConnectionResponse": "getConnectionResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetConnectionResponse: types.optional(
+      components.GetConnectionResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetConnectionResponse": "getConnectionResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultConnectionSettingsAllResponseFromJSON(
   jsonString: string,

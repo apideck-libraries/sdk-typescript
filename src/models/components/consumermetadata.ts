@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -36,17 +36,19 @@ export const ConsumerMetadata$inboundSchema: z.ZodType<
   ConsumerMetadata,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  account_name: types.optional(types.string()),
-  user_name: types.optional(types.string()),
-  email: types.optional(types.string()),
-  image: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "account_name": "accountName",
-    "user_name": "userName",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    account_name: types.optional(types.string()),
+    user_name: types.optional(types.string()),
+    email: types.optional(types.string()),
+    image: types.optional(types.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "account_name": "accountName",
+      "user_name": "userName",
+    });
+  })
+);
 /** @internal */
 export type ConsumerMetadata$Outbound = {
   account_name?: string | undefined;
@@ -60,17 +62,19 @@ export const ConsumerMetadata$outboundSchema: z.ZodType<
   ConsumerMetadata$Outbound,
   z.ZodTypeDef,
   ConsumerMetadata
-> = z.object({
-  accountName: z.string().optional(),
-  userName: z.string().optional(),
-  email: z.string().optional(),
-  image: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    accountName: "account_name",
-    userName: "user_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    accountName: z.string().optional(),
+    userName: z.string().optional(),
+    email: z.string().optional(),
+    image: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      accountName: "account_name",
+      userName: "user_name",
+    });
+  })
+);
 
 export function consumerMetadataToJSON(
   consumerMetadata: ConsumerMetadata,

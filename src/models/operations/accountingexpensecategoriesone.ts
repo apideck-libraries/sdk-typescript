@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -77,14 +77,16 @@ export const AccountingExpenseCategoriesOneRequest$outboundSchema: z.ZodType<
   AccountingExpenseCategoriesOneRequest$Outbound,
   z.ZodTypeDef,
   AccountingExpenseCategoriesOneRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    fields: z.nullable(z.string()).optional(),
+  })
+);
 
 export function accountingExpenseCategoriesOneRequestToJSON(
   accountingExpenseCategoriesOneRequest: AccountingExpenseCategoriesOneRequest,
@@ -101,21 +103,23 @@ export const AccountingExpenseCategoriesOneResponse$inboundSchema: z.ZodType<
   AccountingExpenseCategoriesOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetExpenseCategoryResponse: types.optional(
-    components.GetExpenseCategoryResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetExpenseCategoryResponse": "getExpenseCategoryResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetExpenseCategoryResponse: types.optional(
+      components.GetExpenseCategoryResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetExpenseCategoryResponse": "getExpenseCategoryResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingExpenseCategoriesOneResponseFromJSON(
   jsonString: string,

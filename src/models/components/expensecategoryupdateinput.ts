@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -86,7 +87,9 @@ export const ExpenseCategoryUpdateInputStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ExpenseCategoryUpdateInputStatus
-> = openEnums.outboundSchema(ExpenseCategoryUpdateInputStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ExpenseCategoryUpdateInputStatus)
+);
 
 /** @internal */
 export type ExpenseCategoryUpdateInput$Outbound = {
@@ -109,31 +112,33 @@ export const ExpenseCategoryUpdateInput$outboundSchema: z.ZodType<
   ExpenseCategoryUpdateInput$Outbound,
   z.ZodTypeDef,
   ExpenseCategoryUpdateInput
-> = z.object({
-  displayId: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  status: z.nullable(ExpenseCategoryUpdateInputStatus$outboundSchema)
-    .optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  offsetAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  rateRequired: z.nullable(z.boolean()).optional(),
-  defaultRate: z.nullable(z.number()).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    offsetAccount: "offset_account",
-    taxRate: "tax_rate",
-    rateRequired: "rate_required",
-    defaultRate: "default_rate",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    displayId: z.nullable(z.string()).optional(),
+    name: z.string().optional(),
+    code: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    status: z.nullable(ExpenseCategoryUpdateInputStatus$outboundSchema)
+      .optional(),
+    account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    offsetAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    taxRate: LinkedTaxRateInput$outboundSchema.optional(),
+    rateRequired: z.nullable(z.boolean()).optional(),
+    defaultRate: z.nullable(z.number()).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+      offsetAccount: "offset_account",
+      taxRate: "tax_rate",
+      rateRequired: "rate_required",
+      defaultRate: "default_rate",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function expenseCategoryUpdateInputToJSON(
   expenseCategoryUpdateInput: ExpenseCategoryUpdateInput,

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -29,10 +30,10 @@ export const PaymentType$inboundSchema: z.ZodType<
   PaymentType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(PaymentType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(PaymentType));
 /** @internal */
 export const PaymentType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   PaymentType
-> = openEnums.outboundSchema(PaymentType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(PaymentType));

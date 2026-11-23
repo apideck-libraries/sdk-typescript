@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -51,7 +52,9 @@ export const TaxRatesFilterStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   TaxRatesFilterStatus
-> = openEnums.outboundSchema(TaxRatesFilterStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(TaxRatesFilterStatus)
+);
 
 /** @internal */
 export type TaxRatesFilter$Outbound = {
@@ -68,14 +71,16 @@ export const TaxRatesFilter$outboundSchema: z.ZodType<
   TaxRatesFilter$Outbound,
   z.ZodTypeDef,
   TaxRatesFilter
-> = z.object({
-  assets: z.boolean().optional(),
-  equity: z.boolean().optional(),
-  expenses: z.boolean().optional(),
-  liabilities: z.boolean().optional(),
-  revenue: z.boolean().optional(),
-  status: TaxRatesFilterStatus$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    assets: z.boolean().optional(),
+    equity: z.boolean().optional(),
+    expenses: z.boolean().optional(),
+    liabilities: z.boolean().optional(),
+    revenue: z.boolean().optional(),
+    status: TaxRatesFilterStatus$outboundSchema.optional(),
+  })
+);
 
 export function taxRatesFilterToJSON(taxRatesFilter: TaxRatesFilter): string {
   return JSON.stringify(TaxRatesFilter$outboundSchema.parse(taxRatesFilter));

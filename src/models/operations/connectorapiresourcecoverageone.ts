@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -58,15 +58,17 @@ export const ConnectorApiResourceCoverageOneRequest$outboundSchema: z.ZodType<
   ConnectorApiResourceCoverageOneRequest$Outbound,
   z.ZodTypeDef,
   ConnectorApiResourceCoverageOneRequest
-> = z.object({
-  appId: z.string().optional(),
-  id: z.string(),
-  resourceId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    resourceId: "resource_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    appId: z.string().optional(),
+    id: z.string(),
+    resourceId: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      resourceId: "resource_id",
+    });
+  })
+);
 
 export function connectorApiResourceCoverageOneRequestToJSON(
   connectorApiResourceCoverageOneRequest:
@@ -84,21 +86,23 @@ export const ConnectorApiResourceCoverageOneResponse$inboundSchema: z.ZodType<
   ConnectorApiResourceCoverageOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetApiResourceCoverageResponse: types.optional(
-    components.GetApiResourceCoverageResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetApiResourceCoverageResponse": "getApiResourceCoverageResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetApiResourceCoverageResponse: types.optional(
+      components.GetApiResourceCoverageResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetApiResourceCoverageResponse": "getApiResourceCoverageResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function connectorApiResourceCoverageOneResponseFromJSON(
   jsonString: string,

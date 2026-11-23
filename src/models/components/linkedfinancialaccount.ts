@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -91,34 +91,41 @@ export const LinkedFinancialAccountAccountType$inboundSchema: z.ZodType<
   LinkedFinancialAccountAccountType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(LinkedFinancialAccountAccountType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(LinkedFinancialAccountAccountType)
+);
 /** @internal */
 export const LinkedFinancialAccountAccountType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   LinkedFinancialAccountAccountType
-> = openEnums.outboundSchema(LinkedFinancialAccountAccountType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(LinkedFinancialAccountAccountType)
+);
 
 /** @internal */
 export const LinkedFinancialAccount$inboundSchema: z.ZodType<
   LinkedFinancialAccount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  type: z.nullable(LinkedFinancialAccountAccountType$inboundSchema).optional(),
-  code: types.optional(types.string()),
-  display_id: z.nullable(types.string()).optional(),
-  account_number: z.nullable(types.string()).optional(),
-  name: types.optional(types.string()),
-  downstream_id: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_id": "displayId",
-    "account_number": "accountNumber",
-    "downstream_id": "downstreamId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    type: z.nullable(LinkedFinancialAccountAccountType$inboundSchema)
+      .optional(),
+    code: types.optional(types.string()),
+    display_id: z.nullable(types.string()).optional(),
+    account_number: z.nullable(types.string()).optional(),
+    name: types.optional(types.string()),
+    downstream_id: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "display_id": "displayId",
+      "account_number": "accountNumber",
+      "downstream_id": "downstreamId",
+    });
+  })
+);
 
 export function linkedFinancialAccountFromJSON(
   jsonString: string,
@@ -144,18 +151,21 @@ export const LinkedFinancialAccountInput$outboundSchema: z.ZodType<
   LinkedFinancialAccountInput$Outbound,
   z.ZodTypeDef,
   LinkedFinancialAccountInput
-> = z.object({
-  id: z.string().optional(),
-  type: z.nullable(LinkedFinancialAccountAccountType$outboundSchema).optional(),
-  code: z.string().optional(),
-  displayId: z.nullable(z.string()).optional(),
-  accountNumber: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    accountNumber: "account_number",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    type: z.nullable(LinkedFinancialAccountAccountType$outboundSchema)
+      .optional(),
+    code: z.string().optional(),
+    displayId: z.nullable(z.string()).optional(),
+    accountNumber: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+      accountNumber: "account_number",
+    });
+  })
+);
 
 export function linkedFinancialAccountInputToJSON(
   linkedFinancialAccountInput: LinkedFinancialAccountInput,

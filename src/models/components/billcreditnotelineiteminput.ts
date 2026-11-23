@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { LineItemType, LineItemType$outboundSchema } from "./lineitemtype.js";
 import {
   LinkedDepartmentInput,
@@ -130,48 +131,50 @@ export const BillCreditNoteLineItemInput$outboundSchema: z.ZodType<
   BillCreditNoteLineItemInput$Outbound,
   z.ZodTypeDef,
   BillCreditNoteLineItemInput
-> = z.object({
-  rowId: z.nullable(z.string()).optional(),
-  code: z.nullable(z.string()).optional(),
-  lineNumber: z.nullable(z.number().int()).optional(),
-  description: z.nullable(z.string()).optional(),
-  type: z.nullable(LineItemType$outboundSchema).optional(),
-  taxAmount: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()).optional(),
-  quantity: z.nullable(z.number()).optional(),
-  unitPrice: z.nullable(z.number()).optional(),
-  unitOfMeasure: z.nullable(z.string()).optional(),
-  discountPercentage: z.nullable(z.number()).optional(),
-  discountAmount: z.nullable(z.number()).optional(),
-  serviceDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  location: z.nullable(LinkedLocationInput$outboundSchema).optional(),
-  department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
-  item: LinkedInvoiceItem$outboundSchema.optional(),
-  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    rowId: "row_id",
-    lineNumber: "line_number",
-    taxAmount: "tax_amount",
-    totalAmount: "total_amount",
-    unitPrice: "unit_price",
-    unitOfMeasure: "unit_of_measure",
-    discountPercentage: "discount_percentage",
-    discountAmount: "discount_amount",
-    serviceDate: "service_date",
-    taxRate: "tax_rate",
-    ledgerAccount: "ledger_account",
-    trackingCategories: "tracking_categories",
-    rowVersion: "row_version",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    rowId: z.nullable(z.string()).optional(),
+    code: z.nullable(z.string()).optional(),
+    lineNumber: z.nullable(z.number().int()).optional(),
+    description: z.nullable(z.string()).optional(),
+    type: z.nullable(LineItemType$outboundSchema).optional(),
+    taxAmount: z.nullable(z.number()).optional(),
+    totalAmount: z.nullable(z.number()).optional(),
+    quantity: z.nullable(z.number()).optional(),
+    unitPrice: z.nullable(z.number()).optional(),
+    unitOfMeasure: z.nullable(z.string()).optional(),
+    discountPercentage: z.nullable(z.number()).optional(),
+    discountAmount: z.nullable(z.number()).optional(),
+    serviceDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    location: z.nullable(LinkedLocationInput$outboundSchema).optional(),
+    department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
+    item: LinkedInvoiceItem$outboundSchema.optional(),
+    taxRate: LinkedTaxRateInput$outboundSchema.optional(),
+    ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      rowId: "row_id",
+      lineNumber: "line_number",
+      taxAmount: "tax_amount",
+      totalAmount: "total_amount",
+      unitPrice: "unit_price",
+      unitOfMeasure: "unit_of_measure",
+      discountPercentage: "discount_percentage",
+      discountAmount: "discount_amount",
+      serviceDate: "service_date",
+      taxRate: "tax_rate",
+      ledgerAccount: "ledger_account",
+      trackingCategories: "tracking_categories",
+      rowVersion: "row_version",
+    });
+  })
+);
 
 export function billCreditNoteLineItemInputToJSON(
   billCreditNoteLineItemInput: BillCreditNoteLineItemInput,

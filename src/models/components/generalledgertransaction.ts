@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -115,47 +115,53 @@ export const GeneralLedgerTransactionSourceType$inboundSchema: z.ZodType<
   GeneralLedgerTransactionSourceType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(GeneralLedgerTransactionSourceType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(GeneralLedgerTransactionSourceType)
+);
 
 /** @internal */
 export const GeneralLedgerTransaction$inboundSchema: z.ZodType<
   GeneralLedgerTransaction,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  source_type: types.nullable(GeneralLedgerTransactionSourceType$inboundSchema),
-  source_id: z.nullable(types.string()).optional(),
-  posted_at: types.optional(types.date()),
-  reference: z.nullable(types.string()).optional(),
-  number: z.nullable(types.string()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  currency_rate: z.nullable(types.number()).optional(),
-  memo: z.nullable(types.string()).optional(),
-  line_items: z.array(GeneralLedgerTransactionLineItem$inboundSchema),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "source_type": "sourceType",
-    "source_id": "sourceId",
-    "posted_at": "postedAt",
-    "currency_rate": "currencyRate",
-    "line_items": "lineItems",
-    "custom_fields": "customFields",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "custom_mappings": "customMappings",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    source_type: types.nullable(
+      GeneralLedgerTransactionSourceType$inboundSchema,
+    ),
+    source_id: z.nullable(types.string()).optional(),
+    posted_at: types.optional(types.date()),
+    reference: z.nullable(types.string()).optional(),
+    number: z.nullable(types.string()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    currency_rate: z.nullable(types.number()).optional(),
+    memo: z.nullable(types.string()).optional(),
+    line_items: z.array(GeneralLedgerTransactionLineItem$inboundSchema),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "source_type": "sourceType",
+      "source_id": "sourceId",
+      "posted_at": "postedAt",
+      "currency_rate": "currencyRate",
+      "line_items": "lineItems",
+      "custom_fields": "customFields",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "custom_mappings": "customMappings",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function generalLedgerTransactionFromJSON(
   jsonString: string,

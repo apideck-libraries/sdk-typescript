@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type CustomMappingInput = {
   /**
@@ -21,9 +22,11 @@ export const CustomMappingInput$outboundSchema: z.ZodType<
   CustomMappingInput$Outbound,
   z.ZodTypeDef,
   CustomMappingInput
-> = z.object({
-  value: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    value: z.string().optional(),
+  })
+);
 
 export function customMappingInputToJSON(
   customMappingInput: CustomMappingInput,

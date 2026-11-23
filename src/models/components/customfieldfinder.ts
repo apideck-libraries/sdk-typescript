@@ -3,10 +3,36 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+/**
+ * The declared data type of the custom field. Only returned by connectors that can read the field's definition; omitted otherwise.
+ */
+export const CustomFieldFinderType = {
+  Text: "text",
+  Checkbox: "checkbox",
+  Tel: "tel",
+  Email: "email",
+  Url: "url",
+  Textarea: "textarea",
+  Select: "select",
+  FilteredSelect: "filtered-select",
+  MultiSelect: "multi-select",
+  Datetime: "datetime",
+  Date: "date",
+  Time: "time",
+  Number: "number",
+  Password: "password",
+} as const;
+/**
+ * The declared data type of the custom field. Only returned by connectors that can read the field's definition; omitted otherwise.
+ */
+export type CustomFieldFinderType = OpenEnum<typeof CustomFieldFinderType>;
 
 export type CustomFieldFinder = {
   /**
@@ -26,23 +52,39 @@ export type CustomFieldFinder = {
    */
   value?: any | undefined;
   /**
+   * The declared data type of the custom field. Only returned by connectors that can read the field's definition; omitted otherwise.
+   */
+  type?: CustomFieldFinderType | undefined;
+  /**
    * JSONPath finder for retrieving this value when mapping a response payload from downstream
    */
   finder?: string | undefined;
 };
 
 /** @internal */
+export const CustomFieldFinderType$inboundSchema: z.ZodType<
+  CustomFieldFinderType,
+  z.ZodTypeDef,
+  unknown
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(CustomFieldFinderType)
+);
+
+/** @internal */
 export const CustomFieldFinder$inboundSchema: z.ZodType<
   CustomFieldFinder,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  value: types.optional(z.any()),
-  finder: types.optional(types.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    name: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    value: types.optional(z.any()),
+    type: types.optional(CustomFieldFinderType$inboundSchema),
+    finder: types.optional(types.string()),
+  })
+);
 
 export function customFieldFinderFromJSON(
   jsonString: string,

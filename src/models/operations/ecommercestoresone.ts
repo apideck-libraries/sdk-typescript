@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -70,13 +70,15 @@ export const EcommerceStoresOneRequest$outboundSchema: z.ZodType<
   EcommerceStoresOneRequest$Outbound,
   z.ZodTypeDef,
   EcommerceStoresOneRequest
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    raw: z.boolean().default(false),
+    fields: z.nullable(z.string()).optional(),
+  })
+);
 
 export function ecommerceStoresOneRequestToJSON(
   ecommerceStoresOneRequest: EcommerceStoresOneRequest,
@@ -91,19 +93,21 @@ export const EcommerceStoresOneResponse$inboundSchema: z.ZodType<
   EcommerceStoresOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetStoreResponse: types.optional(components.GetStoreResponse$inboundSchema),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetStoreResponse": "getStoreResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetStoreResponse: types.optional(components.GetStoreResponse$inboundSchema),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetStoreResponse": "getStoreResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function ecommerceStoresOneResponseFromJSON(
   jsonString: string,

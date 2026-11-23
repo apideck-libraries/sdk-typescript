@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   DataScopesResources,
   DataScopesResources$Outbound,
@@ -31,10 +32,12 @@ export const ConsentRecordInput$outboundSchema: z.ZodType<
   ConsentRecordInput$Outbound,
   z.ZodTypeDef,
   ConsentRecordInput
-> = z.object({
-  granted: z.boolean(),
-  resources: DataScopesResources$outboundSchema,
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    granted: z.boolean(),
+    resources: DataScopesResources$outboundSchema,
+  })
+);
 
 export function consentRecordInputToJSON(
   consentRecordInput: ConsentRecordInput,

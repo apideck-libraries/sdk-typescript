@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PassThroughBody,
   PassThroughBody$Outbound,
@@ -47,19 +48,21 @@ export const CreateFolderRequest$outboundSchema: z.ZodType<
   CreateFolderRequest$Outbound,
   z.ZodTypeDef,
   CreateFolderRequest
-> = z.object({
-  name: z.string(),
-  description: z.string().optional(),
-  parentFolderId: z.string(),
-  driveId: z.string().optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentFolderId: "parent_folder_id",
-    driveId: "drive_id",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string(),
+    description: z.string().optional(),
+    parentFolderId: z.string(),
+    driveId: z.string().optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      parentFolderId: "parent_folder_id",
+      driveId: "drive_id",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function createFolderRequestToJSON(
   createFolderRequest: CreateFolderRequest,

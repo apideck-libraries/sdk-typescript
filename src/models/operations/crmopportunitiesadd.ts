@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -67,17 +67,19 @@ export const CrmOpportunitiesAddRequest$outboundSchema: z.ZodType<
   CrmOpportunitiesAddRequest$Outbound,
   z.ZodTypeDef,
   CrmOpportunitiesAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  opportunity: components.OpportunityInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    opportunity: "Opportunity",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    opportunity: components.OpportunityInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      opportunity: "Opportunity",
+    });
+  })
+);
 
 export function crmOpportunitiesAddRequestToJSON(
   crmOpportunitiesAddRequest: CrmOpportunitiesAddRequest,
@@ -92,21 +94,23 @@ export const CrmOpportunitiesAddResponse$inboundSchema: z.ZodType<
   CrmOpportunitiesAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateOpportunityResponse: types.optional(
-    components.CreateOpportunityResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateOpportunityResponse": "createOpportunityResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateOpportunityResponse: types.optional(
+      components.CreateOpportunityResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateOpportunityResponse": "createOpportunityResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function crmOpportunitiesAddResponseFromJSON(
   jsonString: string,

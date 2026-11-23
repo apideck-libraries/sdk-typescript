@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 
@@ -66,7 +67,7 @@ export const PathMatchMode$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   PathMatchMode
-> = openEnums.outboundSchema(PathMatchMode);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(PathMatchMode));
 
 /** @internal */
 export type LogsFilter$Outbound = {
@@ -87,30 +88,32 @@ export const LogsFilter$outboundSchema: z.ZodType<
   LogsFilter$Outbound,
   z.ZodTypeDef,
   LogsFilter
-> = z.object({
-  connectorId: z.nullable(z.string()).optional(),
-  path: z.nullable(z.string()).optional(),
-  pathMatchMode: z.nullable(PathMatchMode$outboundSchema.default("CONTAINS")),
-  httpMethod: z.nullable(z.string()).optional(),
-  httpMethods: z.nullable(z.array(z.string())).optional(),
-  startDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  endDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  statusCode: z.nullable(z.number()).optional(),
-  statusCodes: z.nullable(z.array(z.number())).optional(),
-  excludeUnifiedApis: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    connectorId: "connector_id",
-    pathMatchMode: "path_match_mode",
-    httpMethod: "http_method",
-    httpMethods: "http_methods",
-    startDate: "start_date",
-    endDate: "end_date",
-    statusCode: "status_code",
-    statusCodes: "status_codes",
-    excludeUnifiedApis: "exclude_unified_apis",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    connectorId: z.nullable(z.string()).optional(),
+    path: z.nullable(z.string()).optional(),
+    pathMatchMode: z.nullable(PathMatchMode$outboundSchema.default("CONTAINS")),
+    httpMethod: z.nullable(z.string()).optional(),
+    httpMethods: z.nullable(z.array(z.string())).optional(),
+    startDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+    endDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+    statusCode: z.nullable(z.number()).optional(),
+    statusCodes: z.nullable(z.array(z.number())).optional(),
+    excludeUnifiedApis: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      connectorId: "connector_id",
+      pathMatchMode: "path_match_mode",
+      httpMethod: "http_method",
+      httpMethods: "http_methods",
+      startDate: "start_date",
+      endDate: "end_date",
+      statusCode: "status_code",
+      statusCodes: "status_codes",
+      excludeUnifiedApis: "exclude_unified_apis",
+    });
+  })
+);
 
 export function logsFilterToJSON(logsFilter: LogsFilter): string {
   return JSON.stringify(LogsFilter$outboundSchema.parse(logsFilter));

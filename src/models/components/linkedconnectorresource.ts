@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -41,18 +41,20 @@ export const LinkedConnectorResource$inboundSchema: z.ZodType<
   LinkedConnectorResource,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: types.optional(types.string()),
-  status: types.optional(ResourceStatus$inboundSchema),
-  downstream_id: types.optional(types.string()),
-  downstream_name: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "downstream_id": "downstreamId",
-    "downstream_name": "downstreamName",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    name: types.optional(types.string()),
+    status: types.optional(ResourceStatus$inboundSchema),
+    downstream_id: types.optional(types.string()),
+    downstream_name: types.optional(types.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "downstream_id": "downstreamId",
+      "downstream_name": "downstreamName",
+    });
+  })
+);
 
 export function linkedConnectorResourceFromJSON(
   jsonString: string,

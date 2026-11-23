@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -135,49 +135,55 @@ export const DepartmentStatus$inboundSchema: z.ZodType<
   DepartmentStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(DepartmentStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(DepartmentStatus)
+);
 /** @internal */
 export const DepartmentStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   DepartmentStatus
-> = openEnums.outboundSchema(DepartmentStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(DepartmentStatus)
+);
 
 /** @internal */
 export const AccountingDepartment$inboundSchema: z.ZodType<
   AccountingDepartment,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  parent_id: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  status: types.optional(DepartmentStatus$inboundSchema),
-  subsidiaries: types.optional(z.array(SubsidiaryReference$inboundSchema)),
-  code: types.optional(types.string()),
-  downstream_id: z.nullable(types.string()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_id": "parentId",
-    "display_id": "displayId",
-    "downstream_id": "downstreamId",
-    "custom_mappings": "customMappings",
-    "row_version": "rowVersion",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    parent_id: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    status: types.optional(DepartmentStatus$inboundSchema),
+    subsidiaries: types.optional(z.array(SubsidiaryReference$inboundSchema)),
+    code: types.optional(types.string()),
+    downstream_id: z.nullable(types.string()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "parent_id": "parentId",
+      "display_id": "displayId",
+      "downstream_id": "downstreamId",
+      "custom_mappings": "customMappings",
+      "row_version": "rowVersion",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function accountingDepartmentFromJSON(
   jsonString: string,
@@ -206,23 +212,25 @@ export const AccountingDepartmentInput$outboundSchema: z.ZodType<
   AccountingDepartmentInput$Outbound,
   z.ZodTypeDef,
   AccountingDepartmentInput
-> = z.object({
-  parentId: z.nullable(z.string()).optional(),
-  displayId: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  status: DepartmentStatus$outboundSchema.optional(),
-  subsidiaries: z.array(SubsidiaryReferenceInput$outboundSchema).optional(),
-  code: z.string().optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    displayId: "display_id",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    parentId: z.nullable(z.string()).optional(),
+    displayId: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()).optional(),
+    status: DepartmentStatus$outboundSchema.optional(),
+    subsidiaries: z.array(SubsidiaryReferenceInput$outboundSchema).optional(),
+    code: z.string().optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      parentId: "parent_id",
+      displayId: "display_id",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function accountingDepartmentInputToJSON(
   accountingDepartmentInput: AccountingDepartmentInput,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -92,23 +92,25 @@ export const FileStorageFilesSearchRequest$outboundSchema: z.ZodType<
   FileStorageFilesSearchRequest$Outbound,
   z.ZodTypeDef,
   FileStorageFilesSearchRequest
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  passThrough: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  raw: z.boolean().default(false),
-  filter: components.FilesFilter$outboundSchema.optional(),
-  filesSearch: components.FilesSearch$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    passThrough: "pass_through",
-    filesSearch: "FilesSearch",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    passThrough: z.record(z.any()).optional(),
+    fields: z.nullable(z.string()).optional(),
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    raw: z.boolean().default(false),
+    filter: components.FilesFilter$outboundSchema.optional(),
+    filesSearch: components.FilesSearch$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      passThrough: "pass_through",
+      filesSearch: "FilesSearch",
+    });
+  })
+);
 
 export function fileStorageFilesSearchRequestToJSON(
   fileStorageFilesSearchRequest: FileStorageFilesSearchRequest,
@@ -125,19 +127,21 @@ export const FileStorageFilesSearchResponse$inboundSchema: z.ZodType<
   FileStorageFilesSearchResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetFilesResponse: types.optional(components.GetFilesResponse$inboundSchema),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetFilesResponse": "getFilesResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetFilesResponse: types.optional(components.GetFilesResponse$inboundSchema),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetFilesResponse": "getFilesResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function fileStorageFilesSearchResponseFromJSON(
   jsonString: string,

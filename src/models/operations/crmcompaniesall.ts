@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -95,22 +95,24 @@ export const CrmCompaniesAllRequest$outboundSchema: z.ZodType<
   CrmCompaniesAllRequest$Outbound,
   z.ZodTypeDef,
   CrmCompaniesAllRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.CompaniesFilter$outboundSchema.optional(),
-  sort: components.CompaniesSort$outboundSchema.optional(),
-  passThrough: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    filter: components.CompaniesFilter$outboundSchema.optional(),
+    sort: components.CompaniesSort$outboundSchema.optional(),
+    passThrough: z.record(z.any()).optional(),
+    fields: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function crmCompaniesAllRequestToJSON(
   crmCompaniesAllRequest: CrmCompaniesAllRequest,
@@ -125,21 +127,23 @@ export const CrmCompaniesAllResponse$inboundSchema: z.ZodType<
   CrmCompaniesAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetCompaniesResponse1: types.optional(
-    components.GetCompaniesResponse1$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetCompaniesResponse1": "getCompaniesResponse1",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetCompaniesResponse1: types.optional(
+      components.GetCompaniesResponse1$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetCompaniesResponse1": "getCompaniesResponse1",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function crmCompaniesAllResponseFromJSON(
   jsonString: string,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -33,17 +33,19 @@ export const LinkedLocation$inboundSchema: z.ZodType<
   LinkedLocation,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  display_id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  downstream_id: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_id": "displayId",
-    "downstream_id": "downstreamId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    display_id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    downstream_id: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "display_id": "displayId",
+      "downstream_id": "downstreamId",
+    });
+  })
+);
 
 export function linkedLocationFromJSON(
   jsonString: string,

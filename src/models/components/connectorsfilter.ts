@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   ConnectorStatus,
   ConnectorStatus$outboundSchema,
@@ -32,14 +33,16 @@ export const ConnectorsFilter$outboundSchema: z.ZodType<
   ConnectorsFilter$Outbound,
   z.ZodTypeDef,
   ConnectorsFilter
-> = z.object({
-  unifiedApi: UnifiedApiId$outboundSchema.optional(),
-  status: ConnectorStatus$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    unifiedApi: "unified_api",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    unifiedApi: UnifiedApiId$outboundSchema.optional(),
+    status: ConnectorStatus$outboundSchema.optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      unifiedApi: "unified_api",
+    });
+  })
+);
 
 export function connectorsFilterToJSON(
   connectorsFilter: ConnectorsFilter,

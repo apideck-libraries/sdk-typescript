@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -150,47 +150,49 @@ export const TicketPriority$inboundSchema: z.ZodType<
   TicketPriority,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(TicketPriority);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(TicketPriority));
 /** @internal */
 export const TicketPriority$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   TicketPriority
-> = openEnums.outboundSchema(TicketPriority);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(TicketPriority));
 
 /** @internal */
-export const Ticket$inboundSchema: z.ZodType<Ticket, z.ZodTypeDef, unknown> = z
-  .object({
-    id: types.string(),
-    parent_id: z.nullable(types.string()).optional(),
-    collection_id: z.nullable(types.string()).optional(),
-    type: z.nullable(types.string()).optional(),
-    subject: z.nullable(types.string()).optional(),
-    description: z.nullable(types.string()).optional(),
-    status: z.nullable(types.string()).optional(),
-    priority: z.nullable(TicketPriority$inboundSchema).optional(),
-    assignees: types.optional(z.array(Assignee$inboundSchema)),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-    created_by: z.nullable(types.string()).optional(),
-    due_date: z.nullable(types.date()).optional(),
-    completed_at: z.nullable(types.date()).optional(),
-    tags: types.optional(z.array(CollectionTag$inboundSchema)),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-  }).transform((v) => {
-    return remap$(v, {
-      "parent_id": "parentId",
-      "collection_id": "collectionId",
-      "updated_at": "updatedAt",
-      "created_at": "createdAt",
-      "created_by": "createdBy",
-      "due_date": "dueDate",
-      "completed_at": "completedAt",
-      "custom_mappings": "customMappings",
-      "pass_through": "passThrough",
-    });
-  });
+export const Ticket$inboundSchema: z.ZodType<Ticket, z.ZodTypeDef, unknown> =
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: types.string(),
+      parent_id: z.nullable(types.string()).optional(),
+      collection_id: z.nullable(types.string()).optional(),
+      type: z.nullable(types.string()).optional(),
+      subject: z.nullable(types.string()).optional(),
+      description: z.nullable(types.string()).optional(),
+      status: z.nullable(types.string()).optional(),
+      priority: z.nullable(TicketPriority$inboundSchema).optional(),
+      assignees: types.optional(z.array(Assignee$inboundSchema)),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+      created_by: z.nullable(types.string()).optional(),
+      due_date: z.nullable(types.date()).optional(),
+      completed_at: z.nullable(types.date()).optional(),
+      tags: types.optional(z.array(CollectionTag$inboundSchema)),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+      pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    }).transform((v) => {
+      return remap$(v, {
+        "parent_id": "parentId",
+        "collection_id": "collectionId",
+        "updated_at": "updatedAt",
+        "created_at": "createdAt",
+        "created_by": "createdBy",
+        "due_date": "dueDate",
+        "completed_at": "completedAt",
+        "custom_mappings": "customMappings",
+        "pass_through": "passThrough",
+      });
+    })
+  );
 
 export function ticketFromJSON(
   jsonString: string,
@@ -221,24 +223,26 @@ export const TicketInput$outboundSchema: z.ZodType<
   TicketInput$Outbound,
   z.ZodTypeDef,
   TicketInput
-> = z.object({
-  parentId: z.nullable(z.string()).optional(),
-  type: z.nullable(z.string()).optional(),
-  subject: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  status: z.nullable(z.string()).optional(),
-  priority: z.nullable(TicketPriority$outboundSchema).optional(),
-  assignees: z.array(AssigneeInput$outboundSchema).optional(),
-  dueDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  tags: z.array(CollectionTagInput$outboundSchema).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    dueDate: "due_date",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    parentId: z.nullable(z.string()).optional(),
+    type: z.nullable(z.string()).optional(),
+    subject: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    status: z.nullable(z.string()).optional(),
+    priority: z.nullable(TicketPriority$outboundSchema).optional(),
+    assignees: z.array(AssigneeInput$outboundSchema).optional(),
+    dueDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+    tags: z.array(CollectionTagInput$outboundSchema).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      parentId: "parent_id",
+      dueDate: "due_date",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function ticketInputToJSON(ticketInput: TicketInput): string {
   return JSON.stringify(TicketInput$outboundSchema.parse(ticketInput));

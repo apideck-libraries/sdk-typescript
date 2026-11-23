@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -74,18 +74,20 @@ export const AccountingLocationsAddRequest$outboundSchema: z.ZodType<
   AccountingLocationsAddRequest$Outbound,
   z.ZodTypeDef,
   AccountingLocationsAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  accountingLocation: components.AccountingLocationInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    accountingLocation: "AccountingLocation",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    accountingLocation: components.AccountingLocationInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      accountingLocation: "AccountingLocation",
+    });
+  })
+);
 
 export function accountingLocationsAddRequestToJSON(
   accountingLocationsAddRequest: AccountingLocationsAddRequest,
@@ -102,21 +104,23 @@ export const AccountingLocationsAddResponse$inboundSchema: z.ZodType<
   AccountingLocationsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateAccountingLocationResponse: types.optional(
-    components.CreateAccountingLocationResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateAccountingLocationResponse": "createAccountingLocationResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateAccountingLocationResponse: types.optional(
+      components.CreateAccountingLocationResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateAccountingLocationResponse": "createAccountingLocationResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingLocationsAddResponseFromJSON(
   jsonString: string,

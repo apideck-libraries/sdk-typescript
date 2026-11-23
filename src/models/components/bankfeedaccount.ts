@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -263,93 +263,103 @@ export const BankAccountType$inboundSchema: z.ZodType<
   BankAccountType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(BankAccountType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(BankAccountType));
 /** @internal */
 export const BankAccountType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   BankAccountType
-> = openEnums.outboundSchema(BankAccountType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(BankAccountType)
+);
 
 /** @internal */
 export const FeedStatus$inboundSchema: z.ZodType<
   FeedStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(FeedStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(FeedStatus));
 /** @internal */
 export const FeedStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   FeedStatus
-> = openEnums.outboundSchema(FeedStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(FeedStatus));
 
 /** @internal */
 export const BankFeedAccountStatus$inboundSchema: z.ZodType<
   BankFeedAccountStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(BankFeedAccountStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(BankFeedAccountStatus)
+);
 /** @internal */
 export const BankFeedAccountStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   BankFeedAccountStatus
-> = openEnums.outboundSchema(BankFeedAccountStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(BankFeedAccountStatus)
+);
 
 /** @internal */
 export const BankFeedAccount$inboundSchema: z.ZodType<
   BankFeedAccount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  bank_account_type: types.optional(BankAccountType$inboundSchema),
-  source_account_id: types.optional(types.string()),
-  source_routing_number: z.nullable(types.string()).optional(),
-  source_account_number: z.nullable(types.string()).optional(),
-  target_account_id: types.optional(types.string()),
-  target_account_name: types.optional(types.string()),
-  target_account_number: types.optional(types.string()),
-  balance: z.nullable(types.number()).optional(),
-  available_balance: z.nullable(types.number()).optional(),
-  balance_as_of: z.nullable(types.date()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  feed_status: types.optional(FeedStatus$inboundSchema),
-  status: types.optional(BankFeedAccountStatus$inboundSchema),
-  country: z.nullable(types.string()).optional(),
-  account_holders: types.optional(z.array(BankFeedAccountHolder$inboundSchema)),
-  emails: types.optional(z.array(Email$inboundSchema)),
-  addresses: types.optional(z.array(Address$inboundSchema)),
-  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "bank_account_type": "bankAccountType",
-    "source_account_id": "sourceAccountId",
-    "source_routing_number": "sourceRoutingNumber",
-    "source_account_number": "sourceAccountNumber",
-    "target_account_id": "targetAccountId",
-    "target_account_name": "targetAccountName",
-    "target_account_number": "targetAccountNumber",
-    "available_balance": "availableBalance",
-    "balance_as_of": "balanceAsOf",
-    "feed_status": "feedStatus",
-    "account_holders": "accountHolders",
-    "phone_numbers": "phoneNumbers",
-    "custom_fields": "customFields",
-    "custom_mappings": "customMappings",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.string(),
+    bank_account_type: types.optional(BankAccountType$inboundSchema),
+    source_account_id: types.optional(types.string()),
+    source_routing_number: z.nullable(types.string()).optional(),
+    source_account_number: z.nullable(types.string()).optional(),
+    target_account_id: types.optional(types.string()),
+    target_account_name: types.optional(types.string()),
+    target_account_number: types.optional(types.string()),
+    balance: z.nullable(types.number()).optional(),
+    available_balance: z.nullable(types.number()).optional(),
+    balance_as_of: z.nullable(types.date()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    feed_status: types.optional(FeedStatus$inboundSchema),
+    status: types.optional(BankFeedAccountStatus$inboundSchema),
+    country: z.nullable(types.string()).optional(),
+    account_holders: types.optional(
+      z.array(BankFeedAccountHolder$inboundSchema),
+    ),
+    emails: types.optional(z.array(Email$inboundSchema)),
+    addresses: types.optional(z.array(Address$inboundSchema)),
+    phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "bank_account_type": "bankAccountType",
+      "source_account_id": "sourceAccountId",
+      "source_routing_number": "sourceRoutingNumber",
+      "source_account_number": "sourceAccountNumber",
+      "target_account_id": "targetAccountId",
+      "target_account_name": "targetAccountName",
+      "target_account_number": "targetAccountNumber",
+      "available_balance": "availableBalance",
+      "balance_as_of": "balanceAsOf",
+      "feed_status": "feedStatus",
+      "account_holders": "accountHolders",
+      "phone_numbers": "phoneNumbers",
+      "custom_fields": "customFields",
+      "custom_mappings": "customMappings",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+    });
+  })
+);
 
 export function bankFeedAccountFromJSON(
   jsonString: string,
@@ -389,43 +399,46 @@ export const BankFeedAccountInput$outboundSchema: z.ZodType<
   BankFeedAccountInput$Outbound,
   z.ZodTypeDef,
   BankFeedAccountInput
-> = z.object({
-  bankAccountType: BankAccountType$outboundSchema.optional(),
-  sourceAccountId: z.string().optional(),
-  sourceRoutingNumber: z.nullable(z.string()).optional(),
-  sourceAccountNumber: z.nullable(z.string()).optional(),
-  targetAccountId: z.string().optional(),
-  targetAccountName: z.string().optional(),
-  targetAccountNumber: z.string().optional(),
-  balance: z.nullable(z.number()).optional(),
-  availableBalance: z.nullable(z.number()).optional(),
-  balanceAsOf: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  feedStatus: FeedStatus$outboundSchema.optional(),
-  status: BankFeedAccountStatus$outboundSchema.optional(),
-  country: z.nullable(z.string()).optional(),
-  accountHolders: z.array(BankFeedAccountHolder$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    bankAccountType: "bank_account_type",
-    sourceAccountId: "source_account_id",
-    sourceRoutingNumber: "source_routing_number",
-    sourceAccountNumber: "source_account_number",
-    targetAccountId: "target_account_id",
-    targetAccountName: "target_account_name",
-    targetAccountNumber: "target_account_number",
-    availableBalance: "available_balance",
-    balanceAsOf: "balance_as_of",
-    feedStatus: "feed_status",
-    accountHolders: "account_holders",
-    phoneNumbers: "phone_numbers",
-    customFields: "custom_fields",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    bankAccountType: BankAccountType$outboundSchema.optional(),
+    sourceAccountId: z.string().optional(),
+    sourceRoutingNumber: z.nullable(z.string()).optional(),
+    sourceAccountNumber: z.nullable(z.string()).optional(),
+    targetAccountId: z.string().optional(),
+    targetAccountName: z.string().optional(),
+    targetAccountNumber: z.string().optional(),
+    balance: z.nullable(z.number()).optional(),
+    availableBalance: z.nullable(z.number()).optional(),
+    balanceAsOf: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    feedStatus: FeedStatus$outboundSchema.optional(),
+    status: BankFeedAccountStatus$outboundSchema.optional(),
+    country: z.nullable(z.string()).optional(),
+    accountHolders: z.array(BankFeedAccountHolder$outboundSchema).optional(),
+    emails: z.array(Email$outboundSchema).optional(),
+    addresses: z.array(Address$outboundSchema).optional(),
+    phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      bankAccountType: "bank_account_type",
+      sourceAccountId: "source_account_id",
+      sourceRoutingNumber: "source_routing_number",
+      sourceAccountNumber: "source_account_number",
+      targetAccountId: "target_account_id",
+      targetAccountName: "target_account_name",
+      targetAccountNumber: "target_account_number",
+      availableBalance: "available_balance",
+      balanceAsOf: "balance_as_of",
+      feedStatus: "feed_status",
+      accountHolders: "account_holders",
+      phoneNumbers: "phone_numbers",
+      customFields: "custom_fields",
+    });
+  })
+);
 
 export function bankFeedAccountInputToJSON(
   bankFeedAccountInput: BankFeedAccountInput,

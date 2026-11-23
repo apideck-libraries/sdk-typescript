@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import { Currency, Currency$outboundSchema } from "./currency.js";
 import {
   CustomField,
@@ -167,65 +168,67 @@ export const OpportunityInput$outboundSchema: z.ZodType<
   OpportunityInput$Outbound,
   z.ZodTypeDef,
   OpportunityInput
-> = z.object({
-  title: z.string(),
-  primaryContactId: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  type: z.nullable(z.string()).optional(),
-  monetaryAmount: z.nullable(z.number()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  winProbability: z.nullable(z.number()).optional(),
-  closeDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  lossReasonId: z.nullable(z.string()).optional(),
-  lossReason: z.nullable(z.string()).optional(),
-  wonReasonId: z.nullable(z.string()).optional(),
-  wonReason: z.nullable(z.string()).optional(),
-  pipelineId: z.nullable(z.string()).optional(),
-  pipelineStageId: z.nullable(z.string()).optional(),
-  sourceId: z.nullable(z.string()).optional(),
-  leadId: z.nullable(z.string()).optional(),
-  leadSource: z.nullable(z.string()).optional(),
-  contactId: z.nullable(z.string()).optional(),
-  contactIds: z.array(z.string()).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  ownerId: z.nullable(z.string()).optional(),
-  priority: z.nullable(z.string()).optional(),
-  status: z.nullable(z.string()).optional(),
-  statusId: z.nullable(z.string()).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  stageLastChangedAt: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    primaryContactId: "primary_contact_id",
-    monetaryAmount: "monetary_amount",
-    winProbability: "win_probability",
-    closeDate: "close_date",
-    lossReasonId: "loss_reason_id",
-    lossReason: "loss_reason",
-    wonReasonId: "won_reason_id",
-    wonReason: "won_reason",
-    pipelineId: "pipeline_id",
-    pipelineStageId: "pipeline_stage_id",
-    sourceId: "source_id",
-    leadId: "lead_id",
-    leadSource: "lead_source",
-    contactId: "contact_id",
-    contactIds: "contact_ids",
-    companyId: "company_id",
-    companyName: "company_name",
-    ownerId: "owner_id",
-    statusId: "status_id",
-    customFields: "custom_fields",
-    stageLastChangedAt: "stage_last_changed_at",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    title: z.string(),
+    primaryContactId: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    type: z.nullable(z.string()).optional(),
+    monetaryAmount: z.nullable(z.number()).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    winProbability: z.nullable(z.number()).optional(),
+    closeDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    lossReasonId: z.nullable(z.string()).optional(),
+    lossReason: z.nullable(z.string()).optional(),
+    wonReasonId: z.nullable(z.string()).optional(),
+    wonReason: z.nullable(z.string()).optional(),
+    pipelineId: z.nullable(z.string()).optional(),
+    pipelineStageId: z.nullable(z.string()).optional(),
+    sourceId: z.nullable(z.string()).optional(),
+    leadId: z.nullable(z.string()).optional(),
+    leadSource: z.nullable(z.string()).optional(),
+    contactId: z.nullable(z.string()).optional(),
+    contactIds: z.array(z.string()).optional(),
+    companyId: z.nullable(z.string()).optional(),
+    companyName: z.nullable(z.string()).optional(),
+    ownerId: z.nullable(z.string()).optional(),
+    priority: z.nullable(z.string()).optional(),
+    status: z.nullable(z.string()).optional(),
+    statusId: z.nullable(z.string()).optional(),
+    tags: z.nullable(z.array(z.string())).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    stageLastChangedAt: z.nullable(z.date().transform(v => v.toISOString()))
+      .optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      primaryContactId: "primary_contact_id",
+      monetaryAmount: "monetary_amount",
+      winProbability: "win_probability",
+      closeDate: "close_date",
+      lossReasonId: "loss_reason_id",
+      lossReason: "loss_reason",
+      wonReasonId: "won_reason_id",
+      wonReason: "won_reason",
+      pipelineId: "pipeline_id",
+      pipelineStageId: "pipeline_stage_id",
+      sourceId: "source_id",
+      leadId: "lead_id",
+      leadSource: "lead_source",
+      contactId: "contact_id",
+      contactIds: "contact_ids",
+      companyId: "company_id",
+      companyName: "company_name",
+      ownerId: "owner_id",
+      statusId: "status_id",
+      customFields: "custom_fields",
+      stageLastChangedAt: "stage_last_changed_at",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function opportunityInputToJSON(
   opportunityInput: OpportunityInput,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -41,19 +41,21 @@ export const LinkedAttachment$inboundSchema: z.ZodType<
   LinkedAttachment,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  name: z.nullable(types.string()).optional(),
-  mime_type: z.nullable(types.string()).optional(),
-  is_compressed: z.nullable(types.boolean()).optional(),
-  encoding: z.nullable(types.string()).optional(),
-  content: z.nullable(types.string()).optional(),
-  notes: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "mime_type": "mimeType",
-    "is_compressed": "isCompressed",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(types.string()).optional(),
+    mime_type: z.nullable(types.string()).optional(),
+    is_compressed: z.nullable(types.boolean()).optional(),
+    encoding: z.nullable(types.string()).optional(),
+    content: z.nullable(types.string()).optional(),
+    notes: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "mime_type": "mimeType",
+      "is_compressed": "isCompressed",
+    });
+  })
+);
 /** @internal */
 export type LinkedAttachment$Outbound = {
   name?: string | null | undefined;
@@ -69,19 +71,21 @@ export const LinkedAttachment$outboundSchema: z.ZodType<
   LinkedAttachment$Outbound,
   z.ZodTypeDef,
   LinkedAttachment
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  mimeType: z.nullable(z.string()).optional(),
-  isCompressed: z.nullable(z.boolean()).optional(),
-  encoding: z.nullable(z.string()).optional(),
-  content: z.nullable(z.string()).optional(),
-  notes: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    mimeType: "mime_type",
-    isCompressed: "is_compressed",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(z.string()).optional(),
+    mimeType: z.nullable(z.string()).optional(),
+    isCompressed: z.nullable(z.boolean()).optional(),
+    encoding: z.nullable(z.string()).optional(),
+    content: z.nullable(z.string()).optional(),
+    notes: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      mimeType: "mime_type",
+      isCompressed: "is_compressed",
+    });
+  })
+);
 
 export function linkedAttachmentToJSON(
   linkedAttachment: LinkedAttachment,

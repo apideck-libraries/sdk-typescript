@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -67,17 +67,19 @@ export const CrmCompaniesAddRequest$outboundSchema: z.ZodType<
   CrmCompaniesAddRequest$Outbound,
   z.ZodTypeDef,
   CrmCompaniesAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  company1: components.Company1Input$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    company1: "Company1",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    company1: components.Company1Input$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      company1: "Company1",
+    });
+  })
+);
 
 export function crmCompaniesAddRequestToJSON(
   crmCompaniesAddRequest: CrmCompaniesAddRequest,
@@ -92,21 +94,23 @@ export const CrmCompaniesAddResponse$inboundSchema: z.ZodType<
   CrmCompaniesAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateCompanyResponse: types.optional(
-    components.CreateCompanyResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateCompanyResponse": "createCompanyResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateCompanyResponse: types.optional(
+      components.CreateCompanyResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateCompanyResponse": "createCompanyResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function crmCompaniesAddResponseFromJSON(
   jsonString: string,

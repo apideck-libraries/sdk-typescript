@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -36,17 +36,19 @@ export const LinkedExpenseCategory$inboundSchema: z.ZodType<
   LinkedExpenseCategory,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  downstream_id: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "downstream_id": "downstreamId",
-    "display_id": "displayId",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    downstream_id: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "downstream_id": "downstreamId",
+      "display_id": "displayId",
+    });
+  })
+);
 /** @internal */
 export type LinkedExpenseCategory$Outbound = {
   id?: string | undefined;
@@ -60,17 +62,19 @@ export const LinkedExpenseCategory$outboundSchema: z.ZodType<
   LinkedExpenseCategory$Outbound,
   z.ZodTypeDef,
   LinkedExpenseCategory
-> = z.object({
-  id: z.string().optional(),
-  downstreamId: z.nullable(z.string()).optional(),
-  displayId: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-    displayId: "display_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    downstreamId: z.nullable(z.string()).optional(),
+    displayId: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      downstreamId: "downstream_id",
+      displayId: "display_id",
+    });
+  })
+);
 
 export function linkedExpenseCategoryToJSON(
   linkedExpenseCategory: LinkedExpenseCategory,

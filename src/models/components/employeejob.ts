@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -149,46 +149,52 @@ export const EmployeeJobStatus$inboundSchema: z.ZodType<
   EmployeeJobStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(EmployeeJobStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(EmployeeJobStatus)
+);
 /** @internal */
 export const EmployeeJobStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   EmployeeJobStatus
-> = openEnums.outboundSchema(EmployeeJobStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(EmployeeJobStatus)
+);
 
 /** @internal */
 export const EmployeeJob$inboundSchema: z.ZodType<
   EmployeeJob,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  employee_id: z.nullable(types.string()).optional(),
-  title: z.nullable(types.string()).optional(),
-  role: z.nullable(types.string()).optional(),
-  start_date: z.nullable(types.date()).optional(),
-  end_date: z.nullable(types.date()).optional(),
-  compensation_rate: z.nullable(types.number()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  payment_unit: z.nullable(PaymentUnit$inboundSchema).optional(),
-  hired_at: z.nullable(types.date()).optional(),
-  is_primary: z.nullable(types.boolean()).optional(),
-  is_manager: z.nullable(types.boolean()).optional(),
-  status: z.nullable(EmployeeJobStatus$inboundSchema).optional(),
-  location: types.optional(Address$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "employee_id": "employeeId",
-    "start_date": "startDate",
-    "end_date": "endDate",
-    "compensation_rate": "compensationRate",
-    "payment_unit": "paymentUnit",
-    "hired_at": "hiredAt",
-    "is_primary": "isPrimary",
-    "is_manager": "isManager",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    employee_id: z.nullable(types.string()).optional(),
+    title: z.nullable(types.string()).optional(),
+    role: z.nullable(types.string()).optional(),
+    start_date: z.nullable(types.date()).optional(),
+    end_date: z.nullable(types.date()).optional(),
+    compensation_rate: z.nullable(types.number()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    payment_unit: z.nullable(PaymentUnit$inboundSchema).optional(),
+    hired_at: z.nullable(types.date()).optional(),
+    is_primary: z.nullable(types.boolean()).optional(),
+    is_manager: z.nullable(types.boolean()).optional(),
+    status: z.nullable(EmployeeJobStatus$inboundSchema).optional(),
+    location: types.optional(Address$inboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      "employee_id": "employeeId",
+      "start_date": "startDate",
+      "end_date": "endDate",
+      "compensation_rate": "compensationRate",
+      "payment_unit": "paymentUnit",
+      "hired_at": "hiredAt",
+      "is_primary": "isPrimary",
+      "is_manager": "isManager",
+    });
+  })
+);
 
 export function employeeJobFromJSON(
   jsonString: string,
@@ -221,36 +227,38 @@ export const EmployeeJobInput$outboundSchema: z.ZodType<
   EmployeeJobInput$Outbound,
   z.ZodTypeDef,
   EmployeeJobInput
-> = z.object({
-  title: z.nullable(z.string()).optional(),
-  role: z.nullable(z.string()).optional(),
-  startDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  endDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  compensationRate: z.nullable(z.number()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  paymentUnit: z.nullable(PaymentUnit$outboundSchema).optional(),
-  hiredAt: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  isPrimary: z.nullable(z.boolean()).optional(),
-  isManager: z.nullable(z.boolean()).optional(),
-  status: z.nullable(EmployeeJobStatus$outboundSchema).optional(),
-  location: Address$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    startDate: "start_date",
-    endDate: "end_date",
-    compensationRate: "compensation_rate",
-    paymentUnit: "payment_unit",
-    hiredAt: "hired_at",
-    isPrimary: "is_primary",
-    isManager: "is_manager",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    title: z.nullable(z.string()).optional(),
+    role: z.nullable(z.string()).optional(),
+    startDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    endDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    compensationRate: z.nullable(z.number()).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    paymentUnit: z.nullable(PaymentUnit$outboundSchema).optional(),
+    hiredAt: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    isPrimary: z.nullable(z.boolean()).optional(),
+    isManager: z.nullable(z.boolean()).optional(),
+    status: z.nullable(EmployeeJobStatus$outboundSchema).optional(),
+    location: Address$outboundSchema.optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      startDate: "start_date",
+      endDate: "end_date",
+      compensationRate: "compensation_rate",
+      paymentUnit: "payment_unit",
+      hiredAt: "hired_at",
+      isPrimary: "is_primary",
+      isManager: "is_manager",
+    });
+  })
+);
 
 export function employeeJobInputToJSON(
   employeeJobInput: EmployeeJobInput,

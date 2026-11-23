@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type SalesReceiptsFilter = {
   updatedSince?: Date | undefined;
@@ -24,15 +25,17 @@ export const SalesReceiptsFilter$outboundSchema: z.ZodType<
   SalesReceiptsFilter$Outbound,
   z.ZodTypeDef,
   SalesReceiptsFilter
-> = z.object({
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-  customerId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    updatedSince: "updated_since",
-    customerId: "customer_id",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+    customerId: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      updatedSince: "updated_since",
+      customerId: "customer_id",
+    });
+  })
+);
 
 export function salesReceiptsFilterToJSON(
   salesReceiptsFilter: SalesReceiptsFilter,

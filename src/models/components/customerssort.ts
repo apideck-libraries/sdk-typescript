@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -38,7 +39,9 @@ export const CustomersSortBy$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   CustomersSortBy
-> = openEnums.outboundSchema(CustomersSortBy);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(CustomersSortBy)
+);
 
 /** @internal */
 export type CustomersSort$Outbound = {
@@ -51,10 +54,12 @@ export const CustomersSort$outboundSchema: z.ZodType<
   CustomersSort$Outbound,
   z.ZodTypeDef,
   CustomersSort
-> = z.object({
-  by: CustomersSortBy$outboundSchema.optional(),
-  direction: SortDirection$outboundSchema.default("asc"),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    by: CustomersSortBy$outboundSchema.optional(),
+    direction: SortDirection$outboundSchema.default("asc"),
+  })
+);
 
 export function customersSortToJSON(customersSort: CustomersSort): string {
   return JSON.stringify(CustomersSort$outboundSchema.parse(customersSort));

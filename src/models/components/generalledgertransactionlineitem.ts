@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -72,35 +72,39 @@ export const GeneralLedgerTransactionLineItemType$inboundSchema: z.ZodType<
   GeneralLedgerTransactionLineItemType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(GeneralLedgerTransactionLineItemType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(GeneralLedgerTransactionLineItemType)
+);
 
 /** @internal */
 export const GeneralLedgerTransactionLineItem$inboundSchema: z.ZodType<
   GeneralLedgerTransactionLineItem,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  description: z.nullable(types.string()).optional(),
-  net_amount: z.nullable(types.number()).optional(),
-  type: types.nullable(GeneralLedgerTransactionLineItemType$inboundSchema),
-  tax_amount: z.nullable(types.number()).optional(),
-  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  ledger_account: types.nullable(LinkedLedgerAccount$inboundSchema),
-  line_number: z.nullable(types.number()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "net_amount": "netAmount",
-    "tax_amount": "taxAmount",
-    "tax_rate": "taxRate",
-    "tracking_categories": "trackingCategories",
-    "ledger_account": "ledgerAccount",
-    "line_number": "lineNumber",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    description: z.nullable(types.string()).optional(),
+    net_amount: z.nullable(types.number()).optional(),
+    type: types.nullable(GeneralLedgerTransactionLineItemType$inboundSchema),
+    tax_amount: z.nullable(types.number()).optional(),
+    tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    ledger_account: types.nullable(LinkedLedgerAccount$inboundSchema),
+    line_number: z.nullable(types.number()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "net_amount": "netAmount",
+      "tax_amount": "taxAmount",
+      "tax_rate": "taxRate",
+      "tracking_categories": "trackingCategories",
+      "ledger_account": "ledgerAccount",
+      "line_number": "lineNumber",
+    });
+  })
+);
 
 export function generalLedgerTransactionLineItemFromJSON(
   jsonString: string,

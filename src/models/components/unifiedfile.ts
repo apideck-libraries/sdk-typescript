@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -107,9 +107,11 @@ export const Permissions$inboundSchema: z.ZodType<
   Permissions,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  download: types.optional(types.boolean()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    download: types.optional(types.boolean()),
+  })
+);
 
 export function permissionsFromJSON(
   jsonString: string,
@@ -126,41 +128,43 @@ export const UnifiedFile$inboundSchema: z.ZodType<
   UnifiedFile,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  downstream_id: z.nullable(types.string()).optional(),
-  name: types.nullable(types.string()),
-  description: z.nullable(types.string()).optional(),
-  type: types.nullable(FileType$inboundSchema),
-  path: z.nullable(types.string()).optional(),
-  mime_type: z.nullable(types.string()).optional(),
-  downloadable: types.optional(types.boolean()),
-  size: z.nullable(types.number()).optional(),
-  owner: types.optional(Owner$inboundSchema),
-  parent_folders: types.optional(z.array(LinkedFolder$inboundSchema)),
-  parent_folders_complete: types.optional(types.boolean()),
-  permissions: types.optional(z.lazy(() => Permissions$inboundSchema)),
-  exportable: types.optional(types.boolean()),
-  export_formats: z.nullable(z.array(types.string())).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "downstream_id": "downstreamId",
-    "mime_type": "mimeType",
-    "parent_folders": "parentFolders",
-    "parent_folders_complete": "parentFoldersComplete",
-    "export_formats": "exportFormats",
-    "custom_mappings": "customMappings",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.string(),
+    downstream_id: z.nullable(types.string()).optional(),
+    name: types.nullable(types.string()),
+    description: z.nullable(types.string()).optional(),
+    type: types.nullable(FileType$inboundSchema),
+    path: z.nullable(types.string()).optional(),
+    mime_type: z.nullable(types.string()).optional(),
+    downloadable: types.optional(types.boolean()),
+    size: z.nullable(types.number()).optional(),
+    owner: types.optional(Owner$inboundSchema),
+    parent_folders: types.optional(z.array(LinkedFolder$inboundSchema)),
+    parent_folders_complete: types.optional(types.boolean()),
+    permissions: types.optional(z.lazy(() => Permissions$inboundSchema)),
+    exportable: types.optional(types.boolean()),
+    export_formats: z.nullable(z.array(types.string())).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "downstream_id": "downstreamId",
+      "mime_type": "mimeType",
+      "parent_folders": "parentFolders",
+      "parent_folders_complete": "parentFoldersComplete",
+      "export_formats": "exportFormats",
+      "custom_mappings": "customMappings",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+    });
+  })
+);
 
 export function unifiedFileFromJSON(
   jsonString: string,

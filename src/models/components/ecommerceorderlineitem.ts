@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -98,11 +98,13 @@ export type EcommerceOrderLineItem = {
 
 /** @internal */
 export const Options$inboundSchema: z.ZodType<Options, z.ZodTypeDef, unknown> =
-  z.object({
-    id: z.nullable(types.string()).optional(),
-    name: z.nullable(types.string()).optional(),
-    value: z.nullable(types.string()).optional(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      name: z.nullable(types.string()).optional(),
+      value: z.nullable(types.string()).optional(),
+    })
+  );
 
 export function optionsFromJSON(
   jsonString: string,
@@ -119,38 +121,40 @@ export const EcommerceOrderLineItem$inboundSchema: z.ZodType<
   EcommerceOrderLineItem,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  product_id: z.nullable(types.string()).optional(),
-  variant_id: z.nullable(types.string()).optional(),
-  sku: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  options: types.optional(z.array(z.lazy(() => Options$inboundSchema))),
-  quantity: types.nullable(types.string()),
-  unit_price: z.nullable(types.string()).optional(),
-  tax_rate: z.nullable(types.string()).optional(),
-  tax_amount: z.nullable(types.string()).optional(),
-  is_refunded: z.nullable(types.boolean()).optional(),
-  refunded_amount: z.nullable(types.string()).optional(),
-  refunded_quantity: z.nullable(types.string()).optional(),
-  sub_total: z.nullable(types.string()).optional(),
-  total_amount: z.nullable(types.string()).optional(),
-  discounts: types.optional(z.array(EcommerceDiscount$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "product_id": "productId",
-    "variant_id": "variantId",
-    "unit_price": "unitPrice",
-    "tax_rate": "taxRate",
-    "tax_amount": "taxAmount",
-    "is_refunded": "isRefunded",
-    "refunded_amount": "refundedAmount",
-    "refunded_quantity": "refundedQuantity",
-    "sub_total": "subTotal",
-    "total_amount": "totalAmount",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    product_id: z.nullable(types.string()).optional(),
+    variant_id: z.nullable(types.string()).optional(),
+    sku: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    options: types.optional(z.array(z.lazy(() => Options$inboundSchema))),
+    quantity: types.nullable(types.string()),
+    unit_price: z.nullable(types.string()).optional(),
+    tax_rate: z.nullable(types.string()).optional(),
+    tax_amount: z.nullable(types.string()).optional(),
+    is_refunded: z.nullable(types.boolean()).optional(),
+    refunded_amount: z.nullable(types.string()).optional(),
+    refunded_quantity: z.nullable(types.string()).optional(),
+    sub_total: z.nullable(types.string()).optional(),
+    total_amount: z.nullable(types.string()).optional(),
+    discounts: types.optional(z.array(EcommerceDiscount$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "product_id": "productId",
+      "variant_id": "variantId",
+      "unit_price": "unitPrice",
+      "tax_rate": "taxRate",
+      "tax_amount": "taxAmount",
+      "is_refunded": "isRefunded",
+      "refunded_amount": "refundedAmount",
+      "refunded_quantity": "refundedQuantity",
+      "sub_total": "subTotal",
+      "total_amount": "totalAmount",
+    });
+  })
+);
 
 export function ecommerceOrderLineItemFromJSON(
   jsonString: string,

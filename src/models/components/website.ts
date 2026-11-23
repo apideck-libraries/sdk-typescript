@@ -3,7 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -45,21 +45,23 @@ export const WebsiteType$inboundSchema: z.ZodType<
   WebsiteType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(WebsiteType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(WebsiteType));
 /** @internal */
 export const WebsiteType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   WebsiteType
-> = openEnums.outboundSchema(WebsiteType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(WebsiteType));
 
 /** @internal */
 export const Website$inboundSchema: z.ZodType<Website, z.ZodTypeDef, unknown> =
-  z.object({
-    id: z.nullable(types.string()).optional(),
-    url: types.string(),
-    type: z.nullable(WebsiteType$inboundSchema).optional(),
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      url: types.string(),
+      type: z.nullable(WebsiteType$inboundSchema).optional(),
+    })
+  );
 /** @internal */
 export type Website$Outbound = {
   id?: string | null | undefined;
@@ -72,11 +74,13 @@ export const Website$outboundSchema: z.ZodType<
   Website$Outbound,
   z.ZodTypeDef,
   Website
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  url: z.string(),
-  type: z.nullable(WebsiteType$outboundSchema).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    url: z.string(),
+    type: z.nullable(WebsiteType$outboundSchema).optional(),
+  })
+);
 
 export function websiteToJSON(website: Website): string {
   return JSON.stringify(Website$outboundSchema.parse(website));

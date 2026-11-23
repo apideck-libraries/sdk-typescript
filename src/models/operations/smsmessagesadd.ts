@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -67,17 +67,19 @@ export const SmsMessagesAddRequest$outboundSchema: z.ZodType<
   SmsMessagesAddRequest$Outbound,
   z.ZodTypeDef,
   SmsMessagesAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  message: components.MessageInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    message: "Message",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    message: components.MessageInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      message: "Message",
+    });
+  })
+);
 
 export function smsMessagesAddRequestToJSON(
   smsMessagesAddRequest: SmsMessagesAddRequest,
@@ -92,21 +94,23 @@ export const SmsMessagesAddResponse$inboundSchema: z.ZodType<
   SmsMessagesAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateMessageResponse: types.optional(
-    components.CreateMessageResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateMessageResponse": "createMessageResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateMessageResponse: types.optional(
+      components.CreateMessageResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateMessageResponse": "createMessageResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function smsMessagesAddResponseFromJSON(
   jsonString: string,

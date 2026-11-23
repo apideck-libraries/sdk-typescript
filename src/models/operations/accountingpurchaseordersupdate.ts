@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -79,19 +79,21 @@ export const AccountingPurchaseOrdersUpdateRequest$outboundSchema: z.ZodType<
   AccountingPurchaseOrdersUpdateRequest$Outbound,
   z.ZodTypeDef,
   AccountingPurchaseOrdersUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  raw: z.boolean().default(false),
-  purchaseOrder: components.PurchaseOrderInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    purchaseOrder: "PurchaseOrder",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    raw: z.boolean().default(false),
+    purchaseOrder: components.PurchaseOrderInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      purchaseOrder: "PurchaseOrder",
+    });
+  })
+);
 
 export function accountingPurchaseOrdersUpdateRequestToJSON(
   accountingPurchaseOrdersUpdateRequest: AccountingPurchaseOrdersUpdateRequest,
@@ -108,21 +110,23 @@ export const AccountingPurchaseOrdersUpdateResponse$inboundSchema: z.ZodType<
   AccountingPurchaseOrdersUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdatePurchaseOrderResponse: types.optional(
-    components.UpdatePurchaseOrderResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdatePurchaseOrderResponse": "updatePurchaseOrderResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdatePurchaseOrderResponse: types.optional(
+      components.UpdatePurchaseOrderResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdatePurchaseOrderResponse": "updatePurchaseOrderResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingPurchaseOrdersUpdateResponseFromJSON(
   jsonString: string,

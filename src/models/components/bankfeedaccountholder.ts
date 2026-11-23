@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -94,48 +94,54 @@ export const HolderType$inboundSchema: z.ZodType<
   HolderType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(HolderType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(HolderType));
 /** @internal */
 export const HolderType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   HolderType
-> = openEnums.outboundSchema(HolderType);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(HolderType));
 
 /** @internal */
 export const HolderRelationship$inboundSchema: z.ZodType<
   HolderRelationship,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(HolderRelationship);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(HolderRelationship)
+);
 /** @internal */
 export const HolderRelationship$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   HolderRelationship
-> = openEnums.outboundSchema(HolderRelationship);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(HolderRelationship)
+);
 
 /** @internal */
 export const BankFeedAccountHolder$inboundSchema: z.ZodType<
   BankFeedAccountHolder,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: types.optional(HolderType$inboundSchema),
-  relationship: types.optional(HolderRelationship$inboundSchema),
-  first_name: types.optional(types.string()),
-  middle_name: types.optional(types.string()),
-  last_name: types.optional(types.string()),
-  suffix: types.optional(types.string()),
-  business_name: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "middle_name": "middleName",
-    "last_name": "lastName",
-    "business_name": "businessName",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: types.optional(HolderType$inboundSchema),
+    relationship: types.optional(HolderRelationship$inboundSchema),
+    first_name: types.optional(types.string()),
+    middle_name: types.optional(types.string()),
+    last_name: types.optional(types.string()),
+    suffix: types.optional(types.string()),
+    business_name: types.optional(types.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "first_name": "firstName",
+      "middle_name": "middleName",
+      "last_name": "lastName",
+      "business_name": "businessName",
+    });
+  })
+);
 /** @internal */
 export type BankFeedAccountHolder$Outbound = {
   type?: string | undefined;
@@ -152,22 +158,24 @@ export const BankFeedAccountHolder$outboundSchema: z.ZodType<
   BankFeedAccountHolder$Outbound,
   z.ZodTypeDef,
   BankFeedAccountHolder
-> = z.object({
-  type: HolderType$outboundSchema.optional(),
-  relationship: HolderRelationship$outboundSchema.optional(),
-  firstName: z.string().optional(),
-  middleName: z.string().optional(),
-  lastName: z.string().optional(),
-  suffix: z.string().optional(),
-  businessName: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    middleName: "middle_name",
-    lastName: "last_name",
-    businessName: "business_name",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    type: HolderType$outboundSchema.optional(),
+    relationship: HolderRelationship$outboundSchema.optional(),
+    firstName: z.string().optional(),
+    middleName: z.string().optional(),
+    lastName: z.string().optional(),
+    suffix: z.string().optional(),
+    businessName: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      firstName: "first_name",
+      middleName: "middle_name",
+      lastName: "last_name",
+      businessName: "business_name",
+    });
+  })
+);
 
 export function bankFeedAccountHolderToJSON(
   bankFeedAccountHolder: BankFeedAccountHolder,

@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -63,17 +63,19 @@ export const ConnectorConnectorResourcesOneRequest$outboundSchema: z.ZodType<
   ConnectorConnectorResourcesOneRequest$Outbound,
   z.ZodTypeDef,
   ConnectorConnectorResourcesOneRequest
-> = z.object({
-  appId: z.string().optional(),
-  id: z.string(),
-  resourceId: z.string(),
-  unifiedApi: components.UnifiedApi$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    resourceId: "resource_id",
-    unifiedApi: "unified_api",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    appId: z.string().optional(),
+    id: z.string(),
+    resourceId: z.string(),
+    unifiedApi: components.UnifiedApi$outboundSchema.optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      resourceId: "resource_id",
+      unifiedApi: "unified_api",
+    });
+  })
+);
 
 export function connectorConnectorResourcesOneRequestToJSON(
   connectorConnectorResourcesOneRequest: ConnectorConnectorResourcesOneRequest,
@@ -90,21 +92,23 @@ export const ConnectorConnectorResourcesOneResponse$inboundSchema: z.ZodType<
   ConnectorConnectorResourcesOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetConnectorResourceResponse: types.optional(
-    components.GetConnectorResourceResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetConnectorResourceResponse": "getConnectorResourceResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetConnectorResourceResponse: types.optional(
+      components.GetConnectorResourceResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetConnectorResourceResponse": "getConnectorResourceResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function connectorConnectorResourcesOneResponseFromJSON(
   jsonString: string,

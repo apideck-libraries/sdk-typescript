@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -70,19 +70,21 @@ export const VaultConnectionsImportRequest$outboundSchema: z.ZodType<
   VaultConnectionsImportRequest$Outbound,
   z.ZodTypeDef,
   VaultConnectionsImportRequest
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string(),
-  unifiedApi: z.string(),
-  connectionImportData: components.ConnectionImportData$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    serviceId: "service_id",
-    unifiedApi: "unified_api",
-    connectionImportData: "ConnectionImportData",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string(),
+    unifiedApi: z.string(),
+    connectionImportData: components.ConnectionImportData$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      serviceId: "service_id",
+      unifiedApi: "unified_api",
+      connectionImportData: "ConnectionImportData",
+    });
+  })
+);
 
 export function vaultConnectionsImportRequestToJSON(
   vaultConnectionsImportRequest: VaultConnectionsImportRequest,
@@ -99,21 +101,23 @@ export const VaultConnectionsImportResponse$inboundSchema: z.ZodType<
   VaultConnectionsImportResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateConnectionResponse: types.optional(
-    components.CreateConnectionResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateConnectionResponse": "createConnectionResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateConnectionResponse: types.optional(
+      components.CreateConnectionResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateConnectionResponse": "createConnectionResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultConnectionsImportResponseFromJSON(
   jsonString: string,

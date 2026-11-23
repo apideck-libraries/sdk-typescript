@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -90,21 +90,23 @@ export const CrmListMembersAllRequest$outboundSchema: z.ZodType<
   CrmListMembersAllRequest$Outbound,
   z.ZodTypeDef,
   CrmListMembersAllRequest
-> = z.object({
-  id: z.string(),
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  passThrough: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    passThrough: z.record(z.any()).optional(),
+    fields: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function crmListMembersAllRequestToJSON(
   crmListMembersAllRequest: CrmListMembersAllRequest,
@@ -119,21 +121,23 @@ export const CrmListMembersAllResponse$inboundSchema: z.ZodType<
   CrmListMembersAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetListMembersResponse: types.optional(
-    components.GetListMembersResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetListMembersResponse": "getListMembersResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetListMembersResponse: types.optional(
+      components.GetListMembersResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetListMembersResponse": "getListMembersResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function crmListMembersAllResponseFromJSON(
   jsonString: string,

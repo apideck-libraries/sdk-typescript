@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -61,12 +61,14 @@ export const ConnectorApisAllRequest$outboundSchema: z.ZodType<
   ConnectorApisAllRequest$Outbound,
   z.ZodTypeDef,
   ConnectorApisAllRequest
-> = z.object({
-  appId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.ApisFilter$outboundSchema.optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    appId: z.string().optional(),
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    filter: components.ApisFilter$outboundSchema.optional(),
+  })
+);
 
 export function connectorApisAllRequestToJSON(
   connectorApisAllRequest: ConnectorApisAllRequest,
@@ -81,19 +83,21 @@ export const ConnectorApisAllResponse$inboundSchema: z.ZodType<
   ConnectorApisAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetApisResponse: types.optional(components.GetApisResponse$inboundSchema),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetApisResponse": "getApisResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetApisResponse: types.optional(components.GetApisResponse$inboundSchema),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetApisResponse": "getApisResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function connectorApisAllResponseFromJSON(
   jsonString: string,

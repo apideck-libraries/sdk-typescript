@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -174,70 +174,76 @@ export const EcommerceOrderPaymentStatus$inboundSchema: z.ZodType<
   EcommerceOrderPaymentStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(EcommerceOrderPaymentStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(EcommerceOrderPaymentStatus)
+);
 
 /** @internal */
 export const FulfillmentStatus$inboundSchema: z.ZodType<
   FulfillmentStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(FulfillmentStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(FulfillmentStatus)
+);
 
 /** @internal */
 export const EcommerceOrder$inboundSchema: z.ZodType<
   EcommerceOrder,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  order_number: z.nullable(types.string()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  discounts: types.optional(z.array(EcommerceDiscount$inboundSchema)),
-  sub_total: z.nullable(types.string()).optional(),
-  shipping_cost: z.nullable(types.string()).optional(),
-  coupon_discount: z.nullable(types.string()).optional(),
-  total_discount: z.nullable(types.string()).optional(),
-  total_tax: z.nullable(types.string()).optional(),
-  total_amount: z.nullable(types.string()).optional(),
-  refunded_amount: z.nullable(types.string()).optional(),
-  tax_inclusive: z.nullable(types.boolean()).optional(),
-  status: z.nullable(EcommerceOrderStatus$inboundSchema).optional(),
-  payment_status: z.nullable(EcommerceOrderPaymentStatus$inboundSchema)
-    .optional(),
-  fulfillment_status: z.nullable(FulfillmentStatus$inboundSchema).optional(),
-  payment_method: z.nullable(types.string()).optional(),
-  customer: types.optional(LinkedEcommerceCustomer$inboundSchema),
-  billing_address: types.optional(EcommerceAddress$inboundSchema),
-  shipping_address: types.optional(EcommerceAddress$inboundSchema),
-  tracking: types.optional(z.array(TrackingItem$inboundSchema)),
-  line_items: types.optional(z.array(EcommerceOrderLineItem$inboundSchema)),
-  note: z.nullable(types.string()).optional(),
-  refunds: types.optional(z.array(EcommerceOrderRefund$inboundSchema)),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "order_number": "orderNumber",
-    "sub_total": "subTotal",
-    "shipping_cost": "shippingCost",
-    "coupon_discount": "couponDiscount",
-    "total_discount": "totalDiscount",
-    "total_tax": "totalTax",
-    "total_amount": "totalAmount",
-    "refunded_amount": "refundedAmount",
-    "tax_inclusive": "taxInclusive",
-    "payment_status": "paymentStatus",
-    "fulfillment_status": "fulfillmentStatus",
-    "payment_method": "paymentMethod",
-    "billing_address": "billingAddress",
-    "shipping_address": "shippingAddress",
-    "line_items": "lineItems",
-    "custom_mappings": "customMappings",
-    "created_at": "createdAt",
-    "updated_at": "updatedAt",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.string(),
+    order_number: z.nullable(types.string()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    discounts: types.optional(z.array(EcommerceDiscount$inboundSchema)),
+    sub_total: z.nullable(types.string()).optional(),
+    shipping_cost: z.nullable(types.string()).optional(),
+    coupon_discount: z.nullable(types.string()).optional(),
+    total_discount: z.nullable(types.string()).optional(),
+    total_tax: z.nullable(types.string()).optional(),
+    total_amount: z.nullable(types.string()).optional(),
+    refunded_amount: z.nullable(types.string()).optional(),
+    tax_inclusive: z.nullable(types.boolean()).optional(),
+    status: z.nullable(EcommerceOrderStatus$inboundSchema).optional(),
+    payment_status: z.nullable(EcommerceOrderPaymentStatus$inboundSchema)
+      .optional(),
+    fulfillment_status: z.nullable(FulfillmentStatus$inboundSchema).optional(),
+    payment_method: z.nullable(types.string()).optional(),
+    customer: types.optional(LinkedEcommerceCustomer$inboundSchema),
+    billing_address: types.optional(EcommerceAddress$inboundSchema),
+    shipping_address: types.optional(EcommerceAddress$inboundSchema),
+    tracking: types.optional(z.array(TrackingItem$inboundSchema)),
+    line_items: types.optional(z.array(EcommerceOrderLineItem$inboundSchema)),
+    note: z.nullable(types.string()).optional(),
+    refunds: types.optional(z.array(EcommerceOrderRefund$inboundSchema)),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "order_number": "orderNumber",
+      "sub_total": "subTotal",
+      "shipping_cost": "shippingCost",
+      "coupon_discount": "couponDiscount",
+      "total_discount": "totalDiscount",
+      "total_tax": "totalTax",
+      "total_amount": "totalAmount",
+      "refunded_amount": "refundedAmount",
+      "tax_inclusive": "taxInclusive",
+      "payment_status": "paymentStatus",
+      "fulfillment_status": "fulfillmentStatus",
+      "payment_method": "paymentMethod",
+      "billing_address": "billingAddress",
+      "shipping_address": "shippingAddress",
+      "line_items": "lineItems",
+      "custom_mappings": "customMappings",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
+    });
+  })
+);
 
 export function ecommerceOrderFromJSON(
   jsonString: string,

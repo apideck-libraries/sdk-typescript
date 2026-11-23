@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import {
@@ -315,21 +316,27 @@ export const ProjectUpdateInputProjectStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ProjectUpdateInputProjectStatus
-> = openEnums.outboundSchema(ProjectUpdateInputProjectStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ProjectUpdateInputProjectStatus)
+);
 
 /** @internal */
 export const ProjectUpdateInputProjectType$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ProjectUpdateInputProjectType
-> = openEnums.outboundSchema(ProjectUpdateInputProjectType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ProjectUpdateInputProjectType)
+);
 
 /** @internal */
 export const ProjectUpdateInputPriority$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ProjectUpdateInputPriority
-> = openEnums.outboundSchema(ProjectUpdateInputPriority);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ProjectUpdateInputPriority)
+);
 
 /** @internal */
 export type ProjectUpdateInputDepartment$Outbound = {
@@ -342,10 +349,12 @@ export const ProjectUpdateInputDepartment$outboundSchema: z.ZodType<
   ProjectUpdateInputDepartment$Outbound,
   z.ZodTypeDef,
   ProjectUpdateInputDepartment
-> = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    name: z.string().optional(),
+  })
+);
 
 export function projectUpdateInputDepartmentToJSON(
   projectUpdateInputDepartment: ProjectUpdateInputDepartment,
@@ -368,10 +377,12 @@ export const ProjectUpdateInputParentProject$outboundSchema: z.ZodType<
   ProjectUpdateInputParentProject$Outbound,
   z.ZodTypeDef,
   ProjectUpdateInputParentProject
-> = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+    name: z.string().optional(),
+  })
+);
 
 export function projectUpdateInputParentProjectToJSON(
   projectUpdateInputParentProject: ProjectUpdateInputParentProject,
@@ -388,21 +399,27 @@ export const ProjectUpdateInputBillingMethod$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ProjectUpdateInputBillingMethod
-> = openEnums.outboundSchema(ProjectUpdateInputBillingMethod);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ProjectUpdateInputBillingMethod)
+);
 
 /** @internal */
 export const ProjectUpdateInputProjectPhase$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ProjectUpdateInputProjectPhase
-> = openEnums.outboundSchema(ProjectUpdateInputProjectPhase);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ProjectUpdateInputProjectPhase)
+);
 
 /** @internal */
 export const ProjectUpdateInputScheduleStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   ProjectUpdateInputScheduleStatus
-> = openEnums.outboundSchema(ProjectUpdateInputScheduleStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(ProjectUpdateInputScheduleStatus)
+);
 
 /** @internal */
 export type ProjectUpdateInput$Outbound = {
@@ -452,86 +469,89 @@ export const ProjectUpdateInput$outboundSchema: z.ZodType<
   ProjectUpdateInput$Outbound,
   z.ZodTypeDef,
   ProjectUpdateInput
-> = z.object({
-  name: z.string().optional(),
-  displayId: z.nullable(z.string()).optional(),
-  referenceId: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  status: z.nullable(ProjectUpdateInputProjectStatus$outboundSchema).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  projectType: z.nullable(ProjectUpdateInputProjectType$outboundSchema)
-    .optional(),
-  priority: z.nullable(ProjectUpdateInputPriority$outboundSchema).optional(),
-  completionPercentage: z.nullable(z.number()).optional(),
-  startDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  endDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  completionDate: z.nullable(
-    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
-  ).optional(),
-  customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
-  department: z.nullable(
-    z.lazy(() => ProjectUpdateInputDepartment$outboundSchema),
-  ).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  ownerId: z.nullable(z.string()).optional(),
-  parentProject: z.nullable(
-    z.lazy(() => ProjectUpdateInputParentProject$outboundSchema),
-  ).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  budgetAmount: z.nullable(z.number()).optional(),
-  approvedAmount: z.nullable(z.number()).optional(),
-  budgetHours: z.nullable(z.number()).optional(),
-  hourlyRate: z.nullable(z.number()).optional(),
-  billingMethod: z.nullable(ProjectUpdateInputBillingMethod$outboundSchema)
-    .optional(),
-  isBillable: z.nullable(z.boolean().default(true)),
-  phase: z.nullable(ProjectUpdateInputProjectPhase$outboundSchema).optional(),
-  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  tags: z.array(z.string()).optional(),
-  notes: z.nullable(z.string()).optional(),
-  contractNumber: z.nullable(z.string()).optional(),
-  profitMargin: z.nullable(z.number()).optional(),
-  scheduleStatus: z.nullable(ProjectUpdateInputScheduleStatus$outboundSchema)
-    .optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  teamSize: z.nullable(z.number().int()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    referenceId: "reference_id",
-    projectType: "project_type",
-    completionPercentage: "completion_percentage",
-    startDate: "start_date",
-    endDate: "end_date",
-    completionDate: "completion_date",
-    companyId: "company_id",
-    ownerId: "owner_id",
-    parentProject: "parent_project",
-    budgetAmount: "budget_amount",
-    approvedAmount: "approved_amount",
-    budgetHours: "budget_hours",
-    hourlyRate: "hourly_rate",
-    billingMethod: "billing_method",
-    isBillable: "is_billable",
-    taxRate: "tax_rate",
-    trackingCategories: "tracking_categories",
-    contractNumber: "contract_number",
-    profitMargin: "profit_margin",
-    scheduleStatus: "schedule_status",
-    teamSize: "team_size",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string().optional(),
+    displayId: z.nullable(z.string()).optional(),
+    referenceId: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    status: z.nullable(ProjectUpdateInputProjectStatus$outboundSchema)
+      .optional(),
+    active: z.nullable(z.boolean()).optional(),
+    projectType: z.nullable(ProjectUpdateInputProjectType$outboundSchema)
+      .optional(),
+    priority: z.nullable(ProjectUpdateInputPriority$outboundSchema).optional(),
+    completionPercentage: z.nullable(z.number()).optional(),
+    startDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    endDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    completionDate: z.nullable(
+      z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+    ).optional(),
+    customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
+    department: z.nullable(
+      z.lazy(() => ProjectUpdateInputDepartment$outboundSchema),
+    ).optional(),
+    companyId: z.nullable(z.string()).optional(),
+    ownerId: z.nullable(z.string()).optional(),
+    parentProject: z.nullable(
+      z.lazy(() => ProjectUpdateInputParentProject$outboundSchema),
+    ).optional(),
+    currency: z.nullable(Currency$outboundSchema).optional(),
+    budgetAmount: z.nullable(z.number()).optional(),
+    approvedAmount: z.nullable(z.number()).optional(),
+    budgetHours: z.nullable(z.number()).optional(),
+    hourlyRate: z.nullable(z.number()).optional(),
+    billingMethod: z.nullable(ProjectUpdateInputBillingMethod$outboundSchema)
+      .optional(),
+    isBillable: z.nullable(z.boolean().default(true)),
+    phase: z.nullable(ProjectUpdateInputProjectPhase$outboundSchema).optional(),
+    taxRate: LinkedTaxRateInput$outboundSchema.optional(),
+    trackingCategories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+    ).optional(),
+    tags: z.array(z.string()).optional(),
+    notes: z.nullable(z.string()).optional(),
+    contractNumber: z.nullable(z.string()).optional(),
+    profitMargin: z.nullable(z.number()).optional(),
+    scheduleStatus: z.nullable(ProjectUpdateInputScheduleStatus$outboundSchema)
+      .optional(),
+    addresses: z.array(Address$outboundSchema).optional(),
+    teamSize: z.nullable(z.number().int()).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+      referenceId: "reference_id",
+      projectType: "project_type",
+      completionPercentage: "completion_percentage",
+      startDate: "start_date",
+      endDate: "end_date",
+      completionDate: "completion_date",
+      companyId: "company_id",
+      ownerId: "owner_id",
+      parentProject: "parent_project",
+      budgetAmount: "budget_amount",
+      approvedAmount: "approved_amount",
+      budgetHours: "budget_hours",
+      hourlyRate: "hourly_rate",
+      billingMethod: "billing_method",
+      isBillable: "is_billable",
+      taxRate: "tax_rate",
+      trackingCategories: "tracking_categories",
+      contractNumber: "contract_number",
+      profitMargin: "profit_margin",
+      scheduleStatus: "schedule_status",
+      teamSize: "team_size",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+    });
+  })
+);
 
 export function projectUpdateInputToJSON(
   projectUpdateInput: ProjectUpdateInput,

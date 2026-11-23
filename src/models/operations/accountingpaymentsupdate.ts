@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -77,19 +77,21 @@ export const AccountingPaymentsUpdateRequest$outboundSchema: z.ZodType<
   AccountingPaymentsUpdateRequest$Outbound,
   z.ZodTypeDef,
   AccountingPaymentsUpdateRequest
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  companyId: z.string().optional(),
-  raw: z.boolean().default(false),
-  paymentUpdateInput: components.PaymentUpdateInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    paymentUpdateInput: "PaymentUpdateInput",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    companyId: z.string().optional(),
+    raw: z.boolean().default(false),
+    paymentUpdateInput: components.PaymentUpdateInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      paymentUpdateInput: "PaymentUpdateInput",
+    });
+  })
+);
 
 export function accountingPaymentsUpdateRequestToJSON(
   accountingPaymentsUpdateRequest: AccountingPaymentsUpdateRequest,
@@ -106,21 +108,23 @@ export const AccountingPaymentsUpdateResponse$inboundSchema: z.ZodType<
   AccountingPaymentsUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UpdatePaymentResponse: types.optional(
-    components.UpdatePaymentResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UpdatePaymentResponse": "updatePaymentResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdatePaymentResponse: types.optional(
+      components.UpdatePaymentResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdatePaymentResponse": "updatePaymentResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function accountingPaymentsUpdateResponseFromJSON(
   jsonString: string,

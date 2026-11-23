@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 import {
   PassThroughBody,
   PassThroughBody$Outbound,
@@ -72,28 +73,30 @@ export const NoteInput$outboundSchema: z.ZodType<
   NoteInput$Outbound,
   z.ZodTypeDef,
   NoteInput
-> = z.object({
-  title: z.nullable(z.string()).optional(),
-  content: z.nullable(z.string()).optional(),
-  ownerId: z.nullable(z.string()).optional(),
-  contactId: z.nullable(z.string()).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  opportunityId: z.nullable(z.string()).optional(),
-  activityId: z.nullable(z.string()).optional(),
-  leadId: z.nullable(z.string()).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    ownerId: "owner_id",
-    contactId: "contact_id",
-    companyId: "company_id",
-    opportunityId: "opportunity_id",
-    activityId: "activity_id",
-    leadId: "lead_id",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    title: z.nullable(z.string()).optional(),
+    content: z.nullable(z.string()).optional(),
+    ownerId: z.nullable(z.string()).optional(),
+    contactId: z.nullable(z.string()).optional(),
+    companyId: z.nullable(z.string()).optional(),
+    opportunityId: z.nullable(z.string()).optional(),
+    activityId: z.nullable(z.string()).optional(),
+    leadId: z.nullable(z.string()).optional(),
+    active: z.nullable(z.boolean()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      ownerId: "owner_id",
+      contactId: "contact_id",
+      companyId: "company_id",
+      opportunityId: "opportunity_id",
+      activityId: "activity_id",
+      leadId: "lead_id",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function noteInputToJSON(noteInput: NoteInput): string {
   return JSON.stringify(NoteInput$outboundSchema.parse(noteInput));

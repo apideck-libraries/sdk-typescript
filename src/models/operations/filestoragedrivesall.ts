@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -85,16 +85,18 @@ export const FileStorageDrivesAllRequest$outboundSchema: z.ZodType<
   FileStorageDrivesAllRequest$Outbound,
   z.ZodTypeDef,
   FileStorageDrivesAllRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.DrivesFilter$outboundSchema.optional(),
-  fields: z.nullable(z.string()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    cursor: z.nullable(z.string()).optional(),
+    limit: z.number().int().default(20),
+    filter: components.DrivesFilter$outboundSchema.optional(),
+    fields: z.nullable(z.string()).optional(),
+  })
+);
 
 export function fileStorageDrivesAllRequestToJSON(
   fileStorageDrivesAllRequest: FileStorageDrivesAllRequest,
@@ -111,19 +113,23 @@ export const FileStorageDrivesAllResponse$inboundSchema: z.ZodType<
   FileStorageDrivesAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetDrivesResponse: types.optional(components.GetDrivesResponse$inboundSchema),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "GetDrivesResponse": "getDrivesResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    GetDrivesResponse: types.optional(
+      components.GetDrivesResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "GetDrivesResponse": "getDrivesResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function fileStorageDrivesAllResponseFromJSON(
   jsonString: string,

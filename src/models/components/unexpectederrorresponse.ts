@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { smartUnion } from "../../types/smartUnion.js";
@@ -47,7 +47,9 @@ export type UnexpectedErrorResponse = {
 
 /** @internal */
 export const Detail$inboundSchema: z.ZodType<Detail, z.ZodTypeDef, unknown> =
-  smartUnion([types.string(), z.record(z.any())]);
+  /* @__PURE__ */ lazySchema$(() =>
+    smartUnion([types.string(), z.record(z.any())])
+  );
 
 export function detailFromJSON(
   jsonString: string,
@@ -64,19 +66,21 @@ export const UnexpectedErrorResponse$inboundSchema: z.ZodType<
   UnexpectedErrorResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  status_code: types.optional(types.number()),
-  error: types.optional(types.string()),
-  type_name: types.optional(types.string()),
-  message: types.optional(types.string()),
-  detail: types.optional(smartUnion([types.string(), z.record(z.any())])),
-  ref: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "status_code": "statusCode",
-    "type_name": "typeName",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    status_code: types.optional(types.number()),
+    error: types.optional(types.string()),
+    type_name: types.optional(types.string()),
+    message: types.optional(types.string()),
+    detail: types.optional(smartUnion([types.string(), z.record(z.any())])),
+    ref: types.optional(types.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "status_code": "statusCode",
+      "type_name": "typeName",
+    });
+  })
+);
 
 export function unexpectedErrorResponseFromJSON(
   jsonString: string,

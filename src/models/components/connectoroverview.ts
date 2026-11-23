@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -188,17 +188,19 @@ export const Difficulty$inboundSchema: z.ZodType<
   Difficulty,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(Difficulty);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(Difficulty));
 
 /** @internal */
 export const SupportedResourceCategories$inboundSchema: z.ZodType<
   SupportedResourceCategories,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  name: types.string(),
-  resources: z.array(types.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: types.string(),
+    resources: z.array(types.string()),
+  })
+);
 
 export function supportedResourceCategoriesFromJSON(
   jsonString: string,
@@ -215,11 +217,13 @@ export const ExternalGuides$inboundSchema: z.ZodType<
   ExternalGuides,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  title: types.string(),
-  url: types.string(),
-  source: types.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    title: types.string(),
+    url: types.string(),
+    source: types.string(),
+  })
+);
 
 export function externalGuidesFromJSON(
   jsonString: string,
@@ -236,12 +240,14 @@ export const ResponsibilityMatrix$inboundSchema: z.ZodType<
   ResponsibilityMatrix,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  area: types.string(),
-  apideck: types.optional(types.string()),
-  consumer: types.optional(types.string()),
-  customer: types.optional(types.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    area: types.string(),
+    apideck: types.optional(types.string()),
+    consumer: types.optional(types.string()),
+    customer: types.optional(types.string()),
+  })
+);
 
 export function responsibilityMatrixFromJSON(
   jsonString: string,
@@ -258,10 +264,12 @@ export const EnvironmentNotes$inboundSchema: z.ZodType<
   EnvironmentNotes,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  environment: types.string(),
-  description: types.string(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    environment: types.string(),
+    description: types.string(),
+  })
+);
 
 export function environmentNotesFromJSON(
   jsonString: string,
@@ -278,62 +286,64 @@ export const ConnectorOverview$inboundSchema: z.ZodType<
   ConnectorOverview,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  beta: types.optional(types.boolean()),
-  demo: types.optional(types.boolean()),
-  difficulty: Difficulty$inboundSchema,
-  difficulty_reason: types.string(),
-  authentication_note: types.optional(types.string()),
-  webhooks: types.optional(types.string()),
-  partnership_required: types.boolean(),
-  partnership_url: types.optional(types.string()),
-  partnership_note: types.optional(types.string()),
-  partnership_portal_name: types.optional(types.string()),
-  apideck_credentials_available: types.boolean(),
-  apideck_credentials_note: types.optional(types.string()),
-  costs: types.optional(types.string()),
-  rate_limits: types.optional(types.string()),
-  account_type_required: types.string(),
-  sandbox_available: types.boolean(),
-  sandbox_url: types.optional(types.string()),
-  sandbox_note: types.optional(types.string()),
-  consumer_access_level: types.string(),
-  important_to_know: types.optional(z.array(types.string())),
-  supported_resource_categories: types.optional(
-    z.array(z.lazy(() => SupportedResourceCategories$inboundSchema)),
-  ),
-  external_guides: types.optional(
-    z.array(z.lazy(() => ExternalGuides$inboundSchema)),
-  ),
-  responsibility_matrix: types.optional(
-    z.array(z.lazy(() => ResponsibilityMatrix$inboundSchema)),
-  ),
-  environment_notes: types.optional(
-    z.array(z.lazy(() => EnvironmentNotes$inboundSchema)),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "difficulty_reason": "difficultyReason",
-    "authentication_note": "authenticationNote",
-    "partnership_required": "partnershipRequired",
-    "partnership_url": "partnershipUrl",
-    "partnership_note": "partnershipNote",
-    "partnership_portal_name": "partnershipPortalName",
-    "apideck_credentials_available": "apideckCredentialsAvailable",
-    "apideck_credentials_note": "apideckCredentialsNote",
-    "rate_limits": "rateLimits",
-    "account_type_required": "accountTypeRequired",
-    "sandbox_available": "sandboxAvailable",
-    "sandbox_url": "sandboxUrl",
-    "sandbox_note": "sandboxNote",
-    "consumer_access_level": "consumerAccessLevel",
-    "important_to_know": "importantToKnow",
-    "supported_resource_categories": "supportedResourceCategories",
-    "external_guides": "externalGuides",
-    "responsibility_matrix": "responsibilityMatrix",
-    "environment_notes": "environmentNotes",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    beta: types.optional(types.boolean()),
+    demo: types.optional(types.boolean()),
+    difficulty: Difficulty$inboundSchema,
+    difficulty_reason: types.string(),
+    authentication_note: types.optional(types.string()),
+    webhooks: types.optional(types.string()),
+    partnership_required: types.boolean(),
+    partnership_url: types.optional(types.string()),
+    partnership_note: types.optional(types.string()),
+    partnership_portal_name: types.optional(types.string()),
+    apideck_credentials_available: types.boolean(),
+    apideck_credentials_note: types.optional(types.string()),
+    costs: types.optional(types.string()),
+    rate_limits: types.optional(types.string()),
+    account_type_required: types.string(),
+    sandbox_available: types.boolean(),
+    sandbox_url: types.optional(types.string()),
+    sandbox_note: types.optional(types.string()),
+    consumer_access_level: types.string(),
+    important_to_know: types.optional(z.array(types.string())),
+    supported_resource_categories: types.optional(
+      z.array(z.lazy(() => SupportedResourceCategories$inboundSchema)),
+    ),
+    external_guides: types.optional(
+      z.array(z.lazy(() => ExternalGuides$inboundSchema)),
+    ),
+    responsibility_matrix: types.optional(
+      z.array(z.lazy(() => ResponsibilityMatrix$inboundSchema)),
+    ),
+    environment_notes: types.optional(
+      z.array(z.lazy(() => EnvironmentNotes$inboundSchema)),
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "difficulty_reason": "difficultyReason",
+      "authentication_note": "authenticationNote",
+      "partnership_required": "partnershipRequired",
+      "partnership_url": "partnershipUrl",
+      "partnership_note": "partnershipNote",
+      "partnership_portal_name": "partnershipPortalName",
+      "apideck_credentials_available": "apideckCredentialsAvailable",
+      "apideck_credentials_note": "apideckCredentialsNote",
+      "rate_limits": "rateLimits",
+      "account_type_required": "accountTypeRequired",
+      "sandbox_available": "sandboxAvailable",
+      "sandbox_url": "sandboxUrl",
+      "sandbox_note": "sandboxNote",
+      "consumer_access_level": "consumerAccessLevel",
+      "important_to_know": "importantToKnow",
+      "supported_resource_categories": "supportedResourceCategories",
+      "external_guides": "externalGuides",
+      "responsibility_matrix": "responsibilityMatrix",
+      "environment_notes": "environmentNotes",
+    });
+  })
+);
 
 export function connectorOverviewFromJSON(
   jsonString: string,

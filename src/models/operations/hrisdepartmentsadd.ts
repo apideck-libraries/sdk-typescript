@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -67,17 +67,19 @@ export const HrisDepartmentsAddRequest$outboundSchema: z.ZodType<
   HrisDepartmentsAddRequest$Outbound,
   z.ZodTypeDef,
   HrisDepartmentsAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  department: components.DepartmentInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    department: "Department",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    department: components.DepartmentInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      department: "Department",
+    });
+  })
+);
 
 export function hrisDepartmentsAddRequestToJSON(
   hrisDepartmentsAddRequest: HrisDepartmentsAddRequest,
@@ -92,21 +94,23 @@ export const HrisDepartmentsAddResponse$inboundSchema: z.ZodType<
   HrisDepartmentsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateDepartmentResponse: types.optional(
-    components.CreateDepartmentResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateDepartmentResponse": "createDepartmentResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateDepartmentResponse: types.optional(
+      components.CreateDepartmentResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateDepartmentResponse": "createDepartmentResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function hrisDepartmentsAddResponseFromJSON(
   jsonString: string,

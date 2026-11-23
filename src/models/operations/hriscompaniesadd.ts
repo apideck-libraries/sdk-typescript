@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -67,17 +67,19 @@ export const HrisCompaniesAddRequest$outboundSchema: z.ZodType<
   HrisCompaniesAddRequest$Outbound,
   z.ZodTypeDef,
   HrisCompaniesAddRequest
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  hrisCompany: components.HrisCompanyInput$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    hrisCompany: "HrisCompany",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string().optional(),
+    hrisCompany: components.HrisCompanyInput$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      hrisCompany: "HrisCompany",
+    });
+  })
+);
 
 export function hrisCompaniesAddRequestToJSON(
   hrisCompaniesAddRequest: HrisCompaniesAddRequest,
@@ -92,21 +94,23 @@ export const HrisCompaniesAddResponse$inboundSchema: z.ZodType<
   HrisCompaniesAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateHrisCompanyResponse: types.optional(
-    components.CreateHrisCompanyResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateHrisCompanyResponse": "createHrisCompanyResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateHrisCompanyResponse: types.optional(
+      components.CreateHrisCompanyResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateHrisCompanyResponse": "createHrisCompanyResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function hrisCompaniesAddResponseFromJSON(
   jsonString: string,

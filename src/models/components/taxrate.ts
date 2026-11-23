@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -221,12 +221,14 @@ export const Components$inboundSchema: z.ZodType<
   Components,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  name: types.optional(types.string()),
-  rate: z.nullable(types.number()).optional(),
-  compound: z.nullable(types.boolean()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    name: types.optional(types.string()),
+    rate: z.nullable(types.number()).optional(),
+    compound: z.nullable(types.boolean()).optional(),
+  })
+);
 /** @internal */
 export type Components$Outbound = {
   id?: string | null | undefined;
@@ -240,12 +242,14 @@ export const Components$outboundSchema: z.ZodType<
   Components$Outbound,
   z.ZodTypeDef,
   Components
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  rate: z.nullable(z.number()).optional(),
-  compound: z.nullable(z.boolean()).optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    name: z.string().optional(),
+    rate: z.nullable(z.number()).optional(),
+    compound: z.nullable(z.boolean()).optional(),
+  })
+);
 
 export function componentsToJSON(components: Components): string {
   return JSON.stringify(Components$outboundSchema.parse(components));
@@ -265,22 +269,24 @@ export const TaxRateStatus$inboundSchema: z.ZodType<
   TaxRateStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(TaxRateStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.inboundSchema(TaxRateStatus));
 /** @internal */
 export const TaxRateStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   TaxRateStatus
-> = openEnums.outboundSchema(TaxRateStatus);
+> = /* @__PURE__ */ lazySchema$(() => openEnums.outboundSchema(TaxRateStatus));
 
 /** @internal */
 export const Subsidiaries$inboundSchema: z.ZodType<
   Subsidiaries,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+  })
+);
 /** @internal */
 export type Subsidiaries$Outbound = {
   id?: string | undefined;
@@ -291,9 +297,11 @@ export const Subsidiaries$outboundSchema: z.ZodType<
   Subsidiaries$Outbound,
   z.ZodTypeDef,
   Subsidiaries
-> = z.object({
-  id: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+  })
+);
 
 export function subsidiariesToJSON(subsidiaries: Subsidiaries): string {
   return JSON.stringify(Subsidiaries$outboundSchema.parse(subsidiaries));
@@ -310,53 +318,55 @@ export function subsidiariesFromJSON(
 
 /** @internal */
 export const TaxRate$inboundSchema: z.ZodType<TaxRate, z.ZodTypeDef, unknown> =
-  z.object({
-    id: z.nullable(types.string()).optional(),
-    display_id: z.nullable(types.string()).optional(),
-    name: types.optional(types.string()),
-    code: z.nullable(types.string()).optional(),
-    description: z.nullable(types.string()).optional(),
-    effective_tax_rate: z.nullable(types.number()).optional(),
-    country: z.nullable(types.string()).optional(),
-    total_tax_rate: z.nullable(types.number()).optional(),
-    tax_payable_account_id: z.nullable(types.string()).optional(),
-    tax_remitted_account_id: z.nullable(types.string()).optional(),
-    components: z.nullable(z.array(z.lazy(() => Components$inboundSchema)))
-      .optional(),
-    type: z.nullable(types.string()).optional(),
-    report_tax_type: z.nullable(types.string()).optional(),
-    original_tax_rate_id: z.nullable(types.string()).optional(),
-    status: z.nullable(TaxRateStatus$inboundSchema).optional(),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    row_version: z.nullable(types.string()).optional(),
-    updated_by: z.nullable(types.string()).optional(),
-    created_by: z.nullable(types.string()).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-    subsidiaries: types.optional(
-      z.array(z.lazy(() => Subsidiaries$inboundSchema)),
-    ),
-    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  }).transform((v) => {
-    return remap$(v, {
-      "display_id": "displayId",
-      "effective_tax_rate": "effectiveTaxRate",
-      "total_tax_rate": "totalTaxRate",
-      "tax_payable_account_id": "taxPayableAccountId",
-      "tax_remitted_account_id": "taxRemittedAccountId",
-      "report_tax_type": "reportTaxType",
-      "original_tax_rate_id": "originalTaxRateId",
-      "custom_mappings": "customMappings",
-      "row_version": "rowVersion",
-      "updated_by": "updatedBy",
-      "created_by": "createdBy",
-      "updated_at": "updatedAt",
-      "created_at": "createdAt",
-      "pass_through": "passThrough",
-      "custom_fields": "customFields",
-    });
-  });
+  /* @__PURE__ */ lazySchema$(() =>
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      display_id: z.nullable(types.string()).optional(),
+      name: types.optional(types.string()),
+      code: z.nullable(types.string()).optional(),
+      description: z.nullable(types.string()).optional(),
+      effective_tax_rate: z.nullable(types.number()).optional(),
+      country: z.nullable(types.string()).optional(),
+      total_tax_rate: z.nullable(types.number()).optional(),
+      tax_payable_account_id: z.nullable(types.string()).optional(),
+      tax_remitted_account_id: z.nullable(types.string()).optional(),
+      components: z.nullable(z.array(z.lazy(() => Components$inboundSchema)))
+        .optional(),
+      type: z.nullable(types.string()).optional(),
+      report_tax_type: z.nullable(types.string()).optional(),
+      original_tax_rate_id: z.nullable(types.string()).optional(),
+      status: z.nullable(TaxRateStatus$inboundSchema).optional(),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+      row_version: z.nullable(types.string()).optional(),
+      updated_by: z.nullable(types.string()).optional(),
+      created_by: z.nullable(types.string()).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+      pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+      subsidiaries: types.optional(
+        z.array(z.lazy(() => Subsidiaries$inboundSchema)),
+      ),
+      custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    }).transform((v) => {
+      return remap$(v, {
+        "display_id": "displayId",
+        "effective_tax_rate": "effectiveTaxRate",
+        "total_tax_rate": "totalTaxRate",
+        "tax_payable_account_id": "taxPayableAccountId",
+        "tax_remitted_account_id": "taxRemittedAccountId",
+        "report_tax_type": "reportTaxType",
+        "original_tax_rate_id": "originalTaxRateId",
+        "custom_mappings": "customMappings",
+        "row_version": "rowVersion",
+        "updated_by": "updatedBy",
+        "created_by": "createdBy",
+        "updated_at": "updatedAt",
+        "created_at": "createdAt",
+        "pass_through": "passThrough",
+        "custom_fields": "customFields",
+      });
+    })
+  );
 
 export function taxRateFromJSON(
   jsonString: string,
@@ -396,41 +406,43 @@ export const TaxRateInput$outboundSchema: z.ZodType<
   TaxRateInput$Outbound,
   z.ZodTypeDef,
   TaxRateInput
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  displayId: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  effectiveTaxRate: z.nullable(z.number()).optional(),
-  country: z.nullable(z.string()).optional(),
-  totalTaxRate: z.nullable(z.number()).optional(),
-  taxPayableAccountId: z.nullable(z.string()).optional(),
-  taxRemittedAccountId: z.nullable(z.string()).optional(),
-  components: z.nullable(z.array(z.lazy(() => Components$outboundSchema)))
-    .optional(),
-  type: z.nullable(z.string()).optional(),
-  reportTaxType: z.nullable(z.string()).optional(),
-  originalTaxRateId: z.nullable(z.string()).optional(),
-  status: z.nullable(TaxRateStatus$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-  subsidiaries: z.array(z.lazy(() => Subsidiaries$outboundSchema)).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    effectiveTaxRate: "effective_tax_rate",
-    totalTaxRate: "total_tax_rate",
-    taxPayableAccountId: "tax_payable_account_id",
-    taxRemittedAccountId: "tax_remitted_account_id",
-    reportTaxType: "report_tax_type",
-    originalTaxRateId: "original_tax_rate_id",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-    customFields: "custom_fields",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    displayId: z.nullable(z.string()).optional(),
+    name: z.string().optional(),
+    code: z.nullable(z.string()).optional(),
+    description: z.nullable(z.string()).optional(),
+    effectiveTaxRate: z.nullable(z.number()).optional(),
+    country: z.nullable(z.string()).optional(),
+    totalTaxRate: z.nullable(z.number()).optional(),
+    taxPayableAccountId: z.nullable(z.string()).optional(),
+    taxRemittedAccountId: z.nullable(z.string()).optional(),
+    components: z.nullable(z.array(z.lazy(() => Components$outboundSchema)))
+      .optional(),
+    type: z.nullable(z.string()).optional(),
+    reportTaxType: z.nullable(z.string()).optional(),
+    originalTaxRateId: z.nullable(z.string()).optional(),
+    status: z.nullable(TaxRateStatus$outboundSchema).optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+    subsidiaries: z.array(z.lazy(() => Subsidiaries$outboundSchema)).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      displayId: "display_id",
+      effectiveTaxRate: "effective_tax_rate",
+      totalTaxRate: "total_tax_rate",
+      taxPayableAccountId: "tax_payable_account_id",
+      taxRemittedAccountId: "tax_remitted_account_id",
+      reportTaxType: "report_tax_type",
+      originalTaxRateId: "original_tax_rate_id",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+      customFields: "custom_fields",
+    });
+  })
+);
 
 export function taxRateInputToJSON(taxRateInput: TaxRateInput): string {
   return JSON.stringify(TaxRateInput$outboundSchema.parse(taxRateInput));

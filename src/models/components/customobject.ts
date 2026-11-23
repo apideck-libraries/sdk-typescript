@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -73,10 +73,12 @@ export const CustomObjectFields$inboundSchema: z.ZodType<
   CustomObjectFields,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  name: types.optional(types.string()),
-  value: types.optional(types.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: types.optional(types.string()),
+    value: types.optional(types.string()),
+  })
+);
 /** @internal */
 export type CustomObjectFields$Outbound = {
   name?: string | undefined;
@@ -88,10 +90,12 @@ export const CustomObjectFields$outboundSchema: z.ZodType<
   CustomObjectFields$Outbound,
   z.ZodTypeDef,
   CustomObjectFields
-> = z.object({
-  name: z.string().optional(),
-  value: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string().optional(),
+    value: z.string().optional(),
+  })
+);
 
 export function customObjectFieldsToJSON(
   customObjectFields: CustomObjectFields,
@@ -115,28 +119,30 @@ export const CustomObject$inboundSchema: z.ZodType<
   CustomObject,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  owner_id: types.optional(types.string()),
-  name: z.nullable(types.string()).optional(),
-  fields: types.optional(
-    z.array(z.lazy(() => CustomObjectFields$inboundSchema)),
-  ),
-  updated_by: types.optional(types.string()),
-  created_by: types.optional(types.string()),
-  updated_at: z.nullable(types.string()).optional(),
-  created_at: z.nullable(types.string()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "owner_id": "ownerId",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    owner_id: types.optional(types.string()),
+    name: z.nullable(types.string()).optional(),
+    fields: types.optional(
+      z.array(z.lazy(() => CustomObjectFields$inboundSchema)),
+    ),
+    updated_by: types.optional(types.string()),
+    created_by: types.optional(types.string()),
+    updated_at: z.nullable(types.string()).optional(),
+    created_at: z.nullable(types.string()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).transform((v) => {
+    return remap$(v, {
+      "owner_id": "ownerId",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function customObjectFromJSON(
   jsonString: string,
@@ -160,15 +166,17 @@ export const CustomObjectInput$outboundSchema: z.ZodType<
   CustomObjectInput$Outbound,
   z.ZodTypeDef,
   CustomObjectInput
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  fields: z.array(z.lazy(() => CustomObjectFields$outboundSchema)).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.nullable(z.string()).optional(),
+    fields: z.array(z.lazy(() => CustomObjectFields$outboundSchema)).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function customObjectInputToJSON(
   customObjectInput: CustomObjectInput,

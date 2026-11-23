@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type LeadsFilter = {
   /**
@@ -42,19 +43,21 @@ export const LeadsFilter$outboundSchema: z.ZodType<
   LeadsFilter$Outbound,
   z.ZodTypeDef,
   LeadsFilter
-> = z.object({
-  name: z.string().optional(),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  email: z.string().optional(),
-  phoneNumber: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    phoneNumber: "phone_number",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string().optional(),
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
+    email: z.string().optional(),
+    phoneNumber: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      firstName: "first_name",
+      lastName: "last_name",
+      phoneNumber: "phone_number",
+    });
+  })
+);
 
 export function leadsFilterToJSON(leadsFilter: LeadsFilter): string {
   return JSON.stringify(LeadsFilter$outboundSchema.parse(leadsFilter));

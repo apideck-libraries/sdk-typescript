@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -72,19 +72,21 @@ export const VaultCreateCallbackStateRequest$outboundSchema: z.ZodType<
   VaultCreateCallbackStateRequest$Outbound,
   z.ZodTypeDef,
   VaultCreateCallbackStateRequest
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string(),
-  unifiedApi: z.string(),
-  createCallbackState: components.CreateCallbackState$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    serviceId: "service_id",
-    unifiedApi: "unified_api",
-    createCallbackState: "CreateCallbackState",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string(),
+    unifiedApi: z.string(),
+    createCallbackState: components.CreateCallbackState$outboundSchema,
+  }).transform((v) => {
+    return remap$(v, {
+      serviceId: "service_id",
+      unifiedApi: "unified_api",
+      createCallbackState: "CreateCallbackState",
+    });
+  })
+);
 
 export function vaultCreateCallbackStateRequestToJSON(
   vaultCreateCallbackStateRequest: VaultCreateCallbackStateRequest,
@@ -101,21 +103,23 @@ export const VaultCreateCallbackStateResponse$inboundSchema: z.ZodType<
   VaultCreateCallbackStateResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateCallbackStateResponse: types.optional(
-    components.CreateCallbackStateResponse$inboundSchema,
-  ),
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "CreateCallbackStateResponse": "createCallbackStateResponse",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateCallbackStateResponse: types.optional(
+      components.CreateCallbackStateResponse$inboundSchema,
+    ),
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateCallbackStateResponse": "createCallbackStateResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultCreateCallbackStateResponseFromJSON(
   jsonString: string,

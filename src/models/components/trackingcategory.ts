@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -135,22 +135,28 @@ export const TrackingCategoryStatus$inboundSchema: z.ZodType<
   TrackingCategoryStatus,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(TrackingCategoryStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(TrackingCategoryStatus)
+);
 /** @internal */
 export const TrackingCategoryStatus$outboundSchema: z.ZodType<
   string,
   z.ZodTypeDef,
   TrackingCategoryStatus
-> = openEnums.outboundSchema(TrackingCategoryStatus);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.outboundSchema(TrackingCategoryStatus)
+);
 
 /** @internal */
 export const TrackingCategorySubsidiaries$inboundSchema: z.ZodType<
   TrackingCategorySubsidiaries,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+  })
+);
 /** @internal */
 export type TrackingCategorySubsidiaries$Outbound = {
   id?: string | undefined;
@@ -161,9 +167,11 @@ export const TrackingCategorySubsidiaries$outboundSchema: z.ZodType<
   TrackingCategorySubsidiaries$Outbound,
   z.ZodTypeDef,
   TrackingCategorySubsidiaries
-> = z.object({
-  id: z.string().optional(),
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: z.string().optional(),
+  })
+);
 
 export function trackingCategorySubsidiariesToJSON(
   trackingCategorySubsidiaries: TrackingCategorySubsidiaries,
@@ -189,36 +197,38 @@ export const TrackingCategory$inboundSchema: z.ZodType<
   TrackingCategory,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  parent_id: z.nullable(types.string()).optional(),
-  parent_name: z.nullable(types.string()).optional(),
-  name: types.optional(types.string()),
-  code: z.nullable(types.string()).optional(),
-  status: types.optional(TrackingCategoryStatus$inboundSchema),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-  subsidiaries: types.optional(
-    z.array(z.lazy(() => TrackingCategorySubsidiaries$inboundSchema)),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_id": "parentId",
-    "parent_name": "parentName",
-    "custom_mappings": "customMappings",
-    "row_version": "rowVersion",
-    "updated_by": "updatedBy",
-    "created_by": "createdBy",
-    "updated_at": "updatedAt",
-    "created_at": "createdAt",
-    "pass_through": "passThrough",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    id: types.optional(types.string()),
+    parent_id: z.nullable(types.string()).optional(),
+    parent_name: z.nullable(types.string()).optional(),
+    name: types.optional(types.string()),
+    code: z.nullable(types.string()).optional(),
+    status: types.optional(TrackingCategoryStatus$inboundSchema),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    subsidiaries: types.optional(
+      z.array(z.lazy(() => TrackingCategorySubsidiaries$inboundSchema)),
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "parent_id": "parentId",
+      "parent_name": "parentName",
+      "custom_mappings": "customMappings",
+      "row_version": "rowVersion",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
+      "updated_at": "updatedAt",
+      "created_at": "createdAt",
+      "pass_through": "passThrough",
+    });
+  })
+);
 
 export function trackingCategoryFromJSON(
   jsonString: string,
@@ -247,25 +257,27 @@ export const TrackingCategoryInput$outboundSchema: z.ZodType<
   TrackingCategoryInput$Outbound,
   z.ZodTypeDef,
   TrackingCategoryInput
-> = z.object({
-  parentId: z.nullable(z.string()).optional(),
-  parentName: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  status: TrackingCategoryStatus$outboundSchema.optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-  subsidiaries: z.array(
-    z.lazy(() => TrackingCategorySubsidiaries$outboundSchema),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    parentName: "parent_name",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    parentId: z.nullable(z.string()).optional(),
+    parentName: z.nullable(z.string()).optional(),
+    name: z.string().optional(),
+    code: z.nullable(z.string()).optional(),
+    status: TrackingCategoryStatus$outboundSchema.optional(),
+    rowVersion: z.nullable(z.string()).optional(),
+    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+    subsidiaries: z.array(
+      z.lazy(() => TrackingCategorySubsidiaries$outboundSchema),
+    ).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      parentId: "parent_id",
+      parentName: "parent_name",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+    });
+  })
+);
 
 export function trackingCategoryInputToJSON(
   trackingCategoryInput: TrackingCategoryInput,

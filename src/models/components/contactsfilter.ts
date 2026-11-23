@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { lazySchema as lazySchema$ } from "../../lib/schemas.js";
 
 export type ContactsFilter = {
   /**
@@ -56,27 +57,29 @@ export const ContactsFilter$outboundSchema: z.ZodType<
   ContactsFilter$Outbound,
   z.ZodTypeDef,
   ContactsFilter
-> = z.object({
-  name: z.string().optional(),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  email: z.string().optional(),
-  phoneNumber: z.string().optional(),
-  companyId: z.string().optional(),
-  ownerId: z.string().optional(),
-  updatedSince: z.date().transform(v => v.toISOString()).optional(),
-  createdSince: z.date().transform(v => v.toISOString()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    phoneNumber: "phone_number",
-    companyId: "company_id",
-    ownerId: "owner_id",
-    updatedSince: "updated_since",
-    createdSince: "created_since",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    name: z.string().optional(),
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
+    email: z.string().optional(),
+    phoneNumber: z.string().optional(),
+    companyId: z.string().optional(),
+    ownerId: z.string().optional(),
+    updatedSince: z.date().transform(v => v.toISOString()).optional(),
+    createdSince: z.date().transform(v => v.toISOString()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      firstName: "first_name",
+      lastName: "last_name",
+      phoneNumber: "phone_number",
+      companyId: "company_id",
+      ownerId: "owner_id",
+      updatedSince: "updated_since",
+      createdSince: "created_since",
+    });
+  })
+);
 
 export function contactsFilterToJSON(contactsFilter: ContactsFilter): string {
   return JSON.stringify(ContactsFilter$outboundSchema.parse(contactsFilter));

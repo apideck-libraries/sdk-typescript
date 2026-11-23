@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -64,34 +64,38 @@ export const BalanceByTransactionTransactionType$inboundSchema: z.ZodType<
   BalanceByTransactionTransactionType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(BalanceByTransactionTransactionType);
+> = /* @__PURE__ */ lazySchema$(() =>
+  openEnums.inboundSchema(BalanceByTransactionTransactionType)
+);
 
 /** @internal */
 export const BalanceByTransaction$inboundSchema: z.ZodType<
   BalanceByTransaction,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  transaction_id: types.optional(types.string()),
-  transaction_date: types.optional(types.date()),
-  transaction_type: types.optional(
-    BalanceByTransactionTransactionType$inboundSchema,
-  ),
-  due_date: types.optional(types.date()),
-  original_amount: types.optional(types.number()),
-  outstanding_balance: types.optional(types.number()),
-  transaction_number: types.optional(types.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "transaction_id": "transactionId",
-    "transaction_date": "transactionDate",
-    "transaction_type": "transactionType",
-    "due_date": "dueDate",
-    "original_amount": "originalAmount",
-    "outstanding_balance": "outstandingBalance",
-    "transaction_number": "transactionNumber",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    transaction_id: types.optional(types.string()),
+    transaction_date: types.optional(types.date()),
+    transaction_type: types.optional(
+      BalanceByTransactionTransactionType$inboundSchema,
+    ),
+    due_date: types.optional(types.date()),
+    original_amount: types.optional(types.number()),
+    outstanding_balance: types.optional(types.number()),
+    transaction_number: types.optional(types.string()),
+  }).transform((v) => {
+    return remap$(v, {
+      "transaction_id": "transactionId",
+      "transaction_date": "transactionDate",
+      "transaction_type": "transactionType",
+      "due_date": "dueDate",
+      "original_amount": "originalAmount",
+      "outstanding_balance": "outstandingBalance",
+      "transaction_number": "transactionNumber",
+    });
+  })
+);
 
 export function balanceByTransactionFromJSON(
   jsonString: string,

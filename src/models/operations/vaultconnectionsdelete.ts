@@ -4,7 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import { lazySchema as lazySchema$, safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
@@ -61,17 +61,19 @@ export const VaultConnectionsDeleteRequest$outboundSchema: z.ZodType<
   VaultConnectionsDeleteRequest$Outbound,
   z.ZodTypeDef,
   VaultConnectionsDeleteRequest
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string(),
-  unifiedApi: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    serviceId: "service_id",
-    unifiedApi: "unified_api",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
+    serviceId: z.string(),
+    unifiedApi: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      serviceId: "service_id",
+      unifiedApi: "unified_api",
+    });
+  })
+);
 
 export function vaultConnectionsDeleteRequestToJSON(
   vaultConnectionsDeleteRequest: VaultConnectionsDeleteRequest,
@@ -88,17 +90,19 @@ export const VaultConnectionsDeleteResponse$inboundSchema: z.ZodType<
   VaultConnectionsDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  HttpMeta: components.HTTPMetadata$inboundSchema,
-  UnexpectedErrorResponse: types.optional(
-    components.UnexpectedErrorResponse$inboundSchema,
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "HttpMeta": "httpMeta",
-    "UnexpectedErrorResponse": "unexpectedErrorResponse",
-  });
-});
+> = /* @__PURE__ */ lazySchema$(() =>
+  z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UnexpectedErrorResponse: types.optional(
+      components.UnexpectedErrorResponse$inboundSchema,
+    ),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  })
+);
 
 export function vaultConnectionsDeleteResponseFromJSON(
   jsonString: string,
