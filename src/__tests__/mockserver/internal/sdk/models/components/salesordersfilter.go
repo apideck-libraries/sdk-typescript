@@ -16,6 +16,8 @@ type SalesOrdersFilter struct {
 	CustomerID *string `queryParam:"name=customer_id"`
 	// Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
 	SubsidiaryID *string `queryParam:"name=subsidiary_id"`
+	// Filter by the purchase order number (customer reference) set on the sales order. Exact match; more than one sales order can carry the same PO number.
+	PoNumber *string `queryParam:"name=po_number"`
 }
 
 func (s SalesOrdersFilter) MarshalJSON() ([]byte, error) {
@@ -62,4 +64,11 @@ func (o *SalesOrdersFilter) GetSubsidiaryID() *string {
 		return nil
 	}
 	return o.SubsidiaryID
+}
+
+func (o *SalesOrdersFilter) GetPoNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PoNumber
 }
