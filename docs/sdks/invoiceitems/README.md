@@ -143,6 +143,7 @@ async function run() {
   const result = await apideck.accounting.invoiceItems.create({
     serviceId: "salesforce",
     companyId: "12345",
+    idempotencyKey: "your-unique-key-per-create",
     invoiceItem: {
       name: "Model Y",
       description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
@@ -247,6 +248,7 @@ async function run() {
   const res = await accountingInvoiceItemsCreate(apideck, {
     serviceId: "salesforce",
     companyId: "12345",
+    idempotencyKey: "your-unique-key-per-create",
     invoiceItem: {
       name: "Model Y",
       description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",

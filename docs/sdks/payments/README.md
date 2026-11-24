@@ -144,6 +144,7 @@ async function run() {
   const result = await apideck.accounting.payments.create({
     serviceId: "salesforce",
     companyId: "12345",
+    idempotencyKey: "your-unique-key-per-create",
     payment: {
       currency: "USD",
       currencyRate: 0.69,
@@ -258,6 +259,7 @@ async function run() {
   const res = await accountingPaymentsCreate(apideck, {
     serviceId: "salesforce",
     companyId: "12345",
+    idempotencyKey: "your-unique-key-per-create",
     payment: {
       currency: "USD",
       currencyRate: 0.69,

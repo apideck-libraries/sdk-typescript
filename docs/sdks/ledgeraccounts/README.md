@@ -142,6 +142,7 @@ async function run() {
   const result = await apideck.accounting.ledgerAccounts.create({
     serviceId: "salesforce",
     companyId: "12345",
+    idempotencyKey: "your-unique-key-per-create",
     ledgerAccount: {
       displayId: "1-12345",
       code: "453",
@@ -262,6 +263,7 @@ async function run() {
   const res = await accountingLedgerAccountsCreate(apideck, {
     serviceId: "salesforce",
     companyId: "12345",
+    idempotencyKey: "your-unique-key-per-create",
     ledgerAccount: {
       displayId: "1-12345",
       code: "453",

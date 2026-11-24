@@ -21,6 +21,10 @@ export type SalesOrdersFilter = {
    * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
    */
   subsidiaryId?: string | undefined;
+  /**
+   * Filter by the purchase order number (customer reference) set on the sales order. Exact match; more than one sales order can carry the same PO number.
+   */
+  poNumber?: string | undefined;
 };
 
 /** @internal */
@@ -30,6 +34,7 @@ export type SalesOrdersFilter$Outbound = {
   number?: string | undefined;
   customer_id?: string | undefined;
   subsidiary_id?: string | undefined;
+  po_number?: string | undefined;
 };
 
 /** @internal */
@@ -44,12 +49,14 @@ export const SalesOrdersFilter$outboundSchema: z.ZodType<
     number: z.string().optional(),
     customerId: z.string().optional(),
     subsidiaryId: z.string().optional(),
+    poNumber: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       updatedSince: "updated_since",
       createdSince: "created_since",
       customerId: "customer_id",
       subsidiaryId: "subsidiary_id",
+      poNumber: "po_number",
     });
   })
 );

@@ -33,6 +33,10 @@ export type InvoicesFilter = {
    * Filter by customer id
    */
   customerId?: string | undefined;
+  /**
+   * Filter by the purchase order number (customer reference) set on the invoice. Exact match; more than one invoice can carry the same PO number.
+   */
+  poNumber?: string | undefined;
 };
 
 /** @internal */
@@ -45,6 +49,7 @@ export type InvoicesFilter$Outbound = {
   supplier_id?: string | undefined;
   subsidiary_id?: string | undefined;
   customer_id?: string | undefined;
+  po_number?: string | undefined;
 };
 
 /** @internal */
@@ -62,6 +67,7 @@ export const InvoicesFilter$outboundSchema: z.ZodType<
     supplierId: z.string().optional(),
     subsidiaryId: z.string().optional(),
     customerId: z.string().optional(),
+    poNumber: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       idSince: "id_since",
@@ -70,6 +76,7 @@ export const InvoicesFilter$outboundSchema: z.ZodType<
       supplierId: "supplier_id",
       subsidiaryId: "subsidiary_id",
       customerId: "customer_id",
+      poNumber: "po_number",
     });
   })
 );
