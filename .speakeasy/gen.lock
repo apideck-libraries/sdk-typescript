@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 6426f951b024d385bb1b8435b6815d40
-  docVersion: 10.90.0
+  docChecksum: 09537de549f6ac525e5a910ffed61cb0
+  docVersion: 10.90.2
   speakeasyVersion: 1.811.0
   generationVersion: 2.968.1
-  releaseVersion: 0.63.0
-  configChecksum: cb4388770ae83145b67a4ed5b7ba3a98
+  releaseVersion: 0.63.1
+  configChecksum: 0a56a202af164cfebf98ad8ec9c035dc
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: 5a60f28d-d39b-4fa5-8a9d-63fdab589e32
-  pristine_commit_hash: 8bafdb84de3bd4a0e42a854997b1ce40dcd53ab5
-  pristine_tree_hash: 21b3191b1f63eb24e8226afc8165570ca22facb2
+  generation_id: 6348f03a-27ff-46c2-bcb8-e06bcf42cb0f
+  pristine_commit_hash: f7462c644dc8f474d08c7b12437645972cdb14d0
+  pristine_tree_hash: a2b68ef6f9a9d7360cf82f91f73fa5e5d57d059c
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -9975,12 +9975,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:edf386c3b68773f069682f5dcb5319d345563e2e
-    pristine_git_object: bcbec36e93201690e2407215c838499b77c69d46
+    last_write_checksum: sha1:d4cf68f2c80b530afdd9853427b782335e1af2b6
+    pristine_git_object: 8ac5d65bf556808fae1234ed0f084654863d0eee
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:4c04f57c36c470e2e15ee35fe8f609384a2c23f9
-    pristine_git_object: 740c8601a1e7d18207ff8af12f0cfa084e762490
+    last_write_checksum: sha1:3abd3417c2ddd8a1cf2c2f0bdcbdd26693f186ff
+    pristine_git_object: 979d9999d1fb9461fe67e9479846293ebb043207
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -17983,8 +17983,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:a865fbfb865278b6e2b446053b10c1a7885163af
-    pristine_git_object: 34b6c404cf8d5de42d90a4b91e2974031c22d566
+    last_write_checksum: sha1:dbc8f2c81318f3191be5601a5fa0a829bbcbc2e5
+    pristine_git_object: c08735391bfe8854ccfa2f9900f012d41d48af72
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:320ad978da272ff7ef2a1d1efd5d53a81190a936
@@ -42383,7 +42383,6 @@ generatedTests:
   ats.jobsAdd: "2026-03-11T13:14:11Z"
   ats.jobsUpdate: "2026-03-11T13:14:11Z"
   ats.jobsDelete: "2026-03-11T13:14:11Z"
-releaseNotes: "## Typescript SDK Changes:\n* `apideck.accounting.invoices.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.ledgerAccounts.create()`: \n  *  `request.idempotencyKey` **Added**\n* `apideck.accounting.invoiceItems.create()`: \n  *  `request.idempotencyKey` **Added**\n* `apideck.accounting.customers.create()`: \n  *  `request.idempotencyKey` **Added**\n* `apideck.accounting.payments.create()`: \n  *  `request.idempotencyKey` **Added**\n* `apideck.accounting.salesOrders.list()`: \n  *  `request.filter` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
