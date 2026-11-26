@@ -28,6 +28,26 @@ const accountingGoodsReceiptsList =
       ),
     )) as typeof import("../funcs/accountingGoodsReceiptsList.js").accountingGoodsReceiptsList;
 
+let accountingGoodsReceiptsCreate$module:
+  | Promise<typeof import("../funcs/accountingGoodsReceiptsCreate.js")>
+  | undefined;
+const accountingGoodsReceiptsCreate =
+  ((
+    ...args: Parameters<
+      typeof import("../funcs/accountingGoodsReceiptsCreate.js").accountingGoodsReceiptsCreate
+    >
+  ) =>
+    new APIPromise(
+      (accountingGoodsReceiptsCreate$module ??= import(
+        "../funcs/accountingGoodsReceiptsCreate.js"
+      ).catch((error: unknown) => {
+        accountingGoodsReceiptsCreate$module = undefined;
+        throw error;
+      })).then((module) =>
+        module.accountingGoodsReceiptsCreate(...args).$inspect()
+      ),
+    )) as typeof import("../funcs/accountingGoodsReceiptsCreate.js").accountingGoodsReceiptsCreate;
+
 let accountingGoodsReceiptsGet$module:
   | Promise<typeof import("../funcs/accountingGoodsReceiptsGet.js")>
   | undefined;
@@ -65,6 +85,23 @@ export class GoodsReceipts extends ClientSDK {
     >
   > {
     return unwrapResultIterator(accountingGoodsReceiptsList(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Goods Receipt
+   *
+   * @remarks
+   * Create a Goods Receipt against a purchase order. `purchase_order_id` is required and every line names the purchase order line it receives against; a receipt that is not tied to a purchase order cannot be created. The response returns the `id` of the new receipt only: read it with `GET /accounting/goods-receipts/{id}` to see the posted document.
+   */
+  async create(
+    request: operations.AccountingGoodsReceiptsAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.AccountingGoodsReceiptsAddResponse> {
+    return unwrapAsync(accountingGoodsReceiptsCreate(
       this,
       request,
       options,

@@ -31,6 +31,10 @@ export type Coverage = {
    */
   downstreamName?: string | undefined;
   /**
+   * Status of the resource. Resources with status live or beta are callable.
+   */
+  status?: ResourceStatus | undefined;
+  /**
    * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
    */
   paginationSupported?: boolean | undefined;
@@ -82,6 +86,7 @@ export const Coverage$inboundSchema: z.ZodType<
   z.object({
     downstream_id: types.optional(types.string()),
     downstream_name: types.optional(types.string()),
+    status: types.optional(ResourceStatus$inboundSchema),
     pagination_supported: types.optional(types.boolean()),
     pagination: types.optional(PaginationCoverage$inboundSchema),
     supported_operations: types.optional(z.array(types.string())),

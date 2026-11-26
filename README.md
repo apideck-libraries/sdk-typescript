@@ -299,6 +299,7 @@ run();
 ### [Accounting.GoodsReceipts](docs/sdks/goodsreceipts/README.md)
 
 * [list](docs/sdks/goodsreceipts/README.md#list) - List Goods Receipts
+* [create](docs/sdks/goodsreceipts/README.md#create) - Create Goods Receipt
 * [get](docs/sdks/goodsreceipts/README.md#get) - Get Goods Receipt
 
 ### [Accounting.InvoiceItems](docs/sdks/invoiceitems/README.md)
@@ -940,6 +941,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingFiscalPeriodsList`](docs/sdks/fiscalperiods/README.md#list) - List Fiscal Periods
 - [`accountingGeneralLedgerTransactionsGet`](docs/sdks/generalledgertransactions/README.md#get) - Get General Ledger Transaction
 - [`accountingGeneralLedgerTransactionsList`](docs/sdks/generalledgertransactions/README.md#list) - List General Ledger Transactions
+- [`accountingGoodsReceiptsCreate`](docs/sdks/goodsreceipts/README.md#create) - Create Goods Receipt
 - [`accountingGoodsReceiptsGet`](docs/sdks/goodsreceipts/README.md#get) - Get Goods Receipt
 - [`accountingGoodsReceiptsList`](docs/sdks/goodsreceipts/README.md#list) - List Goods Receipts
 - [`accountingInvoiceItemsCreate`](docs/sdks/invoiceitems/README.md#create) - Create Invoice Item
@@ -1521,8 +1523,8 @@ run();
 
 
 **Inherit from [`ApideckError`](./src/models/errors/apideckerror.ts)**:
-* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 383 methods.*
-* [`ConflictResponse`](./src/models/errors/conflictresponse.ts): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 383 methods.*
+* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 384 methods.*
+* [`ConflictResponse`](./src/models/errors/conflictresponse.ts): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 384 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>

@@ -152,6 +152,7 @@ async function run() {
   const result = await apideck.accounting.suppliers.create({
     serviceId: "salesforce",
     companyId: "12345",
+    idempotencyKey: "your-unique-key-per-create",
     supplier: {
       displayId: "EMP00101",
       displayName: "Windsurf Shop",
@@ -336,6 +337,7 @@ async function run() {
   const res = await accountingSuppliersCreate(apideck, {
     serviceId: "salesforce",
     companyId: "12345",
+    idempotencyKey: "your-unique-key-per-create",
     supplier: {
       displayId: "EMP00101",
       displayName: "Windsurf Shop",

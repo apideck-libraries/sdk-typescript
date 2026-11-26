@@ -7,6 +7,8 @@ type Coverage struct {
 	DownstreamID *string `json:"downstream_id,omitempty"`
 	// Name of the resource in the Connector's API (downstream)
 	DownstreamName *string `json:"downstream_name,omitempty"`
+	// Status of the resource. Resources with status live or beta are callable.
+	Status *ResourceStatus `json:"status,omitempty"`
 	// Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
 	PaginationSupported *bool               `json:"pagination_supported,omitempty"`
 	Pagination          *PaginationCoverage `json:"pagination,omitempty"`
@@ -34,6 +36,13 @@ func (o *Coverage) GetDownstreamName() *string {
 		return nil
 	}
 	return o.DownstreamName
+}
+
+func (o *Coverage) GetStatus() *ResourceStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
 }
 
 func (o *Coverage) GetPaginationSupported() *bool {

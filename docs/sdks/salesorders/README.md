@@ -139,6 +139,7 @@ async function run() {
   const result = await apideck.accounting.salesOrders.create({
     serviceId: "salesforce",
     companyId: "12345",
+    idempotencyKey: "your-unique-key-per-create",
     salesOrder: {
       number: "SO000123",
       customer: {
@@ -363,6 +364,7 @@ async function run() {
   const res = await accountingSalesOrdersCreate(apideck, {
     serviceId: "salesforce",
     companyId: "12345",
+    idempotencyKey: "your-unique-key-per-create",
     salesOrder: {
       number: "SO000123",
       customer: {

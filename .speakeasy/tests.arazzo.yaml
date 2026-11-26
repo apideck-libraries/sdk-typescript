@@ -50947,6 +50947,9 @@ workflows:
           - name: x-apideck-company-id
             in: header
             value: "12345"
+          - name: idempotency-key
+            in: header
+            value: your-unique-key-per-create
         requestBody:
           contentType: application/json
           payload:

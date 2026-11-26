@@ -73,6 +73,7 @@ test("Quotes Accounting Quotes Add", async () => {
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     companyId: "12345",
+    idempotencyKey: "your-unique-key-per-create",
     quote: {
       number: "QT00546",
       customer: {
