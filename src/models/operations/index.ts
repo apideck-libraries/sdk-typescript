@@ -88,6 +88,7 @@ export * from "./accountingfiscalperiodsall.js";
 export * from "./accountingfiscalperiodsone.js";
 export * from "./accountinggeneralledgertransactionsall.js";
 export * from "./accountinggeneralledgertransactionsone.js";
+export * from "./accountinggoodsreceiptsadd.js";
 export * from "./accountinggoodsreceiptsall.js";
 export * from "./accountinggoodsreceiptsone.js";
 export * from "./accountinginvoiceitemsadd.js";

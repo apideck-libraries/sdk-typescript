@@ -137,6 +137,7 @@ async function run() {
   const result = await apideck.accounting.quotes.create({
     serviceId: "salesforce",
     companyId: "12345",
+    idempotencyKey: "your-unique-key-per-create",
     quote: {
       number: "QT00546",
       customer: {
@@ -333,6 +334,7 @@ async function run() {
   const res = await accountingQuotesCreate(apideck, {
     serviceId: "salesforce",
     companyId: "12345",
+    idempotencyKey: "your-unique-key-per-create",
     quote: {
       number: "QT00546",
       customer: {
