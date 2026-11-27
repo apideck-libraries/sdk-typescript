@@ -276,15 +276,16 @@ export const Unauthorized$inboundSchema: z.ZodType<
     body$: z.string(),
   })
     .transform((v) => {
-      const remapped = remap$(v, {
+      const { request$, response$, body$, ...data } = v;
+      const remapped = remap$(data, {
         "status_code": "statusCode",
         "type_name": "typeName",
       });
 
       return new Unauthorized(remapped, {
-        request: v.request$,
-        response: v.response$,
-        body: v.body$,
+        request: request$,
+        response: response$,
+        body: body$,
       });
     })
 );
