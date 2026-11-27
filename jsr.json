@@ -2,7 +2,7 @@
 
 {
   "name": "@apideck/unify",
-  "version": "0.64.0",
+  "version": "0.65.0",
   "exports": {
     ".": "./src/index.ts",
     "./node": "./src/node.ts",
